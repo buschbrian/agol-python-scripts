@@ -1,84 +1,86 @@
-"""Stage 3-4: smoothing, banded local maxima, plateau collapse."""
-
+"""Height-banded maxima with one actual raster-cell point per plateau."""
 from __future__ import annotations
 
+import hashlib
+import math
 import os
+import uuid
 
 import arcpy
+import numpy as np
+from scipy import ndimage
 
-from .bands import Band, radius_in_cells
+from .bands import radius_in_cells, validate_bands
+from . import common
+
+MAX_CELLS = 4_000_000
 
 
-def detect(
-    chm_path: str,
-    out_workspace: str,
-    bands,
-    cell_size: float = 0.5,
-    smooth_cells: int = 1,
-    prefix: str = "",
-) -> str:
-    """Return a point feature class of treetops with TREE_ID and HEIGHT_M.
+def smooth_surface(array, radius):
+    if isinstance(radius, bool) or int(radius) != radius or radius < 0:
+        raise ValueError("Smoothing radius must be a non-negative integer")
+    if radius == 0:
+        return array.copy()
+    yy, xx = np.ogrid[-radius:radius+1, -radius:radius+1]
+    kernel = (xx*xx+yy*yy <= radius*radius).astype(float)
+    valid = np.isfinite(array)
+    total = ndimage.convolve(np.where(valid, array, 0.0), kernel, mode="constant", cval=0)
+    weight = ndimage.convolve(valid.astype(float), kernel, mode="constant", cval=0)
+    return np.divide(total, weight, out=np.full_like(array, np.nan), where=weight > 0)
 
-    One point per tree, not one per maximum cell: flat crown tops produce
-    clusters of tied maxima and collapsing them is worth 15-30% of the count.
-    """
-    from arcpy.sa import (
-        Con,
-        ExtractMultiValuesToPoints,
-        FocalStatistics,
-        IsNull,
-        NbrCircle,
-        Raster,
-        RegionGroup,
-        SetNull,
-    )
 
-    chm = Raster(chm_path)
-    min_height = bands[0].low
-
-    # Light smoothing only. Over-smoothing merges a row of street trees into one.
-    surface = (
-        FocalStatistics(chm, NbrCircle(smooth_cells, "CELL"), "MEAN", "DATA")
-        if smooth_cells > 0
-        else chm
-    )
-    canopy = SetNull(surface < min_height, surface)
-
-    maxima = None
+def peak_cells(array, bands, resolution, smooth_cells):
+    """Return plateau representatives, selected by raw height then centroid distance."""
+    surface = smooth_surface(array, smooth_cells)
+    valid = np.isfinite(array) & (array >= bands[0].low) & (surface >= bands[0].low)
+    masked = np.where(valid, surface, -np.inf)
+    maxima = np.zeros(array.shape, dtype=bool)
     for band in bands:
-        neighbourhood = NbrCircle(radius_in_cells(band.radius, cell_size), "CELL")
-        focal_max = FocalStatistics(canopy, neighbourhood, "MAXIMUM", "DATA")
-        in_band = (
-            canopy >= band.low
-            if band.high is None
-            else ((canopy >= band.low) & (canopy < band.high))
-        )
-        # >= rather than == : focal maximum is never below the cell itself, so
-        # this is equality without depending on float equality across rasters.
-        hit = Con(in_band & (canopy >= focal_max), 1)
-        maxima = hit if maxima is None else Con(IsNull(maxima), hit, maxima)
+        radius = radius_in_cells(band.radius, resolution)
+        yy, xx = np.ogrid[-radius:radius+1, -radius:radius+1]
+        footprint = xx*xx+yy*yy <= radius*radius
+        focal = ndimage.maximum_filter(masked, footprint=footprint, mode="constant", cval=-np.inf)
+        inside = (surface >= band.low) & (True if band.high is None else surface < band.high)
+        maxima |= valid & inside & (masked >= focal)
+    regions, count = ndimage.label(maxima, structure=np.ones((3, 3)))
+    peaks = []
+    for label, bounds in enumerate(ndimage.find_objects(regions), 1):
+        if bounds is None:
+            continue
+        local = regions[bounds] == label
+        rr, cc = np.nonzero(local)
+        rr, cc = rr+bounds[0].start, cc+bounds[1].start
+        values = array[rr, cc]
+        candidates = np.flatnonzero(values == values.max())
+        distances = (rr[candidates]-rr.mean())**2 + (cc[candidates]-cc.mean())**2
+        selected = candidates[np.argmin(distances)]
+        peaks.append((int(rr[selected]), int(cc[selected]), float(values[selected])))
+    return peaks
 
-    plateaus = RegionGroup(maxima, "EIGHT", "WITHIN", "NO_LINK")
-    plateau_raster = os.path.join(out_workspace, f"{prefix}plateaus.tif")
-    plateaus.save(plateau_raster)
 
-    plateau_polys = os.path.join(out_workspace, f"{prefix}plateau_polys")
-    arcpy.conversion.RasterToPolygon(
-        plateau_raster, plateau_polys, "NO_SIMPLIFY", "VALUE"
-    )
-
-    tops = os.path.join(out_workspace, f"{prefix}treetops")
-    arcpy.management.FeatureToPoint(plateau_polys, tops, "INSIDE")
-
-    arcpy.management.AddField(tops, "TREE_ID", "LONG")
-    arcpy.management.CalculateField(tops, "TREE_ID", "!OBJECTID!", "PYTHON3")
-    ExtractMultiValuesToPoints(tops, [[chm_path, "HEIGHT_M"]], "NONE")
-
-    # Smoothing can pull a peak below the threshold; drop those rather than
-    # carrying a tree with no measurable height.
-    with arcpy.da.UpdateCursor(tops, ["HEIGHT_M"]) as cursor:
-        for (height,) in cursor:
-            if height is None or height < min_height:
-                cursor.deleteRow()
-
-    return tops
+def detect(chm_path, out_workspace, bands, cell_size=None, smooth_cells=1, prefix="", source_id=None):
+    validate_bands(bands)
+    gdb = common.geodatabase(out_workspace)
+    common.prefix_name(prefix)
+    raster, resolution = common.grid(chm_path, cell_size, MAX_CELLS)
+    path = common.output(gdb, prefix + "treetops")
+    array = arcpy.RasterToNumPyArray(raster, nodata_to_value=np.nan)
+    peaks = peak_cells(array, bands, resolution, smooth_cells)
+    if source_id is None:
+        identity = os.path.abspath(chm_path)
+        if os.path.isfile(chm_path):
+            identity += "|" + str(os.path.getmtime(chm_path))
+        source_id = hashlib.sha256(identity.encode()).hexdigest()[:24]
+    if len(source_id) > 128:
+        raise ValueError("Source ID must fit in 128 characters")
+    common.create_points(gdb, os.path.basename(path), raster.spatialReference)
+    fields = ["SHAPE@XY", "TREE_ID", "HEIGHT_M", "MIN_HEIGHT", "SMOOTH", "SOURCE_ID", "REVIEW_STATUS"]
+    with arcpy.da.InsertCursor(path, fields) as cursor:
+        for row, col, height in peaks:
+            x = raster.extent.XMin+(col+0.5)*resolution
+            y = raster.extent.YMax-(row+0.5)*resolution
+            identity = f"{source_id}|{raster.spatialReference.factoryCode}|{x:.6f}|{y:.6f}"
+            tree_id = str(uuid.uuid5(uuid.NAMESPACE_URL, identity))
+            cursor.insertRow([(x, y), tree_id, height, bands[0].low, smooth_cells, source_id, "UNVERIFIED"])
+    common.metadata(path, f"Estimated treetops from {chm_path}; source ID {source_id}; minimum {bands[0].low} m.")
+    return path

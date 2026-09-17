@@ -1,0 +1,44 @@
+{
+  "AuditLasDataset": [
+    "lasd",
+    "report"
+  ],
+  "BuildCanopyHeightModel": [
+    "lasd",
+    "workspace",
+    "cell_size",
+    "extent",
+    "prefix",
+    "chm",
+    "z_metres",
+    "building_clearance"
+  ],
+  "DetectTreetops": [
+    "chm",
+    "workspace",
+    "band_spec",
+    "cell_size",
+    "smooth",
+    "prefix",
+    "tops"
+  ],
+  "DelineateCrowns": [
+    "chm",
+    "tops",
+    "workspace",
+    "min_height",
+    "min_area",
+    "cell_size",
+    "prefix",
+    "crowns",
+    "reviewed"
+  ],
+  "SummarizeCanopyCover": [
+    "chm",
+    "zones",
+    "zone_field",
+    "out_table",
+    "min_height",
+    "cell_size"
+  ]
+}

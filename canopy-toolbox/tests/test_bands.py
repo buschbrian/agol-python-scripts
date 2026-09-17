@@ -52,6 +52,11 @@ class ValidateBands(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_bands([Band(6, 2, 1.0)])
 
+    def test_nonfinite_parameters_rejected(self):
+        for spec in ("2-:nan", "2-:inf", "nan-:1", "2-inf:1"):
+            with self.subTest(spec=spec), self.assertRaises(ValueError):
+                parse_bands(spec)
+
     def test_empty_rejected(self):
         with self.assertRaises(ValueError):
             validate_bands([])

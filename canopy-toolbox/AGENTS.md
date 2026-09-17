@@ -1,38 +1,35 @@
-# canopy-toolbox — Agent Routing
+# Canopy toolbox development
 
-ArcGIS Pro Python toolbox: classified lidar → canopy cover + individual trees.
-Full rationale and caveats live in `README.md`. Keep this file under 60 lines.
+ArcGIS Pro Python toolbox and CLI: copied/classified lidar to canopy estimates.
+Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 
-## Working on X → read Y
+## Routing
 
-| Working on | Read first |
-|---|---|
-| Band / window logic | `canopy/bands.py`, `tests/test_bands.py` |
-| Tiling, seams | `canopy/tiling.py`, `tests/test_tiling.py` |
-| CHM construction | `canopy/rasters.py`, README "Design decisions" |
-| Detection | `canopy/treetops.py` |
-| Crowns | `canopy/crowns.py` |
-| Tool UI / parameters | `CanopyTools.pyt` |
+- Grid, bands, ownership: canopy/bands.py, canopy/tiling.py and pure tests.
+- LAS inventory/classification: canopy/preparation.py; source files are immutable.
+- CHM and support: canopy/rasters.py.
+- Optional roof-edge refinement and derived roof outlines: canopy/roofs.py.
+- Detection and crowns: canopy/treetops.py, canopy/crowns.py.
+- Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.
+- Cover accounting: canopy/cover.py.
+- Tool parameters: CanopyTools.pyt; CLI: canopy/__main__.py.
 
-## Non-negotiables
+## Invariants
 
-- `canopy/bands.py` and `canopy/tiling.py` **must not import arcpy.** They are
-  the only testable surface outside ArcGIS Pro; keep new pure logic there.
-- Never run `Fill` before `Flow Direction` in `crowns.py`. The sinks are the
-  trees.
-- Never drop the plateau collapse in `treetops.py`. Without it the count
-  inflates 15–30%.
-- Never reuse a delivered highest-hit DSM in place of the vegetation-only DSM.
-- Tool 5 (canopy cover) must stay independent of tools 3 and 4. It is the
-  defensible deliverable and cannot depend on detection.
-- Detection output carries an estimate warning. Do not remove it.
+- bands.py and tiling.py must not import arcpy. Put new pure parameter/grid logic there.
+- Never run Fill before Flow Direction. The current crown algorithm uses neither.
+- Preserve one actual-cell detection per connected plateau.
+- Use the classified vegetation DSM, never a delivered highest-hit DSM.
+- Preserve raw canopy support; do not interpolate vegetation through unknown cells.
+- Cover must remain independent of detections/crowns and retain missing coverage.
+- Do not classify original LAS files or mutate input treetop features.
+- Keep the estimate warning in dataset metadata and user-facing detection messages.
+- Never assume finite halos guarantee exact crown seams. Global analysis is bounded
+  to 4,000,000 cells; larger AOIs must fail clearly until another method is validated.
+- Keep credentials, imagery, working LAS files, and generated datasets in ignored scratch.
 
 ## Verify
 
-```bash
-cd canopy-toolbox && python3 -m unittest discover -s tests -t .   # 31 tests
-python3 -m py_compile canopy/*.py
-```
-
-`arcpy` paths cannot be verified off a Pro machine — see the README warning.
-Changes to them need a real run on a single tile before they are trusted.
+From canopy-toolbox: python -m unittest discover -s tests -t . -v
+Use ArcGIS Pro Python to execute the ArcPy fixtures; plain Python skips them.
+Changes to geoprocessing need actual runtime verification and a representative pilot.

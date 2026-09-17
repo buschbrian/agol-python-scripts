@@ -1,13 +1,9 @@
 """Tile grid and seam reconciliation.
 
-Watershed on a 130-million-cell raster is not practical, so the study area is
-processed in buffered tiles. Every tile owns a *core* extent and is processed
-over a larger *buffered* extent, so trees near a seam are delineated with full
-neighbourhood context.
-
-Duplicates are then resolved by ownership, not by proximity: a treetop is kept
-by exactly one tile -- the one whose core extent contains it. That is exact and
-has no distance threshold to tune, unlike a Near-and-delete pass.
+These helpers provide aligned, nonoverlapping raster cores with buffered
+interpolation context. Point ownership is exact for supplied points, but neither
+finite buffers nor ownership guarantee equivalent watershed segmentation.
+The runner detects and segments the whole assembled AOI under a size limit.
 
 Pure Python: no arcpy, so it is unit-testable outside ArcGIS Pro.
 """
@@ -77,9 +73,13 @@ def snap_extent(extent: Extent, cell_size: float, origin: tuple[float, float] | 
     the DSM and DTM puts a rim of false height around every crown edge, and those
     rims become treetops.
     """
-    if cell_size <= 0:
+    if not math.isfinite(cell_size) or cell_size <= 0:
         raise ValueError("cell size must be positive")
+    if not all(math.isfinite(v) for v in extent) or extent.width <= 0 or extent.height <= 0:
+        raise ValueError('extent must be finite and have positive width and height')
     ox, oy = origin or (0.0, 0.0)
+    if not all(math.isfinite(v) for v in (ox, oy)):
+        raise ValueError('grid origin must be finite')
     return Extent(
         ox + math.floor((extent.xmin - ox) / cell_size) * cell_size,
         oy + math.floor((extent.ymin - oy) / cell_size) * cell_size,
@@ -95,14 +95,17 @@ def tile_grid(
     cell_size: float = 0.5,
 ) -> list[Tile]:
     """Cover `extent` with snapped, non-overlapping cores plus buffered halos."""
-    if tile_size <= 0:
+    if not math.isfinite(tile_size) or tile_size <= 0:
         raise ValueError("tile size must be positive")
-    if overlap < 0:
+    if not math.isfinite(overlap) or overlap < 0:
         raise ValueError("overlap cannot be negative")
     if overlap >= tile_size / 2:
         raise ValueError("overlap must be smaller than half the tile size")
 
     grid = snap_extent(extent, cell_size)
+    for name, value in [('tile size', tile_size), ('overlap', overlap)]:
+        if not math.isclose(value / cell_size, round(value / cell_size), abs_tol=1e-8):
+            raise ValueError(f'{name} must be a whole number of raster cells')
     n_cols = max(1, math.ceil(grid.width / tile_size))
     n_rows = max(1, math.ceil(grid.height / tile_size))
 
@@ -141,9 +144,8 @@ def dedupe_by_core(
 def recommended_overlap(bands: Iterable[object], minimum: float = 15.0) -> float:
     """Halo wide enough that the largest search window fits inside it.
 
-    Defaults to 15 m, which comfortably exceeds any urban crown radius; the
-    cost of a too-large halo is compute, the cost of a too-small one is split
-    crowns at every seam.
+    The default is raster interpolation context, not a guarantee that all crown
+    influence fits within a halo. Whole-AOI segmentation is required for that.
     """
     radii = [getattr(band, "radius", 0.0) for band in bands]
     return max(minimum, (max(radii) if radii else 0.0) * 6.0)

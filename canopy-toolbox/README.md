@@ -1,152 +1,116 @@
-# canopy-toolbox
+# Canopy Tools for ArcGIS Pro
 
-A Python toolbox (`CanopyTools.pyt`) that turns a classified lidar point cloud
-into canopy cover and an individual-tree layer using only ArcGIS Pro, 3D
-Analyst, and Spatial Analyst. No R, no `lidR`, no external dependencies.
+Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 
-Built against Salt Lake County QL1 lidar (8 pulses/m², 0.5 m products), but
-nothing here is Utah-specific.
+The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
 
-## What it produces, and how much to trust it
+## Environment
 
-| Deliverable | Tool | Defensibility |
-|---|---|---|
-| Canopy cover — acres and % by parcel, district, block group | 5 | **High.** Deterministic, auditable, no tuning. |
-| Individual tree points and crown polygons | 3 + 4 | **Medium.** An estimate with known bias, never a census. |
-| Per-tree height and crown geometry | 4 | Fine as a screening layer, not as a record of a tree. |
+Use ArcGIS Pro Python with arcpy, NumPy, and SciPy. The workstation pilot uses Pro 3.7.2, Python 3.13.13, and the bundled scientific packages. LAS preparation and raster construction require 3D Analyst; canopy raster analysis requires Spatial Analyst. The removed Feature To Point operation no longer imposes an Advanced-license check; verification was performed on this workstation's Advanced license, not on Basic or Standard.
 
-If the question is "how much canopy does the city have," run tool 5 and stop.
-If the question is "how many trees," you are producing an interval estimate and
-the metadata needs to say so.
+Horizontal coordinates must be projected metres. A supplied vertical CRS must also use metres. For LAS without a vertical CRS, explicitly verify metre heights and use the toolbox checkbox or CLI --z-metres. This declaration does not convert coordinates or elevations. Zones and treetops must use the CHM's horizontal CRS.
 
-**Known detection rates:** ~85–95% for open-grown trees (street ROW, parks,
-yards); ~50–75% in closed canopy. Understory is invisible. Multi-stem oak and
-maple clumps are one crown from above regardless of how many stems are on the
-ground. The count is biased **low**, worst in the areas people ask about most.
+## ArcGIS Pro toolbox
 
-## Order of operations
+Add CanopyTools.pyt to a Pro project. Tools 3 and 4 require an existing file geodatabase. Tool 2 writes rasters to an ordinary folder; tool 5 writes a table inside an existing file geodatabase. Existing outputs are refused: choose a new prefix or run folder.
 
-| # | Tool | Notes |
-|---|---|---|
-| 0 | *Classify LAS Noise* (stock 3D Analyst) | **Do this first.** Isolated high points become phantom 40 m treetops — the largest single source of commission error. |
-| 0 | *Classify LAS Ground / Building / By Height* (stock) | Only if the delivery lacks classes 2/6 and 3/4/5. Set the high-vegetation break to match your tree threshold. |
-| 1 | **Audit LAS Dataset** | Class codes, spatial reference, point count. Warns about each missing class above. |
-| 2 | **Build Canopy Height Model** | DTM + vegetation-only DSM, differenced on one snapped grid. |
-| 3 | **Detect Treetops** | Height-banded local maxima with plateau collapse. |
-| 4 | **Delineate Crowns** | Inverted-CHM watershed, clipped to the canopy mask. |
-| 5 | **Summarize Canopy Cover** | Zonal rollup. Independent of 3 and 4 — run it first. |
+| Tool | Inputs and outputs |
+|---|---|
+| 1. Audit LAS Dataset | Reads CRS, point count, available classes, and statistics status. Presence of a class does not establish classification quality. |
+| 2. Build Canopy Height Model | Ground DTM; unfilled vegetation/building DSMs; vegetation-support, building-occlusion and observation masks; CHM; JSON provenance. |
+| 3. Detect Treetops | Height-banded local maxima, one actual raster cell per connected plateau, stable source/coordinate UUIDs. |
+| 4. Delineate Crowns | Marker watershed constrained to measured canopy. Writes crowns and a separate trees_review feature class; input detections are unchanged. |
+| 5. Summarize Canopy Cover | Independent CHM thresholding by polygon zone, including observation coverage and missing-area bounds. No detection input required. |
 
-## Design decisions worth knowing
+Optional cell-size parameters on tools 3–5 verify the raster resolution. Area is always calculated from the actual cells. Crown minimum height must match the detection threshold stored in the treetops. Change both together when changing the tree definition.
 
-**The DSM is rebuilt, not reused.** A delivered first-return DSM is a
-highest-hit surface with buildings in it. Tool 2 builds the DSM from vegetation
-returns only (classes 1/3/4/5, first-of-many and single returns), which removes
-the rooftop false-positive problem at the source instead of masking it later.
+## Command-line workflow
 
-**The DTM is pinned as the snap raster** before the DSM is generated. A
-half-cell misregistration at 0.5 m puts a rim of false height around every
-crown edge, and those rims become treetops.
+Run from this folder using Pro Python. Paths below use the supplied delivery and the representative 250 m pilot; choose a NEW output directory for each changed analysis.
 
-**The search window varies with height.** ArcGIS has no variable-window filter,
-so `canopy/bands.py` runs Focal Statistics once per height band and combines
-the results:
+~~~powershell
+$proPython = 'C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe'
+& $proPython -m canopy inventory 'G:\GIS\2024 Lidar for tower extract' --report scratch\delivery.json
+& $proPython -m canopy prepare 'G:\GIS\2024 Lidar for tower extract' scratch\new_pilot --extent 422350 4503350 422600 4503600
+& $proPython -m canopy run scratch\new_pilot\prepared.lasd scratch\new_run --extent 422350 4503350 422600 4503600 --tile-size 125
+~~~
 
-```
-2-6:1.0, 6-12:1.5, 12-20:2.0, 20-:2.5
-```
+Inventory reads uncompressed LAS headers and samples classes, returns, and flags without creating source-side statistics. Use --full for exact point counts by class. File creation dates are not acquisition dates. LAZ input is not supported by the direct binary inventory reader.
 
-These are open-grown urban defaults. **Re-fit them against a local
-crown-radius sample before publishing a count** — this is the single biggest
-accuracy lever in the whole workflow. The spec is validated on entry: gaps,
-overlaps, and a closed top band (which would silently drop every tall tree) are
-rejected before anything runs.
+Prepare extracts new point files into output/points, checks that they are isolated from the delivery, and classifies only that copy. It preserves delivered ground and noise by default. If any copied file has no ground, ground classification runs with reuse of existing ground. Optional --classify-noise enables isolation screening with explicit, recorded parameters; review those thresholds locally.
 
-**Local maxima use `>=` against the focal maximum, not `==`.** The focal maximum
-is never below the cell itself, so this is equality without depending on
-float equality holding across two rasters.
+Buildings are classified before remaining unclassified points are assigned height classes. Defaults: 2 m minimum building height, 10 square metres minimum building area, and class 6 for points below detected roofs and within 3 m above them. --roof-tolerance changes the last threshold; zero disables above-roof classification. Inspect tree overhangs and rooftop vegetation because these settings can remove real vegetation as well as roof equipment. Class 3 spans up to 0.5 m, class 4 up to 2 m, and class 5 up to 80 m above ground. These height labels do not establish that the objects are trees.
 
-**Plateaus are collapsed.** Flat crown tops produce clusters of tied maxima.
-Region-grouping them and taking one interior point per region is worth 15–30%
-of the count. (This is why tool 3 needs an Advanced license — `Feature To
-Point`.)
+The run manifest records parameters, source size/mtime, code fingerprint, runtime, per-tile progress, and final outputs. --resume reuses an unchanged run, including saved raster cores after an interrupted attempt. Changed inputs, code, or parameters require a new directory. Source fingerprints detect normal file changes; they are not cryptographic checksums of all LAS bytes. An explicit --source-files list is required when not using a prepared LAS dataset.
 
-**`Fill` is deliberately never run before `Flow Direction`.** The CHM is
-inverted so treetops become basins; filling would erase exactly the features
-being detected. This is the classic way this recipe fails.
+Run outputs are CHM, treetops, crowns, and trees_review. Use tool 5 on the assembled CHM and your zones to produce canopy-cover tables.
 
-**Crowns are clipped back to the canopy mask.** Watershed floods outward across
-lawn and pavement to the raster edge. Without the clip, every tree gets a 30 m
-crown.
+## Raster and crown methods
 
-**Seams are resolved by ownership, not proximity.** `canopy/tiling.py` gives
-each tile a non-overlapping *core* and a buffered *halo*; a treetop is kept by
-the one tile whose core contains it (half-open on the upper edges). That is
-exact and has no distance threshold to tune, unlike a `Near`-and-delete pass.
-Tiling matters: a city of ~33 km² is ~132 million cells at 0.5 m, and
-`Watershed` on a single raster that size is not practical.
+- Ground class 2 supplies the triangulated DTM. Vegetation DSM uses only classes 3/4/5, first or single returns, BINNING MAXIMUM NONE. It cannot interpolate canopy across roads, roofs, or empty vegetation cells.
+- Withheld, overlap, and synthetic points are excluded. This policy can reduce coverage and must be checked against delivery provenance.
+- A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20.
+- Where a measured class-6 first/single surface is more than 0.35 m above vegetation in the same cell, the CHM reports observed non-canopy. This prevents lower wall or under-roof returns from becoming visible canopy. Canopy above roofs survives. The configurable building-clearance threshold is a processing tolerance, not a surveyed accuracy value. The raw vegetation DSM and building_occlusion mask preserve the evidence.
+- Smoothing and maxima operate on the same grid used by crown segmentation. Raw canopy support constrains the flood. No hydrology Fill or Flow Direction operation is used. Unseeded canopy stays unassigned and is reported.
+- Crown areas use exact cell counts. Small crowns are excluded from polygons but remain in trees_review with CROWN_TOO_SMALL status. Crown diameter is the diameter of a circle with equivalent area, not a measured canopy width.
 
-## Validating before you publish
+Raster creation uses buffered, nonoverlapping tile cores and assembles one canonical CHM. Detection and segmentation then run across that entire AOI. Tests demonstrated that finite crown halos alone cannot guarantee equivalent results, so the runner does not stitch independently grown crowns.
 
-The toolbox will not do this for you and the numbers are not publishable
-without it.
+**Detection and crown processing have a hard limit of 4,000,000 cells per AOI** (1 square kilometre at 0.5 m resolution). The runner rejects larger analyses before processing. Citywide crown reconciliation is not implemented; independently run AOIs must not be appended and described as a seamless inventory. Raster-generation seams can still change DTM interpolation slightly; SEAM_REVIEW marks nearby detections for inspection. Cover summarization is independent of the crown limit.
 
-1. Stratify the study area — street ROW, park, single-family, foothill.
-2. Draw 60–100 random plots and count trees manually from imagery (field-check
-   a subset).
-3. Report **detection rate, commission, and omission per stratum**, not a
-   single overall accuracy.
-4. Use [i-Tree Canopy](https://canopy.itreetools.org/) as the independent check
-   on percent cover. It is photo-interpreted point sampling with a real
-   confidence interval and it is the accepted municipal standard.
-5. Publish the count as an interval.
+TREE_ID is deterministic for the same source ID, CRS, and raster-cell location. It is suitable for repeat-run joins, but is not longitudinal tree identity: a changed raster peak can change an ID. Preserve reviewed inventory identity separately when reconciling future acquisitions.
 
-⚠️ **Check your flight date.** Leaf-off and shoulder-season acquisitions
-under-detect and under-measure deciduous crowns badly. The Salt Lake County
-2023 collection was flown 7 Oct – 5 Nov, which is partial leaf-off on the
-Wasatch Front. It is not comparable to a summer flight, and change detection
-against another acquisition is only valid if both are in the same phenological
-state.
+## Canopy cover fields
 
-## Requirements
+| Field | Meaning |
+|---|---|
+| ZONE_M2 | Unioned polygon geometry area for the zone ID. |
+| GRID_M2 | Cell-centre rasterized area, which can differ from polygon area. |
+| CANOPY_M2 / CANOPY_ACRES | Observed cells at or above the requested height threshold. |
+| OBSERVED_M2 / MISSING_M2 | Known and unknown rasterized zone area. |
+| COVERAGE_PCT | Observed share of GRID_M2. |
+| CANOPY_PCT | Full-grid canopy percent only when all zone cells are observed; otherwise null. |
+| OBS_CANOPY_PCT | Canopy percent among observed cells only. |
+| CANOPY_LOW_PCT / CANOPY_HIGH_PCT | Extreme full-grid percentages if missing cells are all non-canopy or all canopy. These are not confidence intervals. |
+| COVER_STATUS | COMPLETE, PARTIAL, NO_DATA, or NO_CELL_CENTERS. |
 
-- ArcGIS Pro with an **Advanced** licence (tool 3 uses `Feature To Point`)
-- **3D Analyst** — LAS dataset tools
-- **Spatial Analyst** — Focal Statistics, Region Group, Flow Direction,
-  Watershed, Zonal Statistics
-- A classified LAS dataset (`.lasd`)
+Duplicate zone IDs are unioned; distinct overlapping zones are analyzed independently. Outside and all-missing zones retain output rows. Very small polygons without cell centres have no rasterized percentage. Processing each unique zone separately prioritizes correct overlap accounting; large zone collections need a performance review.
 
-## Install
+## Field review and imagery
 
-Copy this `canopy-toolbox/` folder anywhere, then add the toolbox in the
-Catalog pane in ArcGIS Pro:
+The tree layer includes TREE_ID, SOURCE_ID, HEIGHT_M, REVIEW_STATUS, SPECIES, DBH_CM, CONDITION, and FIELD_NOTES. Species, DBH, condition, and stem coordinates are not inferred from lidar. Review status starts UNVERIFIED; crown attributes and acceptance status live on the independent trees_review copy. Metadata preserves the estimate warning.
 
-```
-Catalog → Toolboxes → Add Toolbox → CanopyTools.pyt
-```
+The supplied Nearmap WMS was used for local pilot comparison. The connection and imagery remain in ignored scratch storage; no credential belongs in tracked source or documentation. The endpoint serves latest imagery and does not expose a capture date in the capabilities response used here. The user confirmed lidar capture in 2024 and nominal point spacing of 0.5 m (separate from CHM cell size). The exact flight date and temporal match with Nearmap remain unknown. Imagery can expose roof leakage, omissions, and merged crowns; it is not a field-verified accuracy sample.
 
-`canopy/` must stay beside the `.pyt`; the toolbox adds its own folder to
-`sys.path` and reloads the package on every run so edits take effect without
-restarting Pro.
+Before publishing an inventory: inspect representative parks, street trees, dense canopy, buildings, slopes, and small trees; agree on the minimum tree definition; collect independent reference labels; then measure omissions, false detections, merges/splits, and canopy error. This pilot establishes executable behavior and reveals classification issues. It does not establish a production accuracy percentage.
 
-## Tests
+## Verification
 
-The geometry and band logic are pure Python with no `arcpy` import, so they run
-anywhere:
+~~~powershell
+# Pure logic and mocked utility safeguards; ArcGIS cases skip outside Pro.
+python -m unittest discover -s tests -t . -v
+# Actual raster/LAS/geodatabase regression fixtures on the Pro workstation.
+& $proPython -m unittest discover -s tests -t . -v
+~~~
 
-```bash
-cd canopy-toolbox
-python3 -m unittest discover -s tests -t .
-```
+The suite covers a 137-cell ideal crown, diagonal plateaus, adjacent markers, canopy gaps, class-1 exclusion, empty and unknown surfaces, coverage denominators, duplicate/overlapping/outside/tiny zones, units, repeated output creation, global segmentation across raster cores, resume checks, and standalone utility failure safeguards. Hosted editing and publishing are not exercised.
 
-31 tests, no dependencies.
 
-⚠️ **The `arcpy` code paths have not been executed.** They were written on
-macOS, where ArcGIS Pro does not run. Tool signatures and keyword arguments
-follow the documented API, but the interpolation strings in
-`canopy/rasters.py` are exposed as constants precisely because valid keyword
-combinations drift between Pro releases — adjust them there rather than
-assuming a failure is a logic bug. First run should be on a single small tile.
+## Optional roof-edge refinement
 
-## Licence
+The stock building classifier can leave roof-edge returns in vegetation classes. An experimental, opt-in refinement is available after prepare and before run:
 
-Inherits the parent repository’s licence (MIT).
+~~~powershell
+& $proPython -m canopy refine-roofs scratch\new_pilot\prepared.lasd scratch\roof_refined
+& $proPython -m canopy run scratch\roof_refined\prepared.lasd scratch\roof_run --extent 422350 4503350 422600 4503600 --tile-size 125
+~~~
+
+This creates NEW LAS copies. It derives roof-support polygons from eligible class-6 first/single returns, bridging only one-cell gaps. A robust low-slope plane is fitted to each support region of at least 25 square metres. Automatic refinement requires at least 80% plane inliers, residual RMSE at most 0.15 m, and slope below 0.25. These are model-selection thresholds, not survey accuracy claims.
+
+Eligible class-3/4/5 points inside the roof support or within a 1 m raster edge band are assigned class 6 only when between 0.35 m below and 3 m above the fitted roof plane. Parameters --edge-distance, --below-roof, --above-roof, and --min-roof-area are explicit. Lower adjacent canopy and higher overhangs stay unchanged; vegetation falling within the chosen roof-height band can still be affected and must be inspected. Weak, steep, or complex roof fits are not automatically refined.
+
+The output includes roof_review.gdb/roof_outlines, roof and ground rasters, prepared.lasd and copied points, per-point previous classification bytes under changes/, and a preparation.json manifest with before/after counts and plane diagnostics. Only classification bytes are changed; source LAS files, coordinates, returns, and flags are preserved. Legacy and LAS 1.4 point formats have byte-integrity tests.
+
+ROOF_Z_M is median measured roof elevation; ROOF_H_M is median roof elevation minus the interpolated ground surface; FIT_RMSE_M is the plane-fit residual, not elevation accuracy. MODEL_OK and PARTIAL_AOI identify rejected fits and outlines truncated by the analysis boundary. These rasterized roof-support outlines are unverified and should not be described as surveyed building-wall footprints.
+
+The user-supplied OSM layer was checked for the pilot plus a 30 m border and returned no intersecting footprints. It remains useful reference data where it has coverage; it is not used as a blanket canopy exclusion.

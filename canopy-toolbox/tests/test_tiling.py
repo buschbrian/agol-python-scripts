@@ -63,6 +63,15 @@ class TileGrid(unittest.TestCase):
         with self.assertRaises(ValueError):
             tile_grid(Extent(0, 0, 100, 100), 40, 20)
 
+    def test_unsnapped_tile_and_halo_are_rejected(self):
+        for size, overlap in [(4.1, .5), (4, .3)]:
+            with self.subTest(size=size, overlap=overlap), self.assertRaises(ValueError):
+                tile_grid(Extent(0, 0, 10, 10), size, overlap, .5)
+
+    def test_invalid_extent_rejected(self):
+        with self.assertRaises(ValueError):
+            tile_grid(Extent(10, 0, 0, 10), 4, .5, .5)
+
     def test_area_smaller_than_tile_gives_one_tile(self):
         self.assertEqual(len(tile_grid(Extent(0, 0, 50, 50), 400, 15)), 1)
 

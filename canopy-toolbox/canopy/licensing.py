@@ -23,11 +23,3 @@ def extensions(*names: str):
     finally:
         for name in reversed(checked_out):
             arcpy.CheckInExtension(name)
-
-
-def require_advanced() -> None:
-    """FeatureToPoint (plateau collapse) needs Advanced."""
-    if arcpy.ProductInfo() not in ("ArcInfo", "ArcServer"):
-        raise RuntimeError(
-            "an Advanced (ArcInfo) license is required for Feature To Point"
-        )
