@@ -6,8 +6,8 @@ domains to an ArcGIS Online hosted feature layer, so points collected with a
 Bad Elf receiver keep their correction type, geoid model, antenna height, and
 final heights alongside the geometry.
 
-Fields that already exist on the layer are skipped, so the script is safe to
-re-run.
+Existing fields are checked for compatible types, lengths, and domains before
+any schema changes. Use --dry-run to inspect the proposed additions.
 
 Usage:
     python add_badelf_fields_to_agol.py --url https://<org>.maps.arcgis.com \
@@ -71,13 +71,41 @@ NEW_FIELDS = [
 ]
 
 
+def nonnegative_index(value):
+    index = int(value)
+    if index < 0:
+        raise argparse.ArgumentTypeError("layer index must be non-negative")
+    return index
+
+
+def schema_conflicts(existing_fields):
+    existing = {field["name"].upper(): field for field in existing_fields}
+    conflicts = []
+    for expected in NEW_FIELDS:
+        actual = existing.get(expected["name"])
+        if actual is None:
+            continue
+        if actual["type"] != expected["type"]:
+            conflicts.append(expected["name"] + ": field type differs")
+        if "length" in expected and (actual.get("length") or 0) < expected["length"]:
+            conflicts.append(expected["name"] + ": field length is too short")
+        if "domain" in expected:
+            domain = actual.get("domain") or {}
+            wanted = {(str(v["code"]), v["name"]) for v in expected["domain"]["codedValues"]}
+            found = {(str(v["code"]), v["name"]) for v in domain.get("codedValues", [])}
+            if domain.get("type") != "codedValue" or not wanted <= found:
+                conflicts.append(expected["name"] + ": domain is missing or incompatible")
+    return conflicts
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Add Bad Elf Flex metadata fields to an AGOL hosted feature layer.")
     p.add_argument("--url", required=True, help="Portal URL, e.g. https://myorg.maps.arcgis.com")
     p.add_argument("--item", required=True, help="Item ID of the hosted feature layer")
     p.add_argument("--username", required=True, help="ArcGIS Online username")
     p.add_argument("--password", help="Password (prompted if omitted; prefer the prompt)")
-    p.add_argument("--layer", type=int, default=0, help="Sublayer index within the item (default 0)")
+    p.add_argument("--layer", type=nonnegative_index, default=0, help="Sublayer index within the item (default 0)")
+    p.add_argument("--dry-run", action="store_true", help="Validate and report additions without changing the layer")
     return p.parse_args()
 
 
@@ -100,6 +128,10 @@ def main() -> int:
     print(f"\nConnected to layer: {layer.properties.name}")
 
     # ---------------------------- Filter Existing Fields ---------------------------- #
+    conflicts = schema_conflicts(layer.properties.fields)
+    if conflicts:
+        print("Existing schema requires review; no changes made:\n" + "\n".join(conflicts))
+        return 1
     existing_fields = {f["name"].upper() for f in layer.properties.fields}
     fields_to_add = []
     for fld in NEW_FIELDS:
@@ -117,6 +149,9 @@ def main() -> int:
         print("All Bad Elf fields already exist. No changes needed.")
         return 0
 
+    if args.dry_run:
+        print("DRY_RUN: would add " + ", ".join(f["name"] for f in fields_to_add))
+        return 0
     print(f"Adding {len(fields_to_add)} new fields to the layer...")
     response = layer.manager.add_to_definition({"fields": fields_to_add})
     if response.get("success", False):

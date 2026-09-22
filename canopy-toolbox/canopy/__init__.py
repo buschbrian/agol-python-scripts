@@ -4,4 +4,4 @@
 modules import arcpy and only load inside ArcGIS Pro.
 """
 
-__all__ = ["bands", "tiling", "rasters", "treetops", "crowns", "cover", "licensing"]
+__all__ = ["bands", "tiling", "rasters", "treetops", "crowns", "cover", "licensing", "common", "preparation", "pipeline", "roofs"]

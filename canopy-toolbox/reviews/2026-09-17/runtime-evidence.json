@@ -1,0 +1,447 @@
+{
+  "reviewedCommit": "319f7b7",
+  "arcgisVersion": "3.7.2",
+  "pythonVersion": "3.13.13",
+  "license": "Advanced, 3D Analyst, Spatial Analyst",
+  "syntheticWorkspace": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052",
+  "results": {
+    "results.json": {
+      "detect_in_gdb": {
+        "status": "ERROR",
+        "error": "ERROR 010240: Could not save raster dataset to C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review.gdb\\plateaus.tif with output format FGDBR.",
+        "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 18, in probe\n    result = fn()\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 47, in <lambda>\n    probe('detect_in_gdb',lambda:treetops.detect(chm,gdb,bands.DEFAULT_BANDS,cell_size=1))\n                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"U:\\agol-python-scripts\\canopy-toolbox\\canopy\\treetops.py\", line 63, in detect\n    plateaus.save(plateau_raster)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nRuntimeError: ERROR 010240: Could not save raster dataset to C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review.gdb\\plateaus.tif with output format FGDBR.\n"
+      },
+      "detect_in_folder": {
+        "status": "ERROR",
+        "error": "ERROR 000539: Invalid field OBJECTID\nFailed to execute (CalculateField).\n",
+        "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 18, in probe\n    result = fn()\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 48, in <lambda>\n    probe('detect_in_folder',lambda:treetops.detect(chm,folder,bands.DEFAULT_BANDS,cell_size=1))\n                                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"U:\\agol-python-scripts\\canopy-toolbox\\canopy\\treetops.py\", line 74, in detect\n    arcpy.management.CalculateField(tops, \"TREE_ID\", \"!OBJECTID!\", \"PYTHON3\")\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\narcgisscripting.ExecuteError: ERROR 000539: Invalid field OBJECTID\nFailed to execute (CalculateField).\n\n"
+      },
+      "crowns_in_gdb": {
+        "status": "ERROR",
+        "error": "ERROR 010240: Could not save raster dataset to crowns.tif with output format FGDBR.",
+        "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 18, in probe\n    result = fn()\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 53, in <lambda>\n    probe('crowns_in_gdb',lambda:crowns.delineate(chm,tops,gdb,cell_size=1))\n                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"U:\\agol-python-scripts\\canopy-toolbox\\canopy\\crowns.py\", line 36, in delineate\n    Con(~IsNull(canopy), basins).save(clipped)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\nRuntimeError: ERROR 010240: Could not save raster dataset to crowns.tif with output format FGDBR.\n"
+      },
+      "crowns_in_folder": {
+        "status": "ERROR",
+        "error": "Failed to execute. Parameters are not valid.\nERROR 000664: Invalid input: The type of dataset is not supported.\nFailed to execute (AlterField).\n",
+        "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 18, in probe\n    result = fn()\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 54, in <lambda>\n    probe('crowns_in_folder',lambda:crowns.delineate(chm,tops,folder,cell_size=1))\n                                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"U:\\agol-python-scripts\\canopy-toolbox\\canopy\\crowns.py\", line 43, in delineate\n    arcpy.management.AlterField(crowns, \"gridcode\", \"TREE_ID\", \"TREE_ID\")\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\narcgisscripting.ExecuteError: Failed to execute. Parameters are not valid.\nERROR 000664: Invalid input: The type of dataset is not supported.\nFailed to execute (AlterField).\n\n"
+      },
+      "cover_nodata_default_cell": {
+        "status": "OK",
+        "result": [
+          {
+            "SUM": 8.0,
+            "COUNT": 8.0,
+            "CANOPY_M2": 2.0,
+            "ZONE_M2": 2.0,
+            "CANOPY_PCT": 100.0
+          }
+        ]
+      },
+      "cover_repeat_different_table": {
+        "status": "ERROR",
+        "error": "ERROR 000872: Output Raster: Dataset C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review.gdb\\canopy_binary already exists and cannot be overwritten since the Overwrite existing datasets option is disabled.",
+        "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 18, in probe\n    result = fn()\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 58, in <lambda>\n    probe('cover_repeat_different_table',lambda:cover_result('cover_second',partial,zones,1))\n                                                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review_probe.py\", line 38, in cover_result\n    t=cover.summarize(chm,zones,'ZONE_ID',os.path.join(gdb,name),cell_size=cell)\nRuntimeError: ERROR 000872: Output Raster: Dataset C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\review.gdb\\canopy_binary already exists and cannot be overwritten since the Overwrite existing datasets option is disabled.\n"
+      },
+      "cover_nodata_actual_cell": {
+        "status": "OK",
+        "result": [
+          {
+            "SUM": 8.0,
+            "COUNT": 8.0,
+            "CANOPY_M2": 8.0,
+            "ZONE_M2": 8.0,
+            "CANOPY_PCT": 100.0
+          }
+        ]
+      },
+      "audit_classified_las": {
+        "status": "OK",
+        "result": {
+          "path": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\synthetic.lasd",
+          "spatial_reference": "NAD_1983_UTM_Zone_12N",
+          "vertical_reference": null,
+          "linear_unit": "Meter",
+          "point_count": 191,
+          "class_codes": [
+            1,
+            2,
+            5,
+            6,
+            7,
+            18
+          ],
+          "has_ground": true,
+          "has_vegetation": true,
+          "has_building": true,
+          "has_noise": true
+        }
+      },
+      "las_statistics_report": {
+        "status": "OK",
+        "result": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\las_statistics.csv"
+      },
+      "build_chm_default": {
+        "status": "OK",
+        "result": {
+          "dtm": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\test_dtm.tif",
+          "dsm": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\test_dsm_veg.tif",
+          "chm": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\test_chm.tif"
+        }
+      },
+      "chm_gap_unassigned_building": {
+        "status": "OK",
+        "result": {
+          "open_gap": "11.759262",
+          "unassigned": "15",
+          "building": "13.02198"
+        }
+      },
+      "band_nan": {
+        "status": "OK",
+        "result": "(Band(low=2.0, high=None, radius=nan),)"
+      }
+    },
+    "followup_results.json": {
+      "toolbox_import": {
+        "status": "OK",
+        "result": [
+          "AuditLasDataset_reviewcanopy",
+          "BuildCanopyHeightModel_reviewcanopy",
+          "DelineateCrowns_reviewcanopy",
+          "DetectTreetops_reviewcanopy",
+          "SummarizeCanopyCover_reviewcanopy"
+        ]
+      },
+      "strict_veg_build": {
+        "status": "OK",
+        "result": {
+          "dtm": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\strict_dtm.tif",
+          "dsm": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\strict_dsm_veg.tif",
+          "chm": "C:\\Users\\bbusch\\AppData\\Local\\Temp\\canopy-review-624d3728add548feb88c10b0b12e2052\\strict_chm.tif"
+        }
+      },
+      "strict_veg_open_gap_height": {
+        "status": "OK",
+        "result": "10"
+      },
+      "strict_veg_cover": {
+        "status": "OK",
+        "result": [
+          {
+            "SUM": 16.0,
+            "COUNT": 16.0,
+            "CANOPY_M2": 16.0,
+            "ZONE_M2": 16.0,
+            "CANOPY_PCT": 100.0
+          }
+        ]
+      },
+      "crown_attributes_in_gdb": {
+        "status": "OK",
+        "result": [
+          {
+            "TREE_ID": 1,
+            "HEIGHT_M": 1.5147186517715454,
+            "CROWN_AREA_M2": 16.0,
+            "CROWN_DIAM_M": 4.51351666838205
+          }
+        ]
+      },
+      "nonaligned_tile_grid": {
+        "status": "OK",
+        "result": [
+          {
+            "name": "r000c000",
+            "core": [
+              0.0,
+              0.0,
+              4.1,
+              4.1
+            ],
+            "buffered": [
+              -0.3,
+              -0.3,
+              4.3999999999999995,
+              4.3999999999999995
+            ]
+          },
+          {
+            "name": "r000c001",
+            "core": [
+              4.1,
+              0.0,
+              8.2,
+              4.1
+            ],
+            "buffered": [
+              3.8,
+              -0.3,
+              8.5,
+              4.3999999999999995
+            ]
+          }
+        ]
+      }
+    },
+    "seed_results.json": {
+      "cone": {
+        "detected_points": [
+          [
+            1,
+            12.0,
+            [
+              500010.5,
+              4500010.500000004
+            ]
+          ]
+        ],
+        "crowns": [
+          [
+            1,
+            12.0,
+            1.0
+          ]
+        ],
+        "input_canopy_cells": 137
+      },
+      "offset": {
+        "detected_points": [
+          [
+            1,
+            10.5,
+            [
+              500011.50000000186,
+              4500010.500000004
+            ]
+          ]
+        ],
+        "crowns": [
+          [
+            1,
+            15.0,
+            30.0
+          ]
+        ],
+        "input_canopy_cells": 137
+      },
+      "diagonal": {
+        "detected_points": [
+          [
+            1,
+            10.0,
+            [
+              500010.5,
+              4500010.500000004
+            ]
+          ],
+          [
+            2,
+            10.0,
+            [
+              500011.50000000186,
+              4500009.500000002
+            ]
+          ]
+        ],
+        "crowns": [
+          [
+            1,
+            10.0,
+            1.0
+          ],
+          [
+            2,
+            10.0,
+            1.0
+          ]
+        ],
+        "input_canopy_cells": 2
+      }
+    },
+    "flow_results.json": {
+      "chm": {
+        "shape": [
+          21,
+          21
+        ],
+        "valid_cells": 441,
+        "center_5x5": [
+          [
+            7.757359504699707,
+            8.64589786529541,
+            9.0,
+            8.64589786529541,
+            7.757359504699707
+          ],
+          [
+            8.64589786529541,
+            9.878679275512695,
+            10.5,
+            9.878679275512695,
+            8.64589786529541
+          ],
+          [
+            9.0,
+            10.5,
+            12.0,
+            10.5,
+            9.0
+          ],
+          [
+            8.64589786529541,
+            9.878679275512695,
+            10.5,
+            9.878679275512695,
+            8.64589786529541
+          ],
+          [
+            7.757359504699707,
+            8.64589786529541,
+            9.0,
+            8.64589786529541,
+            7.757359504699707
+          ]
+        ]
+      },
+      "flow": {
+        "shape": [
+          21,
+          21
+        ],
+        "valid_cells": 137,
+        "center_5x5": [
+          [
+            2,
+            2,
+            4,
+            8,
+            8
+          ],
+          [
+            2,
+            4,
+            14,
+            16,
+            8
+          ],
+          [
+            1,
+            131,
+            85,
+            56,
+            16
+          ],
+          [
+            128,
+            64,
+            224,
+            16,
+            32
+          ],
+          [
+            128,
+            128,
+            64,
+            32,
+            32
+          ]
+        ]
+      },
+      "points": {
+        "shape": [
+          21,
+          21
+        ],
+        "valid_cells": 1,
+        "center_5x5": [
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            1,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ]
+        ]
+      },
+      "watershed": {
+        "shape": [
+          21,
+          21
+        ],
+        "valid_cells": 1,
+        "center_5x5": [
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            1,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ],
+          [
+            -9999,
+            -9999,
+            -9999,
+            -9999,
+            -9999
+          ]
+        ]
+      }
+    }
+  },
+  "diagnosticSources": {
+    "review_probe.py": "import sys, os, json, struct, traceback\nfrom pathlib import Path\nimport numpy as np\nimport arcpy\nsys.path.insert(0, r'U:\\agol-python-scripts\\canopy-toolbox')\nfrom canopy import rasters, treetops, crowns, cover, bands\nroot = Path(__file__).parent\nprint('PROBE_ROOT', root, flush=True)\narcpy.env.overwriteOutput = False\narcpy.env.parallelProcessingFactor = '0'\narcpy.env.scratchWorkspace = str(root)\nsr = arcpy.SpatialReference(26912)\ngdb = str(root / 'review.gdb')\narcpy.management.CreateFileGDB(str(root), 'review.gdb')\nresults = {}\ndef probe(name, fn):\n    try:\n        result = fn()\n        results[name] = {'status':'OK', 'result':result}\n    except Exception as e:\n        results[name] = {'status':'ERROR', 'error':str(e), 'trace':traceback.format_exc(limit=3)}\n    print(name, json.dumps(results[name], default=str), flush=True)\n    (root / 'results.json').write_text(json.dumps(results, indent=2, default=str))\ndef raster(name, a, cell=1):\n    p = str(root / (name+'.tif'))\n    arcpy.NumPyArrayToRaster(np.array(a,dtype=np.float32), arcpy.Point(500000,4500000),cell,cell,-9999).save(p)\n    arcpy.management.DefineProjection(p,sr)\n    return p\ndef zone(name, width, height):\n    p = os.path.join(gdb,name)\n    arcpy.management.CreateFeatureclass(gdb,name,'POLYGON',spatial_reference=sr)\n    arcpy.management.AddField(p,'ZONE_ID','LONG')\n    points = [(500000,4500000),(500000+width,4500000),(500000+width,4500000+height),(500000,4500000+height),(500000,4500000)]\n    with arcpy.da.InsertCursor(p,['SHAPE@','ZONE_ID']) as c:\n        c.insertRow([arcpy.Polygon(arcpy.Array([arcpy.Point(*p) for p in points]),sr),1])\n    return p\ndef cover_result(name, chm, zones, cell=.5):\n    t=cover.summarize(chm,zones,'ZONE_ID',os.path.join(gdb,name),cell_size=cell)\n    fields=['SUM','COUNT','CANOPY_M2','ZONE_M2','CANOPY_PCT']\n    return [dict(zip(fields,row)) for row in arcpy.da.SearchCursor(t,fields)]\nfor extension in ['3D','Spatial']:\n    arcpy.CheckOutExtension(extension)\ntry:\n    cone = np.maximum(0, 10 - np.sqrt((np.indices((13,13))[0]-6)**2+(np.indices((13,13))[1]-6)**2)*2)\n    chm = raster('single_tree',cone)\n    folder=str(root/'folder_outputs'); os.mkdir(folder)\n    probe('detect_in_gdb',lambda:treetops.detect(chm,gdb,bands.DEFAULT_BANDS,cell_size=1))\n    probe('detect_in_folder',lambda:treetops.detect(chm,folder,bands.DEFAULT_BANDS,cell_size=1))\n    tops=os.path.join(gdb,'manual_tops')\n    arcpy.management.CreateFeatureclass(gdb,'manual_tops','POINT',spatial_reference=sr)\n    arcpy.management.AddField(tops,'TREE_ID','LONG')\n    with arcpy.da.InsertCursor(tops,['SHAPE@XY','TREE_ID']) as c:c.insertRow([(500006.5,4500006.5),1])\n    probe('crowns_in_gdb',lambda:crowns.delineate(chm,tops,gdb,cell_size=1))\n    probe('crowns_in_folder',lambda:crowns.delineate(chm,tops,folder,cell_size=1))\n    partial=raster('partial',[[10,10,-9999,-9999]]*4)\n    zones=zone('zones',4,4)\n    probe('cover_nodata_default_cell',lambda:cover_result('cover_default',partial,zones))\n    probe('cover_repeat_different_table',lambda:cover_result('cover_second',partial,zones,1))\n    arcpy.management.Delete(os.path.join(gdb,'canopy_binary'))\n    probe('cover_nodata_actual_cell',lambda:cover_result('cover_actual',partial,zones,1))\n    pts=[]\n    for y in range(11):\n        for x in range(11):\n            pts.append((x,y,100,2))\n            if x<=2 or x>=8: pts.append((x,y,110,5))\n    pts.extend([(5,5,115,1),(5,6,118,6),(1,1,130,7),(2,2,135,18)])\n    header=bytearray(227)\n    header[:4]=b'LASF'; header[24:26]=bytes([1,2])\n    header[26:58]=b'Codex synthetic review'.ljust(32,b'\\0')\n    header[58:90]=b'Standard library fixture'.ljust(32,b'\\0')\n    struct.pack_into('<HHHII',header,90,260,2026,227,227,0)\n    struct.pack_into('<BHI',header,104,0,20,len(pts))\n    struct.pack_into('<5I',header,111,len(pts),0,0,0,0)\n    struct.pack_into('<3d',header,131,.01,.01,.01)\n    struct.pack_into('<3d',header,155,500000,4500000,0)\n    struct.pack_into('<6d',header,179,500010,500000,4500010,4500000,135,100)\n    las=root/'synthetic.las'\n    with las.open('wb') as f:\n        f.write(header)\n        for x,y,z,cl in pts:f.write(struct.pack('<iiiHBBbBH',x*100,y*100,z*100,10,9,cl,0,0,0))\n    lasd=str(root/'synthetic.lasd')\n    arcpy.management.CreateLasDataset(str(las),lasd,spatial_reference=sr,compute_stats='COMPUTE_STATS')\n    probe('audit_classified_las',lambda:rasters.audit(lasd))\n    probe('las_statistics_report',lambda:str(arcpy.management.LasDatasetStatistics(lasd,out_file=str(root/'las_statistics.csv'),delimiter='COMMA')))\n    probe('build_chm_default',lambda:rasters.build_chm(lasd,str(root),cell_size=1,prefix='test_'))\n    if arcpy.Exists(str(root/'test_chm.tif')):\n        p=str(root/'test_chm.tif')\n        probe('chm_gap_unassigned_building',lambda:{'open_gap':arcpy.management.GetCellValue(p,'500005.5 4500003.5').getOutput(0),'unassigned':arcpy.management.GetCellValue(p,'500005.5 4500005.5').getOutput(0),'building':arcpy.management.GetCellValue(p,'500005.5 4500006.5').getOutput(0)})\n    probe('band_nan',lambda:str(bands.parse_bands('2-:nan')))\nfinally:\n    for extension in ['Spatial','3D']:arcpy.CheckInExtension(extension)\nprint('DONE',root,flush=True)\r\n",
+    "followup_probe.py": "import os,sys,json,traceback\nfrom pathlib import Path\nimport numpy as np\nimport arcpy\nsys.path.insert(0,r'U:\\agol-python-scripts\\canopy-toolbox')\nfrom canopy import rasters,cover,tiling,bands\nroot=Path(__file__).parent\ngdb=str(root/'review.gdb')\nresults={}\ndef probe(name,fn):\n    try:results[name]={'status':'OK','result':fn()}\n    except Exception as e:results[name]={'status':'ERROR','error':str(e)}\n    print(name,json.dumps(results[name],default=str),flush=True)\n    (root/'followup_results.json').write_text(json.dumps(results,indent=2,default=str))\narcpy.env.parallelProcessingFactor='0'\narcpy.env.scratchWorkspace=str(root)\narcpy.env.overwriteOutput=False\nfor ext in ['3D','Spatial']:arcpy.CheckOutExtension(ext)\ntry:\n    def toolbox():\n        tb=arcpy.ImportToolbox(r'U:\\agol-python-scripts\\canopy-toolbox\\CanopyTools.pyt','reviewcanopy')\n        return arcpy.ListTools('*_reviewcanopy')\n    probe('toolbox_import',toolbox)\n    rasters.VEG_CLASSES='3;4;5'\n    lasd=str(root/'synthetic.lasd')\n    probe('strict_veg_build',lambda:rasters.build_chm(lasd,str(root),cell_size=1,prefix='strict_'))\n    probe('strict_veg_open_gap_height',lambda:arcpy.management.GetCellValue(str(root/'strict_chm.tif'),'500005.5 4500003.5').getOutput(0))\n    def cover_build():\n        arcpy.management.Delete(os.path.join(gdb,'canopy_binary'))\n        output=cover.summarize(str(root/'strict_chm.tif'),os.path.join(gdb,'zones'),'ZONE_ID',os.path.join(gdb,'strict_cover'),cell_size=1)\n        fields=['SUM','COUNT','CANOPY_M2','ZONE_M2','CANOPY_PCT']\n        return [dict(zip(fields,r)) for r in arcpy.da.SearchCursor(output,fields)]\n    probe('strict_veg_cover',cover_build)\n    def attribute():\n        from canopy import crowns\n        p=os.path.join(gdb,'attribute_crown')\n        arcpy.management.CopyFeatures(os.path.join(gdb,'zones'),p)\n        arcpy.management.AddField(p,'TREE_ID','LONG')\n        arcpy.management.CalculateField(p,'TREE_ID','1','PYTHON3')\n        crowns._attribute(p,str(root/'single_tree.tif'),os.path.join(gdb,'manual_tops'),gdb,1,'attribute_')\n        fields=['TREE_ID','HEIGHT_M','CROWN_AREA_M2','CROWN_DIAM_M']\n        return [dict(zip(fields,r)) for r in arcpy.da.SearchCursor(p,fields)]\n    probe('crown_attributes_in_gdb',attribute)\n    def unsnapped():\n        ts=tiling.tile_grid(tiling.Extent(0,0,10,10),4.1,0.3,0.5)\n        return [{'name':t.name,'core':t.core,'buffered':t.buffered} for t in ts[:2]]\n    probe('nonaligned_tile_grid',unsnapped)\nfinally:\n    for ext in ['Spatial','3D']:arcpy.CheckInExtension(ext)\r\n",
+    "seed_probe.py": "# Diagnostic only: change the two raster names in in-memory function copies\n# to get past the confirmed output naming blockers; source files stay intact.\nimport os,sys,json,inspect,traceback\nfrom pathlib import Path\nimport numpy as np\nimport arcpy\nsys.path.insert(0,r'U:\\agol-python-scripts\\canopy-toolbox')\nfrom canopy import treetops,crowns,bands\nroot=Path(__file__).parent; gdb=str(root/'review.gdb'); sr=arcpy.SpatialReference(26912)\narcpy.env.parallelProcessingFactor='0'; arcpy.env.scratchWorkspace=str(root)\narcpy.CheckOutExtension('Spatial')\nresults={}\ntry:\n    detect_ns=dict(vars(treetops)); exec(inspect.getsource(treetops.detect).replace('{prefix}plateaus.tif','{prefix}plateaus'),detect_ns)\n    crown_ns=dict(vars(crowns)); exec(inspect.getsource(crowns.delineate).replace('{prefix}crowns.tif','{prefix}crowns_raster'),crown_ns)\n    yy,xx=np.indices((21,21))\n    for name,arr,smooth in [('cone',np.maximum(0,12-np.sqrt((yy-10)**2+(xx-10)**2)*1.5),1),('offset',np.maximum(0,12-np.sqrt((yy-10)**2+(xx-10)**2)*1.5),1),('diagonal',np.zeros((21,21)),0)]:\n        if name=='offset': arr[10,12]=15\n        if name=='diagonal':arr[10,10]=10;arr[11,11]=10\n        p=str(root/(name+'_seed_chm.tif'))\n        arcpy.NumPyArrayToRaster(arr.astype(np.float32),arcpy.Point(500000,4500000),1,1).save(p);arcpy.management.DefineProjection(p,sr)\n        try:\n            tops=detect_ns['detect'](p,gdb,bands.DEFAULT_BANDS,cell_size=1,smooth_cells=smooth,prefix=name+'_')\n            pts=list(arcpy.da.SearchCursor(tops,['TREE_ID','HEIGHT_M','SHAPE@XY']))\n            out=crown_ns['delineate'](p,tops,gdb,cell_size=1,min_crown_area=0,prefix=name+'_')\n            attrs=list(arcpy.da.SearchCursor(out,['TREE_ID','HEIGHT_M','CROWN_AREA_M2']))\n            results[name]={'detected_points':pts,'crowns':attrs,'input_canopy_cells':int((arr>=2).sum())}\n        except Exception as e:results[name]={'error':str(e),'trace':traceback.format_exc(limit=2)}\n        print(name,json.dumps(results[name]),flush=True)\n        (root/'seed_results.json').write_text(json.dumps(results,indent=2))\nfinally:arcpy.CheckInExtension('Spatial')\r\n",
+    "flow_probe.py": "import arcpy,numpy as np,json\nfrom pathlib import Path\nroot=Path(__file__).parent;arcpy.env.parallelProcessingFactor='0';arcpy.env.scratchWorkspace=str(root)\narcpy.CheckOutExtension('Spatial')\ntry:\n    from arcpy.sa import Raster,SetNull,FlowDirection,Watershed,IsNull,Con\n    chm=str(root/'cone_seed_chm.tif');points=str(root/'review.gdb'/'cone_treetops')\n    with arcpy.EnvManager(snapRaster=chm,cellSize=1,extent=chm,outputCoordinateSystem=arcpy.SpatialReference(26912)):\n        mask=SetNull(Raster(chm)<2,Raster(chm))\n        flow=FlowDirection(mask*-1,'NORMAL');flow.save(str(root/'cone_flow.tif'))\n        points_raster=str(root/'cone_points.tif');arcpy.conversion.PointToRaster(points,'TREE_ID',points_raster,cellsize=1)\n        ws=Watershed(flow,points_raster,'VALUE');ws.save(str(root/'cone_seeded.tif'))\n        out={}\n        for name,p in [('chm',chm),('flow',str(root/'cone_flow.tif')),('points',points_raster),('watershed',str(root/'cone_seeded.tif'))]:\n            a=arcpy.RasterToNumPyArray(p,nodata_to_value=-9999)\n            out[name]={'shape':a.shape,'valid_cells':int((a!=-9999).sum()),'center_5x5':a[8:13,8:13].tolist()}\n        print(json.dumps(out),flush=True);(root/'flow_results.json').write_text(json.dumps(out,indent=2))\nfinally:arcpy.CheckInExtension('Spatial')\r\n"
+  }
+}

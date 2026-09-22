@@ -1,0 +1,1158 @@
+[
+  {
+    "name": "12TVL2203.las",
+    "bytes": 618460912,
+    "version": "1.4",
+    "format": 6,
+    "points": 20615318,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      422999.99,
+      422000.0,
+      4503999.99,
+      4503000.0,
+      1437.05,
+      1196.57
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ],
+    "projection_vlrs": [
+      {
+        "id": 2112,
+        "text": "COMPD_CS[\"NAD83(2011) / UTM zone 12N + NAVD88 height - Geoid18 (Meters)\",PROJCS[\"NAD83(2011) / UTM zone 12N\",GEOGCS[\"NAD83(2011)\",DATUM[\"NAD83_National_Spatial_Reference_System_2011\",SPHEROID[\"GRS 1980\",6378137,298.257222101,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"1116\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"6318\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-111],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"meter\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"6341\"]],VERT_CS[\"NAVD88 height - Geoid18 (Meters)\",VERT_DATUM[\"North American Vertical Datum 1988\",2005,AUTHORITY[\"EPSG\",\"5103\"]],UNIT[\"meter\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Gravity-related height\",UP],AUTHORITY[\"EPSG\",\"5703\"]]]"
+      }
+    ]
+  },
+  {
+    "name": "12TVL2204.las",
+    "bytes": 611843602,
+    "version": "1.4",
+    "format": 6,
+    "points": 20394741,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      422999.99,
+      422000.0,
+      4504999.99,
+      4504000.0,
+      1382.41,
+      1199.98
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ],
+    "projection_vlrs": [
+      {
+        "id": 2112,
+        "text": "COMPD_CS[\"NAD83(2011) / UTM zone 12N + NAVD88 height - Geoid18 (Meters)\",PROJCS[\"NAD83(2011) / UTM zone 12N\",GEOGCS[\"NAD83(2011)\",DATUM[\"NAD83_National_Spatial_Reference_System_2011\",SPHEROID[\"GRS 1980\",6378137,298.257222101,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"1116\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"6318\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-111],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"meter\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"6341\"]],VERT_CS[\"NAVD88 height - Geoid18 (Meters)\",VERT_DATUM[\"North American Vertical Datum 1988\",2005,AUTHORITY[\"EPSG\",\"5103\"]],UNIT[\"meter\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Gravity-related height\",UP],AUTHORITY[\"EPSG\",\"5703\"]]]"
+      }
+    ]
+  },
+  {
+    "name": "12TVL2303.las",
+    "bytes": 652994302,
+    "version": "1.4",
+    "format": 6,
+    "points": 21766431,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      423999.99,
+      423000.0,
+      4503999.99,
+      4503000.0,
+      1443.72,
+      1207.83
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2304.las",
+    "bytes": 658765612,
+    "version": "1.4",
+    "format": 6,
+    "points": 21958808,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      423999.99,
+      423000.0,
+      4504999.99,
+      4504000.0,
+      1402.68,
+      1201.21
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2403.las",
+    "bytes": 683590252,
+    "version": "1.4",
+    "format": 6,
+    "points": 22786296,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      424999.99,
+      424000.0,
+      4503999.99,
+      4503000.0,
+      1598.8700000000001,
+      1205.55
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2404.las",
+    "bytes": 708795202,
+    "version": "1.4",
+    "format": 6,
+    "points": 23626461,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      424999.99,
+      424000.0,
+      4504999.99,
+      4504000.0,
+      1445.31,
+      1207.4
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2503.las",
+    "bytes": 637467532,
+    "version": "1.4",
+    "format": 6,
+    "points": 21248872,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      425999.99,
+      425000.0,
+      4503999.99,
+      4503000.0,
+      1384.53,
+      1174.48
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2504.las",
+    "bytes": 647295532,
+    "version": "1.4",
+    "format": 6,
+    "points": 21576472,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      425999.99,
+      425000.0,
+      4504999.99,
+      4504000.0,
+      1454.6200000000001,
+      1218.3500000000001
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2602.las",
+    "bytes": 646094812,
+    "version": "1.4",
+    "format": 6,
+    "points": 21536448,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      426999.99,
+      426000.0,
+      4502999.99,
+      4502000.0,
+      3366.86,
+      1238.99
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2603.las",
+    "bytes": 621785302,
+    "version": "1.4",
+    "format": 6,
+    "points": 20726131,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      426999.99,
+      426000.0,
+      4503999.99,
+      4503000.0,
+      1362.44,
+      1232.78
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2604.las",
+    "bytes": 619938832,
+    "version": "1.4",
+    "format": 6,
+    "points": 20664582,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      426999.99,
+      426000.0,
+      4504999.99,
+      4504000.0,
+      1457.92,
+      1222.14
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2605.las",
+    "bytes": 635809612,
+    "version": "1.4",
+    "format": 6,
+    "points": 21193608,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      426999.99,
+      426000.0,
+      4505999.99,
+      4505000.0,
+      1459.1100000000001,
+      485.12
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2606.las",
+    "bytes": 618770512,
+    "version": "1.4",
+    "format": 6,
+    "points": 20625638,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      426999.99,
+      426000.0,
+      4506999.99,
+      4506000.0,
+      1451.1200000000001,
+      1228.32
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2701.las",
+    "bytes": 833523952,
+    "version": "1.4",
+    "format": 6,
+    "points": 27784086,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      427999.99,
+      427000.0,
+      4501999.99,
+      4501000.0,
+      1451.89,
+      1248.1100000000001
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2702.las",
+    "bytes": 792668302,
+    "version": "1.4",
+    "format": 6,
+    "points": 26422231,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      427999.99,
+      427000.0,
+      4502999.99,
+      4502000.0,
+      1468.46,
+      1184.38
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2703.las",
+    "bytes": 821931502,
+    "version": "1.4",
+    "format": 6,
+    "points": 27397671,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      427999.99,
+      427000.0,
+      4503999.99,
+      4503000.0,
+      1347.23,
+      1180.05
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2704.las",
+    "bytes": 768763672,
+    "version": "1.4",
+    "format": 6,
+    "points": 25625410,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      427999.99,
+      427000.0,
+      4504999.99,
+      4504000.0,
+      1465.21,
+      1254.46
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2705.las",
+    "bytes": 800822752,
+    "version": "1.4",
+    "format": 6,
+    "points": 26694046,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      427999.99,
+      427000.0,
+      4505999.99,
+      4505000.0,
+      1373.26,
+      1241.05
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2706.las",
+    "bytes": 804062002,
+    "version": "1.4",
+    "format": 6,
+    "points": 26802021,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      427999.99,
+      427000.0,
+      4506999.99,
+      4506000.0,
+      1487.32,
+      1301.1100000000001
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2802.las",
+    "bytes": 747341782,
+    "version": "1.4",
+    "format": 6,
+    "points": 24911347,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      428999.99,
+      428000.0,
+      4502999.99,
+      4502000.0,
+      1368.4,
+      1274.54
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2803.las",
+    "bytes": 794973532,
+    "version": "1.4",
+    "format": 6,
+    "points": 26499072,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      428999.99,
+      428000.0,
+      4503999.99,
+      4503000.0,
+      1491.33,
+      58.44
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2804.las",
+    "bytes": 809475292,
+    "version": "1.4",
+    "format": 6,
+    "points": 26982464,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      428999.99,
+      428000.0,
+      4504999.99,
+      4504000.0,
+      1471.07,
+      1232.64
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2805.las",
+    "bytes": 784199632,
+    "version": "1.4",
+    "format": 6,
+    "points": 26139942,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      428999.99,
+      428000.0,
+      4505999.99,
+      4505000.0,
+      1390.41,
+      1328.8
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2806.las",
+    "bytes": 796915552,
+    "version": "1.4",
+    "format": 6,
+    "points": 26563806,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      428999.99,
+      428000.0,
+      4506999.99,
+      4506000.0,
+      1501.64,
+      1081.05
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2904.las",
+    "bytes": 636877042,
+    "version": "1.4",
+    "format": 6,
+    "points": 21229189,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      429999.99,
+      429000.0,
+      4504999.99,
+      4504000.0,
+      1417.44,
+      1251.27
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2905.las",
+    "bytes": 677927902,
+    "version": "1.4",
+    "format": 6,
+    "points": 22597551,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      429999.99,
+      429000.0,
+      4505999.99,
+      4505000.0,
+      1533.22,
+      1247.89
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2906.las",
+    "bytes": 648372322,
+    "version": "1.4",
+    "format": 6,
+    "points": 21612365,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      429999.99,
+      429000.0,
+      4506999.99,
+      4506000.0,
+      1472.78,
+      1302.7
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL2907.las",
+    "bytes": 624063592,
+    "version": "1.4",
+    "format": 6,
+    "points": 20802074,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      429999.99,
+      429000.0,
+      4507999.99,
+      4507000.0,
+      1455.76,
+      1356.6200000000001
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3004.las",
+    "bytes": 699951832,
+    "version": "1.4",
+    "format": 6,
+    "points": 23331682,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      430999.99,
+      430000.0,
+      4504999.99,
+      4504000.0,
+      3580.81,
+      1304.74
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3005.las",
+    "bytes": 758183362,
+    "version": "1.4",
+    "format": 6,
+    "points": 25272733,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      430999.99,
+      430000.0,
+      4505999.99,
+      4505000.0,
+      1549.75,
+      1313.3500000000001
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3006.las",
+    "bytes": 772247242,
+    "version": "1.4",
+    "format": 6,
+    "points": 25741529,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      430999.99,
+      430000.0,
+      4506999.99,
+      4506000.0,
+      3597.41,
+      1307.68
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3007.las",
+    "bytes": 764721922,
+    "version": "1.4",
+    "format": 6,
+    "points": 25490685,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      430999.99,
+      430000.0,
+      4507999.99,
+      4507000.0,
+      3576.7200000000003,
+      1287.45
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3104.las",
+    "bytes": 741249952,
+    "version": "1.4",
+    "format": 6,
+    "points": 24708286,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      431999.99,
+      431000.0,
+      4504999.99,
+      4504000.0,
+      3632.92,
+      1325.69
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3105.las",
+    "bytes": 771037282,
+    "version": "1.4",
+    "format": 6,
+    "points": 25701197,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      431999.99,
+      431000.0,
+      4505999.99,
+      4505000.0,
+      3610.52,
+      1332.94
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3106.las",
+    "bytes": 784072102,
+    "version": "1.4",
+    "format": 6,
+    "points": 26135691,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      431999.99,
+      431000.0,
+      4506999.99,
+      4506000.0,
+      1586.94,
+      1319.15
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3107.las",
+    "bytes": 732758902,
+    "version": "1.4",
+    "format": 6,
+    "points": 24425251,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      431999.99,
+      431000.0,
+      4507999.99,
+      4507000.0,
+      1655.56,
+      218.66
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3201.las",
+    "bytes": 784690612,
+    "version": "1.4",
+    "format": 6,
+    "points": 26156308,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      432999.99,
+      432000.0,
+      4501999.99,
+      4501000.0,
+      3543.13,
+      1412.07
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3202.las",
+    "bytes": 776039062,
+    "version": "1.4",
+    "format": 6,
+    "points": 25867923,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      432999.99,
+      432000.0,
+      4502999.99,
+      4502000.0,
+      3370.82,
+      1415.97
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3203.las",
+    "bytes": 745892032,
+    "version": "1.4",
+    "format": 6,
+    "points": 24863022,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      432999.99,
+      432000.0,
+      4503999.99,
+      4503000.0,
+      3726.04,
+      1408.22
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3204.las",
+    "bytes": 711420322,
+    "version": "1.4",
+    "format": 6,
+    "points": 23713965,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      432999.99,
+      432000.0,
+      4504999.99,
+      4504000.0,
+      3463.42,
+      1385.46
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3205.las",
+    "bytes": 694938712,
+    "version": "1.4",
+    "format": 6,
+    "points": 23164578,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      432999.99,
+      432000.0,
+      4505999.99,
+      4505000.0,
+      3824.82,
+      1391.53
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3206.las",
+    "bytes": 734251702,
+    "version": "1.4",
+    "format": 6,
+    "points": 24475011,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      432999.99,
+      432000.0,
+      4506999.99,
+      4506000.0,
+      3818.02,
+      1356.13
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3302.las",
+    "bytes": 1039360762,
+    "version": "1.4",
+    "format": 6,
+    "points": 34645313,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      433999.99,
+      433000.0,
+      4502999.99,
+      4502000.0,
+      3900.38,
+      734.5500000000001
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3303.las",
+    "bytes": 876257122,
+    "version": "1.4",
+    "format": 6,
+    "points": 29208525,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      433999.99,
+      433000.0,
+      4503999.99,
+      4503000.0,
+      3769.07,
+      1514.23
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3304.las",
+    "bytes": 857165932,
+    "version": "1.4",
+    "format": 6,
+    "points": 28572152,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      433999.99,
+      433000.0,
+      4504999.99,
+      4504000.0,
+      1804.01,
+      1496.78
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3305.las",
+    "bytes": 826423252,
+    "version": "1.4",
+    "format": 6,
+    "points": 27547396,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      433999.99,
+      433000.0,
+      4505999.99,
+      4505000.0,
+      1909.3,
+      1519.31
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3306.las",
+    "bytes": 785176672,
+    "version": "1.4",
+    "format": 6,
+    "points": 26172510,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      433999.99,
+      433000.0,
+      4506999.99,
+      4506000.0,
+      3880.15,
+      1458.22
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3402.las",
+    "bytes": 734438122,
+    "version": "1.4",
+    "format": 6,
+    "points": 24481225,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      434999.99,
+      434000.0,
+      4502999.99,
+      4502000.0,
+      2996.11,
+      1665.03
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3403.las",
+    "bytes": 689322172,
+    "version": "1.4",
+    "format": 6,
+    "points": 22977360,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      434999.99,
+      434000.0,
+      4503999.99,
+      4503000.0,
+      2362.13,
+      1611.65
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3404.las",
+    "bytes": 681697882,
+    "version": "1.4",
+    "format": 6,
+    "points": 22723217,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      434999.99,
+      434000.0,
+      4504999.99,
+      4504000.0,
+      3929.57,
+      1431.26
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3405.las",
+    "bytes": 720719992,
+    "version": "1.4",
+    "format": 6,
+    "points": 24023954,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      434999.99,
+      434000.0,
+      4505999.99,
+      4505000.0,
+      3135.7200000000003,
+      1660.65
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  {
+    "name": "12TVL3406.las",
+    "bytes": 689001832,
+    "version": "1.4",
+    "format": 6,
+    "points": 22966682,
+    "creation_day": 182,
+    "creation_year": 2024,
+    "bounds": [
+      434999.99,
+      434000.0,
+      4506999.99,
+      4506000.0,
+      3699.85,
+      1693.43
+    ],
+    "scale": [
+      0.01,
+      0.01,
+      0.01
+    ]
+  }
+]

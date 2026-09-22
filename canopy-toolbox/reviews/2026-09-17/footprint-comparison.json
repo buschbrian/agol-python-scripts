@@ -1,0 +1,140 @@
+{
+  "aoi_utm12n": [
+    422350.0,
+    4503350.0,
+    422600.0,
+    4503600.0
+  ],
+  "source_crs_county": 3566,
+  "comparison_crs": 6341,
+  "note": "Derived outlines are rasterized lidar roof support at 0.5 m; county polygons are digitized building footprints. Eaves and parapets make support legitimately wider than a wall footprint.",
+  "county_features_in_aoi": 4,
+  "derived_features_in_aoi": 6,
+  "county_area_m2": 6034.37,
+  "derived_area_m2": 6148.5,
+  "intersection_m2": 5908.17,
+  "union_m2": 6274.7,
+  "iou": 0.9416,
+  "derived_outside_county_m2": 240.33,
+  "county_missed_by_derived_m2": 126.21,
+  "recall_county_covered": 0.9791,
+  "precision_derived_on_building": 0.9609,
+  "per_derived_outline": [
+    {
+      "derived_id": 1,
+      "status": "UNVERIFIED",
+      "model_ok": 1,
+      "partial_aoi": 0,
+      "roof_height_m": 18.83,
+      "fit_fraction": 0.846,
+      "derived_area_m2": 2541.75,
+      "matched_county_oid": 951127,
+      "matched_parcel": "21022010050000",
+      "overlap_m2": 2486.32,
+      "overlap_pct_of_derived": 97.82
+    },
+    {
+      "derived_id": 2,
+      "status": "UNVERIFIED",
+      "model_ok": 1,
+      "partial_aoi": 0,
+      "roof_height_m": 2.63,
+      "fit_fraction": 0.974,
+      "derived_area_m2": 38.5,
+      "matched_county_oid": null,
+      "matched_parcel": null,
+      "overlap_m2": 0.0,
+      "overlap_pct_of_derived": 0.0
+    },
+    {
+      "derived_id": 3,
+      "status": "UNVERIFIED",
+      "model_ok": 1,
+      "partial_aoi": 1,
+      "roof_height_m": 8.86,
+      "fit_fraction": 0.832,
+      "derived_area_m2": 611.25,
+      "matched_county_oid": 944222,
+      "matched_parcel": "21022520010000",
+      "overlap_m2": 558.61,
+      "overlap_pct_of_derived": 91.39
+    },
+    {
+      "derived_id": 4,
+      "status": "MODEL_REJECTED",
+      "model_ok": 0,
+      "partial_aoi": 1,
+      "roof_height_m": 17.98,
+      "fit_fraction": 0.769,
+      "derived_area_m2": 1664.25,
+      "matched_county_oid": 937483,
+      "matched_parcel": "21022520020000",
+      "overlap_m2": 1611.36,
+      "overlap_pct_of_derived": 96.82
+    },
+    {
+      "derived_id": 5,
+      "status": "UNVERIFIED",
+      "model_ok": 1,
+      "partial_aoi": 1,
+      "roof_height_m": 3.92,
+      "fit_fraction": 0.929,
+      "derived_area_m2": 28.5,
+      "matched_county_oid": null,
+      "matched_parcel": null,
+      "overlap_m2": 0.0,
+      "overlap_pct_of_derived": 0.0
+    },
+    {
+      "derived_id": 6,
+      "status": "UNVERIFIED",
+      "model_ok": 1,
+      "partial_aoi": 1,
+      "roof_height_m": 18.33,
+      "fit_fraction": 0.887,
+      "derived_area_m2": 1264.25,
+      "matched_county_oid": 953083,
+      "matched_parcel": "21022510140000",
+      "overlap_m2": 1251.89,
+      "overlap_pct_of_derived": 99.02
+    }
+  ],
+  "per_county_footprint": [
+    {
+      "county_oid": 937483,
+      "parcel": "21022520020000",
+      "build_type": "Commercial",
+      "city": "TAYLORSVILLE",
+      "area_in_aoi_m2": 1656.19,
+      "covered_by_derived_m2": 1611.35,
+      "covered_pct": 97.29
+    },
+    {
+      "county_oid": 944222,
+      "parcel": "21022520010000",
+      "build_type": "Commercial",
+      "city": "TAYLORSVILLE",
+      "area_in_aoi_m2": 558.75,
+      "covered_by_derived_m2": 558.61,
+      "covered_pct": 99.97
+    },
+    {
+      "county_oid": 951127,
+      "parcel": "21022010050000",
+      "build_type": "Commercial",
+      "city": "TAYLORSVILLE",
+      "area_in_aoi_m2": 2516.33,
+      "covered_by_derived_m2": 2486.32,
+      "covered_pct": 98.81
+    },
+    {
+      "county_oid": 953083,
+      "parcel": "21022510140000",
+      "build_type": "Commercial",
+      "city": "TAYLORSVILLE",
+      "area_in_aoi_m2": 1303.1,
+      "covered_by_derived_m2": 1251.89,
+      "covered_pct": 96.07
+    }
+  ]
+}

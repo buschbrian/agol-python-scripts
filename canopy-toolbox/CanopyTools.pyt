@@ -18,7 +18,7 @@ if _HERE not in sys.path:
 import canopy
 from canopy import bands as _bands
 
-for _name in ("bands", "tiling", "rasters", "treetops", "crowns", "cover", "licensing"):
+for _name in ("bands", "tiling", "common", "licensing", "rasters", "treetops", "crowns", "cover"):
     _module = getattr(canopy, _name, None)
     if _module is not None:
         importlib.reload(_module)
@@ -36,6 +36,31 @@ def _param(name, label, datatype, direction="Input", ptype="Required", default=N
     if default is not None:
         parameter.value = default
     return parameter
+
+
+def _validate(parameters, workspace=None, numbers=(), prefix=None, table=None):
+    from canopy import common
+    if workspace is not None and parameters[workspace].valueAsText:
+        try:
+            common.geodatabase(parameters[workspace].valueAsText)
+        except ValueError as exc:
+            parameters[workspace].setErrorMessage(str(exc))
+    if table is not None and parameters[table].valueAsText:
+        try:
+            common.geodatabase(os.path.dirname(parameters[table].valueAsText))
+        except ValueError as exc:
+            parameters[table].setErrorMessage(str(exc))
+    for index, allow_zero in numbers:
+        if parameters[index].value is not None:
+            try:
+                common.positive(parameters[index].value, parameters[index].displayName, allow_zero)
+            except (ValueError, TypeError) as exc:
+                parameters[index].setErrorMessage(str(exc))
+    if prefix is not None:
+        try:
+            common.prefix_name(parameters[prefix].valueAsText or "")
+        except ValueError as exc:
+            parameters[prefix].setErrorMessage(str(exc))
 
 
 class Toolbox(object):
@@ -75,14 +100,15 @@ class AuditLasDataset(object):
             arcpy.AddWarning("No ground class (2). Run Classify LAS Ground first.")
         if not report["has_vegetation"]:
             arcpy.AddWarning(
-                "No vegetation classes (3/4/5). Run Classify LAS By Height with "
-                "the high-vegetation break at the tree threshold."
+                "No vegetation classes (3/4/5). Classify a working copy after ground, "
+                "building, and noise review; height classes alone do not identify vegetation."
             )
+        if not report["has_building"]:
+            arcpy.AddWarning("No building class (6); confirm roofs were classified or are absent.")
         if not report["has_noise"]:
             arcpy.AddWarning(
-                "No noise class (7/18). Run Classify LAS Noise first -- isolated "
-                "high points become phantom 40 m treetops and are the largest "
-                "single source of commission error."
+                "No noise class (7/18). Confirm noise screening provenance; a clean "
+                "delivery may contain no noise points."
             )
         parameters[1].value = str(report)
 
@@ -91,8 +117,8 @@ class BuildCanopyHeightModel(object):
     def __init__(self):
         self.label = "2. Build Canopy Height Model"
         self.description = (
-            "Bare-earth DTM plus a vegetation-only DSM (buildings and noise "
-            "excluded at the source), differenced into a CHM on one snapped grid."
+            "Bare-earth DTM plus a DSM from classes 3/4/5, differenced on one snapped grid. "
+            "Classification errors still require review; unsupported cells remain NoData."
         )
 
     def getParameterInfo(self):
@@ -103,7 +129,12 @@ class BuildCanopyHeightModel(object):
             _param("extent", "Processing Extent", "GPExtent", ptype="Optional"),
             _param("prefix", "Output Prefix", "GPString", ptype="Optional", default=""),
             _param("chm", "CHM", "DERasterDataset", "Output", "Derived"),
+            _param("z_metres", "Heights verified as metres (if vertical CRS absent)", "GPBoolean", ptype="Optional", default=False),
+            _param("building_clearance", "Building above vegetation clearance (m)", "GPDouble", default=.35),
         ]
+
+    def updateMessages(self, parameters):
+        _validate(parameters, numbers=[(2, False), (7, True)], prefix=4)
 
     def execute(self, parameters, messages):
         from canopy import licensing, rasters
@@ -115,6 +146,8 @@ class BuildCanopyHeightModel(object):
                 cell_size=parameters[2].value,
                 extent=parameters[3].valueAsText,
                 prefix=parameters[4].valueAsText or "",
+                z_unit="metres" if parameters[6].value else None,
+                building_clearance=parameters[7].value,
             )
         for key, path in result.items():
             arcpy.AddMessage(f"{key}: {path}")
@@ -133,16 +166,17 @@ class DetectTreetops(object):
     def getParameterInfo(self):
         return [
             _param("chm", "Canopy Height Model", "DERasterDataset"),
-            _param("workspace", "Output Workspace", "DEWorkspace"),
+            _param("workspace", "Output File Geodatabase", "DEWorkspace"),
             _param("band_spec", "Height Bands (low-high:radius_m)", "GPString",
                    default=_bands.DEFAULT_SPEC),
-            _param("cell_size", "Cell Size (m)", "GPDouble", default=0.5),
+            _param("cell_size", "Verify Cell Size (m; optional)", "GPDouble", ptype="Optional"),
             _param("smooth", "Smoothing Radius (cells)", "GPLong", default=1),
             _param("prefix", "Output Prefix", "GPString", ptype="Optional", default=""),
             _param("tops", "Treetops", "DEFeatureClass", "Output", "Derived"),
         ]
 
     def updateMessages(self, parameters):
+        _validate(parameters, workspace=1, numbers=[(3, False), (4, True)], prefix=5)
         if parameters[2].value:
             try:
                 _bands.parse_bands(parameters[2].valueAsText)
@@ -157,7 +191,6 @@ class DetectTreetops(object):
     def execute(self, parameters, messages):
         from canopy import licensing, treetops
 
-        licensing.require_advanced()
         parsed = _bands.parse_bands(parameters[2].valueAsText)
         with licensing.extensions("Spatial"):
             tops = treetops.detect(
@@ -171,9 +204,9 @@ class DetectTreetops(object):
         count = int(arcpy.management.GetCount(tops)[0])
         arcpy.AddMessage(f"{count} treetops: {tops}")
         arcpy.AddWarning(
-            "This is an estimate, not a census. Detection runs ~85-95% for "
-            "open-grown trees and ~50-75% in closed canopy; multi-stem oak "
-            "clumps are one crown from above. Validate before publishing."
+            "This is an estimate, not a census. Validate detection and crown "
+            "accuracy locally before publishing. Understory and multiple stems "
+            "cannot be reliably counted from canopy returns alone."
         )
         parameters[6].value = tops
 
@@ -182,7 +215,7 @@ class DelineateCrowns(object):
     def __init__(self):
         self.label = "4. Delineate Crowns"
         self.description = (
-            "Inverted-CHM watershed seeded by treetops, clipped to the canopy "
+            "Marker-controlled watershed seeded by treetops, constrained to the canopy "
             "mask, with height and crown geometry attached."
         )
 
@@ -190,13 +223,17 @@ class DelineateCrowns(object):
         return [
             _param("chm", "Canopy Height Model", "DERasterDataset"),
             _param("tops", "Treetops", "GPFeatureLayer"),
-            _param("workspace", "Output Workspace", "DEWorkspace"),
+            _param("workspace", "Output File Geodatabase", "DEWorkspace"),
             _param("min_height", "Minimum Tree Height (m)", "GPDouble", default=2.0),
             _param("min_area", "Minimum Crown Area (m2)", "GPDouble", default=3.0),
-            _param("cell_size", "Cell Size (m)", "GPDouble", default=0.5),
+            _param("cell_size", "Verify Cell Size (m; optional)", "GPDouble", ptype="Optional"),
             _param("prefix", "Output Prefix", "GPString", ptype="Optional", default=""),
             _param("crowns", "Crowns", "DEFeatureClass", "Output", "Derived"),
+            _param("reviewed", "Trees for Review", "DEFeatureClass", "Output", "Derived"),
         ]
+
+    def updateMessages(self, parameters):
+        _validate(parameters, workspace=2, numbers=[(3, False), (4, True), (5, False)], prefix=6)
 
     def execute(self, parameters, messages):
         from canopy import crowns, licensing
@@ -213,6 +250,8 @@ class DelineateCrowns(object):
             )
         arcpy.AddMessage(f"crowns: {result}")
         parameters[7].value = result
+        parameters[8].value = os.path.join(parameters[2].valueAsText,
+                                            (parameters[6].valueAsText or "") + "trees_review")
 
 
 class SummarizeCanopyCover(object):
@@ -220,7 +259,7 @@ class SummarizeCanopyCover(object):
         self.label = "5. Summarize Canopy Cover"
         self.description = (
             "Canopy area and percent by zone straight from the CHM. No "
-            "detection, no tuning -- the defensible number."
+            "detection. Reports observed and missing area; incomplete percent is null."
         )
 
     def getParameterInfo(self):
@@ -230,12 +269,15 @@ class SummarizeCanopyCover(object):
             _param("zone_field", "Zone Field", "Field"),
             _param("out_table", "Output Table", "DETable", "Output"),
             _param("min_height", "Minimum Tree Height (m)", "GPDouble", default=2.0),
-            _param("cell_size", "Cell Size (m)", "GPDouble", default=0.5),
+            _param("cell_size", "Verify Cell Size (m; optional)", "GPDouble", ptype="Optional"),
         ]
 
     def updateParameters(self, parameters):
         parameters[2].parameterDependencies = [parameters[1].name]
         return
+
+    def updateMessages(self, parameters):
+        _validate(parameters, table=3, numbers=[(4, False), (5, False)])
 
     def execute(self, parameters, messages):
         from canopy import cover, licensing

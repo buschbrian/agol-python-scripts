@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Aero-Graphics, Inc.</origin>
+        <pubdate>20240625</pubdate>
+        <title>Salt Lake Valley LiDAR; Classified Point Cloud</title>
+        <geoform>Lidar point cloud</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Product: This lidar data is processed classified LAZ 1.4 files, formatted to 1363 individual 1000m x 1000m tiles; used to create intensity images and hydro-flattened DEMs as necessary.
+  Geographic Extent: Salt Lake, Utah, Davis counties, Utah, covering approximately 494 square miles.
+  Dataset Description: The Salt Lake Valley LiDAR project called for the Planning, Acquisition, processing and derivative products of lidar data to be collected at a nominal pulse spacing (NPS) of 0.32 meter. Project specifications are based on the U.S. Geological Survey National Geospatial Program Base Lidar Specification 2023, Revision A. The data was developed based on a horizontal projection/datum of NAD83(2011), Transverse Mercator, Meters and vertical datum of NAVD88, Meters. Lidar data was delivered as processed Classified LAZ 1.4 files, formatted to 1363 individual 1000m x 1000m tiles, as tiled bare earth DEMs and DSMs, maximum surface height rasters, and swath separation images; all tiled to the same 1000m x 1000m schema.
+  Ground Conditions: Lidar was collected from October 7th, 2023 to November 5th, 2023, while no snow was on the ground and rivers were at or below normal levels.
+  Deliverables: Classified point cloud LiDAR data in LAZ v1.4 format; DSM and DEM with a 0.5m cell size in GeoTIFF format; max surface height rasters at 1m cell size; swath separation images at 1m cell size; Breaklines in SHP format; Metadata in xml format; Technical Project Report.
+  
+  In order to post process the lidar data to meet task order specifications and meet ASPRS vertical accuracy guidelines, Aero-Graphics established a total of 20 ground control points that were used to calibrate the lidar to known ground locations established throughout the project area. An additional 65 independent accuracy checkpoints, 35 in Bare Earth and Urban landcovers (35 NVA points), 30 in Tall Grass and Brushland/Low Trees categories (30 VVA points), were used to assess the vertical accuracy of the data. These checkpoints were not used to calibrate or post process the data. </abstract>
+      <purpose>To acquire detailed surface elevation data for use in conservation planning, design, research, floodplain mapping, dam safety assessments and elevation modeling, etc. This allows the user to create intensity images, breaklines and DEMs. The purpose of these lidar data was to produce high accuracy 3D hydro-flattened Digital Elevation Model (DEM) with a 0.5 meter cell size. The lidar point cloud data was used to create intensity images, 3D breaklines, and hydro-flattened DEMs as necessary.</purpose>
+      <supplinf>
+    CONTRACTOR: Aero-Graphics, Inc.
+    Lidar data were acquired and calibrated by Aero-Graphics.
+      </supplinf>
+      <lidar>
+        <ldrinfo>
+          <ldrspec>U.S. Geological Survey (USGS) - National Geospatial Program (NGP) Lidar Base Specification 2023 Revision A</ldrspec>
+          <ldrsens>Optech Galaxy T2000</ldrsens>
+          <ldrmaxnr>8</ldrmaxnr>
+          <ldrnps>0.32</ldrnps>
+          <ldrdens>10.39</ldrdens>
+          <ldranps>0.219</ldranps>
+          <ldradens>20.78</ldradens>
+          <ldrfltht>1981</ldrfltht>
+          <ldrfltsp>145</ldrfltsp>
+          <ldrscana>28</ldrscana>
+          <ldrscanr>115</ldrscanr>
+          <ldrpulsr>1100</ldrpulsr>
+          <ldrpulsd>3</ldrpulsd>
+          <ldrpulsw>0.317</ldrpulsw>
+          <ldrwavel>1064</ldrwavel>
+          <ldrmpia>1</ldrmpia>
+          <ldrbmdiv>0.00016</ldrbmdiv>
+          <ldrswatw>977</ldrswatw>
+          <ldrswato>55</ldrswato>
+          <ldrgeoid>National Geodetic Survey (NGS) Geoid18</ldrgeoid>
+        </ldrinfo>
+        <ldraccur>
+          <ldrchacc>0</ldrchacc>
+          <rawnva>0</rawnva>
+          <rawnvan>0</rawnvan>
+        </ldraccur>
+        <lasinfo>
+          <lasver>1.4</lasver>
+          <lasprf>6</lasprf>
+          <laswheld>Withheld points were identified in these files using the standard LAS Withheld bit.</laswheld>
+          <lasolap>Swath "overage" points were not identified in these files using the standard LAS overlap bit.</lasolap>
+          <lasintr>16</lasintr>
+          <lasclass>
+            <clascode>1</clascode>
+            <clasitem>Processed, but Unclassified</clasitem>
+          </lasclass>
+          <lasclass>
+            <clascode>2</clascode>
+            <clasitem>Bare Earth Ground</clasitem>
+          </lasclass>
+          <lasclass>
+            <clascode>7</clascode>
+            <clasitem>Noise</clasitem>
+          </lasclass>
+          <lasclass>
+            <clascode>9</clascode>
+            <clasitem>Water</clasitem>
+          </lasclass>
+          <lasclass>
+            <clascode>17</clascode>
+            <clasitem>Bridge Decks</clasitem>
+          </lasclass>
+          <lasclass>
+            <clascode>18</clascode>
+            <clasitem>High Noise</clasitem>
+          </lasclass>
+          <lasclass>
+            <clascode>20</clascode>
+            <clasitem>Ignored Ground</clasitem>
+          </lasclass>
+        </lasinfo>
+      </lidar>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20231007</begdate>
+          <enddate>20231105</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-112.127695</westbc>
+        <eastbc>-111.747312</eastbc>
+        <northbc>40.846184</northbc>
+        <southbc>40.413081</southbc>
+      </bounding>
+      <lboundng>
+        <leftbc>404615.492621</leftbc>
+        <rightbc>436932.712363</rightbc>
+        <topbc>4522126.153323</topbc>
+        <bottombc>4474069.705715</bottombc>
+      </lboundng>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Model</themekey>
+        <themekey>LAS Point Cloud</themekey>
+        <themekey>Remote Sensing</themekey>
+        <themekey>Elevation Data</themekey>
+        <themekey>Lidar</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>USA</placekey>
+        <placekey>Utah</placekey>
+        <placekey>UT</placekey>
+        <placekey>Salt Lake</placekey>
+        <placekey>Utah</placekey>
+        <placekey>Davis counties</placekey>
+      </place>
+    </keywords>
+    <accconst>No restrictions apply to these data.</accconst>
+    <useconst>None. However, users should be aware that temporal changes may have occurred since this dataset was collected and that some parts of these data may no longer represent actual surface conditions. Users should not use these data for critical applications without a full awareness of its limitations. Acknowledgement of the U.S. Geological Survey would be appreciated for products derived from these data.</useconst>
+    <native>POSPac MMS 8.7;  Optech LMS 4.6; BayesStripAlign 2.21b; TerraScan 022_002; GeoCue 2020.1.22.3; Windows 10 Pro Version 22H2 Operating System</native>
+  </idinfo>
+  <dataqual>
+    <logic>Data covers the entire area specified for this project.</logic>
+    <complete>These LAZ data files include all data points collected. No points have been removed or excluded. A visual qualitative assessment was performed to ensure data completeness. Void areas are present due to smoke plumes obstructing the beam at the time of acquisition. The raw point cloud is of good quality and data passes Non-Vegetated Vertical Accuracy specifications.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>This data set was produced to meet ASPRS Positional Accuracy Standards for Digital Geospatial Data (2023) for a 0.36 cm RMSEx / RMSEy Horizontal Accuracy Class.</horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>The bare-earth LiDAR dataset was designed to meet or exceed ASPRS Positional Accuracy 
+Standards at the 10 cm vertical accuracy class. Absolute accuracy for non-vegetated areas 
+(NVA) must be accurate within 10.0 cm (0.32 ft) RMSEz and 19.6 cm (0.64 ft) at the 95% 
+confidence level. The resulting NVA RMSEz of the lidar point cloud was found to be 5.1 cm 
+(0.17 ft). The resulting NVA stated at the 95% confidence level 
+(RMSEz x 1.96) is 11.5 cm (0.37 ft). Therefore, this dataset meets the required NVA of 19.6 
+19 cm (0.64 ft) at the 95% confidence level as defined by the National Standards for Spatial 
+Data Accuracy (NSSDA).
+		</vertaccr>
+      </vertacc>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>LiDAR Acquisition: 
+  Aero-Graphics created a unique LiDAR flight plan using Optech’s Airborne Mission Manager (AMM) flight planning software. AMM simulates flight plans based on the project area’s terrain, as well as the sensor’s model, mount, and settings. These features helped ensure that this project’s specifications were met in the most efficient way possible.
+  LiDAR data and Imagery acquisition for this project was performed from October 7th, 2023 to November 5th, 2023 with a turbocharged Cessna 310. The stability and speed of the Cessna 310 is ideal for efficient imagery collection at high altitudes and airspeeds. Each of our planes has been customized to house a variety of airborne sensors, and the power systems and avionics have been upgraded specifically to meet aerial survey needs.
+  The Optech Galaxy T2000 was selected for the LiDAR portion of this project. This sensor uses SwathTrak technology, which dynamically adjusts the scan field of view in real time to maintain a constant swath width over a variety of terrains. It also features up to 8 returns per pulse, which increases the vertical resolution of complex terrains. The sensor is complemented with the use of FMS Nav, which allowed the system operator to monitor the point density and swath attributes of this project in real time, ensuring quality data and full coverage.
+
+Planned Specifications:
+Aircraft - Cessna 310
+LiDAR Sensor – Optech Galaxy T2000
+Altitude (ft above ground level) – 1981
+Speed (kts) – 145
+LiDAR Sidelap (%) – 55
+Pulse Repetition Frequency (PRF) – 1100 kHz
+Scan Frequency (Hz) – 115
+Laser Power – High
+Scan Angle (deg) – 28
+Nominal Pulse Spacing (m) - 0.32
+Nominal Pulse Density (ppsm) – 10.39
+Aggregate Nominal Pulse Spacing  (m) – 0.219
+Aggregate Nominal Pulse Density (ppsm) – 20.78
+Swath Width (m) – 977
+No. of Flightlines - 78
+</procdesc>
+        <procdate>2024</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Absolute Sensor Calibration: Following sensor installation, lever arm values were surveyed. A boresight mission was flown over our fully controlled local range, and when adjusted to the surveyed ground control for roll, pitch, heading, and scale errors, boresight angles were developed for application to the POS processing in subsequent steps.
+
+Kinematic Air Point Processing: The airborne GPS positions (collected at 1-second intervals) were post-processed using Applanix’s POSPac MMS GNSS Inertial software (PP-RTX). A smoothed best estimate of trajectory (SBET) was developed by combining the corrected GPS positions with 1/200-second inertial measurement unit (IMU) data, which tracked the plane’s roll, pitch, and yaw throughout the flight.
+
+Raw LiDAR Point Processing (Calibration): The SBET and LiDAR range data were combined to solve for the real-world positions of each laser point. Point cloud data was produced by flight strip in ASPRS 1.4 LAS format. Flight strips were output in the project’s coordinate system.
+
+Relative Calibration: Discrepancies between adjacent flightlines were corrected for roll, pitch, heading, and scale, and were tested for relative accuracy.A Dz Ortho Raster was generated as part of this process. This raster identifies clusters of large residuals and differences in measured elevations between overlapping flightlines. These errors are usually caused by topographic relief or environmental factors and require manual adjustments to correct. In most cases, multiple iterations of the Dz ortho raster are created to aid in fine tuning relative calibration parameters.
+
+Vertical Accuracy Assessment: Height differences between each static survey point and the laser point surface are identified through comparative tests.
+
+Point classification was performed according to USGS Lidar Base Specification 2023 Rev. A.</procdesc>
+        <procdate>2024</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>LAS Point Classification: The point cloud classification is performed as described below. The bare-earth surface is classified using a combination of Terrascan macro functionality as well as proprietary Aero-graphics software. The bare-earth surface is then manually reviewed and corrected to ensure correct classification on the Class 2 (Ground) points. No features requiring hydro flattening were located on this project. All data is then manually reviewed and any remaining artifacts removed using functionality provided by TerraScan. LP360 is then used as a final check of the bare-earth dataset. TerraScan is then used to create the deliverable industry-standard LAS files for the Classified Point Cloud Data. LP360 and TerraScan software was used to perform statistical analysis of the classes in the LAS files, on a per tile level to verify classification metrics and full LAS header information then LASzip is used to create the final deliverable LAS files.
+
+Hydro-Flattened Raster DEM Creation: A hydro-flattened raster digital elevation model (DEM) was created using the ground classified LiDAR points, and the DEM was then tiled in GeoTIFF format using LP360 and automated scripting routines within ArcMap. Each surface was reviewed in ESRI ArcMap and ArcScene to check for any surface anomalies or incorrect elevations found within the surface.
+
+First Return Raster DSM Creation: A first-return raster digital surface model (DSM) was created using the first-return LiDAR points, which was then tiled in GeoTIFF format using LP360 and automated scripting routines within ArcMap. Each surface was reviewed in ESRI ArcMap and ArcScene to check for any surface anomalies or incorrect elevations found within the surface.
+
+Intensity Image Creation: Intensity imagery was created using LP360 by averaging all points excluding withheld flagged and any noise points. The intensity imagery was reviewed in GIS software for anomalies and to verify coverage.</procdesc>
+        <procdate>2024</procdate>
+      </procstep>
+      <procstep>
+        <procdesc> Data was tested at a 0.32 meter nominal pulse spacing using spatial distribution rasters produced with a cell size of 0.64 m as described in the Lidar Base Specifications 2023, Revision A. The spatial distribution statistics derived from these rasters were checked to ensure that the NPS of the collection meets the QL1 standards. </procdesc>
+        <procdate>2024</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Point</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Point</sdtstype>
+        <ptvctcnt>30,194,688,655</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>NAD83(2011) / UTM zone 12N</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-111.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.010000</absres>
+            <ordres>0.010000</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>NAD83_National_Spatial_Reference_System_2011</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>North American Vertical Datum of 1988, Geoid 18</altdatum>
+        <altres>0.01</altres>
+        <altunits>meters</altunits>
+        <altenc>Explicit elevation coordinate included with horizontal coordinates</altenc>
+      </altsys>
+    </vertdef>
+  </spref>
+  <metainfo>
+    <metd>20240625</metd>
+    <metrd>20240625</metrd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Aero-Graphics, Inc.</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>40 West Oakland Avenue</address>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postal>84115</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>(801)487-3273</cntvoice>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <metac>None.</metac>
+    <metuc>None.</metuc>
+    <metsi>
+      <metscs>None.</metscs>
+      <metsc>Unclassified.</metsc>
+      <metshd>None.</metshd>
+    </metsi>
+    <metextns>
+      <onlink>None.</onlink>
+      <metprof>None.</metprof>
+    </metextns>
+  </metainfo>
+</metadata>

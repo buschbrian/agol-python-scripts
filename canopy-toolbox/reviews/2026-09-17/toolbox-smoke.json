@@ -1,0 +1,34 @@
+{
+  "tools": [
+    "AuditLasDataset",
+    "BuildCanopyHeightModel",
+    "DetectTreetops",
+    "DelineateCrowns",
+    "SummarizeCanopyCover"
+  ],
+  "runtime": {
+    "arcgis_pro": "3.7.2",
+    "build": "1901",
+    "python": "3.13.13",
+    "scipy": "1.16.3",
+    "license": "ArcInfo"
+  },
+  "AuditLasDataset": {
+    "parameters": 2
+  },
+  "BuildCanopyHeightModel": {
+    "parameters": 7
+  },
+  "DetectTreetops": {
+    "parameters": 7
+  },
+  "DelineateCrowns": {
+    "parameters": 9
+  },
+  "SummarizeCanopyCover": {
+    "parameters": 6
+  },
+  "executed_detection": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\reviewed_run\\assembly_b303f1f9\\inventory.gdb\\ui_treetops",
+  "executed_crowns": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\reviewed_run\\assembly_b303f1f9\\inventory.gdb\\ui_crowns",
+  "derived_review_output": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\reviewed_run\\assembly_b303f1f9\\inventory.gdb\\ui_trees_review"
+}

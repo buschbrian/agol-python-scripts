@@ -1,0 +1,173 @@
+{
+  "lidar_capture_year": 2024,
+  "nominal_point_spacing_m": 0.5,
+  "chm_cell_size_m": 0.5,
+  "osm_pilot_features": 0,
+  "parameters": {
+    "cell_size_m": 0.5,
+    "edge_distance_m": 1,
+    "below_roof_m": 0.35,
+    "above_roof_m": 3,
+    "min_roof_area_m2": 25,
+    "min_inlier_fraction": 0.8,
+    "max_fit_rmse_m": 0.15,
+    "max_slope": 0.25
+  },
+  "roof_models": {
+    "1": {
+      "origin": [
+        422472.9465694006,
+        4503553.764934937
+      ],
+      "plane": [
+        5.826347665943345e-05,
+        4.214445107028912e-05,
+        1313.5917272735437
+      ],
+      "fit_rmse_m": 0.09883864609547967,
+      "inlier_fraction": 0.8455244479495269,
+      "model_ok": true,
+      "area_m2": 2541.75,
+      "roof_z_m": 1313.6300048828125,
+      "roof_height_m": 18.825439453125,
+      "partial_aoi": false
+    },
+    "2": {
+      "origin": [
+        422577.30844155845,
+        4503514.321428572
+      ],
+      "plane": [
+        -0.005890348523484324,
+        0.007329407077347143,
+        1297.0713175670828
+      ],
+      "fit_rmse_m": 0.029036553836308616,
+      "inlier_fraction": 0.974025974025974,
+      "model_ok": true,
+      "area_m2": 38.5,
+      "roof_z_m": 1297.0699462890625,
+      "roof_height_m": 2.63201904296875,
+      "partial_aoi": false
+    },
+    "3": {
+      "origin": [
+        422590.1355421687,
+        4503463.893747403
+      ],
+      "plane": [
+        -0.0007044758676805817,
+        0.0016560072290398042,
+        1303.5123937595622
+      ],
+      "fit_rmse_m": 0.08071292109446719,
+      "inlier_fraction": 0.8321562110511009,
+      "model_ok": true,
+      "area_m2": 611.25,
+      "roof_z_m": 1303.550048828125,
+      "roof_height_m": 8.856201171875,
+      "partial_aoi": true
+    },
+    "4": {
+      "origin": [
+        422563.42997894104,
+        4503376.910424188
+      ],
+      "plane": [
+        5.611355801146385e-05,
+        0.00023121524514774634,
+        1312.8302227655317
+      ],
+      "fit_rmse_m": 0.06956224758601964,
+      "inlier_fraction": 0.7689530685920578,
+      "model_ok": false,
+      "area_m2": 1664.25,
+      "roof_z_m": 1312.8499755859375,
+      "roof_height_m": 17.9805908203125,
+      "partial_aoi": true
+    },
+    "5": {
+      "origin": [
+        422597.12168141594,
+        4503392.975663717
+      ],
+      "plane": [
+        0.0016890796173251316,
+        -0.012911428250081418,
+        1298.3794011039924
+      ],
+      "fit_rmse_m": 0.028625642090683,
+      "inlier_fraction": 0.9292035398230089,
+      "model_ok": true,
+      "area_m2": 28.5,
+      "roof_z_m": 1298.3800048828125,
+      "roof_height_m": 3.916259765625,
+      "partial_aoi": true
+    },
+    "6": {
+      "origin": [
+        422469.32454401266,
+        4503368.678826328
+      ],
+      "plane": [
+        0.000974652452229782,
+        0.00020452141988123762,
+        1313.4659597015936
+      ],
+      "fit_rmse_m": 0.0931930643104023,
+      "inlier_fraction": 0.8865979381443299,
+      "model_ok": true,
+      "area_m2": 1264.25,
+      "roof_z_m": 1313.489990234375,
+      "roof_height_m": 18.33111572265625,
+      "partial_aoi": true
+    }
+  },
+  "changed_points": {
+    "12TVL2203.las": {
+      "1": 497,
+      "2": 11,
+      "3": 1252,
+      "4": 0,
+      "5": 3,
+      "6": 361
+    }
+  },
+  "only_logged_classification_bytes_changed": true,
+  "classification_bytes_changed": 2124,
+  "nodata_mask_unchanged": true,
+  "height_increases": 0,
+  "changed_chm_cells": 564,
+  "canopy_area_before_m2": 10619.0,
+  "canopy_area_after_m2": 10535.75,
+  "detections_before": 868,
+  "detections_after": 840,
+  "crowns_before": 624,
+  "crowns_after": 613,
+  "changed_chm_cells_outside_allowed_roof_band": 0,
+  "cover": {
+    "ZONE_ID": "pilot_250m",
+    "COVER_STATUS": "PARTIAL",
+    "CANOPY_M2": 10535.75,
+    "CANOPY_ACRES": 2.6034405227926873,
+    "ZONE_M2": 62500.0,
+    "GRID_M2": 62500.0,
+    "OBSERVED_M2": 62174.25,
+    "MISSING_M2": 325.75,
+    "COVERAGE_PCT": 99.4788,
+    "CANOPY_PCT": null,
+    "OBS_CANOPY_PCT": 16.945520050503223,
+    "CANOPY_LOW_PCT": 16.8572,
+    "CANOPY_HIGH_PCT": 17.3784
+  },
+  "resume_outputs_unchanged": true,
+  "inputs_size_mtime_unchanged": true,
+  "source_las_size_mtime_unchanged": true,
+  "outputs": {
+    "chm": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_edge_run\\assembly_daff1352\\chm.tif",
+    "treetops": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_edge_run\\assembly_daff1352\\inventory.gdb\\treetops",
+    "crowns": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_edge_run\\assembly_daff1352\\inventory.gdb\\crowns",
+    "trees_review": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_edge_run\\assembly_daff1352\\inventory.gdb\\trees_review"
+  },
+  "roof_outlines": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_edge_preparation\\roof_review.gdb\\roof_outlines"
+}
