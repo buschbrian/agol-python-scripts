@@ -2,7 +2,7 @@
 
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 
-The source acquisition, its tested accuracy, delivered classes, and per-tile flight dates are recorded in [delivery provenance](DELIVERY_PROVENANCE.md). The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
+The source acquisition, its tested accuracy, delivered classes, and per-tile flight dates are recorded in [the 2023 acquisition record](acquisitions/2023-salt-lake-valley/RECORD.md); the [acquisition procedure](acquisitions/README.md) documents each new one the same way. The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
 
 ## Terrain, buildings, and other planning products
 
@@ -35,7 +35,7 @@ Run from this folder using Pro Python. Paths below use the supplied delivery and
 ~~~powershell
 $proPython = 'C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe'
 & $proPython -m canopy inventory 'G:\GIS\2024 Lidar for tower extract' --report scratch\delivery.json
-& $proPython -m canopy index-delivery 'G:\GIS\2024 Lidar for tower extract' scratch\delivery_index --swaths reference\index\Salt_Lake_Valley_Lidar_Swath_Index.shp
+& $proPython -m canopy index-delivery 'G:\GIS\2024 Lidar for tower extract' scratch\delivery_index --swaths acquisitions\2023-salt-lake-valley\reference\index\Salt_Lake_Valley_Lidar_Swath_Index.shp
 & $proPython -m canopy prepare 'G:\GIS\2024 Lidar for tower extract' scratch\new_pilot --extent 422350 4503350 422600 4503600
 & $proPython -m canopy run scratch\new_pilot\prepared.lasd scratch\new_run --extent 422350 4503350 422600 4503600 --tile-size 125
 ~~~
@@ -43,6 +43,8 @@ $proPython = 'C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.e
 Inventory reads uncompressed LAS headers and samples classes, returns, and flags without creating source-side statistics. Use --full for exact point counts by class. File creation dates are not acquisition dates. LAZ input is not supported by the direct binary inventory reader.
 
 Index-delivery maps the same headers to a `las_tile_bounds` feature class, a layer file, and a JSON report, all outside the delivery. With --swaths it stamps FLIGHT_FIRST, FLIGHT_LAST, FLIGHT_DATES, and SWATH_COUNT on each tile from the swath polygons that intersect its header rectangle. The swath index must use the delivery's horizontal CRS; a tile that several swaths cross carries every date, because a header rectangle does not say which swath supplied which point. Header bounds are screening coverage, not a verified point-support or city-coverage footprint, and returns per bounding area is not nominal pulse density.
+
+The same run writes the acquisition record: `acquisition.json` and `acquisition-facts.md`, which carry tile names but no per-file paths. With --boundary it measures the share of a polygon, normally the city, inside the header rectangles; the boundary may be in any CRS and is projected with a recorded datum transformation. Adding --tile-index (and --tile-field if the index is not keyed by `Tile_Name`) lists the official tiles that touch the boundary but are not in hand, with the boundary area in each. A delivery tile holds an index tile when its rectangle covers at least half of it, so file names need not match the index. The [acquisition procedure](acquisitions/README.md) describes documenting each new acquisition this way.
 
 Prepare extracts new point files into output/points, checks that they are isolated from the delivery, and classifies only that copy. It preserves delivered ground and noise by default. If any copied file has no ground, ground classification runs with reuse of existing ground. Optional --classify-noise enables isolation screening with explicit, recorded parameters; review those thresholds locally.
 
@@ -87,7 +89,7 @@ Duplicate zone IDs are unioned; distinct overlapping zones are analyzed independ
 
 The tree layer includes TREE_ID, SOURCE_ID, HEIGHT_M, REVIEW_STATUS, SPECIES, DBH_CM, CONDITION, and FIELD_NOTES. Species, DBH, condition, and stem coordinates are not inferred from lidar. Review status starts UNVERIFIED; crown attributes and acceptance status live on the independent trees_review copy. Metadata preserves the estimate warning.
 
-The supplied Nearmap WMS was used for local pilot comparison. The connection and imagery remain in ignored scratch storage; no credential belongs in tracked source or documentation. The endpoint serves latest imagery and does not expose a capture date in the capabilities response used here. The lidar was collected 7 October to 5 November 2023 at 0.32 m nominal pulse spacing, with a measured first-return average of 18.2 points per square metre; see [delivery provenance](DELIVERY_PROVENANCE.md) for per-tile flight dates and the reasons the earlier "2024, 0.5 m" note was wrong. The temporal match with Nearmap remains unknown. Imagery can expose roof leakage, omissions, and merged crowns; it is not a field-verified accuracy sample.
+The supplied Nearmap WMS was used for local pilot comparison. The connection and imagery remain in ignored scratch storage; no credential belongs in tracked source or documentation. The endpoint serves latest imagery and does not expose a capture date in the capabilities response used here. The lidar was collected 7 October to 5 November 2023 at 0.32 m nominal pulse spacing, with a measured first-return average of 18.2 points per square metre; see [the acquisition record](acquisitions/2023-salt-lake-valley/RECORD.md) for per-tile flight dates and the reasons the earlier "2024, 0.5 m" note was wrong. The temporal match with Nearmap remains unknown. Imagery can expose roof leakage, omissions, and merged crowns; it is not a field-verified accuracy sample.
 
 Before publishing an inventory: inspect representative parks, street trees, dense canopy, buildings, slopes, and small trees; agree on the minimum tree definition; collect independent reference labels; then measure omissions, false detections, merges/splits, and canopy error. This pilot establishes executable behavior and reveals classification issues. It does not establish a production accuracy percentage.
 

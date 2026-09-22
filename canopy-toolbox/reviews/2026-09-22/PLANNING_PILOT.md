@@ -19,7 +19,7 @@ corrected values. Nothing in the processing, counts, or measurements changes.
   likely low for deciduous cover.
 
 Full detail, per-tile flight dates, delivered classes, and coverage gaps are in
-[delivery provenance](../../DELIVERY_PROVENANCE.md). The delivery indexer moved into the toolbox
+[delivery provenance](../../acquisitions/2023-salt-lake-valley/RECORD.md). The delivery indexer moved into the toolbox
 as `canopy index-delivery` at the same time; the suite is now **74 tests, all passing in Pro
 3.7.2** ([log](full-tests-after-provenance.txt)), up from the 62 recorded below.
 

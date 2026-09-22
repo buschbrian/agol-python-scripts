@@ -132,7 +132,7 @@ Delivery provenance originally recommended requesting the six interior tiles mis
 extract. Two later findings narrow that. This mosaic already covers all six at full density, so
 terrain work over them needs no new data. And four of the six contain no Millcreek at all; against
 the city boundary, the tiles actually missing are nine edge slivers holding 1.25% of the city.
-[Delivery provenance](../../DELIVERY_PROVENANCE.md#coverage-of-millcreek) now lists them.
+[The acquisition record](../../acquisitions/2023-salt-lake-valley/RECORD.md#coverage-of-millcreek) now lists them.
 
 ## Reproducing
 
