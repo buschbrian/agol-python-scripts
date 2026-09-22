@@ -1,0 +1,315 @@
+{
+  "aoi": [
+    428100.0,
+    4504100.0,
+    428400.0,
+    4504400.0
+  ],
+  "cell_size_m": 0.5,
+  "grid": [
+    600,
+    600
+  ],
+  "toolbox_dtm": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\planning_20260922\\millcreek_products\\surfaces\\dtm.tif",
+  "vendor_dem": "G:\\GIS\\Data\\millcreek_dem_half_meter.tif",
+  "coverage": {
+    "total_cells": 360000,
+    "toolbox_valid": 360000,
+    "vendor_valid": 360000,
+    "compared": 360000,
+    "toolbox_only": 0,
+    "vendor_only": 0
+  },
+  "elevation_range": {
+    "toolbox": [
+      1320.924560546875,
+      1328.6669921875
+    ],
+    "vendor": [
+      1320.9300537109375,
+      1328.7750244140625
+    ]
+  },
+  "difference_toolbox_minus_vendor": [
+    {
+      "label": "all compared cells",
+      "cells": 360000,
+      "mean_m": -0.04302808261447483,
+      "median_m": -0.0306396484375,
+      "std_m": 0.08831358380621764,
+      "rmse_m": 0.09823789143443579,
+      "mae_m": 0.05136280076768663,
+      "p05_m": -0.14013671875,
+      "p95_m": 0.001953125,
+      "min_m": -1.189208984375,
+      "max_m": 1.83740234375,
+      "within_2cm_pct": 29.65277777777778,
+      "within_5cm_pct": 71.77083333333333,
+      "within_10cm_pct": 90.62972222222221
+    },
+    {
+      "label": "cells with a direct class-2 return",
+      "cells": 152489,
+      "mean_m": -0.021364466088281367,
+      "median_m": -0.01904296875,
+      "std_m": 0.021326061995579206,
+      "rmse_m": 0.030186724714025594,
+      "mae_m": 0.02291473800338672,
+      "p05_m": -0.0528564453125,
+      "p95_m": 0.002197265625,
+      "min_m": -0.55078125,
+      "max_m": 0.6968994140625,
+      "within_2cm_pct": 51.52437224980162,
+      "within_5cm_pct": 93.7975853996026,
+      "within_10cm_pct": 99.37634845792157
+    },
+    {
+      "label": "cells with no direct ground return",
+      "cells": 207511,
+      "mean_m": -0.05894754336818289,
+      "median_m": -0.044189453125,
+      "std_m": 0.11224122675438637,
+      "rmse_m": 0.1267787251158121,
+      "mae_m": 0.07226779685399208,
+      "p05_m": -0.195556640625,
+      "p95_m": 0.001220703125,
+      "min_m": -1.189208984375,
+      "max_m": 1.83740234375,
+      "within_2cm_pct": 13.580484889957642,
+      "within_5cm_pct": 55.58452323009383,
+      "within_10cm_pct": 84.2022832524541
+    },
+    {
+      "label": "cells under a measured roof",
+      "cells": 76137,
+      "mean_m": -0.05790245753286428,
+      "median_m": -0.04296875,
+      "std_m": 0.14948579039543874,
+      "rmse_m": 0.16030721325388234,
+      "mae_m": 0.08663200868325764,
+      "p05_m": -0.2501220703125,
+      "p95_m": 0.0203857421875,
+      "min_m": -1.180908203125,
+      "max_m": 1.629638671875,
+      "within_2cm_pct": 20.599708420347532,
+      "within_5cm_pct": 53.21854026294706,
+      "within_10cm_pct": 78.32985276540973
+    },
+    {
+      "label": "cells not under a roof",
+      "cells": 283863,
+      "mean_m": -0.03903851622800876,
+      "median_m": -0.0286865234375,
+      "std_m": 0.06182566817043244,
+      "rmse_m": 0.0731191187604691,
+      "mae_m": 0.041902985000686954,
+      "p05_m": -0.108642578125,
+      "p95_m": -0.000244140625,
+      "min_m": -1.189208984375,
+      "max_m": 1.83740234375,
+      "within_2cm_pct": 32.08096863627877,
+      "within_5cm_pct": 76.74688141814889,
+      "within_10cm_pct": 93.9287614095532
+    }
+  ],
+  "by_ground_support_distance": [
+    {
+      "label": "0-0.5 m from direct ground",
+      "cells": 152489,
+      "mean_m": -0.021364466088281367,
+      "median_m": -0.01904296875,
+      "std_m": 0.021326061995579206,
+      "rmse_m": 0.030186724714025594,
+      "mae_m": 0.02291473800338672,
+      "p05_m": -0.0528564453125,
+      "p95_m": 0.002197265625,
+      "min_m": -0.55078125,
+      "max_m": 0.6968994140625,
+      "within_2cm_pct": 51.52437224980162,
+      "within_5cm_pct": 93.7975853996026,
+      "within_10cm_pct": 99.37634845792157
+    },
+    {
+      "label": "0.5-1 m from direct ground",
+      "cells": 129862,
+      "mean_m": -0.05031741251650791,
+      "median_m": -0.0416259765625,
+      "std_m": 0.05942633972851623,
+      "rmse_m": 0.07786722456663796,
+      "mae_m": 0.054006345738649486,
+      "p05_m": -0.1256103515625,
+      "p95_m": -0.009521484375,
+      "min_m": -1.1571044921875,
+      "max_m": 1.83740234375,
+      "within_2cm_pct": 11.848731730606337,
+      "within_5cm_pct": 61.96731915417906,
+      "within_10cm_pct": 91.22838089664414
+    },
+    {
+      "label": "1-2 m from direct ground",
+      "cells": 38335,
+      "mean_m": -0.07771243514208621,
+      "median_m": -0.0548095703125,
+      "std_m": 0.13954307873470073,
+      "rmse_m": 0.1597215872957513,
+      "mae_m": 0.0959654989524912,
+      "p05_m": -0.29105224609375,
+      "p95_m": 0.009680175781249467,
+      "min_m": -1.189208984375,
+      "max_m": 1.6632080078125,
+      "within_2cm_pct": 15.09325681492109,
+      "within_5cm_pct": 43.77461849484805,
+      "within_10cm_pct": 72.99073953306377
+    },
+    {
+      "label": "2-4 m from direct ground",
+      "cells": 27576,
+      "mean_m": -0.06863548515636332,
+      "median_m": -0.0472412109375,
+      "std_m": 0.17163259552564045,
+      "rmse_m": 0.18484455477754744,
+      "mae_m": 0.10125342873445206,
+      "p05_m": -0.322174072265625,
+      "p95_m": 0.0247802734375,
+      "min_m": -1.1453857421875,
+      "max_m": 1.629638671875,
+      "within_2cm_pct": 18.05192921380911,
+      "within_5cm_pct": 48.59660574412533,
+      "within_10cm_pct": 74.30011604293588
+    },
+    {
+      "label": "4-8 m from direct ground",
+      "cells": 11100,
+      "mean_m": -0.06636392129434121,
+      "median_m": -0.055908203125,
+      "std_m": 0.2214940930930867,
+      "rmse_m": 0.2312128533146653,
+      "mae_m": 0.12784798836922862,
+      "p05_m": -0.33206787109374997,
+      "p95_m": 0.11549072265624982,
+      "min_m": -1.180908203125,
+      "max_m": 1.541259765625,
+      "within_2cm_pct": 17.37837837837838,
+      "within_5cm_pct": 40.468468468468465,
+      "within_10cm_pct": 66.67567567567568
+    },
+    {
+      "label": "8-99 m from direct ground",
+      "cells": 638,
+      "mean_m": -0.14029150696757445,
+      "median_m": -0.07281494140625,
+      "std_m": 0.1848939819423001,
+      "rmse_m": 0.231978250599695,
+      "mae_m": 0.14557382230848354,
+      "p05_m": -0.593695068359375,
+      "p95_m": 0.02534790039062497,
+      "min_m": -0.792724609375,
+      "max_m": 0.05029296875,
+      "within_2cm_pct": 15.830721003134796,
+      "within_5cm_pct": 31.03448275862069,
+      "within_10cm_pct": 60.658307210031346
+    }
+  ],
+  "largest_disagreements": [
+    {
+      "easting": 428219.25,
+      "northing": 4504399.25,
+      "toolbox_m": 1325.4173583984375,
+      "vendor_m": 1323.5799560546875,
+      "difference_m": 1.83740234375,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 0.5
+    },
+    {
+      "easting": 428219.75,
+      "northing": 4504399.75,
+      "toolbox_m": 1325.3463134765625,
+      "vendor_m": 1323.623291015625,
+      "difference_m": 1.7230224609375,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 0.5
+    },
+    {
+      "easting": 428219.75,
+      "northing": 4504399.25,
+      "toolbox_m": 1325.3193359375,
+      "vendor_m": 1323.6099853515625,
+      "difference_m": 1.7093505859375,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 0.7071067690849304
+    },
+    {
+      "easting": 428219.75,
+      "northing": 4504398.75,
+      "toolbox_m": 1325.2855224609375,
+      "vendor_m": 1323.594970703125,
+      "difference_m": 1.6905517578125,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 0.5
+    },
+    {
+      "easting": 428220.25,
+      "northing": 4504399.75,
+      "toolbox_m": 1325.28076171875,
+      "vendor_m": 1323.6175537109375,
+      "difference_m": 1.6632080078125,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 1.0
+    },
+    {
+      "easting": 428220.25,
+      "northing": 4504399.25,
+      "toolbox_m": 1325.2572021484375,
+      "vendor_m": 1323.6033935546875,
+      "difference_m": 1.65380859375,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 1.1180340051651
+    },
+    {
+      "easting": 428234.25,
+      "northing": 4504393.25,
+      "toolbox_m": 1325.3568115234375,
+      "vendor_m": 1323.719970703125,
+      "difference_m": 1.6368408203125,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 1.1180340051651
+    },
+    {
+      "easting": 428234.25,
+      "northing": 4504392.75,
+      "toolbox_m": 1325.3453369140625,
+      "vendor_m": 1323.7099609375,
+      "difference_m": 1.6353759765625,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 1.4142135381698608
+    },
+    {
+      "easting": 428220.25,
+      "northing": 4504398.75,
+      "toolbox_m": 1325.2279052734375,
+      "vendor_m": 1323.5933837890625,
+      "difference_m": 1.634521484375,
+      "direct_ground": false,
+      "under_roof": false,
+      "ground_distance_m": 1.0
+    },
+    {
+      "easting": 428233.25,
+      "northing": 4504393.75,
+      "toolbox_m": 1325.32958984375,
+      "vendor_m": 1323.699951171875,
+      "difference_m": 1.629638671875,
+      "direct_ground": false,
+      "under_roof": true,
+      "ground_distance_m": 2.0
+    }
+  ]
+}
