@@ -7,6 +7,10 @@ def main(argv=None):
     commands=parser.add_subparsers(dest="command",required=True)
     audit=commands.add_parser("inventory",help="Read LAS headers and sampled or full class counts without creating LAS statistics")
     audit.add_argument("folder");audit.add_argument("--report",required=True);audit.add_argument("--full",action="store_true")
+    idx=commands.add_parser("index-delivery",help="Map LAS header bounds to a feature class, with optional flight dates from a swath index")
+    idx.add_argument("folder");idx.add_argument("output")
+    idx.add_argument("--swaths",help="Swath-index polygons in the delivery's horizontal CRS")
+    idx.add_argument("--date-field",default="DATE_D")
     prepare=commands.add_parser("prepare",help="Extract and classify a new pilot working copy")
     prepare.add_argument("folder");prepare.add_argument("output")
     prepare.add_argument("--extent",type=float,nargs=4,required=True,metavar=("XMIN","YMIN","XMAX","YMAX"))
@@ -44,6 +48,10 @@ def main(argv=None):
         result=preparation.inventory(args.folder,sample=not args.full)
         common.write_json(args.report,result)
         print(f"{result['file_count']} files; {result['point_count']:,} points. Report: {args.report}")
+    elif args.command=="index-delivery":
+        from . import delivery
+        result=delivery.index(args.folder,args.output,args.swaths,args.date_field)
+        print(f"{result['file_count']} tiles indexed to {result['feature_class']}")
     else:
         with licensing.extensions("3D","Spatial"):
             if args.command=="prepare":

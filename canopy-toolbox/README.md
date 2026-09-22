@@ -2,7 +2,7 @@
 
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 
-The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
+The source acquisition, its tested accuracy, delivered classes, and per-tile flight dates are recorded in [delivery provenance](DELIVERY_PROVENANCE.md). The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
 
 ## Terrain, buildings, and other planning products
 
@@ -35,11 +35,14 @@ Run from this folder using Pro Python. Paths below use the supplied delivery and
 ~~~powershell
 $proPython = 'C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe'
 & $proPython -m canopy inventory 'G:\GIS\2024 Lidar for tower extract' --report scratch\delivery.json
+& $proPython -m canopy index-delivery 'G:\GIS\2024 Lidar for tower extract' scratch\delivery_index --swaths reference\index\Salt_Lake_Valley_Lidar_Swath_Index.shp
 & $proPython -m canopy prepare 'G:\GIS\2024 Lidar for tower extract' scratch\new_pilot --extent 422350 4503350 422600 4503600
 & $proPython -m canopy run scratch\new_pilot\prepared.lasd scratch\new_run --extent 422350 4503350 422600 4503600 --tile-size 125
 ~~~
 
 Inventory reads uncompressed LAS headers and samples classes, returns, and flags without creating source-side statistics. Use --full for exact point counts by class. File creation dates are not acquisition dates. LAZ input is not supported by the direct binary inventory reader.
+
+Index-delivery maps the same headers to a `las_tile_bounds` feature class, a layer file, and a JSON report, all outside the delivery. With --swaths it stamps FLIGHT_FIRST, FLIGHT_LAST, FLIGHT_DATES, and SWATH_COUNT on each tile from the swath polygons that intersect its header rectangle. The swath index must use the delivery's horizontal CRS; a tile that several swaths cross carries every date, because a header rectangle does not say which swath supplied which point. Header bounds are screening coverage, not a verified point-support or city-coverage footprint, and returns per bounding area is not nominal pulse density.
 
 Prepare extracts new point files into output/points, checks that they are isolated from the delivery, and classifies only that copy. It preserves delivered ground and noise by default. If any copied file has no ground, ground classification runs with reuse of existing ground. Optional --classify-noise enables isolation screening with explicit, recorded parameters; review those thresholds locally.
 
@@ -52,7 +55,7 @@ Run outputs are CHM, treetops, crowns, and trees_review. Use tool 5 on the assem
 ## Raster and crown methods
 
 - Ground class 2 supplies the triangulated DTM. Vegetation DSM uses only classes 3/4/5, first or single returns, BINNING MAXIMUM NONE. It cannot interpolate canopy across roads, roofs, or empty vegetation cells.
-- Withheld, overlap, and synthetic points are excluded. This policy can reduce coverage and must be checked against delivery provenance.
+- Withheld, overlap, and synthetic points are excluded. This policy can reduce coverage and must be checked against delivery provenance. On the 2023 Salt Lake Valley delivery the overlap bit was never populated, so the exclusion has no effect there and all swath overage is retained.
 - A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20.
 - Where a measured class-6 first/single surface is more than 0.35 m above vegetation in the same cell, the CHM reports observed non-canopy. This prevents lower wall or under-roof returns from becoming visible canopy. Canopy above roofs survives. The configurable building-clearance threshold is a processing tolerance, not a surveyed accuracy value. The raw vegetation DSM and building_occlusion mask preserve the evidence.
 - Smoothing and maxima operate on the same grid used by crown segmentation. Raw canopy support constrains the flood. No hydrology Fill or Flow Direction operation is used. Unseeded canopy stays unassigned and is reported.
@@ -84,7 +87,7 @@ Duplicate zone IDs are unioned; distinct overlapping zones are analyzed independ
 
 The tree layer includes TREE_ID, SOURCE_ID, HEIGHT_M, REVIEW_STATUS, SPECIES, DBH_CM, CONDITION, and FIELD_NOTES. Species, DBH, condition, and stem coordinates are not inferred from lidar. Review status starts UNVERIFIED; crown attributes and acceptance status live on the independent trees_review copy. Metadata preserves the estimate warning.
 
-The supplied Nearmap WMS was used for local pilot comparison. The connection and imagery remain in ignored scratch storage; no credential belongs in tracked source or documentation. The endpoint serves latest imagery and does not expose a capture date in the capabilities response used here. The user confirmed lidar capture in 2024 and nominal point spacing of 0.5 m (separate from CHM cell size). The exact flight date and temporal match with Nearmap remain unknown. Imagery can expose roof leakage, omissions, and merged crowns; it is not a field-verified accuracy sample.
+The supplied Nearmap WMS was used for local pilot comparison. The connection and imagery remain in ignored scratch storage; no credential belongs in tracked source or documentation. The endpoint serves latest imagery and does not expose a capture date in the capabilities response used here. The lidar was collected 7 October to 5 November 2023 at 0.32 m nominal pulse spacing, with a measured first-return average of 18.2 points per square metre; see [delivery provenance](DELIVERY_PROVENANCE.md) for per-tile flight dates and the reasons the earlier "2024, 0.5 m" note was wrong. The temporal match with Nearmap remains unknown. Imagery can expose roof leakage, omissions, and merged crowns; it is not a field-verified accuracy sample.
 
 Before publishing an inventory: inspect representative parks, street trees, dense canopy, buildings, slopes, and small trees; agree on the minimum tree definition; collect independent reference labels; then measure omissions, false detections, merges/splits, and canopy error. This pilot establishes executable behavior and reveals classification issues. It does not establish a production accuracy percentage.
 

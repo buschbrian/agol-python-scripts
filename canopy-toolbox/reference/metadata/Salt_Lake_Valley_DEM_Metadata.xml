@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Aero-Graphics, Inc.</origin>
+        <pubdate>20240625</pubdate>
+        <title>Salt Lake Valley LiDAR; Hydro Flattened Bare Earth DEM</title>
+        <geoform>raster digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Product: This lidar data is processed Hydro Flattened Bare Earth DEMs, formatted to 1363 individual 1000m x 1000m tiles; used for hydrologic modeling,flood risk managemement, habitat modeling,and geomorphological studies.
+  Geographic Extent: Salt Lake, Utah, Davis counties, Utah, covering approximately 494 square miles.
+  Dataset Description: The Salt Lake Valley LiDAR project called for the Planning, Acquisition, processing and derivative products of lidar data to be collected at a nominal pulse spacing (NPS) of 0.32 meter. Project specifications are based on the U.S. Geological Survey National Geospatial Program Base Lidar Specification 2023, Revision A. The data was developed based on a horizontal projection/datum of NAD83(2011), Transverse Mercator, Meters and vertical datum of NAVD88, Meters. Lidar data was delivered as processed Classified LAZ 1.4 files, formatted to 1363 individual 1000m x 1000m tiles, as tiled bare earth DEMs and DSMs, maximum surface height rasters, and swath separation images; all tiled to the same 1000m x 1000m schema.
+  Ground Conditions: Lidar was collected from October 7th, 2023 to November 5th, 2023, while no snow was on the ground and rivers were at or below normal levels.
+  Deliverables: Classified point cloud LiDAR data in LAZ v1.4 format; DSM and DEM with a 0.5m cell size in GeoTIFF format; max surface height rasters at 1m cell size; swath separation images at 1m cell size; Breaklines in SHP format; Metadata in xml format; Technical Project Report.</abstract>
+      <purpose>To acquire detailed surface elevation data for use in conservation planning, design, research, floodplain mapping, dam safety assessments and elevation modeling, etc. This allows the user to create intensity images, breaklines and DEMs. The purpose of these lidar data was to produce high accuracy 3D hydro-flattened Digital Elevation Model (DEM) with a 0.5 meter cell size. The lidar point cloud data was used to create intensity images, 3D breaklines, and hydro-flattened DEMs as necessary.</purpose>
+      <supplinf>
+    CONTRACTOR: Aero-Graphics, Inc.
+    Raster File Type = GeoTIFF
+    Bit Depth/Pixel Type = 32-bit float
+    Raster Cell Size = 0.5 Meters 
+    Interpolation or Resampling Technique = Triangulated Irregular Network (TIN)
+    Required Vertical Accuracy = 10 cm NVA
+   </supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20231007</begdate>
+          <enddate>20231105</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-112.127695</westbc>
+        <eastbc>-111.747312</eastbc>
+        <northbc>40.846184</northbc>
+        <southbc>40.413081</southbc>
+      </bounding>
+      <lboundng>
+        <leftbc>404615.492621</leftbc>
+        <rightbc>436932.712363</rightbc>
+        <topbc>4522126.153323</topbc>
+        <bottombc>4474069.705715</bottombc>
+      </lboundng>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Model</themekey>
+        <themekey>Raster</themekey>
+        <themekey>DEM</themekey>
+        <themekey>Remote Sensing</themekey>
+        <themekey>Elevation Data</themekey>
+        <themekey>Lidar</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>USA</placekey>
+        <placekey>Utah</placekey>
+        <placekey>UT</placekey>
+        <placekey>Salt Lake</placekey>
+        <placekey>Utah</placekey>
+        <placekey>Davis counties</placekey>
+      </place>
+    </keywords>
+    <accconst>No restrictions apply to these data.</accconst>
+    <useconst>None. However, users should be aware that temporal changes may have occurred since this dataset was collected and that some parts of these data may no longer represent actual surface conditions. Users should not use these data for critical applications without a full awareness of its limitations. Acknowledgement of the U.S. Geological Survey would be appreciated for products derived from these data.</useconst>
+    <native>POSPac MMS 8.7;  Optech LMS 4.6; BayesStripAlign 2.21b; TerraScan 022_002; GeoCue 2020.1.22.3; Windows 10 Pro Version 22H2 Operating System</native>
+  </idinfo>
+  <dataqual>
+    <logic>Data covers the entire area specified for this project.</logic>
+    <complete>Datasets contain complete coverage of tiles. No points have been removed or excluded. A visual qualitative assessment was performed to ensure data completeness. Void areas are present due to smoke plumes obstructing the beam at the time of acquisition. The DEM data is of good quality and data passes specifications. The reference dataset encompassing this area passed Non-Vegetated Vertical Accuracy specifications.</complete>
+    <posacc>
+      <vertacc>
+        <vertaccr>The bare-earth LiDAR dataset was designed to meet or exceed ASPRS Positional Accuracy 
+Standards at the 10 cm vertical accuracy class. Absolute accuracy for non-vegetated areas 
+(NVA) must be accurate within 10.0 cm (0.32 ft) RMSEz and 19.6 cm (0.64 ft) at the 95% 
+confidence level. The resulting NVA RMSEz of the DEM values were found to be 6.0 cm (0.20 ft). The resulting NVA stated as the 95% confidence level (RMSEz x 1.96) is 11.7 cm (0.38 ft). Therefore, this dataset meets the required NVA of 19.6 
+19 cm (0.64 ft) at the 95% confidence level as defined by the National Standards for Spatial 
+Data Accuracy (NSSDA).
+</vertaccr>
+      </vertacc>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>A hydro-flattened raster digital elevation model (DEM) was created using the ground classified LiDAR points, and the DEM was then tiled in GeoTIFF format using LP360 and automated scripting routines within ArcMap. Each surface was reviewed in ESRI ArcMap and ArcScene to check for any surface anomalies or incorrect elevations found within the surface</procdesc>
+        <procdate>2023</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Raster</direct>
+    <rastinfo>
+      <rasttype>Pixel</rasttype>
+      <rowcount>2000</rowcount>
+      <colcount>2000</colcount>
+    </rastinfo>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>NAD83(2011) / UTM zone 12N</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-111.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.5</absres>
+            <ordres>0.5</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>NAD83_National_Spatial_Reference_System_2011</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>North American Vertical Datum of 1988, Geoid 18</altdatum>
+        <altres>0.01</altres>
+        <altunits>meters</altunits>
+        <altenc>Explicit elevation coordinate included with horizontal coordinates</altenc>
+      </altsys>
+    </vertdef>
+  </spref>
+  <metainfo>
+    <metd>20240625</metd>
+    <metrd>20240625</metrd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Aero-Graphics, Inc.</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>40 West Oakland Avenue</address>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postal>84115</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>(801)487-3273</cntvoice>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <metac>None.</metac>
+    <metuc>None.</metuc>
+    <metsi>
+      <metscs>None.</metscs>
+      <metsc>Unclassified.</metsc>
+      <metshd>None.</metshd>
+    </metsi>
+    <metextns>
+      <onlink>None.</onlink>
+      <metprof>None.</metprof>
+    </metextns>
+  </metainfo>
+</metadata>

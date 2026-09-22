@@ -1,6 +1,6 @@
 # LiDAR planning products
 
-The 2024 delivery can support a shared terrain, surface, canopy, and building-height library. Generate and review those once, then reuse them for planning questions. The user confirmed **0.5 m nominal point spacing**; this is not a vertical accuracy statement. The pilot also uses 0.5 m raster cells.
+The delivery can support a shared terrain, surface, canopy, and building-height library. Generate and review those once, then reuse them for planning questions. The collection is QL1 at **0.32 m nominal pulse spacing**, flown 7 October to 5 November 2023, with a tested point-cloud NVA RMSEz of 5.87 cm; see [delivery provenance](DELIVERY_PROVENANCE.md). The pilot uses 0.5 m raster cells, which is a separate choice from the pulse spacing.
 
 The existing tree workflow is retained. The new command adds a bounded planning bundle, with a separate manifest and explicit coverage flags. Outputs are local, unvalidated planning estimates.
 
@@ -105,7 +105,7 @@ The boundary mask traces downstream from every valid raster edge and cell beside
 
 Species, DBH, condition, legal ownership, exact stems, structural roof condition, finished floors, and hydraulic flood depth are not delivered as measured attributes.
 
-The delivery is at **G:\GIS\2024 Lidar for tower extract**. Compare its footprint against the city and desired contributing watersheds before a full run; the folder name does not establish complete city coverage. Preserve the original LAS and delivery metadata.
+The delivery is at **G:\GIS\2024 Lidar for tower extract**, a 52-tile extract of the 1363-tile 2023 Salt Lake Valley collection. Compare its footprint against the city and desired contributing watersheds before a full run; the folder name establishes neither the capture year nor complete city coverage. The 39 grid cells missing from the extract all exist in the published index and can be obtained from UGRC — see [delivery provenance](DELIVERY_PROVENANCE.md). Preserve the original LAS and delivery metadata.
 
 ## Other project work
 

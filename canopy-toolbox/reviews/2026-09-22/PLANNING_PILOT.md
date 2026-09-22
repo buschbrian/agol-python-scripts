@@ -4,6 +4,25 @@ The expanded workflow completed on a **300 × 300 m Millcreek sample**, producin
 
 [View the overview map](../../scratch/planning_20260922/planning-overview.png) · [Product catalog, methods, and next datasets](../../PLANNING_PRODUCTS.md)
 
+## Correction, added 2026-09-22 after the delivery metadata arrived
+
+This report was written before the USGS and Aero-Graphics delivery documents were available.
+Two inputs recorded below from recollection are wrong, and the results should be read with the
+corrected values. Nothing in the processing, counts, or measurements changes.
+
+- The lidar was collected **7 October to 5 November 2023**, not in 2024. The pilot tile 12TVL2804
+  was flown 2023-11-02 and 2023-11-04.
+- Nominal pulse spacing is **0.32 m**, not 0.5 m, with a measured first-return average of 18.2
+  points per square metre. The 0.5 m figure is the raster cell size used here.
+- Vertical accuracy is no longer unknown: tested point-cloud NVA RMSEz is **5.87 cm**.
+- Because the collection is late-autumn, the canopy figures below are season-limited and are
+  likely low for deciduous cover.
+
+Full detail, per-tile flight dates, delivered classes, and coverage gaps are in
+[delivery provenance](../../DELIVERY_PROVENANCE.md). The delivery indexer moved into the toolbox
+as `canopy index-delivery` at the same time; the suite is now **74 tests, all passing in Pro
+3.7.2** ([log](full-tests-after-provenance.txt)), up from the 62 recorded below.
+
 ## What changed since the previous task
 
 The September 17 footprint review showed that the earlier commercial-roof pilot was in Taylorsville. It remains useful for that failure mode, but it is not a Millcreek canopy sample. This run uses a new area with 115 intersecting county footprints; all carry CITY = MILLCREEK.
@@ -17,7 +36,7 @@ This pilot uses the existing building classifier and height classes on a new LAS
 - Original delivery: G:\GIS\2024 Lidar for tower extract.
 - **52 LAS files; 1,269,149,276 points; 38.07 GB** in decimal units.
 - Source header bounds: 422000–434999.99 E, 4501000–4507999.99 N. Their bounding rectangle does not imply uninterrupted delivery coverage.
-- Capture year **2024** and nominal point spacing **0.5 m** were confirmed by the user. Exact flight date/season and validated vertical accuracy remain unknown here.
+- Capture year **2024** and nominal point spacing **0.5 m** were confirmed by the user. Exact flight date/season and validated vertical accuracy remain unknown here. **Superseded — see the correction above.**
 - Source coordinate reference: NAD83(2011) / UTM zone 12N, with NAVD88 height / Geoid18, metres, as declared in the LAS.
 - New prepared copy: one source tile, 12TVL2804, clipped to 428075 4504075 428425 4504425 (350 m square).
 - Analysis grid: **428100 4504100 428400 4504400**, 600 × 600 cells at 0.5 m (9 hectares / 22.24 acres).
