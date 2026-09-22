@@ -4,6 +4,10 @@ Classified LAS to an observed canopy-height model, canopy cover by zone, estimat
 
 The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
 
+## Terrain, buildings, and other planning products
+
+The new **planning** CLI command creates terrain/slope/contour rasters, surface heights, drainage-screening layers, and optional county-footprint height summaries on a prepared LAS copy. See the [product catalog and expansion roadmap](PLANNING_PRODUCTS.md) for output definitions, QA flags, limits, and the runnable example. The [September 22 Millcreek pilot report](reviews/2026-09-22/PLANNING_PILOT.md) records the real-data results.
+
 ## Environment
 
 Use ArcGIS Pro Python with arcpy, NumPy, and SciPy. The workstation pilot uses Pro 3.7.2, Python 3.13.13, and the bundled scientific packages. LAS preparation and raster construction require 3D Analyst; canopy raster analysis requires Spatial Analyst. The removed Feature To Point operation no longer imposes an Advanced-license check; verification was performed on this workstation's Advanced license, not on Basic or Standard.

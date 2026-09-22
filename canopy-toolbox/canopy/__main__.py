@@ -28,6 +28,16 @@ def main(argv=None):
     refine.add_argument("--below-roof",type=float,default=.35)
     refine.add_argument("--above-roof",type=float,default=3)
     refine.add_argument("--min-roof-area",type=float,default=25)
+    planning=commands.add_parser("planning",help="Terrain, drainage screening, surface and footprint heights (bounded pilot)")
+    planning.add_argument("lasd");planning.add_argument("output")
+    planning.add_argument("--extent",type=float,nargs=4,required=True)
+    planning.add_argument("--footprints");planning.add_argument("--footprint-id")
+    planning.add_argument("--cell-size",type=float,default=.5)
+    planning.add_argument("--neighborhood",type=float,default=3)
+    planning.add_argument("--tpi-radius",type=float,default=10)
+    planning.add_argument("--drainage-area",type=float,default=1000)
+    planning.add_argument("--contour-interval",type=float,default=2)
+    planning.add_argument("--z-metres",action="store_true")
     args=parser.parse_args(argv)
     from . import common,licensing,preparation,pipeline
     if args.command=="inventory":
@@ -43,6 +53,11 @@ def main(argv=None):
                 from . import roofs
                 result=roofs.refine(args.lasd,args.output,args.cell_size,args.edge_distance,
                                     args.below_roof,args.above_roof,args.min_roof_area)
+            elif args.command=="planning":
+                from . import planning
+                result=planning.build(args.lasd,args.output,args.extent,args.footprints,args.footprint_id,
+                                      args.cell_size,args.neighborhood,args.tpi_radius,args.drainage_area,
+                                      args.contour_interval,"metres" if args.z_metres else None)
             else:
                 result=pipeline.run(args.lasd,args.output,args.extent,args.tile_size,args.overlap,args.cell_size,
                                     args.bands,args.smooth,args.min_crown_area,args.source_files,args.source_id,

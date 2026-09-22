@@ -11,6 +11,8 @@ need more than one file live in their own folder.
 | `sketch_layer_to_template_schema.py` | Rebuilds an ArcGIS Online Map Viewer sketch layer as a feature class carrying a production dataset's full schema — fields, domains, subtypes, GlobalIDs and attribute rules — reprojecting with an explicit datum transformation and loading with rules disabled. Set the paths at the top and run once with `DRY_RUN = True`. | ArcGIS Pro's Python (`arcpy`) |
 | [`canopy-toolbox/`](canopy-toolbox/) | ArcGIS Pro Python toolbox (`CanopyTools.pyt`) turning a classified lidar point cloud into canopy cover and an individual-tree layer — vegetation-only CHM, height-banded treetop detection, watershed crown delineation, zonal cover rollup. Five tools plus a working-copy preparation and bounded-AOI runner; see its README for limits and pilot evidence. | ArcGIS Pro + 3D and Spatial Analyst |
 
+The LiDAR work now also includes a [planning-products workflow](canopy-toolbox/PLANNING_PRODUCTS.md) for terrain, building heights, and drainage screening, with a separate Millcreek pilot and quality flags.
+
 ## Environment
 
 For `add_badelf_fields_to_agol.py`, any Python ≥ 3.10 with `arcgis` — for
