@@ -37,8 +37,9 @@ The file carries no lineage statement, so its origin was established by test rat
 Taken together: the published hydro-flattened bare-earth DEM, clipped and mosaicked locally to a
 Millcreek rectangle. Which published copy — the Aero-Graphics delivery tiles or UGRC's
 republication of them — is not recoverable from the file, but they are the same product. The
-mosaic's holes do not follow the QL1 data product area, which contains the whole rectangle; they
-most likely follow a city boundary and buffer, consistent with the file name.
+mosaic's holes do not follow the QL1 data product area, which contains the whole rectangle, and
+they are not a tight city clip either: the mosaic is fully valid over tiles containing no Millcreek
+at all. Whatever boundary was used to clip it is not recorded.
 
 This is a stronger reference than a locally re-derived surface would have been: it is the vendor's
 manually reviewed bare earth, produced independently of anything in this toolbox.
@@ -127,11 +128,11 @@ sample — separate from classification error, and still not validated against m
 
 ## Correction to the coverage recommendation
 
-[Delivery provenance](../../DELIVERY_PROVENANCE.md) recommends requesting the six interior tiles
-missing from the extract before the delivery index is used as a coverage footprint. That still
-holds for anything needing points — canopy, crowns, classification — but **not for terrain**: this
-mosaic already covers all six at full density. For DTM, slope, contour and drainage work over those
-gaps the raster is in hand, and only the point cloud is missing.
+Delivery provenance originally recommended requesting the six interior tiles missing from the
+extract. Two later findings narrow that. This mosaic already covers all six at full density, so
+terrain work over them needs no new data. And four of the six contain no Millcreek at all; against
+the city boundary, the tiles actually missing are nine edge slivers holding 1.25% of the city.
+[Delivery provenance](../../DELIVERY_PROVENANCE.md#coverage-of-millcreek) now lists them.
 
 ## Reproducing
 

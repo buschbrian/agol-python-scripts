@@ -104,14 +104,42 @@ with no unofficial or renamed tiles. The gaps inside the extract's bounding rect
 selection, not absence: all **39** missing grid cells exist in the published index and can be
 obtained from UGRC.
 
-Six of them are interior holes surrounded by delivered tiles, and are the first to request if the
-delivery index is to be used as a coverage footprint:
-
-`12TVL2902`, `12TVL3002`, `12TVL3102`, `12TVL2903`, `12TVL3003`, `12TVL3103`
+Six of them are interior holes surrounded by delivered tiles —
+`12TVL2902`, `12TVL3002`, `12TVL3102`, `12TVL2903`, `12TVL3003`, `12TVL3103` — but four of those
+contain no Millcreek at all; the hole in the extract is a hole in the city. See the city coverage
+below before requesting anything.
 
 The remaining 33 are on the west and outer edges: 2201, 2301, 2401, 2501, 2601, 2801, 2901, 3001,
 3101, 3301, 3401 in row 4501; 2202, 2302, 2402, 2502 in 4502; 2205, 2305, 2405, 2505 in 4505;
 2206, 2306, 2406, 2506 in 4506; 2207, 2307, 2407, 2507, 2607, 2707, 2807, 3207, 3307, 3407 in 4507.
+
+## Coverage of Millcreek
+
+Intersecting the official tile index with `Boundaries/MunicipalBoundary` in
+`G:\GIS\Data\City\Millcreek\GDB\Millcreek_Master_New.gdb` (33.45 km², 12.92 mi²): the city touches
+**61 tiles**. All 52 extract tiles are among them, so the extract was cut to the city, and it
+covers **98.75% of the city's area**. The nine missing tiles hold only edge slivers:
+
+| Tile | City area inside | Share of city |
+|---|---:|---:|
+| 12TVL3301 | 13.82 ha | 0.41% |
+| 12TVL3207 | 7.71 ha | 0.23% |
+| 12TVL3101 | 6.55 ha | 0.20% |
+| 12TVL3102 | 4.71 ha | 0.14% |
+| 12TVL3307 | 3.14 ha | 0.09% |
+| 12TVL2607 | 3.02 ha | 0.09% |
+| 12TVL2902 | 1.48 ha | 0.04% |
+| 12TVL2502 | 1.30 ha | 0.04% |
+| 12TVL2601 | 0.15 ha | <0.01% |
+
+Together they are 41.9 ha, 1.25% of the city. They matter for complete city totals and for edge
+context in canopy and terrain processing, but not for working inside the city. At the extract's
+average of about 0.73 GB per uncompressed LAS tile, all nine are roughly 6.6 GB.
+
+The same GDB holds `Millcreek_Municipal_Boundary_1`, which agrees with `MunicipalBoundary` within
+4.1 ha, and `Boundaries/CityBoundary`, which is 12.74 mi² and differs from both by about 51 ha,
+probably an older boundary. Which layer is authoritative has not been confirmed; the tile list
+above does not change under `CityBoundary` except that 12TVL2601 drops out.
 
 ## Internal discrepancies — do not silently resolve
 
@@ -132,7 +160,8 @@ The supplied documents disagree in four places. Cite the source rather than a me
    AOI. It is an independent surface at the same cell size, and it would be the first real check
    on the interpolated terrain, which nothing has validated yet.
 2. Request `low_confidence_areas.shp` and overlay it on the observation masks.
-3. Fill the six interior tiles from UGRC before treating the delivery index as a footprint.
+3. Fetch the nine city-edge tiles above when complete city totals are needed; nothing inside
+   the city is waiting on them.
 4. Record the per-tile flight date on `las_tile_bounds` so canopy results carry their season.
 
 ## Source files
