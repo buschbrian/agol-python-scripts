@@ -6,7 +6,7 @@ The source acquisition, its tested accuracy, delivered classes, and per-tile fli
 
 ## Terrain, buildings, and other planning products
 
-The new **planning** CLI command creates terrain/slope/contour rasters, surface heights, drainage-screening layers, and optional county-footprint height summaries on a prepared LAS copy. See the [product catalog and expansion roadmap](PLANNING_PRODUCTS.md) for output definitions, QA flags, limits, and the runnable example. The [September 22 Millcreek pilot report](reviews/2026-09-22/PLANNING_PILOT.md) records the real-data results.
+The new **planning** CLI command creates terrain/slope/contour rasters, surface heights, drainage-screening layers, and optional county-footprint height summaries on a prepared LAS copy. See the [product catalog and expansion roadmap](PLANNING_PRODUCTS.md) for output definitions, QA flags, limits, and the runnable example. The [September 22 Millcreek pilot report](reviews/2026-09-22/PLANNING_PILOT.md) records the real-data results. The [preliminary imagery QA](reviews/2026-09-22/IMAGERY_QA.md) flags tree candidates on or near county footprints for manual review. The [building-classification experiment](reviews/2026-09-22/CLASSIFICATION_EXPERIMENT.md) compares CONSERVATIVE, STANDARD, and AGGRESSIVE methods on the same pilot without declaring an accuracy winner. The [deep-learning setup report](reviews/2026-09-22/DL_SETUP.md) records the installed Pro 3.7 libraries, two Esri point-cloud DLPKs, and isolated GPU smoke tests.
 
 ## Environment
 
@@ -48,7 +48,7 @@ The same run writes the acquisition record: `acquisition.json` and `acquisition-
 
 Prepare extracts new point files into output/points, checks that they are isolated from the delivery, and classifies only that copy. It preserves delivered ground and noise by default. If any copied file has no ground, ground classification runs with reuse of existing ground. Optional --classify-noise enables isolation screening with explicit, recorded parameters; review those thresholds locally.
 
-Buildings are classified before remaining unclassified points are assigned height classes. Defaults: 2 m minimum building height, 10 square metres minimum building area, and class 6 for points below detected roofs and within 3 m above them. --roof-tolerance changes the last threshold; zero disables above-roof classification. Inspect tree overhangs and rooftop vegetation because these settings can remove real vegetation as well as roof equipment. Class 3 spans up to 0.5 m, class 4 up to 2 m, and class 5 up to 80 m above ground. These height labels do not establish that the objects are trees.
+Buildings are classified before remaining unclassified points are assigned height classes. Defaults: 2 m minimum building height, 10 square metres minimum building area, STANDARD building method, and class 6 for points below detected roofs and within 3 m above them. --building-method selects CONSERVATIVE, STANDARD, or AGGRESSIVE for a new working copy and records it in preparation.json; compare candidate settings on the same pilot before adopting one. --roof-tolerance changes the above-roof threshold; zero disables above-roof classification. Inspect tree overhangs and rooftop vegetation because these settings can remove real vegetation as well as roof equipment. Class 3 spans up to 0.5 m, class 4 up to 2 m, and class 5 up to 80 m above ground. These height labels do not establish that the objects are trees.
 
 The run manifest records parameters, source size/mtime, code fingerprint, runtime, per-tile progress, and final outputs. --resume reuses an unchanged run, including saved raster cores after an interrupted attempt. Changed inputs, code, or parameters require a new directory. Source fingerprints detect normal file changes; they are not cryptographic checksums of all LAS bytes. An explicit --source-files list is required when not using a prepared LAS dataset.
 
@@ -58,7 +58,7 @@ Run outputs are CHM, treetops, crowns, and trees_review. Use tool 5 on the assem
 
 - Ground class 2 supplies the triangulated DTM. Vegetation DSM uses only classes 3/4/5, first or single returns, BINNING MAXIMUM NONE. It cannot interpolate canopy across roads, roofs, or empty vegetation cells.
 - Withheld, overlap, and synthetic points are excluded. This policy can reduce coverage and must be checked against delivery provenance. On the 2023 Salt Lake Valley delivery the overlap bit was never populated, so the exclusion has no effect there and all swath overage is retained.
-- A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20.
+- A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy by default. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20. After a point-cloud model explicitly assigns class 0 to background on a complete working copy, --classified-background-zero additionally treats class-0 first/single returns as observed non-canopy. Do not use that flag on ordinary unclassified LAS.
 - Where a measured class-6 first/single surface is more than 0.35 m above vegetation in the same cell, the CHM reports observed non-canopy. This prevents lower wall or under-roof returns from becoming visible canopy. Canopy above roofs survives. The configurable building-clearance threshold is a processing tolerance, not a surveyed accuracy value. The raw vegetation DSM and building_occlusion mask preserve the evidence.
 - Smoothing and maxima operate on the same grid used by crown segmentation. Raw canopy support constrains the flood. No hydrology Fill or Flow Direction operation is used. Unseeded canopy stays unassigned and is reported.
 - Crown areas use exact cell counts. Small crowns are excluded from polygons but remain in trees_review with CROWN_TOO_SMALL status. Crown diameter is the diameter of a circle with equivalent area, not a measured canopy width.
@@ -85,13 +85,27 @@ TREE_ID is deterministic for the same source ID, CRS, and raster-cell location. 
 
 Duplicate zone IDs are unioned; distinct overlapping zones are analyzed independently. Outside and all-missing zones retain output rows. Very small polygons without cell centres have no rasterized percentage. Processing each unique zone separately prioritizes correct overlap accounting; large zone collections need a performance review.
 
+## Footprint-contact review
+
+Use county or other reviewed building footprints to prioritize candidate trees touching roofs. This copies the candidate layer and adds `FOOT_QA` and ArcGIS Near fields; it never deletes detections or changes the input. A point on a footprint can be a real tree overhang, so review imagery and LAS classes before changing classification.
+
+~~~powershell
+& $proPython -m canopy review-footprints scratch\new_run\inventory.gdb\trees_review path\to\footprints scratch\review.gdb --distance 2
+~~~
+
+Create the output file geodatabase first. Inputs must be projected metres in the same horizontal CRS. The output feature class name defaults to `trees_footprint_review`; `--name` selects a different unused name. `NEAR_FID` is a transient footprint ObjectID, while `NEAR_DIST` is distance in metres; `-1` means no footprint within the search radius. The [Millcreek imagery QA](reviews/2026-09-22/IMAGERY_QA.md) is a worked example.
+
 ## Field review and imagery
 
 The tree layer includes TREE_ID, SOURCE_ID, HEIGHT_M, REVIEW_STATUS, SPECIES, DBH_CM, CONDITION, and FIELD_NOTES. Species, DBH, condition, and stem coordinates are not inferred from lidar. Review status starts UNVERIFIED; crown attributes and acceptance status live on the independent trees_review copy. Metadata preserves the estimate warning.
 
-The supplied Nearmap WMS was used for local pilot comparison. The connection and imagery remain in ignored scratch storage; no credential belongs in tracked source or documentation. The endpoint serves latest imagery and does not expose a capture date in the capabilities response used here. The lidar was collected 7 October to 5 November 2023 at 0.32 m nominal pulse spacing, with a measured first-return average of 18.2 points per square metre; see [the acquisition record](acquisitions/2023-salt-lake-valley/RECORD.md) for per-tile flight dates and the reasons the earlier "2024, 0.5 m" note was wrong. The temporal match with Nearmap remains unknown. Imagery can expose roof leakage, omissions, and merged crowns; it is not a field-verified accuracy sample.
+The supplied Nearmap WMS was used for local pilot comparison. The connection and imagery remain in ignored scratch storage; no credential belongs in tracked source or documentation. That earlier endpoint serves latest imagery and did not expose a capture date. A dated [Custom WMS handoff](reviews/2026-09-22/NEARMAP_HISTORICAL_WMS.md), pilot [GeoJSON AOI](reviews/2026-09-22/millcreek_nearmap_aoi.geojson), and [historical WMS helper](nearmap_historical_wms.py) were used to retrieve the August 31, 2023 survey tile for the Millcreek pilot. The [September 23 checkpoint](reviews/2026-09-22/TODAY_2026-09-23.md) records the review and remaining date/registration uncertainty. Credentials and imagery stay in ignored or private local storage. The lidar was collected 7 October to 5 November 2023 at 0.32 m nominal pulse spacing, with a measured first-return average of 18.2 points per square metre; see [the acquisition record](acquisitions/2023-salt-lake-valley/RECORD.md) for per-tile flight dates and the reasons the earlier "2024, 0.5 m" note was wrong. The temporal match with the earlier latest-only Nearmap imagery remains unknown. Imagery can expose roof leakage, omissions, and merged crowns; it is not a field-verified accuracy sample.
 
 Before publishing an inventory: inspect representative parks, street trees, dense canopy, buildings, slopes, and small trees; agree on the minimum tree definition; collect independent reference labels; then measure omissions, false detections, merges/splits, and canopy error. This pilot establishes executable behavior and reveals classification issues. It does not establish a production accuracy percentage.
+
+## Deep-learning model pilot
+
+The [Pro 3.7 setup and model smoke tests](reviews/2026-09-22/DL_SETUP.md) record the installed libraries and Esri DLPKs. The [Millcreek tree-model pilot](reviews/2026-09-22/DL_PILOT.md) and [sequential model and current OSM validation](reviews/2026-09-22/DL_VALIDATION.md) compare model-classified canopy and trees with the STANDARD baseline. Model inference edits the supplied LAS copy, so use a new copy; refresh LAS dataset statistics after inference. For a custom LAS dataset, canopy run also requires --source-files. Only pass --classified-background-zero when every relevant class-0 point was explicitly classified by the model as background; the flag and effective non-canopy codes are recorded in the run and CHM manifests.
 
 ## Verification
 
@@ -122,4 +136,4 @@ The output includes roof_review.gdb/roof_outlines, roof and ground rasters, prep
 
 ROOF_Z_M is median measured roof elevation; ROOF_H_M is median roof elevation minus the interpolated ground surface; FIT_RMSE_M is the plane-fit residual, not elevation accuracy. MODEL_OK and PARTIAL_AOI identify rejected fits and outlines truncated by the analysis boundary. These rasterized roof-support outlines are unverified and should not be described as surveyed building-wall footprints.
 
-The user-supplied OSM layer was checked for the pilot plus a 30 m border and returned no intersecting footprints. It remains useful reference data where it has coverage; it is not used as a blanket canopy exclusion.
+The user-supplied 2024 OSM layer was checked for the earlier Taylorsville demo tile plus a 30 m border and returned no intersecting footprints. A live Overpass query returned 162 building ways for the later Millcreek residential pilot; see [sequential model validation](reviews/2026-09-22/DL_VALIDATION.md). It remains useful reference data where it has coverage; it is not used as a blanket canopy exclusion.

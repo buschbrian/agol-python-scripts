@@ -1,6 +1,6 @@
 {
-  "lidar_capture_year": 2024,
-  "nominal_point_spacing_m": 0.5,
+  "lidar_capture_year": 2023,
+  "nominal_point_spacing_m": 0.32,
   "chm_cell_size_m": 0.5,
   "osm_pilot_features": 0,
   "parameters": {
@@ -172,5 +172,6 @@
     "crowns": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_visible_run\\assembly_d1c43353\\inventory.gdb\\crowns",
     "trees_review": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_visible_run\\assembly_d1c43353\\inventory.gdb\\trees_review"
   },
-  "roof_outlines": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_edge_preparation\\roof_review.gdb\\roof_outlines"
+  "roof_outlines": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\roof_edge_preparation\\roof_review.gdb\\roof_outlines",
+  "acquisition_correction": "Delivery metadata supersedes the earlier user-reported 2024 and 0.5 m values; see DELIVERY_PROVENANCE.md."
 }

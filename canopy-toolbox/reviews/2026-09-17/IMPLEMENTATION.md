@@ -1,5 +1,8 @@
 # Implementation and pilot results — 2026-09-17
 
+**Acquisition correction (2026-09-22):** The 2024 capture and 0.5 m nominal-spacing statements below are retained as historical notes. Delivery metadata establishes acquisition on 7 October–5 November 2023 and nominal point spacing of 0.32 m. See [delivery provenance](../../DELIVERY_PROVENANCE.md).
+
+
 Latest follow-up: [roof-edge fixes, 55-test validation, and current outputs](ROOF_EDGES.md). The counts below describe the earlier pilot before that follow-up.
 
 The runtime blockers and analytical failures reproduced in the original review have been corrected. A representative real-data pilot now runs through copied-point classification, raster generation, detection, crowns, cover accounting, and field-review outputs on this workstation. Classification remains unvalidated, and citywide crown reconciliation remains outside the implemented bounded-AOI workflow.

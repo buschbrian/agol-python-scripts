@@ -116,7 +116,8 @@ class PlanningArcGIS(unittest.TestCase):
         footprints = str(Path(self.gdb)/"footprints")
         arcpy.management.CreateFeatureclass(self.gdb, "footprints", "POLYGON", spatial_reference=self.sr)
         arcpy.management.AddField(footprints, "KEY", "TEXT", field_length=30)
-        entries = [("full",0,0,4,4), ("overlap",0,0,2,2), ("missing",4,4,4,4),
+        entries = [("full",0,0,4,4), ("overlap",0,0,2,2), ("offset",1,1,2,2),
+                   ("missing",4,4,4,4),
                    ("outside",20,20,2,2), ("tiny",.05,.05,.1,.1), ("partial",-2,0,4,4)]
         with arcpy.da.InsertCursor(footprints, ["KEY", "SHAPE@"]) as cursor:
             for key,x,y,w,h in entries:
@@ -128,6 +129,8 @@ class PlanningArcGIS(unittest.TestCase):
         self.assertEqual(values["full"]["HEIGHT_P50_M"], 10)
         self.assertEqual(values["full"]["ROOF_COV_PCT"], 100)
         self.assertEqual(values["overlap"]["ROOF_CELLS"], 4)
+        self.assertEqual(values["offset"]["GRID_CELLS"], 4)
+        self.assertEqual(values["offset"]["ROOF_CELLS"], 4)
         self.assertIsNone(values["missing"]["HEIGHT_P50_M"])
         self.assertIn("OUTSIDE_AOI", values["outside"]["HEIGHT_STATUS"])
         self.assertIn("NO_CELL_CENTERS", values["tiny"]["HEIGHT_STATUS"])

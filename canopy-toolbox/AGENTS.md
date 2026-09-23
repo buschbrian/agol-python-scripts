@@ -12,6 +12,7 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.
 - Cover accounting: canopy/cover.py.
+- Footprint-contact review: canopy/qa.py; preserves original tree candidates.
 - Tool parameters: CanopyTools.pyt; CLI: canopy/__main__.py.
 
 ## Invariants
@@ -21,6 +22,7 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 - Preserve one actual-cell detection per connected plateau.
 - Use the classified vegetation DSM, never a delivered highest-hit DSM.
 - Preserve raw canopy support; do not interpolate vegetation through unknown cells.
+- Treat class 0 as observed non-canopy only with an explicit model-background declaration on a complete copied LAS classification; ordinary unclassified class 0 remains unknown.
 - Cover must remain independent of detections/crowns and retain missing coverage.
 - Do not classify original LAS files or mutate input treetop features.
 - Keep the estimate warning in dataset metadata and user-facing detection messages.

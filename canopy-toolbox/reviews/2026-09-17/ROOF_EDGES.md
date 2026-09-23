@@ -1,5 +1,8 @@
 # Roof-edge follow-up — 2026-09-17
 
+**Acquisition correction (2026-09-22):** The 2024 capture and 0.5 m nominal-spacing statements below are retained as historical notes. Delivery metadata establishes acquisition on 7 October–5 November 2023 and nominal point spacing of 0.32 m. See [delivery provenance](../../DELIVERY_PROVENANCE.md).
+
+
 The user confirmed **2024 lidar capture and 0.5 m nominal point spacing**. CHM cell size remains a separate processing choice, currently also 0.5 m.
 
 Two corrections now address the observed roof-edge leakage: an optional, auditable classification refinement on new LAS copies, and a building-above-vegetation check in CHM construction. The final imagery comparison shows substantially fewer roof-edge artifacts; the results are still unvalidated inventory candidates.

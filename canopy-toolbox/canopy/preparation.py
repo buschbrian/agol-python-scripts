@@ -100,7 +100,8 @@ def inventory(folder, sample=True):
 
 
 def prepare(input_folder, output_folder, extent, max_vegetation_height=80.0,
-            classify_noise=False, ground_method="CONSERVATIVE", roof_tolerance=3.0):
+            classify_noise=False, ground_method="CONSERVATIVE", roof_tolerance=3.0,
+            building_method="STANDARD"):
     """Extract a new copy, retain ground/noise, classify buildings then height.
 
     This entry point never classifies the source LAS dataset. Every classification
@@ -109,6 +110,8 @@ def prepare(input_folder, output_folder, extent, max_vegetation_height=80.0,
     from .tiling import Extent
     extent = list(Extent(*[float(v) for v in extent]))
     common.positive(roof_tolerance, "Maximum height above roof", allow_zero=True)
+    if building_method not in {"CONSERVATIVE", "STANDARD", "AGGRESSIVE"}:
+        raise ValueError("Building method must be CONSERVATIVE, STANDARD, or AGGRESSIVE")
     if not all(math.isfinite(v) for v in extent) or len(extent) != 4 or extent[0] >= extent[2] or extent[1] >= extent[3]:
         raise ValueError("Extent must be xmin ymin xmax ymax")
     common.positive(max_vegetation_height, "Maximum vegetation height")
@@ -137,6 +140,7 @@ def prepare(input_folder, output_folder, extent, max_vegetation_height=80.0,
         "parameters": {"max_vegetation_height_m": max_vegetation_height,
                        "classify_noise": classify_noise, "ground_method": ground_method,
                        "building_min_height_m": 2, "building_min_area_m2": 10,
+                       "building_method": building_method,
                        "above_roof_height_m": roof_tolerance, "above_roof_class": 6,
                        "below_roof_class": 6},
         "steps": [], "working_lasd": working_lasd, "runtime": common.runtime(),
@@ -170,7 +174,7 @@ def prepare(input_folder, output_folder, extent, max_vegetation_height=80.0,
             state["steps"].append("retained existing ground")
         arcpy.ddd.ClassifyLasBuilding(
             working_lasd, min_height="2 Meters", min_area="10 SquareMeters",
-            reuse_building="REUSE_BUILDING", method="STANDARD", compute_stats="COMPUTE_STATS",
+            reuse_building="REUSE_BUILDING", method=building_method, compute_stats="COMPUTE_STATS",
             classify_above_roof="CLASSIFY_ABOVE_ROOF" if roof_tolerance else "NO_CLASSIFY_ABOVE_ROOF",
             above_roof_height=f"{roof_tolerance} Meters", above_roof_code=6,
             classify_below_roof="CLASSIFY_BELOW_ROOF", below_roof_code=6)

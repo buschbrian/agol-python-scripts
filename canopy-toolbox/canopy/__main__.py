@@ -21,6 +21,7 @@ def main(argv=None):
     prepare.add_argument("--max-vegetation-height",type=float,default=80)
     prepare.add_argument("--classify-noise",action="store_true")
     prepare.add_argument("--roof-tolerance",type=float,default=3,help="Metres above detected roofs assigned building class; inspect tree overhangs")
+    prepare.add_argument("--building-method",choices=("CONSERVATIVE","STANDARD","AGGRESSIVE"),default="STANDARD",help="Esri building classifier method; compare on copied pilots before adoption")
     run=commands.add_parser("run",help="Build tiled CHM, then detect and segment one AOI (maximum 4 million cells)")
     run.add_argument("lasd");run.add_argument("output");run.add_argument("--extent",type=float,nargs=4,required=True)
     run.add_argument("--tile-size",type=float,default=200);run.add_argument("--overlap",type=float)
@@ -28,6 +29,7 @@ def main(argv=None):
     run.add_argument("--smooth",type=int,default=1);run.add_argument("--min-crown-area",type=float,default=3)
     run.add_argument("--source-files",nargs="+");run.add_argument("--source-id")
     run.add_argument("--building-clearance",type=float,default=.35,help="Measured building-above-vegetation separation for same-cell occlusion, in metres")
+    run.add_argument("--classified-background-zero",action="store_true",help="Treat class 0 as known non-canopy only after a model classified it as background")
     run.add_argument("--resume",action="store_true");run.add_argument("--z-metres",action="store_true")
     refine=commands.add_parser("refine-roofs",help="Experimental roof-edge correction on NEW prepared LAS copies")
     refine.add_argument("lasd");refine.add_argument("output")
@@ -46,6 +48,10 @@ def main(argv=None):
     planning.add_argument("--drainage-area",type=float,default=1000)
     planning.add_argument("--contour-interval",type=float,default=2)
     planning.add_argument("--z-metres",action="store_true")
+    review=commands.add_parser("review-footprints",help="Copy tree candidates and flag points on or near building footprints")
+    review.add_argument("candidates");review.add_argument("footprints");review.add_argument("output_gdb")
+    review.add_argument("--distance",type=float,default=2,help="Review distance in metres")
+    review.add_argument("--name",default="trees_footprint_review")
     args=parser.parse_args(argv)
     from . import common,licensing,preparation,pipeline
     if args.command=="inventory":
@@ -57,11 +63,17 @@ def main(argv=None):
         result=delivery.index(args.folder,args.output,args.swaths,args.date_field,args.boundary,
                               args.tile_index,args.tile_field,args.label)
         print(f"{result['file_count']} tiles indexed to {result['feature_class']}; facts: {result['facts']}")
+    elif args.command=="review-footprints":
+        from . import qa
+        result=qa.flag_footprint_contact(args.candidates,args.footprints,args.output_gdb,
+                                         args.distance,args.name)
+        print(json.dumps(result,indent=2))
     else:
         with licensing.extensions("3D","Spatial"):
             if args.command=="prepare":
                 result=preparation.prepare(args.folder,args.output,args.extent,
-                                           args.max_vegetation_height,args.classify_noise,roof_tolerance=args.roof_tolerance)
+                                           args.max_vegetation_height,args.classify_noise,roof_tolerance=args.roof_tolerance,
+                                           building_method=args.building_method)
             elif args.command=="refine-roofs":
                 from . import roofs
                 result=roofs.refine(args.lasd,args.output,args.cell_size,args.edge_distance,
@@ -74,7 +86,8 @@ def main(argv=None):
             else:
                 result=pipeline.run(args.lasd,args.output,args.extent,args.tile_size,args.overlap,args.cell_size,
                                     args.bands,args.smooth,args.min_crown_area,args.source_files,args.source_id,
-                                    args.resume,"metres" if args.z_metres else None,args.building_clearance)
+                                    args.resume,"metres" if args.z_metres else None,args.building_clearance,
+                                    args.classified_background_zero)
         print(json.dumps(result,indent=2))
 
 if __name__=="__main__":
