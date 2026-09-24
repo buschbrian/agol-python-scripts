@@ -2,8 +2,10 @@
 import importlib.util
 from pathlib import Path
 import shutil
+import sys
 import tempfile
 import unittest
+from unittest.mock import MagicMock, patch
 
 ARCPY = importlib.util.find_spec("arcpy") is not None
 
@@ -13,6 +15,39 @@ WKT = ('PROJCS["NAD83(2011) / UTM zone 12N",GEOGCS["NAD83(2011)",DATUM["NAD83_Na
        'PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-111],'
        'PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],'
        'PARAMETER["false_northing",0],UNIT["meter",1],AUTHORITY["EPSG","6341"]]')
+
+
+@unittest.skipIf(ARCPY, "The real-arcpy fixtures below cover delivery.index")
+class RefusalsWithoutArcpy(unittest.TestCase):
+    """Refusals that happen before any geoprocessing, checked with a stand-in arcpy."""
+
+    def setUp(self):
+        import canopy
+        self.fake = MagicMock()
+        before = set(sys.modules)
+        with patch.dict(sys.modules, {"arcpy": self.fake}):
+            from canopy import delivery
+            self.delivery = delivery
+            loaded = {name for name in sys.modules if name.startswith("canopy.")} - before
+        for name in loaded:
+            if hasattr(canopy, name.split(".", 1)[1]):
+                delattr(canopy, name.split(".", 1)[1])
+        self.root = Path(tempfile.mkdtemp(prefix="canopy_delivery_"))
+        self.addCleanup(shutil.rmtree, self.root, ignore_errors=True)
+
+    def test_boundary_with_an_unknown_reference_is_refused_before_any_output(self):
+        from tests.las_fixture import write_las
+        source = self.root/"delivery"
+        source.mkdir()
+        write_las(source/"12TVL0001.las", wkt=WKT)
+        described = self.fake.Describe.return_value
+        described.shapeType = "Polygon"
+        described.spatialReference.name = "Unknown"
+        described.spatialReference.type = "Unknown"
+        target = self.root/"index"
+        with self.assertRaisesRegex(ValueError, "unknown coordinate reference"):
+            self.delivery.index(source, target, boundary="boundary")
+        self.assertFalse(target.exists())
 
 
 @unittest.skipUnless(ARCPY, "ArcGIS Pro Python required")
@@ -153,3 +188,89 @@ class DeliveryIndex(unittest.TestCase):
         write_las(self.source/"12TVL0004.las", wkt=WKT.replace("6341", "26912"))
         with self.assertRaises(ValueError):
             delivery.index(self.source, self.case/"mixed")
+
+    # Coverage: the two fixture tiles span x 500000-500020, y 4500000-4500010.
+
+    def rectangle(self, extent, spatial_reference=None):
+        xmin, ymin, xmax, ymax = extent
+        corners = [(xmin, ymin), (xmin, ymax), (xmax, ymax), (xmax, ymin), (xmin, ymin)]
+        return arcpy.Polygon(arcpy.Array([arcpy.Point(x, y) for x, y in corners]), spatial_reference or self.sr)
+
+    def polygons(self, name, shapes, field=None, spatial_reference=None):
+        """A feature class of polygons, optionally carrying one text value each."""
+        gdb = str(self.case/(name+".gdb"))
+        arcpy.management.CreateFileGDB(str(self.case), name+".gdb")
+        path = str(Path(gdb)/"polygons")
+        arcpy.management.CreateFeatureclass(gdb, "polygons", "POLYGON",
+                                            spatial_reference=spatial_reference or self.sr)
+        columns = ["SHAPE@"]
+        if field:
+            arcpy.management.AddField(path, field, "TEXT", field_length=32)
+            columns.append(field)
+        with arcpy.da.InsertCursor(path, columns) as cursor:
+            for shape, value in shapes:
+                cursor.insertRow([shape] + ([value] if field else []))
+        return path
+
+    def boundary(self):
+        """200 m² straddling both tiles and 5 m past the second: 150 m² is covered."""
+        return self.polygons("city", [(self.rectangle((500005, 4500000, 500025, 4500010)), None)])
+
+    def tile_index(self, spatial_reference=None):
+        extents = {"T1": (500000, 4500000, 500010, 4500010), "T2": (500010, 4500000, 500020, 4500010),
+                   "T3": (500020, 4500000, 500030, 4500010), "T4": (500040, 4500000, 500050, 4500010)}
+        return self.polygons("index", [(self.rectangle(e, spatial_reference), n) for n, e in extents.items()],
+                             "Tile_Name", spatial_reference)
+
+    def test_boundary_coverage_is_the_covered_share_of_its_area(self):
+        report = delivery.index(self.source, self.case/"cover", boundary=self.boundary())
+        coverage = report["coverage"]
+        self.assertAlmostEqual(coverage["boundary_m2"], 200)
+        self.assertAlmostEqual(coverage["covered_m2"], 150)
+        self.assertAlmostEqual(coverage["covered_pct"], 75)
+        self.assertEqual(coverage["outside"], [])
+        self.assertIsNone(coverage["projected_from"])
+
+    def test_tile_index_reports_the_uncovered_tile_by_boundary_area(self):
+        report = delivery.index(self.source, self.case/"tiles", boundary=self.boundary(),
+                                tile_index=self.tile_index())
+        tiles = report["coverage"]["tile_index"]
+        self.assertEqual(tiles["touching"], 3)  # T4 is clear of the boundary
+        self.assertEqual(tiles["in_hand"], 2)
+        self.assertEqual([m["tile"] for m in tiles["missing"]], ["T3"])
+        self.assertAlmostEqual(tiles["missing"][0]["boundary_m2"], 50)
+        self.assertAlmostEqual(tiles["missing"][0]["share_pct"], 25)
+
+    def test_boundary_in_web_mercator_is_projected_with_a_transformation(self):
+        mercator = arcpy.SpatialReference(3857)
+        native = self.rectangle((500005, 4500000, 500025, 4500010))
+        transformation = arcpy.ListTransformations(self.sr, mercator, native.extent)[0]
+        path = self.polygons("mercator", [(native.projectAs(mercator, transformation), None)],
+                             spatial_reference=mercator)
+        coverage = delivery.index(self.source, self.case/"projected", boundary=path)["coverage"]
+        self.assertIn("3857", coverage["projected_from"])
+        self.assertTrue(coverage["transformation"])
+        self.assertAlmostEqual(coverage["covered_pct"], 75, delta=1)
+
+    def test_tile_index_in_another_reference_is_refused_before_any_output(self):
+        index = self.tile_index(arcpy.SpatialReference(26912))
+        target = self.case/"wrong_index"
+        with self.assertRaises(ValueError):
+            delivery.index(self.source, target, boundary=self.boundary(), tile_index=index)
+        self.assertFalse(target.exists())
+
+    def test_tile_index_without_a_boundary_is_refused(self):
+        with self.assertRaises(ValueError):
+            delivery.index(self.source, self.case/"no_boundary", tile_index=self.tile_index())
+
+    def test_record_and_facts_are_written_without_filesystem_paths(self):
+        report = delivery.index(self.source, self.case/"record", boundary=self.boundary(),
+                                tile_index=self.tile_index(), label="fixture epoch")
+        acquisition = Path(report["record"]).read_text(encoding="utf-8")
+        facts = Path(report["facts"]).read_text(encoding="utf-8")
+        self.assertIn("12TVL0001", acquisition)
+        # Resolved per-file paths never appear.
+        self.assertNotIn(".las", acquisition)
+        self.assertNotIn(".las", facts)
+        self.assertIn("# Acquisition facts — fixture epoch", facts)
+        self.assertIn("| T3 |", facts)

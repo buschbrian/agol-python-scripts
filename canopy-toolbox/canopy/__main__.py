@@ -11,6 +11,10 @@ def main(argv=None):
     idx.add_argument("folder");idx.add_argument("output")
     idx.add_argument("--swaths",help="Swath-index polygons in the delivery's horizontal CRS")
     idx.add_argument("--date-field",default="DATE_D")
+    idx.add_argument("--boundary",help="Polygon(s) whose coverage to measure, e.g. the city; projected if needed")
+    idx.add_argument("--tile-index",help="Official tile index in the delivery's horizontal CRS; needs --boundary")
+    idx.add_argument("--tile-field",default="Tile_Name")
+    idx.add_argument("--label",help="Name for the acquisition record, e.g. '2023 Salt Lake Valley'")
     prepare=commands.add_parser("prepare",help="Extract and classify a new pilot working copy")
     prepare.add_argument("folder");prepare.add_argument("output")
     prepare.add_argument("--extent",type=float,nargs=4,required=True,metavar=("XMIN","YMIN","XMAX","YMAX"))
@@ -50,8 +54,9 @@ def main(argv=None):
         print(f"{result['file_count']} files; {result['point_count']:,} points. Report: {args.report}")
     elif args.command=="index-delivery":
         from . import delivery
-        result=delivery.index(args.folder,args.output,args.swaths,args.date_field)
-        print(f"{result['file_count']} tiles indexed to {result['feature_class']}")
+        result=delivery.index(args.folder,args.output,args.swaths,args.date_field,args.boundary,
+                              args.tile_index,args.tile_field,args.label)
+        print(f"{result['file_count']} tiles indexed to {result['feature_class']}; facts: {result['facts']}")
     else:
         with licensing.extensions("3D","Spatial"):
             if args.command=="prepare":
