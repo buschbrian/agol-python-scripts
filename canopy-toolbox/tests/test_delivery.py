@@ -234,7 +234,8 @@ class DeliveryIndex(unittest.TestCase):
         acquisition = Path(report["record"]).read_text(encoding="utf-8")
         facts = Path(report["facts"]).read_text(encoding="utf-8")
         self.assertIn("12TVL0001", acquisition)
-        # The folder is kept exactly as passed; resolved per-file paths never appear.
+        # Resolved per-file paths never appear.
         self.assertNotIn(".las", acquisition)
+        self.assertNotIn(".las", facts)
         self.assertIn("# Acquisition facts — fixture epoch", facts)
         self.assertIn("| T3 |", facts)

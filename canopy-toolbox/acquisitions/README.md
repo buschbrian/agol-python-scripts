@@ -19,8 +19,10 @@ the same way before any product from it is used or compared with another.
 
 The split is deliberate. Generated files are rewritten on every run and must not be edited by
 hand; the record holds judgment, which no command can produce. Neither file carries per-file
-paths, so neither exposes the server share that mapped drives resolve to. The generated files do
-record the delivery folder and boundary exactly as they were passed.
+paths, so neither exposes the server share that mapped drives resolve to. The generated files
+record the delivery folder, boundary and index paths as they were passed, except that a network
+(UNC) path such as `\\server\share\...` is reduced to its final name, marked as redacted. Pass a
+mapped drive letter or a repository-relative path when the full path should appear.
 
 ## Documenting a new acquisition
 

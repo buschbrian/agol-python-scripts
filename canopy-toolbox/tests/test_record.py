@@ -35,10 +35,35 @@ class CreationDate(unittest.TestCase):
 class Build(unittest.TestCase):
     def test_record_carries_tile_names_but_no_filesystem_paths(self):
         built = record.build([row("A"), row("B", x=10)], "test", "G:/delivery", CRS, "2026-09-22")
-        text = json.dumps(built)
-        self.assertNotIn("server", text)
+        for text in (json.dumps(built), record.render(built)):
+            self.assertNotIn("server", text)
+            self.assertNotIn(".las", text)
         self.assertNotIn("path", {key for tile in built["tiles"] for key in tile})
         self.assertEqual([t["tile"] for t in built["tiles"]], ["A", "B"])
+
+    def test_network_paths_never_reach_either_output(self):
+        coverage = {"boundary": r"\\fs.example\hidden-share\City.gdb\Boundaries\MunicipalBoundary",
+                    "boundary_m2": 2e6, "covered_m2": 1.5e6, "covered_pct": 75.0,
+                    "tile_index": {"path": "//fs.example/hidden-share/index/TI.shp", "field": "Tile_Name",
+                                   "touching": 1, "in_hand": 1, "missing": []}}
+        swaths = {"path": r"\\?\UNC\fs.example\hidden-share\swaths.shp", "date_field": "DATE_D", "swaths": 1}
+        built = record.build([row("A", dated=True, dates="2023-11-02")], "test", r"\\fs.example\hidden-share\Lidar",
+                             CRS, "2026-09-22", swaths, coverage)
+        for text in (json.dumps(built), record.render(built)):
+            self.assertNotIn("fs.example", text)
+            self.assertNotIn("hidden-share", text)
+        self.assertEqual(built["delivery"], "Lidar (network path redacted)")
+        self.assertEqual(built["coverage"]["boundary"], "MunicipalBoundary (network path redacted)")
+        self.assertEqual(built["coverage"]["tile_index"]["path"], "TI.shp (network path redacted)")
+        self.assertEqual(built["swath_index"]["path"], "swaths.shp (network path redacted)")
+        self.assertIn(r"\\fs.example", coverage["boundary"])  # the caller's report keeps the full path
+
+    def test_a_bare_share_keeps_no_name_and_mapped_drives_are_unchanged(self):
+        self.assertEqual(record.public_path(r"\\fs.example\hidden-share"), "(network path redacted)")
+        self.assertEqual(record.public_path("//fs.example/hidden-share/"), "(network path redacted)")
+        self.assertEqual(record.public_path(r"G:\GIS\Lidar"), r"G:\GIS\Lidar")
+        self.assertEqual(record.public_path("acquisitions/x/TI.shp"), "acquisitions/x/TI.shp")
+        self.assertIsNone(record.public_path(None))
 
     def test_summary_counts_versions_formats_and_density(self):
         built = record.build([row("A", points=400), row("B", x=10, points=600, version="1.2", fmt=1)],

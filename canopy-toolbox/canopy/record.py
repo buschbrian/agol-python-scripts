@@ -3,10 +3,12 @@
 Pure Python so the record's rules are testable without ArcGIS. delivery.index gathers the
 facts with arcpy and hands them here. The record carries tile names, never per-file paths:
 header paths are resolved, and a mapped drive resolves to its server share, which should
-not land in a public repository. The delivery folder is kept exactly as the caller passed it.
+not land in a public repository. Input paths are kept as the caller passed them, except that a
+network (UNC) path is reduced to its final name, since it names the server and share.
 """
 from collections import Counter
 from datetime import date, timedelta
+import re
 import statistics
 
 SCHEMA = 1
@@ -17,6 +19,20 @@ NOTES = [
     "Header Z ranges include every class, noise included.",
     "LAS file-creation dates are processing dates, not flight dates.",
 ]
+
+
+def public_path(value):
+    """A caller-supplied path fit for a public record: a UNC path keeps only its final name."""
+    if value is None:
+        return None
+    text = str(value)
+    if not re.match(r"[\\/]{2}", text):
+        return text
+    parts = [part for part in re.split(r"[\\/]+", text) if part]
+    if parts[:2] in (["?", "UNC"], [".", "UNC"]):
+        parts = parts[2:]
+    # Server and share are the first two parts; with nothing after them there is no safe name.
+    return f"{parts[-1]} (network path redacted)" if len(parts) > 2 else "(network path redacted)"
 
 
 def creation_date(year, day):
@@ -74,7 +90,14 @@ def flight_groups(tiles):
 
 def build(rows, label, delivery, crs, generated, swath_index=None, coverage=None):
     tiles = sorted((tile_entry(row) for row in rows), key=lambda t: t["tile"])
-    return {"schema": SCHEMA, "label": label, "delivery": str(delivery), "generated": generated,
+    if swath_index and "path" in swath_index:
+        swath_index = {**swath_index, "path": public_path(swath_index["path"])}
+    if coverage:
+        coverage = {**coverage, "boundary": public_path(coverage.get("boundary"))}
+        if coverage.get("tile_index"):
+            coverage["tile_index"] = {**coverage["tile_index"],
+                                      "path": public_path(coverage["tile_index"]["path"])}
+    return {"schema": SCHEMA, "label": label, "delivery": public_path(delivery), "generated": generated,
             "crs": crs, "summary": summarize(tiles), "swath_index": swath_index,
             "coverage": coverage, "tiles": tiles, "notes": NOTES}
 
