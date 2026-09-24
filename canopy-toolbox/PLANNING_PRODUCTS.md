@@ -107,6 +107,13 @@ Species, DBH, condition, legal ownership, exact stems, structural roof condition
 
 The delivery is at **G:\GIS\2024 Lidar for tower extract**, a 52-tile extract of the 1363-tile 2023 Salt Lake Valley collection. Compare its footprint against the city and desired contributing watersheds before a full run; the folder name establishes neither the capture year nor complete city coverage. The 39 grid cells missing from the extract all exist in the published index and can be obtained from UGRC — see [delivery provenance](DELIVERY_PROVENANCE.md). Preserve the original LAS and delivery metadata.
 
+### Outside developments for priority 3 (checked 2026-09-24)
+
+Neither item changes the current pilot.
+
+- **Imagery for land cover.** On 16 September 2026, UGRC updated the Discover terms of use to prohibit automated, large-scale processing against the live WMTS and WMS endpoints. That covers Python scripting, computer vision or AI model training, and inference. UGRC will supply a local copy for those uses. The Nearmap WMS used for pilot comparison is a separate service, but any Discover imagery used for the land-cover product has to come from a local copy requested from UGRC, not the streaming service. Source: [UGRC, Updates to Discover Imagery Service Terms of Use](https://gis.utah.gov/blog/2026-09-16-updates-to-discover-imagery-service-terms-of-use/).
+- **Canopy change.** The engineering firm n+p compared swisstopo lidar from 2019 and 2025 across built-up areas of the canton of Vaud, using QGIS and Python. Its [web app](https://canopee.nplusp.ch/) shows hex-binned change at small scales and cell-level loss, gain, and maintained canopy when zoomed in. It is a worked example of the second-acquisition requirement above. Here the 2023 Salt Lake Valley collection would be the baseline. Source: [Spatialists summary](https://spatialists.ch/posts/2026/07/08-tree-canopy-change-detection-in-vaud/index.html).
+
 ## Other project work
 
 Root utilities remain separate: polygon adjacency coloring, Bad Elf GNSS metadata fields, and converting a sketch layer into a production schema. GNSS metadata and schema templates could support later field verification, but they are not LiDAR classification inputs. Existing review notes and the September 17 footprint comparison remain intact.
