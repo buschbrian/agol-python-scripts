@@ -78,10 +78,12 @@ def _boundary(path, spatial_reference):
     described = arcpy.Describe(path)
     if described.shapeType != "Polygon":
         raise ValueError("The boundary must be polygons")
+    source = described.spatialReference
+    if source is None or source.name == "Unknown" or source.type == "Unknown":
+        raise ValueError("The boundary has an unknown coordinate reference; define its projection first")
     shapes = [row[0] for row in arcpy.da.SearchCursor(path, ["SHAPE@"]) if row[0] and row[0].area]
     if not shapes:
         raise ValueError("The boundary has no polygons with area")
-    source = described.spatialReference
     info = {"projected_from": None, "transformation": None}
     if not common.same_xy_reference(source, spatial_reference):
         transformation = None

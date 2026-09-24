@@ -2,8 +2,10 @@
 import importlib.util
 from pathlib import Path
 import shutil
+import sys
 import tempfile
 import unittest
+from unittest.mock import MagicMock, patch
 
 ARCPY = importlib.util.find_spec("arcpy") is not None
 
@@ -13,6 +15,39 @@ WKT = ('PROJCS["NAD83(2011) / UTM zone 12N",GEOGCS["NAD83(2011)",DATUM["NAD83_Na
        'PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-111],'
        'PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],'
        'PARAMETER["false_northing",0],UNIT["meter",1],AUTHORITY["EPSG","6341"]]')
+
+
+@unittest.skipIf(ARCPY, "The real-arcpy fixtures below cover delivery.index")
+class RefusalsWithoutArcpy(unittest.TestCase):
+    """Refusals that happen before any geoprocessing, checked with a stand-in arcpy."""
+
+    def setUp(self):
+        import canopy
+        self.fake = MagicMock()
+        before = set(sys.modules)
+        with patch.dict(sys.modules, {"arcpy": self.fake}):
+            from canopy import delivery
+            self.delivery = delivery
+            loaded = {name for name in sys.modules if name.startswith("canopy.")} - before
+        for name in loaded:
+            if hasattr(canopy, name.split(".", 1)[1]):
+                delattr(canopy, name.split(".", 1)[1])
+        self.root = Path(tempfile.mkdtemp(prefix="canopy_delivery_"))
+        self.addCleanup(shutil.rmtree, self.root, ignore_errors=True)
+
+    def test_boundary_with_an_unknown_reference_is_refused_before_any_output(self):
+        from tests.las_fixture import write_las
+        source = self.root/"delivery"
+        source.mkdir()
+        write_las(source/"12TVL0001.las", wkt=WKT)
+        described = self.fake.Describe.return_value
+        described.shapeType = "Polygon"
+        described.spatialReference.name = "Unknown"
+        described.spatialReference.type = "Unknown"
+        target = self.root/"index"
+        with self.assertRaisesRegex(ValueError, "unknown coordinate reference"):
+            self.delivery.index(source, target, boundary="boundary")
+        self.assertFalse(target.exists())
 
 
 @unittest.skipUnless(ARCPY, "ArcGIS Pro Python required")
