@@ -19,6 +19,10 @@ class ColoringTests(unittest.TestCase):
             for neighbor in neighbors:
                 self.assertNotEqual(colors[polygon], colors[neighbor])
 
+    def test_a_polygon_listed_as_its_own_neighbor_is_ignored(self):
+        adjacency = coloring.build_adjacency([(1, 1), (1, 2)])
+        self.assertEqual(adjacency, {1: {2}, 2: {1}})
+
     def test_exhausted_color_limit_fails_before_writing(self):
         adjacency = coloring.build_adjacency([(1, 2), (2, 3), (3, 1)])
         with self.assertRaises(ValueError):
@@ -38,6 +42,7 @@ class ColoringTests(unittest.TestCase):
             args = coloring.parse_args()
         self.assertEqual(args.color_field, 'Color_ID')
         self.assertEqual(args.max_colors, 9)
+        self.assertEqual(args.id_field, 'OID@')
 
 
 class LayerTests(unittest.TestCase):
@@ -67,6 +72,11 @@ class LayerTests(unittest.TestCase):
                 coloring.main()
         self.assertEqual(self.updates, [[1, 1], [2, 2], [3, 1]])
         self.api.AddField_management.assert_not_called()
+
+    def test_writer_reads_the_objectid_token_by_default(self):
+        self.api.ListFields.return_value = []
+        coloring.write_colors_to_layer('polygons', {1: 1, 2: 2, 3: 1}, 'Color_ID')
+        self.assertEqual(self.api.da.UpdateCursor.call_args.args, ('polygons', ['OID@', 'Color_ID']))
 
     def test_missing_field_is_created_as_short_integer(self):
         self.api.ListFields.return_value = []

@@ -1,0 +1,12 @@
+{
+  "lidar_capture_year": 2024,
+  "capture_year_source": "User confirmation, 2026-09-17",
+  "reported_resolution_m": 0.5,
+  "resolution_interpretation": "Nominal point spacing, user confirmed",
+  "nearmap_capture_date": "Unknown; latest WMS endpoint",
+  "classification_status": "Residual roof-edge errors visible; additional examples and authoritative footprints requested",
+  "reported_nominal_point_spacing_m": 0.5,
+  "roof_edge_priority": "Residual roof features near edges, user confirmed",
+  "osm_footprints_url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_Building_Footprints_OSM_2024/FeatureServer",
+  "osm_pilot_query_count": 0
+}

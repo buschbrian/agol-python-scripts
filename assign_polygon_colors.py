@@ -20,6 +20,8 @@ def build_adjacency(neighbor_rows: Iterable[Tuple[int, int]]) -> Dict[int, Set[i
     """Create an adjacency map from a neighbor-table-style row iterator."""
     adjacency: MutableMapping[int, Set[int]] = defaultdict(set)
     for src, nbr in neighbor_rows:
+        if src == nbr:
+            continue
         adjacency[src].add(nbr)
         adjacency[nbr].add(src)
     return {polygon: set(neighbors) for polygon, neighbors in adjacency.items()}
@@ -66,7 +68,7 @@ def write_colors_to_layer(
     polygon_layer: str,
     colors: Mapping[int, int],
     color_field: str,
-    id_field: str = "OBJECTID",
+    id_field: str = "OID@",
 ) -> None:
     """Write the assigned color values to an ArcGIS feature class or table."""
     if arcpy is None:
@@ -93,7 +95,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("polygon_layer", help="Path to the polygon feature class or layer")
     parser.add_argument("neighbor_table", help="Path to the polygon neighbor table")
     parser.add_argument("--color-field", default="Color_ID", help="Integer field to store color IDs (default: Color_ID)")
-    parser.add_argument("--id-field", default="OBJECTID", help="Object ID field name in the polygon layer")
+    parser.add_argument("--id-field", default="OID@", help="ID field in the polygon layer (default: OID@, the ObjectID field whatever its name)")
     parser.add_argument("--max-colors", type=int, default=9, help="Maximum number of integer color IDs (1–32767; default: 9)")
     parser.add_argument("--dry-run", action="store_true", help="Build the color map without writing to the layer")
     return parser.parse_args()

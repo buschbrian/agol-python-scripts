@@ -1,0 +1,255 @@
+{
+  "extent": [
+    428100.0,
+    4504100.0,
+    428400.0,
+    4504400.0
+  ],
+  "raster_count": 25,
+  "planning_dataset_count": 27,
+  "building_count": 115,
+  "building_flags": {
+    "UNVALIDATED": 115,
+    "PARTIAL_AOI": 20,
+    "LOW_ROOF_SUPPORT": 13,
+    "NEGATIVE_HEIGHT": 2
+  },
+  "building_p95_height_range_m": [
+    2.49566650390625,
+    10.247221946716309
+  ],
+  "buildings_with_height": 115,
+  "raster_statistics": {
+    "dtm": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 1320.924560546875,
+      "p50": 1323.98486328125,
+      "p95": 1326.3038330078125,
+      "maximum": 1328.6669921875
+    },
+    "dsm": {
+      "valid_cells": 273644,
+      "total_cells": 360000,
+      "minimum": 1320.969970703125,
+      "p50": 1324.969970703125,
+      "p95": 1337.27001953125,
+      "maximum": 1350.239990234375
+    },
+    "chm": {
+      "valid_cells": 358089,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 0.0428466796875,
+      "p95": 12.2088623046875,
+      "maximum": 27.66064453125
+    },
+    "support": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 1.0,
+      "p95": 1.0,
+      "maximum": 1.0
+    },
+    "observed": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 1.0,
+      "p95": 1.0,
+      "maximum": 1.0
+    },
+    "building": {
+      "valid_cells": 76137,
+      "total_cells": 360000,
+      "minimum": 1321.31005859375,
+      "p50": 1327.75,
+      "p95": 1333.97998046875,
+      "maximum": 1338.1700439453125
+    },
+    "occlusion": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 0.0,
+      "p95": 0.0,
+      "maximum": 1.0
+    },
+    "ground_direct": {
+      "valid_cells": 152489,
+      "total_cells": 360000,
+      "minimum": 1320.9200439453125,
+      "p50": 1323.97998046875,
+      "p95": 1326.3299560546875,
+      "maximum": 1328.6600341796875
+    },
+    "dsm_all": {
+      "valid_cells": 358520,
+      "total_cells": 360000,
+      "minimum": 1320.9300537109375,
+      "p50": 1325.43994140625,
+      "p95": 1336.1300048828125,
+      "maximum": 1350.239990234375
+    },
+    "ground_distance_m": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 0.5,
+      "p95": 3.1622776985168457,
+      "maximum": 12.539936065673828
+    },
+    "surface_height_m": {
+      "valid_cells": 358520,
+      "total_cells": 360000,
+      "minimum": -1.647216796875,
+      "p50": 0.1043701171875,
+      "p95": 12.204736328124994,
+      "maximum": 27.66064453125
+    },
+    "slope_degrees": {
+      "valid_cells": 345744,
+      "total_cells": 360000,
+      "minimum": 0.0037002842873334885,
+      "p50": 1.4862099885940552,
+      "p95": 4.062077307701111,
+      "maximum": 14.157782554626465
+    },
+    "slope_percent": {
+      "valid_cells": 345744,
+      "total_cells": 360000,
+      "minimum": 0.006458214018493891,
+      "p50": 2.5945076942443848,
+      "p95": 7.101564526557922,
+      "maximum": 25.225502014160156
+    },
+    "aspect_degrees": {
+      "valid_cells": 345744,
+      "total_cells": 360000,
+      "minimum": -1.0,
+      "p50": 225.10907745361328,
+      "p95": 338.12216339111325,
+      "maximum": 359.9949035644531
+    },
+    "profile_curvature": {
+      "valid_cells": 345744,
+      "total_cells": 360000,
+      "minimum": -0.1077914759516716,
+      "p50": 0.00047072849702090025,
+      "p95": 0.0203327038325369,
+      "maximum": 0.10449126362800598
+    },
+    "tangential_curvature": {
+      "valid_cells": 345744,
+      "total_cells": 360000,
+      "minimum": -0.10341531783342361,
+      "p50": 0.00048108233022503555,
+      "p95": 0.014877491863444446,
+      "maximum": 0.11588387191295624
+    },
+    "hillshade": {
+      "valid_cells": 357604,
+      "total_cells": 360000,
+      "minimum": 108.0,
+      "p50": 180.0,
+      "p95": 189.0,
+      "maximum": 233.0
+    },
+    "terrain_position_m": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": -0.391845703125,
+      "p50": 0.003173828125,
+      "p95": 0.1199951171875,
+      "maximum": 0.4951171875
+    },
+    "flow_accumulation_cells": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 2.0,
+      "p95": 154.0,
+      "maximum": 96539.0
+    },
+    "flow_direction_d8": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 1.0,
+      "p50": 8.0,
+      "p95": 64.0,
+      "maximum": 255.0
+    },
+    "contributing_area_m2": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.25,
+      "p50": 0.75,
+      "p95": 38.75,
+      "maximum": 24135.0
+    },
+    "drainage_paths": {
+      "valid_cells": 4593,
+      "total_cells": 360000,
+      "minimum": 1.0,
+      "p50": 1.0,
+      "p95": 1.0,
+      "maximum": 1.0
+    },
+    "depression_fill_depth_m": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 0.0,
+      "p95": 0.0050048828125,
+      "maximum": 0.32861328125,
+      "cells_over_0_1m": 988
+    },
+    "flow_boundary_influence": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 0.0,
+      "p95": 0.0,
+      "maximum": 1.0,
+      "marked_cells": 12751
+    },
+    "terrain_neighborhood_complete": {
+      "valid_cells": 360000,
+      "total_cells": 360000,
+      "minimum": 0.0,
+      "p50": 1.0,
+      "p95": 1.0,
+      "maximum": 1.0
+    }
+  },
+  "trees": {
+    "quality": "UNVALIDATED",
+    "chm": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\planning_20260922\\millcreek_products\\surfaces\\chm.tif",
+    "treetops": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\planning_20260922\\millcreek_trees.gdb\\treetops",
+    "crowns": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\planning_20260922\\millcreek_trees.gdb\\crowns",
+    "trees_review": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\planning_20260922\\millcreek_trees.gdb\\trees_review",
+    "cover_table": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\planning_20260922\\millcreek_trees.gdb\\canopy_cover",
+    "candidate_count": 1530,
+    "accepted_crown_count": 1004,
+    "cover": [
+      {
+        "ZONE_ID": "Millcreek_300m_pilot",
+        "COVER_STATUS": "PARTIAL",
+        "CANOPY_M2": 20962.75,
+        "CANOPY_ACRES": 5.18000833535082,
+        "ZONE_M2": 90000.0,
+        "GRID_M2": 90000.0,
+        "OBSERVED_M2": 89522.25,
+        "MISSING_M2": 477.75,
+        "COVERAGE_PCT": 99.46916666666667,
+        "CANOPY_PCT": null,
+        "OBS_CANOPY_PCT": 23.416245681939404,
+        "CANOPY_LOW_PCT": 23.291944444444443,
+        "CANOPY_HIGH_PCT": 23.822777777777777
+      }
+    ],
+    "source_id": "f7cc635da1d0b6424954e721"
+  },
+  "quality": "UNVALIDATED"
+}

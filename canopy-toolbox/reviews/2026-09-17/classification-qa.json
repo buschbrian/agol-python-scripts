@@ -1,0 +1,205 @@
+{
+  "capture_year": 2024,
+  "reported_resolution_m": 0.5,
+  "resolution_interpretation": "Pending user clarification",
+  "pilot_area_m2": 62500,
+  "all_return_points": 2745665,
+  "eligible_all_returns": 1953643,
+  "eligible_first_or_single_returns": 1659645,
+  "eligible_building_first_or_single_returns": 195081,
+  "all_return_density_per_m2": 43.93064,
+  "eligible_first_or_single_return_density_per_m2": 26.55432,
+  "density_note": "Area-average point counts, not a certified nominal pulse spacing or vertical accuracy.",
+  "review_reason_counts": {
+    "GENERAL_REVIEW": 568,
+    "CROWN_TOO_SMALL": 116,
+    "NEAR_BUILDING": 56,
+    "NEAR_BUILDING;CROWN_TOO_SMALL": 128
+  },
+  "near_building_distance_m": 2,
+  "review_layer": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\reviewed_run\\classification_qa\\classification_review.gdb\\tree_candidates_review",
+  "layer_file": "U:\\agol-python-scripts\\canopy-toolbox\\scratch\\pilot_20260917\\reviewed_run\\classification_qa\\classification_review.lyrx",
+  "priority_note": "Proximity flags require review. No points were automatically rejected or reclassified.",
+  "example_candidates": [
+    {
+      "tree_id": "7c5cf8e1-ed5e-5002-8366-dda542279849",
+      "xy": [
+        422467.25000000093,
+        4503575.750000004
+      ],
+      "building_distance_m": 0.022360676463821973,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "2a028ee2-30ee-5700-8ee4-e4b156da6614",
+      "xy": [
+        422570.25,
+        4503402.75
+      ],
+      "building_distance_m": 0.022360679691697874,
+      "reason": "NEAR_BUILDING"
+    },
+    {
+      "tree_id": "29844e48-b73a-5966-80df-8b2949080908",
+      "xy": [
+        422453.25,
+        4503561.250000002
+      ],
+      "building_distance_m": 0.022360680524698154,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "129c6258-842f-5f83-bc29-b9d09ba97b9a",
+      "xy": [
+        422489.25,
+        4503542.250000002
+      ],
+      "building_distance_m": 0.022360680524698154,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "de432be4-aef1-5227-90f7-040d7b8a73d7",
+      "xy": [
+        422574.25000000093,
+        4503464.249999998
+      ],
+      "building_distance_m": 0.022360682294823606,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "3f6f9144-b679-5b6e-9f90-fa23fb63bf12",
+      "xy": [
+        422469.25000000186,
+        4503370.750000002
+      ],
+      "building_distance_m": 0.029999998165294584,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "00fad1db-fdd9-5359-962d-d00fea49c0d9",
+      "xy": [
+        422506.25,
+        4503567.25
+      ],
+      "building_distance_m": 0.030000000027939677,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "7cedc326-49ef-550d-8646-736e2e566473",
+      "xy": [
+        422555.25,
+        4503353.25
+      ],
+      "building_distance_m": 0.030000000027939677,
+      "reason": "NEAR_BUILDING"
+    },
+    {
+      "tree_id": "a6801c54-0d59-5d4c-a497-b976c97c6fb7",
+      "xy": [
+        422543.75,
+        4503390.750000002
+      ],
+      "building_distance_m": 0.030000000027939733,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "6ddf890a-1128-51e7-89cc-7716169a08b4",
+      "xy": [
+        422465.25000000093,
+        4503375.75
+      ],
+      "building_distance_m": 0.03000000090105459,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "ff8742e4-6f6e-5dd2-bc1c-d1bab1573f5f",
+      "xy": [
+        422457.75000000186,
+        4503522.750000002
+      ],
+      "building_distance_m": 0.03162277567397719,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "6b339978-bbb9-5081-b902-0f6a826d6346",
+      "xy": [
+        422457.75000000186,
+        4503384.750000002
+      ],
+      "building_distance_m": 0.03162277768032698,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "f243762f-1894-5ab4-96a1-0c9e0508b414",
+      "xy": [
+        422551.25000000093,
+        4503365.250000002
+      ],
+      "building_distance_m": 0.03605551194873642,
+      "reason": "NEAR_BUILDING"
+    },
+    {
+      "tree_id": "687556f3-f8b0-551d-97bd-fc3b3b117409",
+      "xy": [
+        422465.25000000093,
+        4503573.75
+      ],
+      "building_distance_m": 0.03605551349855083,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "6d085ce6-cf38-5baa-9ade-3acad9a76a57",
+      "xy": [
+        422489.25,
+        4503583.25
+      ],
+      "building_distance_m": 0.04123105618163657,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "0cfdf308-0deb-552e-b81d-4905b5d6cf10",
+      "xy": [
+        422550.25,
+        4503368.750000004
+      ],
+      "building_distance_m": 0.042426404400004655,
+      "reason": "NEAR_BUILDING"
+    },
+    {
+      "tree_id": "542ff659-8178-5407-bc55-95ccfe73712e",
+      "xy": [
+        422445.75000000093,
+        4503549.250000004
+      ],
+      "building_distance_m": 0.04242640905097531,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "288a910c-d6eb-5b7b-b09f-612c8b6f7cde",
+      "xy": [
+        422500.75,
+        4503572.749999998
+      ],
+      "building_distance_m": 0.04472135792564534,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "2288efab-5328-5c28-a30b-04442da3c98f",
+      "xy": [
+        422490.74999999907,
+        4503356.25
+      ],
+      "building_distance_m": 0.044721358498332996,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    },
+    {
+      "tree_id": "29be262d-ec0c-50d3-82fb-63d16bfd270c",
+      "xy": [
+        422452.25000000093,
+        4503523.75
+      ],
+      "building_distance_m": 0.044721358966895636,
+      "reason": "NEAR_BUILDING;CROWN_TOO_SMALL"
+    }
+  ]
+}

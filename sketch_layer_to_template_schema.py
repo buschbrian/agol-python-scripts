@@ -57,15 +57,13 @@ arcpy.env.overwriteOutput = False
 
 
 def rule_names(fc):
-    """Rule names on a dataset, read back from an export CSV."""
-    tmp = os.path.join(arcpy.env.scratchFolder, "_rules_probe.csv")
-    if arcpy.Exists(tmp):
-        os.remove(tmp)
-    arcpy.management.ExportAttributeRules(fc, tmp)
-    with open(tmp, newline="", encoding="utf-8-sig") as fh:
-        names = [r["NAME"] for r in csv.DictReader(fh) if r.get("NAME")]
-    os.remove(tmp)
-    return names
+    """Read rule names without writing an export during a dry run."""
+    return [rule.name for rule in getattr(arcpy.Describe(fc), "attributeRules", [])]
+
+
+def enabled_rule_names(fc):
+    return [rule.name for rule in getattr(arcpy.Describe(fc), "attributeRules", [])
+            if getattr(rule, "isEnabled", True)]
 
 
 def main():
@@ -86,7 +84,6 @@ def main():
             raise SystemExit("no datum transformation found; set TRANSFORMATION manually")
         transform = options[0]
 
-    arcpy.management.ExportAttributeRules(TEMPLATE_FC, RULES_CSV)
     template_rules = rule_names(TEMPLATE_FC)
 
     print("sketch      : {} ({} features, {})".format(SKETCH_FC, sketch_n, src_sr.name))
@@ -96,8 +93,10 @@ def main():
     print("rules CSV   : {}".format(RULES_CSV))
     print("mapped      : {}".format(FIELD_MAP or "none - all attributes land null"))
     if DRY_RUN:
-        print("\nDRY_RUN - nothing written. Review the rules CSV, then set DRY_RUN = False.")
+        print("\nDRY_RUN - nothing written. Review this report, then set DRY_RUN = False.")
         return
+
+    arcpy.management.ExportAttributeRules(TEMPLATE_FC, RULES_CSV)
 
     # Copy carries fields, domains, subtypes, GlobalIDs and the rules together,
     # which avoids Import Attribute Rules failing on fields that don't exist yet.
@@ -109,36 +108,39 @@ def main():
         arcpy.management.ImportAttributeRules(TARGET_FC, RULES_CSV)
         copied = rule_names(TARGET_FC)
 
-    # Delete-triggered constraints would otherwise block the emptying.
-    if copied:
-        arcpy.management.DisableAttributeRules(TARGET_FC, copied)
-    arcpy.management.DeleteRows(TARGET_FC)
+    # Restore only rules that were enabled before the load, including on failure.
+    originally_enabled = enabled_rule_names(TARGET_FC)
+    if originally_enabled:
+        arcpy.management.DisableAttributeRules(TARGET_FC, originally_enabled)
+    try:
+        arcpy.management.DeleteRows(TARGET_FC)
 
-    # Explicit, not on-the-fly in Append, so the datum transformation is a choice.
-    staged = SKETCH_FC
-    if transform:
-        staged = os.path.join(arcpy.env.scratchGDB, "sketch_projected")
-        if arcpy.Exists(staged):
-            arcpy.management.Delete(staged)
-        arcpy.management.Project(SKETCH_FC, staged, tgt_sr, transform, src_sr)
+        # Explicit, not on-the-fly in Append, so the datum transformation is a choice.
+        staged = SKETCH_FC
+        if src_sr.exportToString().split(";")[0] != tgt_sr.exportToString().split(";")[0]:
+            staged = os.path.join(arcpy.env.scratchGDB, "sketch_projected")
+            if arcpy.Exists(staged):
+                arcpy.management.Delete(staged)
+            arcpy.management.Project(SKETCH_FC, staged, tgt_sr, transform, src_sr)
 
-    fms = arcpy.FieldMappings()
-    fms.addTable(TARGET_FC)
-    for tgt_field, src_field in FIELD_MAP.items():
-        idx = fms.findFieldMapIndex(tgt_field)
-        if idx == -1:
-            raise SystemExit("no field '{}' on {}".format(tgt_field, TARGET_FC))
-        fm = fms.getFieldMap(idx)
-        fm.addInputField(staged, src_field)
-        fms.replaceFieldMap(idx, fm)
+        fms = arcpy.FieldMappings()
+        fms.addTable(TARGET_FC)
+        for tgt_field, src_field in FIELD_MAP.items():
+            idx = fms.findFieldMapIndex(tgt_field)
+            if idx == -1:
+                raise SystemExit("no field '{}' on {}".format(tgt_field, TARGET_FC))
+            fm = fms.getFieldMap(idx)
+            fm.addInputField(staged, src_field)
+            fms.replaceFieldMap(idx, fm)
 
-    arcpy.management.Append(staged, TARGET_FC, "NO_TEST", fms)
+        arcpy.management.Append(staged, TARGET_FC, "NO_TEST", fms)
 
-    for field, expr in CONSTANTS.items():
-        arcpy.management.CalculateField(TARGET_FC, field, expr, "PYTHON3")
+        for field, expr in CONSTANTS.items():
+            arcpy.management.CalculateField(TARGET_FC, field, expr, "PYTHON3")
 
-    if copied:
-        arcpy.management.EnableAttributeRules(TARGET_FC, copied)
+    finally:
+        if originally_enabled:
+            arcpy.management.EnableAttributeRules(TARGET_FC, originally_enabled)
     if EVALUATE_BATCH_RULES:
         arcpy.management.EvaluateRules(os.path.dirname(TARGET_FC),
                                        "VALIDATION_RULES;BATCH_CALCULATION_RULES")

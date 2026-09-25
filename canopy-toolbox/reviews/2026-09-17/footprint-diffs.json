@@ -1,0 +1,87 @@
+{
+  "derived_without_county_match": [
+    {
+      "derived_id": 2,
+      "centroid_utm12n": [
+        422577.31,
+        4503514.32
+      ],
+      "extent_m": [
+        13.0,
+        7.0
+      ],
+      "area_m2": 38.5,
+      "roof_elev_m": 1297.07,
+      "height_above_ground_m": 2.63,
+      "fit_fraction": 0.974,
+      "fit_rmse_m": 0.029
+    },
+    {
+      "derived_id": 5,
+      "centroid_utm12n": [
+        422597.12,
+        4503392.99
+      ],
+      "extent_m": [
+        5.5,
+        8.5
+      ],
+      "area_m2": 28.5,
+      "roof_elev_m": 1298.38,
+      "height_above_ground_m": 3.92,
+      "fit_fraction": 0.929,
+      "fit_rmse_m": 0.029
+    }
+  ],
+  "excess_area": {
+    "all_derived_outside_county_m2": 240.34,
+    "matched_outlines_outside_county_m2": 173.34,
+    "unmatched_outlines_m2": 67.0,
+    "matched_excess_remaining_after_county_buffer": {
+      "beyond_0.5m_buffer_m2": 49.39,
+      "beyond_1.0m_buffer_m2": 8.36,
+      "beyond_1.5m_buffer_m2": 0.75,
+      "beyond_2.0m_buffer_m2": 0
+    },
+    "reading": "If the excess vanishes within a ~1 m buffer it behaves like an eave/parapet ring around a correct building, not a spurious roof region."
+  },
+  "county_area_missed": {
+    "total_m2": 126.19,
+    "part_count": 4,
+    "largest_parts": [
+      {
+        "area_m2": 51.21,
+        "centroid_utm12n": [
+          422461.9,
+          4503391.6
+        ]
+      },
+      {
+        "area_m2": 44.83,
+        "centroid_utm12n": [
+          422555.14,
+          4503404.46
+        ]
+      },
+      {
+        "area_m2": 30.01,
+        "centroid_utm12n": [
+          422483.67,
+          4503589.04
+        ]
+      },
+      {
+        "area_m2": 0.14,
+        "centroid_utm12n": [
+          422573.42,
+          4503462.9
+        ]
+      }
+    ]
+  },
+  "model_rejected_roof_4": {
+    "matched_county_oid": 937483,
+    "overlap_pct_of_derived": 96.82,
+    "meaning": "Roof 4 is a genuine county-mapped building. The 76.9% inlier rejection is a plane-fit quality signal, not a building/non-building decision, so this real roof received no edge refinement."
+  }
+}

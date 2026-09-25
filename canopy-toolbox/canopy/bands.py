@@ -7,6 +7,7 @@ no arcpy, so it is unit-testable outside ArcGIS Pro.
 
 from __future__ import annotations
 
+import math
 from typing import NamedTuple, Sequence
 
 
@@ -56,6 +57,10 @@ def validate_bands(bands: Sequence[Band]) -> None:
     if not bands:
         raise ValueError("at least one height band is required")
     for band in bands:
+        if not all(math.isfinite(v) for v in (band.low, band.radius)) or (band.high is not None and not math.isfinite(band.high)):
+            raise ValueError('height bands must contain finite numbers')
+        if band.low < 0:
+            raise ValueError('minimum height cannot be negative')
         if band.radius <= 0:
             raise ValueError(f"band {band} has a non-positive radius")
         if band.high is not None and band.high <= band.low:
@@ -84,6 +89,8 @@ def radius_for_height(bands: Sequence[Band], height: float) -> float | None:
 
 def radius_in_cells(radius_m: float, cell_size: float) -> int:
     """Focal Statistics takes whole cells; never round down to zero."""
-    if cell_size <= 0:
+    if not math.isfinite(cell_size) or cell_size <= 0:
         raise ValueError("cell size must be positive")
+    if not math.isfinite(radius_m) or radius_m <= 0:
+        raise ValueError('radius must be finite and positive')
     return max(1, round(radius_m / cell_size))

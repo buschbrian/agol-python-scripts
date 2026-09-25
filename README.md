@@ -7,9 +7,11 @@ need more than one file live in their own folder.
 | Script | What it does | Runs with |
 |---|---|---|
 | `assign_polygon_colors.py` | Assigns integer IDs to `Color_ID` so no two adjacent polygons share a value (greedy graph coloring over a Polygon Neighbors table). Takes the polygon layer and neighbor table as CLI arguments; preserves the existing integer field contract. | ArcGIS Pro's Python (`arcpy`) |
-| `add_badelf_fields_to_agol.py` | Adds the Bad Elf Flex (2025) GNSS metadata fields and coded-value domains to a hosted feature layer, so surveyed points keep correction type, geoid model, antenna height, and final heights. Idempotent — existing fields are skipped. | ArcGIS API for Python (`arcgis`) |
+| `add_badelf_fields_to_agol.py` | Adds the Bad Elf Flex (2025) GNSS metadata fields and coded-value domains to a hosted feature layer, so surveyed points keep correction type, geoid model, antenna height, and final heights. Existing fields are checked for compatible types and domains; --dry-run previews additions. | ArcGIS API for Python (`arcgis`) |
 | `sketch_layer_to_template_schema.py` | Rebuilds an ArcGIS Online Map Viewer sketch layer as a feature class carrying a production dataset's full schema — fields, domains, subtypes, GlobalIDs and attribute rules — reprojecting with an explicit datum transformation and loading with rules disabled. Set the paths at the top and run once with `DRY_RUN = True`. | ArcGIS Pro's Python (`arcpy`) |
-| [`canopy-toolbox/`](canopy-toolbox/) | ArcGIS Pro Python toolbox (`CanopyTools.pyt`) turning a classified lidar point cloud into canopy cover and an individual-tree layer — vegetation-only CHM, height-banded treetop detection, watershed crown delineation, zonal cover rollup. Five tools; see its own README for accuracy caveats. | ArcGIS Pro Advanced + 3D and Spatial Analyst |
+| [`canopy-toolbox/`](canopy-toolbox/) | ArcGIS Pro Python toolbox (`CanopyTools.pyt`) turning a classified lidar point cloud into canopy cover and an individual-tree layer — vegetation-only CHM, height-banded treetop detection, watershed crown delineation, zonal cover rollup. Five tools plus a working-copy preparation and bounded-AOI runner; see its README for limits and pilot evidence. | ArcGIS Pro + 3D and Spatial Analyst |
+
+The LiDAR work now also includes a [planning-products workflow](canopy-toolbox/PLANNING_PRODUCTS.md) for terrain, building heights, and drainage screening, with a separate Millcreek pilot and quality flags.
 
 ## Environment
 
@@ -28,9 +30,10 @@ python assign_polygon_colors.py "C:/gis/maps.gdb/polygons" "C:/gis/maps.gdb/neig
 python assign_polygon_colors.py "C:/gis/maps.gdb/polygons" "C:/gis/maps.gdb/neighbors"
 ```
 
-The neighbor table must have `src_OBJECTID` and `nbr_OBJECTID`. The polygon
-identifier defaults to `OBJECTID`; use `--id-field` when it differs. Both
-inputs must use the same identifiers.
+The neighbor table must have `src_OBJECTID` and `nbr_OBJECTID`; rows that
+pair a polygon with itself are ignored. The polygon identifier defaults to
+`OID@`, the layer's ObjectID field whatever it is named; use `--id-field` for
+another field. Both inputs must use the same identifiers.
 
 Output stays numeric: `Color_ID` is a SHORT integer field when newly created,
 with IDs from 1 through 9 by default. Use `--color-field colorID` for a layer

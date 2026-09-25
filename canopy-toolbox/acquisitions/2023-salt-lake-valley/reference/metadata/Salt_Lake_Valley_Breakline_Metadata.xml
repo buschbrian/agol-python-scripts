@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Aero-Graphics, Inc.</origin>
+        <pubdate>20240625</pubdate>
+        <title>Salt Lake Valley LiDAR; Breaklines</title>
+        <geoform>vector data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Product: Breakline data is used to hydroflatten the DEMs created for the Salt Lake Valley LiDAR project. Breaklines are reviewed against lidar intensity imagery to verify completeness of capture. 
+  Geographic Extent: Salt Lake, Utah, Davis counties, Utah, covering approximately 494 square miles.
+  Dataset Description: The Salt Lake Valley LiDAR project called for the Planning, Acquisition, processing and derivative products of lidar data to be collected at a nominal pulse spacing (NPS) of 0.32 meter. Project specifications are based on the U.S. Geological Survey National Geospatial Program Base Lidar Specification 2023, Revision A. The data was developed based on a horizontal projection/datum of NAD83(2011), Transverse Mercator, Meters and vertical datum of NAVD88, Meters. Lidar data was delivered as processed Classified LAZ 1.4 files, formatted to 1363 individual 1000m x 1000m tiles, as tiled bare earth DEMs and DSMs, maximum surface height rasters, and swath separation images; all tiled to the same 1000m x 1000m schema.
+  Ground Conditions: Lidar was collected from October 7th, 2023 to November 5th, 2023, while no snow was on the ground and rivers were at or below normal levels.
+  Deliverables: Classified point cloud LiDAR data in LAZ v1.4 format; DSM and DEM with a 0.5m cell size in GeoTIFF format; max surface height rasters at 1m cell size; swath separation images at 1m cell size; Breaklines in SHP format; Metadata in xml format; Technical Project Report.
+  
+  In order to post process the lidar data to meet task order specifications and meet ASPRS vertical accuracy guidelines, Aero-Graphics established a total of 20 ground control points that were used to calibrate the lidar to known ground locations established throughout the project area. An additional 65 independent accuracy checkpoints, 35 in Bare Earth and Urban landcovers (35 NVA points), 30 in Tall Grass and Brushland/Low Trees categories (30 VVA points), were used to assess the vertical accuracy of the data. These checkpoints were not used to calibrate or post process the data. </abstract>
+      <purpose>To acquire detailed surface elevation data for use in conservation planning, design, research, floodplain mapping, dam safety assessments and elevation modeling, etc. This allows the user to create intensity images, breaklines and DEMs. The purpose of these lidar data was to produce high accuracy 3D hydro-flattened Digital Elevation Model (DEM) with a 0.5 meter cell size. The lidar point cloud data was used to create intensity images, 3D breaklines, and hydro-flattened DEMs as necessary.</purpose>
+      <supplinf>
+    CONTRACTOR: Aero-Graphics, Inc.
+    Lidar data were acquired and calibrated by Aero-Graphics.
+
+       Breakline File Type = SHP
+       Breakline Elevation Units = Meters
+       Downhill Treatment Applied = Monotonic
+       Type of Hydro Treatment Required = Hydro-flattened
+       </supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20231007</begdate>
+          <enddate>20231105</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-112.127695</westbc>
+        <eastbc>-111.747312</eastbc>
+        <northbc>40.846184</northbc>
+        <southbc>40.413081</southbc>
+      </bounding>
+      <lboundng>
+        <leftbc>404615.492621</leftbc>
+        <rightbc>436932.712363</rightbc>
+        <topbc>4522126.153323</topbc>
+        <bottombc>4474069.705715</bottombc>
+      </lboundng>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Model</themekey>
+        <themekey>Breaklines</themekey>
+        <themekey>Elevation Data</themekey>
+        <themekey>Lidar</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>USA</placekey>
+        <placekey>Utah</placekey>
+        <placekey>UT</placekey>
+        <placekey>Salt Lake</placekey>
+        <placekey>Utah</placekey>
+        <placekey>Davis counties</placekey>
+      </place>
+    </keywords>
+    <accconst>No restrictions apply to these data.</accconst>
+    <useconst>None. However, users should be aware that temporal changes may have occurred since this dataset was collected and that some parts of these data may no longer represent actual surface conditions. Users should not use these data for critical applications without a full awareness of its limitations. Acknowledgement of the U.S. Geological Survey would be appreciated for products derived from these data.</useconst>
+    <native>POSPac MMS 8.7;  Optech LMS 4.6; BayesStripAlign 2.21b; TerraScan 022_002; GeoCue 2020.1.22.3; Windows 10 Pro Version 22H2 Operating System</native>
+  </idinfo>
+  <dataqual>
+    <logic> Data covers the entire area specified for this project. Breaklines were collected in all inland ponds and lakes ~2 acres or greater. These features were flat and level water bodies at a single elevation for each vertex along the bank. The entire water surface edge is at or below the immediate surrounding terrain. Breaklines were collected for all streams and rivers 30 meter nominal width or wider. These features are flat and level bank to bank, gradient will follow the surrounding terrain and the water surface will be at or below the surrounding terrain. Streams/river channels will break at culvert locations however not at elevated bridge locations. </logic>
+    <complete>All files are inspected to ensure that they conform to the specified file naming conventions, all files load in their correct geographic position, all files conform to the project specifications for file standard and content.</complete>
+    <lineage>
+      <procstep>
+        <procdesc>Hydro-Flattened Breakline Collection.  Full point cloud intensity imagery, DEMs, and bare earth terrains were used to manually digitize 3D breaklines. Breakline features were collected of inland streams and rivers with a 30-meter nominal width, and inland ponds and lakes of 2 acres or greater surface area. Elevation values were assigned to all inland ponds and lakes, inland pond and lake islands, and inland stream and river islands, using ESRI and LP360 functionality.
+
+Hydro-Flattened Raster DEM Creation.  A hydro-flattened raster digital elevation model (DEM) was created using the ground classified LiDAR points. A raster was generated in LP360 from the lidar data with breaklines enforced and clipped to the project tile grid. Each surface was reviewed to check for any surface anomalies or incorrect elevations found within the surface.
+
+Maximum Surface Height Rasters Creation. MSHRs are delivered as tiled GeoTIFFs (32-bit, floating point), with the tile size and naming convention matching the project tile grid. All points, excluding points flagged as withheld, are used to produce MSHRs. The rasters are produced with a binning method in which the highest elevation of all lidar points intersecting each pixel is applied as the pixel elevation in the resulting raster. Final MSHRs are formatted using GDAL software version 3.7.2, spatially defined to match the project CRS, and the cell size equals 2x the deliverable DEM cell size.</procdesc>
+        <procdate>2024</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>NAD83(2011) / UTM zone 12N</mapprojn>
+          <transmer>
+            <sfctrmer>0.9996</sfctrmer>
+            <longcm>-111.0</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.010000</absres>
+            <ordres>0.010000</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>NAD83_National_Spatial_Reference_System_2011</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>North American Vertical Datum of 1988, Geoid 18</altdatum>
+        <altres>0.01</altres>
+        <altunits>meters</altunits>
+        <altenc>Explicit elevation coordinate included with horizontal coordinates</altenc>
+      </altsys>
+    </vertdef>
+  </spref>
+  <metainfo>
+    <metd>20240625</metd>
+    <metrd>20240625</metrd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Aero-Graphics, Inc.</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>40 West Oakland Avenue</address>
+          <city>Salt Lake City</city>
+          <state>UT</state>
+          <postal>84115</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>(801)487-3273</cntvoice>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <metac>None.</metac>
+    <metuc>None.</metuc>
+    <metsi>
+      <metscs>None.</metscs>
+      <metsc>Unclassified.</metsc>
+      <metshd>None.</metshd>
+    </metsi>
+    <metextns>
+      <onlink>None.</onlink>
+      <metprof>None.</metprof>
+    </metextns>
+  </metainfo>
+</metadata>
