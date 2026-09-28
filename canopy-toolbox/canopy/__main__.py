@@ -46,7 +46,18 @@ def main(argv=None):
     planning.add_argument("--drainage-area",type=float,default=1000)
     planning.add_argument("--contour-interval",type=float,default=2)
     planning.add_argument("--z-metres",action="store_true")
+    get=commands.add_parser("fetch",help="Download a LAZ tile manifest with resume and size/point checks; no ArcGIS needed")
+    get.add_argument("manifest");get.add_argument("output")
+    get.add_argument("--tiles",nargs="+",help="Only these tile names from the manifest")
+    get.add_argument("--workers",type=int,default=4,help="Tiles downloaded at once, 1 to 8 (default 4)")
     args=parser.parse_args(argv)
+    if args.command=="fetch":
+        from . import fetch
+        try: result=fetch.fetch(args.manifest,args.output,args.tiles,args.workers)
+        except ValueError as e: parser.error(str(e))
+        print(json.dumps(result,indent=2))
+        if result["failed"]: raise SystemExit(1)
+        return
     from . import common,licensing,preparation,pipeline
     if args.command=="inventory":
         result=preparation.inventory(args.folder,sample=not args.full)
