@@ -6,7 +6,7 @@
 - [x] Consolidate LAS readers and roof context; pure and ArcGIS fixtures plus fresh 250 m pilot passed.
 - [x] Port four selected September 23 changes; ArcGIS regressions, CHM pilot and CONSERVATIVE preparation passed.
 - [ ] Add independent plot census, object matching, causes and review QA instructions.
-- [ ] Add primary analytic intervals and retain bootstrap cross-checks.
+- [x] Add analytic stratified Taylor/t intervals with finite-population correction; retain bootstrap cross-checks and suppression rules.
 - [ ] Freeze spatial holdouts and Millcreek/external reporting domains.
 - [ ] Document density/HAG experiments and model-to-pipeline scoring; inference deferred.
 - [ ] Add the planned NAIP greenness review screen.

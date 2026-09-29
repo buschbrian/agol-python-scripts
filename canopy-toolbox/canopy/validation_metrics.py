@@ -9,7 +9,8 @@ All estimates are stratified: each labelled unit in stratum h stands for
 N_h / n_h population units, where n_h counts usable (labelled, not UNSURE) units.
 Units are reviewed in a random order, so any labelled prefix is a random subsample
 of each stratum. Confidence intervals are Wilson intervals within a stratum and
-stratified percentile bootstrap intervals for weighted totals and ratios.
+analytic stratified Taylor/t intervals for totals and ratios, with percentile
+bootstrap cross-checks.
 """
 from __future__ import annotations
 
@@ -221,7 +222,7 @@ class Design:
 
 
 def estimate(designs, statistic, replicates=2000, seed=0, alpha=0.05):
-    """Point estimate and stratified bootstrap interval of statistic(totals).
+    """Analytic stratified interval; empirical bootstrap retained as a cross-check.
 
     designs: {name: Design}; statistic receives {name: totals} and returns a dict
     of named scalars (None when undefined). Each design is resampled independently
@@ -260,7 +261,57 @@ def estimate(designs, statistic, replicates=2000, seed=0, alpha=0.05):
                            "low": None if suppressed else float(low),
                            "high": None if suppressed else float(high),
                            "interval_status": "HOMOGENEOUS_OR_DEGENERATE_SAMPLE" if suppressed else "BOOTSTRAP"}
+    totals={k:d.totals() for k,d in designs.items()}
+    for key,row in result.items():
+        row['bootstrap']={name:row[name] for name in ('low','high','interval_status')}
+        row.update(_analytic_interval(designs,totals,statistic,key,row['estimate'],alpha,census,homogeneous))
     return result
+
+
+def _analytic_interval(designs, totals, statistic, key, value, alpha, census, homogeneous):
+    """Sum N_h²(1-n_h/N_h)s²_h/n_h of linearized unit values.
+
+    Central differences linearize the existing scalar statistic, retaining within-
+    unit covariance of its input totals. Independent designs add variances.
+    Satterthwaite degrees of freedom approximate the t critical value.
+    """
+    from scipy.stats import t
+    output={'low':None,'high':None,'variance':None,'standard_error':None,'degrees_freedom':None}
+    if value is None or not math.isfinite(value):
+        return {**output,'interval_status':'UNDEFINED_OR_INSUFFICIENT_DRAWS'}
+    if census:
+        return {**output,'low':value,'high':value,'variance':0.,'standard_error':0.,'interval_status':'CENSUS'}
+    if homogeneous:
+        return {**output,'interval_status':'HOMOGENEOUS_OR_DEGENERATE_SAMPLE'}
+    components=[]
+    for name,d in designs.items():
+        gradient={}
+        for variable,total in totals[name].items():
+            step=1e-5*max(1.,abs(total))
+            perturbed={k:dict(v) for k,v in totals.items()}
+            perturbed[name][variable]=total+step
+            plus=statistic(perturbed).get(key)
+            perturbed[name][variable]=total-step
+            minus=statistic(perturbed).get(key)
+            if any(x is None or not math.isfinite(x) for x in (plus,minus)):
+                return {**output,'interval_status':'UNDEFINED_LINEARIZATION'}
+            gradient[variable]=(plus-minus)/(2*step)
+        for h in d.covered():
+            idx=d.groups[h]; n=len(idx); population=d.population[h]
+            if n==population: continue
+            if n<2:
+                return {**output,'interval_status':'INSUFFICIENT_STRATUM_SAMPLE'}
+            projected=sum(gradient[k]*v[idx] for k,v in d.values.items())
+            variance=population**2*(1-n/population)*float(np.var(projected,ddof=1))/n
+            components.append((variance,n-1))
+    variance=sum(v for v,_ in components)
+    output.update(variance=variance,standard_error=math.sqrt(variance))
+    if variance <= 1e-20*max(1.,value**2):
+        return {**output,'interval_status':'DEGENERATE_LINEARIZATION'}
+    df=variance**2/sum(v*v/dof for v,dof in components)
+    half=float(t.ppf(1-alpha/2,df))*math.sqrt(variance)
+    return {**output,'low':value-half,'high':value+half,'degrees_freedom':df,
+            'interval_status':'ANALYTIC_TAYLOR_T'}
 
 
 def _ratio(numerator, denominator):

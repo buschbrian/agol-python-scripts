@@ -29,14 +29,24 @@ Spatial ambiguity counts describe candidates with multiple neighbors before
 identity prioritization. Dense assignment components fail rather than allocate
 unbounded matrices.
 
-Bootstrap intervals are suppressed when a non-census stratum has identical
-observed outcome vectors, or when the empirical interval degenerates. The point
-estimate remains available, with `interval_status` and null bounds, and the table
-marks the interval unavailable. Per-stratum Wilson intervals remain available.
-A fully labelled census can have an exact zero-width interval. These intervals
-assume usable labels are a random subsample in each stratum; selective skipping,
-UNSURE responses, imagery misregistration and label error are not corrected by
-resampling. Missing strata and population coverage are reported explicitly.
+Analytic stratified intervals are now the main bounds. For each total, variance
+is the sum of `N_h² (1 - n_h/N_h) s_h² / n_h`. Ratios and combined statistics
+use Taylor linearization of their joint totals, preserving covariance between
+outcomes on the same sampled unit. Independent sample designs add variances.
+A Satterthwaite t critical value uses the stratum variance contributions. Output
+includes variance, standard error and degrees of freedom. The original seeded
+percentile bootstrap appears under `bootstrap` as a cross-check; its with-replacement
+resampling does not include the analytic finite-population correction.
+
+The formulas follow [Penn State's stratified sampling notes](https://online.stat.psu.edu/stat506/Lesson06);
+Taylor linearization is described in [CDC's variance estimation guidance](https://wwwn.cdc.gov/nchs/nhanes/tutorials/varianceestimation.aspx).
+These are approximate intervals, not guaranteed small-sample coverage. Ratio
+intervals can extend beyond natural bounds; do not interpret those limits as
+possible probabilities. Homogeneous non-census strata, singleton respondents and
+degenerate linearization do not produce a falsely precise headline interval.
+A fully labelled census has exact bounds. Missing strata are excluded from the
+covered-strata estimand and explicitly reported. Neither method repairs selective
+UNSURE/nonresponse, imagery misregistration, systematic label error or date mismatch.
 
 Crown labels transfer only at IoU >= 0.8. Quality shares describe unchanged,
 matched baseline crowns. Changed crowns require fresh labels and are counted
