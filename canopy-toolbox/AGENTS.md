@@ -34,5 +34,8 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 
 From canopy-toolbox: python -m unittest discover -s tests -t . -v
 Use ArcGIS Pro Python to execute the ArcPy fixtures; plain Python skips them.
-Plain Python needs NumPy, SciPy and psutil for the ArcPy-free modules.
+Plain Python: use the repo-root .venv (python -m venv .venv, then pip install -r
+canopy-toolbox/requirements-dev.txt). Never pip install --user: Pro's Python 3.13 environments
+read the per-user site-packages, which then shadows Pro's own packages. Set PYTHONNOUSERSITE=1
+for ArcGIS Pro runs.
 Changes to geoprocessing need actual runtime verification and a representative pilot.
