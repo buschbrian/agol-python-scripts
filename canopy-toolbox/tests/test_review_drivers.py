@@ -148,3 +148,15 @@ class Imports(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class ReferenceHeightCoverage(unittest.TestCase):
+    def test_complete_margin_requires_no_nodata_inside_the_boundary(self):
+        import numpy as np
+        module = load_driver('dl_reference_height')
+        missing = np.zeros((14, 14), dtype=bool)          # raster 0..14 m, 1 m cells, boundary 4..10
+        self.assertEqual(module.full_margin(missing, [4, 4, 10, 10], [0, 0, 14, 14], 1.0), 4.0)
+        missing[0, 13] = True                               # corner of the context only
+        self.assertEqual(module.full_margin(missing, [4, 4, 10, 10], [0, 0, 14, 14], 1.0), 3.0)
+        missing[6, 6] = True                                # hole inside the boundary
+        self.assertIsNone(module.full_margin(missing, [4, 4, 10, 10], [0, 0, 14, 14], 1.0))
