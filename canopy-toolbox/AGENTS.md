@@ -7,6 +7,7 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 
 - Grid, bands, ownership: canopy/bands.py, canopy/tiling.py and pure tests.
 - LAS inventory/classification: canopy/preparation.py; source files are immutable.
+- Binary LAS layouts/masks: canopy/las_records.py; physical roof bands: canopy/roof_context.py (both ArcPy-free).
 - CHM and support: canopy/rasters.py.
 - Optional roof-edge refinement and derived roof outlines: canopy/roofs.py.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
@@ -17,6 +18,7 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 ## Invariants
 
 - bands.py and tiling.py must not import arcpy. Put new pure parameter/grid logic there.
+- LAS decoding, roof context, plot census, evaluation domains and greenness modules must also remain ArcPy-free.
 - Never run Fill before Flow Direction. The current crown algorithm uses neither.
 - Preserve one actual-cell detection per connected plateau.
 - Use the classified vegetation DSM, never a delivered highest-hit DSM.

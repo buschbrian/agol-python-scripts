@@ -2,6 +2,11 @@
 
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 
+The [September 29 integration](reviews/2026-09-29/INTEGRATION.md) documents building
+reconciliation, interior roof fitting, shared LAS readers, independent plot census,
+analytic intervals, prospective holdouts and the NAIP review screen. Deep-learning
+inference remains deferred in the current Pro environment.
+
 The source acquisition, its tested accuracy, delivered classes, and per-tile flight dates are recorded in [the 2023 acquisition record](acquisitions/2023-salt-lake-valley/RECORD.md); the [acquisition procedure](acquisitions/README.md) documents each new one the same way. The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
 
 ## Terrain, buildings, and other planning products
@@ -51,7 +56,7 @@ The same run writes the acquisition record: `acquisition.json` and `acquisition-
 
 Prepare extracts new point files into output/points, checks that they are isolated from the delivery, and classifies only that copy. It preserves delivered ground and noise by default. If any copied file has no ground, ground classification runs with reuse of existing ground. Optional --classify-noise enables isolation screening with explicit, recorded parameters; review those thresholds locally.
 
-Buildings are classified before remaining unclassified points are assigned height classes. Defaults: 2 m minimum building height, 10 square metres minimum building area, and class 6 for points below detected roofs and within 3 m above them. --roof-tolerance changes the last threshold; zero disables above-roof classification. Inspect tree overhangs and rooftop vegetation because these settings can remove real vegetation as well as roof equipment. Class 3 spans up to 0.5 m, class 4 up to 2 m, and class 5 up to 80 m above ground. These height labels do not establish that the objects are trees.
+Buildings are classified before remaining unclassified points are assigned height classes. Defaults: 2 m minimum building height, 10 square metres minimum building area, and class 6 for points below detected roofs and within 3 m above them. --roof-tolerance changes the last threshold; zero disables above-roof classification. `--building-method` selects CONSERVATIVE, STANDARD (default), or AGGRESSIVE and records that choice. Inspect tree overhangs and rooftop vegetation because these settings can remove real vegetation as well as roof equipment. Class 3 spans up to 0.5 m, class 4 up to 2 m, and class 5 up to 80 m above ground. These height labels do not establish that the objects are trees.
 
 The run manifest records parameters, source size/mtime, code fingerprint, runtime, per-tile progress, and final outputs. --resume reuses an unchanged run, including saved raster cores after an interrupted attempt. Changed inputs, code, or parameters require a new directory. Source fingerprints detect normal file changes; they are not cryptographic checksums of all LAS bytes. An explicit --source-files list is required when not using a prepared LAS dataset.
 
@@ -61,7 +66,7 @@ Run outputs are CHM, treetops, crowns, and trees_review. Use tool 5 on the assem
 
 - Ground class 2 supplies the triangulated DTM. Vegetation DSM uses only classes 3/4/5, first or single returns, BINNING MAXIMUM NONE. It cannot interpolate canopy across roads, roofs, or empty vegetation cells.
 - Withheld, overlap, and synthetic points are excluded. This policy can reduce coverage and must be checked against delivery provenance. On the 2023 Salt Lake Valley delivery the overlap bit was never populated, so the exclusion has no effect there and all swath overage is retained.
-- A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20.
+- A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20. Explicit `--classified-background-zero` can add class 0 as observed non-canopy only on fully model-classified background; class 1 stays unknown. CHM construction requires fresh working-copy LAS statistics.
 - Where a measured class-6 first/single surface is more than 0.35 m above vegetation in the same cell, the CHM reports observed non-canopy. This prevents lower wall or under-roof returns from becoming visible canopy. Canopy above roofs survives. The configurable building-clearance threshold is a processing tolerance, not a surveyed accuracy value. The raw vegetation DSM and building_occlusion mask preserve the evidence.
 - Smoothing and maxima operate on the same grid used by crown segmentation. Raw canopy support constrains the flood. No hydrology Fill or Flow Direction operation is used. Unseeded canopy stays unassigned and is reported.
 - Crown areas use exact cell counts. Small crowns are excluded from polygons but remain in trees_review with CROWN_TOO_SMALL status. Crown diameter is the diameter of a circle with equivalent area, not a measured canopy width.

@@ -4,6 +4,11 @@ This slice makes the independent-label step runnable before classification tunin
 It adds a blind CSV worksheet, strict import preview, transactional application,
 and before/after audit records. It does not create reference answers automatically.
 
+Before beginning this batch, follow [PLOT_CENSUS.md](PLOT_CENSUS.md)'s imagery/lidar
+corner alignment and class-hidden point-cloud cross-section procedure. The census
+and diagnostic cause sidecars supplement this fixed worksheet; its schema and
+original labels remain unchanged.
+
 The first batch contains 743 units selected by the existing seeded BATCH field:
 314 treetops, 153 omission-search points, 180 CHM-cell points, and 96 crown outlines.
 The complete reference remains 1,468 units. Round-up within strata means batch 1

@@ -6,6 +6,8 @@ those come from, tests the existing roof-edge correction at full-tile scale, and
 to improve the classification. All results remain **unvalidated estimates**; nothing here is a
 measured error rate, because there are no independent reference labels yet.
 
+Current integration and corrected evaluation scope are recorded in [INTEGRATION.md](INTEGRATION.md). The measurements below are the original exploratory snapshot.
+
 ## What ran
 
 | Tile | Location | prepare | run | Tree candidates | Crowns ≥ 3 m² |
@@ -146,15 +148,16 @@ Ranked by expected yield on this data and workstation, cheapest first.
    roofs then work, because each point only sees its own roof face. Overhanging canopy well above
    the roof stays vegetation. The candidate measurement above bounds the gain: up to about 5,900
    candidates across the three tiles. It would extend `roofs.py` with the same audit trail (new LAS
-   copies, saved previous class bytes, manifest). The 4 M cell guard must also be relaxed for 1 km
-   tiles.
+   copies, saved previous class bytes, manifest). Local face fitting needs a separate bounded support grid; the global 4 M cell
+   detection/crown guard must remain unchanged.
 2. **Reconcile lidar buildings against footprints** (Salt Lake County, current OSM from Overpass).
    This finds both directions of error:
    - buildings the lidar classifier missed, which are the source of roof-edge "trees";
    - lidar buildings with no footprint, which are either missing footprints or lidar false
      positives.
 
-   It also produces the reference labels every later step needs. This is the next task.
+   It produces rule-derived review/training hints, not independent scoring truth. The merged
+   commands are documented in BUILDINGS.md; independent labels use the fixed reference and plot census.
 3. **Shape gate for walls, poles and wires.** Wall-like and linear single-return points in
    class 4/5 that are not in a scattered neighbourhood can move to class 1. PDAL in Pro already
    provides the features, so no install is needed.

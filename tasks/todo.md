@@ -10,7 +10,7 @@
 - [x] Freeze prospective 3302 plus halo; separate Millcreek pilot/external/exploratory domains.
 - [x] Parameterize density/HAG experiment inputs and provenance; document paired/product scoring; inference deferred by user.
 - [x] Add four-band NAIP greenness review; synthetic tests and dated 250 m USGS pilot passed, no automatic class edits.
-- [ ] Run final integration suite, record evidence and commit completed slices.
+- [x] Final integration suite: 271 tests, one expected skip, 451.298 s; additional dated-WMS export passed; slices committed.
 
 Manual acquisition-matched review, independent tree census and any inference runs
 are prerequisites for new accuracy claims; implementation must not fabricate them.
