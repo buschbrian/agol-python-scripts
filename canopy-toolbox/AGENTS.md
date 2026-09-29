@@ -34,4 +34,5 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 
 From canopy-toolbox: python -m unittest discover -s tests -t . -v
 Use ArcGIS Pro Python to execute the ArcPy fixtures; plain Python skips them.
+Plain Python needs NumPy, SciPy and psutil for the ArcPy-free modules.
 Changes to geoprocessing need actual runtime verification and a representative pilot.
