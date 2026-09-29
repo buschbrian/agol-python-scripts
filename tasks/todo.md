@@ -9,7 +9,7 @@
 - [x] Add analytic stratified Taylor/t intervals with finite-population correction; retain bootstrap cross-checks and suppression rules.
 - [x] Freeze prospective 3302 plus halo; separate Millcreek pilot/external/exploratory domains.
 - [x] Parameterize density/HAG experiment inputs and provenance; document paired/product scoring; inference deferred by user.
-- [ ] Add the planned NAIP greenness review screen.
+- [x] Add four-band NAIP greenness review; synthetic tests and dated 250 m USGS pilot passed, no automatic class edits.
 - [ ] Run final integration suite, record evidence and commit completed slices.
 
 Manual acquisition-matched review, independent tree census and any inference runs
