@@ -20,6 +20,7 @@ def main(argv=None):
     prepare.add_argument("--extent",type=float,nargs=4,required=True,metavar=("XMIN","YMIN","XMAX","YMAX"))
     prepare.add_argument("--max-vegetation-height",type=float,default=80)
     prepare.add_argument("--classify-noise",action="store_true")
+    prepare.add_argument("--building-method",choices=("CONSERVATIVE","STANDARD","AGGRESSIVE"),default="STANDARD")
     prepare.add_argument("--roof-tolerance",type=float,default=3,help="Metres above detected roofs assigned building class; inspect tree overhangs")
     run=commands.add_parser("run",help="Build tiled CHM, then detect and segment one AOI (maximum 4 million cells)")
     run.add_argument("lasd");run.add_argument("output");run.add_argument("--extent",type=float,nargs=4,required=True)
@@ -29,6 +30,7 @@ def main(argv=None):
     run.add_argument("--source-files",nargs="+");run.add_argument("--source-id")
     run.add_argument("--building-clearance",type=float,default=.35,help="Measured building-above-vegetation separation for same-cell occlusion, in metres")
     run.add_argument("--resume",action="store_true");run.add_argument("--z-metres",action="store_true")
+    run.add_argument("--classified-background-zero",action="store_true",help="Declare class 0 to be model-classified non-canopy; never use for unclassified delivery points")
     refine=commands.add_parser("refine-roofs",help="Experimental roof-edge correction on NEW prepared LAS copies")
     refine.add_argument("lasd");refine.add_argument("output")
     refine.add_argument("--method",choices=("plane","local"),default="plane")
@@ -116,7 +118,8 @@ def main(argv=None):
         with licensing.extensions("3D","Spatial"):
             if args.command=="prepare":
                 result=preparation.prepare(args.folder,args.output,args.extent,
-                                           args.max_vegetation_height,args.classify_noise,roof_tolerance=args.roof_tolerance)
+                                           args.max_vegetation_height,args.classify_noise,roof_tolerance=args.roof_tolerance,
+                                           building_method=args.building_method)
             elif args.command=="refine-roofs":
                 from . import roofs
                 if args.method=="local":
@@ -139,7 +142,8 @@ def main(argv=None):
             else:
                 result=pipeline.run(args.lasd,args.output,args.extent,args.tile_size,args.overlap,args.cell_size,
                                     args.bands,args.smooth,args.min_crown_area,args.source_files,args.source_id,
-                                    args.resume,"metres" if args.z_metres else None,args.building_clearance)
+                                    args.resume,"metres" if args.z_metres else None,args.building_clearance,
+                                    args.classified_background_zero)
         print(json.dumps(result,indent=2))
 
 if __name__=="__main__":

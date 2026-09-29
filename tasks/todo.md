@@ -4,7 +4,7 @@
 - [x] Merge building/footprint commands and fixtures; write BUILDINGS.md (28 tests and new 250 m CLI pilot passed).
 - [x] Fix interior-face/eave roof estimates; 22 tests and residential copy pilot; ROOF_SURFACE.md.
 - [x] Consolidate LAS readers and roof context; pure and ArcGIS fixtures plus fresh 250 m pilot passed.
-- [ ] Port the four selected September 23 changes with actual ArcGIS verification.
+- [x] Port four selected September 23 changes; ArcGIS regressions, CHM pilot and CONSERVATIVE preparation passed.
 - [ ] Add independent plot census, object matching, causes and review QA instructions.
 - [ ] Add primary analytic intervals and retain bootstrap cross-checks.
 - [ ] Freeze spatial holdouts and Millcreek/external reporting domains.
