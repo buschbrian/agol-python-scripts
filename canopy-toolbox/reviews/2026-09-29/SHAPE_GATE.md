@@ -93,7 +93,9 @@ belong to `refine-roofs`. Sloped linear points are excluded because branches are
 Walls go to class 1, not class 6, because a vertical plane is not proof of a building.
 
 The output is a complete prepared dataset. Every input file is copied, so `canopy run` reads it
-exactly as it reads `refine-roofs` output. It has the same audit trail:
+exactly as it reads `refine-roofs` output. With `--extent`, points outside the gated extent are
+copied unchanged; `gate_extent` in the manifest records the part that was gated. The output has
+the same audit trail:
 
 - `changes/<file>.npz` holds point indices, previous and new class bytes, group, all features,
   neighbour count, own single return, both shares and the nearest building distance.
@@ -112,7 +114,8 @@ so every neighbour of every neighbour is present. Tests show that small blocks g
 single-pass result. The gated extent plus its halo is limited to 6,250,000 half-metre cells
 (a 1.25 km square), the same as the roof local grid. At most 40,000,000 non-ground points are
 loaded. An extent within 10.02 m of the prepared edge is flagged as `edge_effects_possible`.
-The default extent is the whole preparation, whose 50 m buffer keeps the tile itself clear of
+The flag refers to the prepared boundary, not the tile. It is therefore always set for the
+default extent, the whole preparation, although the 50 m buffer keeps the tile itself clear of
 edge effects. The whole-tile memory and runtime have not yet been measured.
 
 ## Pilot (12TVL2804, 250 m, 29 September)
