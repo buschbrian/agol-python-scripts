@@ -62,11 +62,14 @@ def run(lasd, run_folder, extent, tile_size=200, overlap=None, cell_size=.5,
     lasd=str(Path(lasd).resolve())
     root=Path(run_folder).resolve()
     prep_path=Path(lasd).parent/"preparation.json"
-    if source_files is None and prep_path.is_file():
+    if prep_path.is_file():
         prep=json.loads(prep_path.read_text(encoding="utf8"))
+        if prep.get("status") != "complete":
+            raise ValueError("Preparation is not complete; use a completed working-copy dataset")
         if Path(prep["working_lasd"]).resolve() != Path(lasd).resolve():
             raise ValueError("Preparation manifest does not match the supplied LAS dataset")
-        source_files=list((Path(lasd).parent/"points").glob("*.las"))
+        if source_files is None:
+            source_files=list((Path(lasd).parent/"points").glob("*.las"))
         source_id=source_id or prep.get("source_id")
     if not source_files:
         raise ValueError("Supply source_files for resume checks, or use a prepared working-copy LAS dataset")
@@ -90,6 +93,7 @@ def run(lasd, run_folder, extent, tile_size=200, overlap=None, cell_size=.5,
     else:
         root.mkdir(parents=True)
         state={"signature":signature,"parameters":parameters,"status":"running","tiles":{},
+               "input_lasd":lasd,"source_files":[str(Path(p).resolve()) for p in source_files],
                "runtime":common.runtime(),"analysis_cell_limit":min(crowns.MAX_CELLS,treetops.MAX_CELLS)}
         common.write_json(manifest_path,state)
     state["status"]="running"

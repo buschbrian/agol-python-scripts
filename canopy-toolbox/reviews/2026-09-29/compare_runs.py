@@ -7,6 +7,8 @@ Usage (Pro Python): python compare_runs.py BASE_RUN_DIR NEW_RUN_DIR REPORT.json
 import json
 from pathlib import Path
 import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from canopy.run_safeguards import fingerprint
 
 import arcpy
 import numpy as np
@@ -15,13 +17,21 @@ CANOPY_M = 2.0
 
 
 def outputs(run):
-    return json.loads((Path(run) / "run.json").read_text())["outputs"]
+    state = json.loads((Path(run) / "run.json").read_text())
+    if state.get("status") != "complete":
+        raise ValueError(f"Cannot compare incomplete run: {run}")
+    required = ("chm", "treetops", "crowns")
+    if any(not arcpy.Exists(state.get("outputs", {}).get(key, "")) for key in required):
+        raise ValueError(f"Completed run has missing outputs: {run}")
+    return state["outputs"]
 
 
 def chm(path):
     raster = arcpy.Raster(path)
     array = arcpy.RasterToNumPyArray(raster, nodata_to_value=np.nan).astype(np.float64)
-    return array, raster.meanCellWidth, (raster.extent.XMin, raster.extent.YMin)
+    grid = (raster.meanCellWidth, raster.meanCellHeight, raster.extent.XMin, raster.extent.YMin,
+            raster.spatialReference.exportToString())
+    return array, raster.meanCellWidth, grid
 
 
 def main(base, new, report):
@@ -35,6 +45,10 @@ def main(base, new, report):
     area = cell * cell
     result = {
         "base": str(Path(base).name), "new": str(Path(new).name), "cell_m": cell,
+        "base_run": str(Path(base).resolve()), "new_run": str(Path(new).resolve()),
+        "base_manifest": fingerprint(Path(base) / "run.json"),
+        "new_manifest": fingerprint(Path(new) / "run.json"),
+        "quality_status": "UNVALIDATED_CLASSIFICATION_COMPARISON",
         "canopy_threshold_m": CANOPY_M,
         "treetops": [int(arcpy.management.GetCount(r["treetops"])[0]) for r in (a, b)],
         "crowns": [int(arcpy.management.GetCount(r["crowns"])[0]) for r in (a, b)],

@@ -175,6 +175,25 @@ class ArcGISRegression(unittest.TestCase):
             pipeline.run(lasd,str(self.root/"too_large"),[500000,4500000,502001,4502001],
                          cell_size=1,source_files=[las])
 
+    def test_runner_rejects_incomplete_preparation_even_with_explicit_sources(self):
+        import json
+        from canopy import pipeline
+        from tests.las_fixture import write_las
+        # This class shares a workspace. Keep a deliberate failed manifest away
+        # from the runner inputs used by the other tests.
+        fixture_root = self.root / "incomplete_preparation"
+        fixture_root.mkdir()
+        las = fixture_root / "prepared_input.las"
+        write_las(str(las))
+        lasd = fixture_root / "prepared_input.lasd"
+        arcpy.management.CreateLasDataset(str(las), str(lasd), spatial_reference=self.sr)
+        (fixture_root / "preparation.json").write_text(json.dumps({
+            "status": "failed", "working_lasd": str(lasd)}))
+        with self.assertRaisesRegex(ValueError, "Preparation is not complete"):
+            pipeline.run(str(lasd), str(fixture_root / "must_not_run"),
+                         [500000, 4500000, 500010, 4500010], source_files=[str(las)])
+        self.assertFalse((fixture_root / "must_not_run").exists())
+
     def test_upper_building_surface_occludes_lower_vegetation_but_preserves_overhang(self):
         import struct
         from tests.las_fixture import write_las
