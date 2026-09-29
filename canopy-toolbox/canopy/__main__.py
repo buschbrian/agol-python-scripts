@@ -50,6 +50,24 @@ def main(argv=None):
     get.add_argument("manifest");get.add_argument("output")
     get.add_argument("--tiles",nargs="+",help="Only these tile names from the manifest")
     get.add_argument("--workers",type=int,default=4,help="Tiles downloaded at once, 1 to 8 (default 4)")
+    refs=commands.add_parser("fetch-footprints",help="Fetch reference building footprints for bounded extents (EPSG:6341)")
+    refs.add_argument("output")
+    refs.add_argument("--extent",type=float,nargs=4,action="append",required=True)
+    refs.add_argument("--name",action="append")
+    refs.add_argument("--buffer",type=float,default=50)
+    refs.add_argument("--osm-json",nargs=5,action="append",default=[],metavar=("PATH","S","W","N","E"))
+    refs.add_argument("--overpass",action="store_true")
+    recon=commands.add_parser("reconcile-buildings",help="Compare class-6 buildings with reference footprints; review screens, not truth")
+    recon.add_argument("lasd");recon.add_argument("output")
+    recon.add_argument("--extent",type=float,nargs=4,required=True)
+    recon.add_argument("--footprints",required=True);recon.add_argument("--coverage")
+    recon.add_argument("--trees");recon.add_argument("--tile")
+    try:
+        from .building_rules import DEFAULTS as thresholds
+    except ImportError:
+        thresholds={}
+    for key,value in thresholds.items():
+        recon.add_argument("--"+key.replace("_","-"),type=float,default=None,help=f"default {value}")
     args=parser.parse_args(argv)
     if args.command=="fetch":
         from . import fetch
@@ -57,6 +75,13 @@ def main(argv=None):
         except ValueError as e: parser.error(str(e))
         print(json.dumps(result,indent=2))
         if result["failed"]: raise SystemExit(1)
+        return
+    if args.command=="fetch-footprints":
+        from . import footprints
+        if args.name and len(args.name)!=len(args.extent): parser.error("Give one --name per --extent")
+        osm=[(row[0],[float(v) for v in row[1:]]) for row in args.osm_json]
+        result=footprints.fetch(args.output,args.extent,args.buffer,osm,args.overpass,args.name)
+        print(json.dumps({"reference":result["sources"],"coverage":result["coverage"]},indent=2,default=str))
         return
     from . import common,licensing,preparation,pipeline
     if args.command=="inventory":
@@ -82,6 +107,11 @@ def main(argv=None):
                 result=planning.build(args.lasd,args.output,args.extent,args.footprints,args.footprint_id,
                                       args.cell_size,args.neighborhood,args.tpi_radius,args.drainage_area,
                                       args.contour_interval,"metres" if args.z_metres else None)
+            elif args.command=="reconcile-buildings":
+                from . import building_rules,buildings
+                overrides={key:getattr(args,key) for key in building_rules.DEFAULTS}
+                result=buildings.reconcile(args.lasd,args.output,args.extent,args.footprints,args.coverage,
+                                          args.trees,args.tile,**overrides)
             else:
                 result=pipeline.run(args.lasd,args.output,args.extent,args.tile_size,args.overlap,args.cell_size,
                                     args.bands,args.smooth,args.min_crown_area,args.source_files,args.source_id,

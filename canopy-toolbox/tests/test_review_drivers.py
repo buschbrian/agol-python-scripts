@@ -79,6 +79,11 @@ class InferenceDriver(unittest.TestCase):
 
 
 class Imports(unittest.TestCase):
+    def test_buildings_import_performs_no_data_processing(self):
+        with patch('subprocess.Popen', side_effect=AssertionError('must not run on import')):
+            module = load_driver('buildings_driver')
+        self.assertTrue(callable(module.main))
+
     def test_pilot_import_performs_no_data_processing(self):
         with patch('subprocess.Popen', side_effect=AssertionError('must not run on import')):
             module = load_driver('pilot_driver')
