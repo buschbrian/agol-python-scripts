@@ -4,8 +4,12 @@ Use the configured ArcGIS Pro deep-learning environment. This driver does not
 change Pro's environment. Failed runs are recorded and never count as evidence.
 """
 import argparse
+import importlib.metadata
+import importlib.util
 import json
+import os
 from pathlib import Path
+import site
 import subprocess
 import sys
 import threading
@@ -18,6 +22,53 @@ ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning
 MODELS = Path(r"H:\lidar\models")
 SOURCE = ROOT.parents[1] / "12TVL2804" / "prepared" / "points" / "12TVL2804.las"
 JOBS = {"building": ("building_point_classification.dlpk", 6), "tree": ("Tree_point_classification.dlpk", 5)}
+PACKAGES = ('torch', 'arcgis', 'numpy', 'scipy')
+
+
+def _under(path, prefix):
+    try:
+        return Path(path).resolve().is_relative_to(Path(prefix).resolve())
+    except (OSError, TypeError, ValueError):
+        return False
+
+
+def runtime_isolation(allow_user_site=False):
+    """Record whether per-user site-packages could shadow the environment's own packages.
+
+    Pro's Python 3.13 environments read the per-user Python313 site-packages under
+    APPDATA unless PYTHONNOUSERSITE is set; a stray numpy there replaced the clone's own.
+    """
+    return {"PYTHONNOUSERSITE": os.environ.get('PYTHONNOUSERSITE'),
+            "site_ENABLE_USER_SITE": bool(site.ENABLE_USER_SITE),
+            "user_site": site.getusersitepackages() if site.ENABLE_USER_SITE else None,
+            "sys_prefix": sys.prefix, "allow_user_site_override": bool(allow_user_site),
+            "scope": "calling interpreter; the tool's own worker processes are not inspected"}
+
+
+def package_provenance(names=PACKAGES):
+    """Version and file location of each package without importing it here."""
+    result = {}
+    for name in names:
+        entry = {"version": None, "module_version": None, "file": None, "loaded": name in sys.modules,
+                 "distribution_location": None}
+        try:
+            entry['version'] = importlib.metadata.version(name)
+            entry['distribution_location'] = str(importlib.metadata.distribution(name).locate_file(''))
+        except importlib.metadata.PackageNotFoundError:
+            pass
+        module = sys.modules.get(name)
+        if module is not None:
+            entry['file'] = getattr(module, '__file__', None)
+            entry['module_version'] = getattr(module, '__version__', None)
+        else:
+            try:
+                spec = importlib.util.find_spec(name)
+            except (ImportError, ValueError):
+                spec = None
+            entry['file'] = spec.origin if spec is not None else None
+        entry['under_sys_prefix'] = _under(entry['file'], sys.prefix) if entry['file'] else None
+        result[name] = entry
+    return result
 
 
 def main():
@@ -30,7 +81,14 @@ def main():
     parser.add_argument('--copy',type=Path,help='Exact copy under OUTPUT_ROOT/JOB; defaults to 12TVL2804.las')
     parser.add_argument('--output-root',type=Path,default=ROOT,help='Dedicated experiment root containing JOB/SOURCE_NAME')
     parser.add_argument('--reference-height',type=Path,help='Ground elevation raster for the paired HAG experiment')
+    parser.add_argument('--allow-user-site', action='store_true',
+                        help='Run even though per-user site-packages are enabled (recorded in the manifest)')
     args = parser.parse_args()
+    isolation = runtime_isolation(args.allow_user_site)
+    if isolation['site_ENABLE_USER_SITE'] and not args.allow_user_site:
+        # Refuse before any manifest is written, so an earlier record is preserved.
+        parser.error(f"per-user site-packages are enabled ({isolation['user_site']}) and may shadow this "
+                     "environment's numpy/scipy; set PYTHONNOUSERSITE=1 or pass --allow-user-site")
     extent = valid_extent(args.boundary)
     if args.batch < 1:
         parser.error("--batch must be positive")
@@ -47,7 +105,7 @@ def main():
             "started_utc": time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
             "class_mode": args.mode, "output_classes": [0, target], "excluded_class_codes": [7, 18],
             "boundary": extent, "boundary_inclusion": "inclusive rectangle", "epsg": 6341,
-            "batch_size": args.batch, "python": sys.executable}
+            "batch_size": args.batch, "python": sys.executable, "runtime_isolation": isolation}
 
     def save():
         temp = manifest.with_suffix('.json.tmp')
@@ -81,13 +139,8 @@ def main():
         import arcpy as runtime
         arcpy = runtime
         info['arcgis'] = arcpy.GetInstallInfo()
-        import importlib.metadata
-        info['packages'] = {}
-        for package in ('torch', 'arcgis', 'numpy', 'scipy'):
-            try:
-                info['packages'][package] = importlib.metadata.version(package)
-            except importlib.metadata.PackageNotFoundError:
-                info['packages'][package] = None
+        info['package_provenance'] = package_provenance()
+        info['packages'] = {name: entry['version'] for name, entry in info['package_provenance'].items()}
         checkout = arcpy.CheckOutExtension('3D')
         checked_out = checkout == 'CheckedOut'
         if not checked_out:
@@ -127,6 +180,7 @@ def main():
         stop.set()
         if thread:
             thread.join(timeout=12)
+        info['package_provenance_after'] = package_provenance()
         info.update(elapsed_seconds=round(time.monotonic()-started, 1),
                     gpu_used_mib_first_sample=samples[0] if samples else None,
                     gpu_used_mib_peak=max(samples, default=None))

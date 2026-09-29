@@ -37,8 +37,9 @@ class InferenceDriver(unittest.TestCase):
         self.runtime.GetMessages.return_value = 'fixture messages'
         self.runtime.CheckOutExtension.return_value = 'CheckedOut'
 
-    def execute(self):
-        with patch.dict('sys.modules', {'arcpy': self.runtime}), patch('sys.argv', ['dl_run.py', 'tree']), \
+    def execute(self, *extra, user_site=False):
+        with patch.dict('sys.modules', {'arcpy': self.runtime}), patch('sys.argv', ['dl_run.py', 'tree', *extra]), \
+             patch.object(self.driver.site, 'ENABLE_USER_SITE', user_site), \
              patch.object(self.driver.subprocess, 'run', side_effect=OSError('no GPU fixture')), patch('builtins.print'):
             self.driver.main()
 
@@ -70,6 +71,42 @@ class InferenceDriver(unittest.TestCase):
             self.execute()
         self.assertEqual((self.driver.ROOT / 'work' / 'run-tree.json').read_bytes(), old)
 
+    def test_enabled_user_site_is_refused_before_any_record_or_tool_call(self):
+        self.execute()
+        old = (self.driver.ROOT / 'work' / 'run-tree.json').read_bytes()
+        self.runtime.reset_mock()
+        with patch('sys.stderr'), self.assertRaises(SystemExit):
+            self.execute(user_site=True)
+        self.assertEqual((self.driver.ROOT / 'work' / 'run-tree.json').read_bytes(), old)
+        self.runtime.ddd.ClassifyPointCloudUsingTrainedModel.assert_not_called()
+        self.runtime.management.CreateLasDataset.assert_not_called()
+
+    def test_user_site_override_is_explicit_and_recorded(self):
+        self.execute('--allow-user-site', user_site=True)
+        isolation = self.manifest()['runtime_isolation']
+        self.assertTrue(isolation['site_ENABLE_USER_SITE'])
+        self.assertTrue(isolation['allow_user_site_override'])
+        self.assertEqual(self.manifest()['status'], 'complete')
+
+    def test_isolation_and_package_locations_are_recorded(self):
+        import numpy  # loaded modules report their actual file and version
+        with patch.dict('os.environ', {'PYTHONNOUSERSITE': '1'}):
+            self.execute()
+        record = self.manifest()
+        self.assertEqual(record['runtime_isolation']['PYTHONNOUSERSITE'], '1')
+        self.assertFalse(record['runtime_isolation']['site_ENABLE_USER_SITE'])
+        self.assertFalse(record['runtime_isolation']['allow_user_site_override'])
+        for key in ('package_provenance', 'package_provenance_after'):
+            entry = record[key]['numpy']
+            self.assertEqual(Path(entry['file']), Path(numpy.__file__))
+            self.assertEqual(entry['module_version'], numpy.__version__)
+            self.assertIn('under_sys_prefix', entry)
+        self.assertEqual(record['packages']['numpy'], record['package_provenance']['numpy']['version'])
+
+    def test_absent_packages_are_recorded_without_import(self):
+        entry = self.driver.package_provenance(('canopy_absent_fixture_package',))['canopy_absent_fixture_package']
+        self.assertEqual((entry['version'], entry['file'], entry['under_sys_prefix']), (None, None, None))
+
     def test_setup_failure_also_records_failed_attempt(self):
         self.runtime.management.CreateLasDataset.side_effect = RuntimeError('dataset failed')
         with self.assertRaisesRegex(RuntimeError, 'dataset failed'):
@@ -86,7 +123,8 @@ class InferenceDriver(unittest.TestCase):
         runtime=self.runtime
         runtime.ddd.ClassifyPointCloudUsingTrainedModel.side_effect=RuntimeError('mock stop')
         argv=['dl_run.py','building','--source',str(source),'--copy',str(copy),'--output-root',str(root),'--reference-height',str(height)]
-        with patch.dict('sys.modules',{'arcpy':runtime}),patch('sys.argv',argv),patch('builtins.print'):
+        with patch.dict('sys.modules',{'arcpy':runtime}),patch('sys.argv',argv),patch('builtins.print'),\
+             patch.object(self.driver.site,'ENABLE_USER_SITE',False):
             with self.assertRaisesRegex(RuntimeError,'mock stop'):self.driver.main()
         manifest=json.loads((root/'work'/'run-building.json').read_text())
         self.assertEqual(manifest['source']['path'],str(source.resolve()))
