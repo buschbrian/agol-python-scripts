@@ -704,7 +704,8 @@ def score(gdb, runs, out_folder, replicates=2000, seed=0):
         entry = {"folders": {t: str(f) for t, f in run["folders"].items()}, "skipped": skipped,
                  "run_manifests": {t: fingerprint(Path(run["folders"][t]) / "run.json") for t in tiles},
                  "scopes": {}}
-        scopes = [(t, [t]) for t in tiles] + ([("ALL", tiles)] if len(tiles) > 1 else [])
+        from .evaluation_design import scopes as reporting_scopes
+        scopes = reporting_scopes(tiles)
         for scope, members in scopes:
             result = score_units(tile_units, info, design, members, replicates, seed)
             entry["scopes"][scope] = result

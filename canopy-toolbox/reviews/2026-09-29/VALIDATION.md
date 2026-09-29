@@ -88,3 +88,7 @@ All updates affect review fields only and share one ArcGIS edit transaction.
 Each application archives the submitted CSV plus before/after values and status.
 A runtime failure rolls the edits back. Scoring remains a separate command after
 labels are applied, so the evaluator cannot manufacture reference answers.
+
+## Independent census and domains
+
+The candidate/cell/crown reference remains fixed. [PLOT_CENSUS.md](PLOT_CENSUS.md) adds twelve independent 30 m plots, class-hidden point-cloud review, imagery/lidar alignment prerequisites, diagnostic cause tables and the prospective training exclusion. Reports now separate MILLCREEK_PILOT_TILES, EXTERNAL_TRANSFER and EXPLORATORY_COMBINED; 12TVL2203 never enters the Millcreek scope. Batch 1 remains blank pending independent human review.

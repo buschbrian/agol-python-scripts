@@ -5,9 +5,9 @@
 - [x] Fix interior-face/eave roof estimates; 22 tests and residential copy pilot; ROOF_SURFACE.md.
 - [x] Consolidate LAS readers and roof context; pure and ArcGIS fixtures plus fresh 250 m pilot passed.
 - [x] Port four selected September 23 changes; ArcGIS regressions, CHM pilot and CONSERVATIVE preparation passed.
-- [ ] Add independent plot census, object matching, causes and review QA instructions.
+- [x] Add blind 12-plot census, one-to-one object scoring, cause sidecars and review QA; manual census/labels pending.
 - [x] Add analytic stratified Taylor/t intervals with finite-population correction; retain bootstrap cross-checks and suppression rules.
-- [ ] Freeze spatial holdouts and Millcreek/external reporting domains.
+- [x] Freeze prospective 3302 plus halo; separate Millcreek pilot/external/exploratory domains.
 - [ ] Document density/HAG experiments and model-to-pipeline scoring; inference deferred.
 - [ ] Add the planned NAIP greenness review screen.
 - [ ] Run final integration suite, record evidence and commit completed slices.
