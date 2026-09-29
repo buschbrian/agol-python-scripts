@@ -217,8 +217,12 @@ adjudicates using the August 2023 Nearmap chips.
 - No numbers here are error rates. "At roof height, next to a building" is a strong suspect
   signal, not a label; a tree whose top is level with the eaves would be counted too.
 - Only 12TVL2804 was refined; the other two tiles have the baseline classification.
-- Footprint currency relative to the 2023 lidar is not yet checked.
-- Nearmap imagery is used only as a human visual reference for the lidar work. Nearmap's
-  published product terms restrict machine-learning processing of the imagery and its use as
-  training data without an added product. Any automated use, such as deriving labels from the
-  pixels, needs the City's agreement text or Nearmap's written answer first.
+- Footprint capture dates are unknowable from the sources: the county layer carries almost
+  no metadata and OSM timestamps are last edits. Footprint agreement with the 2023 lidar is a
+  review hint; the two independent sources are compared side by side, and building heights
+  come from the lidar rather than the county attributes (decided September 29).
+- Nearmap is not used for now (September 29). Visual review uses Esri World Imagery under
+  the existing ArcGIS licensing; see PLOT_CENSUS.md for per-plot capture dates and alignment.
+  If Nearmap returns, its published terms restrict machine-learning processing and training
+  use without an added product, so any automated use needs the City's agreement text or
+  Nearmap's written answer first.

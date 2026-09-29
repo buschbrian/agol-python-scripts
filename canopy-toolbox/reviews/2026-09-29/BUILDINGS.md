@@ -37,9 +37,12 @@ height-value mismatches:
 
 Thus the missing heights are upstream attribute gaps, not dropped values in the
 reconciliation. The field is nullable in the [county layer definition](https://services1.arcgis.com/DJP723NX3ukQ2LtF/ArcGIS/rest/services/SLCo_BuildingFootprints/FeatureServer/0).
-The available metadata does not establish why only those buildings were enriched;
-that provenance question remains open with the publisher. Spatial service units
-do not establish the height field's units.
+The available metadata does not establish why only those buildings were enriched,
+and spatial service units do not establish the height field's units. Decision
+(September 29): the county footprints are expected to carry almost no metadata,
+so lidar-derived roof heights are the building-height source and BLDGHEIGHT is
+only an occasional cross-check. Footprint capture dates are unknown. OSM is kept
+alongside as a second source, and footprint/lidar disagreement is a review hint.
 
 For 74 pairs with usable class-6 maximum heights on 12TVL2804, the **median**
 LiDAR/BLDGHEIGHT ratio is 0.9631, median difference −0.3091 m, and median absolute

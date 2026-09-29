@@ -47,6 +47,14 @@ the tile's recorded November swath dates. Verify photo date at the location rath
 than assuming a combined/latest WMS response has one date. The dated helper can
 export an exact survey layer; its response still needs visible coverage review.
 
+Imagery source (decided September 29): use Esri World Imagery, available under the
+existing ArcGIS licensing, for visual review. Nearmap is not used for now.
+World Imagery mixes captures, so read the capture date at each plot from its
+citation/metadata layer (or World Imagery Wayback) and record it. Being a
+licensed basemap does not make it registered to the USGS lidar; the four-corner
+alignment check above still applies. It is RGB only; the greenness screen keeps
+using four-band USGS NAIP.
+
 Only mark COMPLETE=YES after every tree has been reviewed, POINTCLOUD_REVIEW=YES,
 ALIGNMENT_QA=PASS, reviewer/date and imagery date are recorded. Empty completed
 plots are valid; blank reviews are not zero-tree observations.
