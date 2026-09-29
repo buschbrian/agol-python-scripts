@@ -26,16 +26,21 @@ def main():
     parser.add_argument("--boundary", nargs=4, type=float)
     parser.add_argument("--batch", type=int, default=1)
     parser.add_argument("--mode", choices=["EDIT_ALL"], default="EDIT_ALL")
+    parser.add_argument('--source',type=Path,default=SOURCE,help='Unchanged baseline for this density experiment')
+    parser.add_argument('--copy',type=Path,help='Exact copy under OUTPUT_ROOT/JOB; defaults to 12TVL2804.las')
+    parser.add_argument('--output-root',type=Path,default=ROOT,help='Dedicated experiment root containing JOB/SOURCE_NAME')
+    parser.add_argument('--reference-height',type=Path,help='Ground elevation raster for the paired HAG experiment')
     args = parser.parse_args()
     extent = valid_extent(args.boundary)
     if args.batch < 1:
         parser.error("--batch must be positive")
-    las = (ROOT / args.job / "12TVL2804.las").resolve()
-    if ROOT.resolve() not in las.parents or las.parent.name != args.job or las == SOURCE.resolve():
+    source=args.source.resolve(); root=args.output_root.resolve()
+    las = (args.copy or root / args.job / '12TVL2804.las').resolve()
+    if root not in las.parents or las.parent.name != args.job or las == source:
         raise ValueError("Inference must operate on the dedicated copy")
     model_name, target = JOBS[args.job]
     model = MODELS / model_name
-    work = ROOT / "work"
+    work = root / "work"
     work.mkdir(exist_ok=True)
     manifest = work / f"run-{args.job}.json"
     info = {"schema_version": 1, "status": "running", "job": args.job,
@@ -66,7 +71,9 @@ def main():
     checked_out = False
     started = time.monotonic()
     # Preserve earlier success if the caller tries to reuse already-classified input.
-    info.update(source=fingerprint(SOURCE), input=fingerprint(las), model=fingerprint(model))
+    info.update(source=fingerprint(source), input=fingerprint(las), model=fingerprint(model))
+    if args.reference_height:
+        info['reference_height']=fingerprint(args.reference_height)
     if any(info['source'][k] != info['input'][k] for k in ('sha256', 'bytes')):
         raise ValueError("Inference copy differs from baseline; restore a fresh copy before rerunning")
     save()
@@ -94,6 +101,8 @@ def main():
         kwargs = dict(in_point_cloud=str(lasd), in_trained_model=str(model), output_classes=[0, target],
             in_class_mode=args.mode, compute_stats='COMPUTE_STATS', update_pyramid='UPDATE_PYRAMID',
             excluded_class_codes=[7, 18], batch_size=args.batch)
+        if args.reference_height:
+            kwargs['reference_height']=str(args.reference_height.resolve())
         if extent:
             x0, y0, x1, y1 = extent
             polygon = arcpy.Polygon(arcpy.Array([arcpy.Point(*p) for p in
@@ -105,7 +114,9 @@ def main():
         thread.start()
         arcpy.ddd.ClassifyPointCloudUsingTrainedModel(**kwargs)
         info['output'] = fingerprint(las)
-        for path, key in ((SOURCE, 'source'), (model, 'model')):
+        protected=[(source,'source'),(model,'model')]
+        if args.reference_height: protected.append((args.reference_height,'reference_height'))
+        for path, key in protected:
             if fingerprint(path) != info[key]:
                 raise RuntimeError(f"{key} changed while inference ran")
         info['status'] = 'complete'

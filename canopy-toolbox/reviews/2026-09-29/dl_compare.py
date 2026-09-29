@@ -96,17 +96,28 @@ def summarize(table, positive):
 
 
 def main():
-    from canopy.roofs import _records
-    from canopy.preparation import header
+    from canopy.las_records import header, records
+    def _records(path,mode): return records(path,mode)[:4]
     ap = argparse.ArgumentParser()
     ap.add_argument("--extent", nargs=4, type=float, metavar=("XMIN", "YMIN", "XMAX", "YMAX"))
     ap.add_argument("--out", default=str(Path(__file__).with_name("dl-12TVL2804.json")))
+    ap.add_argument('--original',type=Path,default=ORIGINAL)
+    ap.add_argument('--manifest',action='append',help='JOB=manifest path; select paired or individual experiment jobs')
     args = ap.parse_args()
     valid_extent(args.extent)
 
-    original_info = header(ORIGINAL)
-    original, scale, offset, modern = _records(ORIGINAL, "r")
-    result = {"original": str(ORIGINAL), "points": int(len(original)), "extent": args.extent}
+    original_path=args.original
+    manifests={name:ROOT/'work'/f'run-{name}.json' for name in COPIES}
+    copies=dict(COPIES)
+    if args.manifest:
+        pairs=[p.split('=',1) for p in args.manifest]
+        if any(len(p)!=2 or p[0] not in ('tree','building') for p in pairs) or len({p[0] for p in pairs})!=len(pairs):
+            ap.error('Use one tree=manifest and/or building=manifest mapping')
+        manifests={name:Path(path) for name,path in pairs}
+        copies={name:None for name in manifests}
+    original_info = header(original_path)
+    original, scale, offset, modern = _records(original_path, "r")
+    result = {"original": str(original_path), "points": int(len(original)), "extent": args.extent}
 
     def extent_mask(bounds):
         if bounds is None:
@@ -117,12 +128,15 @@ def main():
             return (x >= bounds[0]) & (x <= bounds[2]) & (y >= bounds[1]) & (y <= bounds[3])
         return inside
 
-    for name, path in COPIES.items():
+    for name, path in copies.items():
         entry = {"path": str(path), "status": "rejected"}
-        manifest_path = ROOT / "work" / f"run-{name}.json"
+        manifest_path = manifests[name]
         try:
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-            extent = prediction_extent(manifest, name, ORIGINAL, path, args.extent)
+            if path is None:
+                path=Path(manifest.get('output',{}).get('path',''))
+                entry['path']=str(path)
+            extent = prediction_extent(manifest, name, original_path, path, args.extent)
             processed = valid_extent(manifest.get('boundary'))
         except (OSError, ValueError, KeyError) as exc:
             entry["error"] = f"Inference provenance rejected: {exc}"
@@ -170,7 +184,7 @@ def main():
         key["our_6_called_tree_by_tree_model"] = {"tree": int(c6.get(5, 0)), "of": sum(c6.values())}
     result["key_numbers"] = key
     result["status"] = "verified_inference" if all(result[n].get("status") == "verified_inference"
-                                                  for n in COPIES) else "rejected_or_partial"
+                                                  for n in copies) else "rejected_or_partial"
     result["interpretation"] = "Class disagreement with pretrained models; not independently labelled accuracy."
 
     Path(args.out).write_text(json.dumps(result, indent=1))

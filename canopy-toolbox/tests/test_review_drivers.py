@@ -78,6 +78,23 @@ class InferenceDriver(unittest.TestCase):
         self.runtime.ddd.ClassifyPointCloudUsingTrainedModel.assert_not_called()
 
 
+    def test_custom_density_and_hag_inputs_are_recorded_without_real_inference(self):
+        source=self.root/'thin.las';source.write_bytes(b'thinned fixture')
+        root=self.root/'experiment';copy=root/'building'/'thin.las';copy.parent.mkdir(parents=True);copy.write_bytes(source.read_bytes())
+        height=self.root/'height.tif';height.write_bytes(b'ground fixture')
+        (self.driver.MODELS/'building_point_classification.dlpk').write_bytes(b'building model')
+        runtime=self.runtime
+        runtime.ddd.ClassifyPointCloudUsingTrainedModel.side_effect=RuntimeError('mock stop')
+        argv=['dl_run.py','building','--source',str(source),'--copy',str(copy),'--output-root',str(root),'--reference-height',str(height)]
+        with patch.dict('sys.modules',{'arcpy':runtime}),patch('sys.argv',argv),patch('builtins.print'):
+            with self.assertRaisesRegex(RuntimeError,'mock stop'):self.driver.main()
+        manifest=json.loads((root/'work'/'run-building.json').read_text())
+        self.assertEqual(manifest['source']['path'],str(source.resolve()))
+        self.assertEqual(manifest['reference_height']['path'],str(height.resolve()))
+        self.assertEqual(runtime.ddd.ClassifyPointCloudUsingTrainedModel.call_args.kwargs['reference_height'],str(height.resolve()))
+        self.assertEqual(manifest['status'],'failed')
+
+
 class Imports(unittest.TestCase):
     def test_buildings_import_performs_no_data_processing(self):
         with patch('subprocess.Popen', side_effect=AssertionError('must not run on import')):

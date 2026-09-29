@@ -92,27 +92,14 @@ value by other means. I also did not substitute a different inference path (for 
 arcgis.learn), because it would not be the tool that was asked for and the results would need separate
 validation against it.
 
-## To finish (needs the user's decision)
+## Current decision: keep the environment, defer inference
 
-1. `proswap -p "%LOCALAPPDATA%\ESRI\conda\envs\arcgispro-py3-dl"` in Pro's Python Command Prompt (per-user, no
-   elevation). Note that this changes the runtime the canopy toolbox records; swap back afterwards with
-   `proswap arcgispro-py3`. Close Pro first.
-2. From the clone: `python dl_run.py building` and `python dl_run.py tree` in this folder. Batch size defaults to
-   1 for 6 GB; the script samples `nvidia-smi` memory and writes timing to `work\run-<job>.json`. Use
-   `--boundary 428250 4504250 428750 4504750` for a 500 m x 500 m area if the full tile is too slow or runs out of
-   memory. Untested: full-tile runtime and whether 6 GB is enough.
-3. `python dl_compare.py` applies the successful run's processing boundary automatically. An optional
-   `--extent ...` must fit inside that boundary. It requires a complete inference manifest and checks SHA-256
-   fingerprints of the baseline, prediction and model, the exact initial copy, point counts, scale, offsets,
-   point order and binary class semantics before producing comparison tables. Unprocessed copies now fail
-   with exit code 1 and no prediction headline. The earlier identity self-test is not inference evidence.
-
-Open point for step 2: the script passes `output_classes` [0, target] with `EDIT_ALL`, so background predictions
-should be written as 0 and the copy holds the pure model output. If the tool instead leaves background points at
-their original codes, our class 6 and class 5 points called background by the model cannot be counted from
-that copy. The comparator now rejects unexpected processed classes or modified excluded noise classes.
-Any alternative normalization or classification-preservation strategy needs its own recorded input semantics
-and comparator support; the current runner requires an exact baseline copy before inference.
+The user chose to keep the current Pro environment on September 29. No `proswap`,
+registry environment edit, package installation or inference run is authorized for
+this slice. The existing copies are still not successful model outputs. See
+[the queued experiments](MODEL_EXPERIMENTS.md) for density/HAG controls and product
+scoring requirements. Model availability and the installed clone are preparation
+facts, not evidence that inference completed.
 
 ### Point-record integrity gate
 

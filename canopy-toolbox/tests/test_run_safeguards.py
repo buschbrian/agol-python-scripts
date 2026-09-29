@@ -47,6 +47,13 @@ class Safeguards(unittest.TestCase):
             with self.assertRaises(ValueError):
                 guards.prediction_extent({**self.manifest, **override}, 'tree', self.original, self.output)
 
+    def test_hag_surface_is_part_of_inference_provenance(self):
+        surface=self.root/'ground.tif';surface.write_bytes(b'ground')
+        self.manifest['reference_height']=guards.fingerprint(surface)
+        self.assertEqual(guards.prediction_extent(self.manifest,'tree',self.original,self.output),[0,0,10,10])
+        surface.write_bytes(b'different ground')
+        with self.assertRaises(ValueError): guards.prediction_extent(self.manifest,'tree',self.original,self.output)
+
     def test_invalid_extent_is_rejected(self):
         for extent in ([0, 0, 0, 1], [0, 0, 1], [0, 0, float('nan'), 1]):
             with self.assertRaises(ValueError):

@@ -8,7 +8,7 @@
 - [x] Add blind 12-plot census, one-to-one object scoring, cause sidecars and review QA; manual census/labels pending.
 - [x] Add analytic stratified Taylor/t intervals with finite-population correction; retain bootstrap cross-checks and suppression rules.
 - [x] Freeze prospective 3302 plus halo; separate Millcreek pilot/external/exploratory domains.
-- [ ] Document density/HAG experiments and model-to-pipeline scoring; inference deferred.
+- [x] Parameterize density/HAG experiment inputs and provenance; document paired/product scoring; inference deferred by user.
 - [ ] Add the planned NAIP greenness review screen.
 - [ ] Run final integration suite, record evidence and commit completed slices.
 

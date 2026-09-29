@@ -43,6 +43,8 @@ def prediction_extent(manifest, job, original, prediction, requested=None):
     verify_fingerprint(manifest.get("source", {}), original)
     verify_fingerprint(manifest.get("output", {}), prediction)
     verify_fingerprint(manifest.get("model", {}), manifest.get("model", {}).get("path", ""))
+    if 'reference_height' in manifest:
+        verify_fingerprint(manifest['reference_height'],manifest['reference_height'].get('path',''))
     source, before = manifest["source"], manifest.get("input", {})
     if any(source.get(k) != before.get(k) for k in ("bytes", "sha256")):
         raise ValueError("Inference did not begin from an exact copy of the baseline")
