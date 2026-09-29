@@ -130,4 +130,8 @@ The output includes roof_review.gdb/roof_outlines, roof and ground rasters, prep
 
 ROOF_Z_M is median measured roof elevation; ROOF_H_M is median roof elevation minus the interpolated ground surface; FIT_RMSE_M is the plane-fit residual, not elevation accuracy. MODEL_OK and PARTIAL_AOI identify rejected fits and outlines truncated by the analysis boundary. These rasterized roof-support outlines are unverified and should not be described as surveyed building-wall footprints.
 
+## Optional shape gate for walls, poles and wires
+
+`python -m canopy shape-gate prepared.lasd NEW_FOLDER [--extent ...]` writes review LAS copies in which class 3/4/5 points carry shape-group codes 64–71, plus per-point eigen features. It needs no ArcPy. `--apply` writes a new prepared dataset in which only a prespecified, conservative wall/wire/pole rule moves points to class 1, with the refine-roofs audit trail. On the first pilot the rule changed no points, and it is unvalidated. See [SHAPE_GATE.md](reviews/2026-09-29/SHAPE_GATE.md); its codes are review evidence, never scoring truth.
+
 The user-supplied OSM layer was checked for the pilot plus a 30 m border and returned no intersecting footprints. It remains useful reference data where it has coverage; it is not used as a blanket canopy exclusion.

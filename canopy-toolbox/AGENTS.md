@@ -10,6 +10,7 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 - Binary LAS layouts/masks: canopy/las_records.py; physical roof bands: canopy/roof_context.py (both ArcPy-free).
 - CHM and support: canopy/rasters.py.
 - Optional roof-edge refinement and derived roof outlines: canopy/roofs.py.
+- Wall/pole/wire shape evidence and opt-in class-1 gate: canopy/shape_gate.py (ArcPy-free); reviews/2026-09-29/SHAPE_GATE.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.
 - Cover accounting: canopy/cover.py.
