@@ -13,14 +13,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import shutil
-import struct
 import time
 
 import arcpy
 import numpy as np
 from scipy import ndimage
 
-from . import common, preparation, rasters, roof_surface
+from . import las_records, common, preparation, rasters, roof_surface
 from .tiling import Extent, snap_extent
 
 # Plane mode: ArcGIS roof/ground rasters and a distance transform over the review AOI.
@@ -34,27 +33,7 @@ LOCAL_MAX_CELLS = 6_250_000
 
 
 def _records(path, mode="r"):
-    info = preparation.header(path)
-    fmt = info["format"]
-    if not 0 <= fmt <= 10:
-        raise ValueError("Unsupported LAS point format")
-    modern = fmt >= 6
-    with open(path, "rb") as handle:
-        head = handle.read(227)
-    scale = np.array(struct.unpack_from("<3d", head, 131))
-    offset = np.array(struct.unpack_from("<3d", head, 155))
-    if not np.isfinite(scale).all() or not (scale > 0).all() or not np.isfinite(offset).all():
-        raise ValueError("LAS scales and offsets must be finite; scales must be positive")
-    if info["offset"] + info["points"]*info["record_length"] > Path(path).stat().st_size:
-        raise ValueError("Truncated LAS point records")
-    dtype = np.dtype({
-        "names": ["x", "y", "z", "returns", "flags", "classification"],
-        "formats": ["<i4", "<i4", "<i4", "u1", "u1", "u1"],
-        "offsets": [0, 4, 8, 14, 15, 16 if modern else 15],
-        "itemsize": info["record_length"],
-    })
-    points = np.memmap(path, dtype=dtype, offset=info["offset"], shape=(info["points"],), mode=mode)
-    return points, scale, offset, modern
+    return las_records.records(path, mode)[:4]
 
 
 def _models(roof, ground, cell, xmin, ymax, min_area):

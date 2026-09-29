@@ -57,16 +57,7 @@ def check_parameters(radius, neighbors, min_neighbors, min_votes, below, above, 
         raise ValueError("Use 1 <= minimum votes <= neighbours")
 
 
-def return_masks(return_byte, modern):
-    """First-or-single and single-return masks from the LAS return byte (offset 14)."""
-    number = return_byte & (15 if modern else 7)
-    count = (return_byte >> 4) if modern else ((return_byte >> 3) & 7)
-    return number == 1, (number == 1) & (count <= 1)
-
-
-def clean_flags(flag_byte, modern):
-    """True where the point is not synthetic, withheld or overlap (same gate as the plane mode)."""
-    return (flag_byte & (13 if modern else 160)) == 0
+from .las_records import return_masks, clean_flags
 
 
 def build_tree(support):

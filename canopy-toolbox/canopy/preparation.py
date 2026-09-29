@@ -6,7 +6,6 @@ import json
 import math
 import os
 from pathlib import Path
-import struct
 
 import arcpy
 import numpy as np
@@ -14,72 +13,7 @@ import numpy as np
 from . import common, rasters
 
 
-def header(path):
-    path = Path(path)
-    with path.open("rb") as handle:
-        data = handle.read(375)
-        if data[:4] != b"LASF":
-            raise ValueError(f"Not a LAS file: {path}")
-        major, minor = data[24], data[25]
-        fmt = data[104] & 63
-        if data[104] & 128:
-            raise ValueError("Compressed LAS needs extraction before direct point inspection")
-        count = struct.unpack_from("<I", data, 107)[0]
-        if (major, minor) >= (1, 4):
-            count = struct.unpack_from("<Q", data, 247)[0] or count
-        bounds = struct.unpack_from("<6d", data, 179)
-        result = {
-            "path": str(path.resolve()), "bytes": path.stat().st_size, "mtime_ns": path.stat().st_mtime_ns,
-            "version": f"{major}.{minor}", "format": fmt, "points": count,
-            "offset": struct.unpack_from("<I", data, 96)[0],
-            "record_length": struct.unpack_from("<H", data, 105)[0],
-            "extent": [bounds[1], bounds[3], bounds[0], bounds[2]],
-            "z_min": bounds[5], "z_max": bounds[4],
-            "file_creation_year": struct.unpack_from("<H", data, 92)[0],
-            "file_creation_day": struct.unpack_from("<H", data, 90)[0],
-        }
-        # File creation date is not necessarily the flight date.
-        handle.seek(struct.unpack_from("<H", data, 94)[0])
-        for _ in range(struct.unpack_from("<I", data, 100)[0]):
-            vlr = handle.read(54)
-            size = struct.unpack_from("<H", vlr, 20)[0]
-            content = handle.read(size)
-            if struct.unpack_from("<H", vlr, 18)[0] == 2112:
-                result["wkt"] = content.decode("utf-8", "replace").rstrip("\0")
-    return result
-
-
-def class_counts(path, sample=False):
-    info = header(path)
-    counts = np.zeros(256, dtype=np.int64)
-    flags = {"withheld": 0, "overlap": 0, "synthetic": 0}
-    returns = np.zeros(16, dtype=np.int64)
-    with open(path, "rb") as handle:
-        if sample:
-            blocks = [(int(start), min(512, info["points"])) for start in
-                      np.linspace(0, max(0, info["points"]-512), 16, dtype=np.int64)]
-        else:
-            blocks = ((start, min(1_000_000, info["points"]-start)) for start in
-                      range(0, info["points"], 1_000_000))
-        for start, count in blocks:
-            handle.seek(info["offset"]+start*info["record_length"])
-            data = np.frombuffer(handle.read(count*info["record_length"]), dtype=np.uint8)
-            if data.size != count*info["record_length"]:
-                raise ValueError(f"Truncated LAS point records: {path}")
-            data = data.reshape(-1, info["record_length"])
-            modern = info["format"] >= 6
-            classes = data[:, 16] if modern else data[:, 15] & 31
-            counts += np.bincount(classes, minlength=256)
-            returns += np.bincount(data[:, 14] & (15 if modern else 7), minlength=16)
-            flag = data[:, 15]
-            flags["withheld"] += int(np.count_nonzero(flag & (4 if modern else 128)))
-            flags["synthetic"] += int(np.count_nonzero(flag & (1 if modern else 32)))
-            flags["overlap"] += int(np.count_nonzero(flag & 8)) if modern else 0
-    return {
-        "mode": "sample" if sample else "complete", "evaluated_points": int(counts.sum()),
-        "classes": {str(i): int(n) for i, n in enumerate(counts) if n},
-        "returns": {str(i): int(n) for i, n in enumerate(returns) if n}, "flags": flags,
-    }
+from .las_records import header, class_counts
 
 
 def inventory(folder, sample=True):

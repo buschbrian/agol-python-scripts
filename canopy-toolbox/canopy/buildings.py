@@ -22,7 +22,7 @@ from scipy import ndimage
 from scipy.spatial import cKDTree
 
 from . import building_rules as rules
-from . import common, preparation, rasters
+from . import las_records, common, preparation, rasters
 from .tiling import Extent, snap_extent
 
 REVIEW_GDB = "review.gdb"
@@ -35,43 +35,14 @@ COLORS = {
     "NO_RETURNS_ABOVE_2M": (132, 0, 168), "NO_FOOTPRINT": (230, 0, 169), "NO_FOOTPRINT_COVERAGE": (130, 130, 130),
     "ON_ROOF": (230, 0, 0), "ROOF_EDGE": (255, 127, 0), "NEAR_ROOF": (255, 211, 0), "OVERHANG": (0, 112, 255),
     "CLEAR": (56, 168, 0),
+    "UNKNOWN": (130, 130, 130),
 }
 
 
 # --- LAS ---------------------------------------------------------------------------------
 
-def _points(path, mode="r"):
-    """Memory-mapped point records with return byte, flags, and class (formats 0-10)."""
-    info = preparation.header(path)
-    fmt = info["format"]
-    if not 0 <= fmt <= 10:
-        raise ValueError(f"Unsupported LAS point format {fmt}: {path}")
-    modern = fmt >= 6
-    with open(path, "rb") as handle:
-        head = handle.read(227)
-    import struct
-    scale = np.array(struct.unpack_from("<3d", head, 131))
-    offset = np.array(struct.unpack_from("<3d", head, 155))
-    if not np.isfinite(scale).all() or not (scale > 0).all() or not np.isfinite(offset).all():
-        raise ValueError("LAS scales and offsets must be finite; scales must be positive")
-    if info["offset"] + info["points"]*info["record_length"] > Path(path).stat().st_size:
-        raise ValueError(f"Truncated LAS point records: {path}")
-    dtype = np.dtype({"names": ["x", "y", "z", "returns", "flags", "classification"],
-                      "formats": ["<i4", "<i4", "<i4", "u1", "u1", "u1"],
-                      "offsets": [0, 4, 8, 14, 15, 16 if modern else 15],
-                      "itemsize": info["record_length"]})
-    points = np.memmap(path, dtype=dtype, offset=info["offset"], shape=(info["points"],), mode=mode)
-    return points, scale, offset, modern, info
-
-
-def _decode(block, scale, offset, modern):
-    classes = block["classification"] if modern else block["classification"] & 31
-    first = (block["returns"] & (15 if modern else 7)) == 1
-    excluded = (block["flags"] & (13 if modern else 160)) != 0
-    x = block["x"]*scale[0] + offset[0]
-    y = block["y"]*scale[1] + offset[1]
-    z = block["z"]*scale[2] + offset[2]
-    return x, y, z, classes, first, excluded
+_points = las_records.records
+_decode = las_records.decode
 
 
 class Grid:

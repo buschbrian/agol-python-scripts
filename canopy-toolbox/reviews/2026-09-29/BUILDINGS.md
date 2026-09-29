@@ -56,3 +56,7 @@ The merged CLI also completed a new 250 m representative pilot in 51.2 seconds,
 at `scratch/integration-buildings-20260929`. The existing historical reports were
 retained. This new pilot writes its own rule-labelled copy and review outputs;
 its classifications are not independent accuracy evidence.
+
+## Shared physical context
+
+`canopy/roof_context.py` owns the 1 m proximity, 0.5 m roof-level and 2 m overhang defaults. ROOF_LEVEL maps to ON_ROOF inside a footprint and ROOF_EDGE outside; ROOF_MID maps to NEAR_ROOF; ABOVE_ROOF maps to OVERHANG. Unknown height stays UNKNOWN physically, although the historic validation sampling bucket is ROOF_MID. SEAM and small-crown sampling precedence remain unchanged. Footprint fallback heights retain their separate provenance. `canopy/las_records.py` supplies all production binary layouts and return/flag masks without ArcPy. Extra Bytes retain their original record stride; malformed/truncated layouts fail before mapping.

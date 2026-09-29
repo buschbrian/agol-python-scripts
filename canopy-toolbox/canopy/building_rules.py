@@ -11,6 +11,7 @@ import math
 
 import numpy as np
 from scipy import ndimage
+from . import roof_context
 
 # Reference sources. The key is the feature-class name in reference.gdb; the tag is the
 # field suffix (IN_<tag>, COV_<tag>). "same_method" sources were made by the same kind of
@@ -34,17 +35,17 @@ DEFAULTS = {
     "source_overlap": 0.30,         # share of a footprint's cells inside another source's footprints
     "region_overlap": 0.50,         # share of a lidar region's cells inside a source's buffered footprints
     "footprint_buffer_m": 1.0,      # eaves overhang wall footprints; also the label-LAS exclusion buffer
-    "near_roof_m": 1.0,             # candidate test: class-6 points within this horizontal distance
+    "near_roof_m": roof_context.NEAR_M,
     "ground_radius_m": 5.0,         # candidate test: median class-2 Z within this radius
     "roof_percentile": 90.0,        # candidate test: local roof = this percentile of nearby class-6 Z
-    "at_roof_m": 0.5,               # candidate no more than this above the roof: ON_ROOF / ROOF_EDGE
-    "overhang_m": 2.0,              # candidate more than this above the roof: OVERHANG
+    "at_roof_m": roof_context.LEVEL_M,
+    "overhang_m": roof_context.OVERHANG_M,
     "fallback_min_building_returns": 10,  # footprint roof height uses class 6 when it has this many returns
 }
 
 FOOTPRINT_STATUSES = ("MATCHED", "PARTIAL", "LIDAR_MISSED", "NO_RETURNS_ABOVE_2M")
 REGION_STATUSES = ("MATCHED", "NO_FOOTPRINT", "NO_FOOTPRINT_COVERAGE")
-FLAGS = ("ON_ROOF", "ROOF_EDGE", "NEAR_ROOF", "OVERHANG", "CLEAR")
+FLAGS = ("ON_ROOF", "ROOF_EDGE", "NEAR_ROOF", "OVERHANG", "CLEAR", "UNKNOWN")
 
 # User-definable LAS class codes (64-255 are available only in point formats 6-10).
 LABEL_CODES = {
@@ -247,10 +248,13 @@ def candidate_flag(height, local_roof, inside, footprint_roof, p):
         roof, basis = footprint_roof, "FOOTPRINT"
     else:
         return "CLEAR", None, None
-    above = float(height - roof)
-    if above > p["overhang_m"]:
+    from .roof_context import context
+    category,above=context(0.,height,roof,level=p["at_roof_m"],overhang=p["overhang_m"])
+    if category == "UNKNOWN":
+        return "UNKNOWN",None,basis
+    if category == "ABOVE_ROOF":
         return "OVERHANG", above, basis
-    if above <= p["at_roof_m"]:
+    if category == "ROOF_LEVEL":
         return ("ON_ROOF" if inside else "ROOF_EDGE"), above, basis
     return "NEAR_ROOF", above, basis
 

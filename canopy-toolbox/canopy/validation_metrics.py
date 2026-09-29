@@ -18,6 +18,7 @@ import math
 
 import numpy as np
 from .matching import match_candidates
+from . import roof_context
 
 CANOPY_M = 2.0          # lowest detection band; the proposed tree definition
 Z95 = 1.959963984540054
@@ -29,9 +30,9 @@ YES_NO = ("YES", "NO", "UNSURE")
 
 # Treetop candidates (baseline trees_review). SEAM takes precedence; the building
 # context is kept on every unit as CONTEXT for domain summaries.
-ROOF_LEVEL_M = 0.5      # candidate no more than this above the local roof
-OVERHANG_M = 2.0        # candidate more than this above the local roof
-NEAR_BUILDING_M = 1.0   # a class-6 point within this horizontal distance
+ROOF_LEVEL_M = roof_context.LEVEL_M
+OVERHANG_M = roof_context.OVERHANG_M
+NEAR_BUILDING_M = roof_context.NEAR_M
 SMALL_CROWN_M2 = 3.0
 TREETOP_TARGETS = {"ROOF_LEVEL": 40, "ROOF_MID": 20, "ABOVE_ROOF": 40,
                    "SMALL_CROWN": 40, "NORMAL": 40, "SEAM": 30}
@@ -59,14 +60,8 @@ MIN_STRATUM_N = 5       # fewer usable units than this is flagged as unstable
 
 def treetop_context(building_distance, height, roof_height):
     """Building context of one candidate; roof_height is None when unknown."""
-    if building_distance is None or not building_distance <= NEAR_BUILDING_M:
-        return "AWAY"
-    if roof_height is None or not math.isfinite(roof_height):
-        return "ROOF_MID"
-    above = height - roof_height
-    if above <= ROOF_LEVEL_M:
-        return "ROOF_LEVEL"
-    return "ABOVE_ROOF" if above > OVERHANG_M else "ROOF_MID"
+    category,_=roof_context.context(building_distance,height,roof_height)
+    return "ROOF_MID" if category=="UNKNOWN" else category
 
 
 def treetop_stratum(seam, context, crown_area):
