@@ -46,6 +46,11 @@ def main(argv=None):
     refine.add_argument("--max-fit-rmse",type=float)
     refine.add_argument("--max-slope",type=float)
     refine.add_argument("--classes",type=int,nargs="+",choices=(3,4,5))
+    gate=commands.add_parser("shape-gate",help="Experimental wall/pole/wire shape evidence: review LAS copies by default; --apply writes a NEW prepared copy")
+    gate.add_argument("lasd");gate.add_argument("output")
+    gate.add_argument("--extent",type=float,nargs=4,metavar=("XMIN","YMIN","XMAX","YMAX"),help="Gated extent inside the prepared extent (default: all of it)")
+    gate.add_argument("--apply",action="store_true",help="Move rule-selected class 3/4/5 points to class 1 in a new prepared dataset")
+    gate.add_argument("--classes",type=int,nargs="+",choices=(3,4,5),help="Classes --apply may change (default 4 5)")
     planning=commands.add_parser("planning",help="Terrain, drainage screening, surface and footprint heights (bounded pilot)")
     planning.add_argument("lasd");planning.add_argument("output")
     planning.add_argument("--extent",type=float,nargs=4,required=True)
@@ -90,6 +95,16 @@ def main(argv=None):
         for key,value in {**plane_only,**local_only}.items():
             if getattr(args,key) is None: setattr(args,key,value)
         if args.above_roof is None: args.above_roof=3 if args.method=="plane" else .5
+    if args.command=="shape-gate":
+        if args.classes and not args.apply: parser.error("--classes is valid only with --apply")
+        from . import shape_gate
+        dataset=None
+        if args.apply:
+            from . import preparation
+            dataset=preparation.dataset_writer(args.lasd)
+        result=shape_gate.run(args.lasd,args.output,args.extent,args.apply,args.classes or (4,5),dataset)
+        print(json.dumps({k:v for k,v in result.items() if k not in ("input_files","before","after","sources")},indent=2,default=str))
+        return
     if args.command=="fetch":
         from . import fetch
         try: result=fetch.fetch(args.manifest,args.output,args.tiles,args.workers)

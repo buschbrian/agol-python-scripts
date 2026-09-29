@@ -33,6 +33,17 @@ def inventory(folder, sample=True):
     }
 
 
+def dataset_writer(reference_lasd):
+    """Check the metric reference of a prepared dataset now; return a writer for a new LAS
+    dataset over edited copies, in the same reference, for use after the copies exist."""
+    sr = common.metric_reference(arcpy.Describe(str(reference_lasd)).spatialReference)
+
+    def write(files, output_lasd):
+        arcpy.management.CreateLasDataset([str(path) for path in files], str(output_lasd),
+                                          spatial_reference=sr, compute_stats="COMPUTE_STATS")
+    return write
+
+
 def prepare(input_folder, output_folder, extent, max_vegetation_height=80.0,
             classify_noise=False, ground_method="CONSERVATIVE", roof_tolerance=3.0,
             building_method="STANDARD"):
