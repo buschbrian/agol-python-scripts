@@ -31,11 +31,19 @@ def main(argv=None):
     run.add_argument("--resume",action="store_true");run.add_argument("--z-metres",action="store_true")
     refine=commands.add_parser("refine-roofs",help="Experimental roof-edge correction on NEW prepared LAS copies")
     refine.add_argument("lasd");refine.add_argument("output")
-    refine.add_argument("--cell-size",type=float,default=.5)
-    refine.add_argument("--edge-distance",type=float,default=1)
+    refine.add_argument("--method",choices=("plane","local"),default="plane")
+    refine.add_argument("--cell-size",type=float)
+    refine.add_argument("--edge-distance",type=float)
     refine.add_argument("--below-roof",type=float,default=.35)
-    refine.add_argument("--above-roof",type=float,default=3)
-    refine.add_argument("--min-roof-area",type=float,default=25)
+    refine.add_argument("--above-roof",type=float)
+    refine.add_argument("--min-roof-area",type=float)
+    refine.add_argument("--radius",type=float)
+    refine.add_argument("--neighbors",type=int)
+    refine.add_argument("--min-neighbors",type=int)
+    refine.add_argument("--min-votes",type=int)
+    refine.add_argument("--max-fit-rmse",type=float)
+    refine.add_argument("--max-slope",type=float)
+    refine.add_argument("--classes",type=int,nargs="+",choices=(3,4,5))
     planning=commands.add_parser("planning",help="Terrain, drainage screening, surface and footprint heights (bounded pilot)")
     planning.add_argument("lasd");planning.add_argument("output")
     planning.add_argument("--extent",type=float,nargs=4,required=True)
@@ -69,6 +77,17 @@ def main(argv=None):
     for key,value in thresholds.items():
         recon.add_argument("--"+key.replace("_","-"),type=float,default=None,help=f"default {value}")
     args=parser.parse_args(argv)
+    if args.command=="refine-roofs":
+        plane_only={"cell_size":.5,"edge_distance":1,"min_roof_area":25}
+        local_only={"radius":1.,"neighbors":16,"min_neighbors":6,"min_votes":3,
+                    "max_fit_rmse":.15,"max_slope":1.5,"classes":[4,5]}
+        wrong=local_only if args.method=="plane" else plane_only
+        for key in wrong:
+            if getattr(args,key) is not None:
+                parser.error(f"--{key.replace('_','-')} is not valid with --method {args.method}")
+        for key,value in {**plane_only,**local_only}.items():
+            if getattr(args,key) is None: setattr(args,key,value)
+        if args.above_roof is None: args.above_roof=3 if args.method=="plane" else .5
     if args.command=="fetch":
         from . import fetch
         try: result=fetch.fetch(args.manifest,args.output,args.tiles,args.workers)
@@ -100,8 +119,13 @@ def main(argv=None):
                                            args.max_vegetation_height,args.classify_noise,roof_tolerance=args.roof_tolerance)
             elif args.command=="refine-roofs":
                 from . import roofs
-                result=roofs.refine(args.lasd,args.output,args.cell_size,args.edge_distance,
-                                    args.below_roof,args.above_roof,args.min_roof_area)
+                if args.method=="local":
+                    result=roofs.refine_local(args.lasd,args.output,args.radius,args.neighbors,args.min_neighbors,
+                                             args.min_votes,args.below_roof,args.above_roof,args.max_fit_rmse,
+                                             args.max_slope,args.classes)
+                else:
+                    result=roofs.refine(args.lasd,args.output,args.cell_size,args.edge_distance,
+                                        args.below_roof,args.above_roof,args.min_roof_area)
             elif args.command=="planning":
                 from . import planning
                 result=planning.build(args.lasd,args.output,args.extent,args.footprints,args.footprint_id,
