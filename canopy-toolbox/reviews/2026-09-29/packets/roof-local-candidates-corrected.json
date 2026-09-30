@@ -1,0 +1,246 @@
+{
+  "method": "yardstick = BASELINE prepared LAS of the tile file (prepared\\points\\<tile>.las): roof = 90th percentile class-6 Z within 1 m of the treetop; ground = median class-2 Z within 5 m; removed = unmatched baseline candidate under one-to-one maximum-cardinality/minimum-distance matching within 1.0 m",
+  "tiles": {
+    "12TVL2804": {
+      "base_run": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\run",
+      "new_run": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2804\\run",
+      "base_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\run\\run.json",
+        "bytes": 17105,
+        "sha256": "24cf37f435f30b88673a580d0903178d8ba9db3627fdc5c3c418e8b08cf535cc"
+      },
+      "new_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2804\\run\\run.json",
+        "bytes": 18053,
+        "sha256": "11edc02e35e18610d67061d8b0c290f65294d29d3e102419ccf8b96cd52a1633"
+      },
+      "preparation_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2804\\refined\\preparation.json",
+        "bytes": 38651,
+        "sha256": "f08f60e6b0cddb5235a99da60cc3357f7dc432838b59a505ce9b0ea68b621d9c"
+      },
+      "new_candidates": 349,
+      "matching_ambiguity": {
+        "ambiguous_baseline": 10,
+        "ambiguous_variant": 7
+      },
+      "before": {
+        "candidates": 17389,
+        "within_1m": 4428,
+        "within_1m_no_ground_5m": 53,
+        "by_height_vs_roof": {
+          "at_roof_height_le_0.5m": 3293,
+          "0.5_to_2m_above_roof": 376,
+          "over_2m_above_roof": 706
+        },
+        "small_crown_subset": {
+          "at_roof_height_le_0.5m": 2619,
+          "0.5_to_2m_above_roof": 171,
+          "over_2m_above_roof": 116
+        }
+      },
+      "after": {
+        "candidates": 16179,
+        "within_1m": 3102,
+        "within_1m_no_ground_5m": 32,
+        "by_height_vs_roof": {
+          "at_roof_height_le_0.5m": 1984,
+          "0.5_to_2m_above_roof": 371,
+          "over_2m_above_roof": 715
+        },
+        "small_crown_subset": {
+          "at_roof_height_le_0.5m": 1593,
+          "0.5_to_2m_above_roof": 180,
+          "over_2m_above_roof": 129
+        }
+      },
+      "baseline_candidates_removed": {
+        "total": 1559,
+        "not_within_1m": 2,
+        "at_roof_height_le_0.5m": 1493,
+        "0.5_to_2m_above_roof": 34,
+        "over_2m_above_roof": 7,
+        "within_1m_no_ground_5m": 23
+      },
+      "over_2m_removed_examples": [
+        {
+          "x": 428785.75,
+          "y": 4504660.25,
+          "height_m": 5.24
+        },
+        {
+          "x": 428006.75,
+          "y": 4504635.75,
+          "height_m": 8.41
+        },
+        {
+          "x": 428633.25,
+          "y": 4504351.75,
+          "height_m": 6.16
+        },
+        {
+          "x": 428396.75,
+          "y": 4504326.25,
+          "height_m": 6.82
+        },
+        {
+          "x": 428185.25,
+          "y": 4504299.75,
+          "height_m": 3.95
+        },
+        {
+          "x": 428777.25,
+          "y": 4504119.25,
+          "height_m": 3.57
+        },
+        {
+          "x": 428153.75,
+          "y": 4504084.25,
+          "height_m": 6.06
+        }
+      ]
+    },
+    "12TVL3302": {
+      "base_run": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\run",
+      "new_run": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL3302\\run",
+      "base_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\run\\run.json",
+        "bytes": 17105,
+        "sha256": "62e89b933ab624dcffe7778ee95562523139b1a065a4d9cb8538b3d82f80b992"
+      },
+      "new_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL3302\\run\\run.json",
+        "bytes": 18053,
+        "sha256": "ebd43a1f588e99fb29647dd3740c3e4b9c833e7146069e724791bdac8e4d3e33"
+      },
+      "preparation_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL3302\\refined\\preparation.json",
+        "bytes": 38262,
+        "sha256": "d4145a5b5dd2324ef10d9a05615e09e9b40e8c93f78bac0991f70cf878320046"
+      },
+      "new_candidates": 261,
+      "matching_ambiguity": {
+        "ambiguous_baseline": 9,
+        "ambiguous_variant": 2
+      },
+      "before": {
+        "candidates": 44285,
+        "within_1m": 2363,
+        "within_1m_no_ground_5m": 25,
+        "by_height_vs_roof": {
+          "at_roof_height_le_0.5m": 1748,
+          "0.5_to_2m_above_roof": 271,
+          "over_2m_above_roof": 319
+        },
+        "small_crown_subset": {
+          "at_roof_height_le_0.5m": 1315,
+          "0.5_to_2m_above_roof": 129,
+          "over_2m_above_roof": 31
+        }
+      },
+      "after": {
+        "candidates": 43813,
+        "within_1m": 1810,
+        "within_1m_no_ground_5m": 19,
+        "by_height_vs_roof": {
+          "at_roof_height_le_0.5m": 1211,
+          "0.5_to_2m_above_roof": 247,
+          "over_2m_above_roof": 333
+        },
+        "small_crown_subset": {
+          "at_roof_height_le_0.5m": 930,
+          "0.5_to_2m_above_roof": 118,
+          "over_2m_above_roof": 35
+        }
+      },
+      "baseline_candidates_removed": {
+        "total": 733,
+        "not_within_1m": 4,
+        "at_roof_height_le_0.5m": 655,
+        "0.5_to_2m_above_roof": 62,
+        "over_2m_above_roof": 3,
+        "within_1m_no_ground_5m": 9
+      },
+      "over_2m_removed_examples": [
+        {
+          "x": 433609.25,
+          "y": 4502942.25,
+          "height_m": 5.41
+        },
+        {
+          "x": 433141.25,
+          "y": 4502792.75,
+          "height_m": 4.21
+        },
+        {
+          "x": 433621.75,
+          "y": 4502557.75,
+          "height_m": 2.59
+        }
+      ]
+    },
+    "12TVL2203": {
+      "base_run": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\run",
+      "new_run": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2203\\run",
+      "base_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\run\\run.json",
+        "bytes": 17105,
+        "sha256": "943939083074d17bddb9fba9268adcddf63e12798488f3957e237110541ca0bb"
+      },
+      "new_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2203\\run\\run.json",
+        "bytes": 18053,
+        "sha256": "8528a7a5dff3341abd004b5f9582fe4552166cfca75f0573b533918235ded529"
+      },
+      "preparation_manifest": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2203\\refined\\preparation.json",
+        "bytes": 20551,
+        "sha256": "57d3d0dd15dbbb9ba341ca044e512861e7dc5298b98f97f3ed41a1f9c4ce1def"
+      },
+      "new_candidates": 46,
+      "matching_ambiguity": {
+        "ambiguous_baseline": 0,
+        "ambiguous_variant": 1
+      },
+      "before": {
+        "candidates": 11610,
+        "within_1m": 1093,
+        "within_1m_no_ground_5m": 99,
+        "by_height_vs_roof": {
+          "at_roof_height_le_0.5m": 887,
+          "0.5_to_2m_above_roof": 64,
+          "over_2m_above_roof": 43
+        },
+        "small_crown_subset": {
+          "at_roof_height_le_0.5m": 721,
+          "0.5_to_2m_above_roof": 31,
+          "over_2m_above_roof": 7
+        }
+      },
+      "after": {
+        "candidates": 11290,
+        "within_1m": 757,
+        "within_1m_no_ground_5m": 77,
+        "by_height_vs_roof": {
+          "at_roof_height_le_0.5m": 572,
+          "0.5_to_2m_above_roof": 66,
+          "over_2m_above_roof": 42
+        },
+        "small_crown_subset": {
+          "at_roof_height_le_0.5m": 433,
+          "0.5_to_2m_above_roof": 33,
+          "over_2m_above_roof": 7
+        }
+      },
+      "baseline_candidates_removed": {
+        "total": 366,
+        "not_within_1m": 1,
+        "at_roof_height_le_0.5m": 337,
+        "0.5_to_2m_above_roof": 1,
+        "over_2m_above_roof": 0,
+        "within_1m_no_ground_5m": 27
+      },
+      "over_2m_removed_examples": []
+    }
+  }
+}

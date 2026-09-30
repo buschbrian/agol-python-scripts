@@ -34,9 +34,8 @@ from canopy import training_review as tr  # noqa: E402
 PILOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
 DEFAULTS = {
     "reference_gdb": PILOT/"validation"/"reference.gdb",
-    "plots_json": Path(r"C:\Users\Brian\.codex\visualizations\2026\09\29\01a0eed4-e40e-7762-9845-97159217cf5b"
-                       r"\independent-plot-census-v2\plots.esri.json"),
-    "plots_fc": TOOLBOX/"scratch"/"census-review-final-20260929"/"review.gdb"/"plots",
+    "plots_json": TOOLBOX/"reviews"/"2026-09-29"/"packets"/"independent-plot-census-v2"/"plots.esri.json",
+    "plots_fc": TOOLBOX/"reviews"/"2026-09-29"/"packets"/"census-review-final-20260929"/"review.gdb"/"plots",
     "baseline": PILOT/"12TVL2804"/"prepared"/"points"/"12TVL2804.las",
     "lasd": PILOT/"12TVL2804"/"prepared"/"prepared.lasd",
     "tree": PILOT/"deep-learning"/"experiments-20260929"/"tree-full"/"tree"/"12TVL2804.las",

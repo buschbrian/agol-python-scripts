@@ -21,7 +21,7 @@ $ErrorActionPreference = 'Stop'
 $env:PYTHONNOUSERSITE = '1'
 $TRAIN = 'H:\lidar\2023-salt-lake-valley\runs\training-2026-09-30'
 $DLROOT = "$TRAIN\deep-learning"
-$TB = 'V:\Developer\agol-python-scripts\canopy-toolbox'
+$TB = if ($env:CANOPY_TOOLBOX) { $env:CANOPY_TOOLBOX } else { (Resolve-Path "$PSScriptRoot\..\..").Path }
 $RUNNER = "$TB\reviews\2026-09-29\dl-experiments-20260930\run_row.ps1"
 $LABEL = 'TRAINING domain (September 30 seeded draw) -- core + prepared 50 m halo; labels via the training-review workflow'
 New-Item -ItemType Directory -Force $DLROOT | Out-Null

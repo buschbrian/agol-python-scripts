@@ -44,8 +44,7 @@ PILOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
 INVENTORY = PILOT / "las-inventory.json"
 REFERENCE_GDB = PILOT / "validation" / "reference.gdb"
 REFERENCE_SAMPLES = ("treetop_sample", "omission_sample", "cell_sample", "crown_sample")
-PLOTS_JSON = Path(r"C:\Users\Brian\.codex\visualizations\2026\09\29\01a0eed4-e40e-7762-9845-97159217cf5b"
-                  r"\independent-plot-census-v2\plots.esri.json")
+PLOTS_JSON = TOOLBOX / "reviews" / "2026-09-29" / "packets" / "independent-plot-census-v2" / "plots.esri.json"
 TRAINING_TILE = "12TVL2804"
 EXTERNAL_TILE = "12TVL2203"
 EXCLUSIONS = {

@@ -20,9 +20,10 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $env:PYTHONNOUSERSITE = '1'
-$DL = 'C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe'
-$VENV = 'V:\Developer\agol-python-scripts\.venv\Scripts\python.exe'
-$TB = 'V:\Developer\agol-python-scripts\canopy-toolbox'
+# Machine-specific paths: override with environment variables on another workstation.
+$DL = if ($env:CANOPY_DL_PYTHON) { $env:CANOPY_DL_PYTHON } else { "$env:LOCALAPPDATA\ESRI\conda\envs\arcgispro-py3-dl\python.exe" }
+$TB = if ($env:CANOPY_TOOLBOX) { $env:CANOPY_TOOLBOX } else { (Resolve-Path "$PSScriptRoot\..\..\..").Path }
+$VENV = if ($env:CANOPY_VENV_PYTHON) { $env:CANOPY_VENV_PYTHON } else { Join-Path (Split-Path $TB -Parent) '.venv\Scripts\python.exe' }
 $rowRoot = Join-Path $Root $Row; $work = Join-Path $rowRoot 'work'; $copyDir = Join-Path $rowRoot $Job
 if (Test-Path $copyDir) { Write-Output "ABORT copy folder already exists: $copyDir"; exit 4 }
 New-Item -ItemType Directory -Force $work | Out-Null

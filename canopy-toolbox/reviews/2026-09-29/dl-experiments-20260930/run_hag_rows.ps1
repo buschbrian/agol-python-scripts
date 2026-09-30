@@ -9,8 +9,8 @@ $E = "$P\deep-learning\experiments-20260930"
 $E29 = "$P\deep-learning\experiments-20260929"
 $HAG = "$P\hag-20260929\12TVL2804"
 $ABS = "$P\12TVL2804\prepared\points\12TVL2804.las"
-$VENV = 'V:\Developer\agol-python-scripts\.venv\Scripts\python.exe'
-$TB = 'V:\Developer\agol-python-scripts\canopy-toolbox'
+$TB = if ($env:CANOPY_TOOLBOX) { $env:CANOPY_TOOLBOX } else { (Resolve-Path "$PSScriptRoot\..\..\..").Path }
+$VENV = if ($env:CANOPY_VENV_PYTHON) { $env:CANOPY_VENV_PYTHON } else { Join-Path (Split-Path $TB -Parent) '.venv\Scripts\python.exe' }
 $queueLog = "$E\queue.log"
 function QLog($m) { $line = "$(Get-Date -Format o) $m"; Add-Content -Path $queueLog -Value $line; Write-Output $line }
 while (-not (Select-String -Path $queueLog -Pattern 'queue done' -SimpleMatch -Quiet)) { Start-Sleep -Seconds 60 }

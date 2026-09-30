@@ -1,0 +1,18 @@
+{
+ "original": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+ "points": 26982464,
+ "extent": null,
+ "building": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\12TVL2804\\building\\12TVL2804.las",
+  "status": "rejected",
+  "error": "Inference provenance rejected: [Errno 2] No such file or directory: 'H:\\\\lidar\\\\2023-salt-lake-valley\\\\runs\\\\pilot-2026-09-29\\\\deep-learning\\\\12TVL2804\\\\work\\\\run-building.json'"
+ },
+ "tree": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\12TVL2804\\tree\\12TVL2804.las",
+  "status": "rejected",
+  "error": "Inference provenance rejected: [Errno 2] No such file or directory: 'H:\\\\lidar\\\\2023-salt-lake-valley\\\\runs\\\\pilot-2026-09-29\\\\deep-learning\\\\12TVL2804\\\\work\\\\run-tree.json'"
+ },
+ "key_numbers": {},
+ "status": "rejected_or_partial",
+ "interpretation": "Class disagreement with pretrained models; not independently labelled accuracy."
+}

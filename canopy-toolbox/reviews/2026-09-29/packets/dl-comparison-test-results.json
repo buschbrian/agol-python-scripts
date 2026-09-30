@@ -1,0 +1,12 @@
+{
+  "command": "python -B -m unittest discover -s tests -t . -v",
+  "runtime": "ArcGIS Pro Python",
+  "tests": 194,
+  "passed": 193,
+  "skipped": 1,
+  "seconds": 613.758,
+  "exit_code": 0,
+  "new_comparison_tests": 17,
+  "pilot_record_checks": "READ_ONLY_UNCHANGED_COPIES",
+  "actual_inference_verified": false
+}
