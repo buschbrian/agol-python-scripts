@@ -49,3 +49,23 @@ selecting a production threshold.
 Synthetic tests verify unsigned arithmetic, NoData, band count, immutable input
 and output refusal. The real NAIP pilot verifies the four-band raster path in the
 unchanged current Pro environment; it performs no model inference.
+
+## Tile-wide fetch (September 30, 2026)
+
+[naip_fetch.py](../2026-09-30/naip_fetch.py) fetched the whole 12TVL2804 core (`428000 4504000 429000 4505000`) as one
+raw four-band TIFF from the USGS service, with the two primary scenes locked (OBJECTIDs 198399 and 198401, both acquired
+**2021-11-13**, USDA-FSA-APFO, 0.6 m, CNIR). It is 2000 x 2000 pixels at 0.5 m in EPSG:6341, resampled by nearest
+neighbour, stored outside git at `lidar/2023-salt-lake-valley/naip/12TVL2804/` with a metadata file that naip_review.py
+accepts (source, survey date, band mapping, image fingerprint, the exact request and scene records).
+
+- **Band order is taken from the service, not assumed.** The service names its bands `band_1` to `band_4`, but its
+  own NaturalColor function is "red, green, blue (1, 2, 3)" and FalseColorComposite is "near-infrared, red, green
+  (4, 1, 2)". The fetch refuses if that text is missing or different and records it in the metadata.
+- **Checked with ArcGIS:** 4 bands, 8-bit, 2000 x 2000, cell 0.5 m, EPSG:6341, extent exactly as requested, no NoData in
+  any band. Green is brighter than red on 74.5% of pixels.
+- **NDVI is low everywhere because the scene is leaf-off (mid-November).** Mean 0.011; 15.2% of pixels above 0.3,
+  8.2% above 0.4, 2.8% above 0.5; 54.8% below zero. **High NDVI is evidence of live vegetation. Low NDVI is not evidence
+  of a non-tree**, since deciduous trees are bare and lawns are dormant. Use it to support vegetation, never to veto it.
+- The imagery is two years older than the lidar (2023-10-07 to 2023-11-05), and roof lean and shadow apply.
+- The first catalog query, sent without a `where` clause, returned nothing; with `where=1=1` it listed 14 scenes. The
+  Esri Living Atlas NAIP service was tried first and requires a sign-in (code 499), so it was not used.
