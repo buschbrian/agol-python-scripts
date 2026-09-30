@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "job": "building",
+  "started_utc": "2026-09-30T02:05:43Z",
+  "class_mode": "EDIT_ALL",
+  "output_classes": [
+    0,
+    6
+  ],
+  "excluded_class_codes": [
+    7,
+    18
+  ],
+  "boundary": [
+    428000.0,
+    4504000.0,
+    429000.0,
+    4505000.0
+  ],
+  "boundary_inclusion": "inclusive rectangle",
+  "epsg": 6341,
+  "batch_size": 1,
+  "python": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\python.exe",
+  "runtime_isolation": {
+    "PYTHONNOUSERSITE": "1",
+    "site_ENABLE_USER_SITE": false,
+    "user_site": null,
+    "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+    "allow_user_site_override": false,
+    "scope": "calling interpreter; the tool's own worker processes are not inspected"
+  },
+  "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+  },
+  "input": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-abs\\building\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+  },
+  "model": {
+    "path": "H:\\lidar\\models\\building_point_classification.dlpk",
+    "bytes": 6112278,
+    "sha256": "854bd59ee4626244897641b224ceb77dda017a7008756a888c361b6d553d2ef6"
+  },
+  "arcgis": {
+    "LicenseLevel": "Advanced",
+    "InstallDir": "c:\\program files\\arcgis\\pro\\",
+    "Installer": "Brian",
+    "ProductName": "ArcGISPro",
+    "Version": "3.7.2",
+    "SourceDir": "C:\\Users\\Brian\\AppData\\Local\\Microsoft\\Windows\\INetCache\\ArcGISUpdate\\ArcGISPro\\esrisoftware.esri.com\\",
+    "InstallType": "N/A",
+    "BuildNumber": "1901",
+    "InstallDate": "9/25/2026",
+    "InstallTime": "7:45:33",
+    "SPNumber": "N/A",
+    "SPBuild": "N/A",
+    "LicenseType": "Named User"
+  },
+  "package_provenance": {
+    "torch": {
+      "version": "2.9.1",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\torch\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "arcgis": {
+      "version": "2.4.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\arcgis\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "numpy": {
+      "version": "2.3.5",
+      "module_version": "2.3.5",
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\numpy\\__init__.py",
+      "loaded": true,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "scipy": {
+      "version": "1.16.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\scipy\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    }
+  },
+  "packages": {
+    "torch": "2.9.1",
+    "arcgis": "2.4.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-abs\\building\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "08cd9070ca0ecaa0c85cef8f3885d1d2ea18e99d8e6dc146b17bec2f123dc369"
+  },
+  "package_provenance_after": {
+    "torch": {
+      "version": "2.9.1",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\torch\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "arcgis": {
+      "version": "2.4.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\arcgis\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "numpy": {
+      "version": "2.3.5",
+      "module_version": "2.3.5",
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\numpy\\__init__.py",
+      "loaded": true,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "scipy": {
+      "version": "1.16.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\scipy\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    }
+  },
+  "elapsed_seconds": 1213.7,
+  "gpu_used_mib_first_sample": 2577,
+  "gpu_used_mib_peak": 3051,
+  "messages": "Start Time: Tuesday, September 29, 2026 8:06:02 PM\nGPU 0 - NVIDIA GeForce RTX 3060 Laptop GPU is being used for this operation.\nBatch size 1 was used for model \"H:\\lidar\\models\\building_point_classification.dlpk\".\nSucceeded at Tuesday, September 29, 2026 8:25:55 PM (Elapsed Time: 19 minutes 52 seconds)"
+}

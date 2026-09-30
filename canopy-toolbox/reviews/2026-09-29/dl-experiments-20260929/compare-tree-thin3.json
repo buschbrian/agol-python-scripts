@@ -1,0 +1,126 @@
+{
+ "original": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-thin3\\baseline\\12TVL2804-thin3.las",
+ "points": 3003367,
+ "extent": null,
+ "tree": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-thin3\\tree\\12TVL2804-thin3.las",
+  "status": "verified_inference",
+  "points": 3003367,
+  "coordinates_identical": true,
+  "nonclassification_bytes_identical": true,
+  "outside_boundary_classes_identical": true,
+  "processed_extent": [
+   428000.0,
+   4504000.0,
+   429000.0,
+   4505000.0
+  ],
+  "comparison_extent": [
+   428000.0,
+   4504000.0,
+   429000.0,
+   4505000.0
+  ],
+  "inference_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-thin3\\work\\run-tree.json",
+  "model": {
+   "path": "H:\\lidar\\models\\Tree_point_classification.dlpk",
+   "bytes": 14517540,
+   "sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e"
+  },
+  "target_class": 5,
+  "crosstab_our_class_by_prediction": {
+   "1": {
+    "0": 50970,
+    "5": 6
+   },
+   "2": {
+    "0": 295194,
+    "5": 61
+   },
+   "3": {
+    "0": 1068140,
+    "5": 89
+   },
+   "4": {
+    "0": 111737,
+    "5": 6596
+   },
+   "5": {
+    "0": 10750,
+    "5": 970275
+   },
+   "6": {
+    "0": 396915,
+    "5": 84656
+   },
+   "7": {
+    "7": 158
+   },
+   "18": {
+    "18": 7820
+   }
+  },
+  "by_our_class": {
+   "1": {
+    "points": 50976,
+    "model_target": 6,
+    "model_background_or_other": 50970,
+    "share_model_target": 0.00012
+   },
+   "2": {
+    "points": 295255,
+    "model_target": 61,
+    "model_background_or_other": 295194,
+    "share_model_target": 0.00021
+   },
+   "3": {
+    "points": 1068229,
+    "model_target": 89,
+    "model_background_or_other": 1068140,
+    "share_model_target": 8e-05
+   },
+   "4": {
+    "points": 118333,
+    "model_target": 6596,
+    "model_background_or_other": 111737,
+    "share_model_target": 0.05574
+   },
+   "5": {
+    "points": 981025,
+    "model_target": 970275,
+    "model_background_or_other": 10750,
+    "share_model_target": 0.98904
+   },
+   "6": {
+    "points": 481571,
+    "model_target": 84656,
+    "model_background_or_other": 396915,
+    "share_model_target": 0.17579
+   },
+   "7": {
+    "points": 158,
+    "model_target": 0,
+    "model_background_or_other": 158,
+    "share_model_target": 0.0
+   },
+   "18": {
+    "points": 7820,
+    "model_target": 0,
+    "model_background_or_other": 7820,
+    "share_model_target": 0.0
+   }
+  }
+ },
+ "key_numbers": {
+  "our_5_called_background_by_tree_model": {
+   "background": 10750,
+   "of": 981025
+  },
+  "our_6_called_tree_by_tree_model": {
+   "tree": 84656,
+   "of": 481571
+  }
+ },
+ "status": "verified_inference",
+ "interpretation": "Class disagreement with pretrained models; not independently labelled accuracy."
+}
