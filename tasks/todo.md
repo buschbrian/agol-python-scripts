@@ -12,5 +12,16 @@
 - [x] Add four-band NAIP greenness review; synthetic tests and dated 250 m USGS pilot passed, no automatic class edits.
 - [x] Final integration suite: 271 tests, one expected skip, 451.298 s; additional dated-WMS export passed; slices committed.
 
+## September 29 follow-up (user-authorized)
+
+- [x] Removed three integrated agent worktrees after committing their five unique pilot files; ignored .claude/.
+- [x] Plain-Python deps in repo .venv via requirements-dev.txt; per-user site-packages shadow Pro, so use PYTHONNOUSERSITE=1.
+- [x] Recorded World Imagery (Nearmap set aside) and footprint-metadata decisions.
+- [x] Shape gate for walls/poles/wires: review mode plus audited --apply; 250 m pilot changed 0 points under the prespecified rule.
+- [x] Inference authorized: Pro switched to arcgispro-py3-dl; four-row 12TVL2804 matrix completed with integrity checks; HAG row identical to absolute.
+- [x] Integrated suite: 300 tests, one expected skip, 363.650 s (ArcGIS Pro, PYTHONNOUSERSITE=1).
+- [ ] Batch 1 labels (user reviewing), then import preview/apply and score.
+- [ ] Decisions: Pro environment, model-product scoring grid, conflict policy, HAG row, more tiles, shape-gate wall definition and calibration sample.
+
 Manual acquisition-matched review, independent tree census and any inference runs
 are prerequisites for new accuracy claims; implementation must not fabricate them.
