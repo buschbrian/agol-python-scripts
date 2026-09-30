@@ -28,7 +28,8 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-PILOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root, live  # noqa: E402
+PILOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 E29 = PILOT / "deep-learning" / "experiments-20260929"
 E30 = PILOT / "deep-learning" / "experiments-20260930"
 TOOLBOX = Path(__file__).resolve().parents[2]
@@ -157,12 +158,12 @@ def outputs_summary(run, band=15.0):
     state = json.loads((Path(run) / 'run.json').read_text(encoding='utf-8'))
     out = state['outputs']
     x0, y0, x1, y1 = state['parameters']['extent']
-    near_edge = sum(1 for x, y in arcpy.da.SearchCursor(out['treetops'], ["SHAPE@X", "SHAPE@Y"])
+    near_edge = sum(1 for x, y in arcpy.da.SearchCursor(str(live(out['treetops'])), ["SHAPE@X", "SHAPE@Y"])
                     if min(x - x0, x1 - x, y - y0, y1 - y) < band)
-    return {"treetops": int(arcpy.management.GetCount(out['treetops'])[0]),
+    return {"treetops": int(arcpy.management.GetCount(str(live(out['treetops'])))[0]),
             f"treetops_within_{band:g}m_of_tile_edge": near_edge,
-            "crowns": int(arcpy.management.GetCount(out['crowns'])[0]),
-            "chm": grid_summary(out['chm'], state['parameters']['extent'], band)}
+            "crowns": int(arcpy.management.GetCount(str(live(out['crowns'])))[0]),
+            "chm": grid_summary(str(live(out['chm'])), state['parameters']['extent'], band)}
 
 
 def chm_difference(run_a, run_b, bands=(15.0, 30.0, 50.0)):
@@ -172,11 +173,11 @@ def chm_difference(run_a, run_b, bands=(15.0, 30.0, 50.0)):
     arrays = []
     for run in (run_a, run_b):
         chm = json.loads((Path(run) / 'run.json').read_text(encoding='utf-8'))['outputs']['chm']
-        arrays.append(arcpy.RasterToNumPyArray(arcpy.Raster(chm), nodata_to_value=np.nan).astype('float64'))
+        arrays.append(arcpy.RasterToNumPyArray(arcpy.Raster(str(live(chm))), nodata_to_value=np.nan).astype('float64'))
     a, b = arrays
     if a.shape != b.shape:
         raise ValueError("Runs are not on the same grid")
-    cell = arcpy.Raster(json.loads((Path(run_a) / 'run.json').read_text())['outputs']['chm']).meanCellWidth
+    cell = arcpy.Raster(str(live(json.loads((Path(run_a) / 'run.json').read_text())['outputs']['chm']))).meanCellWidth
     rows, cols = np.indices(a.shape)
     distance = np.minimum.reduce([rows, cols, a.shape[0]-1-rows, a.shape[1]-1-cols]) * cell
     result, lower = {}, 0.0
@@ -215,9 +216,9 @@ def main():
     base_chm = json.loads((base_run / 'run.json').read_text(encoding='utf-8'))['outputs']['chm']
     prepared = PILOT / TILE / "prepared" / "points"
     watched = sorted(prepared.glob('*.las'))
-    raws = [Path(json.loads(Path(m).read_text())['output']['path']) for m, _ in CORE_ROWS.values()]
+    raws = [live(json.loads(Path(m).read_text())['output']['path']) for m, _ in CORE_ROWS.values()]
     for job, row in HALO_ROWS.items():
-        raws += [Path(f['output']['path']) for f in json.loads((row / 'work' / f'run-{job}.json').read_text())['files']]
+        raws += [live(f['output']['path']) for f in json.loads((row / 'work' / f'run-{job}.json').read_text())['files']]
     before = {str(p): md5(p) for p in watched + raws}
     summary = {"baseline_run": str(base_run), "baseline_parameters": parameters,
                "baseline_outputs": outputs_summary(base_run), "variants": {}}

@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import numpy as np
 
 from canopy import las_records, shape_gate as sg
+from canopy.lidar_root import live
 
 
 def main(folder, report):
@@ -29,7 +30,7 @@ def main(folder, report):
     p = manifest["parameters"]
     parts = []
     for source in manifest["input_files"]:
-        path = Path(source["path"])
+        path = live(source["path"])
         log = folder/"changes"/(path.stem+".npz")
         if not log.is_file():
             continue

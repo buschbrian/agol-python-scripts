@@ -41,8 +41,12 @@ Do not commit `canopy-toolbox\scratch\nearmap\` (it holds a key). Nothing else i
 
 ## 2. Set up the office machine
 
-1. **Drive letter.** Give the USB disk the letter **H:** (Disk Management → Change Drive Letter).
-   Nineteen review scripts and all run manifests use `H:\lidar\…`.
+1. **Drive letter.** Either give the USB disk the letter **H:** (Disk Management → Change Drive Letter),
+   or, if H: is taken, set `CANOPY_LIDAR_ROOT` to the disk's `lidar` folder, for example
+   `setx CANOPY_LIDAR_ROOT D:\lidar`, then open a new shell. The review scripts take their root from it
+   (`canopy/lidar_root.py`), and recorded `X:\lidar\…` paths in the run manifests are translated to it when
+   they are read back, so existing manifests still verify. Unset, nothing changes and the root is `H:\lidar`.
+   The office workstation uses `D:\lidar` because H: is the network home share there.
 2. **Power.** Stop sleep and USB selective suspend before any overnight job. The laptop's 12TVL3006
    row died when the machine slept and the USB disk dropped:
    `powercfg /change standby-timeout-ac 0`, `powercfg /change hibernate-timeout-ac 0`, and disable

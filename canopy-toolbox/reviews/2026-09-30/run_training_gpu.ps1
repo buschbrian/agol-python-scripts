@@ -14,12 +14,13 @@
 param(
   [string[]]$Tiles = @(),
   [string]$Cutoff = '07:30',
-  [string]$QueueLog = 'H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\queue.log',
+  [string]$QueueLog = (Join-Path $(if ($env:CANOPY_LIDAR_ROOT) { $env:CANOPY_LIDAR_ROOT } else { 'H:\lidar' }) '2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\queue.log'),
   [string]$Marker = 'GPU QUEUE DONE'
 )
 $ErrorActionPreference = 'Stop'
 $env:PYTHONNOUSERSITE = '1'
-$TRAIN = 'H:\lidar\2023-salt-lake-valley\runs\training-2026-09-30'
+$LIDAR = $(if ($env:CANOPY_LIDAR_ROOT) { $env:CANOPY_LIDAR_ROOT } else { 'H:\lidar' })
+$TRAIN = (Join-Path $LIDAR '2023-salt-lake-valley\runs\training-2026-09-30')
 $DLROOT = "$TRAIN\deep-learning"
 $TB = if ($env:CANOPY_TOOLBOX) { $env:CANOPY_TOOLBOX } else { (Resolve-Path "$PSScriptRoot\..\..").Path }
 $RUNNER = "$TB\reviews\2026-09-29\dl-experiments-20260930\run_row.ps1"

@@ -16,7 +16,8 @@ PY = sys.executable
 TOOLBOX = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(TOOLBOX))
 from canopy.run_safeguards import completed_preparation, run_resume_args
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 OUT = ROOT / "roof-local"
 EXTENTS = {"12TVL2804": (428000, 4504000, 429000, 4505000),
            "12TVL3302": (433000, 4502000, 434000, 4503000),

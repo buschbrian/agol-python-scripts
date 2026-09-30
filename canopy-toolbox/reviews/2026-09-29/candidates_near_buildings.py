@@ -21,7 +21,8 @@ from scipy.spatial import cKDTree
 
 from canopy import roofs
 
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 HERE = Path(__file__).resolve().parent
 # (tile, run folder, prepared LAS of that run relative to the tile folder)
 RUNS = [("12TVL2804", "run", r"prepared\points\12TVL2804.las"),

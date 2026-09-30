@@ -31,8 +31,9 @@ from canopy.run_safeguards import completed_preparation, run_resume_args  # noqa
 
 PY = r"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe"
 LAS = Path(r"D:\lidar\2023-salt-lake-valley\las")
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\training-2026-09-30")
-PILOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "training-2026-09-30"
+PILOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 INVENTORY = PILOT / "las-inventory.json"
 SELECTION = Path(__file__).with_name("training-tiles.json")
 BUFFER = 50.0

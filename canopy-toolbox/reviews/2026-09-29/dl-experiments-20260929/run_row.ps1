@@ -1,8 +1,9 @@
 param([Parameter(Mandatory)][string]$Row)
 $ErrorActionPreference = 'Stop'
 $env:PYTHONNOUSERSITE = '1'
-$E = 'H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929'
-$FULL = 'H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las'
+$LIDAR = $(if ($env:CANOPY_LIDAR_ROOT) { $env:CANOPY_LIDAR_ROOT } else { 'H:\lidar' })
+$E = (Join-Path $LIDAR '2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929')
+$FULL = (Join-Path $LIDAR '2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las')
 $FULL_MD5 = '82787095336690D2909344206F9A80FC'
 $DL = 'C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe'
 $VENV = 'V:\Developer\agol-python-scripts\.venv\Scripts\python.exe'

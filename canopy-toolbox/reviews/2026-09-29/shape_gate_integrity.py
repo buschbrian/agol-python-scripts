@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import numpy as np
 
 from canopy import las_records
+from canopy.lidar_root import live
 
 BLOCK = 2_000_000
 
@@ -31,7 +32,7 @@ def check(folder):
     allowed = {1} if apply else set(range(64, 73))
     rows = {}
     for source in manifest["input_files"]:
-        original = Path(source["path"])
+        original = live(source["path"])
         copy = folder/"points"/original.name
         stat = original.stat()
         if not copy.is_file():

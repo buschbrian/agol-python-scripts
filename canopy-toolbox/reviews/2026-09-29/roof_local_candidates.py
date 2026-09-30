@@ -28,7 +28,8 @@ from canopy import roofs
 from canopy.matching import match_candidates
 from canopy.run_safeguards import fingerprint
 
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 BANDS = ("at_roof_height_le_0.5m", "0.5_to_2m_above_roof", "over_2m_above_roof")
 MATCH_M = 1.0
 

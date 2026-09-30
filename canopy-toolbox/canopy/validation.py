@@ -19,6 +19,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 from . import common, preparation, roofs
+from .lidar_root import live
 from . import validation_metrics as vm
 from .run_safeguards import fingerprint, verify_fingerprint
 
@@ -92,10 +93,11 @@ def run_outputs(folder):
     missing = [k for k in ("chm", "treetops", "crowns", "trees_review") if k not in state["outputs"]]
     if missing:
         raise ValueError(f"Run in {folder} lacks outputs {missing}")
-    absent = [k for k, path in state["outputs"].items() if not arcpy.Exists(path)]
+    outputs = {k: str(live(v)) if isinstance(v, str) else v for k, v in state["outputs"].items()}
+    absent = [k for k, path in outputs.items() if not arcpy.Exists(path)]
     if absent:
         raise ValueError(f"Completed run in {folder} has missing datasets: {absent}")
-    return state["outputs"], state.get("parameters", {})
+    return outputs, state.get("parameters", {})
 
 
 class Grid:

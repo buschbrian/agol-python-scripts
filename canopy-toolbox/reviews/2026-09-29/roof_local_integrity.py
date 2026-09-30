@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import numpy as np
 
 from canopy import preparation
+from canopy.lidar_root import live
 
 BLOCK = 2_000_000
 
@@ -25,7 +26,7 @@ def check(refined):
     manifest = json.loads((refined / "preparation.json").read_text())
     rows = {}
     for source in manifest["input_files"]:
-        original, copy = Path(source["path"]), refined / "points" / Path(source["path"]).name
+        original, copy = live(source["path"]), refined / "points" / Path(source["path"]).name
         stat = original.stat()
         info = preparation.header(copy)
         modern, length, start = info["format"] >= 6, info["record_length"], info["offset"]

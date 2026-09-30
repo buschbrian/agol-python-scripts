@@ -24,7 +24,8 @@ import urllib.request
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root, live  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 VALIDATION = ROOT / "validation"
 TILES = {"12TVL2804": (428000, 4504000, 429000, 4505000),
          "12TVL3302": (433000, 4502000, 434000, 4503000),
@@ -66,7 +67,7 @@ def cmd_layers(args):
     document = json.loads((Path(args.out) / "sample_design.json").read_text(encoding="utf-8"))
     chm, crowns = {}, {}
     for tile in document["tiles"]:
-        outputs, _ = validation.run_outputs(Path(document["root"]) / tile / document["run_name"])
+        outputs, _ = validation.run_outputs(live(document["root"]) / tile / document["run_name"])
         chm[tile], crowns[tile] = outputs["chm"], outputs["crowns"]
     result = validation.review_layers(Path(args.out) / "reference.gdb", Path(args.out) / "review",
                                       chm, crowns)

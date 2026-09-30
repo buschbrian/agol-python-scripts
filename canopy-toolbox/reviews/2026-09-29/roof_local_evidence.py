@@ -24,7 +24,8 @@ from scipy.spatial import cKDTree
 
 from canopy import roofs
 
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 RETURN_NAMES = roofs.RETURN_TYPES
 
 

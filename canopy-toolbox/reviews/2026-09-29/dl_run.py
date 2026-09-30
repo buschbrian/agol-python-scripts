@@ -25,8 +25,9 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from canopy.run_safeguards import fingerprint, valid_extent
 
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\12TVL2804")
-MODELS = Path(r"H:\lidar\models")
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29" / "deep-learning" / "12TVL2804"
+MODELS = lidar_root() / "models"
 SOURCE = ROOT.parents[1] / "12TVL2804" / "prepared" / "points" / "12TVL2804.las"
 JOBS = {"building": ("building_point_classification.dlpk", 6), "tree": ("Tree_point_classification.dlpk", 5)}
 PACKAGES = ('torch', 'arcgis', 'numpy', 'scipy')

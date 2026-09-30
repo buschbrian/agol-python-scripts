@@ -27,8 +27,9 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from canopy.run_safeguards import prediction_extent, valid_extent
 
-ORIGINAL = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las")
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\12TVL2804")
+from canopy.lidar_root import lidar_root, live  # noqa: E402
+ORIGINAL = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29" / "12TVL2804" / "prepared" / "points" / "12TVL2804.las"
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29" / "deep-learning" / "12TVL2804"
 COPIES = {"building": ROOT / "building" / "12TVL2804.las", "tree": ROOT / "tree" / "12TVL2804.las"}
 CHUNK = 4_000_000
 NAMES = {0: "0 never classified", 1: "1 unclassified", 2: "2 ground", 3: "3 low veg", 4: "4 medium veg",
@@ -117,12 +118,12 @@ def compare_job(name, manifest_path, original_path, requested=None, path=None):
     record passed the byte-level gate.
     """
     from canopy.las_records import header, records
-    manifest_path, original_path = Path(manifest_path), Path(original_path)
+    manifest_path, original_path = live(manifest_path), live(original_path)
     entry = {"path": str(path), "status": "rejected", "original": str(original_path)}
     try:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         if path is None:
-            path = Path(manifest.get('output', {}).get('path', ''))
+            path = live(manifest.get('output', {}).get('path', ''))
             entry['path'] = str(path)
         extent = prediction_extent(manifest, name, original_path, path, requested)
         processed = valid_extent(manifest.get('boundary'))
@@ -173,7 +174,7 @@ def compare_row(name, row_manifest_path, requested=None):
 
     Each file must pass on its own; the row is verified only if all of them are.
     """
-    row_manifest_path = Path(row_manifest_path)
+    row_manifest_path = live(row_manifest_path)
     entry = {"status": "rejected", "row_manifest": str(row_manifest_path), "files": {}}
     try:
         row = json.loads(row_manifest_path.read_text(encoding='utf-8'))
@@ -187,7 +188,7 @@ def compare_row(name, row_manifest_path, requested=None):
     if row.get('data_use_label'):
         entry['data_use_label'] = row['data_use_label']
     for record in row['files']:
-        source = Path(record['source']['path'])
+        source = live(record['source']['path'])
         entry['files'][source.name] = compare_job(name, record['manifest'], source, requested)
     failed = [f for f, e in entry['files'].items() if e['status'] != 'verified_inference']
     if failed:

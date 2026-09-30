@@ -9,7 +9,10 @@ import csv
 import json
 from pathlib import Path
 
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\training-2026-09-30")
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "training-2026-09-30"
 DL = ROOT / "deep-learning"
 HERE = Path(__file__).resolve().parent
 NAMES = {1: "unclassified", 2: "ground", 3: "low veg", 4: "medium veg", 5: "high veg", 6: "building",

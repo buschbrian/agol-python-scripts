@@ -1,7 +1,8 @@
 # September 30 GPU queue: strictly sequential, one GPU job at a time. A failed row is logged and the queue
 # continues with the next row. Rows a-c only; row d (HAG) is started separately once its baseline exists.
 $ErrorActionPreference = 'Stop'
-$P = 'H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29'
+$LIDAR = $(if ($env:CANOPY_LIDAR_ROOT) { $env:CANOPY_LIDAR_ROOT } else { 'H:\lidar' })
+$P = (Join-Path $LIDAR '2023-salt-lake-valley\runs\pilot-2026-09-29')
 $E = "$P\deep-learning\experiments-20260930"
 New-Item -ItemType Directory -Force $E | Out-Null
 $queueLog = "$E\queue.log"

@@ -37,6 +37,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from canopy.las_records import header
+from canopy.lidar_root import live
 from canopy.run_safeguards import fingerprint, verify_fingerprint
 
 CHUNK = 4_000_000
@@ -47,7 +48,7 @@ DEFAULT_CONFLICT_CLASS = 65
 
 def _same(a, b):
     try:
-        return Path(a).resolve() == Path(b).resolve()
+        return live(a).resolve() == live(b).resolve()
     except (OSError, TypeError):
         return False
 
@@ -103,8 +104,8 @@ def assemble(baseline, tree_manifest, tree_compare, out, building_manifest=None,
                              "model background")
     if info['format'] < 6:
         raise ValueError("Product assembly supports point formats 6-10")
-    raw_tree = Path(tree['output']['path'])
-    raws = [raw_tree] + ([Path(building['output']['path'])] if building else [])
+    raw_tree = live(tree['output']['path'])
+    raws = [raw_tree] + ([live(building['output']['path'])] if building else [])
     for path in raws:
         other = header(path)
         if any(other[k] != info[k] for k in ('format', 'points', 'record_length', 'offset')):

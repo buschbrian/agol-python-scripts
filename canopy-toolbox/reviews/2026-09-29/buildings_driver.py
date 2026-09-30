@@ -10,7 +10,9 @@ import psutil
 
 PY = r"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe"
 TOOLBOX = Path(__file__).resolve().parents[2]
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 OUT = ROOT / "buildings"
 HERE = Path(__file__).resolve().parent
 TILES = {"12TVL2804": (428000, 4504000, 429000, 4505000),

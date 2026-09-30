@@ -15,8 +15,8 @@ param(
   [string]$Label = '',
   [double[]]$Boundary = @(),
   [string[]]$Extra = @(),
-  [string[]]$Watch = @('H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las'),
-  [string]$Root = 'H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930'
+  [string[]]$Watch = @((Join-Path $(if ($env:CANOPY_LIDAR_ROOT) { $env:CANOPY_LIDAR_ROOT } else { 'H:\lidar' }) '2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las')),
+  [string]$Root = (Join-Path $(if ($env:CANOPY_LIDAR_ROOT) { $env:CANOPY_LIDAR_ROOT } else { 'H:\lidar' }) '2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930')
 )
 $ErrorActionPreference = 'Stop'
 $env:PYTHONNOUSERSITE = '1'

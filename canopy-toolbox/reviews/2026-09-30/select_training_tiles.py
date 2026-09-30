@@ -38,9 +38,10 @@ SEED = 20260930
 DRAW = 3
 BUFFER = 50.0
 CSV = TOOLBOX / "acquisitions" / "2023-salt-lake-valley" / "usgs-laz-millcreek.csv"
-LAZ = Path(r"H:\lidar\2023-salt-lake-valley\laz")
+from canopy.lidar_root import lidar_root  # noqa: E402
+LAZ = lidar_root() / "2023-salt-lake-valley" / "laz"
 LAS = Path(r"D:\lidar\2023-salt-lake-valley\las")
-PILOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+PILOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 INVENTORY = PILOT / "las-inventory.json"
 REFERENCE_GDB = PILOT / "validation" / "reference.gdb"
 REFERENCE_SAMPLES = ("treetop_sample", "omission_sample", "cell_sample", "crown_sample")

@@ -12,7 +12,8 @@ from canopy.run_safeguards import completed_preparation, run_resume_args
 PY = r"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe"
 TOOLBOX = Path(__file__).resolve().parents[2]
 LAS = Path(r"D:\lidar\2023-salt-lake-valley\las")
-ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root  # noqa: E402
+ROOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 INVENTORY = ROOT / "las-inventory.json"
 BUFFER = 50.0  # metres of neighbour context for prepare; run's halo is 15 m
 

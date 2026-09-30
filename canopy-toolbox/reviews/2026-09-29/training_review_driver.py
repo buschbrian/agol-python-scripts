@@ -29,9 +29,11 @@ import itertools  # noqa: E402
 
 from canopy import evaluation_design as ed  # noqa: E402
 from canopy import las_records  # noqa: E402
+from canopy.lidar_root import live  # noqa: E402
 from canopy import training_review as tr  # noqa: E402
 
-PILOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29")
+from canopy.lidar_root import lidar_root  # noqa: E402
+PILOT = lidar_root() / "2023-salt-lake-valley" / "runs" / "pilot-2026-09-29"
 DEFAULTS = {
     "reference_gdb": PILOT/"validation"/"reference.gdb",
     "plots_json": TOOLBOX/"reviews"/"2026-09-29"/"packets"/"independent-plot-census-v2"/"plots.esri.json",
@@ -382,7 +384,7 @@ def export_pointcloud(args):
     out = Path(args.out)
     if out.exists():
         raise FileExistsError(f"{out} exists")
-    source = Path(args.source or document["sources"]["baseline"]["path"])
+    source = live(args.source or document["sources"]["baseline"]["path"])
     before = sha256(source)
     out.mkdir(parents=True)
     las = out/"points"/f"{source.stem}_training.las"

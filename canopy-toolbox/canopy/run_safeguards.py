@@ -4,9 +4,11 @@ import json
 import math
 from pathlib import Path
 
+from .lidar_root import live
+
 
 def fingerprint(path):
-    path = Path(path).resolve()
+    path = live(path).resolve()
     digest = hashlib.sha256()
     with path.open('rb') as source:
         for chunk in iter(lambda: source.read(8 * 1024 * 1024), b''):
@@ -16,7 +18,11 @@ def fingerprint(path):
 
 def verify_fingerprint(record, path):
     actual = fingerprint(path)
-    if any(record.get(key) != actual[key] for key in ("path", "bytes", "sha256")):
+    recorded_path = record.get("path")
+    if recorded_path is not None:
+        recorded_path = str(live(recorded_path))
+    if (recorded_path != actual["path"] or
+            any(record.get(key) != actual[key] for key in ("bytes", "sha256"))):
         raise ValueError(f"File does not match recorded content: {path}")
 
 

@@ -4,7 +4,8 @@
 # absolute baseline only in Z, and afterwards pairs each HAG prediction with its September 29 absolute-Z row by
 # point index. Always ends by appending "GPU QUEUE DONE" to queue.log; no GPU work follows.
 $ErrorActionPreference = 'Stop'
-$P = 'H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29'
+$LIDAR = $(if ($env:CANOPY_LIDAR_ROOT) { $env:CANOPY_LIDAR_ROOT } else { 'H:\lidar' })
+$P = (Join-Path $LIDAR '2023-salt-lake-valley\runs\pilot-2026-09-29')
 $E = "$P\deep-learning\experiments-20260930"
 $E29 = "$P\deep-learning\experiments-20260929"
 $HAG = "$P\hag-20260929\12TVL2804"
