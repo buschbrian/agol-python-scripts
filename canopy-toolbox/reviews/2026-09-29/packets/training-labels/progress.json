@@ -1,0 +1,17 @@
+{
+ "schema": "canopy-training-review/1",
+ "kind": "TRAINING_LABEL_BACKUP",
+ "packet_units_digest": "2555406f8cc33695ec7cc2ab3c93b3ca68745d8dc7d2ce1479377904052f662b",
+ "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
+ "counts": {
+  "units": 1065,
+  "saved": 0,
+  "labelled": 0,
+  "by_label": {}
+ },
+ "reviewers": [],
+ "flagged": [],
+ "problems": [],
+ "labels_csv_sha256": "2b66d2ac5c5ec1ac9707eeaca9ca84d163a59b549d9d1ab68eb016c6be7c5f84",
+ "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."
+}

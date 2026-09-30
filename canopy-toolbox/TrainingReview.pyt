@@ -36,8 +36,13 @@ def _reload():
     importlib.reload(_tra)
 
 
-def _param(name, label, datatype, ptype="Required", default=None, values=None):
+ADVANCED = "Advanced"
+
+
+def _param(name, label, datatype, ptype="Required", default=None, values=None, category=None):
     p = arcpy.Parameter(displayName=label, name=name, datatype=datatype, parameterType=ptype, direction="Input")
+    if category:
+        p.category = category          # Pro collapses a category, so rarely used options stay out of the way
     if values is not None:
         p.filter.type = "ValueList"
         p.filter.list = list(values)
@@ -133,7 +138,7 @@ class NextTrainingUnit(object):
     def getParameterInfo(self):
         return [_param("in_layer", "Training units layer", "GPFeatureLayer", default=DEFAULT_LAYER),
                 _param("queue", "Only this queue (optional)", "GPString", "Optional", values=_queue_values()),
-                _param("view_m", "View width (m)", "GPDouble", default=VIEW_M)]
+                _param("view_m", "View width (m)", "GPDouble", default=VIEW_M, category=ADVANCED)]
 
     def isLicensed(self):
         return True
@@ -163,10 +168,13 @@ class LabelTrainingUnit(object):
                 _param("imagery_usable", "Imagery usable for this label", "GPString", "Optional", values=list(_tr.YES_NO)),
                 _param("notes", "Notes (max 500 characters)", "GPString", "Optional"),
                 _param("reviewer", "Reviewer", "GPString"),
-                _param("replace", "Replace an existing different label", "GPBoolean", "Optional", default=False),
-                _param("advance", "Advance to the next unit after saving", "GPBoolean", "Optional", default=True),
-                _param("queue", "Advance within this queue only (optional)", "GPString", "Optional", values=_queue_values()),
-                _param("view_m", "View width (m)", "GPDouble", "Optional", default=VIEW_M)]
+                _param("replace", "Replace an existing different label", "GPBoolean", "Optional", default=False,
+                       category=ADVANCED),
+                _param("advance", "Advance to the next unit after saving", "GPBoolean", "Optional", default=True,
+                       category=ADVANCED),
+                _param("queue", "Advance within this queue only (optional)", "GPString", "Optional",
+                       values=_queue_values(), category=ADVANCED),
+                _param("view_m", "View width (m)", "GPDouble", "Optional", default=VIEW_M, category=ADVANCED)]
 
     def isLicensed(self):
         return True

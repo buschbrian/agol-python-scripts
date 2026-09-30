@@ -192,5 +192,75 @@ class TrainingReviewArcGIS(unittest.TestCase):
             self.driver.export_pointcloud(SimpleNamespace(**{**vars(export), "out": str(self.root/"pc2")}))
 
 
+    def test_label_dialog_keeps_the_common_fields_up_front(self):
+        import importlib.machinery
+        path = Path(__file__).resolve().parents[1]/"TrainingReview.pyt"
+        loader = importlib.machinery.SourceFileLoader("training_review_pyt", str(path))
+        module = importlib.util.module_from_spec(importlib.util.spec_from_loader("training_review_pyt", loader))
+        loader.exec_module(module)
+        params = module.LabelTrainingUnit().getParameterInfo()
+        # execute() reads parameters by index, so the order is part of the contract
+        self.assertEqual([p.name for p in params], ["in_layer", "label", "imagery_usable", "notes", "reviewer",
+                                                     "replace", "advance", "queue", "view_m"])
+        self.assertEqual([p.name for p in params if not p.category],
+                         ["in_layer", "label", "imagery_usable", "notes", "reviewer"])
+        self.assertEqual({p.category for p in params if p.category}, {"Advanced"})
+        nxt = module.NextTrainingUnit().getParameterInfo()
+        self.assertEqual([p.name for p in nxt], ["in_layer", "queue", "view_m"])
+        self.assertEqual([p.name for p in nxt if p.category], ["view_m"])
+
+    def test_backup_and_restore_round_trip(self):
+        arcpy, tra = self.arcpy, self.tra
+        answer = {"LABEL": "TREE", "IMAGERY_USABLE": "YES", "REVIEWER": "Fixture", "REVIEW_DATE": "2026-09-29", "NOTES": "a, b"}
+        tra.label_unit(self.fc, [self.oid("Q1-0001")], answer)
+        tra.label_unit(self.fc, [self.oid("Q6-0001")], dict(answer, LABEL="GROUND", IMAGERY_USABLE=None, NOTES=None))
+        out = self.root/"repo"/"training-labels"
+        args = SimpleNamespace(packet=self.packet, out=out)
+
+        self.assertEqual(self.driver.backup(args), 0)
+        first = (out/"labels-progress.csv").read_bytes()
+        self.assertEqual(self.driver.backup(args), 0)
+        self.assertEqual(first, (out/"labels-progress.csv").read_bytes())       # unchanged work, no diff
+        progress = json.loads((out/"progress.json").read_text())
+        self.assertEqual((progress["counts"]["saved"], progress["counts"]["labelled"]), (2, 2))
+        self.assertEqual(progress["reviewers"], ["Fixture"])
+        self.assertFalse((out/"labels-progress.csv.pending").exists())
+
+        def live(uid):
+            return next(r for r in tra.read_review_rows(self.fc) if r["UNIT_ID"] == uid)
+
+        def clear(uid):
+            fields = ["LABEL", "IMAGERY_USABLE", "REVIEWER", "REVIEW_DATE", "NOTES"]
+            with arcpy.da.UpdateCursor(self.fc, fields, f"UNIT_ID = '{uid}'") as cursor:
+                for _ in cursor:
+                    cursor.updateRow([None]*5)
+
+        clear("Q1-0001")                                                          # a label is lost
+        tra.label_unit(self.fc, [self.oid("Q6-0001")], dict(answer, LABEL="WALL"), replace=True)   # and one conflicts
+        restore = SimpleNamespace(packet=self.packet, csv=out/"labels-progress.csv", apply=False, replace=False)
+        self.assertEqual(self.driver.restore(restore), 3)                         # conflict reported ...
+        self.assertIsNone(live("Q1-0001")["LABEL"])                               # ... and a preview writes nothing
+        restore.apply = True
+        self.assertEqual(self.driver.restore(restore), 3)
+        self.assertEqual(live("Q1-0001")["LABEL"], "TREE")
+        self.assertEqual(live("Q1-0001")["NOTES"], "a, b")
+        self.assertEqual(live("Q6-0001")["LABEL"], "WALL")                        # never overwritten without --replace
+        restore.replace = True
+        self.assertEqual(self.driver.restore(restore), 0)
+        self.assertEqual(live("Q6-0001")["LABEL"], "GROUND")
+
+        # a hand edit that breaks the snapshot rules is still saved, flagged, and exits 3
+        with arcpy.da.UpdateCursor(self.fc, ["REVIEWER"], "UNIT_ID = 'Q6-0001'") as cursor:
+            for _ in cursor:
+                cursor.updateRow([None])
+        self.assertEqual(self.driver.backup(args), 3)
+        text = (out/"labels-progress.csv").read_text()
+        self.assertIn("Q6-0001", text)
+        self.assertIn("reviewer", text)
+        self.assertEqual(json.loads((out/"progress.json").read_text())["counts"]["saved"], 2)
+        with self.assertRaisesRegex(ValueError, "reviewer"):
+            self.driver.snapshot(SimpleNamespace(**vars(self.args), packet=str(self.packet), out=str(self.root/"strict")))
+
+
 if __name__ == "__main__":
     unittest.main()

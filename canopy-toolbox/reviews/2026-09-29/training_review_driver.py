@@ -3,7 +3,9 @@
 Run from canopy-toolbox with ArcGIS Pro Python (PYTHONNOUSERSITE=1). See TRAINING_REVIEW.md.
 
     python reviews/2026-09-29/training_review_driver.py build NEW_PACKET
-    python reviews/2026-09-29/training_review_driver.py status PACKET
+    python reviews/2026-09-29/training_review_driver.py status [PACKET]
+    python reviews/2026-09-29/training_review_driver.py backup [--packet PACKET] [--out DIR]
+    python reviews/2026-09-29/training_review_driver.py restore [--packet PACKET] [--csv FILE] [--apply] [--replace]
     python reviews/2026-09-29/training_review_driver.py snapshot PACKET NEW_SNAPSHOT
     python reviews/2026-09-29/training_review_driver.py export-pointcloud PACKET SNAPSHOT NEW_EXPORT [--prepare]
     python reviews/2026-09-29/training_review_driver.py export-imagery PACKET SNAPSHOT NEW_EXPORT --raster NAIP.tif [--chips]
@@ -47,6 +49,8 @@ DEFAULTS = {
     "ground": PILOT/"deep-learning"/"experiments-20260929"/"building-hag"/"reference"/"ground.tif",
 }
 SHAPE_GROUPS = ("wall_like", "wire", "pole")
+DEFAULT_PACKET = PILOT/"training-review"/"packet-20260929"
+BACKUP_DIR = TOOLBOX/"reviews"/"2026-09-29"/"packets"/"training-labels"
 
 
 def sha256(path, chunk=1 << 24):
@@ -334,10 +338,16 @@ def _recheck_frame(args, document):
     return live
 
 
+def review_gdb(packet, document):
+    """The review GDB beside packet.json; the path recorded in packet.json may name another machine's drive."""
+    beside = Path(packet)/"training_review.gdb"
+    return beside if beside.exists() else live(document["gdb"])
+
+
 def status(args):
     from canopy import training_review_arcpy as tra
     document = load_packet(args.packet)
-    rows = tra.read_review_rows(Path(document["gdb"])/tra.UNITS_FC)
+    rows = tra.read_review_rows(review_gdb(args.packet, document)/tra.UNITS_FC)
     table = {}
     for r in rows:
         entry = table.setdefault(r["QUEUE"], {"units": 0, "labelled": 0})
@@ -354,9 +364,9 @@ def snapshot(args):
     if out.exists():
         raise FileExistsError(f"{out} exists; each snapshot needs a new folder")
     _recheck_frame(args, document)
-    rows = tra.read_review_rows(Path(document["gdb"])/tra.UNITS_FC)
-    plan = tr.plan_snapshot(rows, document["units"], document["frame"],
-                            labels=tra.domain_codes(document["gdb"]))
+    gdb = review_gdb(args.packet, document)
+    rows = tra.read_review_rows(gdb/tra.UNITS_FC)
+    plan = tr.plan_snapshot(rows, document["units"], document["frame"], labels=tra.domain_codes(gdb))
     out.mkdir(parents=True)
     text = tr.snapshot_csv(plan["rows"])
     (out/"labels.csv").write_bytes(text.encode("utf-8"))
@@ -371,6 +381,78 @@ def snapshot(args):
     write_json(out/"snapshot.json", audit)
     print(json.dumps(audit["counts"], indent=1))
     return audit
+
+
+def backup(args):
+    """Save every answered unit from the live review GDB into the repo working copy (labels-progress.csv).
+
+    Lenient: nothing is refused. A row that would fail the snapshot rules is saved with the reason in CHECK and the
+    command exits 3 so the problem is seen. The output is deterministic, so unchanged work makes no git diff.
+    The repo copy is byte-for-byte (packets/** -text); the GDB stays the working master until you restore.
+    """
+    from canopy import training_review_arcpy as tra
+    document = load_packet(args.packet)
+    gdb = review_gdb(args.packet, document)
+    rows = tra.read_review_rows(gdb/tra.UNITS_FC)
+    plan = tr.plan_backup(rows, document["units"], document["frame"], labels=tra.domain_codes(gdb))
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    text = tr.backup_csv(plan["rows"]).encode("utf-8")
+    pending = out/"labels-progress.csv.pending"
+    pending.write_bytes(text)
+    os.replace(pending, out/"labels-progress.csv")
+    progress = {"schema": tr.SCHEMA, "kind": "TRAINING_LABEL_BACKUP",
+                "packet_units_digest": document["units_digest"], "frame_digest": document["frame"]["digest"],
+                "counts": {k: plan[k] for k in ("units", "saved", "labelled", "by_label")},
+                "reviewers": sorted({r["REVIEWER"] for r in plan["rows"] if r["REVIEWER"]}),
+                "flagged": plan["flagged"], "problems": plan["problems"],
+                "labels_csv_sha256": hashlib.sha256(text).hexdigest(),
+                "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."}
+    write_json(out/"progress.json", progress)
+    print(f"Saved {plan['saved']} answered units ({plan['labelled']} labelled) of {plan['units']} to {out}")
+    if plan["by_label"]:
+        print("By label:", ", ".join(f"{k} {v}" for k, v in sorted(plan["by_label"].items())))
+    for line in plan["flagged"]+plan["problems"]:
+        print("CHECK:", line)
+    if plan["flagged"] or plan["problems"]:
+        print("Saved anyway. Fix the units above in Pro (or restore over them) before you take a snapshot.")
+        return 3
+    return 0
+
+
+def restore(args):
+    """Put a backup CSV's labels back into the live review GDB. Preview unless --apply.
+
+    Blank units are filled. A unit that already has the same label is left alone. A different live label is a
+    conflict and is skipped unless --replace. Rows failing the snapshot checks are refused and listed; they never
+    stop the valid rows. Every written unit is read back and compared.
+    """
+    from canopy import training_review_arcpy as tra
+    document = load_packet(args.packet)
+    gdb = review_gdb(args.packet, document)
+    fc = gdb/tra.UNITS_FC
+    backup_rows = tr.read_backup(args.csv)
+    live_rows = tra.read_review_rows(fc)
+    plan = tr.plan_restore(backup_rows, live_rows, document["units"], document["frame"],
+                           labels=tra.domain_codes(gdb), replace=args.replace)
+    summary = {"write": len(plan["write"]), "replace": len(plan["replace"]), "unchanged": len(plan["unchanged"]),
+               "conflicts": len(plan["conflicts"]), "refused": len(plan["refused"])}
+    print(json.dumps({"mode": "APPLY" if args.apply else "PREVIEW", **summary}, indent=1))
+    for line in (plan["conflicts"]+plan["refused"])[:20]:
+        print("SKIPPED:", line)
+    if not args.apply:
+        print("Preview only. Re-run with --apply to write these labels.")
+        return 3 if plan["conflicts"] or plan["refused"] else 0
+    oids = {r["UNIT_ID"]: r["OID@"] for r in live_rows}
+    todo = [(w, False) for w in plan["write"]] + [(w, True) for w in plan["replace"]]
+    for item, replacing in todo:
+        tra.write_answer(fc, oids[item["UNIT_ID"]], item["answer"], replace=replacing)
+    after = {r["UNIT_ID"]: r for r in tra.read_review_rows(fc)}
+    wrong = [item["UNIT_ID"] for item, _ in todo if after[item["UNIT_ID"]]["LABEL"] != item["answer"]["LABEL"]]
+    if wrong:
+        raise RuntimeError(f"Read-back mismatch after restore for {wrong[:5]}")
+    print(f"Restored {len(todo)} units and read them back.")
+    return 3 if plan["conflicts"] or plan["refused"] else 0
 
 
 def export_pointcloud(args):
@@ -442,16 +524,22 @@ def main(argv=None):
         parser.add_argument("--"+key.replace("_", "-"), dest=key, default=value, type=Path)
     sub = parser.add_subparsers(dest="command", required=True)
     b = sub.add_parser("build"); b.add_argument("packet"); b.add_argument("--cap", type=int, default=200)
-    s = sub.add_parser("status"); s.add_argument("packet")
+    s = sub.add_parser("status"); s.add_argument("packet", nargs="?", default=DEFAULT_PACKET, type=Path)
+    k = sub.add_parser("backup"); k.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
+    k.add_argument("--out", default=BACKUP_DIR, type=Path)
+    r = sub.add_parser("restore"); r.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
+    r.add_argument("--csv", default=BACKUP_DIR/"labels-progress.csv", type=Path)
+    r.add_argument("--apply", action="store_true"); r.add_argument("--replace", action="store_true")
     s = sub.add_parser("snapshot"); s.add_argument("packet"); s.add_argument("out")
     p = sub.add_parser("export-pointcloud"); p.add_argument("packet"); p.add_argument("snapshot"); p.add_argument("out")
     p.add_argument("--source", type=Path); p.add_argument("--prepare", action="store_true")
     i = sub.add_parser("export-imagery"); i.add_argument("packet"); i.add_argument("snapshot"); i.add_argument("out")
     i.add_argument("--raster", type=Path, required=True); i.add_argument("--chips", action="store_true")
     args = parser.parse_args(argv)
-    {"build": build, "status": status, "snapshot": snapshot, "export-pointcloud": export_pointcloud,
-     "export-imagery": export_imagery}[args.command](args)
+    result = {"build": build, "status": status, "snapshot": snapshot, "backup": backup, "restore": restore,
+              "export-pointcloud": export_pointcloud, "export-imagery": export_imagery}[args.command](args)
+    return result if isinstance(result, int) else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

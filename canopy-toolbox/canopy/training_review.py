@@ -564,6 +564,131 @@ def load_snapshot(folder, packet):
     return out
 
 
+# ---------------------------------------------------------------- backup and restore (the repo working copy)
+
+BACKUP_COLUMNS = ("UNIT_ID", "QUEUE", "REVIEW_ORDER", "UNIT_TOKEN", *ANSWER_FIELDS, "CHECK")
+TOUCHED_FIELDS = ("LABEL", "IMAGERY_USABLE", "NOTES")
+
+
+def plan_backup(rows, packet_units, frame, labels=None, tolerance=0.005):
+    """Lenient copy of every answered unit, for saving into the repo while labelling is in progress.
+
+    Unlike plan_snapshot this never refuses: a row that would fail snapshot validation is still saved, with the
+    reason in CHECK, so one mistake cannot stop the rest of the work from being saved. A unit counts as answered
+    when LABEL, IMAGERY_USABLE or NOTES is set. Rows that are not units of the packet (unknown or duplicate UNIT_ID)
+    have no token and cannot be restored, so they are listed in problems instead. Blank units are not written.
+    """
+    index = {u["UNIT_ID"]: u for u in packet_units}
+    seen, out, problems = set(), [], []
+    for row in rows:
+        uid = row.get("UNIT_ID")
+        if uid not in index:
+            problems.append(f"{uid}: not a unit of this packet; its answer is not saved")
+            continue
+        if uid in seen:
+            problems.append(f"{uid}: appears more than once in the review table; only the first is saved")
+            continue
+        seen.add(uid)
+        if not any(_text(row.get(k)) for k in TOUCHED_FIELDS):
+            continue
+        unit = index[uid]
+        check = "OK"
+        try:
+            for key in IDENTITY_FIELDS:
+                a, b = row.get(key), unit[key]
+                same = (abs(float(a)-float(b)) <= tolerance) if isinstance(b, float) and a is not None else (str(a) == str(b))
+                if a is None or not same:
+                    raise ValueError(f"identity field {key} changed")
+            if not _text(row.get("LABEL")):
+                raise ValueError("has notes or IMAGERY_USABLE but no LABEL")
+            normalize_answer(unit, row, frame, labels)
+        except ValueError as exc:
+            check = str(exc).removeprefix(f"{uid}: ")
+        date = row.get("REVIEW_DATE")
+        if isinstance(date, (datetime.datetime, datetime.date)):
+            date = date.isoformat()[:10]
+        out.append({"UNIT_ID": uid, "QUEUE": unit["QUEUE"], "REVIEW_ORDER": unit["REVIEW_ORDER"],
+                    "UNIT_TOKEN": unit_token(frame["digest"], unit),
+                    "LABEL": _text(row.get("LABEL")), "IMAGERY_USABLE": _text(row.get("IMAGERY_USABLE")),
+                    "REVIEWER": _text(row.get("REVIEWER")), "REVIEW_DATE": _text(date),
+                    "NOTES": "" if row.get("NOTES") is None else str(row.get("NOTES")), "CHECK": check})
+    missing = sorted(set(index) - seen)
+    if missing:
+        problems.append(f"{len(missing)} packet units are missing from the review table, e.g. {missing[:3]}")
+    out.sort(key=lambda r: (int(r["REVIEW_ORDER"]), r["UNIT_ID"]))
+    by_label = {}
+    for r in out:
+        if r["LABEL"]:
+            by_label[r["LABEL"]] = by_label.get(r["LABEL"], 0)+1
+    flagged = [f"{r['UNIT_ID']}: {r['CHECK']}" for r in out if r["CHECK"] != "OK"]
+    return {"units": len(index), "saved": len(out), "labelled": sum(by_label.values()), "by_label": by_label,
+            "flagged": flagged, "problems": problems, "rows": out}
+
+
+def backup_csv(rows):
+    handle = io.StringIO()
+    writer = csv.DictWriter(handle, fieldnames=BACKUP_COLUMNS, lineterminator="\n")
+    writer.writeheader()
+    for r in rows:
+        writer.writerow({k: "" if r.get(k) is None else r[k] for k in BACKUP_COLUMNS})
+    return handle.getvalue()
+
+
+def plan_restore(backup_rows, current_rows, packet_units, frame, labels=None, replace=False):
+    """What restoring a backup CSV into the live review table would do. Writes nothing.
+
+    Each backup row is checked like a snapshot row (token, label domain, reviewer, date, excluded domain).
+    A unit whose live LABEL is blank is written; an identical answer is left alone; a different live label is a
+    conflict and is skipped unless replace. Rows that fail any check are refused with the reason; they never stop
+    the valid rows.
+    """
+    index = {u["UNIT_ID"]: u for u in packet_units}
+    live = {r["UNIT_ID"]: r for r in current_rows}
+    plan = {"write": [], "replace": [], "unchanged": [], "conflicts": [], "refused": []}
+    seen = set()
+    for row in backup_rows:
+        uid = row.get("UNIT_ID")
+        unit = index.get(uid)
+        if unit is None or uid not in live:
+            plan["refused"].append(f"{uid}: not a unit of this packet")
+            continue
+        if uid in seen:
+            plan["refused"].append(f"{uid}: appears more than once in the backup")
+            continue
+        seen.add(uid)
+        if row.get("UNIT_TOKEN") != unit_token(frame["digest"], unit):
+            plan["refused"].append(f"{uid}: token does not match this packet or evaluation frame")
+            continue
+        if not _text(row.get("LABEL")):
+            plan["refused"].append(f"{uid}: no LABEL to restore")
+            continue
+        try:
+            answer = normalize_answer(unit, row, frame, labels)
+        except ValueError as exc:
+            plan["refused"].append(str(exc))
+            continue
+        current = live[uid]
+        now = _text(current.get("LABEL"))
+        if not now:
+            plan["write"].append({"UNIT_ID": uid, "answer": answer})
+        elif now == answer["LABEL"]:
+            plan["unchanged"].append(uid)       # same label: the live answer (reviewer, notes) is kept
+        elif replace:
+            plan["replace"].append({"UNIT_ID": uid, "answer": answer, "was": now})
+        else:
+            plan["conflicts"].append(f"{uid}: live label {now} differs from backup {answer['LABEL']}")
+    return plan
+
+
+def read_backup(path):
+    """Rows of a backup CSV as dicts; the header must be the backup columns."""
+    with open(path, encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if tuple(reader.fieldnames or ()) != BACKUP_COLUMNS:
+            raise ValueError(f"{path} is not a training label backup (unexpected columns)")
+        return list(reader)
+
+
 # ---------------------------------------------------------------- point-cloud training export
 
 def point_split(units, block=50., valid_share=0.2, origin=None):

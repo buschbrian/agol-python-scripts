@@ -235,6 +235,27 @@ It writes `labels.csv` and `snapshot.json`: the counts, the reviewers, the packe
 frame digests, and the SHA-256 of `labels.csv`. Exports re-verify that hash and every
 unit token, so an edited snapshot is refused.
 
+## Saving labels to the repo (backup and restore)
+
+The geodatabase on the lidar disk is the working master, and `snapshot` is strict and writes to the same disk. So
+the repo holds no labels until you back them up. `backup` copies every answered unit into
+[packets/training-labels](packets/training-labels/) (`labels-progress.csv` and `progress.json`, stored byte-for-byte
+by `.gitattributes`). It is lenient: a row that would fail the snapshot rules is still saved, with the reason in
+`CHECK`, and the command exits 3. The output is deterministic, so unchanged work makes no git diff.
+`restore` previews, then with `--apply` writes the repo copy back into blank units; a different live label is a
+conflict, skipped unless `--replace`, and every written unit is read back. `restore` applies the same domain and
+evaluation-frame checks as the Label tool.
+
+```powershell
+training_review_driver.py backup [--packet PACKET] [--out DIR]
+training_review_driver.py restore [--packet PACKET] [--csv FILE] [--apply] [--replace]
+```
+
+[reviews/2026-09-30/training_labels.bat](../2026-09-30/training_labels.bat) wraps these for the reviewer
+(`status`, `backup`, `save` = backup and commit, `restore`) and needs no PowerShell script. The reviewer's steps are in
+[LABELLING_CHECKLIST.md](../2026-09-30/LABELLING_CHECKLIST.md). The driver reads the review GDB beside `packet.json`,
+not the path recorded inside it, so it works when the disk has a different drive letter.
+
 ## Point-cloud training export (what Pro supports)
 
 ```powershell

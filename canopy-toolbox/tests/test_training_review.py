@@ -247,6 +247,118 @@ class Answers(unittest.TestCase):
                 tr.load_snapshot(tmp, packet)
 
 
+class BackupAndRestore(unittest.TestCase):
+    def setUp(self):
+        self.frame = frame()
+        self.units = [unit("Q6-0001", X0+100, Y0+100, order=2), unit("Q1-0001", X0+150, Y0+100, order=1, queue="Q1_TREE_ON_ROOF"),
+                      unit("Q6-0002", X0+300, Y0+100, order=3)]
+        for u in self.units:
+            u["LABEL"] = u["IMAGERY_USABLE"] = u["REVIEWER"] = u["REVIEW_DATE"] = u["NOTES"] = None
+
+    def rows(self, **answers):
+        rows = copy.deepcopy(self.units)
+        for uid, values in answers.items():
+            next(r for r in rows if r["UNIT_ID"] == uid.replace("_", "-")).update(values)
+        return rows
+
+    GOOD = {"LABEL": "TREE", "REVIEWER": "BB", "REVIEW_DATE": "2026-09-29"}
+
+    def test_backup_saves_only_answered_units_in_review_order(self):
+        rows = self.rows(Q6_0002=self.GOOD, Q1_0001=dict(self.GOOD, LABEL="WALL", NOTES="a, \"quoted\"\nnote"))
+        plan = tr.plan_backup(rows, self.units, self.frame)
+        self.assertEqual([r["UNIT_ID"] for r in plan["rows"]], ["Q1-0001", "Q6-0002"])
+        self.assertEqual((plan["units"], plan["saved"], plan["labelled"]), (3, 2, 2))
+        self.assertEqual(plan["by_label"], {"WALL": 1, "TREE": 1})
+        self.assertEqual((plan["flagged"], plan["problems"]), ([], []))
+        self.assertEqual({r["CHECK"] for r in plan["rows"]}, {"OK"})
+
+    def test_a_bad_row_is_saved_and_flagged_instead_of_blocking_the_backup(self):
+        rows = self.rows(Q1_0001=dict(self.GOOD, REVIEWER=""), Q6_0001=dict(self.GOOD, LABEL="ROOF"),
+                         Q6_0002=dict(LABEL="", NOTES="look again"))
+        plan = tr.plan_backup(rows, self.units, self.frame)
+        self.assertEqual(plan["saved"], 3)                      # nothing lost
+        checks = {r["UNIT_ID"]: r["CHECK"] for r in plan["rows"]}
+        self.assertIn("reviewer", checks["Q1-0001"])
+        self.assertIn("domain", checks["Q6-0001"])
+        self.assertIn("no LABEL", checks["Q6-0002"])
+        self.assertEqual(len(plan["flagged"]), 3)
+        moved = self.rows(Q6_0001=self.GOOD)
+        moved[0]["X"] += 5
+        self.assertIn("identity field X changed", tr.plan_backup(moved, self.units, self.frame)["rows"][0]["CHECK"])
+
+    def test_unknown_duplicate_and_missing_units_are_reported_not_written(self):
+        rows = self.rows(Q6_0001=self.GOOD)
+        rows.append(dict(unit("ZZ", X0+400, Y0+100), **self.GOOD))
+        rows.append(dict(copy.deepcopy(rows[0])))
+        plan = tr.plan_backup(rows, self.units, self.frame)
+        self.assertEqual([r["UNIT_ID"] for r in plan["rows"]], ["Q6-0001"])
+        self.assertTrue(any("ZZ" in p and "not a unit" in p for p in plan["problems"]))
+        self.assertTrue(any("more than once" in p for p in plan["problems"]))
+        short = tr.plan_backup(self.rows(Q6_0001=self.GOOD)[:2], self.units, self.frame)
+        self.assertTrue(any("missing" in p for p in short["problems"]))
+
+    def test_backup_csv_is_deterministic_and_round_trips(self):
+        rows = self.rows(Q6_0002=self.GOOD, Q1_0001=dict(self.GOOD, NOTES="a, \"q\"\nline"))
+        first = tr.backup_csv(tr.plan_backup(rows, self.units, self.frame)["rows"])
+        second = tr.backup_csv(tr.plan_backup(copy.deepcopy(rows), self.units, self.frame)["rows"])
+        self.assertEqual(first, second)                         # unchanged work makes no diff in git
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp, "labels-progress.csv")
+            path.write_bytes(first.encode("utf-8"))
+            back = tr.read_backup(path)
+            self.assertEqual([r["UNIT_ID"] for r in back], ["Q1-0001", "Q6-0002"])
+            self.assertEqual(back[0]["NOTES"], "a, \"q\"\nline")
+            path.write_text("UNIT_ID,LABEL\nQ1-0001,TREE\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "not a training label backup"):
+                tr.read_backup(path)
+
+    def restore(self, live_rows, backup_rows, **kw):
+        return tr.plan_restore(backup_rows, live_rows, self.units, self.frame, **kw)
+
+    def test_restore_writes_blank_units_and_leaves_matching_ones(self):
+        saved = tr.plan_backup(self.rows(Q6_0002=self.GOOD, Q1_0001=self.GOOD), self.units, self.frame)["rows"]
+        plan = self.restore(self.rows(Q1_0001=dict(self.GOOD, NOTES="kept")), saved)
+        self.assertEqual([w["UNIT_ID"] for w in plan["write"]], ["Q6-0002"])
+        self.assertEqual(plan["unchanged"], ["Q1-0001"])
+        self.assertEqual((plan["conflicts"], plan["refused"], plan["replace"]), ([], [], []))
+
+    def test_restore_conflicts_need_replace(self):
+        saved = tr.plan_backup(self.rows(Q6_0001=self.GOOD), self.units, self.frame)["rows"]
+        live_rows = self.rows(Q6_0001=dict(self.GOOD, LABEL="WALL"))
+        plan = self.restore(live_rows, saved)
+        self.assertEqual((plan["write"], plan["replace"]), ([], []))
+        self.assertTrue(plan["conflicts"] and "WALL" in plan["conflicts"][0])
+        plan = self.restore(live_rows, saved, replace=True)
+        self.assertEqual([(r["UNIT_ID"], r["was"]) for r in plan["replace"]], [("Q6-0001", "WALL")])
+        self.assertEqual(plan["conflicts"], [])
+
+    def test_restore_refuses_bad_rows_without_stopping_good_ones(self):
+        saved = tr.plan_backup(self.rows(Q6_0001=self.GOOD, Q1_0001=self.GOOD, Q6_0002=self.GOOD), self.units, self.frame)["rows"]
+        by_id = {r["UNIT_ID"]: r for r in saved}
+        by_id["Q6-0001"]["UNIT_TOKEN"] = "0" * 16                      # a different packet
+        by_id["Q1-0001"]["REVIEWER"] = ""                               # fails the snapshot rules
+        plan = self.restore(self.rows(), list(by_id.values()))
+        self.assertEqual([w["UNIT_ID"] for w in plan["write"]], ["Q6-0002"])
+        reasons = " | ".join(plan["refused"])
+        self.assertIn("token", reasons)
+        self.assertIn("reviewer", reasons)
+        ghost = dict(saved[0], UNIT_ID="ZZ")
+        self.assertTrue(self.restore(self.rows(), [ghost])["refused"])
+        blank = dict(saved[0], LABEL="")
+        self.assertIn("no LABEL", self.restore(self.rows(), [blank])["refused"][0])
+
+    def test_restore_refuses_a_label_in_the_excluded_domain(self):
+        near = unit("Q6-0009", X0+510, Y0+500)
+        near.update(LABEL=None, IMAGERY_USABLE=None)
+        units = self.units + [near]
+        row = {"UNIT_ID": "Q6-0009", "QUEUE": near["QUEUE"], "REVIEW_ORDER": near["REVIEW_ORDER"],
+               "UNIT_TOKEN": tr.unit_token(self.frame["digest"], near), "LABEL": "TREE", "IMAGERY_USABLE": "",
+               "REVIEWER": "BB", "REVIEW_DATE": "2026-09-29", "NOTES": "", "CHECK": "OK"}
+        plan = tr.plan_restore([row], copy.deepcopy(units), units, self.frame)
+        self.assertEqual(plan["write"], [])
+        self.assertIn("evaluation", plan["refused"][0])
+
+
 class PointCloudExport(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
