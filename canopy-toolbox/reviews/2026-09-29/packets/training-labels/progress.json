@@ -5,13 +5,20 @@
  "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
  "counts": {
   "units": 1065,
-  "saved": 0,
-  "labelled": 0,
-  "by_label": {}
+  "saved": 15,
+  "labelled": 15,
+  "by_label": {
+   "BUILDING_ROOF": 11,
+   "OTHER_STRUCTURE": 1,
+   "TREE": 2,
+   "VEHICLE": 1
+  }
  },
- "reviewers": [],
+ "reviewers": [
+  "bb"
+ ],
  "flagged": [],
  "problems": [],
- "labels_csv_sha256": "2b66d2ac5c5ec1ac9707eeaca9ca84d163a59b549d9d1ab68eb016c6be7c5f84",
+ "labels_csv_sha256": "74f51217a9a42ab7bbd5490e041290877253f687526ed501ba9adb32c64f2e0a",
  "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."
 }
