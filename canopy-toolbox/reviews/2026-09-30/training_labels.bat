@@ -6,6 +6,7 @@ rem     training_labels.bat backup     copy every answered unit into the repo (p
 rem     training_labels.bat save       backup, then commit just those two files (no push)
 rem     training_labels.bat restore    preview putting the repo copy back into the geodatabase
 rem     training_labels.bat restore --apply [--replace]
+rem     training_labels.bat repair     re-point the project's toolbox at this machine's repo (close Pro first)
 rem
 rem It finds the lidar disk (CANOPY_LIDAR_ROOT, else D:\lidar, else H:\lidar) and runs the driver with ArcGIS Pro's
 rem Python, so no PowerShell script (AllSigned) is involved. Nothing here changes evaluation data or the LAS files.
@@ -36,14 +37,20 @@ if "%CMD%"=="" goto :usage
 if /i "%CMD%"=="status"  goto :run
 if /i "%CMD%"=="backup"  goto :run
 if /i "%CMD%"=="restore" goto :run
+if /i "%CMD%"=="repair"  goto :repair
 if /i "%CMD%"=="save"    goto :save
 :usage
-echo Usage: training_labels.bat status ^| backup ^| save ^| restore [--apply] [--replace]
+echo Usage: training_labels.bat status ^| backup ^| save ^| restore [--apply] [--replace] ^| repair
 echo Using the lidar disk at %CANOPY_LIDAR_ROOT%
 goto :end
 
 :run
 "%PRO_PY%" -B "%DRIVER%" %*
+set "RC=%ERRORLEVEL%"
+goto :done
+
+:repair
+"%PRO_PY%" -B "%DRIVER%" repair-project
 set "RC=%ERRORLEVEL%"
 goto :done
 

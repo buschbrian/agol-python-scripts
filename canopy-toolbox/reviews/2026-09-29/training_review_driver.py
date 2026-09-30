@@ -6,6 +6,7 @@ Run from canopy-toolbox with ArcGIS Pro Python (PYTHONNOUSERSITE=1). See TRAININ
     python reviews/2026-09-29/training_review_driver.py status [PACKET]
     python reviews/2026-09-29/training_review_driver.py backup [--packet PACKET] [--out DIR]
     python reviews/2026-09-29/training_review_driver.py restore [--packet PACKET] [--csv FILE] [--apply] [--replace]
+    python reviews/2026-09-29/training_review_driver.py repair-project [--packet PACKET] [--toolbox FILE]
     python reviews/2026-09-29/training_review_driver.py snapshot PACKET NEW_SNAPSHOT
     python reviews/2026-09-29/training_review_driver.py export-pointcloud PACKET SNAPSHOT NEW_EXPORT [--prepare]
     python reviews/2026-09-29/training_review_driver.py export-imagery PACKET SNAPSHOT NEW_EXPORT --raster NAIP.tif [--chips]
@@ -455,6 +456,34 @@ def restore(args):
     return 3 if plan["conflicts"] or plan["refused"] else 0
 
 
+def repair_project(args):
+    """Point the review project's toolbox at this machine's TrainingReview.pyt (run with Pro closed).
+
+    The project stores the toolbox by absolute path, so a project built on another machine shows it broken and the
+    Label tools are missing. Adds the working entry (it cannot remove the stale one) and keeps a dated copy first. Layers are found by relative path and are
+    unaffected; the 'default toolbox' repair dialog Pro shows on opening is harmless.
+    """
+    import subprocess
+    from canopy import training_review_arcpy as tra
+    aprx = Path(args.packet)/"training_review.aprx"
+    if not aprx.is_file():
+        raise FileNotFoundError(f"No project at {aprx}")
+    running = subprocess.run(["tasklist", "/FI", "IMAGENAME eq ArcGISPro.exe", "/NH"], capture_output=True, text=True)
+    if "ArcGISPro.exe" in running.stdout and not args.even_if_pro_is_open:
+        print("ArcGIS Pro is open. Close it (saving nothing you need), then run this again. "
+              "Saving the project from here while Pro has it open would be overwritten or corrupted.")
+        return 2
+    result = tra.repair_project(aprx, args.toolbox)
+    print(json.dumps(result, indent=1))
+    failed = any("not added" in n for n in result["notes"])
+    if failed:
+        print("The toolbox was NOT added. In Pro: Catalog > Toolboxes > Add Toolbox > " + str(args.toolbox))
+    if result["stale_entries"]:
+        print("Old toolbox entries remain (arcpy cannot remove them; they only show a red X). "
+              "In Pro: Catalog > Toolboxes > right-click each > Remove.")
+    return 3 if failed or result["broken_layers"] else 0
+
+
 def export_pointcloud(args):
     from canopy import training_review_arcpy as tra
     document = load_packet(args.packet)
@@ -530,6 +559,9 @@ def main(argv=None):
     r = sub.add_parser("restore"); r.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
     r.add_argument("--csv", default=BACKUP_DIR/"labels-progress.csv", type=Path)
     r.add_argument("--apply", action="store_true"); r.add_argument("--replace", action="store_true")
+    f = sub.add_parser("repair-project"); f.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
+    f.add_argument("--toolbox", default=TOOLBOX/"TrainingReview.pyt", type=Path)
+    f.add_argument("--even-if-pro-is-open", action="store_true")
     s = sub.add_parser("snapshot"); s.add_argument("packet"); s.add_argument("out")
     p = sub.add_parser("export-pointcloud"); p.add_argument("packet"); p.add_argument("snapshot"); p.add_argument("out")
     p.add_argument("--source", type=Path); p.add_argument("--prepare", action="store_true")
@@ -537,6 +569,7 @@ def main(argv=None):
     i.add_argument("--raster", type=Path, required=True); i.add_argument("--chips", action="store_true")
     args = parser.parse_args(argv)
     result = {"build": build, "status": status, "snapshot": snapshot, "backup": backup, "restore": restore,
+              "repair-project": repair_project,
               "export-pointcloud": export_pointcloud, "export-imagery": export_imagery}[args.command](args)
     return result if isinstance(result, int) else 0
 

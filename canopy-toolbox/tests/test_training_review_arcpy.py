@@ -1,6 +1,7 @@
 """TRAINING review GDB, domains, label tool core, project, snapshot and export dry runs (ArcGIS Pro)."""
 import importlib.util
 import json
+import os
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -261,6 +262,48 @@ class TrainingReviewArcGIS(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "reviewer"):
             self.driver.snapshot(SimpleNamespace(**vars(self.args), packet=str(self.packet), out=str(self.root/"strict")))
 
+
+    def test_repair_project_adds_the_working_toolbox_and_reports_the_stale_one(self):
+        import shutil
+        arcpy, tra = self.arcpy, self.tra
+        real = Path(__file__).resolve().parents[1]/"TrainingReview.pyt"
+        # a project built where the repo lived elsewhere: attach a real copy, then move that folder away so the
+        # path stored in the project goes stale (Pro will not record a path that never existed)
+        old_home = self.root/"old_repo"
+        old_home.mkdir()
+        shutil.copy2(real, old_home/"TrainingReview.pyt")
+        stale = old_home/"TrainingReview.pyt"
+        lasd = tra.las_dataset(self.las, self.root/"baseline.lasd")
+        aprx = Path(tra.build_project(self.packet, self.gdb, lasd, toolbox=stale)["project"])
+
+        def entries():
+            project = arcpy.mp.ArcGISProject(str(aprx))
+            found = [t["toolboxPath"] for t in project.toolboxes if t["toolboxPath"].lower().endswith("trainingreview.pyt")]
+            del project
+            # Pro stores a path relative to the project folder when both are on the same drive
+            return [os.path.normpath(os.path.join(aprx.parent, f)) for f in found]
+        self.assertEqual(entries(), [os.path.normpath(str(stale))])
+        arcpy.management.ClearWorkspaceCache()
+        old_home.rename(self.root/"old_repo_gone")
+        self.assertFalse(stale.exists())
+        self.assertEqual(entries(), [os.path.normpath(str(stale))])   # still recorded, now broken
+        real_path, stale_path = os.path.normpath(str(real)), os.path.normpath(str(stale))
+        done = tra.repair_project(aprx, real)
+        self.assertEqual(done["notes"] and [n for n in done["notes"] if "not added" in n], [])
+        found = entries()
+        self.assertEqual(found.count(real_path), 1)                    # the working toolbox is listed ...
+        self.assertEqual([os.path.normpath(os.path.join(aprx.parent, s)) for s in done["stale_entries"]], [stale_path])
+        self.assertIn(stale_path, found)                               # ... and arcpy cannot remove the stale one
+        self.assertTrue(Path(done["backup"]).is_file())                # the project file was kept first
+        self.assertIn("before-repair", Path(done["backup"]).name)
+        self.assertEqual(done["broken_layers"], [])                    # layers are found by relative path
+        with self.assertRaises(FileNotFoundError):
+            tra.repair_project(aprx, self.root/"missing.pyt")
+        # repairing again adds nothing (and the driver command reaches the same code; Pro may be open while the
+        # suite runs, so force past its open-project check)
+        args = SimpleNamespace(packet=self.packet, toolbox=real, even_if_pro_is_open=True)
+        self.assertEqual(self.driver.repair_project(args), 0)
+        self.assertEqual(entries().count(real_path), 1)
 
 if __name__ == "__main__":
     unittest.main()

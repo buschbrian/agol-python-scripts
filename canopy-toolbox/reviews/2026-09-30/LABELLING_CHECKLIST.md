@@ -10,8 +10,14 @@ refuse any spot that is too close to an evaluation sample. Background: [TRAINING
 - [ ] Close any other copy of ArcGIS Pro that has this project open.
 - [ ] Open `training_review.aprx` from
       `<lidar disk>\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\training-review\packet-20260929\`.
-- [ ] The **Training Review** toolbox is in the project. If not: Catalog > Toolboxes > Add Toolbox >
-      `canopy-toolbox\TrainingReview.pyt`. A warning about `Blank.atbx` is harmless.
+- [ ] If Pro shows **Project Item Repair** about `Blank.atbx` when it opens, click **OK**. It is harmless: the
+      layers and labels are not affected.
+- [ ] In the Catalog pane, the **Training Review** toolbox has no red X. The project was built on another
+      machine and remembers that machine's path, so here it may show a red X or be missing. Fix: Catalog >
+      Toolboxes > Add Toolbox > your copy of `canopy-toolbox\TrainingReview.pyt` (for example
+      `U:\agol-python-scripts\canopy-toolbox\TrainingReview.pyt`), then right-click the broken entry > Remove.
+      Or close Pro and run `training_labels.bat repair` once; it adds the working entry and keeps a dated copy of
+      the project first (the broken entry still has to be removed by hand).
 - [ ] Check progress: double-click `canopy-toolbox\reviews\2026-09-30\training_labels.bat` for help, or run
       `training_labels.bat status` in a Command Prompt.
 

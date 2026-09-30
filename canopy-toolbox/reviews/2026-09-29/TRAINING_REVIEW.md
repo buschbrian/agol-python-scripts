@@ -256,6 +256,12 @@ training_review_driver.py restore [--packet PACKET] [--csv FILE] [--apply] [--re
 [LABELLING_CHECKLIST.md](../2026-09-30/LABELLING_CHECKLIST.md). The driver reads the review GDB beside `packet.json`,
 not the path recorded inside it, so it works when the disk has a different drive letter.
 
+The project file stores the toolbox by absolute path (and the review layers by relative path, so they survive a
+change of drive letter). A project built on one machine therefore shows the Training Review toolbox broken on another.
+`training_review_driver.py repair-project` (or `training_labels.bat repair`, with Pro closed) adds this machine's
+`TrainingReview.pyt` and keeps a dated copy of the project. arcpy can only add toolbox entries, not remove them, so the
+stale entry stays until it is removed in Pro (Catalog > Toolboxes > right-click > Remove).
+
 ## Point-cloud training export (what Pro supports)
 
 ```powershell

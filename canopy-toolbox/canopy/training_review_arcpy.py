@@ -5,6 +5,7 @@ its geometry for the exclusion frame.
 """
 import datetime
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -278,9 +279,13 @@ def _field_info(fc, hidden):
 
 
 def _save_layer(fc, name, path, hidden=()):
+    if arcpy.Exists(name):            # a temporary layer left by an earlier build that stopped part-way
+        arcpy.management.Delete(name)
     temp = arcpy.management.MakeFeatureLayer(str(fc), name, field_info=_field_info(fc, hidden))[0]
-    arcpy.management.SaveToLayerFile(temp, str(path), "ABSOLUTE")
-    arcpy.management.Delete(temp)
+    try:
+        arcpy.management.SaveToLayerFile(temp, str(path), "ABSOLUTE")
+    finally:
+        arcpy.management.Delete(temp)
     return arcpy.mp.LayerFile(str(path))
 
 
@@ -391,21 +396,76 @@ def build_project(packet, gdb, lasd, toolbox=None):
     return {"project": str(project_path), "layers": written, "notes": notes}
 
 
+def _toolbox_path(project, entry):
+    """An entry's full path. Pro stores a path relative to the project folder when both are on the same drive."""
+    return os.path.normcase(os.path.normpath(os.path.join(str(project.homeFolder), entry["toolboxPath"])))
+
+
+def toolbox_entries(project, toolbox):
+    """(present, stale): whether this exact toolbox is listed, and the other entries with the same file name."""
+    name = Path(str(toolbox)).name.lower()
+    want = os.path.normcase(os.path.normpath(str(toolbox)))
+    present, stale = False, []
+    for entry in project.toolboxes:
+        if Path(entry["toolboxPath"]).name.lower() != name:
+            continue
+        if _toolbox_path(project, entry) == want:
+            present = True
+        else:
+            stale.append(entry["toolboxPath"])
+    return present, stale
+
+
 def attach_toolbox(project, toolbox):
     """Attach TrainingReview.pyt, keeping the project's existing toolbox entries.
 
-    Pro 3.7 raises "No valid default toolbox was set" for Blank.aprx (its default Blank.atbx does
-    not exist) but has still added the entry, so success is judged from project.toolboxes."""
-    name = Path(str(toolbox)).name.lower()
+    updateToolboxes only adds: it never removes an entry, and Pro 3.7 raises "No valid default toolbox was set"
+    for Blank.aprx (its default Blank.atbx does not exist) but has still added the entry. Success is therefore
+    judged from the full path in project.toolboxes, not the file name, so a stale entry cannot pass for it.
+    An entry already present is not added twice."""
+    if toolbox_entries(project, toolbox)[0]:
+        return []
     error = ""
-    entries = [t for t in project.toolboxes if Path(t["toolboxPath"]).name.lower() != name]
     try:
-        project.updateToolboxes(entries+[{"toolboxPath": str(toolbox), "isDefaultToolbox": False}])
+        project.updateToolboxes(list(project.toolboxes)+[{"toolboxPath": str(toolbox), "isDefaultToolbox": False}])
     except Exception as exc:
         error = str(exc)
-    if any(Path(t["toolboxPath"]).name.lower() == name for t in project.toolboxes):
+    if toolbox_entries(project, toolbox)[0]:
         return [f"Toolbox attached (Pro reported: {error})"] if error else []
     return [f"Toolbox not added: {error}"]
+
+
+def repair_project(aprx, toolbox, backup=True):
+    """Point the project's Training Review toolbox at this machine's TrainingReview.pyt and save.
+
+    The project stores the toolbox by absolute path, so a project built on one machine shows the toolbox broken on
+    another (the laptop's V:\\Developer path does not exist on the workstation). This adds the working entry. arcpy
+    cannot remove one, so a stale entry stays and is returned in stale_entries to be removed in Pro (Catalog >
+    Toolboxes > right-click > Remove); it only shows a red X. A copy of the project file is kept first. Pro must not
+    have the project open. Returns {"toolbox", "backup", "notes", "stale_entries", "broken_layers"}; broken_layers
+    lists layers whose data cannot be found.
+    """
+    aprx = Path(str(aprx))
+    toolbox = Path(str(toolbox))
+    if not toolbox.is_file():
+        raise FileNotFoundError(f"Toolbox not found: {toolbox}")
+    kept = None
+    if backup:
+        stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        kept = aprx.with_name(f"{aprx.stem}.before-repair-{stamp}{aprx.suffix}")
+        shutil.copy2(aprx, kept)
+    project = arcpy.mp.ArcGISProject(str(aprx))
+    notes = attach_toolbox(project, toolbox)
+    stale = toolbox_entries(project, toolbox)[1]
+    project.save()
+    broken = []
+    for m in project.listMaps():
+        for layer in m.listLayers():
+            if layer.isBroken:
+                broken.append(f"{m.name}/{layer.name}")
+    del project
+    return {"toolbox": str(toolbox), "backup": None if kept is None else str(kept), "notes": notes,
+            "stale_entries": stale, "broken_layers": broken}
 
 
 # ---------------------------------------------------------------- exports
