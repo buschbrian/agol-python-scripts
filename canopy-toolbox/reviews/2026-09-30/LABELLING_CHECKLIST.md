@@ -18,13 +18,17 @@ refuse any spot that is too close to an evaluation sample. Background: [TRAINING
       `U:\agol-python-scripts\canopy-toolbox\TrainingReview.pyt`), then right-click the broken entry > Remove.
       Or close Pro and run `training_labels.bat repair` once; it adds the working entry and keeps a dated copy of
       the project first (the broken entry still has to be removed by hand).
+- [ ] After the tools are updated from git, right-click the **Training Review** toolbox > **Refresh** once. Pro
+      keeps the old toolbox file in memory until you do.
 - [ ] Check progress: double-click `canopy-toolbox\reviews\2026-09-30\training_labels.bat` for help, or run
       `training_labels.bat status` in a Command Prompt.
 
 ## For each unit
 
-1. [ ] Run **Next Training Unit**. It selects the next unlabelled unit and zooms to it. The message tells you the
-       height slab to judge (Z low to Z high, and metres above ground).
+1. [ ] Run **Next Training Unit**. It selects the next unlabelled unit and moves the map to it, even if the
+       attribute table is the active view (keep the Training review map open, beside the table if you like). If no
+       map is open it still selects the unit and says so. The message tells you the height slab to judge (Z low to
+       Z high, and metres above ground).
 2. [ ] Look at the returns **inside the yellow circle and inside that height slab** only. Use a cross-section
        (LAS layer > Classification > Profile View, a line about 2 m wide through the point). Imagery alone cannot
        show height or overhanging branches. Note: the imagery date may not match the November 2023 lidar.

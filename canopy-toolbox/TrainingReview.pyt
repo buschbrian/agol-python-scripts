@@ -93,33 +93,13 @@ def _queue_values():
 
 
 def _go_to_next(layer, queue, view_m):
-    """Select and zoom to the next unlabelled unit. Returns its UNIT_ID or None."""
-    fc = _fc(layer)
-    row = _tra.next_unit_row(fc, queue or None)
-    if row is None:
-        layer.setSelectionSet([], "NEW")
-        arcpy.AddMessage("No unlabelled units remain" + (f" in {queue}" if queue else "") + ".")
-        return None
-    layer.setSelectionSet([row["OID@"]], "NEW")
-    selected = layer.getSelectionSet() or []
-    if row["OID@"] not in selected:
-        arcpy.AddWarning(f"{row['UNIT_ID']} is hidden by the layer's active definition query; "
-                         "switch the query to 'Unlabelled (all queues)' or the matching queue.")
-    project = arcpy.mp.ArcGISProject("CURRENT")
-    view = project.activeView
-    half = float(view_m)/2
-    if view is not None and hasattr(view, "camera"):
-        sr = arcpy.Describe(fc).spatialReference
-        view.camera.setExtent(arcpy.Extent(row["X"]-half, row["Y"]-half, row["X"]+half, row["Y"]+half,
-                                           spatial_reference=sr))
-    else:
-        arcpy.AddWarning("No active map view to zoom; the unit is selected.")
-    hag = ""
-    if row.get("HAG_LOW") is not None:
-        hag = f", {row['HAG_LOW']:.1f} to {row['HAG_HIGH']:.1f} m above ground"
-    arcpy.AddMessage(f"{row['UNIT_ID']} (order {row['REVIEW_ORDER']}, {row['QUEUE']}): label the returns within "
-                     f"{row['PATCH_R_M']} m of the point between Z {row['Z_LOW']:.1f} and {row['Z_HIGH']:.1f} m{hag}.")
-    return row["UNIT_ID"]
+    """Select the next unlabelled unit and move an open map view to it. Returns its UNIT_ID or None.
+
+    The work is in canopy/training_review_arcpy.go_to_next, which is reloaded on every run."""
+    unit_id, messages = _tra.go_to_next(layer, queue or None, view_m, arcpy.mp.ArcGISProject("CURRENT"))
+    for level, text in messages:
+        (arcpy.AddWarning if level == "warning" else arcpy.AddMessage)(text)
+    return unit_id
 
 
 class Toolbox(object):

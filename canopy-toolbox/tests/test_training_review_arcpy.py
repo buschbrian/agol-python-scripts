@@ -305,5 +305,63 @@ class TrainingReviewArcGIS(unittest.TestCase):
         self.assertEqual(self.driver.repair_project(args), 0)
         self.assertEqual(entries().count(real_path), 1)
 
+    def test_select_unit_reads_the_selection_back(self):
+        arcpy, tra = self.arcpy, self.tra
+        layer = arcpy.management.MakeFeatureLayer(self.fc, "tu_select")[0]
+        oid = self.oid("Q6-0001")
+        self.assertTrue(tra.select_unit(layer, oid))
+        self.assertEqual(tra.selected_oids(layer), [oid])
+        self.assertTrue(tra.select_unit(layer, self.oid("Q1-0001")))             # NEW selection replaces it
+        self.assertEqual(tra.selected_oids(layer), [self.oid("Q1-0001")])
+        hidden = arcpy.management.MakeFeatureLayer(self.fc, "tu_hidden", "UNIT_ID = 'Q1-0001'")[0]
+        self.assertFalse(tra.select_unit(hidden, oid))                            # a definition query hides the unit
+        tra.clear_selection(layer)
+        self.assertEqual(tra.selected_oids(layer), [])
+
+    def test_map_view_falls_back_when_the_table_is_the_active_view(self):
+        from types import SimpleNamespace as NS
+        tra = self.tra
+        table, mapview = NS(name="table"), NS(camera=NS(setExtent=lambda extent: None))
+        view, note = tra.pick_map_view(NS(activeView=table, listMaps=lambda: [NS(defaultView=mapview)]))
+        self.assertIs(view, mapview)
+        self.assertIn("not a map", note)
+        self.assertEqual(tra.pick_map_view(NS(activeView=mapview, listMaps=lambda: [])), (mapview, ""))
+        view, note = tra.pick_map_view(NS(activeView=table, listMaps=lambda: [NS(defaultView=None)]))
+        self.assertIsNone(view)
+        self.assertIn("No map view is open", note)
+        self.assertIsNone(tra.pick_map_view(NS(activeView=None, listMaps=lambda: []))[0])
+
+    def test_go_to_next_selects_zooms_and_reports(self):
+        from types import SimpleNamespace as NS
+        arcpy, tra = self.arcpy, self.tra
+        layer = arcpy.management.MakeFeatureLayer(self.fc, "tu_next")[0]
+        extents = []
+        mapview = NS(camera=NS(setExtent=extents.append))
+        table_active = NS(activeView=NS(), listMaps=lambda: [NS(defaultView=mapview)])
+        unit_id, messages = tra.go_to_next(layer, None, 30, table_active)
+        self.assertEqual(unit_id, "Q1-0001")
+        self.assertEqual(tra.selected_oids(layer), [self.oid("Q1-0001")])        # selected, read back from the layer
+        self.assertEqual(len(extents), 1)
+        self.assertAlmostEqual(extents[0].XMax-extents[0].XMin, 30.0)
+        text = " | ".join(m for _, m in messages)
+        self.assertIn("label the returns within", text)
+        self.assertIn("open map view was moved", text)
+        self.assertFalse([m for level, m in messages if level == "warning"])
+        # no map view open at all: still selected, with a clear warning
+        unit_id, messages = tra.go_to_next(layer, None, 30, NS(activeView=NS(), listMaps=lambda: []))
+        self.assertEqual(unit_id, "Q1-0001")
+        self.assertEqual(tra.selected_oids(layer), [self.oid("Q1-0001")])
+        self.assertTrue([m for level, m in messages if level == "warning" and "No map view is open" in m])
+        # the queue filter, and running out of units
+        self.assertEqual(tra.go_to_next(layer, "Q6_RANDOM", 30, table_active)[0], "Q6-0001")
+        answer = {"LABEL": "TREE", "IMAGERY_USABLE": "YES", "REVIEWER": "Fixture", "REVIEW_DATE": "2026-09-29", "NOTES": None}
+        for uid in ("Q1-0001", "Q1-0002", "Q6-0001"):
+            tra.label_unit(self.fc, [self.oid(uid)], answer)
+        unit_id, messages = tra.go_to_next(layer, None, 30, table_active)
+        self.assertIsNone(unit_id)
+        self.assertEqual(tra.selected_oids(layer), [])
+        self.assertIn("No unlabelled units remain", messages[0][1])
+
+
 if __name__ == "__main__":
     unittest.main()

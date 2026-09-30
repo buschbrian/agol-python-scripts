@@ -269,6 +269,76 @@ def label_unit(fc, selected_oids, raw_answer, document=None, replace=False, toda
     return {"UNIT_ID": row["UNIT_ID"], "before": before, "after": answer}
 
 
+def selected_oids(layer):
+    """The OIDs actually selected in a layer (read back, not assumed)."""
+    fids = arcpy.Describe(layer).FIDSet
+    return sorted(int(v) for v in fids.replace(";", " ").split()) if fids else []
+
+
+def select_unit(layer, oid):
+    """Select exactly one unit through the standard Select Layer By Attribute tool and read the selection back.
+
+    Returns True when the layer really holds that one selection. False means the layer's definition query hides the
+    unit (or the layer is not the units layer).
+    """
+    oid_field = arcpy.Describe(layer).OIDFieldName
+    arcpy.management.SelectLayerByAttribute(layer, "NEW_SELECTION", f"{oid_field} = {int(oid)}")
+    return selected_oids(layer) == [int(oid)]
+
+
+def clear_selection(layer):
+    arcpy.management.SelectLayerByAttribute(layer, "CLEAR_SELECTION")
+
+
+def pick_map_view(project):
+    """(view, note): the active map view, else an open map's view, else None with the reason.
+
+    Stepping through the attribute table makes the table the active view, which has no camera. The map is still open
+    beside it, so its view is moved instead of giving up.
+    """
+    view = getattr(project, "activeView", None)
+    if view is not None and hasattr(view, "camera"):
+        return view, ""
+    for m in project.listMaps():
+        candidate = getattr(m, "defaultView", None)
+        if candidate is not None and hasattr(candidate, "camera"):
+            return candidate, ("The active view is not a map, so the open map view was moved instead. "
+                               "Switch to the map to see the unit.")
+    return None, ("No map view is open (the active view is a table or layout), so the map was not moved. "
+                  "Open the Training review map, beside the table if you like.")
+
+
+def go_to_next(layer, queue, view_m, project):
+    """Select the next unlabelled unit and move an open map view to it (the Next Training Unit core).
+
+    Returns (UNIT_ID or None, [(level, message)]) with level "info" or "warning"; the caller reports them.
+    """
+    messages = []
+    fc = arcpy.Describe(layer).catalogPath
+    row = next_unit_row(fc, queue or None)
+    if row is None:
+        clear_selection(layer)
+        return None, [("info", "No unlabelled units remain" + (f" in {queue}" if queue else "") + ".")]
+    if not select_unit(layer, row["OID@"]):
+        messages.append(("warning", f"{row['UNIT_ID']} could not be selected: it is hidden by the layer's definition "
+                                    "query. Switch the query to 'Unlabelled (all queues)' or the matching queue."))
+    view, note = pick_map_view(project)
+    if view is None:
+        messages.append(("warning", note + f" {row['UNIT_ID']} is selected; find it in the table."))
+    else:
+        half = float(view_m)/2
+        view.camera.setExtent(arcpy.Extent(row["X"]-half, row["Y"]-half, row["X"]+half, row["Y"]+half,
+                                           spatial_reference=arcpy.Describe(fc).spatialReference))
+        if note:
+            messages.append(("info", note))
+    hag = ""
+    if row.get("HAG_LOW") is not None:
+        hag = f", {row['HAG_LOW']:.1f} to {row['HAG_HIGH']:.1f} m above ground"
+    messages.append(("info", f"{row['UNIT_ID']} (order {row['REVIEW_ORDER']}, {row['QUEUE']}): label the returns within "
+                             f"{row['PATCH_R_M']} m of the point between Z {row['Z_LOW']:.1f} and {row['Z_HIGH']:.1f} m{hag}."))
+    return row["UNIT_ID"], messages
+
+
 # ---------------------------------------------------------------- layers and project
 
 def _field_info(fc, hidden):
