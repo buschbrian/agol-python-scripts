@@ -189,8 +189,8 @@ whole-tile memory first.
    **separate calibration sample**:
    - stratified by shape group and class;
    - drawn outside the fixed reference frame (another tile or a held-out area), never batch 1;
-   - labelled from class-hidden lidar cross-sections, with the August 2023 Nearmap chips for
-     human visual reference only.
+   - labelled from class-hidden lidar cross-sections, with Esri World Imagery (capture date
+     recorded per location) for human visual reference only.
 
    The prespecified rule then stays as the pre-registered comparison. Any recalibrated rule
    would be evaluated once on the fixed reference.
