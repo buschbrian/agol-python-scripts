@@ -209,6 +209,12 @@ class TrainingReviewArcGIS(unittest.TestCase):
         nxt = module.NextTrainingUnit().getParameterInfo()
         self.assertEqual([p.name for p in nxt], ["in_layer", "queue", "view_m"])
         self.assertEqual([p.name for p in nxt if p.category], ["view_m"])
+        self.assertEqual([c.__name__ for c in module.Toolbox().tools],
+                         ["NextTrainingUnit", "LabelTrainingUnit", "LabelSelectedUnits"])
+        bulk = module.LabelSelectedUnits().getParameterInfo()
+        self.assertEqual([p.name for p in bulk], [p.name for p in params])   # same dialog, same order
+        self.assertEqual([p.name for p in bulk if not p.category],
+                         ["in_layer", "label", "imagery_usable", "notes", "reviewer"])
 
     def test_backup_and_restore_round_trip(self):
         arcpy, tra = self.arcpy, self.tra
@@ -361,6 +367,38 @@ class TrainingReviewArcGIS(unittest.TestCase):
         self.assertIsNone(unit_id)
         self.assertEqual(tra.selected_oids(layer), [])
         self.assertIn("No unlabelled units remain", messages[0][1])
+
+
+    def test_label_several_selected_units_at_once_is_all_or_nothing(self):
+        tra = self.tra
+        answer = {"LABEL": "TREE", "IMAGERY_USABLE": "NO", "REVIEWER": "Fixture", "REVIEW_DATE": "2026-09-29", "NOTES": "bulk"}
+        oids = [self.oid(u) for u in ("Q1-0001", "Q1-0002", "Q6-0001")]
+        history = self.root/"bulk-history"
+
+        def labels():
+            return {r["UNIT_ID"]: r["LABEL"] for r in tra.read_review_rows(self.fc)}
+        with self.assertRaisesRegex(ValueError, "at least one"):
+            tra.label_units(self.fc, [], answer)
+        with self.assertRaisesRegex(ValueError, "at most 2"):
+            tra.label_units(self.fc, oids, answer, max_units=2)
+        with self.assertRaisesRegex(ValueError, "Nothing was written. 3 of 3 selected units failed"):
+            tra.label_units(self.fc, oids, dict(answer, REVIEWER=""))
+        self.assertEqual(set(labels().values()), {None})                      # a failing batch wrote nothing
+        with self.assertRaisesRegex(ValueError, "domain"):
+            tra.label_units(self.fc, oids, dict(answer, LABEL="ROOF"))
+        tra.label_unit(self.fc, [oids[0]], dict(answer, LABEL="WALL"))        # one unit already has another label
+        with self.assertRaisesRegex(ValueError, "already labelled WALL"):
+            tra.label_units(self.fc, oids, answer)
+        self.assertEqual(labels(), {"Q1-0001": "WALL", "Q1-0002": None, "Q6-0001": None})   # still nothing written
+        result = tra.label_units(self.fc, oids, answer, replace=True, history_dir=history)
+        self.assertEqual((result["units"], result["label"], result["replaced"]), (3, "TREE", 1))
+        self.assertEqual(set(labels().values()), {"TREE"})
+        rows = {r["UNIT_ID"]: r for r in tra.read_review_rows(self.fc)}
+        self.assertEqual({(r["REVIEWER"], r["NOTES"], r["IMAGERY_USABLE"]) for r in rows.values()}, {("Fixture", "bulk", "NO")})
+        saved = [json.loads(f.read_text()) for f in history.glob("bulk-*.json")]
+        self.assertEqual(len(saved), 1)                                        # what was overwritten is recorded
+        previous = {u["UNIT_ID"]: u["LABEL"] for u in saved[0]["previous_answers"]}
+        self.assertEqual(previous, {"Q1-0001": "WALL", "Q1-0002": None, "Q6-0001": None})
 
 
 if __name__ == "__main__":

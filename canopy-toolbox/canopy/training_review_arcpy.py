@@ -269,6 +269,85 @@ def label_unit(fc, selected_oids, raw_answer, document=None, replace=False, toda
     return {"UNIT_ID": row["UNIT_ID"], "before": before, "after": answer}
 
 
+MAX_BULK = 500
+
+
+def write_answers(fc, oids, answer):
+    """Write one validated answer to several units in a single pass. Returns the number of rows written."""
+    fields = ["OID@", *tr.ANSWER_FIELDS]
+    oid_field = arcpy.Describe(str(fc)).OIDFieldName
+    where = f"{oid_field} IN ({','.join(str(int(o)) for o in sorted(oids))})"
+    written = 0
+    with arcpy.da.UpdateCursor(str(fc), fields, where) as cursor:
+        for row in cursor:
+            cursor.updateRow([row[0], answer["LABEL"], answer["IMAGERY_USABLE"], answer["REVIEWER"],
+                              datetime.datetime.fromisoformat(answer["REVIEW_DATE"]), answer["NOTES"]])
+            written += 1
+    return written
+
+
+def label_units(fc, selected_oids, raw_answer, document=None, replace=False, today=None, max_units=MAX_BULK,
+                history_dir=None):
+    """Validate and write one answer to every selected unit (the Label Selected Units tool core).
+
+    All or nothing: each unit is checked first (identity, label domain, reviewer, date, the excluded evaluation
+    domain, and the replace guard) and nothing is written if any unit fails. A batch is capped at max_units so a
+    whole-table selection cannot be labelled by accident. The answers being overwritten are saved first to
+    history_dir (a JSON file per batch), and the written labels are read back.
+    """
+    oids = sorted({int(o) for o in selected_oids})
+    if not oids:
+        raise ValueError("Select at least one training unit")
+    if len(oids) > max_units:
+        raise ValueError(f"{len(oids)} units are selected; at most {max_units} can be labelled at once")
+    document = document or packet_for(fc)
+    rows = {r["OID@"]: r for r in read_review_rows(fc)}
+    units = {u["UNIT_ID"]: u for u in document["units"]}
+    labels = domain_codes(Path(str(fc)).parent)
+    problems, answers, before = [], {}, []
+    for oid in oids:
+        row = rows.get(oid)
+        if row is None:
+            problems.append(f"OID {oid}: no such training unit")
+            continue
+        unit = units.get(row["UNIT_ID"])
+        if unit is None:
+            problems.append(f"{row['UNIT_ID']}: not a unit of this packet")
+            continue
+        drift = [k for k in tr.IDENTITY_FIELDS
+                 if row[k] is None or ((abs(float(row[k])-float(unit[k])) > .005) if isinstance(unit[k], float)
+                                       else str(row[k]) != str(unit[k]))]
+        if drift:
+            problems.append(f"{row['UNIT_ID']}: identity field {drift[0]} changed")
+            continue
+        try:
+            answers[oid] = tr.normalize_answer(unit, raw_answer, document["frame"], labels=labels, today=today)
+        except ValueError as exc:
+            problems.append(str(exc))
+            continue
+        current = row.get("LABEL")
+        if current and current != answers[oid]["LABEL"] and not replace:
+            problems.append(f"{row['UNIT_ID']}: already labelled {current}; tick Replace to change it")
+        before.append({"UNIT_ID": row["UNIT_ID"], **{k: row.get(k) for k in tr.ANSWER_FIELDS}})
+    if problems:
+        shown = "; ".join(problems[:5]) + (f"; and {len(problems)-5} more" if len(problems) > 5 else "")
+        raise ValueError(f"Nothing was written. {len(problems)} of {len(oids)} selected units failed: {shown}")
+    label = next(iter(answers.values()))["LABEL"]
+    if history_dir is not None:
+        history_dir = Path(str(history_dir))
+        history_dir.mkdir(parents=True, exist_ok=True)
+        stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+        (history_dir/f"bulk-{stamp}.json").write_text(json.dumps(
+            {"label": label, "units": len(oids), "previous_answers": before}, indent=1, default=str), encoding="utf-8")
+    written = write_answers(fc, oids, next(iter(answers.values())))
+    after = {r["OID@"]: r for r in read_review_rows(fc)}
+    wrong = [after[o]["UNIT_ID"] for o in oids if after[o]["LABEL"] != label]
+    if written != len(oids) or wrong:
+        raise RuntimeError(f"Read-back mismatch after bulk write: wrote {written} of {len(oids)}; wrong {wrong[:5]}")
+    return {"units": len(oids), "label": label, "ids": [after[o]["UNIT_ID"] for o in oids],
+            "replaced": sum(1 for b in before if b["LABEL"] and b["LABEL"] != label)}
+
+
 def selected_oids(layer):
     """The OIDs actually selected in a layer (read back, not assumed)."""
     fids = arcpy.Describe(layer).FIDSet

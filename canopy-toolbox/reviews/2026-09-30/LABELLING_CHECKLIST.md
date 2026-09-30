@@ -37,6 +37,21 @@ refuse any spot that is too close to an evaluation sample. Background: [TRAINING
 4. [ ] Press **Run**. The tool saves the answer, then jumps to the next unit.
 5. [ ] **Change Label every time.** Pro keeps the last dialog values, so the previous answer is still selected.
 
+### Label many units at once
+
+When a group of units is obviously the same thing (for example a row of roofs, or a cluster that is clearly not
+trees), label them together:
+
+1. [ ] Select the units: drag a box or lasso with the map's **Select** tool, or pick rows in the attribute table
+       (Shift-click for a range), or use **Select By Attributes** (for example `QUEUE = 'Q4_SHAPE'`).
+2. [ ] Run **Label Selected Units**, choose the **Label**, and press **Run**. Every selected unit gets that label.
+3. [ ] Read the message: `Labelled N units as X`. It is **all or nothing**: if any selected unit fails a check (too
+       close to an evaluation sample, a different existing label without *Replace*, a missing reviewer), nothing is
+       written and the message names the failures. At most 500 units per run.
+
+Only unlabelled units are visible by default, so a selection cannot reach finished ones. Before a large batch, run
+`training_labels.bat save`. Each batch also records what it overwrote in `bulk-history` beside the project.
+
 Skipping a unit is fine. Use **MIXED** (the slab clearly holds two classes) or **UNSURE** (you can't tell) rather
 than guessing. Both are kept but not used for training.
 
