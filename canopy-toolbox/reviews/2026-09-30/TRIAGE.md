@@ -68,3 +68,43 @@ they are prefills to confirm in bulk with **Label Selected Units**.
 1. A second independent opinion: the IGN FRACTAL RandLA-Net model (needs NAIP colour, now available).
 2. A slope-robust ground estimate, and building-scale roof planes instead of a 1 m patch.
 3. Leaf-on imagery, which would let trees be proposed far more often.
+
+## Audit 1 result (September 30, 2026): the triage is not ready to auto-accept anything
+
+Forty AUTO candidates drawn at random ([audit-1](audit-1/README.md), seed 20260930) were labelled by a person without seeing the
+proposal. Score ([score.json](audit-1/score.json)):
+
+| | Audited | Agree | Share |
+|---|---:|---:|---:|
+| All AUTO candidates | 40 | **26** | **65%** (95% lower bound **0.51**) |
+| Proposed building roof | 14 | 11 | 79% |
+| Proposed ground | 19 | 10 | 53% |
+| Proposed tree | 7 | 5 | 71% |
+
+Auto-accepting would need a lower bound near 0.93. It is nowhere near. (MIXED and UNSURE count as not confirmed: 4 of the 14.)
+
+### Why the ground proposals fail (point-level check; classification bytes used only to diagnose, never as inputs)
+- **The confirmed and the rejected ground proposals look the same in every cue.** Thin (0.01 to 0.04 m), flat, at ground height,
+  no vegetation returns, outside footprints. A flat plane at ground height is a road, a lawn, a parking bay or a bare
+  patch. The cues cannot tell them apart. Two rejected units were labelled SHRUB_LOW_VEG (lawn is in that class).
+- **For most rejected units the label describes something other than the points in the unit's 1 m patch.**
+  - Both **VEHICLE** units (Q6-0008, Q6-0119): nothing is taller than 0.34 m and 0.29 m within 3 m; the points are ground and
+    low vegetation. There is no vehicle in the lidar at those spots.
+  - The **POLE** unit (Q6-0148): the points taller than 0.3 m within 3 m (up to 3.9 m) include 20 that the delivery flagged
+    as high noise (class 18, withheld); the pole is presumably among them. They are outside the unit's slab, which
+    reaches only 0.6 m above ground, and the triage drops flagged points, so it never saw them.
+  - The **WALL** unit (Q6-0019): the slab is ground; the taller points are nearby (up to 1.2 m within 3 m).
+- **Roof misses are roofed structures that were not called a building.** Two were labelled OTHER_STRUCTURE (both inside a
+  County footprint, at 2.7 m and 3.4 m above ground), one UNSURE. The cues cannot tell those from a house. I have not checked
+  whether height would separate them on the confirmed roofs.
+- **Tree misses** (one MIXED, one UNSURE) are large patches of 542 and 619 points. Reasonable to send to a person.
+
+### What this means
+1. **Labelling protocol.** A unit's label is applied by the training export to *every point inside the unit's 1 m patch and
+   height slab*. If a label names the prominent object nearby, or what the imagery shows, the export would mark ground
+   points as VEHICLE, POLE or WALL and teach the model that. The tool and checklist say "label the returns in the slab", but
+   the audit suggests that is not how all 58 labels were made. This needs a decision before any training export.
+2. **Triage.** Ground cannot be auto-proposed from geometry and greenness. Roofs are the strongest class, but need a cue to
+   separate houses from carports and sheds. Nothing should be auto-accepted; proposals remain prefills.
+3. The 40 labels are still valid human labels and stay in `labels-progress.csv`. Audit 1 is now used: after any rule change a
+   new, fresh sample is needed, because tuning on these 40 would make them useless as a test.

@@ -1,0 +1,122 @@
+{
+ "audited": 40,
+ "agree": 26,
+ "disagree": 14,
+ "agreement": 0.65,
+ "lower_bound_95": 0.5081,
+ "by_class": {
+  "BUILDING_ROOF": {
+   "audited": 14,
+   "agree": 11
+  },
+  "GROUND": {
+   "audited": 19,
+   "agree": 10
+  },
+  "TREE": {
+   "audited": 7,
+   "agree": 5
+  }
+ },
+ "disagreements": [
+  {
+   "unit": "Q1-0021",
+   "proposed": "BUILDING_ROOF",
+   "human": "OTHER_STRUCTURE",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q1-0052",
+   "proposed": "BUILDING_ROOF",
+   "human": "UNSURE",
+   "agree": false,
+   "not_confirmed": true
+  },
+  {
+   "unit": "Q2-0060",
+   "proposed": "GROUND",
+   "human": "OTHER_STRUCTURE",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q2-0115",
+   "proposed": "BUILDING_ROOF",
+   "human": "OTHER_STRUCTURE",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q2-0133",
+   "proposed": "GROUND",
+   "human": "MIXED",
+   "agree": false,
+   "not_confirmed": true
+  },
+  {
+   "unit": "Q4-0085",
+   "proposed": "TREE",
+   "human": "MIXED",
+   "agree": false,
+   "not_confirmed": true
+  },
+  {
+   "unit": "Q4-0091",
+   "proposed": "TREE",
+   "human": "UNSURE",
+   "agree": false,
+   "not_confirmed": true
+  },
+  {
+   "unit": "Q6-0008",
+   "proposed": "GROUND",
+   "human": "VEHICLE",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q6-0019",
+   "proposed": "GROUND",
+   "human": "WALL",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q6-0042",
+   "proposed": "GROUND",
+   "human": "SHRUB_LOW_VEG",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q6-0068",
+   "proposed": "GROUND",
+   "human": "SHRUB_LOW_VEG",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q6-0119",
+   "proposed": "GROUND",
+   "human": "VEHICLE",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q6-0147",
+   "proposed": "GROUND",
+   "human": "OTHER_STRUCTURE",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q6-0148",
+   "proposed": "GROUND",
+   "human": "POLE",
+   "agree": false,
+   "not_confirmed": false
+  }
+ ],
+ "reading": "MIXED and UNSURE are counted as not confirmed. The bound is about the AUTO candidates as a whole; per-class numbers are too small to bound on their own."
+}
