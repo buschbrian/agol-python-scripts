@@ -58,6 +58,9 @@ proposal). One-sided 95% lower bounds on the share of AUTO candidates that are r
 | 40 | 0.928 | 0.887 | 0.851 |
 | 60 | 0.951 | 0.923 | 0.899 |
 
+The first sample of 40 is drawn and ready: [audit-1/README.md](audit-1/README.md); [audit_sample.py](audit_sample.py)
+draws and scores it.
+
 Only after such an audit, and a recorded decision, should any AUTO candidate be written as a training label. Until then
 they are prefills to confirm in bulk with **Label Selected Units**.
 
