@@ -1,8 +1,11 @@
 # Esri deep-learning second opinion: status 2026-09-29
 
-Short version: the deep-learning environment and both pretrained models are in place and load on the GPU.
-The Classify Point Cloud Using Trained Model tool would not run, so there are no model predictions and no
-confusion tables yet. The blocker is Pro's active-environment setting, which this task was told not to change.
+Short version (updated late on September 29): the user authorized inference, reversing the earlier
+"keep the environment, defer inference" decision. After Pro's per-user active environment was switched to the
+deep-learning clone, Classify Point Cloud Using Trained Model ran. All four rows of the
+[fixed experiment matrix](MODEL_EXPERIMENTS.md) completed on 12TVL2804 and passed the binary integrity gate.
+The results are model outputs and **disagreement counts with the baseline classes, not accuracy**. There are no
+independent labels in them. The sections below keep the earlier history.
 
 ## Environment (done)
 
@@ -15,9 +18,10 @@ confusion tables yet. The blocker is Pro's active-environment setting, which thi
   numpy 2.3.5, spconv 2.3.8, torch-geometric/-cluster/-scatter/-sparse, fastai 1.0.63.
 - `import torch, arcgis, arcgis.learn` works; `torch.cuda.is_available()` is True, device NVIDIA GeForce RTX 3060
   Laptop GPU (driver 616.64, 6144 MiB). `import arcpy` works; the 3D Analyst extension checks out as Available.
-- Pro's active environment was not changed: `conda env list` still marks `arcgispro-py3`, the HKLM
-  `PythonCondaEnv` value is still `arcgispro-py3`, and there is no per-user override. `torch` is still not
-  importable in the default env. `proswap` was not run.
+- During the first attempt, Pro's active environment was not changed: `conda env list` marked
+  `arcgispro-py3`, the HKLM `PythonCondaEnv` value was `arcgispro-py3`, and there was no per-user override.
+  Later on September 29 the main session switched the **per-user** active environment to the clone with
+  `proswap` (see below). `arcgispro-py3` itself is unchanged and still has no `torch`.
 - The install took roughly 1.5 hours, mostly download and linking.
 
 ## Models (done)
@@ -66,7 +70,7 @@ a `12TVL2804.lasd` and `.lasx` built by Create LAS Dataset (EPSG:6341). Both cop
 MD5. The original and the other agents' folders were not touched. The tile profile (from the original):
 class 1 455,565; 2 2,658,030; 3 9,589,034; 4 1,065,061; 5 8,818,572; 6 4,325,602; 7 1,559; 18 69,041.
 
-## What blocked Part 3
+## What blocked the first attempt (resolved)
 
 Running `arcpy.ddd.ClassifyPointCloudUsingTrainedModel` from the clone's python (parameters were accepted; tried
 on a scratch copy with a 250 m x 250 m boundary polygon, which I have since deleted) fails after about 0.4 s with:
@@ -92,14 +96,62 @@ value by other means. I also did not substitute a different inference path (for 
 arcgis.learn), because it would not be the tool that was asked for and the results would need separate
 validation against it.
 
-## Current decision: keep the environment, defer inference
+## Decision reversed: inference authorized (September 29, 2026)
 
-The user chose to keep the current Pro environment on September 29. No `proswap`,
-registry environment edit, package installation or inference run is authorized for
-this slice. The existing copies are still not successful model outputs. See
-[the queued experiments](MODEL_EXPERIMENTS.md) for density/HAG controls and product
-scoring requirements. Model availability and the installed clone are preparation
-facts, not evidence that inference completed.
+Earlier on September 29 the user chose to keep the environment and defer inference. Later that day the user
+authorized inference. The main session ran `proswap` to set Pro's per-user active environment to
+`arcgispro-py3-dl`. No other registry edit and no package installation were made for the runs below. The earlier
+copies under `deep-learning\12TVL2804\` were left untouched and are still not model outputs.
+
+**The proswap fix is confirmed.** A 250 m building smoke test
+(`deep-learning\smoke-20260929\`, boundary 428250 4504250 428500 4504500) succeeded in 154 s of tool time,
+with whole-GPU memory peaking at 2,444 MiB. ERROR 002667 therefore came from the active-environment setting, as
+suspected. The smoke run is **not** used as evidence. It ran without `PYTHONNOUSERSITE`, so the calling
+interpreter loaded a stray numpy 2.5.3 and scipy 1.18.1 from
+`C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages` instead of the clone's numpy 2.3.5.
+
+### Runtime isolation
+
+Pro's Python 3.13 environments read the per-user site-packages unless `PYTHONNOUSERSITE=1` is set. Every matrix
+run set it. `dl_run.py` now:
+
+- **refuses to start** while `site.ENABLE_USER_SITE` is true, before writing any manifest, unless
+  `--allow-user-site` is given; the override is recorded;
+- records `PYTHONNOUSERSITE`, `site.ENABLE_USER_SITE`, `sys.prefix` and, for torch, arcgis, numpy and scipy, the
+  version, module file, distribution location and whether the file is under `sys.prefix`, before and after the tool
+  runs (`runtime_isolation`, `package_provenance`, `package_provenance_after`).
+
+All four matrix manifests show `PYTHONNOUSERSITE=1`, `ENABLE_USER_SITE` false, and numpy 2.3.5, scipy 1.16.3,
+torch 2.9.1 and arcgis 2.4.3, all resolving inside the clone. These records cover the calling interpreter.
+The tool runs inference in a child `pythonw.exe` from the clone, which inherits the environment variable. For
+tree-full, a snapshot of that worker's loaded modules
+([worker-modules-tree-full.json](dl-experiments-20260929/worker-modules-tree-full.json)) lists the clone's numpy,
+scipy and torch binaries and no module from the Roaming user site. The other rows' workers were not inspected.
+
+### Matrix results (12TVL2804, tile-core boundary)
+
+| Row | Tool time | GPU MiB before / peak (whole device) | Integrity | Main disagreement (inside boundary) |
+|---|---|---|---|---|
+| tree-full | 1 h 29 min 51 s | 1,970 / 4,187 | verified | 98.83% of baseline 5 and 11.48% of baseline 6 called tree |
+| tree-thin3 (new 3 pts/m² baseline) | 44 min 54 s | 2,520 / 3,592 | verified | 98.90% of baseline 5 and 17.58% of baseline 6 called tree |
+| building-abs | 19 min 52 s | 2,577 / 3,051 | verified | 82.64% of baseline 6 and 1.48% of baseline 5 called building |
+| building-hag | 17 min 13 s | 1,415 / 2,086 | verified | output byte-identical to building-abs (null control) |
+
+The full-density baseline MD5 matched `82787095336690d2909344206f9a80fc` before and after every row, and the
+reference raster was unchanged. **Disagreement counts are not accuracy.** They compare two classifiers, and
+neither has been checked against independent labels. The HAG row shows the reference raster changed nothing.
+The building EMD uses XYZ only, so the absolute-versus-HAG question remains untested. Row details, the thinning
+record, the reference-height raster and per-class tables are in [MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md).
+Manifests, comparisons and row logs are copied into [dl-experiments-20260929/](dl-experiments-20260929/).
+
+### Product scoring (tree-full)
+
+A separate product copy (tree 5, restored baseline ground and noise, building-abs 6 where the tree model said
+background, conflicts to tree) completed a bounded `canopy run` on 428250 4504250 428500 4504500 with
+`--classified-background-zero`. It produced 929 treetops and 572 crowns and is UNVALIDATED. The validation
+harness refused to score it ("Run grid differs from reference baseline for 12TVL2804"): it requires the
+full-tile baseline grid. The reference sample has **no labels yet (0 of 1468 units)**. No accuracy figure exists.
+Details and options are in [MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md#september-29-product-run-tree-full).
 
 ### Point-record integrity gate
 
@@ -123,8 +175,8 @@ do not establish preserved point order when other point attributes differ.
 `processed_extent` now describes the manifest's inference boundary;
 `comparison_extent` describes the effective reporting rectangle. Both are null
 for full-tile inference/reporting. Existing successful manifests still use schema
-version 1. The actual tool has not completed inference, so synthetic positive
-tests and unchanged-copy integrity checks remain tests of the comparator only.
+version 1. On September 29 the gate passed for all four real matrix outputs (above). The paragraphs below
+describe the earlier checks of the unclassified copies.
 
 The read-only pilot integrity check scanned all 26,982,464 records in each
 existing copy. Both passed; source and copy SHA-256 fingerprints were identical
@@ -143,8 +195,13 @@ repository whitespace check.
 
 ## Files
 
-- `dl_run.py`: runner for the tool (not yet completed once).
-- `dl_compare.py`: guarded comparison script; real untouched copies were rejected as expected on September 29.
+- `dl_run.py`: runner for the tool, with runtime-isolation checks and provenance.
+- `dl_compare.py`: guarded comparison script.
+- `dl_thin.py`: whole-pulse thinning into a new baseline. `dl_reference_height.py`: class-2 ground raster built
+  from copies.
+- `dl_product.py`: documented product copy from verified outputs (never a raw output).
+- `dl-experiments-20260929/`: manifests, comparisons, logs and a record of the row runner.
 - Model manifest: `H:\lidar\models\models.json`.
 
-These would be model outputs, not accuracy: there are no reference labels for this tile.
+These are model outputs, not accuracy. Disagreement with the baseline classes is not error, because the
+baseline is not truth either.

@@ -4,8 +4,11 @@ Classified LAS to an observed canopy-height model, canopy cover by zone, estimat
 
 The [September 29 integration](reviews/2026-09-29/INTEGRATION.md) documents building
 reconciliation, interior roof fitting, shared LAS readers, independent plot census,
-analytic intervals, prospective holdouts and the NAIP review screen. Deep-learning
-inference remains deferred in the current Pro environment.
+analytic intervals, prospective holdouts and the NAIP review screen. Esri pretrained
+point-cloud inference was authorized and run on 12TVL2804 on September 29 (see
+[DEEP_LEARNING.md](reviews/2026-09-29/DEEP_LEARNING.md)). Its results are disagreement
+counts with the baseline classes, not accuracy. Run the deep-learning clone's Python with
+`PYTHONNOUSERSITE=1`.
 
 The source acquisition, its tested accuracy, delivered classes, and per-tile flight dates are recorded in [the 2023 acquisition record](acquisitions/2023-salt-lake-valley/RECORD.md); the [acquisition procedure](acquisitions/README.md) documents each new one the same way. The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
 

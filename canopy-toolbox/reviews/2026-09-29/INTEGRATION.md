@@ -3,7 +3,8 @@
 The authorized implementation slices are integrated on
 `canopy/classification-refinement`, in scoped commits. Original LAS, existing
 independent reference labels and historical worktree edits remain preserved.
-No new worktree, environment switch, model inference, push or PR was performed.
+No new worktree, environment switch, model inference, push or PR was performed during the integration
+itself. Later on September 29 the user authorized inference; see the dated update below.
 
 | Slice | Result and evidence |
 |---|---|
@@ -46,10 +47,14 @@ must exclude 12TVL3302 plus its prepared halo; it is a prospective holdout after
 exploratory use. 12TVL2203 is external transfer, never part of the Millcreek pilot
 estimate. No citywide estimate is supported by these three tiles.
 
-The user chose **keep the current environment; defer inference**. Density/HAG
-inference, product-copy assembly and associated model accuracy measurements remain
-unrun. Independent human census/labels are also pending. The implementation is
-ready to support those steps without turning contextual evidence into truth.
+The user first chose **keep the current environment; defer inference**. **Update, September 29, 2026:**
+that decision was reversed. Pro's per-user active environment was switched to the deep-learning clone
+with `proswap`, and all four density/HAG matrix rows ran on 12TVL2804 with `PYTHONNOUSERSITE=1`. All passed
+the binary integrity gate. The HAG row was a null control: its output was byte-identical to the absolute row.
+A tree-full product copy completed a bounded 250 m `canopy run`. The harness could not score that bounded run
+(grid mismatch), and 0 of 1468 reference units are labelled, so **no model accuracy measurement exists**.
+See [DEEP_LEARNING.md](DEEP_LEARNING.md) and [MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md). Independent
+human census/labels are still pending.
 
 ## Final verification
 
