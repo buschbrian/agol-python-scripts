@@ -133,6 +133,10 @@ The output includes roof_review.gdb/roof_outlines, roof and ground rasters, prep
 
 ROOF_Z_M is median measured roof elevation; ROOF_H_M is median roof elevation minus the interpolated ground surface; FIT_RMSE_M is the plane-fit residual, not elevation accuracy. MODEL_OK and PARTIAL_AOI identify rejected fits and outlines truncated by the analysis boundary. These rasterized roof-support outlines are unverified and should not be described as surveyed building-wall footprints.
 
+## Training-label review in ArcGIS Pro
+
+Training labels for fine-tuning point-cloud and imagery models are collected separately from the evaluation sample, away from every reference unit, census plot and holdout tile. See [TRAINING_REVIEW.md](reviews/2026-09-29/TRAINING_REVIEW.md) for the review project and the `TrainingReview.pyt` step-through tools.
+
 ## Optional shape gate for walls, poles and wires
 
 `python -m canopy shape-gate prepared.lasd NEW_FOLDER [--extent ...] [--min-wall-height 0.7]` writes review LAS copies in which class 3/4/5 points carry shape-group codes 64–72, plus per-point eigen features and height above ground. A wall-shaped point must stand at least `--min-wall-height` (default 0.7 m) above the pipeline DTM to be wall_like; lower ones (curbs, edging, low retaining edges) are `low_wall` (code 72), which is review only. The ground raster needs ArcGIS Pro Python in both modes. `--apply` writes a new prepared dataset in which only a prespecified, conservative wall/wire/pole rule moves points to class 1, with the refine-roofs audit trail. On both pilots the rule changed no points, and it is unvalidated. See [SHAPE_GATE.md](reviews/2026-09-29/SHAPE_GATE.md); its codes are review evidence, never scoring truth.

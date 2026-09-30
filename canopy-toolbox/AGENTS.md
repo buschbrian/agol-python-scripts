@@ -11,6 +11,7 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 - CHM and support: canopy/rasters.py.
 - Optional roof-edge refinement and derived roof outlines: canopy/roofs.py.
 - Wall/pole/wire shape evidence and opt-in class-1 gate: canopy/shape_gate.py (ArcPy-free); reviews/2026-09-29/SHAPE_GATE.md.
+- Training-label review (never evaluation): canopy/training_review.py (ArcPy-free), canopy/training_review_arcpy.py, TrainingReview.pyt, reviews/2026-09-29/training_review_driver.py; reviews/2026-09-29/TRAINING_REVIEW.md.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.
@@ -31,6 +32,9 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 - Never assume finite halos guarantee exact crown seams. Global analysis is bounded
   to 4,000,000 cells; larger AOIs must fail clearly until another method is validated.
 - Keep credentials, imagery, working LAS files, and generated datasets in ignored scratch.
+- Training labels never enter reference.gdb. The evaluation exclusion frame (reference units and census
+  plots with a 25 m buffer; 12TVL3302 and 12TVL2203 with halos) is enforced on every training label write,
+  snapshot and export.
 
 ## Verify
 
