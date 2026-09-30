@@ -6,7 +6,11 @@ place by Classify Point Cloud Using Trained Model. Point order is preserved, so 
 arrays are compared index by index.
 
 Usage: python dl_compare.py [--extent xmin ymin xmax ymax] [--out dl-12TVL2804.json]
+       python dl_compare.py --original BASELINE.las --manifest tree=ROOT/work/run-tree.json --out OUT.json
+       python dl_compare.py --row-manifest tree=ROOT/work/run-tree.json --out OUT.json   (multi-file row)
 Requires successful run manifests from dl_run.py with matching file fingerprints.
+A multi-file row compares every file with its own recorded baseline file, reports
+each file separately and sums the tables only when every file passes.
 The processed boundary is applied automatically; --extent may restrict it further.
 Class agreement with a pretrained model is not independently labelled accuracy.
 """
@@ -28,7 +32,8 @@ ROOT = Path(r"H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning
 COPIES = {"building": ROOT / "building" / "12TVL2804.las", "tree": ROOT / "tree" / "12TVL2804.las"}
 CHUNK = 4_000_000
 NAMES = {0: "0 never classified", 1: "1 unclassified", 2: "2 ground", 3: "3 low veg", 4: "4 medium veg",
-         5: "5 high veg", 6: "6 building", 7: "7 low noise", 18: "18 high noise"}
+         5: "5 high veg", 6: "6 building", 7: "7 low noise", 9: "9 water", 17: "17 bridge deck",
+         18: "18 high noise", 20: "20 ignored ground"}
 
 
 def validate_point_edits(original, copy, modern=True, processed_mask_fn=None, target=None):
@@ -95,77 +100,147 @@ def summarize(table, positive):
     return rows
 
 
-def main():
+def _extent_mask(bounds, scale, offset):
+    if bounds is None:
+        return None
+    def inside(records, start, stop):
+        x = np.asarray(records["x"][start:stop])*scale[0]+offset[0]
+        y = np.asarray(records["y"][start:stop])*scale[1]+offset[1]
+        return (x >= bounds[0]) & (x <= bounds[2]) & (y >= bounds[1]) & (y <= bounds[3])
+    return inside
+
+
+def compare_job(name, manifest_path, original_path, requested=None, path=None):
+    """Integrity-check one binary output against its own baseline file and tabulate classes.
+
+    Returns the comparison entry; status is 'verified_inference' only after every
+    record passed the byte-level gate.
+    """
     from canopy.las_records import header, records
-    def _records(path,mode): return records(path,mode)[:4]
+    manifest_path, original_path = Path(manifest_path), Path(original_path)
+    entry = {"path": str(path), "status": "rejected", "original": str(original_path)}
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if path is None:
+            path = Path(manifest.get('output', {}).get('path', ''))
+            entry['path'] = str(path)
+        extent = prediction_extent(manifest, name, original_path, path, requested)
+        processed = valid_extent(manifest.get('boundary'))
+    except (OSError, ValueError, KeyError) as exc:
+        entry["error"] = f"Inference provenance rejected: {exc}"
+        return entry
+    if manifest.get('data_use_label'):
+        entry['data_use_label'] = manifest['data_use_label']
+    positive = 6 if name == "building" else 5
+    try:
+        original_info = header(original_path)
+        original, scale, offset, modern = records(original_path, "r")[:4]
+        copy_info = header(path)
+        if any(copy_info[k] != original_info[k] for k in ('format', 'record_length', 'points')):
+            raise ValueError('Point format, record length or count differs from the original')
+        copy, scale_c, offset_c, modern_c = records(path, "r")[:4]
+        if modern_c != modern or not (np.array_equal(scale, scale_c) and np.array_equal(offset, offset_c)):
+            raise ValueError('Point scale or offset differs from the original')
+        validate_point_edits(original, copy, modern, _extent_mask(processed, scale, offset), target=positive)
+        table = crosstab(original, copy, _extent_mask(extent, scale, offset), modern)
+    except (OSError, ValueError, struct.error, IndexError) as exc:
+        entry['error'] = f'Point integrity rejected: {exc}'
+        return entry
+    entry.update(status="verified_inference", points=int(len(copy)),
+                 coordinates_identical=True, nonclassification_bytes_identical=True,
+                 outside_boundary_classes_identical=True,
+                 processed_extent=processed, comparison_extent=extent,
+                 inference_manifest=str(manifest_path), model=manifest["model"])
+    entry["target_class"] = positive
+    entry["crosstab_our_class_by_prediction"] = table
+    entry["by_our_class"] = summarize(table, positive)
+    del copy, original
+    return entry
+
+
+def add_tables(tables):
+    total = {}
+    for table in tables:
+        for cls, preds in table.items():
+            row = total.setdefault(int(cls), {})
+            for pred, count in preds.items():
+                row[int(pred)] = row.get(int(pred), 0) + int(count)
+    return total
+
+
+def compare_row(name, row_manifest_path, requested=None):
+    """Compare every file of a multi-file row against its own recorded baseline file.
+
+    Each file must pass on its own; the row is verified only if all of them are.
+    """
+    row_manifest_path = Path(row_manifest_path)
+    entry = {"status": "rejected", "row_manifest": str(row_manifest_path), "files": {}}
+    try:
+        row = json.loads(row_manifest_path.read_text(encoding='utf-8'))
+        if row.get('job') != name or not row.get('files'):
+            raise ValueError('Row manifest has a different job or lists no files')
+        if row.get('status') != 'complete':
+            raise ValueError('Row inference did not complete; its outputs are not model evidence')
+    except (OSError, ValueError, KeyError) as exc:
+        entry['error'] = f"Inference provenance rejected: {exc}"
+        return entry
+    if row.get('data_use_label'):
+        entry['data_use_label'] = row['data_use_label']
+    for record in row['files']:
+        source = Path(record['source']['path'])
+        entry['files'][source.name] = compare_job(name, record['manifest'], source, requested)
+    failed = [f for f, e in entry['files'].items() if e['status'] != 'verified_inference']
+    if failed:
+        entry['error'] = 'Point integrity rejected for ' + ', '.join(failed)
+        return entry
+    table = add_tables(e["crosstab_our_class_by_prediction"] for e in entry['files'].values())
+    positive = 6 if name == "building" else 5
+    entry.update(status="verified_inference", target_class=positive,
+                 points=sum(e['points'] for e in entry['files'].values()),
+                 crosstab_our_class_by_prediction=table, by_our_class=summarize(table, positive),
+                 model=row['model'], processed_extent=valid_extent(row.get('boundary')),
+                 comparison_extent=valid_extent(requested) or valid_extent(row.get('boundary')))
+    return entry
+
+
+def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--extent", nargs=4, type=float, metavar=("XMIN", "YMIN", "XMAX", "YMAX"))
     ap.add_argument("--out", default=str(Path(__file__).with_name("dl-12TVL2804.json")))
     ap.add_argument('--original',type=Path,default=ORIGINAL)
     ap.add_argument('--manifest',action='append',help='JOB=manifest path; select paired or individual experiment jobs')
+    ap.add_argument('--row-manifest', action='append',
+                    help='JOB=row manifest of a multi-file dl_run row; each file is compared with its own baseline')
     args = ap.parse_args()
     valid_extent(args.extent)
 
     original_path=args.original
     manifests={name:ROOT/'work'/f'run-{name}.json' for name in COPIES}
     copies=dict(COPIES)
-    if args.manifest:
-        pairs=[p.split('=',1) for p in args.manifest]
+    rows = {}
+    if args.manifest and args.row_manifest:
+        ap.error('Use either --manifest or --row-manifest')
+    if args.manifest or args.row_manifest:
+        pairs=[p.split('=',1) for p in (args.manifest or args.row_manifest)]
         if any(len(p)!=2 or p[0] not in ('tree','building') for p in pairs) or len({p[0] for p in pairs})!=len(pairs):
             ap.error('Use one tree=manifest and/or building=manifest mapping')
-        manifests={name:Path(path) for name,path in pairs}
-        copies={name:None for name in manifests}
-    original_info = header(original_path)
-    original, scale, offset, modern = _records(original_path, "r")
-    result = {"original": str(original_path), "points": int(len(original)), "extent": args.extent}
-
-    def extent_mask(bounds):
-        if bounds is None:
-            return None
-        def inside(records, start, stop):
-            x = np.asarray(records["x"][start:stop])*scale[0]+offset[0]
-            y = np.asarray(records["y"][start:stop])*scale[1]+offset[1]
-            return (x >= bounds[0]) & (x <= bounds[2]) & (y >= bounds[1]) & (y <= bounds[3])
-        return inside
-
-    for name, path in copies.items():
-        entry = {"path": str(path), "status": "rejected"}
-        manifest_path = manifests[name]
-        try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-            if path is None:
-                path=Path(manifest.get('output',{}).get('path',''))
-                entry['path']=str(path)
-            extent = prediction_extent(manifest, name, original_path, path, args.extent)
-            processed = valid_extent(manifest.get('boundary'))
-        except (OSError, ValueError, KeyError) as exc:
-            entry["error"] = f"Inference provenance rejected: {exc}"
-            result[name] = entry
-            continue
-        positive = 6 if name == "building" else 5
-        try:
-            copy_info = header(path)
-            if any(copy_info[k] != original_info[k] for k in ('format', 'record_length', 'points')):
-                raise ValueError('Point format, record length or count differs from the original')
-            copy, scale_c, offset_c, modern_c = _records(path, "r")
-            if modern_c != modern or not (np.array_equal(scale, scale_c) and np.array_equal(offset, offset_c)):
-                raise ValueError('Point scale or offset differs from the original')
-            validate_point_edits(original, copy, modern, extent_mask(processed), target=positive)
-            table = crosstab(original, copy, extent_mask(extent), modern)
-        except (OSError, ValueError, struct.error, IndexError) as exc:
-            entry['error'] = f'Point integrity rejected: {exc}'
-            result[name] = entry
-            continue
-        entry.update(status="verified_inference", points=int(len(copy)),
-                     coordinates_identical=True, nonclassification_bytes_identical=True,
-                     outside_boundary_classes_identical=True,
-                     processed_extent=processed, comparison_extent=extent,
-                     inference_manifest=str(manifest_path), model=manifest["model"])
-        entry["target_class"] = positive
-        entry["crosstab_our_class_by_prediction"] = table
-        entry["by_our_class"] = summarize(table, positive)
-        result[name] = entry
-        del copy
+        if args.row_manifest:
+            rows = {name: Path(path) for name, path in pairs}
+            copies = {}
+        else:
+            manifests={name:Path(path) for name,path in pairs}
+            copies={name:None for name in manifests}
+    if rows:
+        result = {"mode": "multi-file row", "extent": args.extent}
+        for name, path in rows.items():
+            result[name] = compare_row(name, path, args.extent)
+    else:
+        from canopy.las_records import header
+        result = {"original": str(original_path), "points": int(header(original_path)['points']),
+                  "extent": args.extent}
+        for name, path in copies.items():
+            result[name] = compare_job(name, manifests[name], original_path, args.extent, path)
+    jobs = list(rows or copies)
 
     b = result.get("building", {}).get("crosstab_our_class_by_prediction")
     t = result.get("tree", {}).get("crosstab_our_class_by_prediction")
@@ -184,7 +259,7 @@ def main():
         key["our_6_called_tree_by_tree_model"] = {"tree": int(c6.get(5, 0)), "of": sum(c6.values())}
     result["key_numbers"] = key
     result["status"] = "verified_inference" if all(result[n].get("status") == "verified_inference"
-                                                  for n in copies) else "rejected_or_partial"
+                                                  for n in jobs) else "rejected_or_partial"
     result["interpretation"] = "Class disagreement with pretrained models; not independently labelled accuracy."
 
     Path(args.out).write_text(json.dumps(result, indent=1))
@@ -192,8 +267,14 @@ def main():
     for name in ("building", "tree"):
         if "error" in result.get(name, {}):
             print(name, result[name]["error"])
+        for file_name, entry in result.get(name, {}).get("files", {}).items():
+            if "error" in entry:
+                print(name, file_name, entry["error"])
+            else:
+                print(name, file_name, entry["points"], "points;", {NAMES.get(c, c): r["model_target"]
+                                                                     for c, r in sorted(entry["by_our_class"].items())})
         if name in result and "by_our_class" in result[name]:
-            print(name)
+            print(name, "total" if "files" in result[name] else "")
             for cls, row in sorted(result[name]["by_our_class"].items()):
                 print("  ", NAMES.get(cls, cls), row)
     if result["status"] != "verified_inference":

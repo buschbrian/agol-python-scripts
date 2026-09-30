@@ -1,4 +1,4 @@
-"""Product copies restore ground, resolve conflicts to tree and never touch raw outputs."""
+"""Product copies restore ground, apply the declared conflict policy and never touch raw outputs."""
 import importlib.util
 import json
 from pathlib import Path
@@ -69,6 +69,92 @@ class ProductAssembly(unittest.TestCase):
                          int(((self.tree == 5) & (self.build == 6) & ~ground & ~noise).sum()))
         self.assertEqual({job: path.read_bytes() for job, path in self.paths.items()}, raw_before)
         self.assertEqual(record['raw_outputs_before'], record['raw_outputs_after'])
+
+    def expected(self, conflict_value):
+        noise = np.isin(self.base, (7, 18))
+        ground = (self.base == 2) & ~noise
+        conflict = (self.tree == 5) & (self.build == 6) & ~ground & ~noise
+        expected = np.zeros_like(self.base)
+        expected[self.build == 6] = 6
+        expected[self.tree == 5] = 5
+        expected[conflict] = conflict_value
+        expected[ground] = 2
+        expected[noise] = self.base[noise]
+        return expected, int(conflict.sum())
+
+    def classes(self, name):
+        out = self.root / name
+        info = header(out)
+        return np.frombuffer(out.read_bytes(), np.uint8, offset=info['offset']).reshape(-1, 30)[:, 16]
+
+    def test_building_wins_and_conflict_class_policies(self):
+        for policy, value, key in (('building-wins', 6, 'conflict_tree5_building6_resolved_to_building'),
+                                   ('conflict-class', 65, 'conflict_tree5_building6_to_class_65'),
+                                   ('conflict-class', 200, 'conflict_tree5_building6_to_class_200')):
+            with self.subTest(policy=policy, value=value):
+                name = f'{policy}-{value}.las'
+                record = self.module.assemble(self.baseline, self.root / 'tree-run.json',
+                                              self.root / 'tree-compare.json', self.root / name,
+                                              self.root / 'building-run.json', self.root / 'building-compare.json',
+                                              policy=policy, conflict_class=value)
+                expected, conflicts = self.expected(value)
+                self.assertGreater(conflicts, 0)
+                got = self.classes(name)
+                np.testing.assert_array_equal(got, expected)
+                counts = record['counts']
+                self.assertEqual(counts['conflict_tree5_building6'], conflicts)
+                self.assertEqual(counts[key], conflicts)
+                self.assertEqual(counts['tree_5'], int((got == 5).sum()))
+                self.assertEqual(counts['building_6'], int((got == 6).sum()))
+                self.assertEqual(counts['background_0'], int((got == 0).sum()))
+                self.assertEqual(record['conflict_policy'], policy)
+                self.assertEqual(record['conflict_class'], value if policy == 'conflict-class' else None)
+
+    def test_policies_partition_the_same_points(self):
+        records = {}
+        for policy in ('tree-wins', 'building-wins', 'conflict-class'):
+            records[policy] = self.module.assemble(
+                self.baseline, self.root / 'tree-run.json', self.root / 'tree-compare.json',
+                self.root / f'{policy}.las', self.root / 'building-run.json', self.root / 'building-compare.json',
+                policy=policy)['counts']
+        conflicts = records['tree-wins']['conflict_tree5_building6']
+        self.assertEqual(records['tree-wins']['tree_5'], records['building-wins']['tree_5'] + conflicts)
+        self.assertEqual(records['building-wins']['building_6'], records['tree-wins']['building_6'] + conflicts)
+        self.assertEqual(records['conflict-class']['tree_5'], records['building-wins']['tree_5'])
+        self.assertEqual(records['conflict-class']['building_6'], records['tree-wins']['building_6'])
+        self.assertEqual(len({r['background_0'] for r in records.values()}), 1)
+
+    def test_invalid_policy_arguments_are_refused_before_writing(self):
+        building = (self.root / 'building-run.json', self.root / 'building-compare.json')
+        cases = [(dict(policy='building-wins'), (), 'needs a building prediction'),
+                 (dict(policy='conflict-class', conflict_class=6), building, 'user-definable'),
+                 (dict(policy='conflict-class', conflict_class=256), building, 'user-definable'),
+                 (dict(policy='majority'), building, 'Unknown conflict policy')]
+        for kwargs, extra, message in cases:
+            with self.subTest(kwargs=kwargs), self.assertRaisesRegex(ValueError, message):
+                self.module.assemble(self.baseline, self.root / 'tree-run.json', self.root / 'tree-compare.json',
+                                     self.root / 'refused.las', *extra, **kwargs)
+        self.assertFalse((self.root / 'refused.las').exists())
+
+    def test_multi_file_row_comparison_is_matched_by_manifest(self):
+        manifest = self.root / 'tree-run.json'
+        other = self.root / 'other-run.json'
+        row = {'tree': {'status': 'verified_inference', 'files': {
+            'base.las': {'status': 'verified_inference', 'inference_manifest': str(manifest),
+                         'processed_extent': [X0, Y0, X0+100, Y0+100]},
+            'halo.las': {'status': 'verified_inference', 'inference_manifest': str(other)}}}}
+        (self.root / 'tree-compare.json').write_text(json.dumps(row))
+        record = self.assemble('row-product.las', building=False)
+        self.assertEqual(record['counts']['building_6'], 0)
+        row['tree']['files']['base.las']['status'] = 'rejected'
+        (self.root / 'tree-compare.json').write_text(json.dumps(row))
+        with self.assertRaisesRegex(ValueError, 'verified binary integrity'):
+            self.assemble('refused.las', building=False)
+        row['tree']['files']['base.las']['status'] = 'verified_inference'
+        row['tree']['status'] = 'rejected'
+        (self.root / 'tree-compare.json').write_text(json.dumps(row))
+        with self.assertRaisesRegex(ValueError, 'verified binary integrity'):
+            self.assemble('refused.las', building=False)
 
     def test_tree_only_product_has_no_building_class(self):
         record = self.assemble(building=False)
