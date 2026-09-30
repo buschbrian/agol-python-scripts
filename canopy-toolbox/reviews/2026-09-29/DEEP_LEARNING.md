@@ -177,9 +177,9 @@ tables are in [MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md#september-30-queue-hal
   the copy kept the HAG file's read-only attribute. That attempt is kept and labelled. The runner and `dl_run.py`
   now handle and refuse this case.
 - Building predictions change with HAG Z. Building inference had been byte-reproducible for identical input, so
-  this is a Z effect. The tree model is not reproducible: a repeat on identical input changed 237,853 points,
-  so most of the 267,073 tree changes cannot be attributed to Z
-  ([step b](MODEL_EXPERIMENTS.md#step-b-tree-reproducibility)).
+  this is a Z effect. The tree model is not reproducible: identical input changes about 237,500 points (0.88%)
+  run to run, on either machine, so about 89% of the 267,073 tree changes are noise and a Z effect is at most
+  about 29,000 points ([step b](MODEL_EXPERIMENTS.md#step-b-tree-reproducibility)).
 - Full-tile product runs for three conflict policies (tree-wins, building-wins, conflict class 65) are on the
   baseline grid, and the harness accepted them. It reports 0 of 1468 units labelled, so **no accuracy
   exists**. The halo classes proved irrelevant to the CHM: baseline-halo and inferred-halo products are cell-for-cell

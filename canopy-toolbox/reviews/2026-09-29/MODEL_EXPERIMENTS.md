@@ -239,37 +239,56 @@ file. Each row treated the HAG LAS as its own baseline and was compared by index
 ### Step b: tree reproducibility
 
 The September 30 handoff asked for a repeat of the absolute-Z tree row, because row d's 267,073 changed tree
-points could not be attributed to Z without it. The repeat (`tree-abs-repeat`) ran on the A4000 office workstation
-(i9-13900K, RTX A4000 16 GB, driver 616.92, Pro 3.7 deep-learning clone, PyTorch 2.9.1 CUDA 12.9), one GPU job
-alone, batch 1. It used the same file (the absolute 12TVL2804 core, MD5 `82787095…80FC`), the same boundary
-(`428000 4504000 429000 4505000`) and the same tree model as the September 29 `tree-full` row. It took
-1,312.4 s of tool time (22.1 min for the row). Integrity verified; the baseline and watch file hashes were unchanged.
-Queue and comparer: [queue_tree_repeat.ps1](../2026-09-30/queue_tree_repeat.ps1),
+points could not be attributed to Z without it. Two repeats ran on the A4000 office workstation (i9-13900K,
+RTX A4000 16 GB, driver 616.92, Pro 3.7 deep-learning clone, PyTorch 2.9.1 CUDA 12.9), each alone on the GPU at
+batch 1: `tree-abs-repeat` (1,310.5 s of tool time) and `tree-abs-repeat2` (1,354.7 s). Both used the same file
+as the September 29 `tree-full` row (the absolute 12TVL2804 core, MD5 `82787095…80FC`), the same boundary
+(`428000 4504000 429000 4505000`) and the same tree model. Both passed integrity and left the baseline and watch
+file hashes unchanged. Queue and comparer: [queue_tree_repeat.ps1](../2026-09-30/queue_tree_repeat.ps1),
 [repeat_compare.py](../2026-09-30/repeat_compare.py). The pairing uses the same `paired_predictions` as the HAG-Z
-pairing, and it reproduced that pairing's published counts exactly when checked on the `tree-full` and `tree-hag-z`
-outputs.
+pairing and reproduced that pairing's published counts exactly when checked on the `tree-full` and `tree-hag-z`
+outputs. Every pairing is by point index over all 26,982,464 points (valid because the non-Z bytes and order are
+identical), target class 5.
 
-| Pairing by point index (tree model, target class 5) | Tree in both | First only | Second only | Points changed |
-|---|---:|---:|---:|---:|
-| `tree-abs-repeat` vs `tree-full`: same input, no Z change | 9,143,073 | 118,790 | 119,063 | **237,853 (0.88%)** |
-| `tree-hag-z` vs `tree-full`: Z replaced by height above ground | 9,125,277 | 136,586 | 130,487 | 267,073 (0.99%) |
+| Runs compared | Machines | Tree in both | First only | Second only | Points changed |
+|---|---|---:|---:|---:|---:|
+| `tree-full` vs `tree-abs-repeat` | laptop / workstation | 9,143,073 | 118,790 | 119,063 | **237,853** (0.88%) |
+| `tree-full` vs `tree-abs-repeat2` | laptop / workstation | 9,142,347 | 119,516 | 118,038 | **237,554** (0.88%) |
+| `tree-abs-repeat` vs `tree-abs-repeat2` | workstation / workstation | 9,142,706 | 119,430 | 117,679 | **237,109** (0.88%) |
+| `tree-hag-z` vs `tree-full` | laptop / laptop | 9,125,277 | 136,586 | 130,487 | 267,073 (0.99%) |
+| `tree-hag-z` vs `tree-abs-repeat` | laptop / workstation | 9,125,670 | 130,094 | 136,466 | 266,560 (0.99%) |
+| `tree-hag-z` vs `tree-abs-repeat2` | laptop / workstation | 9,124,543 | 131,221 | 135,842 | 267,063 (0.99%) |
 
-- **The tree model is not reproducible.** Two runs of identical input produced different outputs
-  (not byte-identical, 237,853 of 26,982,464 points differ in the tree/not-tree call).
-- **Most of row d's tree difference is not attributable to Z.** 237,853 of the 267,073 changed points (89%)
-  appear without any change to the input. Even if the two effects simply added, at most about 29,000 points
-  (0.1% of the tile) could be a Z effect, and they need not add. The building model stays different: it was
-  byte-reproducible on identical input, so its 108,210 changes are a Z effect.
-- **Limit of this result.** It is one repeat, and it crosses machines: `tree-full` and `tree-hag-z` ran on the
-  laptop, the repeat on the workstation. So 237,853 combines run-to-run noise with any difference between the two
-  machines' GPU, driver and library versions. It is an upper bound on same-machine noise, not a measurement of it.
-  A second repeat on the workstation (`tree-abs-repeat2`) measures that, and a batch-8 row (`tree-abs-batch8`,
-  handoff step d) is read against it. Their results are added below when they finish.
-- Nothing here says either version of the tree output is more accurate; no labels exist yet.
+(`tree-hag-z` is the first column in its last two rows, so "first only" there is the HAG-Z output.)
 
-Result record: [tree-repeat/repeat1-vs-tree-full.json](../2026-09-30/tree-repeat/repeat1-vs-tree-full.json)
-(paths inside it are the workstation's `D:` paths). Full outputs are on the lidar disk under
-`experiments-20260930\tree-abs-repeat`.
+- **The tree model is not reproducible.** Identical input gives different output every time: no two of the three
+  absolute-Z runs are byte-identical, and each pair differs by about 237,100 to 237,900 points (0.88% of the tile).
+- **The noise does not depend on the machine.** The two cross-machine pairs (237,853 and 237,554) match the
+  same-machine pair (237,109) to within 0.3%. Nothing here shows any effect of the laptop's versus the workstation's
+  GPU, driver or libraries on the tree output. The three noise pairs spread by only about ±0.16%.
+- **Most of row d's tree difference is noise.** The three HAG-Z pairings give 266,560 to 267,073 (mean about
+  266,900). The absolute-Z noise is about 237,500, so HAG-Z adds about **29,400 more changed points (0.11% of the
+  tile)**, about 11% of the difference that was measured. The excess is the same in all three HAG-Z pairings. It is
+  the only input difference, so a small Z effect is the natural reading, but it is small compared with the noise.
+- **Direction of the excess.** In the HAG-Z pairings the absolute-Z runs call 4,600 to 6,400 more points tree than
+  HAG-Z does. Between absolute-Z runs the two directions differ by only 300 to 1,800. So HAG-Z calls slightly fewer
+  points tree.
+- **The building model is different.** It was byte-reproducible on identical input, so its 108,210 changed points
+  are a Z effect, not noise.
+- Nothing here says which tree output is more accurate; no labels exist yet. With three runs this is a measurement
+  of the noise level, not a significance test.
+
+Result records: [tree-repeat/](../2026-09-30/tree-repeat/) holds five of the six pairing files; the sixth,
+`tree-hag-z` vs `tree-full`, is the row-d record `hag-z-check\hag-vs-absolute-paired.json` on the lidar disk. Paths
+inside the files are the workstation's `D:` paths. The outputs are on the lidar disk under
+`experiments-20260930\tree-abs-repeat` and `tree-abs-repeat2`.
+
+### Step d: batch size
+
+The first `tree-abs-batch8` attempt failed after 57 s with an intermittent `SyntaxError` while the tool's worker
+imported `sympy` during model load, before batch size could matter (GPU peak 1,801 MiB; the same import passed 4 of 4
+times afterwards and the `sympy` file is identical to Pro's). It is kept as `tree-abs-batch8-attempt1-import-error`
+and is not evidence. The row was rerun; its result is added below.
 
 ## Fixed experiment matrix (original plan)
 
