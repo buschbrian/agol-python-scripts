@@ -135,6 +135,14 @@ ROOF_Z_M is median measured roof elevation; ROOF_H_M is median roof elevation mi
 
 ## Optional shape gate for walls, poles and wires
 
-`python -m canopy shape-gate prepared.lasd NEW_FOLDER [--extent ...]` writes review LAS copies in which class 3/4/5 points carry shape-group codes 64–71, plus per-point eigen features. It needs no ArcPy. `--apply` writes a new prepared dataset in which only a prespecified, conservative wall/wire/pole rule moves points to class 1, with the refine-roofs audit trail. On the first pilot the rule changed no points, and it is unvalidated. See [SHAPE_GATE.md](reviews/2026-09-29/SHAPE_GATE.md); its codes are review evidence, never scoring truth.
+`python -m canopy shape-gate prepared.lasd NEW_FOLDER [--extent ...] [--min-wall-height 0.7]` writes review LAS copies in which class 3/4/5 points carry shape-group codes 64–72, plus per-point eigen features and height above ground. A wall-shaped point must stand at least `--min-wall-height` (default 0.7 m) above the pipeline DTM to be wall_like; lower ones (curbs, edging, low retaining edges) are `low_wall` (code 72), which is review only. The ground raster needs ArcGIS Pro Python in both modes. `--apply` writes a new prepared dataset in which only a prespecified, conservative wall/wire/pole rule moves points to class 1, with the refine-roofs audit trail. On both pilots the rule changed no points, and it is unvalidated. See [SHAPE_GATE.md](reviews/2026-09-29/SHAPE_GATE.md); its codes are review evidence, never scoring truth.
+
+## Height-above-ground (HAG) dataset
+
+~~~powershell
+& $proPython -m canopy hag {root}\{tile}\prepared\prepared.lasd NEW_FOLDER [--mode z|extrabytes|both] [--extent ...] [--cell 0.5] [--label TEXT]
+~~~
+
+It builds the pipeline DTM (class-2 ground of every prepared file, 0.5 m natural neighbour, EPSG:6341 metres by default) and writes NEW LAS copies in which each point's height above the ground cell containing it is either the Z value (`z`, in `points/`) or an added `HeightAboveGround` Extra Bytes attribute with Z untouched (`extrabytes`, LAS 1.4 only, in `points-extrabytes/`). Negative HAG is kept and counted. In z mode, a file with any point over a NoData ground cell is refused, not written, and its point indices are logged. Every other byte is verified identical to the source. `manifest.json` records the source and output fingerprints, the ground raster fingerprint, counts and timings; its `"status": "complete"` is written last. See [HAG.md](reviews/2026-09-29/HAG.md).
 
 The user-supplied OSM layer was checked for the pilot plus a 30 m border and returned no intersecting footprints. It remains useful reference data where it has coverage; it is not used as a blanket canopy exclusion.

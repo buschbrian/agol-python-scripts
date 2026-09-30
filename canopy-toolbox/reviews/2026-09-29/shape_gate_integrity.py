@@ -28,7 +28,7 @@ def check(folder):
         manifest_path = folder/"shape_gate.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     apply = manifest["mode"] == "apply"
-    allowed = {1} if apply else set(range(64, 72))
+    allowed = {1} if apply else set(range(64, 73))
     rows = {}
     for source in manifest["input_files"]:
         original = Path(source["path"])

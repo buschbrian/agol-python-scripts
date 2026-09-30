@@ -159,6 +159,13 @@ class Shapes(unittest.TestCase):
             np.testing.assert_array_equal(one[key], many[key], err_msg=key)
         self.assertGreater(len(set(one["group"].tolist())), 3)
 
+    def test_min_wall_height_is_checked(self):
+        from canopy import shape_gate as sg
+        for bad in (-.1, float("nan"), float("inf")):
+            with self.assertRaisesRegex(ValueError, "min_wall_height"):
+                sg.check_parameters(dict(sg.DEFAULTS, min_wall_height=bad))
+        sg.check_parameters(dict(sg.DEFAULTS, min_wall_height=0.))
+
     def test_parameters_are_checked(self):
         from canopy import shape_gate as sg
         sg.check_parameters(dict(sg.DEFAULTS))
@@ -235,6 +242,38 @@ def building_scene(modern):
     return points, facade, index, (crown_start, crown_start+1500)
 
 
+def flat_ground(value=100., calls=None, nan_below_x=None):
+    """A stand-in for hag.raster_builder: flat ground (optionally NoData west of a local x)."""
+    def build(folder, extent, cell):
+        import numpy as np
+        from canopy import hag
+        if calls is not None:
+            calls.append(list(extent))
+        cols, rows = round((extent[2]-extent[0])/cell), round((extent[3]-extent[1])/cell)
+        values = np.full((rows, cols), value, np.float32)
+        if nan_below_x is not None:
+            values[:, :int((500000+nan_below_x-extent[0])/cell)] = np.nan
+        return hag.GroundSurface(values, extent[0], extent[3], cell, {"source": "flat test ground"})
+    return build
+
+
+def boundary_walls():
+    """Three 8 m x 3 m walls (0.25 m grid) over flat ground at 100 m whose third rows stand exactly
+    0.69, 0.70 and 0.71 m above ground; plus ground points. Returns points and the row heights."""
+    import numpy as np
+    points, rows = [], {}
+    for base, (x0, y) in zip((.19, .20, .21), ((2, 10), (20, 10), (2, 30))):
+        for x in np.arange(x0, x0+8, .25):
+            for k in range(12):
+                h = round(base+.25*k, 3)
+                points.append((x, y, 100+h, 5, 0, 1, 1))
+        rows[round(base+.5, 3)] = y
+    for gx in np.arange(0, 40, 1.):
+        for gy in np.arange(0, 40, 1.):
+            points.append((gx, gy, 100., 2, 0, 1, 1))
+    return points, rows
+
+
 def prepared(folder, files, extent=(0, 0, 40, 40)):
     """A completed preparation folder around existing point files."""
     root = Path(folder)/"prepared"
@@ -265,7 +304,7 @@ class Copies(unittest.TestCase):
                 source = lasd.parent/"points"/"a.las"
                 before = source.read_bytes()
                 out = Path(folder)/"gated"
-                state = sg.run(lasd, out, apply=True, dataset=self.fake_dataset)
+                state = sg.run(lasd, out, apply=True, dataset=self.fake_dataset, ground=flat_ground())
                 self.assertEqual(state["status"], "complete")
                 self.assertEqual(before, source.read_bytes())
                 after = (out/"points"/"a.las").read_bytes()
@@ -300,7 +339,7 @@ class Copies(unittest.TestCase):
                 self.assertEqual(manifest["working_lasd"], str(out/"prepared.lasd"))
                 self.assertEqual(manifest["source_id"], "fixture")
                 with self.assertRaises(FileExistsError):
-                    sg.run(lasd, out, apply=True, dataset=self.fake_dataset)
+                    sg.run(lasd, out, apply=True, dataset=self.fake_dataset, ground=flat_ground())
 
     def test_review_recodes_only_candidates_inside_the_extent(self):
         import numpy as np
@@ -311,7 +350,10 @@ class Copies(unittest.TestCase):
             lasd = prepared(folder, {"a.las": (points, True), "far.las": (far, True)})
             gate = [500000, 4500000, 500025, 4500040]   # the facade, not the crown at x = 30
             out = Path(folder)/"review"
-            state = sg.run(lasd, out, extent=gate)
+            calls = []
+            state = sg.run(lasd, out, extent=gate, ground=flat_ground(calls=calls))
+            # ground covers the gate plus 20 m, clipped to the prepared extent
+            self.assertEqual(calls, [[500000, 4500000, 500040, 4500040]])
             self.assertEqual(state["mode"], "review")
             self.assertFalse((out/"preparation.json").exists())
             self.assertTrue((out/"shape_gate.json").is_file())
@@ -321,7 +363,7 @@ class Copies(unittest.TestCase):
             with np.load(out/"changes"/"a.npz") as audit:
                 changed = audit["point_index"].tolist()
                 self.assertEqual(differing, [375+i*30+16 for i in changed])
-                self.assertTrue(set(audit["new_class_byte"].tolist()) <= set(range(64, 72)))
+                self.assertTrue(set(audit["new_class_byte"].tolist()) <= set(range(64, 73)))
             eligible = [i for i, p in enumerate(points) if p[3] in (3, 4, 5) and not p[4] & 13 and p[0] <= 25]
             self.assertEqual(changed, eligible)
             self.assertFalse((out/"points"/"far.las").exists())
@@ -336,22 +378,87 @@ class Copies(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             points, *_ = building_scene(False)
             lasd = prepared(folder, {"a.las": (points, False)})
+            g = flat_ground()
             with self.assertRaisesRegex(ValueError, "formats 6-10"):
-                sg.run(lasd, Path(folder)/"legacy_review")
+                sg.run(lasd, Path(folder)/"legacy_review", ground=g)
             self.assertFalse((Path(folder)/"legacy_review").exists())
             with self.assertRaisesRegex(ValueError, "dataset writer"):
-                sg.run(lasd, Path(folder)/"no_writer", apply=True)
+                sg.run(lasd, Path(folder)/"no_writer", apply=True, ground=g)
+            with self.assertRaisesRegex(ValueError, "ground surface builder"):
+                sg.run(lasd, Path(folder)/"no_ground", apply=True, dataset=self.fake_dataset)
+            self.assertFalse((Path(folder)/"no_ground").exists())
             with self.assertRaisesRegex(ValueError, "inside the prepared extent"):
                 sg.run(lasd, Path(folder)/"outside", extent=[499990, 4500000, 500010, 4500010],
-                       apply=True, dataset=self.fake_dataset)
+                       apply=True, dataset=self.fake_dataset, ground=g)
             with self.assertRaisesRegex(ValueError, "outside the input preparation"):
-                sg.run(lasd, lasd.parent/"inside", apply=True, dataset=self.fake_dataset)
+                sg.run(lasd, lasd.parent/"inside", apply=True, dataset=self.fake_dataset, ground=g)
             with self.assertRaisesRegex(ValueError, "subset of 3, 4 and 5"):
-                sg.run(lasd, Path(folder)/"classes", apply=True, classes=(6,), dataset=self.fake_dataset)
+                sg.run(lasd, Path(folder)/"classes", apply=True, classes=(6,), dataset=self.fake_dataset, ground=g)
             with self.assertRaisesRegex(ValueError, "at most 100"):
-                sg.run(lasd, Path(folder)/"many", apply=True, dataset=self.fake_dataset, max_points=100)
+                sg.run(lasd, Path(folder)/"many", apply=True, dataset=self.fake_dataset, max_points=100, ground=g)
             state = json.loads((Path(folder)/"many"/"preparation.json").read_text())
             self.assertEqual(state["status"], "failed")
+
+    def test_minimum_wall_height_boundary_in_review_codes_and_audit(self):
+        import numpy as np
+        from canopy import shape_gate as sg
+        with tempfile.TemporaryDirectory() as folder:
+            points, rows = boundary_walls()
+            lasd = prepared(folder, {"a.las": (points, True)})
+            out = Path(folder)/"review"
+            state = sg.run(lasd, out, ground=flat_ground())
+            self.assertEqual(state["parameters"]["min_wall_height"], .7)
+            with np.load(out/"changes"/"a.npz") as audit:
+                index, code, hag = audit["point_index"], audit["new_class_byte"], audit["hag_m"]
+            z = np.array([points[i][2] for i in index])
+            np.testing.assert_allclose(hag, z-100, atol=1e-5)
+            shaped = np.isin(code, (65, 72))
+            self.assertTrue(((code == 72) == (shaped & (np.round(hag.astype(float), 4) < .7))).all())
+            for height, expected in ((.69, 72), (.70, 65), (.71, 65)):
+                row = shaped & np.isclose(hag, height, atol=1e-4)
+                self.assertGreaterEqual(int(row.sum()), 20, height)       # interior of a 32-point row
+                self.assertTrue((code[row] == expected).all(), (height, np.unique(code[row])))
+            self.assertTrue((code[shaped & (hag < .6)] == 72).all())
+            split = state["wall_height"]
+            self.assertEqual(split["wall_shaped"], split["wall_like"]+split["low_wall"])
+            self.assertEqual(split["low_wall"], int((code == 72).sum()))
+            self.assertEqual(state["by_class"]["5"]["groups"]["low_wall"]["points"], split["low_wall"])
+            self.assertEqual(split["candidates_without_ground"], 0)
+
+    def test_low_walls_are_never_applied_and_ground_less_walls_are_low(self):
+        import numpy as np
+        from canopy import shape_gate as sg
+        with tempfile.TemporaryDirectory() as folder:
+            points, rows = boundary_walls()
+            points = [(x, y, z, c, 0, 1, 1) for x, y, z, c, *_ in points]
+            lasd = prepared(folder, {"a.las": (points, True)})
+            state = sg.run(lasd, Path(folder)/"apply", apply=True, dataset=lambda f, o: Path(o).write_text("x"),
+                           ground=flat_ground())
+            with np.load(Path(folder)/"apply"/"changes"/"a.npz") as audit:
+                self.assertGreater(len(audit["point_index"]), 0)
+                self.assertTrue((np.round(audit["hag_m"].astype(float), 4) >= .7).all())
+                self.assertNotIn(sg.LOW_WALL, set(audit["group"].tolist()))
+            self.assertGreater(state["wall_height"]["low_wall"], 0)
+            # Without ground coverage a wall-shaped point cannot be shown to be tall enough.
+            state = sg.run(lasd, Path(folder)/"no_ground", ground=flat_ground(nan_below_x=12))
+            self.assertGreater(state["wall_height"]["low_wall_without_ground"], 0)
+            with np.load(Path(folder)/"no_ground"/"changes"/"a.npz") as audit:
+                west = np.array([points[i][0] < 11.5 for i in audit["point_index"]])
+                self.assertTrue(np.isnan(audit["hag_m"][west]).all())
+                self.assertFalse((audit["new_class_byte"][west] == 65).any())
+
+    def test_split_low_walls_boundary(self):
+        import numpy as np
+        from canopy import shape_gate as sg
+        group = np.array([sg.WALL_LIKE]*6+[sg.WIRE, sg.POLE, sg.ROOF_LIKE], np.uint8)
+        hag = np.array([.69, .69994, .69996, .70, .71, np.nan, .1, .1, .1])
+        out = sg.split_low_walls(group, hag, .7)
+        self.assertEqual([sg.GROUPS[g] for g in out], ["low_wall", "low_wall", "wall_like", "wall_like", "wall_like",
+                                                       "low_wall", "wire", "pole", "roof_like"])
+        self.assertEqual(sg.REVIEW_CODES["low_wall"], 72)
+        self.assertNotIn(sg.LOW_WALL, sg.APPLY_GROUPS)
+        self.assertTrue((sg.split_low_walls(group, hag, 0.) == np.where(np.isnan(hag) & (group == sg.WALL_LIKE),
+                                                                        sg.LOW_WALL, group)).all())
 
     def test_cli_rejects_classes_without_apply(self):
         import contextlib, io

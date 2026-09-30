@@ -6,12 +6,14 @@ vegetation. The earlier review asked to keep shape features as review evidence u
 were calibrated. The command therefore writes **review evidence by default**. It changes
 classes only with an explicit `--apply`, and then only on a new prepared copy.
 
-Code: [canopy/shape_gate.py](../../canopy/shape_gate.py) (no ArcPy). Tests:
+Code: [canopy/shape_gate.py](../../canopy/shape_gate.py) (no ArcPy; the ground raster for the minimum
+wall height comes from [canopy/hag.py](../../canopy/hag.py)'s ArcGIS builder, injected by the CLI). Tests:
 [tests/test_shape_gate.py](../../tests/test_shape_gate.py).
 
 ```powershell
-# Review evidence (no ArcPy needed): LAS copies with review codes, report, per-point features
-python -m canopy shape-gate INPUT\prepared.lasd NEW_REVIEW --extent XMIN YMIN XMAX YMAX
+# Both modes need ArcGIS Pro Python (PYTHONNOUSERSITE=1) since 30 September: the minimum wall height
+# uses the pipeline DTM. Review evidence: LAS copies with review codes, report, per-point features
+python -m canopy shape-gate INPUT\prepared.lasd NEW_REVIEW --extent XMIN YMIN XMAX YMAX [--min-wall-height 0.7]
 # Opt-in change on a NEW prepared dataset (ArcGIS Pro Python; creates prepared.lasd)
 python -m canopy shape-gate INPUT\prepared.lasd NEW_PREPARED --apply [--extent ...] [--classes 4 5]
 python -m canopy run NEW_PREPARED\prepared.lasd NEW_RUN --extent ...
@@ -40,6 +42,7 @@ From the square-root eigenvalues s1 ≥ s2 ≥ s3 (PDAL's default SQRT mode):
 | single_share | share of the 17 points that are single returns |
 | irregular_share | share of the 17 points whose own group is scattered or mixed |
 | nearest_building_m | 3D distance to the nearest class-6 point, up to 5 m |
+| hag_m | height above ground: Z minus the pipeline-DTM cell containing the point (see [HAG.md](HAG.md)) |
 
 **The diagnostic's wall gate measured something other than its documentation.** Its comment
 says `Verticality` is 1 − |normal z|. PDAL instead computes the z share of an
@@ -60,17 +63,31 @@ fitted to data. None was tuned against the fixed reference, whose batch 1 is sti
 | Code | Group | Rule |
 |---:|---|---|
 | 64 | roof_like | planarity ≥ 0.6, normal not horizontal |
-| 65 | wall_like | planarity ≥ 0.6, normal horizontal |
+| 65 | wall_like | planarity ≥ 0.6, normal horizontal, **at least 0.7 m above ground** |
 | 66 | linear | linearity ≥ 0.6, sloped axis (roof rakes, guy wires, branches) |
 | 67 | scattered | scattering ≥ 0.6 |
 | 68 | mixed | no dominant shape |
 | 69 | wire | linearity ≥ 0.6, horizontal axis |
 | 70 | pole | linearity ≥ 0.6, vertical axis |
 | 71 | sparse | fewer than 17 points within 5 m, or degenerate |
+| 72 | low_wall | wall-shaped (as 65) but less than 0.7 m above ground, or over a ground NoData cell; review only |
 
 Codes 64–68 keep the diagnostic's meanings, except that 66 no longer contains wires and poles.
+
+**Minimum wall height (decided 29 September).** The steepness threshold stays 0.7 (1 − |normal z|).
+A wall-shaped point must also stand at least `--min-wall-height` (default **0.7 m**) above ground,
+so that curbs, edging and low retaining edges are not walls. Height above ground is Z minus the
+value of the 0.5 m pipeline-DTM cell (class-2 ground, natural neighbour) containing the point. It is
+the same definition and code as the [HAG dataset](HAG.md). The raster covers the gated extent plus
+20 m, clipped to the preparation; the context keeps TIN edge effects out of the gate. HAG is rounded
+to 0.1 mm before comparison, so float32 coordinate noise cannot move a point across the boundary.
+A point exactly 0.70 m above ground is wall_like. Wall-shaped points below it, or over NoData where
+the height cannot be shown, become **low_wall (72)**. That is a separate review group, **never
+eligible for `--apply`**, and it does not count as scattered or mixed in the neighbourhood share.
+The manifest's `wall_height` block counts wall-shaped, wall_like and low_wall points, and those
+without ground.
 The footprint review-label copies from `reconcile-buildings` use codes 64–70 with unrelated
-meanings; symbolise each file type with its own table. Codes 64 and above exist only in LAS point
+meanings; symbolise each file type with its own table. Codes 64–72 exist only in LAS point
 formats 6–10, so review mode refuses legacy files. Outside `--extent`, review copies keep their
 original classes.
 
@@ -83,7 +100,7 @@ A point moves from class 4 or 5 (`--classes` can add 3) to class **1** only when
 following hold:
 
 1. It is not withheld, synthetic or overlap.
-2. Its group is wall_like, wire or pole.
+2. Its group is wall_like (so at least 0.7 m above ground; low_wall never qualifies), wire or pole.
 3. It is a single return.
 4. At least 0.6 of its 17-point neighbourhood are single returns.
 5. At most 0.4 of that neighbourhood is scattered or mixed.
@@ -98,7 +115,9 @@ copied unchanged; `gate_extent` in the manifest records the part that was gated.
 the same audit trail:
 
 - `changes/<file>.npz` holds point indices, previous and new class bytes, group, all features,
-  neighbour count, own single return, both shares and the nearest building distance.
+  neighbour count, own single return, both shares, the nearest building distance and `hag_m`.
+- `ground/ground.tif` is the read-only ground raster. The manifest's `ground` block records its
+  method, extent, NoData cells and SHA-256.
 - `preparation.json` records the thresholds, the rule text, gated and prepared extents, input
   file sizes and modification times, counts at each rule stage, and changes by class, group,
   return type and building proximity. It also records before/after class counts, timings, peak
@@ -151,6 +170,43 @@ Both runs used ArcGIS Pro Python at below-normal priority, CPU only.
 - **Consumption:** `canopy run` on the apply output (same extent, 125 m tiles) completed in
   42 s.
 
+## Minimum wall height rerun (12TVL2804, 30 September)
+
+Same extent, input and parameters as above, plus `min_wall_height` 0.7. Outputs are in ignored
+`scratch/shape-gate-pilot-20260930/{review,apply}`. Record:
+[shape-gate-pilot-12TVL2804-20260930.json](shape-gate-pilot-12TVL2804-20260930.json).
+
+| Class | Points | wall_like before → after | low_wall | all other groups |
+|---|---:|---:|---:|---|
+| 3 | 322,272 | 2 → **0** | **2** | unchanged |
+| 4 | 26,282 | 140 → 140 | 0 | unchanged |
+| 5 | 186,182 | 285 → 285 | 0 | unchanged |
+
+- **The rule is nearly inert here, by construction.** Preparation's height classes put class 4 at
+  0.5–2 m and class 5 above 2 m. Only class 3, which is not in the default `--apply` classes, and
+  class 4 between 0.5 and 0.7 m can be affected. The two low_wall points are class-3 points 0.065 m
+  and 0.118 m above ground. The lowest remaining wall_like point is 1.03 m above ground. No
+  candidate lacked ground (0 of 534,736).
+- **Apply:** 0 points changed, as before. The rule-stage counts are identical: 212,464 eligible,
+  2,690 in an apply group, 18 own-single, 4 pass the single-return share, 0 changed.
+- **Ground check:** the gate raster (428230–428520 E, 4504230–4504520 N, 0 NoData cells) was compared
+  cell by cell with the whole-tile HAG raster (`hag-20260929\12TVL2804\ground\ground.tif`). Inside the
+  gated extent, 1 of 250,000 cells differs, by 0.12 mm. In the 20 m context rim, cells differ by up to
+  0.36 m (99th percentile 3.5 cm). That is the TIN edge effect the context absorbs. Both pilot runs
+  built byte-identical gate rasters.
+- **Time and memory:** review 52.2 s by the manifest (64 s wall clock), of which 38.2 s was the
+  ground raster (previously 15.2 s in total). Apply 60.5 s (70 s wall clock). Peak working set
+  1.37 GB for both. The runs used ArcGIS Pro Python at below-normal priority, CPU only.
+- **Integrity:** [shape_gate_integrity.py](shape_gate_integrity.py), unmodified, passed every check for
+  the apply folder: 8 identical copies and empty logs. For the review folder, every byte check passed:
+  534,736 changed bytes, all classification bytes at the logged indices with the logged values, 0
+  other bytes, same sizes, identical headers, VLRs and trailing bytes. The one failing field is
+  `new_classes_allowed`, because the script allows codes 64–71 and low_wall is 72. A separate
+  check confirmed that all review codes lie within 64–72. The script's `range(64, 72)` needs to become
+  `range(64, 73)`. That file was outside this change's ownership and was left unchanged. The source
+  `12TVL2804.las` kept MD5 `82787095336690d2909344206f9a80fc`, and the prepared folder listing (sizes
+  and mtimes) was unchanged.
+
 ## Scoring as a variant (after labels exist)
 
 The fixed reference is scored on whole tiles with the baseline grid. For each pilot tile, a
@@ -179,8 +235,11 @@ whole-tile memory first.
 
 ## Decisions for the user
 
-1. **Verticality definition.** The normal-based wall definition follows the diagnostic's
-   documentation, not its code. Please confirm that it should be canonical.
+1. **Verticality definition.** Settled on 29 September: keep the normal-based steepness threshold
+   0.7 and add the 0.7 m minimum height, now implemented. Still open:
+   - Should low_wall points over ground NoData (none on the pilot) stay low_wall, or get their own
+     code?
+   - Should the height rule also apply to wires and poles? It currently does not.
 2. **Do not use `--apply` in any pipeline input before labels exist.** It is inert on the pilot
    extent. If a later rule changes points, it is still unvalidated. Treat it only as a scored
    variant.

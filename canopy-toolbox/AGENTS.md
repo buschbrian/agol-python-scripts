@@ -11,6 +11,7 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 - CHM and support: canopy/rasters.py.
 - Optional roof-edge refinement and derived roof outlines: canopy/roofs.py.
 - Wall/pole/wire shape evidence and opt-in class-1 gate: canopy/shape_gate.py (ArcPy-free); reviews/2026-09-29/SHAPE_GATE.md.
+- Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.
 - Cover accounting: canopy/cover.py.

@@ -51,6 +51,14 @@ def main(argv=None):
     gate.add_argument("--extent",type=float,nargs=4,metavar=("XMIN","YMIN","XMAX","YMAX"),help="Gated extent inside the prepared extent (default: all of it)")
     gate.add_argument("--apply",action="store_true",help="Move rule-selected class 3/4/5 points to class 1 in a new prepared dataset")
     gate.add_argument("--classes",type=int,nargs="+",choices=(3,4,5),help="Classes --apply may change (default 4 5)")
+    gate.add_argument("--min-wall-height",type=float,default=.7,help="Metres above the pipeline DTM a wall_like point needs; lower wall-shaped points are low_wall, review only (default 0.7)")
+    hag=commands.add_parser("hag",help="Height-above-ground LAS copies in a NEW folder: Z replaced by HAG (z), an Extra Bytes HAG attribute (extrabytes), or both")
+    hag.add_argument("lasd");hag.add_argument("output")
+    hag.add_argument("--extent",type=float,nargs=4,metavar=("XMIN","YMIN","XMAX","YMAX"),help="Write only the prepared files this extent intersects (ground always uses every prepared file)")
+    hag.add_argument("--cell",type=float,default=.5,help="Ground raster cell size in metres (default 0.5, the pipeline DTM)")
+    hag.add_argument("--mode",choices=("z","extrabytes","both"),default="z")
+    hag.add_argument("--label",help="Free-text role of this dataset, recorded in manifest.json")
+    hag.add_argument("--epsg",type=int,default=6341,help="Required horizontal EPSG code of the prepared dataset (default 6341)")
     planning=commands.add_parser("planning",help="Terrain, drainage screening, surface and footprint heights (bounded pilot)")
     planning.add_argument("lasd");planning.add_argument("output")
     planning.add_argument("--extent",type=float,nargs=4,required=True)
@@ -97,13 +105,23 @@ def main(argv=None):
         if args.above_roof is None: args.above_roof=3 if args.method=="plane" else .5
     if args.command=="shape-gate":
         if args.classes and not args.apply: parser.error("--classes is valid only with --apply")
-        from . import shape_gate
+        from . import hag as hag_module, shape_gate
         dataset=None
         if args.apply:
             from . import preparation
             dataset=preparation.dataset_writer(args.lasd)
-        result=shape_gate.run(args.lasd,args.output,args.extent,args.apply,args.classes or (4,5),dataset)
+        result=shape_gate.run(args.lasd,args.output,args.extent,args.apply,args.classes or (4,5),dataset,
+                              {"min_wall_height":args.min_wall_height},ground=hag_module.raster_builder(args.lasd))
         print(json.dumps({k:v for k,v in result.items() if k not in ("input_files","before","after","sources")},indent=2,default=str))
+        return
+    if args.command=="hag":
+        from . import hag as hag_module
+        result=hag_module.run(args.lasd,args.output,hag_module.raster_builder(args.lasd,args.epsg),args.extent,
+                              args.mode,args.cell,args.label)
+        print(json.dumps({"status":result["status"],"output":str(args.output),"totals":result.get("totals"),
+                          "ground":{k:result["ground"].get(k) for k in ("raster","nodata_cells","extent")},
+                          "seconds":result["seconds"],"error":result.get("error")},indent=2,default=str))
+        if result["status"]!="complete": raise SystemExit(1)
         return
     if args.command=="fetch":
         from . import fetch

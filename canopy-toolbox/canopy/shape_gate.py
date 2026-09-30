@@ -17,13 +17,21 @@ direction is horizontal when its vertical component is at most 1 - 0.7 = 0.3, an
 its horizontal component is at most 0.3 (both 17.5 degrees):
 
     roof_like  planarity >= 0.6, normal not horizontal
-    wall_like  planarity >= 0.6, normal horizontal (1 - normal_z >= 0.7)
+    wall_like  planarity >= 0.6, normal horizontal (1 - normal_z >= 0.7), at least min_wall_height
+               (0.7 m) above ground
+    low_wall   wall-shaped but lower than min_wall_height above ground, or over a ground NoData cell
+               (curbs, edging, low retaining edges); review only, never eligible for --apply
     wire       linearity >= 0.6, axis horizontal
     pole       linearity >= 0.6, axis vertical
     linear     linearity >= 0.6, sloped axis (roof rakes, guy wires, branches)
     scattered  scattering >= 0.6
     mixed      no dominant shape
     sparse     fewer than 17 points within radius_m, or a degenerate neighbourhood
+
+Height above ground uses canopy.hag: the value of the pipeline-DTM cell (class-2 ground, 0.5 m)
+containing the point, from a ground raster over the gated extent plus GROUND_CONTEXT_M, built by an
+injected `ground` callable (hag.raster_builder in ArcGIS Pro). HAG is rounded to 0.1 mm before the
+comparison so float32 coordinate noise cannot move a point across the boundary.
 
 Neighbourhoods are capped at radius_m so the work splits into blocks with an exact halo: the
 features of every point within radius_m of a block come from points within 2*radius_m, so block
@@ -47,10 +55,10 @@ import numpy as np
 import scipy
 from scipy.spatial import cKDTree
 
-from . import las_records
+from . import hag, las_records
 
-GROUPS = ("roof_like", "wall_like", "linear", "scattered", "mixed", "wire", "pole", "sparse")
-ROOF_LIKE, WALL_LIKE, LINEAR, SCATTERED, MIXED, WIRE, POLE, SPARSE = range(len(GROUPS))
+GROUPS = ("roof_like", "wall_like", "linear", "scattered", "mixed", "wire", "pole", "sparse", "low_wall")
+ROOF_LIKE, WALL_LIKE, LINEAR, SCATTERED, MIXED, WIRE, POLE, SPARSE, LOW_WALL = range(len(GROUPS))
 # User-definable LAS codes, available only in point formats 6-10. 64-68 keep the meaning of the
 # diagnostic's review copies, except that 66 no longer includes wires and poles. Footprint
 # review-label copies (building_rules.py) use 64-70 for unrelated meanings.
@@ -64,10 +72,13 @@ REVIEW_MEANING = {
     69: "shape review: wire (linear, axis within 17.5 degrees of horizontal)",
     70: "shape review: pole (linear, axis within 17.5 degrees of vertical)",
     71: "shape review: sparse (fewer than 17 points within the radius cap, or degenerate)",
+    72: "shape review: low_wall (wall-shaped, below min_wall_height above ground or without ground)",
 }
 FEATURES = ("linearity", "planarity", "scattering", "normal_z", "axis_z", "pdal_verticality")
 DEFAULTS = {"neighbors": 16, "radius_m": 5.0, "dominant": .6, "vertical": .7, "near_building_m": 1.0,
-            "min_single_share": .6, "max_irregular_share": .4}
+            "min_single_share": .6, "max_irregular_share": .4, "min_wall_height": .7}
+GROUND_CONTEXT_M = 20.  # ground raster margin around the gated extent (clipped to the preparation)
+HAG_DECIMALS = 4
 APPLY_GROUPS = (WALL_LIKE, WIRE, POLE)
 IRREGULAR = (SCATTERED, MIXED)
 EXCLUDED_CLASSES = (2, 7, 18)
@@ -84,10 +95,10 @@ MAX_POINTS = 40_000_000
 RETURN_TYPES = ("single", "first_of_many", "intermediate", "last_of_many")
 AUDIT_TYPES = {"point_index": np.int64, "previous_class_byte": np.uint8, "new_class_byte": np.uint8,
                "group": np.uint8, "neighbors": np.uint8, "own_single": bool, "single_share": np.float32,
-               "irregular_share": np.float32, "nearest_building_m": np.float32,
+               "irregular_share": np.float32, "nearest_building_m": np.float32, "hag_m": np.float32,
                **{name: np.float32 for name in FEATURES}}
-RULE = ("previous class in the eligible classes; not withheld, synthetic or overlap; group wall_like, "
-        "wire or pole; the point itself is a single return; single returns are at least "
+RULE = ("previous class in the eligible classes; not withheld, synthetic or overlap; group wall_like "
+        "(at least min_wall_height above ground; low_wall never qualifies), wire or pole; the point itself is a single return; single returns are at least "
         "min_single_share of its 17-point neighbourhood; scattered or mixed points are at most "
         "max_irregular_share of that neighbourhood. Selected points become class 1.")
 
@@ -99,6 +110,8 @@ def check_parameters(p):
     for name in ("dominant", "vertical", "min_single_share", "max_irregular_share"):
         if not math.isfinite(p[name]) or not 0 <= p[name] <= 1:
             raise ValueError(f"Shape gate {name} must lie between 0 and 1")
+    if not math.isfinite(p["min_wall_height"]) or p["min_wall_height"] < 0:
+        raise ValueError("Shape gate min_wall_height must be finite and at least 0")
     if int(p["neighbors"]) != p["neighbors"] or not 3 <= p["neighbors"] <= 64:
         raise ValueError("Shape gate neighbours must be a whole number from 3 to 64")
     if p["dominant"] <= .5:
@@ -211,6 +224,15 @@ def evaluate(xyz, single, building, candidate, neighbors=DEFAULTS["neighbors"], 
             distance, _ = cKDTree(local[roofs]).query(local[at], k=1, distance_upper_bound=radius, workers=-1)
             result["nearest_building_m"][members] = distance
     return result
+
+
+def split_low_walls(group, hag_m, min_wall_height=DEFAULTS["min_wall_height"]):
+    """wall_like points lower than min_wall_height above ground, or without ground (NaN), become low_wall."""
+    group = np.array(group, dtype=np.uint8)
+    with np.errstate(invalid="ignore"):
+        tall = np.round(np.asarray(hag_m, dtype=float), HAG_DECIMALS) >= min_wall_height
+    group[(group == WALL_LIKE) & ~tall] = LOW_WALL
+    return group
 
 
 def _inside(xyz, low, high):
@@ -365,7 +387,7 @@ def _pct(part, total):
 
 
 def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), dataset=None,
-        parameters=None, block=BLOCK_M, max_points=MAX_POINTS):
+        parameters=None, block=BLOCK_M, max_points=MAX_POINTS, ground=None):
     """Shape evidence for class 3/4/5 points of a prepared dataset, written to a NEW folder.
 
     Review (default): LAS copies of the files the gated extent touches, in which every class
@@ -375,7 +397,8 @@ def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), 
     Apply: a new prepared dataset (every input file copied) in which only points meeting RULE
     change from an eligible class to class 1, with changes/*.npz and preparation.json.
     `dataset(files, output_lasd)` creates the LAS dataset (ArcGIS Pro), so that `canopy run`
-    reads the output exactly as it reads refine-roofs output.
+    reads the output exactly as it reads refine-roofs output. `ground(folder, extent, cell)` returns
+    the hag.GroundSurface used for the minimum wall height (hag.raster_builder in ArcGIS Pro).
     """
     started = time.perf_counter()
     p = dict(DEFAULTS, **(parameters or {}))
@@ -385,6 +408,8 @@ def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), 
         raise ValueError("Eligible classes must be a non-empty subset of 3, 4 and 5")
     if apply and dataset is None:
         raise ValueError("Apply mode needs a LAS dataset writer (ArcGIS Pro)")
+    if ground is None:
+        raise ValueError("The minimum wall height needs a ground surface builder (ArcGIS Pro)")
     manifest, previous, destination, files, inputs = _check_input(prepared_lasd, output_folder)
     prepared = [float(v) for v in previous["extent"]]
     gate = prepared if extent is None else [float(v) for v in extent]
@@ -401,7 +426,7 @@ def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), 
     if not apply:
         legacy = [inputs[i]["path"] for i in touched if inputs[i]["format"] < 6]
         if legacy:
-            raise ValueError("Review codes 64-71 need LAS point formats 6-10; legacy files: "+", ".join(legacy))
+            raise ValueError("Review codes 64-72 need LAS point formats 6-10; legacy files: "+", ".join(legacy))
     margin = min(gate[0]-prepared[0], gate[1]-prepared[1], prepared[2]-gate[2], prepared[3]-gate[3])
     destination.mkdir(parents=True)
     output_lasd = destination/"prepared.lasd"
@@ -418,7 +443,9 @@ def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), 
                             "excluded_neighbour_classes": list(EXCLUDED_CLASSES),
                             "excluded_flags": "withheld, synthetic, overlap (points and neighbours)",
                             "candidate_classes": list(CANDIDATE_CLASSES), "block_m": block,
-                            "halo_m": halo, "max_points": max_points, "max_cells": MAX_CELLS},
+                            "halo_m": halo, "max_points": max_points, "max_cells": MAX_CELLS,
+                            "wall_height": "wall_like needs HAG >= min_wall_height (HAG rounded to 0.1 mm); "
+                                           "lower or ground-less wall-shaped points are low_wall (review only)"},
              "review_codes": REVIEW_MEANING, "runtime": {"python": platform.python_version(),
                                                          "numpy": np.__version__, "scipy": scipy.__version__},
              "seconds": {}}
@@ -429,6 +456,14 @@ def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), 
     _write_json(out_manifest, state)
     try:
         clock = time.perf_counter()
+        c = GROUND_CONTEXT_M
+        ground_extent = hag.snap_out([max(prepared[0], gate[0]-c), max(prepared[1], gate[1]-c),
+                                      min(prepared[2], gate[2]+c), min(prepared[3], gate[3]+c)], hag.CELL_M)
+        surface = ground(destination/"ground", ground_extent, hag.CELL_M)
+        state["ground"] = {**surface.record, "extent": surface.extent, "cell_m": surface.cell,
+                           "context_m": c, "nodata_cells": int((~np.isfinite(surface.values)).sum()),
+                           "definition": hag.DEFINITION["ground"], "sampling": hag.DEFINITION["sampling"]}
+        state["seconds"]["ground"] = round(time.perf_counter()-clock, 1); clock = time.perf_counter()
         loaded = load(files, gate, halo, max_points)
         xyz = loaded["xyz"]
         gx0, gy0 = gate[0]-loaded["origin"][0], gate[1]-loaded["origin"][1]
@@ -441,6 +476,17 @@ def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), 
                           p["dominant"], p["vertical"], block)
         state["seconds"]["features"] = round(time.perf_counter()-clock, 1); clock = time.perf_counter()
         rows = np.flatnonzero(candidate)
+        absolute = xyz[rows].astype(float)+loaded["origin"]
+        cand_hag = surface.heights(absolute[:, 0], absolute[:, 1], absolute[:, 2])
+        del absolute
+        shaped = result["group"] == WALL_LIKE
+        result["group"] = split_low_walls(result["group"], cand_hag, p["min_wall_height"])
+        result["hag_m"] = cand_hag.astype(np.float32)
+        state["wall_height"] = {"wall_shaped": int(shaped.sum()),
+                                "wall_like": int((result["group"] == WALL_LIKE).sum()),
+                                "low_wall": int((result["group"] == LOW_WALL).sum()),
+                                "low_wall_without_ground": int((shaped & ~np.isfinite(cand_hag)).sum()),
+                                "candidates_without_ground": int((~np.isfinite(cand_hag)).sum())}
         cand_classes, cand_single = loaded["classes"][rows], loaded["single"][rows]
         cand_file, cand_index = loaded["file"][rows], loaded["index"][rows]
         del xyz, loaded, candidate
@@ -449,7 +495,7 @@ def run(prepared_lasd, output_folder, extent=None, apply=False, classes=(4, 5), 
         audit = lambda keep: {"group": result["group"][keep], "neighbors": result["neighbors"][keep],
                               "own_single": cand_single[keep], "single_share": result["single_share"][keep],
                               "irregular_share": result["irregular_share"][keep],
-                              "nearest_building_m": result["nearest_building_m"][keep],
+                              "nearest_building_m": result["nearest_building_m"][keep], "hag_m": result["hag_m"][keep],
                               **{name: result[name][keep] for name in FEATURES}}
         copies = destination/"points"; copies.mkdir()
         changes = destination/"changes"; changes.mkdir()

@@ -1,0 +1,226 @@
+{
+ "tile": "12TVL2804",
+ "date": "2026-09-30 (run late 2026-09-29 local)",
+ "input": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\prepared.lasd",
+ "gate_extent": [
+  428250.0,
+  4504250.0,
+  428500.0,
+  4504500.0
+ ],
+ "outputs": "canopy-toolbox/scratch/shape-gate-pilot-20260930/{review,apply} (ignored)",
+ "change": "wall_like now also requires height above ground >= min_wall_height (0.7 m); lower or ground-less wall-shaped points are low_wall (code 72), review only. No other threshold changed.",
+ "prior_record": "shape-gate-pilot-12TVL2804.json",
+ "parameters": {
+  "neighbors": 16,
+  "radius_m": 5.0,
+  "dominant": 0.6,
+  "vertical": 0.7,
+  "near_building_m": 1.0,
+  "min_single_share": 0.6,
+  "max_irregular_share": 0.4,
+  "min_wall_height": 0.7,
+  "neighbourhood": "the point and its neighbors nearest non-ground points within radius_m",
+  "feature_mode": "square-root eigenvalues (PDAL SQRT mode)",
+  "direction_tolerance": "1 - vertical, as a unit-vector component",
+  "excluded_neighbour_classes": [
+   2,
+   7,
+   18
+  ],
+  "excluded_flags": "withheld, synthetic, overlap (points and neighbours)",
+  "candidate_classes": [
+   3,
+   4,
+   5
+  ],
+  "block_m": 100.0,
+  "halo_m": 10.02,
+  "max_points": 40000000,
+  "max_cells": 6250000,
+  "wall_height": "wall_like needs HAG >= min_wall_height (HAG rounded to 0.1 mm); lower or ground-less wall-shaped points are low_wall (review only)"
+ },
+ "ground": {
+  "method": "LasDatasetToRaster TRIANGULATION NATURAL_NEIGHBOR WINDOW_SIZE MINIMUM 1",
+  "extent": [
+   428230.0,
+   4504230.0,
+   428520.0,
+   4504520.0
+  ],
+  "cell_m": 0.5,
+  "context_m": 20.0,
+  "nodata_cells": 0,
+  "raster": {
+   "path": "V:\\Developer\\agol-python-scripts\\canopy-toolbox\\scratch\\shape-gate-pilot-20260930\\review\\ground\\ground.tif",
+   "bytes": 906314,
+   "sha256": "db0df58bc3cfa7dded56b812ba91d3256955e7febcac4d08331c94934287a564"
+  }
+ },
+ "ground_check_vs_whole_tile_hag_raster": {
+  "gate_shape": [
+   580,
+   580
+  ],
+  "max_abs_diff_m_all": 0.3597412109375,
+  "cells_differing_all": 6843,
+  "max_abs_diff_m_gated_extent": 0.0001220703125,
+  "cells_differing_gated_extent": 1,
+  "cells_gated_extent": 250000,
+  "p99_abs_diff_m_all": 0.0345458984375
+ },
+ "wall_height": {
+  "wall_shaped": 427,
+  "wall_like": 425,
+  "low_wall": 2,
+  "low_wall_without_ground": 0,
+  "candidates_without_ground": 0
+ },
+ "low_wall_points": {
+  "count": 2,
+  "class": "3",
+  "hag_m": [
+   0.065,
+   0.118
+  ]
+ },
+ "wall_like_min_hag_m": 1.032,
+ "groups_by_class": {
+  "3": {
+   "points": 322272,
+   "before_20260929": {
+    "roof_like": 301013,
+    "wall_like": 2,
+    "linear": 2,
+    "scattered": 113,
+    "mixed": 20911,
+    "wire": 227,
+    "pole": 4,
+    "sparse": 0
+   },
+   "after_20260930": {
+    "roof_like": 301013,
+    "wall_like": 0,
+    "linear": 2,
+    "scattered": 113,
+    "mixed": 20911,
+    "wire": 227,
+    "pole": 4,
+    "sparse": 0,
+    "low_wall": 2
+   }
+  },
+  "4": {
+   "points": 26282,
+   "before_20260929": {
+    "roof_like": 8038,
+    "wall_like": 140,
+    "linear": 108,
+    "scattered": 608,
+    "mixed": 16307,
+    "wire": 1036,
+    "pole": 45,
+    "sparse": 0
+   },
+   "after_20260930": {
+    "roof_like": 8038,
+    "wall_like": 140,
+    "linear": 108,
+    "scattered": 608,
+    "mixed": 16307,
+    "wire": 1036,
+    "pole": 45,
+    "sparse": 0,
+    "low_wall": 0
+   }
+  },
+  "5": {
+   "points": 186182,
+   "before_20260929": {
+    "roof_like": 17793,
+    "wall_like": 285,
+    "linear": 743,
+    "scattered": 15856,
+    "mixed": 150215,
+    "wire": 1080,
+    "pole": 104,
+    "sparse": 106
+   },
+   "after_20260930": {
+    "roof_like": 17793,
+    "wall_like": 285,
+    "linear": 743,
+    "scattered": 15856,
+    "mixed": 150215,
+    "wire": 1080,
+    "pole": 104,
+    "sparse": 106,
+    "low_wall": 0
+   }
+  }
+ },
+ "review": {
+  "loaded_points": 849595,
+  "candidates": 534736,
+  "seconds": {
+   "ground": 38.2,
+   "load": 1.9,
+   "features": 9.2,
+   "write": 2.9,
+   "total": 52.2
+  },
+  "peak_memory_gb": 1.37,
+  "wall_clock_s": 64
+ },
+ "apply": {
+  "rule_stages": {
+   "eligible_class": 212464,
+   "and_group": 2690,
+   "and_own_single": 18,
+   "and_single_share": 4,
+   "changed": 0
+  },
+  "rule_stages_before_20260929": {
+   "eligible_class": 212464,
+   "and_group": 2690,
+   "and_own_single": 18,
+   "and_single_share": 4,
+   "changed": 0
+  },
+  "changed": 0,
+  "seconds": {
+   "ground": 38.1,
+   "load": 2.9,
+   "features": 12.3,
+   "write": 2.8,
+   "dataset": 4.4,
+   "total": 60.5
+  },
+  "peak_memory_gb": 1.37,
+  "wall_clock_s": 70
+ },
+ "integrity": {
+  "script": "reviews/2026-09-29/shape_gate_integrity.py (unmodified)",
+  "review_all_checks_pass": false,
+  "review_failing_check": {
+   "new_classes_allowed": false
+  },
+  "review_failure_reason": "the script allows codes 64-71 only; low_wall is code 72. Every byte check passed.",
+  "review_byte_checks": {
+   "changed_logged": 534736,
+   "changed_found": 534736,
+   "non_class_bytes_differing": 0,
+   "same_size": true,
+   "header_and_vlrs_identical": true,
+   "trailing_bytes_identical": true,
+   "changed_indices_match_log": true,
+   "previous_bytes_match_log": true,
+   "new_bytes_match_log": true,
+   "input_unchanged_since_gate": true
+  },
+  "review_codes_within_64_72_independent_check": true,
+  "apply_all_checks_pass": true,
+  "source_12TVL2804_md5_after": "82787095336690d2909344206f9a80fc"
+ },
+ "runtime_note": "ArcGIS Pro Python, PYTHONNOUSERSITE=1, below-normal priority, CPU only, while a GPU queue was scheduled."
+}
