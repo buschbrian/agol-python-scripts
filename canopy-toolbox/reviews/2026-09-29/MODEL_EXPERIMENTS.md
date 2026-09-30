@@ -264,7 +264,7 @@ identical), target class 5.
 - **The tree model is not reproducible.** Identical input gives different output every time: no two of the three
   absolute-Z runs are byte-identical, and each pair differs by about 237,100 to 237,900 points (0.88% of the tile).
 - **The noise does not depend on the machine.** The two cross-machine pairs (237,853 and 237,554) match the
-  same-machine pair (237,109) to within 0.3%. Nothing here shows any effect of the laptop's versus the workstation's
+  same-machine pair (237,109) to within about 0.3%. Nothing here shows any effect of the laptop's versus the workstation's
   GPU, driver or libraries on the tree output. The three noise pairs spread by only about ±0.16%.
 - **Most of row d's tree difference is noise.** The three HAG-Z pairings give 266,560 to 267,073 (mean about
   266,900). The absolute-Z noise is about 237,500, so HAG-Z adds about **29,400 more changed points (0.11% of the
@@ -288,7 +288,28 @@ inside the files are the workstation's `D:` paths. The outputs are on the lidar 
 The first `tree-abs-batch8` attempt failed after 57 s with an intermittent `SyntaxError` while the tool's worker
 imported `sympy` during model load, before batch size could matter (GPU peak 1,801 MiB; the same import passed 4 of 4
 times afterwards and the `sympy` file is identical to Pro's). It is kept as `tree-abs-batch8-attempt1-import-error`
-and is not evidence. The row was rerun; its result is added below.
+and is not evidence. The row was rerun (`tree-abs-batch8`, batch 8, otherwise identical to the batch-1 repeats:
+same file, boundary and model, alone on the GPU, same workstation). It passed integrity and left the baseline
+and watch hashes unchanged.
+
+| | Batch 1 (`tree-abs-repeat`, `-repeat2`) | Batch 8 (`tree-abs-batch8`) |
+|---|---:|---:|
+| Tool time | 1,310.5 s and 1,354.7 s | **698.7 s** (1.9 times faster) |
+| GPU memory, first / peak | 1,487 / 2,565 and 1,300 / 2,792 MiB | 1,417 / **6,712 MiB** (of 16,376) |
+| Points changed vs `tree-abs-repeat2` | 237,109 (repeat vs repeat2) | **237,506** (0.88%) |
+| Tree in both / batch-1 only / batch-8 only | | 9,142,206 / 118,179 / 119,327 |
+
+- **No batch-size effect is detectable.** The batch-8 output differs from a batch-1 run by 237,506 points, inside
+  the 237,109 to 237,853 range that two batch-1 runs differ by. The direction is symmetric too: the batch-1 and
+  batch-8 exclusive counts differ by 1,148, within the 300 to 1,800 seen between batch-1 runs.
+- **Limits.** One batch-8 run, and only the tree model; the building model was not tried above batch 1. The
+  comparison can only show that batch 8 is not distinguishable from noise, not that it is identical (nothing is).
+  Batch 16 was not tried; memory peaked at 6.7 GB, so it may fit.
+- **What it means for speed.** On this workstation a batch of 8 roughly halves tree inference time with no
+  detectable change in the predictions. The manifests record `batch_size`, so rows stay comparable. The handoff's
+  "batch 1 for every comparison row" rule is the user's to keep or relax.
+
+Result record: [tree-repeat/batch8-vs-repeat2.json](../2026-09-30/tree-repeat/batch8-vs-repeat2.json).
 
 ## Fixed experiment matrix (original plan)
 
