@@ -1,5 +1,7 @@
 # Canopy Tools for ArcGIS Pro
 
+> **Continuing on another workstation:** start with [reviews/2026-09-30/HANDOFF.md](reviews/2026-09-30/HANDOFF.md) (data locations, environment setup, next GPU runs, open decisions).
+
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 
 The [September 29 integration](reviews/2026-09-29/INTEGRATION.md) documents building

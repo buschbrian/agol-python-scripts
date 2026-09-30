@@ -23,5 +23,13 @@
 - [ ] Batch 1 labels (user reviewing), then import preview/apply and score.
 - [ ] Decisions: Pro environment, model-product scoring grid, conflict policy, HAG row, more tiles, shape-gate wall definition and calibration sample.
 
+## September 30 overnight and handoff
+
+- [x] Package cleanup: standalone Python has its packages system-wide; per-user site emptied so Pro uses its own.
+- [x] HAG datasets (2804, 3302 complete; 2203 core refused in Z mode) and 0.7 m wall-height rule.
+- [x] Training-label review packet (1,065 units on 2804) with TrainingReview.pyt step-through tools.
+- [x] Inference: 2804 halos, 3302 (holdout), 2203 (external), HAG-Z rows, training tiles 3206/3205; conflict-policy products scored on the baseline grid (no labels yet).
+- [ ] Rerun 12TVL3006 GPU rows (laptop slept); tree reproducibility row; batch-size row. See canopy-toolbox/reviews/2026-09-30/HANDOFF.md.
+
 Manual acquisition-matched review, independent tree census and any inference runs
 are prerequisites for new accuracy claims; implementation must not fabricate them.
