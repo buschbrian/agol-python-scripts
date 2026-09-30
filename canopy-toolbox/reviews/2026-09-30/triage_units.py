@@ -34,8 +34,6 @@ FOOTPRINTS = PILOT/"buildings"/"reference.gdb"
 NAIP = LIDAR/"naip"/"12TVL2804"/"naip_12TVL2804.tif"
 GROUND_RADIUS_M, GROUND_PERCENTILE = 12.0, 5
 NDVI_RADIUS_M = 1.5
-NEAR_M = 10.0
-
 
 def load_points(path):
     """x, y, z, number of returns and return number of every point not flagged withheld, overlap or synthetic."""
@@ -76,34 +74,12 @@ def ndvi_at(ndvi, x0, y_top, cell, x, y, radius=NDVI_RADIUS_M):
 
 
 def load_footprints(gdb, name):
+    """Footprint polygons as triage.polygon_record dicts, read once as Esri JSON (no geometry objects in the unit loop)."""
     import arcpy
-    return [row[0] for row in arcpy.da.SearchCursor(str(Path(gdb)/name), ["SHAPE@"])]
-
-
-def footprint_state(point, polygons):
-    """(inside, edge_distance_m) against one footprint layer, considering only polygons within NEAR_M."""
-    import arcpy
-    inside, edge = False, 99.0
-    for poly in polygons:
-        e = poly.extent
-        if not (e.XMin-NEAR_M <= point.firstPoint.X <= e.XMax+NEAR_M and e.YMin-NEAR_M <= point.firstPoint.Y <= e.YMax+NEAR_M):
-            continue
-        if point.within(poly):
-            inside = True
-        edge = min(edge, poly.boundary().distanceTo(point))
-    return inside, edge
-
-
-def combined_footprint(point, county, osm):
-    c_in, c_edge = footprint_state(point, county)
-    o_in, o_edge = footprint_state(point, osm)
-    if c_in:
-        inside = True
-    elif o_in:
-        return None                        # the layers disagree: unknown, so the unit goes to review
-    else:
-        inside = False
-    return {"inside": inside, "edge_m": min(c_edge, o_edge)}
+    records = []
+    for (text,) in arcpy.da.SearchCursor(str(Path(gdb)/name), ["SHAPE@JSON"]):
+        records.append(triage.polygon_record(json.loads(text)["rings"]))
+    return records
 
 
 def main(argv=None):
@@ -128,7 +104,6 @@ def main(argv=None):
     print(f"kd-tree built; {time.perf_counter()-started:.0f}s", flush=True)
     ndvi, nx0, ny_top, ncell = load_ndvi(live(NAIP))
     county, osm = load_footprints(live(FOOTPRINTS), "county"), load_footprints(live(FOOTPRINTS), "osm_current")
-    sr = arcpy.Describe(str(live(FOOTPRINTS)/"county")).spatialReference
     print(f"NAIP {ndvi.shape}, footprints county {len(county)} / osm {len(osm)}; {time.perf_counter()-started:.0f}s", flush=True)
 
     results = []
@@ -139,8 +114,8 @@ def main(argv=None):
         else:
             ground = float(np.percentile(z[idx], GROUND_PERCENTILE))
         near = idx[np.hypot(x[idx]-unit["X"], y[idx]-unit["Y"]) <= triage.CONTEXT_RADIUS_M] if len(idx) else idx
-        point = arcpy.PointGeometry(arcpy.Point(unit["X"], unit["Y"]), sr)
-        footprint = combined_footprint(point, county, osm)
+        footprint = triage.combine_footprints(triage.footprint_state(unit["X"], unit["Y"], county),
+                                              triage.footprint_state(unit["X"], unit["Y"], osm))
         greenness = ndvi_at(ndvi, nx0, ny_top, ncell, unit["X"], unit["Y"])
         f = triage.unit_features(unit, x[near], y[near], z[near], returns[near], number[near], ground,
                                  ndvi=greenness, footprint=footprint)

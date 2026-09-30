@@ -108,3 +108,33 @@ Auto-accepting would need a lower bound near 0.93. It is nowhere near. (MIXED an
    separate houses from carports and sheds. Nothing should be auto-accepted; proposals remain prefills.
 3. The 40 labels are still valid human labels and stay in `labels-progress.csv`. Audit 1 is now used: after any rule change a
    new, fresh sample is needed, because tuning on these 40 would make them useless as a test.
+
+## Triage v2 (September 30, 2026): what changed after audit 1, and audit 2
+
+Changes to `canopy/triage.py` (third correction in its header):
+- **GROUND is a hint, not AUTO.** A flat plane at ground height is a road, a lawn or bare earth, and no cue separates them.
+- **BUILDING_ROOF needs a house-size footprint (60 m² or more) and a mean height of 3 m or more**, to keep carports and sheds out.
+  Both numbers are physical priors, not read off the audit's 40 units.
+- **Footprints are read once as JSON and handled in NumPy** (`polygon_record`, `footprint_state`, `combine_footprints`, 16 plain
+  tests in all). The arcpy-geometry version failed twice, reproducibly, inside arcpy's own geometry calls, and the whole run fell from
+  about 67 s to 10 s.
+
+### Result ([triage-2](triage-2/))
+**99 of 1,065 units (9.3%) are AUTO candidates** (was 164, 15.4%): roof 58, tree 38, wall 2, shrub 1, no ground. Hints for a person:
+ground 54, pole 24, wire 1. By queue: Q6 random 31 of 193, Q4 27 of 165, Q2 20 of 173, Q1 12 of 170, Q3 7 of 182, Q5 2 of 182.
+The lower coverage is the price of precision.
+
+### Retrospective on the 40 audit-1 units (not a test: the rules were changed after seeing them)
+Ten of the 14 disagreements left AUTO (nine ground, one roof) and so did eleven of the 26 agreements (ten ground, one roof). Of the 19
+audit units still AUTO, 15 agreed and 4 did not: two trees (MIXED, UNSURE), one roof (UNSURE) and one roof (OTHER_STRUCTURE).
+
+### The carport prior was wrong
+The audit's two OTHER_STRUCTURE roof misses are inside footprints of **131 m² and 574 m²**, not small ones: covered areas attached to
+larger buildings. The area cue caught neither. The height cue caught one (2.7 m); the other (3.4 m, inside a 574 m² footprint) is
+still AUTO. So the roof change removes one of the three roof misses. This is recorded, and the rule is not reshaped further against
+audit 1, which can no longer test it.
+
+### Audit 2
+[audit-2](audit-2/README.md): 40 of the 74 eligible AUTO candidates (roof 23, tree 15, wall 2; the one shrub was not drawn), seed 20260931,
+no overlap with audit 1, drawn after every unit labelled so far was excluded. It is the real test of this version. Until it is labelled
+and scored, nothing is auto-accepted.
