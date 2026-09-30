@@ -8,6 +8,7 @@ Run from canopy-toolbox with ArcGIS Pro Python (PYTHONNOUSERSITE=1). See TRAININ
     python reviews/2026-09-29/training_review_driver.py restore [--packet PACKET] [--csv FILE] [--apply] [--replace]
     python reviews/2026-09-29/training_review_driver.py repair-project [--packet PACKET] [--toolbox FILE]
     python reviews/2026-09-29/training_review_driver.py patch-stats [--packet PACKET] [--force]
+    python reviews/2026-09-29/training_review_driver.py add-scene [--packet PACKET] [--point-budget N]
     python reviews/2026-09-29/training_review_driver.py snapshot PACKET NEW_SNAPSHOT
     python reviews/2026-09-29/training_review_driver.py export-pointcloud PACKET SNAPSHOT NEW_EXPORT [--prepare]
     python reviews/2026-09-29/training_review_driver.py export-imagery PACKET SNAPSHOT NEW_EXPORT --raster NAIP.tif [--chips]
@@ -495,6 +496,44 @@ def patch_stats(args):
     print(f"Wrote {out}: {len(stats)} units, {sum(1 for s in stats.values() if s['n'] == 0)} with no points in the patch")
 
 
+def _pro_is_open():
+    import subprocess
+    running = subprocess.run(["tasklist", "/FI", "IMAGENAME eq ArcGISPro.exe", "/NH"], capture_output=True, text=True)
+    return "ArcGISPro.exe" in running.stdout
+
+
+def add_scene(args):
+    """Add the "Training review 3D" scene (LAS points plus the review layers) to an existing project. Close Pro first.
+
+    Keeps a dated copy of the project, refuses while ArcGIS Pro is running (saving from here would be overwritten or
+    corrupt it) and refuses if the scene already exists.
+    """
+    import shutil
+    from canopy import training_review_arcpy as tra
+    document = load_packet(args.packet)
+    aprx = Path(args.packet)/"training_review.aprx"
+    if not aprx.is_file():
+        raise FileNotFoundError(f"No project at {aprx}")
+    if _pro_is_open() and not args.even_if_pro_is_open:
+        print("ArcGIS Pro is open. Close it, then run this again: saving the project from here while Pro has it open "
+              "would be overwritten or corrupt it.")
+        return 2
+    import arcpy
+    project = arcpy.mp.ArcGISProject(str(aprx))
+    if any(m.name == tra.SCENE_NAME for m in project.listMaps()):
+        print(f"The project already has {tra.SCENE_NAME!r}; nothing to do.")
+        return 0
+    stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    kept = aprx.with_name(f"{aprx.stem}.before-scene-{stamp}{aprx.suffix}")
+    shutil.copy2(aprx, kept)
+    lasd = live(document["sources"]["lasd"])
+    notes = tra.add_scene(project, review_gdb(args.packet, document), lasd, Path(args.packet)/"layers",
+                          point_budget=args.point_budget)
+    project.save()
+    print(json.dumps({"scene": tra.SCENE_NAME, "backup": str(kept), "notes": notes}, indent=1))
+    return 3 if notes else 0
+
+
 def repair_project(args):
     """Point the review project's toolbox at this machine's TrainingReview.pyt (run with Pro closed).
 
@@ -502,13 +541,11 @@ def repair_project(args):
     Label tools are missing. Adds the working entry (it cannot remove the stale one) and keeps a dated copy first. Layers are found by relative path and are
     unaffected; the 'default toolbox' repair dialog Pro shows on opening is harmless.
     """
-    import subprocess
     from canopy import training_review_arcpy as tra
     aprx = Path(args.packet)/"training_review.aprx"
     if not aprx.is_file():
         raise FileNotFoundError(f"No project at {aprx}")
-    running = subprocess.run(["tasklist", "/FI", "IMAGENAME eq ArcGISPro.exe", "/NH"], capture_output=True, text=True)
-    if "ArcGISPro.exe" in running.stdout and not args.even_if_pro_is_open:
+    if _pro_is_open() and not args.even_if_pro_is_open:
         print("ArcGIS Pro is open. Close it (saving nothing you need), then run this again. "
               "Saving the project from here while Pro has it open would be overwritten or corrupted.")
         return 2
@@ -598,6 +635,9 @@ def main(argv=None):
     r = sub.add_parser("restore"); r.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
     r.add_argument("--csv", default=BACKUP_DIR/"labels-progress.csv", type=Path)
     r.add_argument("--apply", action="store_true"); r.add_argument("--replace", action="store_true")
+    sc = sub.add_parser("add-scene"); sc.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
+    sc.add_argument("--point-budget", type=int, default=1_500_000)
+    sc.add_argument("--even-if-pro-is-open", action="store_true")
     ps = sub.add_parser("patch-stats"); ps.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
     ps.add_argument("--force", action="store_true")
     f = sub.add_parser("repair-project"); f.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
@@ -610,7 +650,7 @@ def main(argv=None):
     i.add_argument("--raster", type=Path, required=True); i.add_argument("--chips", action="store_true")
     args = parser.parse_args(argv)
     result = {"build": build, "status": status, "snapshot": snapshot, "backup": backup, "restore": restore,
-              "repair-project": repair_project, "patch-stats": patch_stats,
+              "repair-project": repair_project, "patch-stats": patch_stats, "add-scene": add_scene,
               "export-pointcloud": export_pointcloud, "export-imagery": export_imagery}[args.command](args)
     return result if isinstance(result, int) else 0
 

@@ -409,21 +409,38 @@ def clear_selection(layer):
 
 
 def pick_map_view(project):
-    """(view, note): the active map view, else an open map's view, else None with the reason.
+    """(view, note): the active map or scene view, else an open one, else None with the reason.
 
-    Stepping through the attribute table makes the table the active view, which has no camera. The map is still open
-    beside it, so its view is moved instead of giving up.
+    Stepping through the attribute table makes the table the active view, which has no camera. The map (or the 3D
+    scene) is still open beside it, so its view is moved instead of giving up. A 2D map is preferred over a scene.
     """
     view = getattr(project, "activeView", None)
     if view is not None and hasattr(view, "camera"):
         return view, ""
-    for m in project.listMaps():
+    ordered = sorted(project.listMaps(), key=lambda m: getattr(m, "mapType", "MAP") == "SCENE")
+    for m in ordered:
         candidate = getattr(m, "defaultView", None)
         if candidate is not None and hasattr(candidate, "camera"):
             return candidate, ("The active view is not a map, so the open map view was moved instead. "
                                "Switch to the map to see the unit.")
-    return None, ("No map view is open (the active view is a table or layout), so the map was not moved. "
-                  "Open the Training review map, beside the table if you like.")
+    return None, ("No map or scene view is open (the active view is a table or layout), so nothing was moved. "
+                  "Open the Training review map or the 3D scene, beside the table if you like.")
+
+
+def move_view(view, row, view_m, spatial_reference):
+    """Move a map view to an extent around the unit, or a scene view to look straight down on it. Returns "map"/"scene"."""
+    kind = getattr(getattr(view, "map", None), "mapType", "MAP")
+    if kind == "SCENE":
+        camera = view.camera
+        camera.X, camera.Y = row["X"], row["Y"]
+        camera.Z = float(row["Z_HIGH"])+float(view_m)
+        camera.pitch, camera.heading = -90, 0
+        view.camera = camera
+        return "scene"
+    half = float(view_m)/2
+    view.camera.setExtent(arcpy.Extent(row["X"]-half, row["Y"]-half, row["X"]+half, row["Y"]+half,
+                                       spatial_reference=spatial_reference))
+    return "map"
 
 
 def go_to_next(layer, queue, view_m, project):
@@ -444,9 +461,7 @@ def go_to_next(layer, queue, view_m, project):
     if view is None:
         messages.append(("warning", note + f" {row['UNIT_ID']} is selected; find it in the table."))
     else:
-        half = float(view_m)/2
-        view.camera.setExtent(arcpy.Extent(row["X"]-half, row["Y"]-half, row["X"]+half, row["Y"]+half,
-                                           spatial_reference=arcpy.Describe(fc).spatialReference))
+        move_view(view, row, view_m, arcpy.Describe(fc).spatialReference)
         if note:
             messages.append(("info", note))
     hag = ""
@@ -505,7 +520,45 @@ def queue_queries():
     return queries
 
 
-def build_project(packet, gdb, lasd, toolbox=None):
+SCENE_NAME = "Training review 3D"
+SCENE_POINT_BUDGET = 1_500_000        # the LAS layer's default of 4 million points is heavy for a scene
+
+
+def add_scene(project, gdb, lasd, layers_dir, point_budget=SCENE_POINT_BUDGET):
+    """Add the "Training review 3D" local scene: the tile's LAS points plus the review layers, ready to open.
+
+    A reviewer then has the surrounding points in 3D without finding the tile. The scene uses the tile's projected system
+    (EPSG 6341); arcpy scenes are local by default. The LAS layer draws at most point_budget points (Pro's default is
+    4 million) to keep the scene light, and only the layer's own definition is changed: setting the scene's definition
+    after adding layers removes them. Returns notes; an existing scene is refused.
+    """
+    if any(m.name == SCENE_NAME for m in project.listMaps()):
+        raise FileExistsError(f"The project already has a scene named {SCENE_NAME!r}")
+    layers_dir = Path(layers_dir)
+    scene = project.createMap(SCENE_NAME, "SCENE")
+    notes = []
+    for layer in scene.listLayers():
+        scene.removeLayer(layer)
+    scene.spatialReference = arcpy.SpatialReference(6341)
+    las = scene.addDataFromPath(str(lasd))
+    las.name = f"Lidar all returns (3D, at most {point_budget:,} points drawn)"
+    try:
+        cim = las.getDefinition("V3")
+        cim.pointBudget = int(point_budget)
+        cim.showLegends = False
+        las.setDefinition(cim)
+    except Exception as exc:
+        notes.append(f"Scene LAS layer settings not applied: {exc}")
+    for name in ("excluded_evaluation_areas.lyrx", "training_patches.lyrx", "training_units.lyrx"):
+        file = layers_dir/name
+        if file.is_file():
+            scene.addLayer(arcpy.mp.LayerFile(str(file)))
+        else:
+            notes.append(f"{name} not found; not added to the scene")
+    return notes
+
+
+def build_project(packet, gdb, lasd, toolbox=None, scene=True):
     """New .aprx (copy of the install's Blank.aprx) plus .lyrx files. Existing files are refused."""
     packet, gdb = Path(packet), Path(gdb)
     template = Path(arcpy.GetInstallInfo()["InstallDir"]) / r"Resources\ArcToolBox\Services\routingservices\data\Blank.aprx"
@@ -578,6 +631,11 @@ def build_project(packet, gdb, lasd, toolbox=None):
         project.homeFolder = str(packet)
     except Exception as exc:
         notes.append(f"Default geodatabase/home folder not set: {exc}")
+    if scene:
+        try:
+            notes += add_scene(project, gdb, lasd, layers)
+        except Exception as exc:
+            notes.append(f"3D scene not added: {exc}")
     if toolbox:
         notes += attach_toolbox(project, toolbox)
     project.save()

@@ -55,6 +55,15 @@ Only unlabelled units are visible by default, so a selection cannot reach finish
 Skipping a unit is fine. Use **MIXED** (the slab clearly holds two classes) or **UNSURE** (you can't tell) rather
 than guessing. Both are kept but not used for training.
 
+### See the surrounding points in 3D
+
+The project has a **Training review 3D** scene (Catalog > Maps) that already holds the tile's lidar points, the review
+circles and the units, so you never have to find the tile. The points layer is capped at 1.5 million drawn points to keep
+the scene light. **Next Training Unit** moves an open map or scene view to the unit (a scene looks straight down; tilt it
+yourself for a side view). A project made before this existed gets the scene once: close Pro and run
+`training_labels.bat add-scene` (it keeps a dated copy of the project first). If Pro crashes opening the scene, use the map
+with Profile View instead and report it; this workstation has been unstable (see the handoff note).
+
 ### The rule: label only the returns in the patch
 
 The training export gives your label to exactly the points inside the yellow circle and between Z low and Z high. So:

@@ -8,6 +8,7 @@ rem     training_labels.bat restore    preview putting the repo copy back into t
 rem     training_labels.bat restore --apply [--replace]
 rem     training_labels.bat repair     re-point the project's toolbox at this machine's repo (close Pro first)
 rem     training_labels.bat patch-stats   write patch_stats.json so the tools show each patch's heights and warn
+rem     training_labels.bat add-scene  add the "Training review 3D" scene with the LAS points (close Pro first)
 rem
 rem It finds the lidar disk (CANOPY_LIDAR_ROOT, else D:\lidar, else H:\lidar) and runs the driver with ArcGIS Pro's
 rem Python, so no PowerShell script (AllSigned) is involved. Nothing here changes evaluation data or the LAS files.
@@ -40,9 +41,10 @@ if /i "%CMD%"=="backup"  goto :run
 if /i "%CMD%"=="restore" goto :run
 if /i "%CMD%"=="repair"  goto :repair
 if /i "%CMD%"=="patch-stats" goto :run
+if /i "%CMD%"=="add-scene" goto :run
 if /i "%CMD%"=="save"    goto :save
 :usage
-echo Usage: training_labels.bat status ^| backup ^| save ^| restore [--apply] [--replace] ^| repair ^| patch-stats
+echo Usage: training_labels.bat status ^| backup ^| save ^| restore [--apply] [--replace] ^| repair ^| patch-stats ^| add-scene
 echo Using the lidar disk at %CANOPY_LIDAR_ROOT%
 goto :end
 

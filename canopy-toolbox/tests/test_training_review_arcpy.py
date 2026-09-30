@@ -334,7 +334,7 @@ class TrainingReviewArcGIS(unittest.TestCase):
         self.assertEqual(tra.pick_map_view(NS(activeView=mapview, listMaps=lambda: [])), (mapview, ""))
         view, note = tra.pick_map_view(NS(activeView=table, listMaps=lambda: [NS(defaultView=None)]))
         self.assertIsNone(view)
-        self.assertIn("No map view is open", note)
+        self.assertIn("No map or scene view is open", note)
         self.assertIsNone(tra.pick_map_view(NS(activeView=None, listMaps=lambda: []))[0])
 
     def test_go_to_next_selects_zooms_and_reports(self):
@@ -357,7 +357,7 @@ class TrainingReviewArcGIS(unittest.TestCase):
         unit_id, messages = tra.go_to_next(layer, None, 30, NS(activeView=NS(), listMaps=lambda: []))
         self.assertEqual(unit_id, "Q1-0001")
         self.assertEqual(tra.selected_oids(layer), [self.oid("Q1-0001")])
-        self.assertTrue([m for level, m in messages if level == "warning" and "No map view is open" in m])
+        self.assertTrue([m for level, m in messages if level == "warning" and "No map or scene view is open" in m])
         # the queue filter, and running out of units
         self.assertEqual(tra.go_to_next(layer, "Q6_RANDOM", 30, table_active)[0], "Q6-0001")
         answer = {"LABEL": "TREE", "IMAGERY_USABLE": "YES", "REVIEWER": "Fixture", "REVIEW_DATE": "2026-09-29", "NOTES": None}
@@ -455,6 +455,70 @@ class TrainingReviewArcGIS(unittest.TestCase):
         self.assertEqual(ok["warnings"], [])                                  # a roof at 8 m fits its patch
         again = tra.label_units(self.fc, [self.oid("Q6-0001")], dict(answer, LABEL="GROUND"), replace=True)
         self.assertTrue(again["warnings"] and "Q6-0001" in again["warnings"][0])
+
+
+    def test_the_project_carries_a_3d_scene_with_the_las_points(self):
+        arcpy, tra = self.arcpy, self.tra
+        lasd = tra.las_dataset(self.las, self.root/"baseline.lasd")
+        result = tra.build_project(self.packet, self.gdb, lasd)
+        self.assertFalse([n for n in result["notes"] if "scene" in n.lower()], result["notes"])
+        project = arcpy.mp.ArcGISProject(result["project"])
+        self.assertEqual({m.name for m in project.listMaps()}, {"Training review", tra.SCENE_NAME})
+        scene = project.listMaps(tra.SCENE_NAME)[0]
+        self.assertEqual((scene.mapType, scene.spatialReference.factoryCode), ("SCENE", 6341))
+        names = [layer.name for layer in scene.listLayers()]
+        las = [layer for layer in scene.listLayers() if layer.name.startswith("Lidar all returns (3D")]
+        self.assertEqual(len(las), 1, names)                                   # the tile's points are in the scene
+        self.assertEqual(las[0].getDefinition("V3").pointBudget, tra.SCENE_POINT_BUDGET)
+        for wanted in ("Training units", "Training patches", "Excluded"):
+            self.assertTrue(any(n.startswith(wanted) for n in names), (wanted, names))
+        with self.assertRaises(FileExistsError):
+            tra.add_scene(project, self.gdb, lasd, self.packet/"layers")
+        del project
+
+    def test_driver_adds_a_scene_to_an_existing_project_and_keeps_a_backup(self):
+        from types import SimpleNamespace as NS
+        arcpy, tra = self.arcpy, self.tra
+        lasd = tra.las_dataset(self.las, self.root/"baseline.lasd")
+        aprx = Path(tra.build_project(self.packet, self.gdb, lasd, scene=False)["project"])
+        project = arcpy.mp.ArcGISProject(str(aprx))
+        self.assertEqual([m.name for m in project.listMaps()], ["Training review"])
+        del project
+        document = json.loads((self.packet/"packet.json").read_text())
+        document["sources"]["lasd"] = str(lasd)                               # sources are not part of the units hash
+        (self.packet/"packet.json").write_text(json.dumps(document))
+        args = NS(packet=self.packet, point_budget=1_000_000, even_if_pro_is_open=True)
+        self.assertEqual(self.driver.add_scene(args), 0)
+        backups = list(self.packet.glob("training_review.before-scene-*.aprx"))
+        self.assertEqual(len(backups), 1)
+        project = arcpy.mp.ArcGISProject(str(aprx))
+        scene = project.listMaps(tra.SCENE_NAME)[0]
+        las = [layer for layer in scene.listLayers() if layer.name.startswith("Lidar all returns (3D")][0]
+        self.assertEqual(las.getDefinition("V3").pointBudget, 1_000_000)
+        del project
+        self.assertEqual(self.driver.add_scene(args), 0)                      # already there: nothing to do, no second backup
+        self.assertEqual(len(list(self.packet.glob("training_review.before-scene-*.aprx"))), 1)
+
+    def test_a_scene_view_is_moved_to_look_down_and_maps_are_preferred(self):
+        from types import SimpleNamespace as NS
+        arcpy, tra = self.arcpy, self.tra
+        row = {"X": 428500.0, "Y": 4504500.0, "Z_HIGH": 1340.0}
+        scene_view = NS(map=NS(mapType="SCENE"), camera=NS(X=0.0, Y=0.0, Z=0.0, pitch=0.0, heading=45.0))
+        self.assertEqual(tra.move_view(scene_view, row, 30, None), "scene")
+        cam = scene_view.camera
+        self.assertEqual((cam.X, cam.Y, cam.Z, cam.pitch, cam.heading), (428500.0, 4504500.0, 1370.0, -90, 0))
+        extents = []
+        map_view = NS(map=NS(mapType="MAP"), camera=NS(setExtent=extents.append))
+        self.assertEqual(tra.move_view(map_view, row, 30, arcpy.SpatialReference(6341)), "map")
+        self.assertAlmostEqual(extents[0].XMax-extents[0].XMin, 30.0)
+        table = NS(name="table")
+        both = NS(activeView=table, listMaps=lambda: [NS(mapType="SCENE", defaultView=scene_view),
+                                                     NS(mapType="MAP", defaultView=map_view)])
+        self.assertIs(tra.pick_map_view(both)[0], map_view)                   # the 2D map wins over the scene
+        only_scene = NS(activeView=table, listMaps=lambda: [NS(mapType="SCENE", defaultView=scene_view)])
+        self.assertIs(tra.pick_map_view(only_scene)[0], scene_view)
+        self.assertIs(tra.pick_map_view(NS(activeView=scene_view, listMaps=lambda: []))[0], scene_view)
+        self.assertIsNone(tra.pick_map_view(NS(activeView=table, listMaps=lambda: []))[0])
 
 
 if __name__ == "__main__":
