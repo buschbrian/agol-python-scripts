@@ -143,3 +143,19 @@ e. **Optional seam test.** Joint core+halo inference for 12TVL2804, to measure h
 5. **Training buffer:** 25 m (current) or larger. At 50 m, almost nothing on 2804 is usable.
 6. **Training tiles:** accept the clustered draw, or redraw with a spatial-spread rule.
 7. **World Imagery as training data:** yes or no.
+
+## 7. Workstation health (found September 30, read from the Windows event log)
+
+The A4000 workstation (MC-PC13, i9-13900K, BIOS HP U50 03.05.01) is **not reliable**. In the 14 days to September 30 the
+System log holds 32 corrected PCI Express errors on bus 1 (the RTX A4000), one corrected CPU-core "internal parity error"
+(September 28, 23:50) and **7 unexpected shutdowns** (Kernel-Power 41; September 24 twice, 27, 29 twice, 30 twice), most
+at night when no job was running. Unrelated programs crashed on September 30 (`conda.exe` 08:43, a Python crash report
+10:16, ArcGIS Pro 13:03, `python.exe` 13:41) and one valid file briefly failed to compile. Cause not determined.
+
+- Every GPU row still passed its hash and integrity checks, and the tree-model noise matched the laptop's, so there is no
+  sign of silent corruption in the results. Keep those checks on.
+- **Back up labels often** (`training_labels.bat save`, then push): a hard power-off while Pro or the geodatabase is writing
+  can corrupt it.
+- Treat a single odd result or crash as possibly hardware and rerun it before drawing a conclusion.
+- For IT/HP, not for us to change: run a memory test, check for a newer BIOS and Intel microcode, reseat the GPU and check
+  its power and PCIe link (a forced Gen3 link is a quick test), and review the power supply.
