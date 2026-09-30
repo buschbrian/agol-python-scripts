@@ -190,6 +190,8 @@ class LabelTrainingUnit(object):
         _remember_reviewer(fc, result["after"]["REVIEWER"])
         before = result["before"]["LABEL"]
         arcpy.AddMessage(f"{result['UNIT_ID']}: {before or '(blank)'} -> {result['after']['LABEL']}")
+        for warning in result.get("warnings", []):
+            arcpy.AddWarning(warning)
         if parameters[6].value is None or parameters[6].value:
             _go_to_next(layer, parameters[7].valueAsText, parameters[8].value or VIEW_M)
 
@@ -252,5 +254,7 @@ class LabelSelectedUnits(object):
         shown = ", ".join(result["ids"][:8]) + (" ..." if result["units"] > 8 else "")
         arcpy.AddMessage(f"Labelled {result['units']} units as {result['label']} ({shown})"
                          + (f"; {result['replaced']} had a different label." if result["replaced"] else "."))
+        for warning in result.get("warnings", []):
+            arcpy.AddWarning(warning)
         if parameters[6].value is None or parameters[6].value:
             _go_to_next(layer, parameters[7].valueAsText, parameters[8].value or VIEW_M)

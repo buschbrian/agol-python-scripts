@@ -401,5 +401,61 @@ class TrainingReviewArcGIS(unittest.TestCase):
         self.assertEqual(previous, {"Q1-0001": "WALL", "Q1-0002": None, "Q6-0001": None})
 
 
+    def test_patch_height_is_shown_and_labels_the_patch_cannot_fit_are_warned(self):
+        from types import SimpleNamespace as NS
+        import numpy as np
+        arcpy, tra = self.arcpy, self.tra
+        layer = arcpy.management.MakeFeatureLayer(self.fc, "tu_patch")[0]
+        table_active = NS(activeView=NS(), listMaps=lambda: [])
+        answer = {"LABEL": "GROUND", "IMAGERY_USABLE": "NO", "REVIEWER": "Fixture", "REVIEW_DATE": "2026-09-29", "NOTES": None}
+
+        # no sidecar yet: the tool says so, and no label is ever warned about
+        unit_id, messages = tra.go_to_next(layer, None, 30, table_active)
+        self.assertIn("not available", " ".join(m for _, m in messages))
+        self.assertEqual(tra.label_unit(self.fc, [self.oid("Q1-0001")], answer)["warnings"], [])
+
+        # a denser tile: 60 points at 8 m inside each unit's patch, ground at 0 m around it
+        rng = np.random.default_rng(11)
+        points = []
+        for u in self.units:
+            for _ in range(60):
+                r, a = 0.9*np.sqrt(rng.random()), rng.random()*2*np.pi
+                points.append((u["X"]-X0+r*np.cos(a), u["Y"]-Y0+r*np.sin(a), 8.0+rng.normal(0, .02), 1))
+            for _ in range(200):
+                r, a = 2.0+4.0*rng.random(), rng.random()*2*np.pi
+                points.append((u["X"]-X0+r*np.cos(a), u["Y"]-Y0+r*np.sin(a), rng.normal(0, .02), 2))
+        dense = self.root/"dense.las"
+        write_las(dense, points)
+        document = json.loads((self.packet/"packet.json").read_text())
+        document["sources"]["baseline"]["path"] = str(dense)              # the sources are not part of the units hash
+        (self.packet/"packet.json").write_text(json.dumps(document))
+
+        self.driver.patch_stats(NS(packet=self.packet, force=False))
+        with self.assertRaises(FileExistsError):
+            self.driver.patch_stats(NS(packet=self.packet, force=False))
+        stats = tra.load_patch_stats(self.fc)
+        self.assertEqual(set(stats), {u["UNIT_ID"] for u in self.units})
+        for s in stats.values():
+            self.assertGreaterEqual(s["n"], 50)
+            self.assertAlmostEqual(s["mean"], 8.0, delta=0.15)             # measured against the local ground at 0 m
+
+        unit_id, messages = tra.go_to_next(layer, None, 30, table_active)   # the next unlabelled unit
+        text = " ".join(m for _, m in messages)
+        self.assertIn("points,", text)
+        self.assertIn("m above ground", text)
+        self.assertIn("not an object beside", text)
+
+        # a GROUND label on a patch that holds points 8 m up is warned about, not blocked
+        result = tra.label_unit(self.fc, [self.oid("Q1-0002")], answer)
+        self.assertEqual(result["after"]["LABEL"], "GROUND")
+        self.assertTrue(result["warnings"] and "Q1-0002" in result["warnings"][0] and "m above ground" in result["warnings"][0])
+        row = [r for r in tra.read_review_rows(self.fc) if r["UNIT_ID"] == "Q1-0002"][0]
+        self.assertEqual(row["LABEL"], "GROUND")                              # the label was written
+        ok = tra.label_units(self.fc, [self.oid("Q6-0001")], dict(answer, LABEL="BUILDING_ROOF"))
+        self.assertEqual(ok["warnings"], [])                                  # a roof at 8 m fits its patch
+        again = tra.label_units(self.fc, [self.oid("Q6-0001")], dict(answer, LABEL="GROUND"), replace=True)
+        self.assertTrue(again["warnings"] and "Q6-0001" in again["warnings"][0])
+
+
 if __name__ == "__main__":
     unittest.main()

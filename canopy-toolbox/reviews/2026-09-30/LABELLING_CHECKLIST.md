@@ -64,7 +64,11 @@ The training export gives your label to exactly the points inside the yellow cir
   SHRUB_LOW_VEG, lawn included), or use **UNSURE** or **MIXED**.
 - **Imagery is a hint from a different date.** A vehicle in the imagery may not be in the lidar at all. Judge from the points
   and the cross-section.
-- **Labels are checked against the patch afterwards** (`label_consistency.py`): for example a VEHICLE whose patch tops out at
+- **The tools help.** **Next Training Unit** prints how many points the patch holds and how high they reach above ground, and
+  **Label Training Unit** and **Label Selected Units** warn (they never block) when a label cannot fit that, for example a
+  VEHICLE on a patch that reaches 0.1 m. If the message says the heights are not available, run
+  `training_labels.bat patch-stats` once.
+- **Labels are also checked afterwards** (`label_consistency.py`): for example a VEHICLE whose patch tops out at
   0.3 m above ground is flagged for a second look. Flags never change a label.
 
 | Label | Use it when every return in the slab is... |

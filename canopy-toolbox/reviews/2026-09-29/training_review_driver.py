@@ -7,6 +7,7 @@ Run from canopy-toolbox with ArcGIS Pro Python (PYTHONNOUSERSITE=1). See TRAININ
     python reviews/2026-09-29/training_review_driver.py backup [--packet PACKET] [--out DIR]
     python reviews/2026-09-29/training_review_driver.py restore [--packet PACKET] [--csv FILE] [--apply] [--replace]
     python reviews/2026-09-29/training_review_driver.py repair-project [--packet PACKET] [--toolbox FILE]
+    python reviews/2026-09-29/training_review_driver.py patch-stats [--packet PACKET] [--force]
     python reviews/2026-09-29/training_review_driver.py snapshot PACKET NEW_SNAPSHOT
     python reviews/2026-09-29/training_review_driver.py export-pointcloud PACKET SNAPSHOT NEW_EXPORT [--prepare]
     python reviews/2026-09-29/training_review_driver.py export-imagery PACKET SNAPSHOT NEW_EXPORT --raster NAIP.tif [--chips]
@@ -456,6 +457,44 @@ def restore(args):
     return 3 if plan["conflicts"] or plan["refused"] else 0
 
 
+def patch_stats(args):
+    """Write patch_stats.json beside the packet: the height above ground of the points inside each unit's own patch.
+
+    The Next Training Unit tool shows these so a reviewer labels what is in the circle, and the label tools warn (never
+    block) when a label cannot fit them. Heights use the unit's GROUND_Z from the packet (the baseline ground surface)
+    and fall back to the 5th percentile of the points within 12 m when a unit has none; the sidecar records which.
+    Only the new sidecar is written; packet.json, whose hash protects the units, is untouched.
+    """
+    from scipy.spatial import cKDTree
+    from canopy import label_check
+    document = load_packet(args.packet)
+    out = Path(args.packet)/"patch_stats.json"
+    if out.exists() and not args.force:
+        raise FileExistsError(f"{out} exists; pass --force to rewrite it")
+    las = live(document["sources"]["baseline"]["path"])
+    block, scale, offset, modern, info = las_records.records(las)
+    x = block["x"]*scale[0]+offset[0]
+    y = block["y"]*scale[1]+offset[1]
+    z = block["z"]*scale[2]+offset[2]
+    tree = cKDTree(np.c_[x, y])
+    stats, fallback = {}, 0
+    for unit in document["units"]:
+        ground = unit.get("GROUND_Z")
+        if ground is None:
+            wide = np.asarray(tree.query_ball_point([unit["X"], unit["Y"]], r=12.0), dtype=np.int64)
+            ground = float(np.percentile(z[wide], 5)) if len(wide) else float("nan")
+            fallback += 1
+        idx = np.asarray(tree.query_ball_point([unit["X"], unit["Y"]], r=unit.get("PATCH_R_M", 1.0)), dtype=np.int64)
+        s = label_check.patch_stats(unit, x[idx], y[idx], z[idx], ground)
+        stats[unit["UNIT_ID"]] = {"n": s["n"], **{k: (None if s[k] != s[k] else round(s[k], 3)) for k in ("min", "mean", "max")}}
+    write_json(out, {"schema": "canopy-patch-stats/1", "las": {"path": str(las), "points": int(info["points"])},
+                     "packet_units_digest": document["units_digest"],
+                     "ground": "packet GROUND_Z (baseline ground surface), used only to judge plausibility; "
+                               f"{fallback} units had none and used the 5th percentile within 12 m",
+                     "units": stats})
+    print(f"Wrote {out}: {len(stats)} units, {sum(1 for s in stats.values() if s['n'] == 0)} with no points in the patch")
+
+
 def repair_project(args):
     """Point the review project's toolbox at this machine's TrainingReview.pyt (run with Pro closed).
 
@@ -559,6 +598,8 @@ def main(argv=None):
     r = sub.add_parser("restore"); r.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
     r.add_argument("--csv", default=BACKUP_DIR/"labels-progress.csv", type=Path)
     r.add_argument("--apply", action="store_true"); r.add_argument("--replace", action="store_true")
+    ps = sub.add_parser("patch-stats"); ps.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
+    ps.add_argument("--force", action="store_true")
     f = sub.add_parser("repair-project"); f.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
     f.add_argument("--toolbox", default=TOOLBOX/"TrainingReview.pyt", type=Path)
     f.add_argument("--even-if-pro-is-open", action="store_true")
@@ -569,7 +610,7 @@ def main(argv=None):
     i.add_argument("--raster", type=Path, required=True); i.add_argument("--chips", action="store_true")
     args = parser.parse_args(argv)
     result = {"build": build, "status": status, "snapshot": snapshot, "backup": backup, "restore": restore,
-              "repair-project": repair_project,
+              "repair-project": repair_project, "patch-stats": patch_stats,
               "export-pointcloud": export_pointcloud, "export-imagery": export_imagery}[args.command](args)
     return result if isinstance(result, int) else 0
 

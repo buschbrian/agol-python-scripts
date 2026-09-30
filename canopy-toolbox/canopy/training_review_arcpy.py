@@ -12,6 +12,7 @@ from pathlib import Path
 import arcpy
 import numpy as np
 
+from . import label_check
 from . import training_review as tr
 
 UNITS_FC = "training_units"
@@ -266,7 +267,44 @@ def label_unit(fc, selected_oids, raw_answer, document=None, replace=False, toda
             raise ValueError(f"{row['UNIT_ID']}: identity field {key} changed")
     answer = tr.normalize_answer(unit, raw_answer, document["frame"], labels=domain_codes(Path(str(fc)).parent), today=today)
     before = write_answer(fc, oids[0], answer, replace)
-    return {"UNIT_ID": row["UNIT_ID"], "before": before, "after": answer}
+    return {"UNIT_ID": row["UNIT_ID"], "before": before, "after": answer,
+            "warnings": label_warnings(fc, [(row["UNIT_ID"], answer["LABEL"])])}
+
+
+def load_patch_stats(fc):
+    """Per-unit patch statistics from patch_stats.json beside the packet; {} when the file is absent or unreadable."""
+    path = Path(str(fc)).parent.parent/"patch_stats.json"
+    try:
+        units = json.loads(path.read_text(encoding="utf-8"))["units"]
+    except (OSError, ValueError, KeyError):
+        return {}
+    nan = float("nan")
+    return {uid: {"n": s["n"], **{k: (nan if s.get(k) is None else s[k]) for k in ("min", "mean", "max")}}
+            for uid, s in units.items()}
+
+
+def patch_note(unit_id, stats):
+    """One sentence telling the reviewer what the unit's own patch holds."""
+    s = stats.get(unit_id)
+    if s is None:
+        return "Patch heights are not available (run training_review_driver.py patch-stats)."
+    if not s["n"]:
+        return "The patch holds no points."
+    def height(v):
+        return f"{0.0 if abs(v) < 0.05 else v:.1f}"          # no "-0.0"
+    return (f"The patch holds {s['n']} points, {height(s['min'])} to {height(s['max'])} m above ground "
+            f"(mean {height(s['mean'])} m). Label what these points are, not an object beside the circle.")
+
+
+def label_warnings(fc, unit_ids_and_labels):
+    """Non-blocking warnings for labels the patch's own points cannot support (see canopy/label_check.py)."""
+    stats = load_patch_stats(fc)
+    out = []
+    for uid, label in unit_ids_and_labels:
+        if uid in stats:
+            out += [f"{uid}: {reason}. Check the label, or use UNSURE or MIXED."
+                    for reason in label_check.check_label(label, stats[uid])]
+    return out
 
 
 MAX_BULK = 500
@@ -345,7 +383,8 @@ def label_units(fc, selected_oids, raw_answer, document=None, replace=False, tod
     if written != len(oids) or wrong:
         raise RuntimeError(f"Read-back mismatch after bulk write: wrote {written} of {len(oids)}; wrong {wrong[:5]}")
     return {"units": len(oids), "label": label, "ids": [after[o]["UNIT_ID"] for o in oids],
-            "replaced": sum(1 for b in before if b["LABEL"] and b["LABEL"] != label)}
+            "replaced": sum(1 for b in before if b["LABEL"] and b["LABEL"] != label),
+            "warnings": label_warnings(fc, [(after[o]["UNIT_ID"], label) for o in oids])}
 
 
 def selected_oids(layer):
@@ -415,6 +454,7 @@ def go_to_next(layer, queue, view_m, project):
         hag = f", {row['HAG_LOW']:.1f} to {row['HAG_HIGH']:.1f} m above ground"
     messages.append(("info", f"{row['UNIT_ID']} (order {row['REVIEW_ORDER']}, {row['QUEUE']}): label the returns within "
                              f"{row['PATCH_R_M']} m of the point between Z {row['Z_LOW']:.1f} and {row['Z_HIGH']:.1f} m{hag}."))
+    messages.append(("info", patch_note(row["UNIT_ID"], load_patch_stats(fc))))
     return row["UNIT_ID"], messages
 
 
