@@ -1,0 +1,10 @@
+2026-09-30T00:13:27.9247893-06:00 row tree-hag-z (tree) start; label: HAG z-mode baseline (hag-20260929); compare by index with the HAG baseline only
+2026-09-30T00:13:29.9067364-06:00 watch H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las MD5 before: 82787095336690d2909344206f9a80fc
+2026-09-30T00:13:34.2221412-06:00 source H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\hag-20260929\12TVL2804\points\12TVL2804.las MD5 ee8ad65ec93942740b823f3097c8d288; copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\tree-hag-z\tree\12TVL2804.las MD5 ee8ad65ec93942740b823f3097c8d288
+2026-09-30T00:13:34.3025118-06:00 GPU before: 1477 MiB, 0 %
+2026-09-30T00:13:34.3229539-06:00 dl_run: C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe -B V:\Developer\agol-python-scripts\canopy-toolbox\reviews\2026-09-29\dl_run.py tree --source H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\hag-20260929\12TVL2804\points\12TVL2804.las --copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\tree-hag-z\tree\12TVL2804.las --output-root H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\tree-hag-z --batch 1 --label HAG z-mode baseline (hag-20260929); compare by index with the HAG baseline only
+2026-09-30T00:44:56.4451930-06:00 dl_run exit 1 after 1882.1 s
+2026-09-30T00:44:56.5082839-06:00 GPU after: 1435 MiB, 0 %
+2026-09-30T00:44:58.5349547-06:00 source H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\hag-20260929\12TVL2804\points\12TVL2804.las MD5 after: ee8ad65ec93942740b823f3097c8d288
+2026-09-30T00:45:00.4829443-06:00 watch H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las MD5 after: 82787095336690d2909344206f9a80fc
+2026-09-30T00:45:00.4949031-06:00 row tree-hag-z FAILED (see dl_run.log and work\run-tree.json)

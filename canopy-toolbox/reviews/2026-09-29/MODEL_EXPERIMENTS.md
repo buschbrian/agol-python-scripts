@@ -6,7 +6,12 @@ Pro's per-user active environment is now the deep-learning clone; see
 [DEEP_LEARNING.md](DEEP_LEARNING.md) for the switch and the runtime isolation.
 The four rows below ran on 12TVL2804 the same evening. Their numbers are model
 outputs and disagreement counts, **not accuracy**: there are no independent
-labels in these tables, and the baseline classes are not truth.
+labels in these tables, and the baseline classes are not truth. Overnight into
+September 30, a second queue inferred the 12TVL2804 halos, 12TVL3302 (prospective
+holdout) and 12TVL2203 (external transfer), plus a height-above-ground Z row. It then
+produced full-tile product runs under three conflict policies that the harness can
+grid-match ([September 30 queue](#september-30-queue-halos-holdout-transfer-overnight-2026-092930),
+[product runs](#september-30-conflict-policies-and-full-tile-product-runs-12tvl2804)).
 
 ## Results on 12TVL2804 (September 29, 2026)
 
@@ -33,7 +38,8 @@ ArcGIS Pro, which the user had open; the "before" column is the first sample.
 Full hashes, package provenance and tool messages are in
 [dl-experiments-20260929/](dl-experiments-20260929/) (`run-<row>.json`, `compare-<row>.json`, `row-<row>.log`).
 [`run_row.ps1`](dl-experiments-20260929/run_row.ps1) is a record of what ran: it hard-codes this worktree's
-paths, so it is not a reusable script. Runtime depends on blocks more than on points. The thinned row had 11%
+paths, so it is not a reusable script. The generalized runner is
+[dl-experiments-20260930/run_row.ps1](dl-experiments-20260930/run_row.ps1). Runtime depends on blocks more than on points. The thinned row had 11%
 of the points and took half as long as tree-full. The full tree row took 90 min, beyond the 30–60 min estimate.
 
 "Integrity" means `dl_compare.py` verified, over every record, that all
@@ -117,9 +123,117 @@ labels here, so no row shows which is right.
   attribute. Our inference from that and the identical output is that this model does not use relative height
   through this tool, and the raster acted only as a coverage mask. Coverage was complete, so no point was
   omitted. This is an inference, not documented tool behaviour. The absolute-versus-HAG question was therefore
-  **not tested**. Testing it would need a new row whose baseline has Z rewritten to height above ground. That
-  is a different baseline with changed protected bytes, and it was not done. Incidentally, the identical outputs
-  show the building inference was reproducible for identical input on this machine.
+  **not tested** by this row. Testing it would need a new row whose baseline has Z rewritten to height above ground. That
+  is a different baseline with changed protected bytes. It was done on September 30 as row d (below): HAG Z changes
+  building predictions for 108,210 points. Incidentally, the identical outputs here show the building inference
+  was reproducible for identical input on this machine.
+
+## September 30 queue: halos, holdout, transfer (overnight 2026-09-29/30)
+
+Authorized by the user to run more tiles on this machine. Root:
+`H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\`, one folder per
+row (`<row>\<job>\` holds the classified copies and `<job>.lasd`; `<row>\work\` holds the row manifest, one
+schema-1 manifest per file, `row.json` with MD5s, logs and the comparison). Settings as on September 29:
+EDIT_ALL, noise 7/18 excluded, output classes 0/target, batch 1, clone python with `PYTHONNOUSERSITE=1`. The
+difference is that each row is **one LAS dataset over several files with no boundary**, so every non-noise
+point of every file was classified. Runner:
+[run_queue.ps1](dl-experiments-20260930/run_queue.ps1) → [run_row.ps1](dl-experiments-20260930/run_row.ps1)
+(generalized from the September 29 record; toolbox path is the main checkout). One GPU job at a time.
+
+Every source file's MD5 was recorded before copying. Each copy matched it, and every source was unchanged
+after its row. The 12TVL2804 core baseline (`82787095…`) was also re-hashed around every row and did not
+change. Per-file MD5s are in each `work\row.json`. The core-file MD5s are 12TVL3302 `36ac0563d3dd7e39d3f1b2abcac7d4f3` and
+12TVL2203 `3056d908f5284daab3ba776f3e599874`. Every row passed the binary integrity gate **file by file**
+(`dl_compare.py --row-manifest`): all non-classification bytes matched each file's own baseline, noise was
+unchanged, and every non-noise point was 0 or the target.
+
+GPU MiB below is whole-device `nvidia-smi` usage sampled once a second (about 1.4 GB of that is the desktop
+before inference), not model memory alone.
+
+**Halo class 0 check (before row a):** a full scan of every prepared file for the three tiles found **no class-0
+point in any file**, core or halo. Classes present in the 12TVL2804 halos: 1, 2, 3, 4, 5, 6, 7, 18. The baseline
+run's "Unclassified points are excluded" warning comes from class 1. 12TVL2203 and its halos also hold 9
+(water), 17 (bridge deck) and 20. EDIT_ALL reassigned those to 0 or the target like every other non-noise class.
+
+| Row | Label | Files / points | Tool time | GPU MiB first / peak | Integrity |
+|---|---|---|---|---|---|
+| a. 12TVL2804-halo-tree | halo files only (core inferred Sept 29) | 7 / 5,570,591 | 11 min 13 s | 1,475 / 2,363 | verified, all 7 |
+| a. 12TVL2804-halo-building | same | 7 / 5,570,591 | 4 min 36 s | 1,450 / 1,913 | verified, all 7 |
+| b. 12TVL3302-…-tree | prospective holdout -- inference only, never training | 8 / 40,330,316 | 1 h 8 min 19 s | 1,384 / 2,629 | verified, all 8 |
+| b. 12TVL3302-…-building | same | 8 / 40,330,316 | 26 min 15 s | 1,630 / 2,139 | verified, all 8 |
+| c. 12TVL2203-external-transfer-tree | external transfer -- outside Millcreek estimate | 4 / 22,291,107 | 30 min 19 s | 1,722 / 2,590 | verified, all 4 |
+| c. 12TVL2203-external-transfer-building | same | 4 / 22,291,107 | 13 min 30 s | 1,491 / 1,930 | verified, all 4 |
+
+The 12TVL3302 folders, manifests (`data_use_label`) and `LABEL.txt` say "prospective holdout -- inference only,
+never training". The 12TVL2203 ones say "external transfer -- outside Millcreek estimate". When the queue
+started (21:33), no ArcGIS Pro process was running; later on it was not checked. Tree inference ran faster per
+point than the September 29 tree-full row (90 min for 27 M points, with Pro open). The cause was not tested.
+
+### Disagreement with baseline classes (all files of each row)
+
+Share of each baseline class labelled as the model's target. Per-file tables are in
+`<row>\work\compare-<row>.json` (copied to [dl-experiments-20260930/](dl-experiments-20260930/)).
+
+| Baseline class | 2804 halos tree | 2804 halos building | 3302 tree | 3302 building | 2203 tree | 2203 building |
+|---|---|---|---|---|---|---|
+| 1 unclassified | 0.40% (249) | 0.003% (2) | 0.099% (528) | 0.040% (216) | 0.061% (318) | 0.0004% (2) |
+| 2 ground | 0.033% (201) | 0.0002% (1) | 0.071% (2,081) | 0.085% (2,492) | 0.001% (21) | 0 |
+| 3 low veg | 0.006% (110) | 0.0003% (5) | 0.017% (1,864) | 0.011% (1,189) | 0.001% (86) | 0.00003% (3) |
+| 4 medium veg | 2.89% (6,054) | 0.76% (1,597) | 3.85% (194,522) | 0.076% (3,839) | 3.14% (33,851) | 0.072% (772) |
+| 5 high veg | 98.93% (1,867,805 of 1,888,060) | 1.46% (27,576) | 97.19% (17,595,547 of 18,105,266) | 0.34% (61,700) | 97.15% (4,503,438 of 4,635,738) | 0.46% (21,466) |
+| 6 building | 10.94% (94,672 of 865,044) | 78.69% (680,701) | 10.75% (296,162 of 2,754,231) | 81.01% (2,231,054) | 8.66% (109,911 of 1,269,117) | 70.41% (893,622) |
+| 9 water | – | – | – | – | 0 of 52,066 | 0 |
+| 17 bridge deck | – | – | – | – | 41.4% (224 of 541) | 0 |
+| 20 | – | – | – | – | 0 of 3,157 | 0 |
+| 7 / 18 noise | excluded | excluded | excluded | excluded | excluded | excluded |
+
+The pattern repeats on all three tiles. The tree model calls 97–99% of baseline 5 tree and 9–11% of baseline 6
+tree. The building model calls 70–81% of baseline 6 building and under 1.5% of baseline 5 building. The two
+12TVL3302 halo files with no baseline building (3201, 3301) got no building prediction. **These are disagreement
+counts between two classifiers, not accuracy.** 12TVL3302 results are exploratory use of a prospective holdout;
+it must stay out of any training. 12TVL2203 is external transfer and never part of a Millcreek estimate.
+
+### Row d: height-above-ground Z (tree-hag-z, building-hag-z)
+
+Input: the z-mode HAG copy of the 12TVL2804 core written by another agent's `python -m canopy hag`
+(`hag-20260929\12TVL2804\manifest.json`, status complete, `EXPERIMENTAL_UNVALIDATED`). File
+`points\12TVL2804.las`, MD5 `ee8ad65ec93942740b823f3097c8d288`, unchanged after both rows. Four halo files
+were refused by the HAG writer because they have uncovered points, so row d is **core only**. That is
+the same scope as the September 29 tree-full/building-abs rows, whose core boundary contained the whole core
+file. Each row treated the HAG LAS as its own baseline and was compared by index with it only.
+
+- **Non-Z bytes equal the absolute baseline (verified)** by [dl_hag_check.py](dl_hag_check.py) over all
+  26,982,464 records: every record byte except Z, every header/VLR byte except the Z offset and max/min Z
+  fields, and all trailing bytes are identical. Z differs in every record. Header Z: absolute
+  1232.64–1471.07 m, HAG −128.05–119.34 m. The extremes are noise: all 317 points below −10 m are class 7 and
+  the maximum is class 18, and both classes are excluded from inference. 8,778 points lie below −1 m (3,558
+  class 1, 4,024 class 6, 1,024 class 7, 133 class 2, 39 class 3).
+- The first attempt failed: tree-hag-z **failed after 31 min 10 s of tool time** with
+  `ERROR 999999 … Failed to open file for editing - the file may be read only or write protected.` The HAG
+  writer marks its output read-only and `Copy-Item` kept that attribute on the copy. The queued
+  building-hag-z attempt was stopped by the operator a few minutes in. Both folders are kept as
+  `*-attempt1-readonly` with a note and are not evidence. Fixes: the runner now clears the attribute on each
+  fresh copy (not content, so the MD5 is unaffected), and `dl_run.py` refuses a read-only copy before any record
+  or tool call.
+- Rerun results:
+
+| Row | Tool time | GPU MiB first / peak | Integrity | Called target (vs. September 29 absolute-Z row) |
+|---|---|---|---|---|
+| tree-hag-z | 32 min 10 s | 1,528 / 2,470 | verified | baseline 5: 99.05% (tree-full 98.83%); baseline 6: 11.43% (11.48%); baseline 4: 2.54% (4.58%) |
+| building-hag-z | 16 min 36 s | 1,507 / 1,987 | verified | baseline 6: 83.40% (building-abs 82.64%); baseline 5: 1.50% (1.48%); baseline 4: 0.95% (0.97%) |
+
+- **Paired by point index with the absolute-Z outputs** (valid because non-Z bytes and order are identical):
+
+| Model | Target in both | Absolute-Z only | HAG-Z only | Points changed |
+|---|---|---|---|---|
+| tree (5) | 9,125,277 | 136,586 | 130,487 | 267,073 (0.99% of the tile) |
+| building (6) | 3,680,379 | 38,402 | 69,808 | 108,210 (0.40%) |
+
+  **HAG input changes predictions.** For the building model the change is attributable to Z: on September 29
+  two identical absolute-Z inputs gave byte-identical building outputs. For the tree model, run-to-run
+  reproducibility was never measured, so part of the 267,073 changes could be nondeterminism. Separating Z
+  from nondeterminism would take a repeated absolute tree row. As everywhere else, neither version is shown
+  to be more accurate. The paired record is `hag-z-check\hag-vs-absolute-paired.json`.
 
 ## Fixed experiment matrix (original plan)
 
@@ -164,7 +278,16 @@ dl_run refuses to start while per-user site-packages are enabled). Always use a 
 python reviews/2026-09-29/dl_run.py tree --source BASELINE.las --copy ROOT/tree/EXACT_COPY.las --output-root ROOT --boundary XMIN YMIN XMAX YMAX
 python reviews/2026-09-29/dl_run.py building --source BASELINE.las --copy ROOT/building/EXACT_COPY.las --output-root ROOT --reference-height GROUND.tif --boundary XMIN YMIN XMAX YMAX
 python reviews/2026-09-29/dl_compare.py --original BASELINE.las --manifest tree=ROOT/work/run-tree.json --out NEW_COMPARISON.json
+# multi-file row (core + halos, one LAS dataset, no boundary); one --copy per --source, same order:
+python reviews/2026-09-29/dl_run.py tree --source A.las --copy ROOT/tree/A.las --source B.las --copy ROOT/tree/B.las --output-root ROOT --label "TEXT"
+python reviews/2026-09-29/dl_compare.py --row-manifest tree=ROOT/work/run-tree.json --out NEW_COMPARISON.json
+# product per file, then a full-tile canopy run on the baseline grid:
+python reviews/2026-09-29/dl_product.py --baseline B.las --tree-manifest ROOT/work/run-tree-B.json --tree-compare CMP.json --building-manifest ... --building-compare ... --policy conflict-class --out NEW.las
+python reviews/2026-09-29/dl_product_tile.py --policy tree-wins building-wins conflict-class
 ```
+
+`dl-experiments-20260930/run_row.ps1` does the copy/MD5/dl_run/dl_compare sequence for one row. It clears a
+read-only attribute on fresh copies. `dl_run.py` refuses read-only copies before starting.
 
 Noise 7/18 remains excluded. The raw prediction remains binary; do not overwrite
 it while assembling pipeline inputs. Complete manifests and binary integrity are
@@ -219,6 +342,91 @@ cause diagnostics. Baseline/model classes and rules 64–70 never become truth.
   run. **No accuracy figure exists for this product.** The candidate counts above are not precision or recall.
 - Options for the user: a supplementary full-tile product run on the baseline grid (minutes of CPU; its edge
   tiles would lack the neighbour halos the baseline run had), or a bounded-extent scoring mode in the harness.
+  **Done on September 30 (next section): full-tile product runs on the baseline grid, with the halos inferred.**
+
+### September 30: conflict policies and full-tile product runs (12TVL2804)
+
+**Policies** ([dl_product.py](dl_product.py) `--policy`). They apply to points that both models claim (tree
+5 and building 6). Ground and noise restoration are unchanged.
+
+| Policy | Conflict points become | Effect in `canopy run` |
+|---|---|---|
+| `tree-wins` (September 29 default) | 5 | vegetation: canopy height; not occluded |
+| `building-wins` | 6 | non-canopy and building occlusion (a class-6 first return > 0.35 m above the vegetation return masks that cell) |
+| `conflict-class` | user-definable 64–255, default 65 | **none**: class 65 is not in `VEG_CLASSES` (3;4;5), `NON_CANOPY_CLASSES` (2;6;9;10;11;13–17;20[;0]) or the building layer (6), so these points add no canopy height, no occlusion and **no observation**. A cell whose only first/single returns are conflict points is NoData (unknown), not 0. `canopy run` emits no warning for it (it warns only for 1, or 0 without the flag); `chm.json` lists 65 among the input class codes. No `canopy/` change was needed for this. |
+
+**Inputs:** core = the verified September 29 tree-full and building-abs outputs (core boundary, which contains
+the whole core file). Halos = the verified September 30 halo rows (no boundary). So every point of all 8 files
+went through model inference. `--classified-background-zero` is justified: every class 0 is verified model
+background. The driver is [dl_product_tile.py](dl_product_tile.py) (default Pro python, `PYTHONNOUSERSITE=1`).
+It reads the baseline `run\run.json` parameters and passes them explicitly (extent, tile 200, overlap 15,
+cell 0.5, bands, smoothing 1, min crown 3, clearance 0.35, `z_unit` null). The product `run.json` differs
+from the baseline only in `source_id` (not passed: it names the input points and seeds TREE_IDs; the harness
+matches variant candidates by location) and `classified_background_zero: true`. All 8 prepared baseline files and
+all 16 raw outputs had the same MD5 before and after. Every run's CHM grid equals the baseline grid
+(2000 × 2000, 0.5 m, xmin 428000, ymax 4505000).
+
+Point counts (all 8 files; core alone in brackets). Noise kept 77,809, ground restored 3,259,125, background 0
+14,043,266 in every policy:
+
+| Policy | class 5 | class 6 | class 65 | conflicts |
+|---|---|---|---|---|
+| tree-wins | 11,230,351 [9,261,461] | 3,942,504 [3,311,370] | – | 484,617 [405,870] → 5 |
+| building-wins | 10,745,734 [8,855,591] | 4,427,121 [3,717,240] | – | 484,617 → 6 |
+| conflict-class | 10,745,734 [8,855,591] | 3,942,504 [3,311,370] | 484,617 [405,870] | 484,617 → 65 |
+
+The core tree-wins counts reproduce the September 29 product exactly.
+
+| Run (full tile) | Treetops | within 15 m of tile edge | Crowns | CHM cells ≥ 2 m (m²) | NoData cells | Assemble / LASD stats / `canopy run` |
+|---|---|---|---|---|---|---|
+| baseline (Sept 29 pilot) | 17,389 | 1,127 | 11,661 | 1,170,839 (292,710) | 33,088 | – / – / 4.67 min (pilot timing) |
+| dl tree-wins | 17,728 | 1,148 | 12,790 | 1,239,039 (309,760) | 28,331 | 16.5 s / 2.7 s / 152.7 s |
+| dl building-wins | 14,488 | 979 | 11,311 | 1,160,612 (290,153) | 28,331 | 15.9 s / 2.7 s / 168.8 s |
+| dl conflict-class (65) | 14,697 | 986 | 11,358 | 1,162,474 (290,619) | 50,275 | 16.8 s / 2.3 s / 154.4 s |
+| dl tree-wins, **baseline halos** | 17,728 | 1,148 | 12,790 | 1,239,039 | 28,331 | 14.3 s / 2.4 s / 154.4 s |
+
+Conflict-class leaves 21,944 more cells (5,486 m²) unknown than the other policies. Compared with tree-wins,
+building-wins changes 81,048 cells by more than 0.1 m, and conflict-class changes 59,104 cells plus 21,944
+NoData changes (`chm-differences.txt`). These are product differences, **not accuracy**.
+
+**Harness** (`validation_harness.py score` with `baseline` and the four product runs as `--run` variants,
+30 s): **the grid check passed for every product run.** Its verbatim headline: "No labels yet: 0 of 1468
+reference units are labelled (treetop 0/628, omission 0/300, cell 0/360, crown 0/180). Label the samples in
+ArcGIS Pro, then score again." Every metric cell reads "no labels yet". Its structural counts for 12TVL2804:
+of the 210 sampled baseline treetop candidates, tree-wins keeps 156, building-wins 150 and conflict-class 151.
+Candidates outside the sampling frame (no baseline candidate nearby) number 3,413, 1,199 and 1,301. Sampled
+crowns changed: 9, 6 and 7. The baseline-halo variant is identical to tree-wins. Report
+`validation\scores\20260930-015037`. **No accuracy figure exists for any product.**
+
+### Scoring approaches compared (measured facts, 12TVL2804)
+
+1. **Full tile, inferred halos (recommended, done).** Same grid as the baseline, so the fixed reference and the
+   harness apply unchanged, and every point has model semantics. Cost: 16 min of GPU for the 7 halo files and
+   about 3 min of CPU per policy.
+2. **Full tile, baseline halos (measured).** The CHM is **identical cell for cell** to option 1: 0 of 4,000,000
+   cells changed, in every edge band (0–15, 15–30, 30–50 m and interior). Treetop and crown counts are also
+   identical. The reason is structural. `canopy run` builds each 200 m tile over its 15 m buffer but keeps only
+   the core cells, and every class-dependent surface (vegetation DSM, non-canopy, building occlusion) is binned
+   per cell. Halo points therefore reach the core CHM only through the class-2 ground TIN, and the product
+   restores ground from the baseline in both variants. So for the *CHM product* halo inference changes nothing. It
+   would matter if the ground source or the DSM interpolation changed. `--classified-background-zero` was valid here
+   only because no halo file holds class 0 (checked). The halos also mix semantics: baseline 1/3/4/5/6 next to model
+   0/5/6.
+3. **Bounded-extent scorer (not built; would need a `canopy/validation.py` change).** `run_units` rejects any
+   grid other than the baseline's (lines 584–589). A bounded mode would have to window the baseline grid and
+   restrict every sample to the window. The design is stratified per tile, with populations counted over the
+   whole tile, so a window is a **domain** with unknown per-stratum populations and very few units. The
+   September 29 250 m extent (6.25% of the tile) holds 34 of the tile's 490 reference units: treetop 19,
+   omission 6, cell 5, crown 4 (`reference-units-12TVL2804.json`). That is too few for stratified estimates, and
+   the result would describe the window, not the tile. Edge effects add to this. A bounded `canopy run` recomputes
+   its own 15 m halos inside the tile, and subregion-only inference cuts model blocks at the subregion boundary.
+   43 of the tile's units lie within 15 m of the tile edge.
+
+**Untested edge effect in the inference itself.** The core (September 29) was inferred in a dataset holding
+only the core file, and the halos (September 30) in one holding only the halos. Blocks on both sides of the
+428000/429000 E and 4504000/4505000 N seams therefore lacked cross-seam context. Option 2 shows that halo predictions do not reach the CHM.
+Core predictions near the tile edge do, and a core + halo joint inference (as done for 12TVL3302 and
+12TVL2203) would be needed to measure that. This was not done for 12TVL2804.
 
 The September 23 G: run (~15 returns/m²) and current USGS input (~27 returns/m²)
 are different source/processing realizations. Compare the paired variants on

@@ -1,0 +1,140 @@
+== H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\product-tree-wins\12TVL2804\run  VS  H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\product-tree-wins-baseline-halos\12TVL2804\run
+{
+ "0-15 m": {
+  "cells": 236400,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 0,
+  "canopy_ge_2m_a": 77594,
+  "canopy_ge_2m_b": 77594,
+  "mean_abs_diff_m": 0.0
+ },
+ "15-30 m": {
+  "cells": 229200,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 0,
+  "canopy_ge_2m_a": 77014,
+  "canopy_ge_2m_b": 77014,
+  "mean_abs_diff_m": 0.0
+ },
+ "30-50 m": {
+  "cells": 294400,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 0,
+  "canopy_ge_2m_a": 104154,
+  "canopy_ge_2m_b": 104154,
+  "mean_abs_diff_m": 0.0
+ },
+ "50-inf m": {
+  "cells": 3240000,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 0,
+  "canopy_ge_2m_a": 980277,
+  "canopy_ge_2m_b": 980277,
+  "mean_abs_diff_m": 0.0
+ }
+}
+== H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\product-tree-wins\12TVL2804\run  VS  H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\product-building-wins\12TVL2804\run
+{
+ "0-15 m": {
+  "cells": 236400,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 4263,
+  "canopy_ge_2m_a": 77594,
+  "canopy_ge_2m_b": 73484,
+  "mean_abs_diff_m": 0.0724
+ },
+ "15-30 m": {
+  "cells": 229200,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 4529,
+  "canopy_ge_2m_a": 77014,
+  "canopy_ge_2m_b": 72599,
+  "mean_abs_diff_m": 0.0766
+ },
+ "30-50 m": {
+  "cells": 294400,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 7089,
+  "canopy_ge_2m_a": 104154,
+  "canopy_ge_2m_b": 97208,
+  "mean_abs_diff_m": 0.0943
+ },
+ "50-inf m": {
+  "cells": 3240000,
+  "nodata_changed": 0,
+  "value_changed_gt_0_1m": 65167,
+  "canopy_ge_2m_a": 980277,
+  "canopy_ge_2m_b": 917321,
+  "mean_abs_diff_m": 0.0923
+ }
+}
+== H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\product-tree-wins\12TVL2804\run  VS  H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\product-conflict-class\12TVL2804\run
+{
+ "0-15 m": {
+  "cells": 236400,
+  "nodata_changed": 1102,
+  "value_changed_gt_0_1m": 3161,
+  "canopy_ge_2m_a": 77594,
+  "canopy_ge_2m_b": 73546,
+  "mean_abs_diff_m": 0.0527
+ },
+ "15-30 m": {
+  "cells": 229200,
+  "nodata_changed": 1256,
+  "value_changed_gt_0_1m": 3273,
+  "canopy_ge_2m_a": 77014,
+  "canopy_ge_2m_b": 72664,
+  "mean_abs_diff_m": 0.0542
+ },
+ "30-50 m": {
+  "cells": 294400,
+  "nodata_changed": 1716,
+  "value_changed_gt_0_1m": 5373,
+  "canopy_ge_2m_a": 104154,
+  "canopy_ge_2m_b": 97305,
+  "mean_abs_diff_m": 0.0701
+ },
+ "50-inf m": {
+  "cells": 3240000,
+  "nodata_changed": 17870,
+  "value_changed_gt_0_1m": 47297,
+  "canopy_ge_2m_a": 980277,
+  "canopy_ge_2m_b": 918959,
+  "mean_abs_diff_m": 0.0636
+ }
+}
+== H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\run  VS  H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260930\product-tree-wins\12TVL2804\run
+{
+ "0-15 m": {
+  "cells": 236400,
+  "nodata_changed": 311,
+  "value_changed_gt_0_1m": 29107,
+  "canopy_ge_2m_a": 72845,
+  "canopy_ge_2m_b": 77594,
+  "mean_abs_diff_m": 0.2141
+ },
+ "15-30 m": {
+  "cells": 229200,
+  "nodata_changed": 231,
+  "value_changed_gt_0_1m": 27123,
+  "canopy_ge_2m_a": 72477,
+  "canopy_ge_2m_b": 77014,
+  "mean_abs_diff_m": 0.1953
+ },
+ "30-50 m": {
+  "cells": 294400,
+  "nodata_changed": 322,
+  "value_changed_gt_0_1m": 37030,
+  "canopy_ge_2m_a": 97704,
+  "canopy_ge_2m_b": 104154,
+  "mean_abs_diff_m": 0.2014
+ },
+ "50-inf m": {
+  "cells": 3240000,
+  "nodata_changed": 3893,
+  "value_changed_gt_0_1m": 376950,
+  "canopy_ge_2m_a": 927813,
+  "canopy_ge_2m_b": 980277,
+  "mean_abs_diff_m": 0.2138
+ }
+}

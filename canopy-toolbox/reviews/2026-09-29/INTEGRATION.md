@@ -56,6 +56,24 @@ A tree-full product copy completed a bounded 250 m `canopy run`. The harness cou
 See [DEEP_LEARNING.md](DEEP_LEARNING.md) and [MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md). Independent
 human census/labels are still pending.
 
+**Update, September 30 (overnight queue).** More inference ran on this machine, all verified by the per-file
+integrity gate:
+
+- the seven 12TVL2804 halo files (tree and building);
+- 12TVL3302 core + halos, labelled "prospective holdout -- inference only, never training";
+- 12TVL2203 core + halos, labelled "external transfer -- outside Millcreek estimate";
+- a HAG-Z row on the 12TVL2804 core, whose baseline differs from the absolute one only in Z. Its building
+  predictions changed for 108,210 points.
+
+No prepared file of the three tiles holds class 0. `dl_product.py` now offers three conflict policies. Full-tile
+12TVL2804 product runs on the baseline grid passed the harness grid check (runtime about 3 min each), and the harness
+reports 0 of 1468 units labelled. So there is still **no model accuracy measurement**. Halo classification proved
+irrelevant to the CHM product: cell-for-cell identical with baseline or inferred halos. Details are in
+[MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md#september-30-conflict-policies-and-full-tile-product-runs-12tvl2804).
+12TVL3302 must still stay out of all fine-tuning. After the GPU work, the full ArcGIS Pro Python suite
+(default `arcgispro-py3`, `PYTHONNOUSERSITE=1`) passed **360 tests in 527.169 s** with one skip
+(`canopy-toolbox/scratch/dl-suite-20260930.txt`). The count includes tests other agents added to the branch overnight.
+
 ## Final verification
 
 The complete ArcGIS Pro Python suite passed **271 tests in 451.298 seconds**,

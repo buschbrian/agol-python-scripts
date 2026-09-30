@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "job": "building",
+  "started_utc": "2026-09-30T03:47:13Z",
+  "class_mode": "EDIT_ALL",
+  "output_classes": [
+    0,
+    6
+  ],
+  "excluded_class_codes": [
+    7,
+    18
+  ],
+  "boundary": null,
+  "boundary_inclusion": "inclusive rectangle",
+  "epsg": 6341,
+  "batch_size": 1,
+  "python": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\python.exe",
+  "runtime_isolation": {
+    "PYTHONNOUSERSITE": "1",
+    "site_ENABLE_USER_SITE": false,
+    "user_site": null,
+    "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+    "allow_user_site_override": false,
+    "scope": "calling interpreter; the tool's own worker processes are not inspected"
+  },
+  "data_use_label": "12TVL2804 halo files only; core inferred separately on 2026-09-29",
+  "model": {
+    "path": "H:\\lidar\\models\\building_point_classification.dlpk",
+    "bytes": 6112278,
+    "sha256": "854bd59ee4626244897641b224ceb77dda017a7008756a888c361b6d553d2ef6"
+  },
+  "files": [
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2703.las",
+        "bytes": 2572108,
+        "sha256": "21bd96bb09576b5793b3cab142a0004f2acb226b2cd0c670ad12e84a0e290f5d"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2703.las",
+        "bytes": 2572108,
+        "sha256": "21bd96bb09576b5793b3cab142a0004f2acb226b2cd0c670ad12e84a0e290f5d"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\work\\run-building-12TVL2703.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2703.las",
+        "bytes": 2572108,
+        "sha256": "6c0de9858d25892b849859583b3b5131623e08c7e055eaeae161b45bcbb59b22"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2704.las",
+        "bytes": 53853148,
+        "sha256": "2eb884e7d0936c01f1ff3daec1bdd0f8a8334fa5ddba85e5789d19e3c50835e5"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2704.las",
+        "bytes": 53853148,
+        "sha256": "2eb884e7d0936c01f1ff3daec1bdd0f8a8334fa5ddba85e5789d19e3c50835e5"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\work\\run-building-12TVL2704.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2704.las",
+        "bytes": 53853148,
+        "sha256": "1eef62d29779b62c53a4df0a24821ecef289627c933c2fe3f60869a3e52884c9"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2705.las",
+        "bytes": 3379558,
+        "sha256": "ed5d2a68a3e63120c92d719e3230d634682c006e93dbbebd655b9d58820b0abb"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2705.las",
+        "bytes": 3379558,
+        "sha256": "ed5d2a68a3e63120c92d719e3230d634682c006e93dbbebd655b9d58820b0abb"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\work\\run-building-12TVL2705.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2705.las",
+        "bytes": 3379558,
+        "sha256": "a73fec469b77135e4237f7d2c70ec693797d1c4322b881ebddee7e69731e5106"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2803.las",
+        "bytes": 40144858,
+        "sha256": "bcaad567eb1745bbfb65532a24035760d3b88a74d52f82aa6acf54db14d240e2"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2803.las",
+        "bytes": 40144858,
+        "sha256": "bcaad567eb1745bbfb65532a24035760d3b88a74d52f82aa6acf54db14d240e2"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\work\\run-building-12TVL2803.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2803.las",
+        "bytes": 40144858,
+        "sha256": "0c40280b23bf43515bdde10ab4f17b6cde4775805ffe5a86e5c6f7654cc6795a"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2805.las",
+        "bytes": 44955508,
+        "sha256": "1859349f52a4a1a5a7f3d1018451a3cbbc0e629d80e9a4f3013429b60f51bb59"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2805.las",
+        "bytes": 44955508,
+        "sha256": "1859349f52a4a1a5a7f3d1018451a3cbbc0e629d80e9a4f3013429b60f51bb59"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\work\\run-building-12TVL2805.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2805.las",
+        "bytes": 44955508,
+        "sha256": "d7dbd95430d7ab520c19ae40afdbd909459d47eea7d476353fe69ad328600d4c"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2904.las",
+        "bytes": 21283618,
+        "sha256": "f123907c821144bd42686efc6452fb14bcb92794622a1059908894a59278aea2"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2904.las",
+        "bytes": 21283618,
+        "sha256": "f123907c821144bd42686efc6452fb14bcb92794622a1059908894a59278aea2"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\work\\run-building-12TVL2904.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2904.las",
+        "bytes": 21283618,
+        "sha256": "908b4a346b164bfe40d0e5309581d8f5c9885d8528137b7c2594672c9e355aaa"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2905.las",
+        "bytes": 939838,
+        "sha256": "be6ccff9db3b91f91c5fc8e985d10ce53294e29918fc43a71416a70ab4ad3c2d"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2905.las",
+        "bytes": 939838,
+        "sha256": "be6ccff9db3b91f91c5fc8e985d10ce53294e29918fc43a71416a70ab4ad3c2d"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\work\\run-building-12TVL2905.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2905.las",
+        "bytes": 939838,
+        "sha256": "1ebeac758e06ce8ae02dcf6ea17c64362192cd34af0b6baa41bd971dc4aa2ade"
+      }
+    }
+  ],
+  "arcgis": {
+    "LicenseLevel": "Advanced",
+    "InstallDir": "c:\\program files\\arcgis\\pro\\",
+    "Installer": "Brian",
+    "ProductName": "ArcGISPro",
+    "Version": "3.7.2",
+    "SourceDir": "C:\\Users\\Brian\\AppData\\Local\\Microsoft\\Windows\\INetCache\\ArcGISUpdate\\ArcGISPro\\esrisoftware.esri.com\\",
+    "InstallType": "N/A",
+    "BuildNumber": "1901",
+    "InstallDate": "9/25/2026",
+    "InstallTime": "7:45:33",
+    "SPNumber": "N/A",
+    "SPBuild": "N/A",
+    "LicenseType": "Named User"
+  },
+  "package_provenance": {
+    "torch": {
+      "version": "2.9.1",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\torch\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "arcgis": {
+      "version": "2.4.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\arcgis\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "numpy": {
+      "version": "2.3.5",
+      "module_version": "2.3.5",
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\numpy\\__init__.py",
+      "loaded": true,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "scipy": {
+      "version": "1.16.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\scipy\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    }
+  },
+  "packages": {
+    "torch": "2.9.1",
+    "arcgis": "2.4.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "lasd": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\building.lasd",
+  "package_provenance_after": {
+    "torch": {
+      "version": "2.9.1",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\torch\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "arcgis": {
+      "version": "2.4.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\arcgis\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "numpy": {
+      "version": "2.3.5",
+      "module_version": "2.3.5",
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\numpy\\__init__.py",
+      "loaded": true,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "scipy": {
+      "version": "1.16.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\scipy\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    }
+  },
+  "elapsed_seconds": 284.0,
+  "gpu_used_mib_first_sample": 1450,
+  "gpu_used_mib_peak": 1913,
+  "messages": "Start Time: Tuesday, September 29, 2026 9:47:21 PM\nGPU 0 - NVIDIA GeForce RTX 3060 Laptop GPU is being used for this operation.\nBatch size 1 was used for model \"H:\\lidar\\models\\building_point_classification.dlpk\".\nSucceeded at Tuesday, September 29, 2026 9:51:57 PM (Elapsed Time: 4 minutes 36 seconds)"
+}

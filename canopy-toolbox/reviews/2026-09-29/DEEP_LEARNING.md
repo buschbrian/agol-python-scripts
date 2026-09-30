@@ -1,5 +1,9 @@
 # Esri deep-learning second opinion: status 2026-09-29
 
+Update, September 30: an overnight queue added the 12TVL2804 halos, 12TVL3302 and 12TVL2203 (core + halos),
+and a HAG-Z row. Every row verified. Full-tile product runs for three conflict policies were scored by the harness,
+which reports no labels yet. See [September 30 queue](#september-30-queue-overnight).
+
 Short version (updated late on September 29): the user authorized inference, reversing the earlier
 "keep the environment, defer inference" decision. After Pro's per-user active environment was switched to the
 deep-learning clone, Classify Point Cloud Using Trained Model ran. All four rows of the
@@ -153,6 +157,32 @@ harness refused to score it ("Run grid differs from reference baseline for 12TVL
 full-tile baseline grid. The reference sample has **no labels yet (0 of 1468 units)**. No accuracy figure exists.
 Details and options are in [MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md#september-29-product-run-tree-full).
 
+### September 30 queue (overnight)
+
+With inference authorized for more tiles, a sequential queue ran on this machine (one GPU job at a time, clone
+python with `PYTHONNOUSERSITE=1`, fresh exact copies, per-file MD5 before and after). Every row used one LAS
+dataset over several files and no boundary. Every row passed the integrity gate file by file. Details and
+tables are in [MODEL_EXPERIMENTS.md](MODEL_EXPERIMENTS.md#september-30-queue-halos-holdout-transfer-overnight-2026-092930).
+
+| Row | Files / points | Tool time (tree / building) | GPU peak MiB (tree / building) | Headline disagreement |
+|---|---|---|---|---|
+| a. 12TVL2804 halos | 7 / 5.57 M | 11 min 13 s / 4 min 36 s | 2,363 / 1,913 | tree: 98.9% of b5, 10.9% of b6; building: 78.7% of b6 |
+| b. 12TVL3302, prospective holdout -- inference only, never training | 8 / 40.3 M | 1 h 8 min 19 s / 26 min 15 s | 2,629 / 2,139 | tree: 97.2% of b5, 10.8% of b6; building: 81.0% of b6 |
+| c. 12TVL2203, external transfer -- outside Millcreek estimate | 4 / 22.3 M | 30 min 19 s / 13 min 30 s | 2,590 / 1,930 | tree: 97.1% of b5, 8.7% of b6; building: 70.4% of b6 |
+| d. 12TVL2804 core, HAG Z (own baseline) | 1 / 27.0 M | 32 min 10 s / 16 min 36 s | 2,470 / 1,987 | vs absolute Z by index: tree 267,073 points changed, building 108,210 |
+
+- No class-0 point exists in any prepared file (core or halo) of the three tiles; checked by full scan.
+- Row d's HAG baseline differs from the absolute baseline only in Z (verified over every byte). The first row d
+  attempt failed with "Failed to open file for editing - the file may be read only or write protected" because
+  the copy kept the HAG file's read-only attribute. That attempt is kept and labelled. The runner and `dl_run.py`
+  now handle and refuse this case.
+- Building predictions change with HAG Z. Building inference had been byte-reproducible for identical input, so
+  this is a Z effect. The tree reproducibility is unmeasured.
+- Full-tile product runs for three conflict policies (tree-wins, building-wins, conflict class 65) are on the
+  baseline grid, and the harness accepted them. It reports 0 of 1468 units labelled, so **no accuracy
+  exists**. The halo classes proved irrelevant to the CHM: baseline-halo and inferred-halo products are cell-for-cell
+  identical.
+
 ### Point-record integrity gate
 
 The comparator checks every point-record byte in bounded chunks, including return
@@ -195,12 +225,15 @@ repository whitespace check.
 
 ## Files
 
-- `dl_run.py`: runner for the tool, with runtime-isolation checks and provenance.
-- `dl_compare.py`: guarded comparison script.
+- `dl_run.py`: runner for the tool, with runtime-isolation checks and provenance. It handles multi-file rows
+  (row manifest plus per-file schema-1 manifests) and `--label`, and refuses read-only copies.
+- `dl_compare.py`: guarded comparison script; `--row-manifest` compares every file of a row with its own baseline.
 - `dl_thin.py`: whole-pulse thinning into a new baseline. `dl_reference_height.py`: class-2 ground raster built
   from copies.
-- `dl_product.py`: documented product copy from verified outputs (never a raw output).
-- `dl-experiments-20260929/`: manifests, comparisons, logs and a record of the row runner.
+- `dl_product.py`: documented product copy from verified outputs (never a raw output), with conflict policies
+  `tree-wins`, `building-wins` and `conflict-class`. `dl_product_tile.py`: full-tile product runs on the baseline grid.
+- `dl_hag_check.py`: verifies that a HAG baseline differs from its absolute baseline only in Z, and pairs predictions by index.
+- `dl-experiments-20260929/`, `dl-experiments-20260930/`: manifests, comparisons, logs and the row runners.
 - Model manifest: `H:\lidar\models\models.json`.
 
 These are model outputs, not accuracy. Disagreement with the baseline classes is not error, because the
