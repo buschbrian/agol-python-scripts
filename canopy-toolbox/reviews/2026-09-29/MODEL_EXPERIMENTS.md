@@ -231,9 +231,45 @@ file. Each row treated the HAG LAS as its own baseline and was compared by index
 
   **HAG input changes predictions.** For the building model the change is attributable to Z: on September 29
   two identical absolute-Z inputs gave byte-identical building outputs. For the tree model, run-to-run
-  reproducibility was never measured, so part of the 267,073 changes could be nondeterminism. Separating Z
-  from nondeterminism would take a repeated absolute tree row. As everywhere else, neither version is shown
+  reproducibility had not been measured when this row ran. The later [step b repeat](#step-b-tree-reproducibility)
+  shows that most of the 267,073 tree changes appear with no change to the input, so they cannot be attributed to
+  Z. As everywhere else, neither version is shown
   to be more accurate. The paired record is `hag-z-check\hag-vs-absolute-paired.json`.
+
+### Step b: tree reproducibility
+
+The September 30 handoff asked for a repeat of the absolute-Z tree row, because row d's 267,073 changed tree
+points could not be attributed to Z without it. The repeat (`tree-abs-repeat`) ran on the A4000 office workstation
+(i9-13900K, RTX A4000 16 GB, driver 616.92, Pro 3.7 deep-learning clone, PyTorch 2.9.1 CUDA 12.9), one GPU job
+alone, batch 1. It used the same file (the absolute 12TVL2804 core, MD5 `82787095…80FC`), the same boundary
+(`428000 4504000 429000 4505000`) and the same tree model as the September 29 `tree-full` row. It took
+1,312.4 s of tool time (22.1 min for the row). Integrity verified; the baseline and watch file hashes were unchanged.
+Queue and comparer: [queue_tree_repeat.ps1](../2026-09-30/queue_tree_repeat.ps1),
+[repeat_compare.py](../2026-09-30/repeat_compare.py). The pairing uses the same `paired_predictions` as the HAG-Z
+pairing, and it reproduced that pairing's published counts exactly when checked on the `tree-full` and `tree-hag-z`
+outputs.
+
+| Pairing by point index (tree model, target class 5) | Tree in both | First only | Second only | Points changed |
+|---|---:|---:|---:|---:|
+| `tree-abs-repeat` vs `tree-full`: same input, no Z change | 9,143,073 | 118,790 | 119,063 | **237,853 (0.88%)** |
+| `tree-hag-z` vs `tree-full`: Z replaced by height above ground | 9,125,277 | 136,586 | 130,487 | 267,073 (0.99%) |
+
+- **The tree model is not reproducible.** Two runs of identical input produced different outputs
+  (not byte-identical, 237,853 of 26,982,464 points differ in the tree/not-tree call).
+- **Most of row d's tree difference is not attributable to Z.** 237,853 of the 267,073 changed points (89%)
+  appear without any change to the input. Even if the two effects simply added, at most about 29,000 points
+  (0.1% of the tile) could be a Z effect, and they need not add. The building model stays different: it was
+  byte-reproducible on identical input, so its 108,210 changes are a Z effect.
+- **Limit of this result.** It is one repeat, and it crosses machines: `tree-full` and `tree-hag-z` ran on the
+  laptop, the repeat on the workstation. So 237,853 combines run-to-run noise with any difference between the two
+  machines' GPU, driver and library versions. It is an upper bound on same-machine noise, not a measurement of it.
+  A second repeat on the workstation (`tree-abs-repeat2`) measures that, and a batch-8 row (`tree-abs-batch8`,
+  handoff step d) is read against it. Their results are added below when they finish.
+- Nothing here says either version of the tree output is more accurate; no labels exist yet.
+
+Result record: [tree-repeat/repeat1-vs-tree-full.json](../2026-09-30/tree-repeat/repeat1-vs-tree-full.json)
+(paths inside it are the workstation's `D:` paths). Full outputs are on the lidar disk under
+`experiments-20260930\tree-abs-repeat`.
 
 ## Fixed experiment matrix (original plan)
 

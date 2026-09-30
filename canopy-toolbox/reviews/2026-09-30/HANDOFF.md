@@ -104,6 +104,8 @@ a. **Rerun 12TVL3006** (about 55 min on the laptop). Rename
 b. **Tree reproducibility.** Repeat the absolute-Z tree row on the 12TVL2804 core (about 32 min).
    Without it, the 267k tree-point differences between HAG-Z and absolute Z can't be
    attributed to Z. Building outputs are already known to be deterministic.
+   **Done September 30 on the workstation:** the tree model is not reproducible (237,853 points changed on
+   identical input); see [MODEL_EXPERIMENTS.md](../2026-09-29/MODEL_EXPERIMENTS.md#step-b-tree-reproducibility).
 
 c. **Remaining training candidates.** 2603, 2703, 3005, 3105, 3106, 3304 and 3305 passed the
    selection rules. CPU prepare and run take about 6 min per tile; then tree and building inference.

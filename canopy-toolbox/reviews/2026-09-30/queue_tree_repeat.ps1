@@ -1,14 +1,18 @@
 # Step b of the September 30 handoff: repeat the absolute-Z tree row on the 12TVL2804 core.
-#   pwsh -NoProfile -File queue_tree_repeat.ps1 [-WaitPid 1234]
+#   pwsh -NoProfile -File queue_tree_repeat.ps1 [-WaitPid 1234] [-Row NAME] [-CompareWith PRIOR.las] [-Extra ARGS] [-Note TEXT]
 # Same file, boundary, model and batch size as experiments-20260929\tree-full, so any difference from it is
-# run-to-run nondeterminism of the tree model. One GPU job at a time: with -WaitPid it first waits for that process
+# run-to-run nondeterminism of the tree model (plus any difference between the machines that made the two).
+# -Row names another row (for example a second repeat, or a batch-size row with -Extra '--batch','8'; a later
+# --batch overrides run_row's --batch 1), -CompareWith picks the earlier output to pair with (default: the
+# September 29 tree-full output), and -Note replaces the row label. One GPU job at a time: with -WaitPid it first waits for that process
 # (for example the 12TVL3006 run_training_gpu.ps1) to exit, then for three consecutive minutes with no DL Python
 # running. The row runs through dl-experiments-20260930\run_row.ps1 (fresh exact copy, MD5 before/after, dl_compare
 # integrity), then repeat_compare.py pairs its output with the September 29 tree-full output by point index.
 # Logs to experiments-20260930\repeat-queue.log (not queue.log, whose 'GPU QUEUE DONE' marker other scripts read).
 # Asks Windows not to sleep while it runs (SetThreadExecutionState, ends with this process; no settings changed).
 # Root: CANOPY_LIDAR_ROOT (default H:\lidar). Paths and overrides as in run_row.ps1.
-param([int]$WaitPid = 0)
+param([int]$WaitPid = 0, [string]$Row = 'tree-abs-repeat', [string]$CompareWith = '', [string[]]$Extra = @(),
+      [string]$Note = '')
 Add-Type -Namespace Win -Name Power -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint f);'
 [void][Win.Power]::SetThreadExecutionState([uint32]2147483649)   # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
 $ErrorActionPreference = 'Stop'
@@ -21,7 +25,6 @@ $ABS = "$P\12TVL2804\prepared\points\12TVL2804.las"
 $TB = if ($env:CANOPY_TOOLBOX) { $env:CANOPY_TOOLBOX } else { (Resolve-Path "$PSScriptRoot\..\..").Path }
 $VENV = if ($env:CANOPY_VENV_PYTHON) { $env:CANOPY_VENV_PYTHON } else { Join-Path (Split-Path $TB -Parent) '.venv\Scripts\python.exe' }
 $RUNNER = "$TB\reviews\2026-09-29\dl-experiments-20260930\run_row.ps1"
-$Row = 'tree-abs-repeat'
 $log = "$E\repeat-queue.log"
 function QLog($m) { $line = "$(Get-Date -Format o) $m"; Add-Content -Path $log -Value $line; Write-Output $line }
 
@@ -37,22 +40,25 @@ while ($quiet -lt 3) {
   if ($quiet -lt 3) { Start-Sleep -Seconds 60 }
 }
 if (Test-Path "$E\$Row") { QLog "ABORT: $E\$Row already exists"; exit 4 }
-$label = 'Step b reproducibility: repeat of September 29 tree-full (absolute Z, 12TVL2804 core, batch 1); compare by index with experiments-20260929\tree-full only'
+$label = if ($Note) { $Note } else { 'Step b reproducibility: repeat of September 29 tree-full (absolute Z, 12TVL2804 core, batch 1); compare by index with experiments-20260929\tree-full only' }
 QLog "row $Row start"
 $t0 = Get-Date
 $global:LASTEXITCODE = 0
 try {
-  & $RUNNER -Row $Row -Job tree -Sources @($ABS) -Label $label -Boundary 428000,4504000,429000,4505000 -Root $E *>> "$E\$Row.runner.log"
+  & $RUNNER -Row $Row -Job tree -Sources @($ABS) -Label $label -Boundary 428000,4504000,429000,4505000 -Root $E -Extra $Extra *>> "$E\$Row.runner.log"
   $status = "exit $LASTEXITCODE"
 } catch { $status = "error: $($_.Exception.Message)" }
 QLog "row $Row $status after $([math]::Round(((Get-Date) - $t0).TotalMinutes, 1)) min"
 $rowJson = "$E\$Row\work\row.json"
 $r = $null
 if (Test-Path $rowJson) { $r = Get-Content $rowJson -Raw | ConvertFrom-Json; QLog "row status: $($r.status)" }
-$new = "$E\$Row\tree\12TVL2804.las"; $old = "$E29\tree-full\tree\12TVL2804.las"
+$new = "$E\$Row\tree\12TVL2804.las"
+$old = if ($CompareWith) { $CompareWith } else { "$E29\tree-full\tree\12TVL2804.las" }
+$oldRow = Split-Path (Split-Path (Split-Path $old -Parent) -Parent) -Leaf     # ...\<row>\tree\12TVL2804.las
+$pairFile = "$E\$Row\repeat-vs-$oldRow.json"
 if ((Test-Path $new) -and $r -and $r.status -like 'complete*') {
   $ErrorActionPreference = 'Continue'
-  & $VENV -B "$PSScriptRoot\repeat_compare.py" $old $new "$E\$Row\repeat-vs-tree-full.json" *> "$E\$Row\repeat-compare.log"
-  QLog "repeat comparison exit $LASTEXITCODE (see $E\$Row\repeat-vs-tree-full.json)"
+  & $VENV -B "$PSScriptRoot\repeat_compare.py" $old $new $pairFile *> "$E\$Row\repeat-compare.log"
+  QLog "repeat comparison exit $LASTEXITCODE (see $pairFile)"
 } else { QLog 'repeat comparison skipped: row did not complete' }
 QLog 'step b done'
