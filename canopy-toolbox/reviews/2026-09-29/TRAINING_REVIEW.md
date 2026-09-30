@@ -397,3 +397,16 @@ above).
    72–75, and SHRUB_LOW_VEG maps to 3. Adjust, or plan `class_remap`.
 6. **Tile-wide NAIP.** Fetch a verified four-band NAIP export of 12TVL2804 before any
    imagery training export.
+
+## Decision recorded September 30, 2026: a label covers only the returns in the unit's patch
+
+The training export gives a unit's label to every point inside its 1 m patch and height slab. A blind audit of the triage
+(TRIAGE.md in `reviews/2026-09-30`) found labels that named something beside the patch or in the imagery (two VEHICLE labels
+with no vehicle in the lidar within 3 m, a POLE and a WALL that lie outside the slab). Decision by the project owner: **label only
+the returns in the patch**; where the interesting object is beside the patch, label what is in the patch or use UNSURE or MIXED.
+Object-level labels (which would need a segmentation step) were not chosen.
+
+- The checklist states the rule. `reviews/2026-09-30/label_consistency.py` flags labels the patch's own points cannot support
+  (a VEHICLE whose patch reaches 0.3 m, a roof 1 m off the ground). The first run flagged 7 of the 58 labels then saved
+  (Q3-0002, Q6-0008, Q6-0019, Q2-0060, Q6-0119, Q6-0147, Q6-0148) for a second look, and none of the 23 roofs or 11 grounds.
+- Labels made before this decision are not assumed wrong; the flags ask a person to look again.

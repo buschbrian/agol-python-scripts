@@ -1,7 +1,7 @@
 # Training-label checklist (ArcGIS Pro)
 
-For the person labelling the 1,065 training units on 12TVL2804. You are saying what the lidar returns at a spot
-**are** (tree, roof, wall...). This is training data only. It is never used to score the model, and the tool will
+For the person labelling the 1,065 training units on 12TVL2804. You are saying what the lidar returns **inside the yellow
+circle and height slab** are (tree, roof, wall...), and nothing beyond them. This is training data only. It is never used to score the model, and the tool will
 refuse any spot that is too close to an evaluation sample. Background: [TRAINING_REVIEW.md](../2026-09-29/TRAINING_REVIEW.md).
 
 ## Before you start (once per session)
@@ -55,6 +55,18 @@ Only unlabelled units are visible by default, so a selection cannot reach finish
 Skipping a unit is fine. Use **MIXED** (the slab clearly holds two classes) or **UNSURE** (you can't tell) rather
 than guessing. Both are kept but not used for training.
 
+### The rule: label only the returns in the patch
+
+The training export gives your label to exactly the points inside the yellow circle and between Z low and Z high. So:
+
+- **Label what those points are, even when something more interesting is beside the circle.** A car, pole or wall next to
+  the circle does not make the circle's points VEHICLE, POLE or WALL. Label what is *in* the circle (often GROUND or
+  SHRUB_LOW_VEG, lawn included), or use **UNSURE** or **MIXED**.
+- **Imagery is a hint from a different date.** A vehicle in the imagery may not be in the lidar at all. Judge from the points
+  and the cross-section.
+- **Labels are checked against the patch afterwards** (`label_consistency.py`): for example a VEHICLE whose patch tops out at
+  0.3 m above ground is flagged for a second look. Flags never change a label.
+
 | Label | Use it when every return in the slab is... |
 |---|---|
 | TREE | woody tree: crown, branches or trunk (branches over a roof count) |
@@ -67,6 +79,13 @@ than guessing. Both are kept but not used for training.
 | VEHICLE / WATER | car, truck, trailer / pool, pond, stream |
 
 **Imagery usable** (optional): YES only if you can see and identify the object in the imagery. Leave blank if unsure.
+
+## Re-check flagged labels
+
+`python reviews/2026-09-30/label_consistency.py NEW_FOLDER` lists labels that the patch's points cannot support and writes
+`recheck-select.txt`. Labelled units are hidden by default, so first set the *Training units* layer's definition query to
+*Labelled (check answers)*, then **Select By Attributes** with that line. To change a label, run **Label Training Unit** with
+**Replace** ticked (under Advanced). Flagged does not mean wrong, and unflagged does not mean right.
 
 ## Save your work to the repo (every session, and every ~50 units)
 
