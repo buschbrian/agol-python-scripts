@@ -1,0 +1,17 @@
+diff --git a/myria3d/pctl/datamodule/hdf5.py b/myria3d/pctl/datamodule/hdf5.py
+index b1dd36e..8da8d94 100644
+--- a/myria3d/pctl/datamodule/hdf5.py
++++ b/myria3d/pctl/datamodule/hdf5.py
+@@ -188,8 +188,10 @@ class HDF5LidarDataModule(LightningDataModule):
+         return GeometricNoneProofDataloader(
+             dataset=self.predict_dataset,
+             batch_size=self.batch_size,
+-            num_workers=1,  # always 1 because this is an iterable dataset
+-            prefetch_factor=self.prefetch_factor,
++            # Windows starts workers by pickling the transforms, and TargetTransform holds a local lambda that cannot
++            # be pickled. An iterable dataset runs fine in the main process, so no worker is used (prefetch must be None).
++            num_workers=0,
++            prefetch_factor=None,
+         )
+ 
+     def _visualize_graph(self, data, color=None):
