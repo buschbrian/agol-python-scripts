@@ -32,8 +32,41 @@ geodatabase, and the source tile is never modified. The disk with the tile (`D:\
 Myria3D's sample cloud (`tests\data\toy_dataset_src\862000_6652000.classified_toy_dataset.100mx100m.las`, 116,147 points) runs in 1.6 s on the
 A4000: output has `PredictedClassification` (classes 1, 2, 5, 6, 9, 64, 65) and `entropy` (mean 0.34). That proves the pipeline, not accuracy.
 
-## Not done yet
-Run on the colourised crop/tile of 12TVL2804 (needs the SSD), then cross-tab against `triage-2/triage-proposals.csv` and the human labels.
+## Repeat runner (October 7)
+
+`repeat.py` runs three to five independent GPU passes, records input/model/code
+hashes and logs, verifies every original LAS dimension by point index, and writes
+a new `consensus.las`. It requires a colorized EPSG:6341 point-format-8 input,
+the Myria3D environment and `PYTHONNOUSERSITE=1`. Choose a new output directory:
+
+```bat
+set PYTHONNOUSERSITE=1
+%USERPROFILE%\tools\envs\myria3d\python.exe reviews\2026-09-30\fractal\repeat.py COLORIZED.las NEW_RUN_DIRECTORY --repeats 3
+```
+
+The consensus preserves the input Classification and adds `MajorityClassification`,
+`RepeatAgreement`, `RepeatTie` and `StrictMajority`. A tied vote has code 0 and
+`RepeatTie=1`; a unique plurality with less than half the votes is explicitly
+distinguished from a strict majority. RepeatAgreement measures consistency, not
+calibrated confidence or accuracy. Failed integrity checks leave a partial file
+and a failed manifest, never a completed consensus. `predict.bat` now returns
+nonzero for missing inputs/environments and preserves the inference exit code.
+
+The first real local pilot used the existing 350 m 12TVL2804 prepared crop
+(428075–428425 E, 4504075–4504425 N), colorized with NAIP 2024, without the SSD.
+All 1,824,463 points passed the source-dimension and point-order checks across
+three A4000 runs. Pairwise agreement was 98.92–98.95%; 1,795,941 points were
+unanimous (98.44%), and 1,044 had three-way ties. Individual model calls took
+about 14–15 seconds, excluding interpreter startup. This establishes execution
+and repeat consistency for this crop, not classification accuracy or full-tile
+performance. Outputs and manifests are in the October 7 chat's local artifact
+folder, outside git. The source crop and colorized input were unchanged.
+
+## Still to do
+
+Run full tiles and the paired NAIP 2021/2024 experiment when the SSD returns.
+Prespecify the class mapping before comparing consensus with
+`triage-2/triage-proposals.csv` and human labels; the label packet is on the SSD.
 
 ## It is not deterministic (measured October 1)
 Four runs of the toy cloud (three GPU, one CPU) agree on only **90.8% to 92.4%** of points, pair by pair, and CPU against GPU is no worse

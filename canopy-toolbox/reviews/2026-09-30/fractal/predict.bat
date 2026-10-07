@@ -11,8 +11,10 @@ if not defined FRACTAL_TOOLS set "FRACTAL_TOOLS=%USERPROFILE%\tools"
 set "TOOLS=%FRACTAL_TOOLS%"
 if not defined FRACTAL_GPUS set "FRACTAL_GPUS=[0]"
 set "ENV=%TOOLS%\envs\myria3d"
-if "%~2"=="" (echo Usage: predict.bat INPUT.las OUTPUT_DIR [overrides] & goto :end)
-if not exist "%~f1" (echo No such file: %~f1 & goto :end)
+if "%~2"=="" (echo Usage: predict.bat INPUT.las OUTPUT_DIR [overrides] & exit /b 2)
+if not exist "%~f1" (echo No such file: %~f1 & exit /b 2)
+if not exist "%ENV%\python.exe" (echo No model environment: %ENV% & exit /b 2)
+if not exist "%TOOLS%\myria3d\run.py" (echo No Myria3D checkout: %TOOLS%\myria3d & exit /b 2)
 set "PYTHONNOUSERSITE=1"
 set "PATH=%ENV%;%ENV%\Library\bin;%ENV%\Scripts;%PATH%"
 set "SRC=%~f1"
@@ -21,5 +23,5 @@ shift
 shift
 cd /d "%TOOLS%\myria3d"
 "%ENV%\python.exe" run.py task.task_name=predict "predict.src_las=%SRC%" "predict.output_dir=%OUT%" "predict.gpus=%FRACTAL_GPUS%" datamodule.epsg=6341 datamodule.batch_size=10 datamodule.num_workers=0 datamodule.prefetch_factor=null model.num_workers=0 predict.interpolator.probas_to_save=all %1 %2 %3 %4 %5 %6 %7 %8 %9
-:end
-endlocal
+set "RESULT=%ERRORLEVEL%"
+endlocal & exit /b %RESULT%
