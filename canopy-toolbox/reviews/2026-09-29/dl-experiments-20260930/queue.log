@@ -1,0 +1,26 @@
+2026-09-29T21:35:38.7211342-06:00 queue start: 12TVL2804-halo-tree, 12TVL2804-halo-building, 12TVL3302-prospective-holdout-inference-only-tree, 12TVL3302-prospective-holdout-inference-only-building, 12TVL2203-external-transfer-tree, 12TVL2203-external-transfer-building
+2026-09-29T21:35:38.7307627-06:00 row 12TVL2804-halo-tree start
+2026-09-29T21:47:10.2796567-06:00 row 12TVL2804-halo-tree exit 0 after 11.5 min
+2026-09-29T21:47:10.2806680-06:00 row 12TVL2804-halo-building start
+2026-09-29T21:52:03.8717040-06:00 row 12TVL2804-halo-building exit 0 after 4.9 min
+2026-09-29T21:52:03.8724964-06:00 row 12TVL3302-prospective-holdout-inference-only-tree start
+2026-09-29T23:01:01.1037821-06:00 row 12TVL3302-prospective-holdout-inference-only-tree exit 0 after 69 min
+2026-09-29T23:01:01.1045543-06:00 row 12TVL3302-prospective-holdout-inference-only-building start
+2026-09-29T23:27:50.4008836-06:00 row 12TVL3302-prospective-holdout-inference-only-building exit 0 after 26.8 min
+2026-09-29T23:27:50.4018915-06:00 row 12TVL2203-external-transfer-tree start
+2026-09-29T23:58:35.9073294-06:00 row 12TVL2203-external-transfer-tree exit 0 after 30.8 min
+2026-09-29T23:58:35.9080458-06:00 row 12TVL2203-external-transfer-building start
+2026-09-30T00:12:30.0747788-06:00 row 12TVL2203-external-transfer-building exit 0 after 13.9 min
+2026-09-30T00:12:30.0754586-06:00 queue done
+2026-09-30T00:13:27.8041796-06:00 HAG non-Z byte check exit 0
+2026-09-30T00:13:27.8150073-06:00 row tree-hag-z start
+2026-09-30T00:45:00.5076540-06:00 row tree-hag-z exit 7 after 31.5 min
+2026-09-30T00:45:00.5085314-06:00 row building-hag-z start
+2026-09-30T00:46:23.8923852-06:00 row building-hag-z stopped by the operator after about 5 min: tree-hag-z had failed with 'Failed to open file for editing - the file may be read only' because Copy-Item kept the HAG source's ReadOnly attribute; the same copy setup would fail. Attempt folders renamed *-attempt1-readonly; row d rerun with the attribute cleared on copies.
+2026-09-30T00:46:41.0321179-06:00 HAG non-Z byte check exit 0
+2026-09-30T00:46:41.0456733-06:00 row tree-hag-z start
+2026-09-30T01:19:16.7511802-06:00 row tree-hag-z exit 0 after 32.6 min
+2026-09-30T01:19:16.7519663-06:00 row building-hag-z start
+2026-09-30T01:36:19.7930099-06:00 row building-hag-z exit 0 after 17.1 min
+2026-09-30T01:36:27.5190383-06:00 HAG paired prediction check exit 0
+2026-09-30T01:36:27.5202258-06:00 GPU QUEUE DONE

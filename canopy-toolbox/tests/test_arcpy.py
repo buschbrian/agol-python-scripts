@@ -50,6 +50,13 @@ class ArcGISRegression(unittest.TestCase):
                 cursor.insertRow([geometry,key])
         return path
 
+    def test_invalid_building_method_is_rejected_before_output(self):
+        from canopy import preparation
+        output = self.root/"invalid_building_method"
+        with self.assertRaisesRegex(ValueError, "Building method"):
+            preparation.prepare(self.root, output, (0, 0, 1, 1), building_method="UNKNOWN")
+        self.assertFalse(output.exists())
+
     def test_cone_crown_contains_all_137_cells_and_input_unchanged(self):
         yy,xx=np.indices((21,21))
         array=np.maximum(0,12-np.hypot(yy-10,xx-10)*1.5)
@@ -116,6 +123,36 @@ class ArcGISRegression(unittest.TestCase):
             self.assertEqual(float(arcpy.management.GetCellValue(outputs["chm"],xy)[0]),0.0)
         self.assertEqual(float(arcpy.management.GetCellValue(outputs["chm"],"500001.5 4500003.5")[0]),10.0)
 
+    def test_chm_requires_fresh_las_statistics(self):
+        from tests.las_fixture import write_las
+        las=self.root/"unstatted.las";write_las(las)
+        lasd=str(self.root/"unstatted.lasd")
+        arcpy.management.CreateLasDataset(str(las),lasd,spatial_reference=self.sr,
+                                          compute_stats="NO_COMPUTE_STATS")
+        with self.assertRaisesRegex(ValueError,"statistics are missing or stale"):
+            rasters.build_chm(lasd,str(self.root),cell_size=1,prefix="unstatted_",z_unit="metres")
+    def test_model_class_zero_background_is_observed_only_when_declared(self):
+        import struct
+        from tests.las_fixture import write_las
+        las=self.root/"model_background.las";write_las(las)
+        data=bytearray(las.read_bytes())
+        for position in range(227,len(data),20):
+            x,y,z=struct.unpack_from("<iii",data,position)
+            if (x,y,z)==(500,500,10000):
+                data[position+15]=1  # Remove direct ground from this cell.
+            elif (x,y,z)==(500,500,11500):
+                data[position+15]=0  # Model-predicted background.
+        las.write_bytes(data)
+        lasd=str(self.root/"model_background.lasd")
+        arcpy.management.CreateLasDataset(str(las),lasd,spatial_reference=self.sr,compute_stats="COMPUTE_STATS")
+        ordinary=rasters.build_chm(lasd,str(self.root),cell_size=1,prefix="ordinary_",z_unit="metres")
+        modeled=rasters.build_chm(lasd,str(self.root),cell_size=1,prefix="model_",z_unit="metres",
+                                  classified_background_zero=True)
+        xy="500005.5 4500005.5"
+        self.assertEqual(float(arcpy.management.GetCellValue(ordinary["observed"],xy)[0]),0)
+        self.assertEqual(float(arcpy.management.GetCellValue(modeled["observed"],xy)[0]),1)
+        self.assertEqual(float(arcpy.management.GetCellValue(modeled["chm"],xy)[0]),0)
+
     def test_las_without_vegetation_is_observed_noncanopy(self):
         from tests.las_fixture import write_las
         las=str(self.root/"ground_only.las");write_las(las,vegetation=False)
@@ -174,6 +211,25 @@ class ArcGISRegression(unittest.TestCase):
         with self.assertRaises(ValueError):
             pipeline.run(lasd,str(self.root/"too_large"),[500000,4500000,502001,4502001],
                          cell_size=1,source_files=[las])
+
+    def test_runner_rejects_incomplete_preparation_even_with_explicit_sources(self):
+        import json
+        from canopy import pipeline
+        from tests.las_fixture import write_las
+        # This class shares a workspace. Keep a deliberate failed manifest away
+        # from the runner inputs used by the other tests.
+        fixture_root = self.root / "incomplete_preparation"
+        fixture_root.mkdir()
+        las = fixture_root / "prepared_input.las"
+        write_las(str(las))
+        lasd = fixture_root / "prepared_input.lasd"
+        arcpy.management.CreateLasDataset(str(las), str(lasd), spatial_reference=self.sr)
+        (fixture_root / "preparation.json").write_text(json.dumps({
+            "status": "failed", "working_lasd": str(lasd)}))
+        with self.assertRaisesRegex(ValueError, "Preparation is not complete"):
+            pipeline.run(str(lasd), str(fixture_root / "must_not_run"),
+                         [500000, 4500000, 500010, 4500010], source_files=[str(las)])
+        self.assertFalse((fixture_root / "must_not_run").exists())
 
     def test_upper_building_surface_occludes_lower_vegetation_but_preserves_overhang(self):
         import struct

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "running",
+  "job": "building",
+  "started_utc": "2026-09-30T06:45:07Z",
+  "class_mode": "EDIT_ALL",
+  "output_classes": [
+    0,
+    6
+  ],
+  "excluded_class_codes": [
+    7,
+    18
+  ],
+  "boundary": null,
+  "boundary_inclusion": "inclusive rectangle",
+  "epsg": 6341,
+  "batch_size": 1,
+  "python": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\python.exe",
+  "runtime_isolation": {
+    "PYTHONNOUSERSITE": "1",
+    "site_ENABLE_USER_SITE": false,
+    "user_site": null,
+    "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+    "allow_user_site_override": false,
+    "scope": "calling interpreter; the tool's own worker processes are not inspected"
+  },
+  "data_use_label": "HAG z-mode baseline (hag-20260929); compare by index with the HAG baseline only",
+  "model": {
+    "path": "H:\\lidar\\models\\building_point_classification.dlpk",
+    "bytes": 6112278,
+    "sha256": "854bd59ee4626244897641b224ceb77dda017a7008756a888c361b6d553d2ef6"
+  },
+  "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\hag-20260929\\12TVL2804\\points\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "e5bae965bc9a23dea380bace138df14c942f65a15917ce318a5f16216aef00ba"
+  },
+  "input": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\building-hag-z\\building\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "e5bae965bc9a23dea380bace138df14c942f65a15917ce318a5f16216aef00ba"
+  }
+}

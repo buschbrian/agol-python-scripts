@@ -1,0 +1,26 @@
+{
+  "changed": 0,
+  "blank": 743,
+  "unchanged": 0,
+  "usable": 0,
+  "unsure": 0,
+  "status": "DRY_RUN",
+  "reference": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\validation\\reference.gdb",
+  "frame_digest": "291bf4d578ab2deda4c050da5ada5b750159f88e5f111d15e97dfafa92010a76",
+  "worksheet": {
+    "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\09\\29\\01a0eed4-e40e-7762-9845-97159217cf5b\\reference-review-batch1\\labels.csv",
+    "bytes": 65956,
+    "sha256": "3bcbb26aaad658afb038acfa86e7edcc3bd64983a76d7c158b96cb7ec92d1b9d"
+  },
+  "packet": {
+    "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\09\\29\\01a0eed4-e40e-7762-9845-97159217cf5b\\reference-review-batch1\\packet.json",
+    "bytes": 36592,
+    "sha256": "46f705642151fff338459c442cce44617bbb8b779d3ddde1e64136997b35c959"
+  },
+  "replace_existing": false,
+  "created": "2026-09-29T15:17:20.309960",
+  "reference_unchanged": true,
+  "reference_state_sha256": "1ad09a732243ae246073b9cdc09c1c546dfb8880cb0e7b3fcf5978a4be8acb25",
+  "reference_units": 1468,
+  "reference_labelled": 0
+}

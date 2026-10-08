@@ -1,0 +1,542 @@
+[
+  {
+    "case": 0,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 1,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 2,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 3,
+    "category": "PRIVATE",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 4,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 5,
+    "category": "PRIVATE",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 6,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 7,
+    "category": "PRIVATE",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 8,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 9,
+    "category": "PRIVATE",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 10,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 11,
+    "category": "PRIVATE",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 12,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 13,
+    "category": "PRIVATE",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 14,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 15,
+    "category": "PRIVATE",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 16,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 17,
+    "category": "PRIVATE",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 18,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 19,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 20,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 21,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 22,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 23,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 24,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 25,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 26,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 27,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 28,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 29,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 30,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 31,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 4,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 32,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 33,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 4,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 34,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 35,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 4,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 36,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 37,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 4,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 38,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 39,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 4,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 40,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 41,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 42,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 43,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 44,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 45,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 46,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 47,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 4,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 48,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 49,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 50,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 51,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 52,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 53,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 54,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 55,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 56,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 57,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 2,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 58,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 59,
+    "category": "OWNERSHIP_CONFLICT",
+    "parcel_matches": 3,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 60,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 61,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 62,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 63,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 64,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 65,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 66,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 67,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 68,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 69,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 70,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 71,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 72,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 73,
+    "category": "PUBLIC_GOVERNMENT",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 74,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 75,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 76,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 77,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 78,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 79,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 80,
+    "category": "UNKNOWN_OWNER",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 81,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 82,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 83,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 84,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 85,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 86,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 87,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 88,
+    "category": "NO_PARCEL",
+    "parcel_matches": 0,
+    "arcgis_exact_match": true
+  },
+  {
+    "case": 89,
+    "category": "PRIVATE",
+    "parcel_matches": 1,
+    "arcgis_exact_match": true
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "base": "run",
+  "new": "run-refined",
+  "cell_m": 0.5,
+  "canopy_threshold_m": 2.0,
+  "treetops": [
+    17389,
+    17285
+  ],
+  "crowns": [
+    11661,
+    11647
+  ],
+  "canopy_m2": [
+    292709.75,
+    292244.25
+  ],
+  "canopy_removed_m2": 465.5,
+  "canopy_added_m2": 0.0,
+  "cells_changed": 2143,
+  "heights_increased": 0,
+  "nodata_changed": 0
+}

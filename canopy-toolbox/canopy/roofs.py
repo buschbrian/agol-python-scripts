@@ -1,5 +1,10 @@
 """Optional roof-edge refinement on new LAS copies, with auditable roof models.
 
+Two methods share one audit trail (new LAS copies, previous class bytes, manifest):
+- plane (refine): one low-slope plane per rasterized roof region; suits flat commercial roofs.
+- local (refine_local): local roof faces from nearby class-6 points (roof_surface.py); suits
+  gabled and hipped roofs.
+
 Derived polygons describe rasterized roof support, not surveyed wall footprints.
 Height gates reduce lateral clipping of nearby vegetation, but do not prove class.
 """
@@ -8,40 +13,27 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import shutil
-import struct
+import time
 
 import arcpy
 import numpy as np
 from scipy import ndimage
 
-from . import common, preparation, rasters
+from . import las_records, common, preparation, rasters, roof_surface
 from .tiling import Extent, snap_extent
 
+# Plane mode: ArcGIS roof/ground rasters and a distance transform over the review AOI.
 MAX_CELLS = 4_000_000
+# Local mode needs no ArcGIS rasters, only a 0.5 m NumPy prefilter grid (low/high roof Z). Its
+# memory is dominated by class-6 support and per-block candidates, not by cells. Measured peak
+# RSS on the 1.1 km prepared pilot tiles (4.84 M cells) is in reviews/2026-09-29/ROOF_SURFACE.md.
+# The guard allows a 1.25 km square (1 km tile plus 125 m buffer); larger AOIs need a new measurement.
+LOCAL_PREFILTER_CELL = .5
+LOCAL_MAX_CELLS = 6_250_000
 
 
 def _records(path, mode="r"):
-    info = preparation.header(path)
-    fmt = info["format"]
-    if not 0 <= fmt <= 10:
-        raise ValueError("Unsupported LAS point format")
-    modern = fmt >= 6
-    with open(path, "rb") as handle:
-        head = handle.read(227)
-    scale = np.array(struct.unpack_from("<3d", head, 131))
-    offset = np.array(struct.unpack_from("<3d", head, 155))
-    if not np.isfinite(scale).all() or not (scale > 0).all() or not np.isfinite(offset).all():
-        raise ValueError("LAS scales and offsets must be finite; scales must be positive")
-    if info["offset"] + info["points"]*info["record_length"] > Path(path).stat().st_size:
-        raise ValueError("Truncated LAS point records")
-    dtype = np.dtype({
-        "names": ["x", "y", "z", "flags", "classification"],
-        "formats": ["<i4", "<i4", "<i4", "u1", "u1"],
-        "offsets": [0, 4, 8, 15, 16 if modern else 15],
-        "itemsize": info["record_length"],
-    })
-    points = np.memmap(path, dtype=dtype, offset=info["offset"], shape=(info["points"],), mode=mode)
-    return points, scale, offset, modern
+    return las_records.records(path, mode)[:4]
 
 
 def _models(roof, ground, cell, xmin, ymax, min_area):
@@ -139,18 +131,7 @@ def _classify_copy(path, regions, models, cell, xmin, ymax, edge_distance, below
     return counts
 
 
-def refine(prepared_lasd, output_folder, cell_size=.5, edge_distance=1.0, below_roof=.35, above_roof=3.0,
-           min_roof_area=25.0):
-    """Fit supported low-slope roofs, then refine eligible vegetation on new point files.
-
-    Experimental opt-in: retain an unchanged input, per-point change logs, model
-    diagnostics, and polygons for visual inspection before accepting the result.
-    """
-    for value, label in [(cell_size, "Cell size"), (min_roof_area, "Minimum roof area")]:
-        common.positive(value, label)
-    for value, label in [(edge_distance, "Roof edge distance"), (below_roof, "Below-roof tolerance"),
-                         (above_roof, "Above-roof tolerance")]:
-        common.positive(value, label, allow_zero=True)
+def _check_input(prepared_lasd, output_folder):
     input_root = Path(prepared_lasd).resolve().parent
     manifest = input_root/"preparation.json"
     if not manifest.is_file():
@@ -166,7 +147,29 @@ def refine(prepared_lasd, output_folder, cell_size=.5, edge_distance=1.0, below_
     files = sorted((input_root/"points").glob("*.las"))
     if not files:
         raise ValueError("Prepared point files were not found")
-    inputs = [preparation.header(path) for path in files]
+    return manifest, previous, destination, files, [preparation.header(path) for path in files]
+
+
+def _inputs_unchanged(inputs):
+    for row in inputs:
+        stat = Path(row["path"]).stat()
+        if (stat.st_size, stat.st_mtime_ns) != (row["bytes"], row["mtime_ns"]):
+            raise RuntimeError("Input working LAS changed during refinement")
+
+
+def refine(prepared_lasd, output_folder, cell_size=.5, edge_distance=1.0, below_roof=.35, above_roof=3.0,
+           min_roof_area=25.0):
+    """Fit supported low-slope roofs, then refine eligible vegetation on new point files.
+
+    Experimental opt-in: retain an unchanged input, per-point change logs, model
+    diagnostics, and polygons for visual inspection before accepting the result.
+    """
+    for value, label in [(cell_size, "Cell size"), (min_roof_area, "Minimum roof area")]:
+        common.positive(value, label)
+    for value, label in [(edge_distance, "Roof edge distance"), (below_roof, "Below-roof tolerance"),
+                         (above_roof, "Above-roof tolerance")]:
+        common.positive(value, label, allow_zero=True)
+    manifest, previous, destination, files, inputs = _check_input(prepared_lasd, output_folder)
     sr = common.metric_reference(arcpy.Describe(str(prepared_lasd)).spatialReference)
     info = rasters.audit(str(prepared_lasd))
     if not info["has_building"] or not info["has_ground"]:
@@ -255,10 +258,186 @@ def refine(prepared_lasd, output_folder, cell_size=.5, edge_distance=1.0, below_
         arcpy.management.CreateLasDataset([str(p) for p in copied_root.glob("*.las")], output_lasd,
                                           spatial_reference=sr, compute_stats="COMPUTE_STATS")
         state["after"] = {p.name: preparation.class_counts(p) for p in copied_root.glob("*.las")}
-        for row in inputs:
-            stat = Path(row["path"]).stat()
-            if (stat.st_size, stat.st_mtime_ns) != (row["bytes"], row["mtime_ns"]):
-                raise RuntimeError("Input working LAS changed during refinement")
+        _inputs_unchanged(inputs)
+        state["status"] = "complete"
+    except Exception as exc:
+        state["status"] = "failed"; state["error"] = str(exc)
+        raise
+    finally:
+        common.write_json(out_manifest, state)
+    return state
+
+
+RETURN_TYPES = ("single", "first_of_many", "intermediate", "last_of_many")
+
+
+def _return_type(return_byte, modern):
+    """0 single, 1 first of many, 2 intermediate, 3 last of many (number > count counts as last)."""
+    number = return_byte & (15 if modern else 7)
+    count = (return_byte >> 4) if modern else ((return_byte >> 3) & 7)
+    return np.where(count <= 1, 0, np.where(number <= 1, 1, np.where(number < count, 2, 3)))
+
+
+def _load_support(paths, block=2_000_000):
+    """Class-6 first/single returns (not withheld, synthetic or overlap) from read-only files."""
+    parts, chunk = [], None
+    for path in paths:
+        points, scale, offset, modern = _records(path, "r")
+        for start in range(0, len(points), block):
+            chunk = points[start:start+block]
+            codes = chunk["classification"] if modern else chunk["classification"] & 31
+            first, _ = roof_surface.return_masks(chunk["returns"], modern)
+            keep = np.flatnonzero((codes == 6) & first & roof_surface.clean_flags(chunk["flags"], modern))
+            parts.append(np.column_stack([chunk[axis][keep]*scale[i]+offset[i] for i, axis in enumerate("xyz")]))
+        del points, chunk
+    return np.concatenate(parts) if parts else np.zeros((0, 3))
+
+
+def _classify_local_copy(path, tree, support_z, gradient, face_status, low, high, xmin, ymax, cell,
+                         parameters, audit_path, block=2_000_000):
+    """Change only classification bytes of eligible points voted onto a local roof face.
+
+    Eligible: parameters["eligible_classes"] (a subset of 3/4/5), any return, not withheld,
+    synthetic or overlap. Returns counts by previous class and return type, and writes per-point
+    previous class bytes and diagnostics.
+    """
+    p = parameters
+    points, scale, offset, modern = _records(path, "r+")
+    audit = {key: [] for key in ("point_index", "previous_class_byte", "residual_m", "votes",
+                                 "faces", "support", "nearest_roof_m")}
+    counts = {"eligible": 0, "evaluated": 0, "with_roof_support": 0, "changed": 0,
+              "changed_by_class": {"3": 0, "4": 0, "5": 0},
+              "changed_by_return": dict.fromkeys(RETURN_TYPES, 0)}
+    chunk = None
+    for start in range(0, len(points), block):
+        chunk = points[start:start+block]
+        codes = chunk["classification"] if modern else chunk["classification"] & 31
+        eligible = np.flatnonzero(np.isin(codes, p["eligible_classes"]) & roof_surface.clean_flags(chunk["flags"], modern))
+        counts["eligible"] += len(eligible)
+        xyz = np.column_stack([chunk[axis][eligible]*scale[i]+offset[i] for i, axis in enumerate("xyz")])
+        near = roof_surface.prefilter(xyz, low, high, xmin, ymax, cell, p["below_roof_m"], p["above_roof_m"],
+                                      2*p["radius_m"]+roof_surface.INTERIOR_REACH_M, p["max_face_slope"])
+        eligible, xyz = eligible[near], xyz[near]
+        counts["evaluated"] += len(eligible)
+        result = roof_surface.evaluate(tree, support_z, gradient, face_status, xyz, p["radius_m"],
+                                       p["neighbors"], p["below_roof_m"], p["above_roof_m"])
+        counts["with_roof_support"] += int((result["support"] > 0).sum())
+        chosen = roof_surface.select(result, p["min_votes"])
+        selected = eligible[chosen]
+        if not selected.size:
+            continue
+        previous = chunk["classification"][selected].copy()
+        old = previous if modern else previous & 31
+        for code in (3, 4, 5):
+            counts["changed_by_class"][str(code)] += int((old == code).sum())
+        kinds = np.bincount(_return_type(chunk["returns"][selected], modern), minlength=4)
+        for name, value in zip(RETURN_TYPES, kinds):
+            counts["changed_by_return"][name] += int(value)
+        chunk["classification"][selected] = 6 if modern else (previous & 224) | 6
+        counts["changed"] += len(selected)
+        audit["point_index"].append(selected.astype(np.int64)+start)
+        audit["previous_class_byte"].append(previous)
+        audit["residual_m"].append(result["residual"][chosen])
+        audit["votes"].append(result["votes"][chosen])
+        audit["faces"].append(result["faces"][chosen])
+        audit["support"].append(result["support"][chosen])
+        audit["nearest_roof_m"].append(result["nearest"][chosen])
+    points.flush()
+    del points, chunk
+    empty = {"point_index": np.int64, "previous_class_byte": np.uint8, "residual_m": np.float32,
+             "votes": np.uint8, "faces": np.uint8, "support": np.uint8, "nearest_roof_m": np.float32}
+    np.savez_compressed(audit_path, **{key: np.concatenate(value) if value else np.array([], dtype=empty[key])
+                                       for key, value in audit.items()})
+    return counts
+
+
+def refine_local(prepared_lasd, output_folder, radius=1.0, neighbors=16, min_neighbors=6, min_votes=3,
+                 below_roof=.35, above_roof=.5, max_fit_rmse=.15, max_slope=1.5, classes=(4, 5)):
+    """Reclassify eligible vegetation-class points that lie on a local roof face, on NEW LAS copies.
+
+    Experimental opt-in for gabled and hipped roofs (see roof_surface.py). A point changes to
+    class 6 only when at least `min_votes` nearby class-6 roof faces, extended to it, place it
+    between `below_roof` below and `above_roof` above the roof. Overhanging canopy above that
+    band and lower vegetation below it are unchanged. Canopy level with a roof edge is not
+    distinguished from the roof; inspect before accepting.
+
+    Class 3 (at most 0.5 m above ground) is not eligible by default: it never reaches the CHM,
+    and in it the band mostly matched lawn or paving beside class-6 points at ground level.
+    """
+    roof_surface.check_parameters(radius, neighbors, min_neighbors, min_votes, below_roof, above_roof,
+                                  max_fit_rmse, max_slope)
+    classes = sorted({int(code) for code in classes})
+    if not classes or not set(classes) <= {3, 4, 5}:
+        raise ValueError("Eligible classes must be a non-empty subset of 3, 4 and 5")
+    manifest, previous, destination, files, inputs = _check_input(prepared_lasd, output_folder)
+    sr = common.metric_reference(arcpy.Describe(str(prepared_lasd)).spatialReference)
+    if not rasters.audit(str(prepared_lasd))["has_building"]:
+        raise ValueError("Local roof refinement needs classified buildings (class 6)")
+    cell = LOCAL_PREFILTER_CELL
+    bounds = snap_extent(Extent(*previous["extent"]), cell)
+    shape = (round(bounds.height/cell), round(bounds.width/cell))
+    if shape[0]*shape[1] > LOCAL_MAX_CELLS:
+        raise ValueError(f"Local roof refinement supports at most {LOCAL_MAX_CELLS:,} prefilter cells "
+                         f"({cell} m) per prepared AOI")
+    parameters = {"method": "local_surface", "radius_m": radius, "neighbors": neighbors,
+                  "min_face_neighbors": min_neighbors, "min_votes": min_votes, "below_roof_m": below_roof,
+                  "above_roof_m": above_roof, "max_face_rmse_m": max_fit_rmse, "max_face_slope": max_slope,
+                  "face_trim": "one refit without residuals beyond clip(3*1.4826*MAD, 0.15, 0.5) m",
+                  "face_anchors": "interior class-6 support, eroded by 0.5 m plus 0.5 m grid uncertainty; fitted intercept retained",
+                  "interior_cell_m": roof_surface.INTERIOR_CELL_M,
+                  "interior_margin_m": roof_surface.INTERIOR_MARGIN_M,
+                  "roof_support": "class 6, first or single returns, not withheld/synthetic/overlap, all input files",
+                  "eligible_classes": classes, "eligible": "listed classes, all returns, not withheld/synthetic/overlap",
+                  "iterative": False, "prefilter_cell_m": cell}
+    destination.mkdir(parents=True)
+    output_lasd = str(destination/"prepared.lasd")
+    state = {"status": "modeling", "working_lasd": output_lasd, "extent": list(bounds),
+             "source_id": previous["source_id"], "sources": previous.get("sources", []),
+             "input_preparation": str(manifest), "input_files": inputs, "runtime": common.runtime(),
+             "parameters": parameters, "quality_status": "EXPERIMENTAL_UNVALIDATED", "seconds": {}}
+    out_manifest = destination/"preparation.json"
+    common.write_json(out_manifest, state)
+    try:
+        clock = time.perf_counter()
+        # Support comes from the unchanged inputs, so a reclassified point never becomes support.
+        support = _load_support(files)
+        if not len(support):
+            raise ValueError("No class-6 first/single returns were found")
+        tree = roof_surface.build_tree(support)
+        support_z = support[:, 2].copy()
+        state["seconds"]["support"] = round(time.perf_counter()-clock, 1); clock = time.perf_counter()
+        gradient, face_rmse, face_status = roof_surface.faces(tree, support_z, radius, neighbors, min_neighbors,
+                                                              max_fit_rmse, max_slope)
+        state["seconds"]["faces"] = round(time.perf_counter()-clock, 1); clock = time.perf_counter()
+        ok = face_status == roof_surface.FACE_OK
+        slope = np.hypot(gradient[ok, 0], gradient[ok, 1])
+        state["roof_faces"] = {
+            "support_points": int(len(support)),
+            "status": {name: int((face_status == code).sum()) for code, name in roof_surface.FACE_STATUS.items()},
+            "ok_slope_percentiles": dict(zip(("p10", "p50", "p90", "p99"),
+                                             np.round(np.percentile(slope, [10, 50, 90, 99]), 3).tolist()))
+                                    if slope.size else None,
+            "ok_rmse_median_m": round(float(np.median(face_rmse[ok])), 4) if slope.size else None}
+        del face_rmse, slope, ok
+        low, high = roof_surface.envelope(support, bounds.xmin, bounds.ymax, cell, shape,
+                                         2*radius+roof_surface.INTERIOR_REACH_M)
+        del support
+        common.write_json(out_manifest, state)
+        copied_root = destination/"points"; copied_root.mkdir()
+        audit_root = destination/"changes"; audit_root.mkdir()
+        state["before"], state["changed_points"] = {}, {}
+        for path in files:
+            copy = copied_root/path.name
+            shutil.copy2(path, copy)
+            state["before"][path.name] = preparation.class_counts(copy)
+            state["changed_points"][path.name] = _classify_local_copy(
+                copy, tree, support_z, gradient, face_status, low, high, bounds.xmin, bounds.ymax, cell,
+                parameters, audit_root/(path.stem+".npz"))
+        state["seconds"]["classify"] = round(time.perf_counter()-clock, 1)
+        arcpy.management.CreateLasDataset([str(p) for p in copied_root.glob("*.las")], output_lasd,
+                                          spatial_reference=sr, compute_stats="COMPUTE_STATS")
+        state["after"] = {p.name: preparation.class_counts(p) for p in copied_root.glob("*.las")}
+        _inputs_unchanged(inputs)
         state["status"] = "complete"
     except Exception as exc:
         state["status"] = "failed"; state["error"] = str(exc)

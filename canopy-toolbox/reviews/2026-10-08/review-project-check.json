@@ -1,0 +1,147 @@
+{
+  "project": "D:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20260929\\training_review.aprx",
+  "maps": [
+    {
+      "name": "Training review",
+      "type": "MAP",
+      "layers": [
+        {
+          "name": "Training units",
+          "broken": false
+        },
+        {
+          "name": "Lidar all returns (elevation stretch; classes hidden)",
+          "broken": false
+        },
+        {
+          "name": "Training patches (label = returns inside, Z_LOW..Z_HIGH)",
+          "broken": false
+        },
+        {
+          "name": "Training domain (allowed patch centres)",
+          "broken": false
+        },
+        {
+          "name": "Excluded: evaluation units + buffer (never label here)",
+          "broken": false
+        },
+        {
+          "name": "Esri World Imagery (visual reference only; record capture date)",
+          "broken": false
+        },
+        {
+          "name": "World Imagery",
+          "broken": false
+        },
+        {
+          "name": "Low Resolution 15m Imagery",
+          "broken": false
+        },
+        {
+          "name": "High Resolution 60cm Imagery",
+          "broken": false
+        },
+        {
+          "name": "High Resolution 30cm Imagery",
+          "broken": false
+        },
+        {
+          "name": "Citations",
+          "broken": false
+        },
+        {
+          "name": "1.9cm Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "3.7cm Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "7.5cm Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "15cm Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "30cm Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "60cm Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "1.2m Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "2.4m Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "4.8m Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "9.6m Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "19m Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "38m Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "75m Resolution Metadata",
+          "broken": false
+        },
+        {
+          "name": "150m Resolution Metadata",
+          "broken": false
+        }
+      ]
+    },
+    {
+      "name": "Training review 3D",
+      "type": "SCENE",
+      "layers": [
+        {
+          "name": "Training units",
+          "broken": false
+        },
+        {
+          "name": "Lidar all returns (3D, at most 1,500,000 points drawn)",
+          "broken": false
+        },
+        {
+          "name": "Training patches (label = returns inside, Z_LOW..Z_HIGH)",
+          "broken": false
+        },
+        {
+          "name": "Excluded: evaluation units + buffer (never label here)",
+          "broken": false
+        }
+      ]
+    }
+  ],
+  "toolboxes": [
+    {
+      "alias": null,
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20260929\\Blank.atbx",
+      "exists": true
+    },
+    {
+      "alias": null,
+      "path": "U:\\agol-python-scripts\\canopy-toolbox\\TrainingReview.pyt",
+      "exists": true
+    }
+  ],
+  "patch_stats_present": true,
+  "interpretation": "Data connections and project structure only; map following, dialogs and warnings require a live Pro session."
+}

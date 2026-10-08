@@ -1,0 +1,4 @@
+tile,step,status,start,minutes,peak_rss_gb
+12TVL2804,reconcile-buildings,ok,2026-09-29T14:15:16,3.33,4.13
+12TVL3302,reconcile-buildings,ok,2026-09-29T14:18:35,3.07,6.29
+12TVL2203,reconcile-buildings,ok,2026-09-29T14:21:39,2.06,2.8

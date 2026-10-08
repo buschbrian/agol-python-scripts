@@ -20,6 +20,7 @@ def main(argv=None):
     prepare.add_argument("--extent",type=float,nargs=4,required=True,metavar=("XMIN","YMIN","XMAX","YMAX"))
     prepare.add_argument("--max-vegetation-height",type=float,default=80)
     prepare.add_argument("--classify-noise",action="store_true")
+    prepare.add_argument("--building-method",choices=("CONSERVATIVE","STANDARD","AGGRESSIVE"),default="STANDARD")
     prepare.add_argument("--roof-tolerance",type=float,default=3,help="Metres above detected roofs assigned building class; inspect tree overhangs")
     run=commands.add_parser("run",help="Build tiled CHM, then detect and segment one AOI (maximum 4 million cells)")
     run.add_argument("lasd");run.add_argument("output");run.add_argument("--extent",type=float,nargs=4,required=True)
@@ -29,13 +30,35 @@ def main(argv=None):
     run.add_argument("--source-files",nargs="+");run.add_argument("--source-id")
     run.add_argument("--building-clearance",type=float,default=.35,help="Measured building-above-vegetation separation for same-cell occlusion, in metres")
     run.add_argument("--resume",action="store_true");run.add_argument("--z-metres",action="store_true")
+    run.add_argument("--classified-background-zero",action="store_true",help="Declare class 0 to be model-classified non-canopy; never use for unclassified delivery points")
     refine=commands.add_parser("refine-roofs",help="Experimental roof-edge correction on NEW prepared LAS copies")
     refine.add_argument("lasd");refine.add_argument("output")
-    refine.add_argument("--cell-size",type=float,default=.5)
-    refine.add_argument("--edge-distance",type=float,default=1)
+    refine.add_argument("--method",choices=("plane","local"),default="plane")
+    refine.add_argument("--cell-size",type=float)
+    refine.add_argument("--edge-distance",type=float)
     refine.add_argument("--below-roof",type=float,default=.35)
-    refine.add_argument("--above-roof",type=float,default=3)
-    refine.add_argument("--min-roof-area",type=float,default=25)
+    refine.add_argument("--above-roof",type=float)
+    refine.add_argument("--min-roof-area",type=float)
+    refine.add_argument("--radius",type=float)
+    refine.add_argument("--neighbors",type=int)
+    refine.add_argument("--min-neighbors",type=int)
+    refine.add_argument("--min-votes",type=int)
+    refine.add_argument("--max-fit-rmse",type=float)
+    refine.add_argument("--max-slope",type=float)
+    refine.add_argument("--classes",type=int,nargs="+",choices=(3,4,5))
+    gate=commands.add_parser("shape-gate",help="Experimental wall/pole/wire shape evidence: review LAS copies by default; --apply writes a NEW prepared copy")
+    gate.add_argument("lasd");gate.add_argument("output")
+    gate.add_argument("--extent",type=float,nargs=4,metavar=("XMIN","YMIN","XMAX","YMAX"),help="Gated extent inside the prepared extent (default: all of it)")
+    gate.add_argument("--apply",action="store_true",help="Move rule-selected class 3/4/5 points to class 1 in a new prepared dataset")
+    gate.add_argument("--classes",type=int,nargs="+",choices=(3,4,5),help="Classes --apply may change (default 4 5)")
+    gate.add_argument("--min-wall-height",type=float,default=.7,help="Metres above the pipeline DTM a wall_like point needs; lower wall-shaped points are low_wall, review only (default 0.7)")
+    hag=commands.add_parser("hag",help="Height-above-ground LAS copies in a NEW folder: Z replaced by HAG (z), an Extra Bytes HAG attribute (extrabytes), or both")
+    hag.add_argument("lasd");hag.add_argument("output")
+    hag.add_argument("--extent",type=float,nargs=4,metavar=("XMIN","YMIN","XMAX","YMAX"),help="Write only the prepared files this extent intersects (ground always uses every prepared file)")
+    hag.add_argument("--cell",type=float,default=.5,help="Ground raster cell size in metres (default 0.5, the pipeline DTM)")
+    hag.add_argument("--mode",choices=("z","extrabytes","both"),default="z")
+    hag.add_argument("--label",help="Free-text role of this dataset, recorded in manifest.json")
+    hag.add_argument("--epsg",type=int,default=6341,help="Required horizontal EPSG code of the prepared dataset (default 6341)")
     planning=commands.add_parser("planning",help="Terrain, drainage screening, surface and footprint heights (bounded pilot)")
     planning.add_argument("lasd");planning.add_argument("output")
     planning.add_argument("--extent",type=float,nargs=4,required=True)
@@ -50,13 +73,69 @@ def main(argv=None):
     get.add_argument("manifest");get.add_argument("output")
     get.add_argument("--tiles",nargs="+",help="Only these tile names from the manifest")
     get.add_argument("--workers",type=int,default=4,help="Tiles downloaded at once, 1 to 8 (default 4)")
+    refs=commands.add_parser("fetch-footprints",help="Fetch reference building footprints for bounded extents (EPSG:6341)")
+    refs.add_argument("output")
+    refs.add_argument("--extent",type=float,nargs=4,action="append",required=True)
+    refs.add_argument("--name",action="append")
+    refs.add_argument("--buffer",type=float,default=50)
+    refs.add_argument("--osm-json",nargs=5,action="append",default=[],metavar=("PATH","S","W","N","E"))
+    refs.add_argument("--overpass",action="store_true")
+    recon=commands.add_parser("reconcile-buildings",help="Compare class-6 buildings with reference footprints; review screens, not truth")
+    recon.add_argument("lasd");recon.add_argument("output")
+    recon.add_argument("--extent",type=float,nargs=4,required=True)
+    recon.add_argument("--footprints",required=True);recon.add_argument("--coverage")
+    recon.add_argument("--trees");recon.add_argument("--tile")
+    try:
+        from .building_rules import DEFAULTS as thresholds
+    except ImportError:
+        thresholds={}
+    for key,value in thresholds.items():
+        recon.add_argument("--"+key.replace("_","-"),type=float,default=None,help=f"default {value}")
     args=parser.parse_args(argv)
+    if args.command=="refine-roofs":
+        plane_only={"cell_size":.5,"edge_distance":1,"min_roof_area":25}
+        local_only={"radius":1.,"neighbors":16,"min_neighbors":6,"min_votes":3,
+                    "max_fit_rmse":.15,"max_slope":1.5,"classes":[4,5]}
+        wrong=local_only if args.method=="plane" else plane_only
+        for key in wrong:
+            if getattr(args,key) is not None:
+                parser.error(f"--{key.replace('_','-')} is not valid with --method {args.method}")
+        for key,value in {**plane_only,**local_only}.items():
+            if getattr(args,key) is None: setattr(args,key,value)
+        if args.above_roof is None: args.above_roof=3 if args.method=="plane" else .5
+    if args.command=="shape-gate":
+        if args.classes and not args.apply: parser.error("--classes is valid only with --apply")
+        from . import hag as hag_module, shape_gate
+        dataset=None
+        if args.apply:
+            from . import preparation
+            dataset=preparation.dataset_writer(args.lasd)
+        result=shape_gate.run(args.lasd,args.output,args.extent,args.apply,args.classes or (4,5),dataset,
+                              {"min_wall_height":args.min_wall_height},ground=hag_module.raster_builder(args.lasd))
+        print(json.dumps({k:v for k,v in result.items() if k not in ("input_files","before","after","sources")},indent=2,default=str))
+        return
+    if args.command=="hag":
+        from . import hag as hag_module
+        result=hag_module.run(args.lasd,args.output,hag_module.raster_builder(args.lasd,args.epsg),args.extent,
+                              args.mode,args.cell,args.label)
+        print(json.dumps({"status":result["status"],"output":str(args.output),"totals":result.get("totals"),
+                          "ground":{k:result["ground"].get(k) for k in ("raster","nodata_cells","extent")},
+                          "seconds":result["seconds"],"error":result.get("error")},indent=2,default=str))
+        if result["status"]!="complete": raise SystemExit(1)
+        return
     if args.command=="fetch":
         from . import fetch
         try: result=fetch.fetch(args.manifest,args.output,args.tiles,args.workers)
         except ValueError as e: parser.error(str(e))
         print(json.dumps(result,indent=2))
         if result["failed"]: raise SystemExit(1)
+        return
+    if args.command=="fetch-footprints":
+        from . import footprints
+        if args.name and len(args.name)!=len(args.extent): parser.error("Give one --name per --extent")
+        osm=[(row[0],[float(v) for v in row[1:]]) for row in args.osm_json]
+        result=footprints.fetch(args.output,args.extent,args.buffer,osm,args.overpass,args.name)
+        print(json.dumps({"reference":result["sources"],"coverage":result["coverage"]},indent=2,default=str))
         return
     from . import common,licensing,preparation,pipeline
     if args.command=="inventory":
@@ -72,20 +151,32 @@ def main(argv=None):
         with licensing.extensions("3D","Spatial"):
             if args.command=="prepare":
                 result=preparation.prepare(args.folder,args.output,args.extent,
-                                           args.max_vegetation_height,args.classify_noise,roof_tolerance=args.roof_tolerance)
+                                           args.max_vegetation_height,args.classify_noise,roof_tolerance=args.roof_tolerance,
+                                           building_method=args.building_method)
             elif args.command=="refine-roofs":
                 from . import roofs
-                result=roofs.refine(args.lasd,args.output,args.cell_size,args.edge_distance,
-                                    args.below_roof,args.above_roof,args.min_roof_area)
+                if args.method=="local":
+                    result=roofs.refine_local(args.lasd,args.output,args.radius,args.neighbors,args.min_neighbors,
+                                             args.min_votes,args.below_roof,args.above_roof,args.max_fit_rmse,
+                                             args.max_slope,args.classes)
+                else:
+                    result=roofs.refine(args.lasd,args.output,args.cell_size,args.edge_distance,
+                                        args.below_roof,args.above_roof,args.min_roof_area)
             elif args.command=="planning":
                 from . import planning
                 result=planning.build(args.lasd,args.output,args.extent,args.footprints,args.footprint_id,
                                       args.cell_size,args.neighborhood,args.tpi_radius,args.drainage_area,
                                       args.contour_interval,"metres" if args.z_metres else None)
+            elif args.command=="reconcile-buildings":
+                from . import building_rules,buildings
+                overrides={key:getattr(args,key) for key in building_rules.DEFAULTS}
+                result=buildings.reconcile(args.lasd,args.output,args.extent,args.footprints,args.coverage,
+                                          args.trees,args.tile,**overrides)
             else:
                 result=pipeline.run(args.lasd,args.output,args.extent,args.tile_size,args.overlap,args.cell_size,
                                     args.bands,args.smooth,args.min_crown_area,args.source_files,args.source_id,
-                                    args.resume,"metres" if args.z_metres else None,args.building_clearance)
+                                    args.resume,"metres" if args.z_metres else None,args.building_clearance,
+                                    args.classified_background_zero)
         print(json.dumps(result,indent=2))
 
 if __name__=="__main__":

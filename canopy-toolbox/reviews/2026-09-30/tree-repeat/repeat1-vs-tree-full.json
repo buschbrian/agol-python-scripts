@@ -1,0 +1,34 @@
+{
+ "crosstab_absolute_by_hag": {
+  "0": {
+   "0": 17530938,
+   "5": 119063
+  },
+  "5": {
+   "0": 118790,
+   "5": 9143073
+  },
+  "7": {
+   "7": 1559
+  },
+  "18": {
+   "18": 69041
+  }
+ },
+ "target_class": 5,
+ "target_both": 9143073,
+ "target_absolute_only": 118790,
+ "target_hag_only": 119063,
+ "points": 26982464,
+ "identical_predictions": false,
+ "first": {
+  "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-full\\tree\\12TVL2804.las",
+  "sha256": "f165dba25fb418f3edf3874b8d8ea27f5f66b8e8013810c2cc1959df01a0aa22"
+ },
+ "second": {
+  "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\tree-abs-repeat\\tree\\12TVL2804.las",
+  "sha256": "46ae1b13ea6fadfbb93c33608b816f5238777f7ee90e5fbe39c3778c5bfd7a78"
+ },
+ "byte_identical_files": false,
+ "points_changed": 237853
+}

@@ -1,0 +1,121 @@
+{
+ "method": "whole-pulse Bernoulli selection: pulse key (GPS time, point source ID, scanner channel); each pulse kept independently with probability p = target_density * area / source_points",
+ "point_versus_pulse_policy": "pulses kept or dropped whole; Number of Returns and return numbers unchanged",
+ "retained_attributes": "every byte of each retained record (XYZ, intensity, return/number of returns, classification flags, scanner channel, scan direction/edge, classification, user data, scan angle, point source ID, GPS time) in original order",
+ "header_changes": "point count (1.4 field), points by return, XYZ bounds; VLRs and other fields copied",
+ "rng": "numpy.random.default_rng(seed).random(pulse_count) over pulses in sorted key order",
+ "seed": 20260929,
+ "target_points_per_m2": 3.0,
+ "area_m2": 1000000.0,
+ "keep_probability": 0.11118332262020252,
+ "source": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+  "bytes": 809475416,
+  "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+ },
+ "source_after": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+  "bytes": 809475416,
+  "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+ },
+ "source_points": 26982464,
+ "source_pulse_structure": {
+  "pulses": 24430510,
+  "points": 26982464,
+  "pulses_with_inconsistent_number_of_returns": 0,
+  "pulses_with_duplicate_return_numbers": 0,
+  "pulses_with_more_records_than_number_of_returns": 0,
+  "complete_pulses": 16032305,
+  "incomplete_pulses_note": "records absent from the source (for example returns clipped at the tile edge) are not repaired; such pulses are kept or dropped whole like any other"
+ },
+ "source_block_density": {
+  "block_m": 50.0,
+  "blocks": 400,
+  "extent": [
+   428000.0,
+   4504000.0,
+   429000.0,
+   4505000.0
+  ],
+  "points_outside_extent": 0,
+  "all_points_per_m2": {
+   "min": 11.0072,
+   "p05": 12.0424,
+   "p25": 13.9772,
+   "median": 16.873,
+   "mean": 26.9825,
+   "p75": 40.0787,
+   "p95": 57.0089,
+   "max": 88.424
+  },
+  "non_noise_points_per_m2": {
+   "min": 11.0028,
+   "p05": 12.0342,
+   "p25": 13.9736,
+   "median": 16.869,
+   "mean": 26.9119,
+   "p75": 39.7423,
+   "p95": 56.9765,
+   "max": 86.3696
+  }
+ },
+ "thinned_points": 3003367,
+ "kept_pulses": 2718840,
+ "thinned_pulse_structure": {
+  "pulses": 2718840,
+  "points": 3003367,
+  "pulses_with_inconsistent_number_of_returns": 0,
+  "pulses_with_duplicate_return_numbers": 0,
+  "pulses_with_more_records_than_number_of_returns": 0,
+  "complete_pulses": 1784369,
+  "incomplete_pulses_note": "records absent from the source (for example returns clipped at the tile edge) are not repaired; such pulses are kept or dropped whole like any other"
+ },
+ "thinned_block_density": {
+  "block_m": 50.0,
+  "blocks": 400,
+  "extent": [
+   428000.0,
+   4504000.0,
+   429000.0,
+   4505000.0
+  ],
+  "points_outside_extent": 0,
+  "all_points_per_m2": {
+   "min": 1.2316,
+   "p05": 1.344,
+   "p25": 1.5628,
+   "median": 1.8728,
+   "mean": 3.0034,
+   "p75": 4.4207,
+   "p95": 6.3762,
+   "max": 9.8744
+  },
+  "non_noise_points_per_m2": {
+   "min": 1.2308,
+   "p05": 1.3432,
+   "p25": 1.5625,
+   "median": 1.8726,
+   "mean": 2.9954,
+   "p75": 4.4201,
+   "p95": 6.3741,
+   "max": 9.638
+  }
+ },
+ "thinned_class_counts": {
+  "1": 50976,
+  "2": 295255,
+  "3": 1068229,
+  "4": 118333,
+  "5": 981025,
+  "6": 481571,
+  "7": 158,
+  "18": 7820
+ },
+ "records_byte_identical_to_source_subset": true,
+ "output": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-thin3\\baseline\\12TVL2804-thin3.las",
+  "bytes": 90102506,
+  "sha256": "2992199b48822d7c5e4fbcaf8a70ba2e084ca545a7784f9708e7b6c32c35febc"
+ },
+ "elapsed_seconds": 39.0
+}

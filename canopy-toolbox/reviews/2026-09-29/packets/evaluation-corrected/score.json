@@ -1,0 +1,3947 @@
+{
+  "created": "2026-09-29T14:54:58",
+  "evaluation_version": 2,
+  "reference_provenance": "LEGACY_SAMPLE_WITHOUT_MANIFEST_FINGERPRINTS",
+  "reference": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\validation\\reference.gdb",
+  "labelled": {
+    "treetop": 0,
+    "omission": 0,
+    "cell": 0,
+    "crown": 0
+  },
+  "units": {
+    "treetop": 628,
+    "omission": 300,
+    "cell": 360,
+    "crown": 180
+  },
+  "status": "NO_LABELS",
+  "runs": {
+    "baseline": {
+      "folders": {
+        "12TVL2804": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\run",
+        "12TVL3302": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\run",
+        "12TVL2203": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\run"
+      },
+      "skipped": {},
+      "run_manifests": {
+        "12TVL2203": {
+          "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\run\\run.json",
+          "bytes": 17105,
+          "sha256": "943939083074d17bddb9fba9268adcddf63e12798488f3957e237110541ca0bb"
+        },
+        "12TVL2804": {
+          "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\run\\run.json",
+          "bytes": 17105,
+          "sha256": "24cf37f435f30b88673a580d0903178d8ba9db3627fdc5c3c418e8b08cf535cc"
+        },
+        "12TVL3302": {
+          "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\run\\run.json",
+          "bytes": 17105,
+          "sha256": "62e89b933ab624dcffe7778ee95562523139b1a065a4d9cb8538b3d82f80b992"
+        }
+      },
+      "scopes": {
+        "12TVL2203": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 208,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|ABOVE_ROOF",
+              "12TVL2203|NORMAL",
+              "12TVL2203|ROOF_LEVEL",
+              "12TVL2203|ROOF_MID",
+              "12TVL2203|SEAM",
+              "12TVL2203|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL2203|ABOVE_ROOF": {
+                "population": 38,
+                "sampled": 38,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NORMAL": {
+                "population": 6031,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_LEVEL": {
+                "population": 743,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_MID": {
+                "population": 109,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SEAM": {
+                "population": 2490,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SMALL_CROWN": {
+                "population": 2199,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL2203|ROOF_LEVEL": 40,
+              "12TVL2203|ROOF_MID": 20,
+              "12TVL2203|ABOVE_ROOF": 38,
+              "12TVL2203|SMALL_CROWN": 40,
+              "12TVL2203|NORMAL": 40,
+              "12TVL2203|SEAM": 30
+            },
+            "new_candidates": 0,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 11610
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 120,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CANOPY_FAR",
+              "12TVL2203|CANOPY_NEAR",
+              "12TVL2203|NONCAN_FAR",
+              "12TVL2203|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|CANOPY_FAR": {
+                "population": 625053,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CANOPY_NEAR": {
+                "population": 41701,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_FAR": {
+                "population": 2887308,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_NEAR": {
+                "population": 318091,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 166688.5
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 100,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|OM_DENSE",
+              "12TVL2203|OM_EDGE",
+              "12TVL2203|OM_NEAR_BLDG",
+              "12TVL2203|OM_NODATA",
+              "12TVL2203|OM_OPEN",
+              "12TVL2203|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|OM_DENSE": {
+                "population": 53296,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_EDGE": {
+                "population": 717250,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NEAR_BLDG": {
+                "population": 81405,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NODATA": {
+                "population": 127847,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_OPEN": {
+                "population": 2116762,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_ROOF": {
+                "population": 236686,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 60,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CR_BLDG",
+              "12TVL2203|CR_LARGE",
+              "12TVL2203|CR_MEDIUM",
+              "12TVL2203|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 0,
+            "per_stratum": {
+              "12TVL2203|CR_BLDG": {
+                "population": 583,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_LARGE": {
+                "population": 617,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_MEDIUM": {
+                "population": 3709,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_SMALL": {
+                "population": 3004,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL2203": {
+              "new_candidates": 0,
+              "run_candidates": 11610,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 1164,
+              "ambiguous_variant": 1164,
+              "mapped_canopy_cells_in_frame": 666754,
+              "mapped_canopy_m2_total": 166688.5
+            }
+          }
+        },
+        "12TVL2804": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 210,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|ABOVE_ROOF",
+              "12TVL2804|NORMAL",
+              "12TVL2804|ROOF_LEVEL",
+              "12TVL2804|ROOF_MID",
+              "12TVL2804|SEAM",
+              "12TVL2804|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL2804|ABOVE_ROOF": {
+                "population": 551,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NORMAL": {
+                "population": 7972,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_LEVEL": {
+                "population": 2479,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_MID": {
+                "population": 298,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SEAM": {
+                "population": 3913,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SMALL_CROWN": {
+                "population": 2176,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL2804|ROOF_LEVEL": 40,
+              "12TVL2804|ROOF_MID": 20,
+              "12TVL2804|ABOVE_ROOF": 40,
+              "12TVL2804|SMALL_CROWN": 40,
+              "12TVL2804|NORMAL": 40,
+              "12TVL2804|SEAM": 30
+            },
+            "new_candidates": 0,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 17389
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 120,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|CANOPY_FAR",
+              "12TVL2804|CANOPY_NEAR",
+              "12TVL2804|NONCAN_FAR",
+              "12TVL2804|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2804|CANOPY_FAR": {
+                "population": 867327,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CANOPY_NEAR": {
+                "population": 303512,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_FAR": {
+                "population": 1554451,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_NEAR": {
+                "population": 1241622,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 292709.75
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 100,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|OM_DENSE",
+              "12TVL2804|OM_EDGE",
+              "12TVL2804|OM_NEAR_BLDG",
+              "12TVL2804|OM_NODATA",
+              "12TVL2804|OM_OPEN",
+              "12TVL2804|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2804|OM_DENSE": {
+                "population": 76753,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_EDGE": {
+                "population": 669404,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NEAR_BLDG": {
+                "population": 423898,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NODATA": {
+                "population": 33088,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_OPEN": {
+                "population": 808294,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_ROOF": {
+                "population": 817724,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 60,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|CR_BLDG",
+              "12TVL2804|CR_LARGE",
+              "12TVL2804|CR_MEDIUM",
+              "12TVL2804|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 0,
+            "per_stratum": {
+              "12TVL2804|CR_BLDG": {
+                "population": 3751,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_LARGE": {
+                "population": 799,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_MEDIUM": {
+                "population": 3973,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_SMALL": {
+                "population": 3138,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL2804": {
+              "new_candidates": 0,
+              "run_candidates": 17389,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 1157,
+              "ambiguous_variant": 1157,
+              "mapped_canopy_cells_in_frame": 1170839,
+              "mapped_canopy_m2_total": 292709.75
+            }
+          }
+        },
+        "12TVL3302": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 210,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|ABOVE_ROOF",
+              "12TVL3302|NORMAL",
+              "12TVL3302|ROOF_LEVEL",
+              "12TVL3302|ROOF_MID",
+              "12TVL3302|SEAM",
+              "12TVL3302|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL3302|ABOVE_ROOF": {
+                "population": 235,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NORMAL": {
+                "population": 27058,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_LEVEL": {
+                "population": 1278,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_MID": {
+                "population": 190,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SEAM": {
+                "population": 9970,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SMALL_CROWN": {
+                "population": 5554,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL3302|ROOF_LEVEL": 40,
+              "12TVL3302|ROOF_MID": 20,
+              "12TVL3302|ABOVE_ROOF": 40,
+              "12TVL3302|SMALL_CROWN": 40,
+              "12TVL3302|NORMAL": 40,
+              "12TVL3302|SEAM": 30
+            },
+            "new_candidates": 0,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 44285
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 120,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|CANOPY_FAR",
+              "12TVL3302|CANOPY_NEAR",
+              "12TVL3302|NONCAN_FAR",
+              "12TVL3302|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL3302|CANOPY_FAR": {
+                "population": 2193236,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CANOPY_NEAR": {
+                "population": 173739,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_FAR": {
+                "population": 1090282,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_NEAR": {
+                "population": 525207,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 591743.75
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 100,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|OM_DENSE",
+              "12TVL3302|OM_EDGE",
+              "12TVL3302|OM_NEAR_BLDG",
+              "12TVL3302|OM_NODATA",
+              "12TVL3302|OM_OPEN",
+              "12TVL3302|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL3302|OM_DENSE": {
+                "population": 301574,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_EDGE": {
+                "population": 508146,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NEAR_BLDG": {
+                "population": 145756,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NODATA": {
+                "population": 17536,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_OPEN": {
+                "population": 280562,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_ROOF": {
+                "population": 379451,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 60,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|CR_BLDG",
+              "12TVL3302|CR_LARGE",
+              "12TVL3302|CR_MEDIUM",
+              "12TVL3302|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 0,
+            "per_stratum": {
+              "12TVL3302|CR_BLDG": {
+                "population": 2335,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_LARGE": {
+                "population": 1203,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_MEDIUM": {
+                "population": 16504,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_SMALL": {
+                "population": 15692,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL3302": {
+              "new_candidates": 0,
+              "run_candidates": 44285,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 3175,
+              "ambiguous_variant": 3175,
+              "mapped_canopy_cells_in_frame": 2366975,
+              "mapped_canopy_m2_total": 591743.75
+            }
+          }
+        },
+        "ALL": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 628,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|ABOVE_ROOF",
+              "12TVL2203|NORMAL",
+              "12TVL2203|ROOF_LEVEL",
+              "12TVL2203|ROOF_MID",
+              "12TVL2203|SEAM",
+              "12TVL2203|SMALL_CROWN",
+              "12TVL2804|ABOVE_ROOF",
+              "12TVL2804|NORMAL",
+              "12TVL2804|ROOF_LEVEL",
+              "12TVL2804|ROOF_MID",
+              "12TVL2804|SEAM",
+              "12TVL2804|SMALL_CROWN",
+              "12TVL3302|ABOVE_ROOF",
+              "12TVL3302|NORMAL",
+              "12TVL3302|ROOF_LEVEL",
+              "12TVL3302|ROOF_MID",
+              "12TVL3302|SEAM",
+              "12TVL3302|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL2203|ABOVE_ROOF": {
+                "population": 38,
+                "sampled": 38,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NORMAL": {
+                "population": 6031,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_LEVEL": {
+                "population": 743,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_MID": {
+                "population": 109,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SEAM": {
+                "population": 2490,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SMALL_CROWN": {
+                "population": 2199,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ABOVE_ROOF": {
+                "population": 551,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NORMAL": {
+                "population": 7972,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_LEVEL": {
+                "population": 2479,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_MID": {
+                "population": 298,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SEAM": {
+                "population": 3913,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SMALL_CROWN": {
+                "population": 2176,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ABOVE_ROOF": {
+                "population": 235,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NORMAL": {
+                "population": 27058,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_LEVEL": {
+                "population": 1278,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_MID": {
+                "population": 190,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SEAM": {
+                "population": 9970,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SMALL_CROWN": {
+                "population": 5554,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL2804|ROOF_LEVEL": 40,
+              "12TVL2804|ROOF_MID": 20,
+              "12TVL2804|ABOVE_ROOF": 40,
+              "12TVL2804|SMALL_CROWN": 40,
+              "12TVL2804|NORMAL": 40,
+              "12TVL2804|SEAM": 30,
+              "12TVL3302|ROOF_LEVEL": 40,
+              "12TVL3302|ROOF_MID": 20,
+              "12TVL3302|ABOVE_ROOF": 40,
+              "12TVL3302|SMALL_CROWN": 40,
+              "12TVL3302|NORMAL": 40,
+              "12TVL3302|SEAM": 30,
+              "12TVL2203|ROOF_LEVEL": 40,
+              "12TVL2203|ROOF_MID": 20,
+              "12TVL2203|ABOVE_ROOF": 38,
+              "12TVL2203|SMALL_CROWN": 40,
+              "12TVL2203|NORMAL": 40,
+              "12TVL2203|SEAM": 30
+            },
+            "new_candidates": 0,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 73284
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 360,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CANOPY_FAR",
+              "12TVL2203|CANOPY_NEAR",
+              "12TVL2203|NONCAN_FAR",
+              "12TVL2203|NONCAN_NEAR",
+              "12TVL2804|CANOPY_FAR",
+              "12TVL2804|CANOPY_NEAR",
+              "12TVL2804|NONCAN_FAR",
+              "12TVL2804|NONCAN_NEAR",
+              "12TVL3302|CANOPY_FAR",
+              "12TVL3302|CANOPY_NEAR",
+              "12TVL3302|NONCAN_FAR",
+              "12TVL3302|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|CANOPY_FAR": {
+                "population": 625053,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CANOPY_NEAR": {
+                "population": 41701,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_FAR": {
+                "population": 2887308,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_NEAR": {
+                "population": 318091,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CANOPY_FAR": {
+                "population": 867327,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CANOPY_NEAR": {
+                "population": 303512,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_FAR": {
+                "population": 1554451,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_NEAR": {
+                "population": 1241622,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CANOPY_FAR": {
+                "population": 2193236,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CANOPY_NEAR": {
+                "population": 173739,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_FAR": {
+                "population": 1090282,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_NEAR": {
+                "population": 525207,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 1051142.0
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 300,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|OM_DENSE",
+              "12TVL2203|OM_EDGE",
+              "12TVL2203|OM_NEAR_BLDG",
+              "12TVL2203|OM_NODATA",
+              "12TVL2203|OM_OPEN",
+              "12TVL2203|OM_ROOF",
+              "12TVL2804|OM_DENSE",
+              "12TVL2804|OM_EDGE",
+              "12TVL2804|OM_NEAR_BLDG",
+              "12TVL2804|OM_NODATA",
+              "12TVL2804|OM_OPEN",
+              "12TVL2804|OM_ROOF",
+              "12TVL3302|OM_DENSE",
+              "12TVL3302|OM_EDGE",
+              "12TVL3302|OM_NEAR_BLDG",
+              "12TVL3302|OM_NODATA",
+              "12TVL3302|OM_OPEN",
+              "12TVL3302|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|OM_DENSE": {
+                "population": 53296,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_EDGE": {
+                "population": 717250,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NEAR_BLDG": {
+                "population": 81405,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NODATA": {
+                "population": 127847,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_OPEN": {
+                "population": 2116762,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_ROOF": {
+                "population": 236686,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_DENSE": {
+                "population": 76753,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_EDGE": {
+                "population": 669404,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NEAR_BLDG": {
+                "population": 423898,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NODATA": {
+                "population": 33088,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_OPEN": {
+                "population": 808294,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_ROOF": {
+                "population": 817724,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_DENSE": {
+                "population": 301574,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_EDGE": {
+                "population": 508146,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NEAR_BLDG": {
+                "population": 145756,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NODATA": {
+                "population": 17536,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_OPEN": {
+                "population": 280562,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_ROOF": {
+                "population": 379451,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 180,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CR_BLDG",
+              "12TVL2203|CR_LARGE",
+              "12TVL2203|CR_MEDIUM",
+              "12TVL2203|CR_SMALL",
+              "12TVL2804|CR_BLDG",
+              "12TVL2804|CR_LARGE",
+              "12TVL2804|CR_MEDIUM",
+              "12TVL2804|CR_SMALL",
+              "12TVL3302|CR_BLDG",
+              "12TVL3302|CR_LARGE",
+              "12TVL3302|CR_MEDIUM",
+              "12TVL3302|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 0,
+            "per_stratum": {
+              "12TVL2203|CR_BLDG": {
+                "population": 583,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_LARGE": {
+                "population": 617,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_MEDIUM": {
+                "population": 3709,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_SMALL": {
+                "population": 3004,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_BLDG": {
+                "population": 3751,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_LARGE": {
+                "population": 799,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_MEDIUM": {
+                "population": 3973,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_SMALL": {
+                "population": 3138,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_BLDG": {
+                "population": 2335,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_LARGE": {
+                "population": 1203,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_MEDIUM": {
+                "population": 16504,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_SMALL": {
+                "population": 15692,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL2203": {
+              "new_candidates": 0,
+              "run_candidates": 11610,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 1164,
+              "ambiguous_variant": 1164,
+              "mapped_canopy_cells_in_frame": 666754,
+              "mapped_canopy_m2_total": 166688.5
+            },
+            "12TVL2804": {
+              "new_candidates": 0,
+              "run_candidates": 17389,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 1157,
+              "ambiguous_variant": 1157,
+              "mapped_canopy_cells_in_frame": 1170839,
+              "mapped_canopy_m2_total": 292709.75
+            },
+            "12TVL3302": {
+              "new_candidates": 0,
+              "run_candidates": 44285,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 3175,
+              "ambiguous_variant": 3175,
+              "mapped_canopy_cells_in_frame": 2366975,
+              "mapped_canopy_m2_total": 591743.75
+            }
+          }
+        }
+      }
+    },
+    "roof-local": {
+      "folders": {
+        "12TVL2804": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2804\\run",
+        "12TVL3302": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL3302\\run",
+        "12TVL2203": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2203\\run"
+      },
+      "skipped": {},
+      "run_manifests": {
+        "12TVL2203": {
+          "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2203\\run\\run.json",
+          "bytes": 18053,
+          "sha256": "8528a7a5dff3341abd004b5f9582fe4552166cfca75f0573b533918235ded529"
+        },
+        "12TVL2804": {
+          "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL2804\\run\\run.json",
+          "bytes": 18053,
+          "sha256": "11edc02e35e18610d67061d8b0c290f65294d29d3e102419ccf8b96cd52a1633"
+        },
+        "12TVL3302": {
+          "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\roof-local\\12TVL3302\\run\\run.json",
+          "bytes": 18053,
+          "sha256": "ebd43a1f588e99fb29647dd3740c3e4b9c833e7146069e724791bdac8e4d3e33"
+        }
+      },
+      "scopes": {
+        "12TVL2203": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 208,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|ABOVE_ROOF",
+              "12TVL2203|NORMAL",
+              "12TVL2203|ROOF_LEVEL",
+              "12TVL2203|ROOF_MID",
+              "12TVL2203|SEAM",
+              "12TVL2203|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL2203|ABOVE_ROOF": {
+                "population": 38,
+                "sampled": 38,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NORMAL": {
+                "population": 6031,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_LEVEL": {
+                "population": 743,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_MID": {
+                "population": 109,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SEAM": {
+                "population": 2490,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SMALL_CROWN": {
+                "population": 2199,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL2203|ROOF_LEVEL": 24,
+              "12TVL2203|ROOF_MID": 17,
+              "12TVL2203|ABOVE_ROOF": 38,
+              "12TVL2203|SMALL_CROWN": 40,
+              "12TVL2203|NORMAL": 40,
+              "12TVL2203|SEAM": 30
+            },
+            "new_candidates": 32,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 11290
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 120,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CANOPY_FAR",
+              "12TVL2203|CANOPY_NEAR",
+              "12TVL2203|NONCAN_FAR",
+              "12TVL2203|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|CANOPY_FAR": {
+                "population": 625053,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CANOPY_NEAR": {
+                "population": 41701,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_FAR": {
+                "population": 2887308,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_NEAR": {
+                "population": 318091,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 166062.5
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 100,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|OM_DENSE",
+              "12TVL2203|OM_EDGE",
+              "12TVL2203|OM_NEAR_BLDG",
+              "12TVL2203|OM_NODATA",
+              "12TVL2203|OM_OPEN",
+              "12TVL2203|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|OM_DENSE": {
+                "population": 53296,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_EDGE": {
+                "population": 717250,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NEAR_BLDG": {
+                "population": 81405,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NODATA": {
+                "population": 127847,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_OPEN": {
+                "population": 2116762,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_ROOF": {
+                "population": 236686,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 60,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CR_BLDG",
+              "12TVL2203|CR_LARGE",
+              "12TVL2203|CR_MEDIUM",
+              "12TVL2203|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 1,
+            "per_stratum": {
+              "12TVL2203|CR_BLDG": {
+                "population": 583,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_LARGE": {
+                "population": 617,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_MEDIUM": {
+                "population": 3709,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_SMALL": {
+                "population": 3004,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL2203": {
+              "new_candidates": 32,
+              "run_candidates": 11290,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 1078,
+              "ambiguous_variant": 1087,
+              "mapped_canopy_cells_in_frame": 664250,
+              "mapped_canopy_m2_total": 166062.5
+            }
+          }
+        },
+        "12TVL2804": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 210,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|ABOVE_ROOF",
+              "12TVL2804|NORMAL",
+              "12TVL2804|ROOF_LEVEL",
+              "12TVL2804|ROOF_MID",
+              "12TVL2804|SEAM",
+              "12TVL2804|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL2804|ABOVE_ROOF": {
+                "population": 551,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NORMAL": {
+                "population": 7972,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_LEVEL": {
+                "population": 2479,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_MID": {
+                "population": 298,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SEAM": {
+                "population": 3913,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SMALL_CROWN": {
+                "population": 2176,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL2804|ROOF_LEVEL": 22,
+              "12TVL2804|ROOF_MID": 17,
+              "12TVL2804|ABOVE_ROOF": 40,
+              "12TVL2804|SMALL_CROWN": 40,
+              "12TVL2804|NORMAL": 40,
+              "12TVL2804|SEAM": 25
+            },
+            "new_candidates": 223,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 16179
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 120,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|CANOPY_FAR",
+              "12TVL2804|CANOPY_NEAR",
+              "12TVL2804|NONCAN_FAR",
+              "12TVL2804|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2804|CANOPY_FAR": {
+                "population": 867327,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CANOPY_NEAR": {
+                "population": 303512,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_FAR": {
+                "population": 1554451,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_NEAR": {
+                "population": 1241622,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 288058.0
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 100,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|OM_DENSE",
+              "12TVL2804|OM_EDGE",
+              "12TVL2804|OM_NEAR_BLDG",
+              "12TVL2804|OM_NODATA",
+              "12TVL2804|OM_OPEN",
+              "12TVL2804|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2804|OM_DENSE": {
+                "population": 76753,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_EDGE": {
+                "population": 669404,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NEAR_BLDG": {
+                "population": 423898,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NODATA": {
+                "population": 33088,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_OPEN": {
+                "population": 808294,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_ROOF": {
+                "population": 817724,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 60,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2804|CR_BLDG",
+              "12TVL2804|CR_LARGE",
+              "12TVL2804|CR_MEDIUM",
+              "12TVL2804|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 2,
+            "per_stratum": {
+              "12TVL2804|CR_BLDG": {
+                "population": 3751,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_LARGE": {
+                "population": 799,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_MEDIUM": {
+                "population": 3973,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_SMALL": {
+                "population": 3138,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL2804": {
+              "new_candidates": 223,
+              "run_candidates": 16179,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 928,
+              "ambiguous_variant": 983,
+              "mapped_canopy_cells_in_frame": 1152232,
+              "mapped_canopy_m2_total": 288058.0
+            }
+          }
+        },
+        "12TVL3302": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 210,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|ABOVE_ROOF",
+              "12TVL3302|NORMAL",
+              "12TVL3302|ROOF_LEVEL",
+              "12TVL3302|ROOF_MID",
+              "12TVL3302|SEAM",
+              "12TVL3302|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL3302|ABOVE_ROOF": {
+                "population": 235,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NORMAL": {
+                "population": 27058,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_LEVEL": {
+                "population": 1278,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_MID": {
+                "population": 190,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SEAM": {
+                "population": 9970,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SMALL_CROWN": {
+                "population": 5554,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL3302|ROOF_LEVEL": 26,
+              "12TVL3302|ROOF_MID": 15,
+              "12TVL3302|ABOVE_ROOF": 40,
+              "12TVL3302|SMALL_CROWN": 40,
+              "12TVL3302|NORMAL": 40,
+              "12TVL3302|SEAM": 30
+            },
+            "new_candidates": 181,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 43813
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 120,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|CANOPY_FAR",
+              "12TVL3302|CANOPY_NEAR",
+              "12TVL3302|NONCAN_FAR",
+              "12TVL3302|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL3302|CANOPY_FAR": {
+                "population": 2193236,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CANOPY_NEAR": {
+                "population": 173739,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_FAR": {
+                "population": 1090282,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_NEAR": {
+                "population": 525207,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 589060.5
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 100,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|OM_DENSE",
+              "12TVL3302|OM_EDGE",
+              "12TVL3302|OM_NEAR_BLDG",
+              "12TVL3302|OM_NODATA",
+              "12TVL3302|OM_OPEN",
+              "12TVL3302|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL3302|OM_DENSE": {
+                "population": 301574,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_EDGE": {
+                "population": 508146,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NEAR_BLDG": {
+                "population": 145756,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NODATA": {
+                "population": 17536,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_OPEN": {
+                "population": 280562,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_ROOF": {
+                "population": 379451,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 60,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL3302|CR_BLDG",
+              "12TVL3302|CR_LARGE",
+              "12TVL3302|CR_MEDIUM",
+              "12TVL3302|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 1,
+            "per_stratum": {
+              "12TVL3302|CR_BLDG": {
+                "population": 2335,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_LARGE": {
+                "population": 1203,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_MEDIUM": {
+                "population": 16504,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_SMALL": {
+                "population": 15692,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL3302": {
+              "new_candidates": 181,
+              "run_candidates": 43813,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 3075,
+              "ambiguous_variant": 3082,
+              "mapped_canopy_cells_in_frame": 2356242,
+              "mapped_canopy_m2_total": 589060.5
+            }
+          }
+        },
+        "ALL": {
+          "treetops": {
+            "status": "NO_LABELS",
+            "units": 628,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|ABOVE_ROOF",
+              "12TVL2203|NORMAL",
+              "12TVL2203|ROOF_LEVEL",
+              "12TVL2203|ROOF_MID",
+              "12TVL2203|SEAM",
+              "12TVL2203|SMALL_CROWN",
+              "12TVL2804|ABOVE_ROOF",
+              "12TVL2804|NORMAL",
+              "12TVL2804|ROOF_LEVEL",
+              "12TVL2804|ROOF_MID",
+              "12TVL2804|SEAM",
+              "12TVL2804|SMALL_CROWN",
+              "12TVL3302|ABOVE_ROOF",
+              "12TVL3302|NORMAL",
+              "12TVL3302|ROOF_LEVEL",
+              "12TVL3302|ROOF_MID",
+              "12TVL3302|SEAM",
+              "12TVL3302|SMALL_CROWN"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "MATCHED_BASELINE_CANDIDATES_IN_COVERED_STRATA",
+            "per_stratum": {
+              "12TVL2203|ABOVE_ROOF": {
+                "population": 38,
+                "sampled": 38,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NORMAL": {
+                "population": 6031,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_LEVEL": {
+                "population": 743,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|ROOF_MID": {
+                "population": 109,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SEAM": {
+                "population": 2490,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|SMALL_CROWN": {
+                "population": 2199,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ABOVE_ROOF": {
+                "population": 551,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NORMAL": {
+                "population": 7972,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_LEVEL": {
+                "population": 2479,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|ROOF_MID": {
+                "population": 298,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SEAM": {
+                "population": 3913,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|SMALL_CROWN": {
+                "population": 2176,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ABOVE_ROOF": {
+                "population": 235,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NORMAL": {
+                "population": 27058,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_LEVEL": {
+                "population": 1278,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|ROOF_MID": {
+                "population": 190,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SEAM": {
+                "population": 9970,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|SMALL_CROWN": {
+                "population": 5554,
+                "sampled": 40,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "retained_by_stratum": {
+              "12TVL2804|ROOF_LEVEL": 22,
+              "12TVL2804|ROOF_MID": 17,
+              "12TVL2804|ABOVE_ROOF": 40,
+              "12TVL2804|SMALL_CROWN": 40,
+              "12TVL2804|NORMAL": 40,
+              "12TVL2804|SEAM": 25,
+              "12TVL3302|ROOF_LEVEL": 26,
+              "12TVL3302|ROOF_MID": 15,
+              "12TVL3302|ABOVE_ROOF": 40,
+              "12TVL3302|SMALL_CROWN": 40,
+              "12TVL3302|NORMAL": 40,
+              "12TVL3302|SEAM": 30,
+              "12TVL2203|ROOF_LEVEL": 24,
+              "12TVL2203|ROOF_MID": 17,
+              "12TVL2203|ABOVE_ROOF": 38,
+              "12TVL2203|SMALL_CROWN": 40,
+              "12TVL2203|NORMAL": 40,
+              "12TVL2203|SEAM": 30
+            },
+            "new_candidates": 436,
+            "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+            "variant_candidates": 71282
+          },
+          "cells": {
+            "status": "NO_LABELS",
+            "units": 360,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CANOPY_FAR",
+              "12TVL2203|CANOPY_NEAR",
+              "12TVL2203|NONCAN_FAR",
+              "12TVL2203|NONCAN_NEAR",
+              "12TVL2804|CANOPY_FAR",
+              "12TVL2804|CANOPY_NEAR",
+              "12TVL2804|NONCAN_FAR",
+              "12TVL2804|NONCAN_NEAR",
+              "12TVL3302|CANOPY_FAR",
+              "12TVL3302|CANOPY_NEAR",
+              "12TVL3302|NONCAN_FAR",
+              "12TVL3302|NONCAN_NEAR"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|CANOPY_FAR": {
+                "population": 625053,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CANOPY_NEAR": {
+                "population": 41701,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_FAR": {
+                "population": 2887308,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|NONCAN_NEAR": {
+                "population": 318091,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CANOPY_FAR": {
+                "population": 867327,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CANOPY_NEAR": {
+                "population": 303512,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_FAR": {
+                "population": 1554451,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|NONCAN_NEAR": {
+                "population": 1241622,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CANOPY_FAR": {
+                "population": 2193236,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CANOPY_NEAR": {
+                "population": 173739,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_FAR": {
+                "population": 1090282,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|NONCAN_NEAR": {
+                "population": 525207,
+                "sampled": 30,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            },
+            "mapped_canopy_m2_in_frame": 1043181.0
+          },
+          "omission": {
+            "status": "NO_LABELS",
+            "units": 300,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|OM_DENSE",
+              "12TVL2203|OM_EDGE",
+              "12TVL2203|OM_NEAR_BLDG",
+              "12TVL2203|OM_NODATA",
+              "12TVL2203|OM_OPEN",
+              "12TVL2203|OM_ROOF",
+              "12TVL2804|OM_DENSE",
+              "12TVL2804|OM_EDGE",
+              "12TVL2804|OM_NEAR_BLDG",
+              "12TVL2804|OM_NODATA",
+              "12TVL2804|OM_OPEN",
+              "12TVL2804|OM_ROOF",
+              "12TVL3302|OM_DENSE",
+              "12TVL3302|OM_EDGE",
+              "12TVL3302|OM_NEAR_BLDG",
+              "12TVL3302|OM_NODATA",
+              "12TVL3302|OM_OPEN",
+              "12TVL3302|OM_ROOF"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "COVERED_REFERENCE_STRATA",
+            "per_stratum": {
+              "12TVL2203|OM_DENSE": {
+                "population": 53296,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_EDGE": {
+                "population": 717250,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NEAR_BLDG": {
+                "population": 81405,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_NODATA": {
+                "population": 127847,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_OPEN": {
+                "population": 2116762,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|OM_ROOF": {
+                "population": 236686,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_DENSE": {
+                "population": 76753,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_EDGE": {
+                "population": 669404,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NEAR_BLDG": {
+                "population": 423898,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_NODATA": {
+                "population": 33088,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_OPEN": {
+                "population": 808294,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|OM_ROOF": {
+                "population": 817724,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_DENSE": {
+                "population": 301574,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_EDGE": {
+                "population": 508146,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NEAR_BLDG": {
+                "population": 145756,
+                "sampled": 25,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_NODATA": {
+                "population": 17536,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_OPEN": {
+                "population": 280562,
+                "sampled": 10,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|OM_ROOF": {
+                "population": 379451,
+                "sampled": 20,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "combined": {
+            "status": "NO_LABELS"
+          },
+          "crowns": {
+            "status": "NO_LABELS",
+            "units": 180,
+            "labelled": 0,
+            "usable": 0,
+            "unsure": 0,
+            "population_coverage": 0.0,
+            "strata_without_labels": [
+              "12TVL2203|CR_BLDG",
+              "12TVL2203|CR_LARGE",
+              "12TVL2203|CR_MEDIUM",
+              "12TVL2203|CR_SMALL",
+              "12TVL2804|CR_BLDG",
+              "12TVL2804|CR_LARGE",
+              "12TVL2804|CR_MEDIUM",
+              "12TVL2804|CR_SMALL",
+              "12TVL3302|CR_BLDG",
+              "12TVL3302|CR_LARGE",
+              "12TVL3302|CR_MEDIUM",
+              "12TVL3302|CR_SMALL"
+            ],
+            "inference_assumption": "Usable labels must be a random subsample within each stratum; selective nonresponse/UNSURE may bias estimates.",
+            "estimand_scope": "UNCHANGED_MATCHED_BASELINE_CROWNS",
+            "changed_by_run": 4,
+            "per_stratum": {
+              "12TVL2203|CR_BLDG": {
+                "population": 583,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_LARGE": {
+                "population": 617,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_MEDIUM": {
+                "population": 3709,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2203|CR_SMALL": {
+                "population": 3004,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_BLDG": {
+                "population": 3751,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_LARGE": {
+                "population": 799,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_MEDIUM": {
+                "population": 3973,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL2804|CR_SMALL": {
+                "population": 3138,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_BLDG": {
+                "population": 2335,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_LARGE": {
+                "population": 1203,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_MEDIUM": {
+                "population": 16504,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              },
+              "12TVL3302|CR_SMALL": {
+                "population": 15692,
+                "sampled": 15,
+                "labelled": 0,
+                "unsure": 0,
+                "usable": 0,
+                "successes": 0,
+                "share": null,
+                "low": null,
+                "high": null,
+                "unstable": false
+              }
+            }
+          },
+          "inputs": {
+            "12TVL2203": {
+              "new_candidates": 32,
+              "run_candidates": 11290,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 1078,
+              "ambiguous_variant": 1087,
+              "mapped_canopy_cells_in_frame": 664250,
+              "mapped_canopy_m2_total": 166062.5
+            },
+            "12TVL2804": {
+              "new_candidates": 223,
+              "run_candidates": 16179,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 928,
+              "ambiguous_variant": 983,
+              "mapped_canopy_cells_in_frame": 1152232,
+              "mapped_canopy_m2_total": 288058.0
+            },
+            "12TVL3302": {
+              "new_candidates": 181,
+              "run_candidates": 43813,
+              "dropped_by_flags": 0,
+              "matching_method": "ONE_TO_ONE_MAX_CARDINALITY_MIN_DISTANCE",
+              "ambiguous_baseline": 3075,
+              "ambiguous_variant": 3082,
+              "mapped_canopy_cells_in_frame": 2356242,
+              "mapped_canopy_m2_total": 589060.5
+            }
+          }
+        }
+      }
+    }
+  }
+}

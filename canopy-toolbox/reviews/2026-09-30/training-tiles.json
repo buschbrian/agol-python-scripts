@@ -1,0 +1,1297 @@
+{
+ "created": "2026-09-29T22:09:11-06:00",
+ "purpose": "Additional TRAINING-domain tiles for fine-tuning point-cloud models. Never holdout or transfer.",
+ "seed": 20260930,
+ "draw": "random.Random(20260930).sample(sorted(candidates), 3)",
+ "draw_order": [
+  "12TVL3206",
+  "12TVL3205",
+  "12TVL3006"
+ ],
+ "selected": [
+  "12TVL3006",
+  "12TVL3205",
+  "12TVL3206"
+ ],
+ "stratification": "Not used. Delivered classes are 1/2/7/18 only (no class 6), and acquisition-facts.md carries no land-use or building-density field, so no usable pre-processing proxy exists; simple random sampling from the eligible candidates. sampled_class2_share (8,192-point inventory sample) is descriptive only.",
+ "rules": {
+  "universe": "61 tiles in acquisitions/2023-salt-lake-valley/usgs-laz-millcreek.csv (all touch Millcreek)",
+  "availability": "LAZ in H:\\lidar\\2023-salt-lake-valley\\laz and converted LAS in D:\\lidar\\2023-salt-lake-valley\\las (the pilot's prepare source) for the core and all 8 neighbours, LAS header point count equal to the USGS manifest",
+  "prepared_extent": "core header extent (max rounded as the pilot driver does) +/- 50.0 m",
+  "exclusions": {
+   "12TVL3302 prospective holdout + prepared 50 m halo": [
+    432950,
+    4501950,
+    434050,
+    4503050
+   ],
+   "12TVL2203 external transfer + prepared 50 m halo": [
+    421950.0,
+    4502950.0,
+    423050.0,
+    4504050.0
+   ]
+  },
+  "not_training_tile": "12TVL2804",
+  "evaluation_frame": {
+   "reference_gdb": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\validation\\reference.gdb",
+   "feature_classes": [
+    "treetop_sample",
+    "omission_sample",
+    "cell_sample",
+    "crown_sample"
+   ],
+   "plots_json": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\09\\29\\01a0eed4-e40e-7762-9845-97159217cf5b\\independent-plot-census-v2\\plots.esri.json",
+   "plots_json_sha256": "818745afaac7920d5a3190b176ce06db09a8e0ca9020e8f47e1527cdf9f5a7a4",
+   "features": 1480,
+   "features_by_tile": {
+    "12TVL2804": 494,
+    "12TVL3302": 494,
+    "12TVL2203": 492
+   },
+   "rule": "no feature bounding box may intersect the candidate's prepared extent"
+  },
+  "holdout_guard": "canopy.evaluation_design.assert_training_extents on every selected prepared extent"
+ },
+ "candidates": [
+  "12TVL2603",
+  "12TVL2703",
+  "12TVL3005",
+  "12TVL3006",
+  "12TVL3105",
+  "12TVL3106",
+  "12TVL3205",
+  "12TVL3206",
+  "12TVL3304",
+  "12TVL3305"
+ ],
+ "universe": [
+  {
+   "tile": "12TVL2203",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2102, 12TVL2103, 12TVL2104, 12TVL2202, 12TVL2302",
+    "overlaps 12TVL2203 external transfer + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2203': 208, 'omission_sample:12TVL2203': 100, 'cell_sample:12TVL2203': 120, 'crown_sample:12TVL2203': 60, 'census_plots:12TVL2203': 4}"
+   ],
+   "core_extent": [
+    422000.0,
+    4503000.0,
+    423000,
+    4504000
+   ],
+   "prepared_extent": [
+    421950.0,
+    4502950.0,
+    423050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.182
+  },
+  {
+   "tile": "12TVL2204",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2103, 12TVL2104, 12TVL2105, 12TVL2205, 12TVL2305",
+    "overlaps 12TVL2203 external transfer + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2203': 9, 'cell_sample:12TVL2203': 4, 'crown_sample:12TVL2203': 3, 'census_plots:12TVL2203': 1}"
+   ],
+   "core_extent": [
+    422000.0,
+    4504000.0,
+    423000,
+    4505000
+   ],
+   "prepared_extent": [
+    421950.0,
+    4503950.0,
+    423050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.129
+  },
+  {
+   "tile": "12TVL2303",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2202, 12TVL2302, 12TVL2402",
+    "overlaps 12TVL2203 external transfer + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2203': 20, 'omission_sample:12TVL2203': 12, 'cell_sample:12TVL2203': 8, 'crown_sample:12TVL2203': 8, 'census_plots:12TVL2203': 1}"
+   ],
+   "core_extent": [
+    423000.0,
+    4503000.0,
+    424000,
+    4504000
+   ],
+   "prepared_extent": [
+    422950.0,
+    4502950.0,
+    424050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.0867
+  },
+  {
+   "tile": "12TVL2304",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2205, 12TVL2305, 12TVL2405",
+    "overlaps 12TVL2203 external transfer + prepared 50 m halo",
+    "evaluation features within prepared extent: {'cell_sample:12TVL2203': 2, 'crown_sample:12TVL2203': 2}"
+   ],
+   "core_extent": [
+    423000.0,
+    4504000.0,
+    424000,
+    4505000
+   ],
+   "prepared_extent": [
+    422950.0,
+    4503950.0,
+    424050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.1364
+  },
+  {
+   "tile": "12TVL2403",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2302, 12TVL2402"
+   ],
+   "core_extent": [
+    424000.0,
+    4503000.0,
+    425000,
+    4504000
+   ],
+   "prepared_extent": [
+    423950.0,
+    4502950.0,
+    425050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.095
+  },
+  {
+   "tile": "12TVL2404",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2305, 12TVL2405, 12TVL2505"
+   ],
+   "core_extent": [
+    424000.0,
+    4504000.0,
+    425000,
+    4505000
+   ],
+   "prepared_extent": [
+    423950.0,
+    4503950.0,
+    425050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.0945
+  },
+  {
+   "tile": "12TVL2502",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2401, 12TVL2402, 12TVL2501"
+   ],
+   "core_extent": [
+    425000.0,
+    4502000.0,
+    426000,
+    4503000
+   ],
+   "prepared_extent": [
+    424950.0,
+    4501950.0,
+    426050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.1394
+  },
+  {
+   "tile": "12TVL2503",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2402"
+   ],
+   "core_extent": [
+    425000.0,
+    4503000.0,
+    426000,
+    4504000
+   ],
+   "prepared_extent": [
+    424950.0,
+    4502950.0,
+    426050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.1145
+  },
+  {
+   "tile": "12TVL2504",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2405, 12TVL2505"
+   ],
+   "core_extent": [
+    425000.0,
+    4504000.0,
+    426000,
+    4505000
+   ],
+   "prepared_extent": [
+    424950.0,
+    4503950.0,
+    426050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.1057
+  },
+  {
+   "tile": "12TVL2601",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2500, 12TVL2501, 12TVL2600, 12TVL2700"
+   ],
+   "core_extent": [
+    426000.0,
+    4501000.0,
+    427000,
+    4502000
+   ],
+   "prepared_extent": [
+    425950.0,
+    4500950.0,
+    427050.0,
+    4502050.0
+   ],
+   "sampled_class2_share": 0.1189
+  },
+  {
+   "tile": "12TVL2602",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2501"
+   ],
+   "core_extent": [
+    426000.0,
+    4502000.0,
+    427000,
+    4503000
+   ],
+   "prepared_extent": [
+    425950.0,
+    4501950.0,
+    427050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.1117
+  },
+  {
+   "tile": "12TVL2603",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    426000.0,
+    4503000.0,
+    427000,
+    4504000
+   ],
+   "prepared_extent": [
+    425950.0,
+    4502950.0,
+    427050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.1182
+  },
+  {
+   "tile": "12TVL2604",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2505"
+   ],
+   "core_extent": [
+    426000.0,
+    4504000.0,
+    427000,
+    4505000
+   ],
+   "prepared_extent": [
+    425950.0,
+    4503950.0,
+    427050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.089
+  },
+  {
+   "tile": "12TVL2605",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2505, 12TVL2506"
+   ],
+   "core_extent": [
+    426000.0,
+    4505000.0,
+    427000,
+    4506000
+   ],
+   "prepared_extent": [
+    425950.0,
+    4504950.0,
+    427050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.1414
+  },
+  {
+   "tile": "12TVL2606",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2505, 12TVL2506, 12TVL2507, 12TVL2707"
+   ],
+   "core_extent": [
+    426000.0,
+    4506000.0,
+    427000,
+    4507000
+   ],
+   "prepared_extent": [
+    425950.0,
+    4505950.0,
+    427050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.1133
+  },
+  {
+   "tile": "12TVL2607",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2506, 12TVL2507, 12TVL2508, 12TVL2608, 12TVL2707, 12TVL2708"
+   ],
+   "core_extent": [
+    426000.0,
+    4507000.0,
+    427000,
+    4508000
+   ],
+   "prepared_extent": [
+    425950.0,
+    4506950.0,
+    427050.0,
+    4508050.0
+   ],
+   "sampled_class2_share": 0.1842
+  },
+  {
+   "tile": "12TVL2701",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2600, 12TVL2700, 12TVL2800, 12TVL2801"
+   ],
+   "core_extent": [
+    427000.0,
+    4501000.0,
+    428000,
+    4502000
+   ],
+   "prepared_extent": [
+    426950.0,
+    4500950.0,
+    428050.0,
+    4502050.0
+   ],
+   "sampled_class2_share": 0.1071
+  },
+  {
+   "tile": "12TVL2702",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2801"
+   ],
+   "core_extent": [
+    427000.0,
+    4502000.0,
+    428000,
+    4503000
+   ],
+   "prepared_extent": [
+    426950.0,
+    4501950.0,
+    428050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.1581
+  },
+  {
+   "tile": "12TVL2703",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    427000.0,
+    4503000.0,
+    428000,
+    4504000
+   ],
+   "prepared_extent": [
+    426950.0,
+    4502950.0,
+    428050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.0785
+  },
+  {
+   "tile": "12TVL2704",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2804': 14, 'omission_sample:12TVL2804': 4, 'cell_sample:12TVL2804': 5, 'crown_sample:12TVL2804': 4}"
+   ],
+   "core_extent": [
+    427000.0,
+    4504000.0,
+    428000,
+    4505000
+   ],
+   "prepared_extent": [
+    426950.0,
+    4503950.0,
+    428050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.1075
+  },
+  {
+   "tile": "12TVL2705",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2804': 3, 'omission_sample:12TVL2804': 1, 'cell_sample:12TVL2804': 1, 'crown_sample:12TVL2804': 1}"
+   ],
+   "core_extent": [
+    427000.0,
+    4505000.0,
+    428000,
+    4506000
+   ],
+   "prepared_extent": [
+    426950.0,
+    4504950.0,
+    428050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.0867
+  },
+  {
+   "tile": "12TVL2706",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2707, 12TVL2807"
+   ],
+   "core_extent": [
+    427000.0,
+    4506000.0,
+    428000,
+    4507000
+   ],
+   "prepared_extent": [
+    426950.0,
+    4505950.0,
+    428050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.1403
+  },
+  {
+   "tile": "12TVL2802",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2801, 12TVL2901, 12TVL2903"
+   ],
+   "core_extent": [
+    428000.0,
+    4502000.0,
+    429000,
+    4503000
+   ],
+   "prepared_extent": [
+    427950.0,
+    4501950.0,
+    429050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.1171
+  },
+  {
+   "tile": "12TVL2803",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2903",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2804': 12, 'omission_sample:12TVL2804': 9, 'cell_sample:12TVL2804': 6, 'crown_sample:12TVL2804': 2}"
+   ],
+   "core_extent": [
+    428000.0,
+    4503000.0,
+    429000,
+    4504000
+   ],
+   "prepared_extent": [
+    427950.0,
+    4502950.0,
+    429050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.1663
+  },
+  {
+   "tile": "12TVL2804",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2903",
+    "already the training tile",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2804': 210, 'omission_sample:12TVL2804': 100, 'cell_sample:12TVL2804': 120, 'crown_sample:12TVL2804': 60, 'census_plots:12TVL2804': 4}"
+   ],
+   "core_extent": [
+    428000.0,
+    4504000.0,
+    429000,
+    4505000
+   ],
+   "prepared_extent": [
+    427950.0,
+    4503950.0,
+    429050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.1383
+  },
+  {
+   "tile": "12TVL2805",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2804': 11, 'omission_sample:12TVL2804': 7, 'cell_sample:12TVL2804': 4, 'crown_sample:12TVL2804': 6}"
+   ],
+   "core_extent": [
+    428000.0,
+    4505000.0,
+    429000,
+    4506000
+   ],
+   "prepared_extent": [
+    427950.0,
+    4504950.0,
+    429050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.1147
+  },
+  {
+   "tile": "12TVL2806",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2707, 12TVL2807"
+   ],
+   "core_extent": [
+    428000.0,
+    4506000.0,
+    429000,
+    4507000
+   ],
+   "prepared_extent": [
+    427950.0,
+    4505950.0,
+    429050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.0806
+  },
+  {
+   "tile": "12TVL2902",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2801, 12TVL2901, 12TVL2903, 12TVL3001, 12TVL3002, 12TVL3003"
+   ],
+   "core_extent": [
+    429000.0,
+    4502000.0,
+    430000,
+    4503000
+   ],
+   "prepared_extent": [
+    428950.0,
+    4501950.0,
+    430050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.1428
+  },
+  {
+   "tile": "12TVL2904",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2903, 12TVL3003",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2804': 12, 'omission_sample:12TVL2804': 10, 'cell_sample:12TVL2804': 12, 'crown_sample:12TVL2804': 4}"
+   ],
+   "core_extent": [
+    429000.0,
+    4504000.0,
+    430000,
+    4505000
+   ],
+   "prepared_extent": [
+    428950.0,
+    4503950.0,
+    430050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.1791
+  },
+  {
+   "tile": "12TVL2905",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "evaluation features within prepared extent: {'treetop_sample:12TVL2804': 1}"
+   ],
+   "core_extent": [
+    429000.0,
+    4505000.0,
+    430000,
+    4506000
+   ],
+   "prepared_extent": [
+    428950.0,
+    4504950.0,
+    430050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.162
+  },
+  {
+   "tile": "12TVL2906",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2807"
+   ],
+   "core_extent": [
+    429000.0,
+    4506000.0,
+    430000,
+    4507000
+   ],
+   "prepared_extent": [
+    428950.0,
+    4505950.0,
+    430050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.1013
+  },
+  {
+   "tile": "12TVL2907",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2807, 12TVL2808, 12TVL2908, 12TVL3008"
+   ],
+   "core_extent": [
+    429000.0,
+    4507000.0,
+    430000,
+    4508000
+   ],
+   "prepared_extent": [
+    428950.0,
+    4506950.0,
+    430050.0,
+    4508050.0
+   ],
+   "sampled_class2_share": 0.1493
+  },
+  {
+   "tile": "12TVL3004",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2903, 12TVL3003, 12TVL3103"
+   ],
+   "core_extent": [
+    430000.0,
+    4504000.0,
+    431000,
+    4505000
+   ],
+   "prepared_extent": [
+    429950.0,
+    4503950.0,
+    431050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.127
+  },
+  {
+   "tile": "12TVL3005",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    430000.0,
+    4505000.0,
+    431000,
+    4506000
+   ],
+   "prepared_extent": [
+    429950.0,
+    4504950.0,
+    431050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.1327
+  },
+  {
+   "tile": "12TVL3006",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    430000.0,
+    4506000.0,
+    431000,
+    4507000
+   ],
+   "prepared_extent": [
+    429950.0,
+    4505950.0,
+    431050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.1239
+  },
+  {
+   "tile": "12TVL3007",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL2908, 12TVL3008, 12TVL3108"
+   ],
+   "core_extent": [
+    430000.0,
+    4507000.0,
+    431000,
+    4508000
+   ],
+   "prepared_extent": [
+    429950.0,
+    4506950.0,
+    431050.0,
+    4508050.0
+   ],
+   "sampled_class2_share": 0.1901
+  },
+  {
+   "tile": "12TVL3101",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3000, 12TVL3001, 12TVL3002, 12TVL3100, 12TVL3200"
+   ],
+   "core_extent": [
+    431000.0,
+    4501000.0,
+    432000,
+    4502000
+   ],
+   "prepared_extent": [
+    430950.0,
+    4500950.0,
+    432050.0,
+    4502050.0
+   ],
+   "sampled_class2_share": 0.1991
+  },
+  {
+   "tile": "12TVL3102",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3001, 12TVL3002, 12TVL3003, 12TVL3103"
+   ],
+   "core_extent": [
+    431000.0,
+    4502000.0,
+    432000,
+    4503000
+   ],
+   "prepared_extent": [
+    430950.0,
+    4501950.0,
+    432050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.1626
+  },
+  {
+   "tile": "12TVL3104",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3003, 12TVL3103"
+   ],
+   "core_extent": [
+    431000.0,
+    4504000.0,
+    432000,
+    4505000
+   ],
+   "prepared_extent": [
+    430950.0,
+    4503950.0,
+    432050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.129
+  },
+  {
+   "tile": "12TVL3105",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    431000.0,
+    4505000.0,
+    432000,
+    4506000
+   ],
+   "prepared_extent": [
+    430950.0,
+    4504950.0,
+    432050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.0806
+  },
+  {
+   "tile": "12TVL3106",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    431000.0,
+    4506000.0,
+    432000,
+    4507000
+   ],
+   "prepared_extent": [
+    430950.0,
+    4505950.0,
+    432050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.1219
+  },
+  {
+   "tile": "12TVL3107",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3008, 12TVL3108, 12TVL3208"
+   ],
+   "core_extent": [
+    431000.0,
+    4507000.0,
+    432000,
+    4508000
+   ],
+   "prepared_extent": [
+    430950.0,
+    4506950.0,
+    432050.0,
+    4508050.0
+   ],
+   "sampled_class2_share": 0.135
+  },
+  {
+   "tile": "12TVL3201",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3100, 12TVL3200, 12TVL3300",
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 1, 'omission_sample:12TVL3302': 1}"
+   ],
+   "core_extent": [
+    432000.0,
+    4501000.0,
+    433000,
+    4502000
+   ],
+   "prepared_extent": [
+    431950.0,
+    4500950.0,
+    433050.0,
+    4502050.0
+   ],
+   "sampled_class2_share": 0.1642
+  },
+  {
+   "tile": "12TVL3202",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3103",
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 8, 'omission_sample:12TVL3302': 5, 'cell_sample:12TVL3302': 3, 'crown_sample:12TVL3302': 2, 'census_plots:12TVL3302': 1}"
+   ],
+   "core_extent": [
+    432000.0,
+    4502000.0,
+    433000,
+    4503000
+   ],
+   "prepared_extent": [
+    431950.0,
+    4501950.0,
+    433050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.0798
+  },
+  {
+   "tile": "12TVL3203",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3103",
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 1, 'omission_sample:12TVL3302': 1}"
+   ],
+   "core_extent": [
+    432000.0,
+    4503000.0,
+    433000,
+    4504000
+   ],
+   "prepared_extent": [
+    431950.0,
+    4502950.0,
+    433050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.1044
+  },
+  {
+   "tile": "12TVL3204",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3103"
+   ],
+   "core_extent": [
+    432000.0,
+    4504000.0,
+    433000,
+    4505000
+   ],
+   "prepared_extent": [
+    431950.0,
+    4503950.0,
+    433050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.1143
+  },
+  {
+   "tile": "12TVL3205",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    432000.0,
+    4505000.0,
+    433000,
+    4506000
+   ],
+   "prepared_extent": [
+    431950.0,
+    4504950.0,
+    433050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.1735
+  },
+  {
+   "tile": "12TVL3206",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    432000.0,
+    4506000.0,
+    433000,
+    4507000
+   ],
+   "prepared_extent": [
+    431950.0,
+    4505950.0,
+    433050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.0887
+  },
+  {
+   "tile": "12TVL3207",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3108, 12TVL3208, 12TVL3308"
+   ],
+   "core_extent": [
+    432000.0,
+    4507000.0,
+    433000,
+    4508000
+   ],
+   "prepared_extent": [
+    431950.0,
+    4506950.0,
+    433050.0,
+    4508050.0
+   ],
+   "sampled_class2_share": 0.1997
+  },
+  {
+   "tile": "12TVL3301",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3200, 12TVL3300, 12TVL3400, 12TVL3401",
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 7, 'omission_sample:12TVL3302': 3, 'cell_sample:12TVL3302': 3, 'crown_sample:12TVL3302': 1, 'census_plots:12TVL3302': 1}"
+   ],
+   "core_extent": [
+    433000.0,
+    4501000.0,
+    434000,
+    4502000
+   ],
+   "prepared_extent": [
+    432950.0,
+    4500950.0,
+    434050.0,
+    4502050.0
+   ],
+   "sampled_class2_share": 0.0938
+  },
+  {
+   "tile": "12TVL3302",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3401",
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 210, 'omission_sample:12TVL3302': 100, 'cell_sample:12TVL3302': 120, 'crown_sample:12TVL3302': 60, 'census_plots:12TVL3302': 4}"
+   ],
+   "core_extent": [
+    433000.0,
+    4502000.0,
+    434000,
+    4503000
+   ],
+   "prepared_extent": [
+    432950.0,
+    4501950.0,
+    434050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.0491
+  },
+  {
+   "tile": "12TVL3303",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 17, 'omission_sample:12TVL3302': 8, 'cell_sample:12TVL3302': 12, 'crown_sample:12TVL3302': 4}"
+   ],
+   "core_extent": [
+    433000.0,
+    4503000.0,
+    434000,
+    4504000
+   ],
+   "prepared_extent": [
+    432950.0,
+    4502950.0,
+    434050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.1626
+  },
+  {
+   "tile": "12TVL3304",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    433000.0,
+    4504000.0,
+    434000,
+    4505000
+   ],
+   "prepared_extent": [
+    432950.0,
+    4503950.0,
+    434050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.1613
+  },
+  {
+   "tile": "12TVL3305",
+   "in_city_copy": "yes",
+   "reasons_excluded": [],
+   "core_extent": [
+    433000.0,
+    4505000.0,
+    434000,
+    4506000
+   ],
+   "prepared_extent": [
+    432950.0,
+    4504950.0,
+    434050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.1328
+  },
+  {
+   "tile": "12TVL3306",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3407"
+   ],
+   "core_extent": [
+    433000.0,
+    4506000.0,
+    434000,
+    4507000
+   ],
+   "prepared_extent": [
+    432950.0,
+    4505950.0,
+    434050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.2509
+  },
+  {
+   "tile": "12TVL3307",
+   "in_city_copy": "no",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3208, 12TVL3308, 12TVL3407, 12TVL3408"
+   ],
+   "core_extent": [
+    433000.0,
+    4507000.0,
+    434000,
+    4508000
+   ],
+   "prepared_extent": [
+    432950.0,
+    4506950.0,
+    434050.0,
+    4508050.0
+   ],
+   "sampled_class2_share": 0.1315
+  },
+  {
+   "tile": "12TVL3402",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3401, 12TVL3501, 12TVL3502, 12TVL3503",
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 7, 'omission_sample:12TVL3302': 2, 'cell_sample:12TVL3302': 3}"
+   ],
+   "core_extent": [
+    434000.0,
+    4502000.0,
+    435000,
+    4503000
+   ],
+   "prepared_extent": [
+    433950.0,
+    4501950.0,
+    435050.0,
+    4503050.0
+   ],
+   "sampled_class2_share": 0.0967
+  },
+  {
+   "tile": "12TVL3403",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3502, 12TVL3503, 12TVL3504",
+    "overlaps 12TVL3302 prospective holdout + prepared 50 m halo",
+    "evaluation features within prepared extent: {'treetop_sample:12TVL3302': 1, 'cell_sample:12TVL3302': 1}"
+   ],
+   "core_extent": [
+    434000.0,
+    4503000.0,
+    435000,
+    4504000
+   ],
+   "prepared_extent": [
+    433950.0,
+    4502950.0,
+    435050.0,
+    4504050.0
+   ],
+   "sampled_class2_share": 0.1152
+  },
+  {
+   "tile": "12TVL3404",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3503, 12TVL3504, 12TVL3505"
+   ],
+   "core_extent": [
+    434000.0,
+    4504000.0,
+    435000,
+    4505000
+   ],
+   "prepared_extent": [
+    433950.0,
+    4503950.0,
+    435050.0,
+    4505050.0
+   ],
+   "sampled_class2_share": 0.115
+  },
+  {
+   "tile": "12TVL3405",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3504, 12TVL3505, 12TVL3506"
+   ],
+   "core_extent": [
+    434000.0,
+    4505000.0,
+    435000,
+    4506000
+   ],
+   "prepared_extent": [
+    433950.0,
+    4504950.0,
+    435050.0,
+    4506050.0
+   ],
+   "sampled_class2_share": 0.1754
+  },
+  {
+   "tile": "12TVL3406",
+   "in_city_copy": "yes",
+   "reasons_excluded": [
+    "neighbour LAZ/LAS missing: 12TVL3407, 12TVL3505, 12TVL3506, 12TVL3507"
+   ],
+   "core_extent": [
+    434000.0,
+    4506000.0,
+    435000,
+    4507000
+   ],
+   "prepared_extent": [
+    433950.0,
+    4505950.0,
+    435050.0,
+    4507050.0
+   ],
+   "sampled_class2_share": 0.1399
+  }
+ ]
+}

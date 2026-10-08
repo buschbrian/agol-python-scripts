@@ -1,0 +1,62 @@
+{
+  "status": "verified",
+  "files": [
+    {
+      "file": "12TVL3201.las",
+      "points": 85333,
+      "changed": 0,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    },
+    {
+      "file": "12TVL3202.las",
+      "points": 1661346,
+      "changed": 4161,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    },
+    {
+      "file": "12TVL3203.las",
+      "points": 72823,
+      "changed": 41,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    },
+    {
+      "file": "12TVL3301.las",
+      "points": 1732839,
+      "changed": 0,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    },
+    {
+      "file": "12TVL3302.las",
+      "points": 34645313,
+      "changed": 65107,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    },
+    {
+      "file": "12TVL3303.las",
+      "points": 1415368,
+      "changed": 4763,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    },
+    {
+      "file": "12TVL3402.las",
+      "points": 690246,
+      "changed": 862,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    },
+    {
+      "file": "12TVL3403.las",
+      "points": 27048,
+      "changed": 68,
+      "header_and_protected_bytes_identical": true,
+      "original_size_and_mtime_preserved": true
+    }
+  ],
+  "seconds": 3.781
+}

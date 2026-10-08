@@ -1,6 +1,16 @@
 # Canopy Tools for ArcGIS Pro
 
+> **Continuing on another workstation:** start with [reviews/2026-09-30/HANDOFF.md](reviews/2026-09-30/HANDOFF.md) (data locations, environment setup, next GPU runs, open decisions).
+
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
+
+The [September 29 integration](reviews/2026-09-29/INTEGRATION.md) documents building
+reconciliation, interior roof fitting, shared LAS readers, independent plot census,
+analytic intervals, prospective holdouts and the NAIP review screen. Esri pretrained
+point-cloud inference was authorized and run on 12TVL2804 on September 29 (see
+[DEEP_LEARNING.md](reviews/2026-09-29/DEEP_LEARNING.md)). Its results are disagreement
+counts with the baseline classes, not accuracy. Run the deep-learning clone's Python with
+`PYTHONNOUSERSITE=1`.
 
 The source acquisition, its tested accuracy, delivered classes, and per-tile flight dates are recorded in [the 2023 acquisition record](acquisitions/2023-salt-lake-valley/RECORD.md); the [acquisition procedure](acquisitions/README.md) documents each new one the same way. The [original review](reviews/2026-09-17/README.md) records the baseline failures. The [implementation report](reviews/2026-09-17/IMPLEMENTATION.md) records the core fixes; the [roof-edge follow-up](reviews/2026-09-17/ROOF_EDGES.md) contains the latest 55-test validation, imagery comparison, and current pilot layers.
 
@@ -51,7 +61,7 @@ The same run writes the acquisition record: `acquisition.json` and `acquisition-
 
 Prepare extracts new point files into output/points, checks that they are isolated from the delivery, and classifies only that copy. It preserves delivered ground and noise by default. If any copied file has no ground, ground classification runs with reuse of existing ground. Optional --classify-noise enables isolation screening with explicit, recorded parameters; review those thresholds locally.
 
-Buildings are classified before remaining unclassified points are assigned height classes. Defaults: 2 m minimum building height, 10 square metres minimum building area, and class 6 for points below detected roofs and within 3 m above them. --roof-tolerance changes the last threshold; zero disables above-roof classification. Inspect tree overhangs and rooftop vegetation because these settings can remove real vegetation as well as roof equipment. Class 3 spans up to 0.5 m, class 4 up to 2 m, and class 5 up to 80 m above ground. These height labels do not establish that the objects are trees.
+Buildings are classified before remaining unclassified points are assigned height classes. Defaults: 2 m minimum building height, 10 square metres minimum building area, and class 6 for points below detected roofs and within 3 m above them. --roof-tolerance changes the last threshold; zero disables above-roof classification. `--building-method` selects CONSERVATIVE, STANDARD (default), or AGGRESSIVE and records that choice. Inspect tree overhangs and rooftop vegetation because these settings can remove real vegetation as well as roof equipment. Class 3 spans up to 0.5 m, class 4 up to 2 m, and class 5 up to 80 m above ground. These height labels do not establish that the objects are trees.
 
 The run manifest records parameters, source size/mtime, code fingerprint, runtime, per-tile progress, and final outputs. --resume reuses an unchanged run, including saved raster cores after an interrupted attempt. Changed inputs, code, or parameters require a new directory. Source fingerprints detect normal file changes; they are not cryptographic checksums of all LAS bytes. An explicit --source-files list is required when not using a prepared LAS dataset.
 
@@ -61,7 +71,7 @@ Run outputs are CHM, treetops, crowns, and trees_review. Use tool 5 on the assem
 
 - Ground class 2 supplies the triangulated DTM. Vegetation DSM uses only classes 3/4/5, first or single returns, BINNING MAXIMUM NONE. It cannot interpolate canopy across roads, roofs, or empty vegetation cells.
 - Withheld, overlap, and synthetic points are excluded. This policy can reduce coverage and must be checked against delivery provenance. On the 2023 Salt Lake Valley delivery the overlap bit was never populated, so the exclusion has no effect there and all swath overage is retained.
-- A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20.
+- A valid ground estimate plus a direct vegetation or recognized non-canopy first/single return establishes an observed cell. Other cells remain NoData. Class 0/1 does not contribute canopy. Non-canopy classes are 2, 6, 9, 10, 11, 13–17, and 20. Explicit `--classified-background-zero` can add class 0 as observed non-canopy only on fully model-classified background; class 1 stays unknown. CHM construction requires fresh working-copy LAS statistics.
 - Where a measured class-6 first/single surface is more than 0.35 m above vegetation in the same cell, the CHM reports observed non-canopy. This prevents lower wall or under-roof returns from becoming visible canopy. Canopy above roofs survives. The configurable building-clearance threshold is a processing tolerance, not a surveyed accuracy value. The raw vegetation DSM and building_occlusion mask preserve the evidence.
 - Smoothing and maxima operate on the same grid used by crown segmentation. Raw canopy support constrains the flood. No hydrology Fill or Flow Direction operation is used. Unseeded canopy stays unassigned and is reported.
 - Crown areas use exact cell counts. Small crowns are excluded from polygons but remain in trees_review with CROWN_TOO_SMALL status. Crown diameter is the diameter of a circle with equivalent area, not a measured canopy width.
@@ -69,6 +79,17 @@ Run outputs are CHM, treetops, crowns, and trees_review. Use tool 5 on the assem
 Raster creation uses buffered, nonoverlapping tile cores and assembles one canonical CHM. Detection and segmentation then run across that entire AOI. Tests demonstrated that finite crown halos alone cannot guarantee equivalent results, so the runner does not stitch independently grown crowns.
 
 **Detection and crown processing have a hard limit of 4,000,000 cells per AOI** (1 square kilometre at 0.5 m resolution). The runner rejects larger analyses before processing. Citywide crown reconciliation is not implemented; independently run AOIs must not be appended and described as a seamless inventory. Raster-generation seams can still change DTM interpolation slightly; SEAM_REVIEW marks nearby detections for inspection. Cover summarization is independent of the crown limit.
+
+The separate October 8 **count-only** workflow uses a disk-backed canonical CHM,
+bounded local-maximum filters and global connected-plateau reconciliation.
+It preserves the existing peak-selection rule, with exact matches on the real
+4-million-cell pilot and a 5,242,880-cell synthetic fixture. It does not produce
+crowns or change the limits above. `reviews/2026-10-08/run_city_count.py` assigns
+each unique city treetop to public/government, private, unknown, conflicting or
+unmatched parcel ownership; tax exemption alone never means government. Source
+LAS and the city GIS are unchanged. The count is preliminary and uses apex
+locations, not surveyed stems. See the [city count record](reviews/2026-10-08/CITY_COUNT.md)
+for the agreed definition, inputs, totals and verification.
 
 TREE_ID is deterministic for the same source ID, CRS, and raster-cell location. It is suitable for repeat-run joins, but is not longitudinal tree identity: a changed raster peak can change an ID. Preserve reviewed inventory identity separately when reconciling future acquisitions.
 
@@ -124,5 +145,21 @@ Eligible class-3/4/5 points inside the roof support or within a 1 m raster edge 
 The output includes roof_review.gdb/roof_outlines, roof and ground rasters, prepared.lasd and copied points, per-point previous classification bytes under changes/, and a preparation.json manifest with before/after counts and plane diagnostics. Only classification bytes are changed; source LAS files, coordinates, returns, and flags are preserved. Legacy and LAS 1.4 point formats have byte-integrity tests.
 
 ROOF_Z_M is median measured roof elevation; ROOF_H_M is median roof elevation minus the interpolated ground surface; FIT_RMSE_M is the plane-fit residual, not elevation accuracy. MODEL_OK and PARTIAL_AOI identify rejected fits and outlines truncated by the analysis boundary. These rasterized roof-support outlines are unverified and should not be described as surveyed building-wall footprints.
+
+## Training-label review in ArcGIS Pro
+
+Training labels for fine-tuning point-cloud and imagery models are collected separately from the evaluation sample, away from every reference unit, census plot and holdout tile. See [TRAINING_REVIEW.md](reviews/2026-09-29/TRAINING_REVIEW.md) for the review project and the `TrainingReview.pyt` step-through tools.
+
+## Optional shape gate for walls, poles and wires
+
+`python -m canopy shape-gate prepared.lasd NEW_FOLDER [--extent ...] [--min-wall-height 0.7]` writes review LAS copies in which class 3/4/5 points carry shape-group codes 64–72, plus per-point eigen features and height above ground. A wall-shaped point must stand at least `--min-wall-height` (default 0.7 m) above the pipeline DTM to be wall_like; lower ones (curbs, edging, low retaining edges) are `low_wall` (code 72), which is review only. The ground raster needs ArcGIS Pro Python in both modes. `--apply` writes a new prepared dataset in which only a prespecified, conservative wall/wire/pole rule moves points to class 1, with the refine-roofs audit trail. On both pilots the rule changed no points, and it is unvalidated. See [SHAPE_GATE.md](reviews/2026-09-29/SHAPE_GATE.md); its codes are review evidence, never scoring truth.
+
+## Height-above-ground (HAG) dataset
+
+~~~powershell
+& $proPython -m canopy hag {root}\{tile}\prepared\prepared.lasd NEW_FOLDER [--mode z|extrabytes|both] [--extent ...] [--cell 0.5] [--label TEXT]
+~~~
+
+It builds the pipeline DTM (class-2 ground of every prepared file, 0.5 m natural neighbour, EPSG:6341 metres by default) and writes NEW LAS copies in which each point's height above the ground cell containing it is either the Z value (`z`, in `points/`) or an added `HeightAboveGround` Extra Bytes attribute with Z untouched (`extrabytes`, LAS 1.4 only, in `points-extrabytes/`). Negative HAG is kept and counted. In z mode, a file with any point over a NoData ground cell is refused, not written, and its point indices are logged. Every other byte is verified identical to the source. `manifest.json` records the source and output fingerprints, the ground raster fingerprint, counts and timings; its `"status": "complete"` is written last. See [HAG.md](reviews/2026-09-29/HAG.md).
 
 The user-supplied OSM layer was checked for the pilot plus a 30 m border and returned no intersecting footprints. It remains useful reference data where it has coverage; it is not used as a blanket canopy exclusion.

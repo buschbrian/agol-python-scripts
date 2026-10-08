@@ -1,0 +1,257 @@
+{
+ "policy": "conflict-class",
+ "halos": "inferred",
+ "folder": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804",
+ "timings_s": {
+  "assemble": 16.8,
+  "lasd_statistics": 2.3,
+  "canopy_run": 154.4
+ },
+ "files": {
+  "12TVL2804": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 70600,
+    "ground_restored": 2658030,
+    "ground_restored_over_tree": 402,
+    "ground_restored_over_building": 1541,
+    "tree_5": 8855591,
+    "building_6": 3311370,
+    "conflict_tree5_building6": 405870,
+    "background_0": 11681003,
+    "conflict_tree5_building6_to_class_65": 405870
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "fda83b0a80f0467af3b63acc9d0082c375877096c6148f5131af0f80392e919b"
+   }
+  },
+  "12TVL2703": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 29,
+    "ground_restored": 7272,
+    "ground_restored_over_tree": 0,
+    "ground_restored_over_building": 0,
+    "tree_5": 11477,
+    "building_6": 12289,
+    "conflict_tree5_building6": 974,
+    "background_0": 53644,
+    "conflict_tree5_building6_to_class_65": 974
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2703.las",
+    "bytes": 2572108,
+    "sha256": "4fcc4b6ab4592905105baea3703615046cc7ff091a9d3e7dd3ae8c9e7ef06a43"
+   }
+  },
+  "12TVL2704": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 750,
+    "ground_restored": 130876,
+    "ground_restored_over_tree": 0,
+    "ground_restored_over_building": 0,
+    "tree_5": 440718,
+    "building_6": 283384,
+    "conflict_tree5_building6": 31581,
+    "background_0": 907744,
+    "conflict_tree5_building6_to_class_65": 31581
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2704.las",
+    "bytes": 53853148,
+    "sha256": "4731ea783ccb7ec321cd3f203520730c65a064a289224965a431c30ef9fc0b18"
+   }
+  },
+  "12TVL2705": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 87,
+    "ground_restored": 6394,
+    "ground_restored_over_tree": 0,
+    "ground_restored_over_building": 0,
+    "tree_5": 59313,
+    "building_6": 3830,
+    "conflict_tree5_building6": 960,
+    "background_0": 42016,
+    "conflict_tree5_building6_to_class_65": 960
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2705.las",
+    "bytes": 3379558,
+    "sha256": "0ed6a2d2a8962e88885bb844390f843ce456a01cc7b39cc92dc028755d2f857c"
+   }
+  },
+  "12TVL2803": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 1347,
+    "ground_restored": 125478,
+    "ground_restored_over_tree": 1,
+    "ground_restored_over_building": 1,
+    "tree_5": 399739,
+    "building_6": 149038,
+    "conflict_tree5_building6": 14522,
+    "background_0": 647986,
+    "conflict_tree5_building6_to_class_65": 14522
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2803.las",
+    "bytes": 40144858,
+    "sha256": "ea947d72e67a77aecdf3d831cde572f3cddb4b1a66e872499ea1ad302c5e58b4"
+   }
+  },
+  "12TVL2805": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 4578,
+    "ground_restored": 143174,
+    "ground_restored_over_tree": 198,
+    "ground_restored_over_building": 0,
+    "tree_5": 701659,
+    "building_6": 98123,
+    "conflict_tree5_building6": 20894,
+    "background_0": 530037,
+    "conflict_tree5_building6_to_class_65": 20894
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2805.las",
+    "bytes": 44955508,
+    "sha256": "ba9299c621da6921130d87d26f291c8f1d25ccaa1c7332cfa46b45d6d33e9555"
+   }
+  },
+  "12TVL2904": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 383,
+    "ground_restored": 175332,
+    "ground_restored_over_tree": 2,
+    "ground_restored_over_building": 0,
+    "tree_5": 269111,
+    "building_6": 80623,
+    "conflict_tree5_building6": 9799,
+    "background_0": 174154,
+    "conflict_tree5_building6_to_class_65": 9799
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2904.las",
+    "bytes": 21283618,
+    "sha256": "1ebbb9f748ac24ff5b787987c83872380b18ae269b35baa4ece3e411f7bfba52"
+   }
+  },
+  "12TVL2905": {
+   "kind": "product",
+   "counts": {
+    "noise_kept": 35,
+    "ground_restored": 12569,
+    "ground_restored_over_tree": 0,
+    "ground_restored_over_building": 0,
+    "tree_5": 8126,
+    "building_6": 3847,
+    "conflict_tree5_building6": 17,
+    "background_0": 6682,
+    "conflict_tree5_building6_to_class_65": 17
+   },
+   "output": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2905.las",
+    "bytes": 939838,
+    "sha256": "69d0f974c192ba240e908c642d8851aabcda1dd09d5115ed01a4cf2d729b0575"
+   }
+  }
+ },
+ "lasd_audit": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\product.lasd",
+  "spatial_reference": "NAD_1983_2011_UTM_Zone_12N",
+  "vertical_reference": "NAVD88 height - Geoid18 (Meters)",
+  "linear_unit": "Meter",
+  "point_count": 32553055,
+  "class_codes": [
+   0,
+   2,
+   5,
+   6,
+   65
+  ],
+  "has_statistics": true,
+  "statistics_stale": false,
+  "has_ground": true,
+  "has_vegetation": true,
+  "has_building": true,
+  "has_noise": false
+ },
+ "classified_background_zero": true,
+ "classified_background_zero_justification": "every product file comes from verified full-file inference; class 0 is verified model background",
+ "command": [
+  "C:\\Program Files\\ArcGIS\\Pro\\bin\\Python\\envs\\arcgispro-py3\\python.exe",
+  "-m",
+  "canopy",
+  "run",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\product.lasd",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\run",
+  "--extent",
+  "428000.0",
+  "4504000.0",
+  "429000.0",
+  "4505000.0",
+  "--tile-size",
+  "200",
+  "--overlap",
+  "15.0",
+  "--cell-size",
+  "0.5",
+  "--bands",
+  "2-6:1.0, 6-12:1.5, 12-20:2.0, 20-:2.5",
+  "--smooth",
+  "1",
+  "--min-crown-area",
+  "3",
+  "--building-clearance",
+  "0.35",
+  "--source-files",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2703.las",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2704.las",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2705.las",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2803.las",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2804.las",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2805.las",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2904.las",
+  "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\product-conflict-class\\12TVL2804\\points\\12TVL2905.las",
+  "--classified-background-zero"
+ ],
+ "canopy_run_exit": 0,
+ "parameter_differences": {
+  "classified_background_zero": {
+   "baseline": null,
+   "product": true
+  },
+  "source_id": {
+   "baseline": "d6727c3141d23effdd67fdfe",
+   "product": "178e7f4826ad362ee8481a23"
+  }
+ },
+ "parameters_match_baseline": true,
+ "outputs": {
+  "treetops": 14697,
+  "treetops_within_15m_of_tile_edge": 986,
+  "crowns": 11358,
+  "chm": {
+   "shape": [
+    2000,
+    2000
+   ],
+   "cell": 0.5,
+   "xmin": 428000.0,
+   "ymax": 4505000.0,
+   "nodata_cells": 50275,
+   "canopy_cells_ge_2m": 1162474,
+   "zero_cells": 2780994,
+   "edge_band_m": 15.0,
+   "edge_nodata_cells": 2592,
+   "edge_canopy_cells_ge_2m": 73546,
+   "interior_canopy_cells_ge_2m": 1088928
+  }
+ },
+ "grid_equals_baseline": true
+}
