@@ -1,5 +1,11 @@
 # Next steps and how to pick this up on another machine (October 1, 2026)
 
+**October 8 update:** the SSD is attached, the A4000 completed three verified
+full-tile passes per imagery year, and the training comparison is saved.
+Read [SSD_GPU.md](../2026-10-08/SSD_GPU.md) for the accepted outputs, Windows
+reader/writer fixes and remaining manual review. The sections below retain
+the October 1 state; the old SSD and first-run blockers are resolved.
+
 Branch `canopy/classification-refinement`. Read [HANDOFF.md](../2026-09-30/HANDOFF.md) first (sections 1 to 3 for the data layout);
 this page is what changed since and what comes next. Nothing here writes to live GIS data, and none of it should.
 

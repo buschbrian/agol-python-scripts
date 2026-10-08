@@ -150,6 +150,9 @@ def main(argv=None):
                 "model_code_sha256": {str(p.relative_to(checkout)): sha256(p) for p in
                                       (checkout / "run.py", checkout / "myria3d/predict.py",
                                        checkout / "myria3d/pctl/datamodule/hdf5.py",
+                                       checkout / "myria3d/pctl/dataset/utils.py",
+                                       checkout / "myria3d/models/interpolation.py",
+                                       checkout / "myria3d/models/las_writer.py",
                                        checkpoint.with_name("FRACTAL-LidarHD_7cl_randlanet-inference-Myria3DV3.8.yaml"))},
                 "torch": torch.__version__, "gpu": torch.cuda.get_device_name(0), "repeats": args.repeats,
                 "batch": args.batch, "started": time.time(), "rows": [],
