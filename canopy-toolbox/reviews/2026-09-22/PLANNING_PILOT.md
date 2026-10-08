@@ -2,7 +2,7 @@
 
 The expanded workflow completed on a **300 × 300 m Millcreek sample**, producing **25 rasters, building-height polygons, and contours** (27 planning datasets). Separate outputs contain tree candidates, crowns, review points, canopy-cover accounting, and a delivery-wide LAS index. All results remain **unvalidated planning estimates**.
 
-[View the overview map](../../scratch/planning_20260922/planning-overview.png) · [Product catalog, methods, and next datasets](../../PLANNING_PRODUCTS.md)
+[View the overview map](../../scratch/planning_20260922/planning-overview.png) · [Product catalog, methods, and next datasets](../../PLANNING_PRODUCTS.md) · [Preliminary imagery QA](IMAGERY_QA.md)
 
 ## Correction, added 2026-09-22 after the delivery metadata arrived
 
@@ -116,6 +116,8 @@ The delivery index describes rectangular header bounds, not a verified point-sup
 The real-data run completed and its overview map was visually inspected. Roof heights, slopes, canopy structure, and coverage masks have plausible ranges; that is not an independent accuracy assessment. The all-object height raster deliberately retains negative values (minimum -1.65 m) for QA.
 
 Footprint-by-footprint ArcGIS rasterization took several minutes for 115 buildings. It preserves overlap accounting but needs profiling/optimization before citywide use. Planning rasters and crown processing remain limited to 4 million cells per AOI; no citywide seamless crown reconciliation or catchment mosaic is claimed.
+
+A follow-up changed building-height rasterization to use each footprint's grid-aligned bounding window. The ArcGIS regression covers an offset footprint, overlaps, tiny polygons, missing roofs, and partial/outside footprints. A fresh run over all 115 pilot footprints matched every saved summary field, including status flags, within 1e-6 for numeric values. That run took 539 seconds. It reduces the size of per-footprint masks and array calculations, but per-feature ArcGIS operations still dominate; no speedup is claimed without a same-machine baseline.
 
 Recommended next work:
 1. Compare the delivery-index footprint with the city and hydrologic study extents.

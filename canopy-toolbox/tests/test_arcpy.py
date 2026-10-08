@@ -50,6 +50,13 @@ class ArcGISRegression(unittest.TestCase):
                 cursor.insertRow([geometry,key])
         return path
 
+    def test_invalid_building_method_is_rejected_before_output(self):
+        from canopy import preparation
+        output = self.root/"invalid_building_method"
+        with self.assertRaisesRegex(ValueError, "Building method"):
+            preparation.prepare(self.root, output, (0, 0, 1, 1), building_method="UNKNOWN")
+        self.assertFalse(output.exists())
+
     def test_cone_crown_contains_all_137_cells_and_input_unchanged(self):
         yy,xx=np.indices((21,21))
         array=np.maximum(0,12-np.hypot(yy-10,xx-10)*1.5)
@@ -115,6 +122,36 @@ class ArcGISRegression(unittest.TestCase):
         for xy in ["500005.5 4500003.5","500005.5 4500005.5","500005.5 4500006.5"]:
             self.assertEqual(float(arcpy.management.GetCellValue(outputs["chm"],xy)[0]),0.0)
         self.assertEqual(float(arcpy.management.GetCellValue(outputs["chm"],"500001.5 4500003.5")[0]),10.0)
+
+    def test_chm_requires_fresh_las_statistics(self):
+        from tests.las_fixture import write_las
+        las=self.root/"unstatted.las";write_las(las)
+        lasd=str(self.root/"unstatted.lasd")
+        arcpy.management.CreateLasDataset(str(las),lasd,spatial_reference=self.sr,
+                                          compute_stats="NO_COMPUTE_STATS")
+        with self.assertRaisesRegex(ValueError,"statistics are missing or stale"):
+            rasters.build_chm(lasd,str(self.root),cell_size=1,prefix="unstatted_",z_unit="metres")
+    def test_model_class_zero_background_is_observed_only_when_declared(self):
+        import struct
+        from tests.las_fixture import write_las
+        las=self.root/"model_background.las";write_las(las)
+        data=bytearray(las.read_bytes())
+        for position in range(227,len(data),20):
+            x,y,z=struct.unpack_from("<iii",data,position)
+            if (x,y,z)==(500,500,10000):
+                data[position+15]=1  # Remove direct ground from this cell.
+            elif (x,y,z)==(500,500,11500):
+                data[position+15]=0  # Model-predicted background.
+        las.write_bytes(data)
+        lasd=str(self.root/"model_background.lasd")
+        arcpy.management.CreateLasDataset(str(las),lasd,spatial_reference=self.sr,compute_stats="COMPUTE_STATS")
+        ordinary=rasters.build_chm(lasd,str(self.root),cell_size=1,prefix="ordinary_",z_unit="metres")
+        modeled=rasters.build_chm(lasd,str(self.root),cell_size=1,prefix="model_",z_unit="metres",
+                                  classified_background_zero=True)
+        xy="500005.5 4500005.5"
+        self.assertEqual(float(arcpy.management.GetCellValue(ordinary["observed"],xy)[0]),0)
+        self.assertEqual(float(arcpy.management.GetCellValue(modeled["observed"],xy)[0]),1)
+        self.assertEqual(float(arcpy.management.GetCellValue(modeled["chm"],xy)[0]),0)
 
     def test_las_without_vegetation_is_observed_noncanopy(self):
         from tests.las_fixture import write_las

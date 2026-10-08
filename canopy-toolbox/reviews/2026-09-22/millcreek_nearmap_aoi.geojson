@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Millcreek 300m LiDAR pilot with 35m margin",
+        "lidar_acquisition": "2023-11-02 to 2023-11-04",
+        "source_crs": "EPSG:6341"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -111.85129377,
+              40.68434468
+            ],
+            [
+              -111.84691563,
+              40.68437688
+            ],
+            [
+              -111.84695782,
+              40.68770975
+            ],
+            [
+              -111.85133618,
+              40.68767755
+            ],
+            [
+              -111.85129377,
+              40.68434468
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
