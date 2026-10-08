@@ -1,0 +1,62 @@
+[
+  {
+    "fixture": 0,
+    "shape": [
+      161,
+      179
+    ],
+    "block_size": 71,
+    "peaks": 464,
+    "exact_original_method_match": true
+  },
+  {
+    "fixture": 0,
+    "shape": [
+      161,
+      179
+    ],
+    "block_size": 500,
+    "peaks": 464,
+    "exact_original_method_match": true
+  },
+  {
+    "fixture": 1,
+    "shape": [
+      123,
+      171
+    ],
+    "block_size": 71,
+    "peaks": 1,
+    "exact_original_method_match": true
+  },
+  {
+    "fixture": 1,
+    "shape": [
+      123,
+      171
+    ],
+    "block_size": 500,
+    "peaks": 1,
+    "exact_original_method_match": true
+  },
+  {
+    "fixture": 2,
+    "shape": [
+      2000,
+      2000
+    ],
+    "block_size": 71,
+    "peaks": 17389,
+    "exact_original_method_match": true
+  },
+  {
+    "fixture": 2,
+    "shape": [
+      2000,
+      2000
+    ],
+    "block_size": 500,
+    "peaks": 17389,
+    "exact_original_method_match": true
+  }
+]

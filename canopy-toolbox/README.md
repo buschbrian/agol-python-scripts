@@ -80,6 +80,17 @@ Raster creation uses buffered, nonoverlapping tile cores and assembles one canon
 
 **Detection and crown processing have a hard limit of 4,000,000 cells per AOI** (1 square kilometre at 0.5 m resolution). The runner rejects larger analyses before processing. Citywide crown reconciliation is not implemented; independently run AOIs must not be appended and described as a seamless inventory. Raster-generation seams can still change DTM interpolation slightly; SEAM_REVIEW marks nearby detections for inspection. Cover summarization is independent of the crown limit.
 
+The separate October 8 **count-only** workflow uses a disk-backed canonical CHM,
+bounded local-maximum filters and global connected-plateau reconciliation.
+It preserves the existing peak-selection rule, with exact matches on the real
+4-million-cell pilot and a 5,242,880-cell synthetic fixture. It does not produce
+crowns or change the limits above. `reviews/2026-10-08/run_city_count.py` assigns
+each unique city treetop to public/government, private, unknown, conflicting or
+unmatched parcel ownership; tax exemption alone never means government. Source
+LAS and the city GIS are unchanged. The count is preliminary and uses apex
+locations, not surveyed stems. See the [city count record](reviews/2026-10-08/CITY_COUNT.md)
+for the agreed definition, inputs, totals and verification.
+
 TREE_ID is deterministic for the same source ID, CRS, and raster-cell location. It is suitable for repeat-run joins, but is not longitudinal tree identity: a changed raster peak can change an ID. Preserve reviewed inventory identity separately when reconciling future acquisitions.
 
 ## Canopy cover fields
