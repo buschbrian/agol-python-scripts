@@ -31,13 +31,16 @@ MIXED and UNSURE are reported apart and are not counted either way, so use them 
 ## Steps in ArcGIS Pro
 
 1. In any project, add `H:\lidar\2023-salt-lake-valley\runs\treetop-evidence-20261015\calibration-treetop-calibration-1\calibration.gdb\calibration_units`
-   and `...\calibration-treetop-calibration-1\delivery.lasd`, plus World Imagery as a basemap.
+   and `...\calibration-treetop-calibration-1\delivery.lasd`, plus World Imagery as a basemap. **Add only these two.**
+   The parent folder also holds `treetop-evidence.gdb` and `treetop-evidence.csv`, which carry every flag; leave them
+   out of the project until you have finished.
 2. Symbolise the LAS dataset by **elevation**, not class, and filter out classes 7 and 18 (noise). It is the original
    delivery, which only distinguishes ground from unclassified, so no class of ours can steer you.
 3. Open the attribute table of `calibration_units`, sort by **REVIEW_ORDER** and work from 1 upwards. If you stop early,
    the units done so far are still a random subsample of every stratum, so label in order and do not skip.
 4. For each row: zoom to it (about 1:300), look at the points around it in 3D or a profile view across it, then at the
-   imagery. Judge from the points first; World Imagery is not from the October–November 2023 lidar dates. Fill
+   imagery. Judge from the points first; World Imagery is not from the October–November 2023 lidar dates. Hide the
+   HEIGHT_M column, or at least decide before reading it: heights differ by stratum and could hint at one. Fill
    **LABEL**, **REVIEWER** (initials) and **REVIEW_DATE** (YYYY-MM-DD); NOTE is optional.
 5. Save edits often. To copy the answers into the repo (do this at the end of each session):
 
