@@ -101,7 +101,7 @@ Profile script and output: [pilot_feature_profile.py](pilot_feature_profile.py),
   X, Y and HEIGHT_M; all 61 LAS fingerprints and the treetop CSV SHA-256 were unchanged after the run. The feature
   class has 607,972 points in EPSG 6341, with the CSV's SUSPECT, ROOF_HEIGHT and WIRE_HINT counts. The two WGS84
   longitude/latitude fields that XY Table To Point added (named TILE_X and TILE_Y) were deleted; the driver now does that itself.
-- Plain suite: 466 tests OK, 88 ArcGIS-only skips (454 before, plus 12 new): [regression-tests.log](regression-tests.log).
+- Plain suite: 475 tests OK, 88 ArcGIS-only skips (454 before; 12 evidence and 9 calibration-sample tests added): [regression-tests.log](regression-tests.log).
 
 ## What this does not establish
 
@@ -114,11 +114,11 @@ Profile script and output: [pilot_feature_profile.py](pilot_feature_profile.py),
 
 ## Next
 
-1. **Calibration sample** (needs a decision): a seeded random draw stratified by flag (ROOF_HEIGHT, WIRE_HINT,
-   FLAT_TOP, WALL_HINT, unflagged), at least 25 m from every reference unit and census plot (training_review's
-   exclusion frame), recorded as its own packet, never batch 1. A person reviewing about 50 treetops per stratum
-   against World Imagery and the points would give the first measured suspect rates, and the shape-gate calibration
-   sample the 30 September handoff asked for.
+1. **Calibration sample: drawn October 15, waiting for labels.** 350 treetops, blind, in six disjoint strata
+   (WIRE, WALL, FLAT_TOP, ROOF_HEIGHT, POLE_ONLY, UNFLAGGED), seed 20261015, outside the evaluation frame and the two
+   holdout tiles. See [packets/treetop-calibration-1/README.md](packets/treetop-calibration-1/README.md) and
+   [calibration_sample.py](calibration_sample.py). Labelling it gives the first measured rate for each flag and the
+   shape-gate calibration sample the 30 September handoff asked for. Batch 1 is not used.
 2. **Esri Power Line Classification** pretrained model ([Esri](https://doc.arcgis.com/en/pretrained-models/latest/point-cloud/introduction-to-power-line-classification.htm)):
    RandLA-Net, X/Y/Z only, wires 14, poles 15, published validation F1 0.946 for wires and 0.622 for poles, 8 GB
    GPU recommended. It runs through Classify Point Cloud Using Trained Model, so it is the in-licence route for wires

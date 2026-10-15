@@ -1,0 +1,330 @@
+r"""Calibration sample for the treetop review evidence: a blind, stratified, seeded draw of city treetops to label.
+
+    python reviews/2026-10-15/calibration_sample.py draw PACKET_DIR [--seed 20261015]       plain or Pro Python
+    python reviews/2026-10-15/calibration_sample.py build-gdb PACKET_DIR                     Pro Python
+    python reviews/2026-10-15/calibration_sample.py export-labels PACKET_DIR                 Pro Python
+    python reviews/2026-10-15/calibration_sample.py score PACKET_DIR [--out score.json]      plain or Pro Python
+
+draw         assigns every treetop in the evidence CSV to one stratum by priority (WIRE_HINT > WALL_HINT > FLAT_TOP >
+             ROOF_HEIGHT, then POLE_ONLY, then UNFLAGGED), removes treetops the evaluation frame forbids (25 m + the 1 m
+             top radius from every reference unit and census plot; the 12TVL3302 and 12TVL2203 tiles with halos) and
+             those within 3 m of a training unit a person has already seen, then draws each stratum at random without
+             replacement, keeping drawn treetops at least 2.5 m apart. All drawn units are shuffled together, so the first
+             k in review order are a random subsample of every stratum. Writes units.csv (blind: no flags, no stratum,
+             no TREE_ID) and sample.json (strata, populations, seed, digests). Refuses an existing packet.
+build-gdb    writes the blind point layer (LABEL has a coded domain of training_review.LABELS) and a LAS dataset of the
+             ORIGINAL delivery LAS (classes 1/2/7/18 only, so no baseline class can bias the reviewer) on the SSD.
+export-labels  copies LABEL/REVIEWER/REVIEW_DATE/NOTE from that layer to PACKET_DIR/labels.csv, for the repo.
+score        joins labels.csv to sample.json. TREE is a real treetop; every other definite class is not; MIXED and
+             UNSURE are reported apart and left out of the share. A stratum is MEASURED only with at least 30 definite
+             labels. Two-sided 95% Clopper-Pearson intervals. Partial packets are scored.
+
+Once labelled, these units are used up as a test: if any treetop_evidence rule is changed after looking at them,
+they cannot measure the changed rule (the audit 1 rule).
+"""
+import argparse
+import csv
+import datetime
+import hashlib
+import json
+from pathlib import Path
+import sys
+
+import numpy as np
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1]))
+from canopy import training_review as tr  # noqa: E402
+from canopy.lidar_root import lidar_root  # noqa: E402
+
+VALLEY = lidar_root()/"2023-salt-lake-valley"
+EVIDENCE = VALLEY/"runs"/"treetop-evidence-20261015"
+EVIDENCE_CSV = EVIDENCE/"treetop-evidence.csv"
+TRAINING_PACKET = VALLEY/"runs"/"pilot-2026-09-29"/"training-review"/"packet-20260929"/"packet.json"
+TRAINING_LABELS = HERE.parent/"2026-09-29"/"packets"/"training-labels"/"labels-progress.csv"
+AUDIT2_UNITS = HERE.parent/"2026-09-30"/"audit-2"/"audit-units.txt"
+DELIVERY_LAS = VALLEY/"las"
+
+SCHEMA = "treetop-calibration/1"
+PRIORITY = ("WIRE_HINT", "WALL_HINT", "FLAT_TOP", "ROOF_HEIGHT")
+STRATA = ("WIRE", "WALL", "FLAT_TOP", "ROOF_HEIGHT", "POLE_ONLY", "UNFLAGGED")
+SIZES = {"WIRE": 50, "WALL": 50, "FLAT_TOP": 50, "ROOF_HEIGHT": 100, "POLE_ONLY": 50, "UNFLAGGED": 50}
+SUSPECT_STRATA = STRATA[:4]
+TOP_RADIUS_M = 1.0          # the flags describe the top within 1 m of the peak
+SEEN_RADIUS_M = 3.0         # treetops this close to a training unit a person has seen are left out
+MIN_SPACING_M = 2.5
+MEASURED_MIN = 30
+NOT_SCORED = ("MIXED", "UNSURE")
+UNIT_COLUMNS = ["UNIT_ID", "ORDER", "X", "Y", "HEIGHT_M", "LABEL", "REVIEWER", "REVIEW_DATE", "NOTE"]
+LABEL_COLUMNS = ["UNIT_ID", "LABEL", "REVIEWER", "REVIEW_DATE", "NOTE"]
+NOTE = ("Calibration labels for canopy/treetop_evidence rules. Never evaluation answers, never training labels, never in "
+        "reference.gdb. Label blind: do not open sample.json or the treetop_evidence layer until every unit is labelled. "
+        "Once these labels have been looked at, a rule changed in response cannot be tested on them.")
+
+
+# ---------------------------------------------------------------- pure helpers
+def stratum(row):
+    """The one stratum of an evidence row (dict of '0'/'1' flag strings)."""
+    for flag, name in zip(PRIORITY, SUSPECT_STRATA):
+        if row[flag] == "1":
+            return name
+    return "POLE_ONLY" if row["POLE_HINT"] == "1" else "UNFLAGGED"
+
+
+def ids_digest(ids):
+    return hashlib.sha256("\n".join(sorted(ids)).encode()).hexdigest()
+
+
+def excluded_reason(x, y, frame, seen_xy):
+    """Per treetop: '' when it may be sampled, else why not."""
+    tr.check_frame(frame)
+    x, y = np.asarray(x, float), np.asarray(y, float)
+    reason = np.full(x.shape, "", dtype=object)
+    for tile, row in frame["excluded_tiles"].items():
+        reason[(reason == "") & (tr._rect_distance(x, y, row["extent"]) < TOP_RADIUS_M)] = f"excluded tile {tile}"
+    open_ = reason == ""
+    close = np.zeros(x.shape, bool)
+    close[open_] = tr.evaluation_distance(x[open_], y[open_], frame) < frame["buffer_m"]+TOP_RADIUS_M
+    reason[close] = "evaluation buffer"
+    if len(seen_xy):
+        from scipy.spatial import cKDTree
+        d, _ = cKDTree(np.asarray(seen_xy, float)).query(np.c_[x, y])
+        reason[(reason == "") & (d < SEEN_RADIUS_M)] = "near a seen training unit"
+    return reason
+
+
+def draw_stratum(ids, xy, n, rng, taken_xy):
+    """n ids drawn without replacement in a seeded random order, skipping any within MIN_SPACING_M of one taken."""
+    chosen = []
+    for i in rng.permutation(len(ids)):
+        if len(chosen) == n:
+            break
+        p = xy[i]
+        if taken_xy and np.min(np.hypot(*(np.asarray(taken_xy)-p).T)) < MIN_SPACING_M:
+            continue
+        chosen.append(i)
+        taken_xy.append(tuple(p))
+    return chosen
+
+
+def clopper_pearson(k, n, alpha=.05):
+    """Two-sided exact interval for k successes in n."""
+    from scipy.stats import beta
+    if n == 0:
+        return (0.0, 1.0)
+    lo = 0.0 if k == 0 else float(beta.ppf(alpha/2, k, n-k+1))
+    hi = 1.0 if k == n else float(beta.ppf(1-alpha/2, k+1, n-k))
+    return (lo, hi)
+
+
+def score(sample, labels):
+    """Per-stratum label mix, not-tree share with its interval, and a projection onto the citywide suspect strata."""
+    by_unit = {u["UNIT_ID"]: u for u in sample["units"]}
+    unknown = sorted(set(labels)-set(by_unit))
+    if unknown:
+        raise ValueError(f"labels.csv has units not in the sample: {unknown[:5]}")
+    bad = sorted({v for v in labels.values() if v and v not in tr.LABELS})
+    if bad:
+        raise ValueError(f"Unknown labels: {bad}")
+    out = {"schema": SCHEMA, "labelled": sum(1 for v in labels.values() if v), "units": len(by_unit), "strata": {}}
+    for s in STRATA:
+        units = [u for u in sample["units"] if u["STRATUM"] == s]
+        got = [labels.get(u["UNIT_ID"], "") for u in units]
+        mix = {k: got.count(k) for k in tr.LABELS if got.count(k)}
+        definite = sum(v for k, v in mix.items() if k not in NOT_SCORED)
+        not_tree = definite-mix.get("TREE", 0)
+        lo, hi = clopper_pearson(not_tree, definite)
+        out["strata"][s] = {"drawn": len(units), "labelled": sum(1 for g in got if g), "label_mix": mix,
+                            "mixed_or_unsure": sum(mix.get(k, 0) for k in NOT_SCORED), "definite": definite,
+                            "not_tree": not_tree,
+                            "not_tree_share": round(not_tree/definite, 4) if definite else None,
+                            "ci95": [round(lo, 4), round(hi, 4)], "measured": definite >= MEASURED_MIN,
+                            "population_citywide": sample["populations"]["citywide"][s]}
+    if all(out["strata"][s]["measured"] for s in SUSPECT_STRATA):
+        est = sum(out["strata"][s]["not_tree_share"]*out["strata"][s]["population_citywide"] for s in SUSPECT_STRATA)
+        low = sum(out["strata"][s]["ci95"][0]*out["strata"][s]["population_citywide"] for s in SUSPECT_STRATA)
+        high = sum(out["strata"][s]["ci95"][1]*out["strata"][s]["population_citywide"] for s in SUSPECT_STRATA)
+        out["suspect_not_tree_projection"] = {
+            "estimate": round(est), "bounds": [round(low), round(high)],
+            "method": "sum over suspect strata of citywide population x not-tree share; bounds sum the per-stratum "
+                      "95% limits (conservative, not a joint interval). Assumes the eligible area represents the city."}
+    else:
+        out["suspect_not_tree_projection"] = None
+    return out
+
+
+# ---------------------------------------------------------------- io
+def read_csv(path):
+    with open(path, newline="", encoding="utf-8-sig") as handle:
+        return list(csv.DictReader(handle))
+
+
+def write_csv(path, columns, rows):
+    with open(path, "w", newline="", encoding="utf-8") as handle:
+        w = csv.DictWriter(handle, columns)
+        w.writeheader()
+        w.writerows(rows)
+
+
+def sha256(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for block in iter(lambda: handle.read(1 << 24), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def seen_training_units():
+    packet = json.loads(TRAINING_PACKET.read_text(encoding="utf-8"))
+    labelled = {r["UNIT_ID"] for r in read_csv(TRAINING_LABELS) if r["LABEL"].strip()}
+    audit = {line.strip() for line in AUDIT2_UNITS.read_text().splitlines() if line.strip()}
+    seen = labelled | audit
+    xy = [(u["X"], u["Y"]) for u in packet["units"] if u["UNIT_ID"] in seen]
+    return packet["frame"], seen, xy
+
+
+def draw(packet_dir, seed):
+    packet_dir = Path(packet_dir).resolve()
+    if packet_dir.exists():
+        raise FileExistsError(f"Use a new packet folder: {packet_dir}")
+    frame, seen, seen_xy = seen_training_units()
+    tr.check_frame(frame)
+    rows = read_csv(EVIDENCE_CSV)
+    x = np.array([float(r["X"]) for r in rows])
+    y = np.array([float(r["Y"]) for r in rows])
+    strata = np.array([stratum(r) for r in rows])
+    reason = excluded_reason(x, y, frame, seen_xy)
+    eligible = reason == ""
+    rng = np.random.default_rng(seed)
+    taken, units = [], []
+    pools = {}
+    for s in STRATA:
+        idx = np.flatnonzero(eligible & (strata == s))
+        idx = idx[np.argsort([rows[i]["TREE_ID"] for i in idx])]          # sorted pool: reproducible draw
+        pools[s] = {"eligible": len(idx), "digest": ids_digest(rows[i]["TREE_ID"] for i in idx)}
+        if len(idx) < SIZES[s]:
+            raise ValueError(f"Stratum {s} has only {len(idx)} eligible treetops")
+        for j in draw_stratum([rows[i]["TREE_ID"] for i in idx], np.c_[x[idx], y[idx]], SIZES[s], rng, taken):
+            units.append({"TREE_ID": rows[idx[j]]["TREE_ID"], "STRATUM": s, "row": int(idx[j])})
+    for order, k in enumerate(rng.permutation(len(units)), 1):
+        units[k]["ORDER"] = order
+        units[k]["UNIT_ID"] = f"C1-{order:04d}"
+    units.sort(key=lambda u: u["ORDER"])
+    packet_dir.mkdir(parents=True)
+    write_csv(packet_dir/"units.csv", UNIT_COLUMNS,
+              [{"UNIT_ID": u["UNIT_ID"], "ORDER": u["ORDER"], "X": rows[u["row"]]["X"], "Y": rows[u["row"]]["Y"],
+                "HEIGHT_M": rows[u["row"]]["HEIGHT_M"], "LABEL": "", "REVIEWER": "", "REVIEW_DATE": "", "NOTE": ""}
+               for u in units])
+    excluded = {}
+    for r, s in zip(reason, strata):
+        if r:
+            excluded.setdefault(r, {}).setdefault(str(s), 0)
+            excluded[r][str(s)] += 1
+    sample = {
+        "schema": SCHEMA, "created": datetime.datetime.now().isoformat(timespec="seconds"), "seed": seed,
+        "method": "per stratum in STRATA order: numpy default_rng(seed).permutation over the TREE_ID-sorted eligible "
+                  "pool, taking units at least MIN_SPACING_M from every unit already taken; then one shared "
+                  "permutation gives the review order",
+        "priority": list(PRIORITY), "strata": list(STRATA), "sizes": SIZES, "min_spacing_m": MIN_SPACING_M,
+        "evidence_csv": str(EVIDENCE_CSV), "evidence_csv_sha256": sha256(EVIDENCE_CSV),
+        "evidence_rules_version": json.loads((EVIDENCE/"manifest.json").read_text())["rules_version"],
+        "frame_source": str(TRAINING_PACKET), "frame_digest": frame["digest"], "frame_buffer_m": frame["buffer_m"],
+        "top_radius_m": TOP_RADIUS_M, "seen_training_units": len(seen), "seen_radius_m": SEEN_RADIUS_M,
+        "populations": {"citywide": {s: int(np.count_nonzero(strata == s)) for s in STRATA},
+                        "eligible": {s: pools[s]["eligible"] for s in STRATA}},
+        "pool_digests": {s: pools[s]["digest"] for s in STRATA}, "excluded": excluded,
+        "units": [{k: u[k] for k in ("UNIT_ID", "ORDER", "TREE_ID", "STRATUM")} for u in units],
+        "note": NOTE,
+    }
+    (packet_dir/"sample.json").write_text(json.dumps(sample, indent=1))
+    spacing = min(np.hypot(*(np.array(a)-np.array(b))) for i, a in enumerate(taken) for b in taken[i+1:])
+    print(json.dumps({"units": len(units), "populations": sample["populations"], "excluded": excluded,
+                      "min_spacing_m": round(float(spacing), 2)}, indent=1))
+
+
+def build_gdb(packet_dir):
+    import arcpy
+    packet_dir = Path(packet_dir).resolve()
+    sample = json.loads((packet_dir/"sample.json").read_text())
+    out = EVIDENCE/f"calibration-{packet_dir.name}"
+    if out.exists():
+        raise FileExistsError(out)
+    out.mkdir()
+    las = sorted(DELIVERY_LAS.glob("*.las"))
+    before = {str(p): (p.stat().st_size, p.stat().st_mtime_ns) for p in las}
+    gdb = out/"calibration.gdb"
+    arcpy.management.CreateFileGDB(str(out), gdb.name)
+    arcpy.management.CreateDomain(str(gdb), "LABEL", "Calibration label", "TEXT", "CODED")
+    for code, (meaning, _) in tr.LABELS.items():
+        arcpy.management.AddCodedValueToDomain(str(gdb), "LABEL", code, f"{code}: {meaning}"[:250])
+    fc = str(gdb/"calibration_units")
+    arcpy.management.XYTableToPoint(str(packet_dir/"units.csv"), fc, "X", "Y",
+                                    coordinate_system=arcpy.SpatialReference(6341))
+    keep = {c.lower() for c in UNIT_COLUMNS}
+    extra = [f.name for f in arcpy.ListFields(fc) if f.type not in ("OID", "Geometry") and f.name.lower() not in keep]
+    if extra:
+        arcpy.management.DeleteField(fc, extra)
+    for name in ("LABEL", "REVIEWER", "REVIEW_DATE", "NOTE"):     # empty CSV columns may arrive as non-text fields
+        if [f for f in arcpy.ListFields(fc, name) if f.type != "String"]:
+            arcpy.management.DeleteField(fc, name)
+        if not arcpy.ListFields(fc, name):
+            arcpy.management.AddField(fc, name, "TEXT", field_length=254 if name == "NOTE" else 40)
+    arcpy.management.AssignDomainToField(fc, "LABEL", "LABEL")
+    # ORDER is reserved in a file geodatabase, so the review order is carried as REVIEW_ORDER (= the UNIT_ID number).
+    arcpy.management.AddField(fc, "REVIEW_ORDER", "LONG")
+    with arcpy.da.UpdateCursor(fc, ["UNIT_ID", "REVIEW_ORDER"]) as cursor:
+        for unit_id, _ in cursor:
+            cursor.updateRow([unit_id, int(unit_id.split("-")[1])])
+    md = arcpy.metadata.Metadata(fc)
+    md.title, md.summary = "Treetop calibration units (blind)", NOTE
+    md.save()
+    lasd = str(out/"delivery.lasd")
+    arcpy.management.CreateLasDataset([str(p) for p in las], lasd, compute_stats="NO_COMPUTE_STATS",
+                                      relative_paths="ABSOLUTE_PATHS")
+    after = {str(p): (p.stat().st_size, p.stat().st_mtime_ns) for p in las}
+    record = {"feature_class": fc, "features": int(arcpy.management.GetCount(fc)[0]), "lasd": lasd,
+              "las_files": len(las), "las_unchanged": before == after, "units_expected": len(sample["units"])}
+    (out/"build.json").write_text(json.dumps(record, indent=1))
+    print(json.dumps(record, indent=1))
+    if record["features"] != record["units_expected"] or not record["las_unchanged"]:
+        raise SystemExit("Build check failed")
+
+
+def export_labels(packet_dir):
+    import arcpy
+    packet_dir = Path(packet_dir).resolve()
+    fc = str(EVIDENCE/f"calibration-{packet_dir.name}"/"calibration.gdb"/"calibration_units")
+    rows = sorted(({"UNIT_ID": r[0], "LABEL": r[1] or "", "REVIEWER": r[2] or "", "REVIEW_DATE": r[3] or "",
+                    "NOTE": r[4] or ""} for r in arcpy.da.SearchCursor(fc, LABEL_COLUMNS)), key=lambda r: r["UNIT_ID"])
+    bad = sorted({r["LABEL"] for r in rows if r["LABEL"] and r["LABEL"] not in tr.LABELS})
+    if bad:
+        raise ValueError(f"Unknown labels in the layer: {bad}")
+    write_csv(packet_dir/"labels.csv", LABEL_COLUMNS, rows)
+    print(f"{sum(1 for r in rows if r['LABEL'])} of {len(rows)} labelled -> {packet_dir/'labels.csv'}")
+
+
+def score_command(packet_dir, out=None):
+    packet_dir = Path(packet_dir).resolve()
+    sample = json.loads((packet_dir/"sample.json").read_text())
+    path = packet_dir/"labels.csv"
+    labels = {r["UNIT_ID"]: r["LABEL"].strip() for r in read_csv(path)} if path.exists() else {}
+    result = score(sample, labels)
+    text = json.dumps(result, indent=1)
+    if out:
+        Path(out).write_text(text)
+    print(text)
+
+
+def main(argv=None):
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("step", choices=("draw", "build-gdb", "export-labels", "score"))
+    p.add_argument("packet", type=Path)
+    p.add_argument("--seed", type=int, default=20261015)
+    p.add_argument("--out", type=Path)
+    a = p.parse_args(argv)
+    {"draw": lambda: draw(a.packet, a.seed), "build-gdb": lambda: build_gdb(a.packet),
+     "export-labels": lambda: export_labels(a.packet), "score": lambda: score_command(a.packet, a.out)}[a.step]()
+
+
+if __name__ == "__main__":
+    main()
