@@ -91,6 +91,13 @@ LAS and the city GIS are unchanged. The count is preliminary and uses apex
 locations, not surveyed stems. See the [city count record](reviews/2026-10-08/CITY_COUNT.md)
 for the agreed definition, inputs, totals and verification.
 
+`reviews/2026-10-15/treetop_evidence_driver.py` attaches review evidence to every
+city treetop: whether it sits at roof height beside a building, on a flat
+non-vegetation top, on a wire or against a wall, and whether its top has
+canopy-like returns. Flags are fixed rules (`canopy/treetop_evidence.py`), never
+labels or corrections; on October 8's run, 91,807 of 607,972 treetops are
+suspects. See [TREETOP_EVIDENCE.md](reviews/2026-10-15/TREETOP_EVIDENCE.md).
+
 TREE_ID is deterministic for the same source ID, CRS, and raster-cell location. It is suitable for repeat-run joins, but is not longitudinal tree identity: a changed raster peak can change an ID. Preserve reviewed inventory identity separately when reconciling future acquisitions.
 
 ## Canopy cover fields

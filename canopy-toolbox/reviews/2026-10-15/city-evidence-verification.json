@@ -1,0 +1,46 @@
+{
+  "checks": {
+    "rows": 607972,
+    "unique": true,
+    "same_ids": true,
+    "xy_height_match": true
+  },
+  "by_ownership": {
+    "NO_PARCEL": {
+      "treetops": 59212,
+      "SUSPECT": 2638,
+      "ROOF_HEIGHT": 437,
+      "WIRE_HINT": 1906,
+      "FLAT_TOP": 307,
+      "WALL_HINT": 4,
+      "SUSPECT_NO_CANOPY": 2476
+    },
+    "PRIVATE": {
+      "treetops": 454849,
+      "SUSPECT": 87060,
+      "ROOF_HEIGHT": 84051,
+      "WIRE_HINT": 476,
+      "FLAT_TOP": 4313,
+      "WALL_HINT": 565,
+      "SUSPECT_NO_CANOPY": 72579
+    },
+    "PUBLIC_GOVERNMENT": {
+      "treetops": 75176,
+      "SUSPECT": 1632,
+      "ROOF_HEIGHT": 1509,
+      "WIRE_HINT": 24,
+      "FLAT_TOP": 110,
+      "WALL_HINT": 9,
+      "SUSPECT_NO_CANOPY": 1338
+    },
+    "UNKNOWN_OWNER": {
+      "treetops": 18735,
+      "SUSPECT": 477,
+      "ROOF_HEIGHT": 343,
+      "WIRE_HINT": 7,
+      "FLAT_TOP": 145,
+      "WALL_HINT": 1,
+      "SUSPECT_NO_CANOPY": 410
+    }
+  }
+}
