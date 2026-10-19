@@ -1,0 +1,108 @@
+{
+  "status": "complete",
+  "started": "2026-10-19T17:51:44+00:00",
+  "boundary": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\municipal_boundary",
+  "service": "https://services1.arcgis.com/DJP723NX3ukQ2LtF/arcgis/rest/services/SLCo_BuildingFootprints/FeatureServer/0",
+  "runtime": {
+    "arcgis_pro": "3.7.3",
+    "build": "1901",
+    "python": "3.13.13",
+    "scipy": "1.16.3",
+    "license": "ArcInfo"
+  },
+  "previous_attempt": {
+    "status": "failed",
+    "started": "2026-10-19T17:48:44+00:00",
+    "boundary": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\municipal_boundary",
+    "service": "https://services1.arcgis.com/DJP723NX3ukQ2LtF/arcgis/rest/services/SLCo_BuildingFootprints/FeatureServer/0",
+    "runtime": {
+      "arcgis_pro": "3.7.3",
+      "build": "1901",
+      "python": "3.13.13",
+      "scipy": "1.16.3",
+      "license": "ArcInfo"
+    },
+    "error": "'Feature' object is not iterable",
+    "finished": "2026-10-19T17:49:36+00:00"
+  },
+  "finished": "2026-10-19T17:56:12+00:00",
+  "previous_error": "5 copied footprint geometry problems; inspect D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\footprints\\footprints.gdb\\geometry_check before height processing",
+  "native_wkid": 3566,
+  "query_transform": "WGS_1984_(ITRF08)_To_NAD_1983_2011 + WGS_1984_(ITRF00)_To_NAD_1983",
+  "query_transform_options": [
+    "WGS_1984_(ITRF08)_To_NAD_1983_2011 + WGS_1984_(ITRF00)_To_NAD_1983",
+    "NAD_1983_HARN_To_NAD_1983_2011 + NAD_1983_To_NAD_1983_HARN_47",
+    "WGS_1984_(ITRF00)_To_NAD_1983_2011 + WGS_1984_(ITRF00)_To_NAD_1983",
+    "WGS_1984_(ITRF08)_To_NAD_1983_2011 + NAD_1983_To_WGS_1984_5",
+    "WGS_1984_(ITRF08)_To_NAD_1983_2011 + NAD_1983_To_WGS_1984_Utah_50",
+    "WGS_1984_(ITRF00)_To_NAD_1983_2011 + NAD_1983_To_WGS_1984_5",
+    "WGS_1984_(ITRF00)_To_NAD_1983_2011 + NAD_1983_To_WGS_1984_Utah_50",
+    "WGS_1984_(ITRF08)_To_NAD_1983_2011 + NAD_1983_To_WGS_1984_4"
+  ],
+  "transform": "WGS_1984_(ITRF00)_To_NAD_1983 + WGS_1984_(ITRF08)_To_NAD_1983_2011",
+  "transform_options": [
+    "WGS_1984_(ITRF00)_To_NAD_1983 + WGS_1984_(ITRF08)_To_NAD_1983_2011",
+    "NAD_1983_To_NAD_1983_HARN_47 + NAD_1983_HARN_To_NAD_1983_2011",
+    "WGS_1984_(ITRF00)_To_NAD_1983 + WGS_1984_(ITRF00)_To_NAD_1983_2011",
+    "NAD_1983_To_WGS_1984_5 + WGS_1984_(ITRF08)_To_NAD_1983_2011",
+    "NAD_1983_To_WGS_1984_Utah_50 + WGS_1984_(ITRF08)_To_NAD_1983_2011",
+    "NAD_1983_To_WGS_1984_5 + WGS_1984_(ITRF00)_To_NAD_1983_2011",
+    "NAD_1983_To_WGS_1984_Utah_50 + WGS_1984_(ITRF00)_To_NAD_1983_2011",
+    "NAD_1983_To_WGS_1984_4 + WGS_1984_(ITRF08)_To_NAD_1983_2011"
+  ],
+  "projection_provenance_reconstructed": true,
+  "server_count": 48957,
+  "fetched": 48957,
+  "removed_outside_city": 26915,
+  "city_footprints": 22042,
+  "footprints": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\footprints\\footprints.gdb\\county_footprints",
+  "id_field": "SOURCE_ID",
+  "geometry_problems": 0,
+  "source_attributes_preserved": true,
+  "original_geometry_backup": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\footprints\\geometry-before-repair.json",
+  "geometry_repaired_source_ids": [
+    "720508",
+    "722304",
+    "722580",
+    "722866",
+    "734377"
+  ],
+  "geometry_changes": [
+    {
+      "source_id": "720508",
+      "old_area": 172.80223508595702,
+      "new_area": 172.80223508595705,
+      "area_change_m2": 2.842170943040401e-14,
+      "wkb_sha256": "4bb42a03000c30b45f8508b51d04c75c9cd515df145eb518d013bdc0b744564b"
+    },
+    {
+      "source_id": "722304",
+      "old_area": 940.3138004841826,
+      "new_area": 940.3138004841826,
+      "area_change_m2": 0.0,
+      "wkb_sha256": "9e87c7777e27fe2ddb91b4f3e9d6359bf322f06fa58ad53617abbcf781bb77a0"
+    },
+    {
+      "source_id": "722580",
+      "old_area": 164.6166637794432,
+      "new_area": 164.6166637794432,
+      "area_change_m2": 0.0,
+      "wkb_sha256": "e4a5bfdff96ec83b67496fa3fad3ca46e27cd7e819644791c244c967471bac3e"
+    },
+    {
+      "source_id": "722866",
+      "old_area": 227.282310939972,
+      "new_area": 227.282310939972,
+      "area_change_m2": 0.0,
+      "wkb_sha256": "b40e4bfa76232a1e718a5b094fda505261fa9e9b299d203edb9f06800fece8a8"
+    },
+    {
+      "source_id": "734377",
+      "old_area": 172.80223508595702,
+      "new_area": 172.80223508595705,
+      "area_change_m2": 2.842170943040401e-14,
+      "wkb_sha256": "4bb42a03000c30b45f8508b51d04c75c9cd515df145eb518d013bdc0b744564b"
+    }
+  ],
+  "interpretation": "Current county footprint snapshot; not established as capture-epoch geometry or reference truth"
+}

@@ -1,6 +1,6 @@
 # Canopy Tools for ArcGIS Pro
 
-> **Continuing on another workstation:** start with [reviews/2026-09-30/HANDOFF.md](reviews/2026-09-30/HANDOFF.md) (data locations, environment setup, next GPU runs, open decisions).
+> **Current workstation products:** start with [the October 19 Millcreek raster and building-height library](reviews/2026-10-19/PRODUCTS.md). The [September 30 handoff](reviews/2026-09-30/HANDOFF.md) retains earlier environment and workstation setup details.
 
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 

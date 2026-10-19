@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "rasters": 7,
+  "all_grids_match": true,
+  "all_city_roof_height_cells_match_paired_subtraction": true,
+  "paired_city_roof_cells": 23238732,
+  "negative_city_roof_height_cells": 13793,
+  "building_features": 22042,
+  "buildings_with_height": 21415,
+  "all_building_ids_unique": true,
+  "csv_matches_feature_class": true,
+  "all_buildings_unvalidated": true,
+  "repaired_geometries_flagged": 5,
+  "source_fingerprints_unchanged": true,
+  "observation": {
+    "city_grid_cells": 133813488,
+    "observed_cells": 132810424,
+    "missing_cells": 1003064,
+    "canopy_ge_2m_cells": 34748843
+  }
+}
