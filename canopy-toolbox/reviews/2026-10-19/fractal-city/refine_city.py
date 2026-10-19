@@ -47,6 +47,7 @@ GROUND = LIDAR/"runs"/"city-count-20261008"/"raster-ground-recovery"/"ground_mos
 FRACTAL = LIDAR/"fractal"/"city-20261019"/"fractal"
 OUT = LIDAR/"runs"/"refined-fractal-20261019"
 CHUNK = 2_000_000
+MAX_PAIR_SPREAD = 0.02                                     # as infer_city.py: uneven passes mean a corrupt pass
 VEGETATION = (3, 4, 5)
 VENDOR_FAMILY = {2: 2, 20: 2, 9: 9, 17: 17}             # vendor class -> the FRACTAL code that agrees with it
 BANDS = ((0.5, 3), (2.0, 4), (80.0, 5))                    # October 8 upper thresholds for classes 3, 4 and 5
@@ -199,8 +200,15 @@ def refine_tile(tile, log):
 
 
 def consensus_ready(tile):
+    """A complete consensus whose passes agree evenly; a tile with one corrupt pass is never refined."""
     manifest = FRACTAL/tile/"manifest.json"
-    return manifest.exists() and json.loads(manifest.read_text(encoding="utf-8")).get("status", "").startswith("complete")
+    if not manifest.exists():
+        return False
+    data = json.loads(manifest.read_text(encoding="utf-8"))
+    if not data.get("status", "").startswith("complete"):
+        return False
+    pairs = [p["agreement"] for p in data["consensus"]["pairwise"]]
+    return max(pairs)-min(pairs) <= MAX_PAIR_SPREAD
 
 
 def inference_finished():

@@ -9,6 +9,12 @@ moved or whose source changed, and writes `consensus.las`. Outputs: `fractal/cit
   diagnosis) and the tile is retried once at the end of the pass.
 - While prepare_city.py is still writing colourised copies, tiles not yet ready are waited for, not skipped.
 - The process asks Windows not to idle-sleep while it runs (SetThreadExecutionState, released when it exits); no setting changes.
+- Before each tile it waits (up to 10 minutes) for at least 6 GB of commit headroom: on October 19 passes crashed with access
+  violations while the machine's committed memory sat at its limit, and a pass needs about 4.5 GB plus its GPU spill.
+  A crashed pass is rerun up to twice on its own (repeat.py --pass-retries); a tile is tried up to three times.
+- A tile whose passes disagree unevenly (pairwise agreements more than 2 points apart) is rejected and rerun: on October 19
+  one pass of 12TVL2702 agreed with the other two on 51% of points while they agreed on 98%, although every point-order and
+  source check passed. Healthy tiles show pairs within 0.2 points of each other.
 Model output is an opinion: nothing here changes the working LAS, labels or any GIS layer.
 """
 import argparse
@@ -32,6 +38,48 @@ RUN = LIDAR/"fractal"/"city-20261019"
 REPEAT = TOOLBOX/"reviews"/"2026-09-30"/"fractal"/"repeat.py"
 ES_CONTINUOUS, ES_SYSTEM_REQUIRED = 0x80000000, 0x00000001
 POLL_SECONDS = 60
+MIN_COMMIT_GB = 6.0
+COMMIT_WAIT_SECONDS = 600
+MAX_ATTEMPTS = 3
+PASS_RETRIES = 2
+MAX_PAIR_SPREAD = 0.02               # largest allowed gap between the best and worst pairwise pass agreement                     # a crashed pass is rerun on its own before the tile counts as failed
+
+
+class MemoryStatus(ctypes.Structure):
+    _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong), ("ullTotalPhys", ctypes.c_ulonglong),
+                ("ullAvailPhys", ctypes.c_ulonglong), ("ullTotalPageFile", ctypes.c_ulonglong),
+                ("ullAvailPageFile", ctypes.c_ulonglong), ("ullTotalVirtual", ctypes.c_ulonglong),
+                ("ullAvailVirtual", ctypes.c_ulonglong), ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+
+
+def commit_headroom_gb():
+    """Commit charge still available (RAM plus page file) in GB; None where it cannot be read."""
+    if os.name != "nt":
+        return None
+    status = MemoryStatus()
+    status.dwLength = ctypes.sizeof(MemoryStatus)
+    if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(status)):
+        return None
+    return status.ullAvailPageFile/2**30
+
+
+def wait_for_headroom(log):
+    started = time.time()
+    while True:
+        free = commit_headroom_gb()
+        if free is None or free >= MIN_COMMIT_GB:
+            return free
+        if time.time()-started > COMMIT_WAIT_SECONDS:
+            log(f"only {free:.1f} GB commit headroom after {COMMIT_WAIT_SECONDS//60} min of waiting; starting anyway")
+            return free
+        log(f"waiting: {free:.1f} GB commit headroom, need {MIN_COMMIT_GB:.0f} GB")
+        time.sleep(POLL_SECONDS)
+
+
+def pass_spread(folder):
+    """Gap between the highest and lowest pairwise agreement of a completed tile's passes."""
+    pairs = [p["agreement"] for p in json.loads((folder/"manifest.json").read_text(encoding="utf-8"))["consensus"]["pairwise"]]
+    return max(pairs)-min(pairs)
 
 
 def complete(folder):
@@ -83,9 +131,12 @@ def main(argv=None):
         for tile in list(pending):
             folder = out_root/tile
             if complete(folder):
-                pending.remove(tile)
-                manifest["tiles"].setdefault(tile, {"status": "complete (earlier run)"})
-                continue
+                if pass_spread(folder) <= MAX_PAIR_SPREAD:
+                    pending.remove(tile)
+                    manifest["tiles"].setdefault(tile, {"status": "complete (earlier run)"})
+                    continue
+                log(f"{tile}: earlier result has inconsistent passes (spread {pass_spread(folder):.3f}); rerunning")
+                folder.rename(folder.with_name(f"{tile}.inconsistent-{int(time.time())}"))
             source = RUN/"colorized"/f"{tile}.las"
             if not source.with_suffix(".json").exists():
                 if prepare_finished():
@@ -94,21 +145,31 @@ def main(argv=None):
                     pending.remove(tile)
                     save()
                 continue
-            if attempts[tile] >= 2:
+            if attempts[tile] >= MAX_ATTEMPTS:
                 pending.remove(tile)
                 continue
             if folder.exists():
                 folder.rename(folder.with_name(f"{tile}.failed-{int(time.time())}"))
             attempts[tile] += 1
+            headroom = wait_for_headroom(log)
             started = time.time()
-            log(f"{tile}: FRACTAL x{args.repeats} (attempt {attempts[tile]})")
+            log(f"{tile}: FRACTAL x{args.repeats} (attempt {attempts[tile]}, "
+                f"{'?' if headroom is None else f'{headroom:.1f}'} GB commit headroom)")
             with open(out_root/f"{tile}.log", "a", encoding="utf-8") as handle:
                 result = subprocess.run([sys.executable, str(REPEAT), str(source), str(folder),
-                                         "--repeats", str(args.repeats), "--batch", str(args.batch)],
+                                         "--repeats", str(args.repeats), "--batch", str(args.batch),
+                                         "--pass-retries", str(PASS_RETRIES)],
                                         cwd=str(REPEAT.parent), env=env, stdout=handle, stderr=subprocess.STDOUT)
             seconds = round(time.time()-started, 1)
             progressed = True
-            if result.returncode == 0 and complete(folder):
+            if result.returncode == 0 and complete(folder) and pass_spread(folder) > MAX_PAIR_SPREAD:
+                spread = pass_spread(folder)
+                folder.rename(folder.with_name(f"{tile}.inconsistent-{int(time.time())}"))
+                manifest["tiles"][tile] = {"status": "failed (inconsistent passes)", "spread": spread, "seconds": seconds,
+                                           "attempts": attempts[tile]}
+                log(f"{tile}: FAILED (inconsistent passes, pairwise spread {spread:.3f}) after {seconds:.0f} s"
+                    + ("; will retry" if attempts[tile] < MAX_ATTEMPTS else "; no attempts left"))
+            elif result.returncode == 0 and complete(folder):
                 tile_manifest = json.loads((folder/"manifest.json").read_text(encoding="utf-8"))
                 summary = tile_manifest["consensus"]
                 manifest["tiles"][tile] = {"status": "complete", "seconds": seconds, "attempts": attempts[tile],
@@ -122,10 +183,11 @@ def main(argv=None):
             else:
                 manifest["tiles"][tile] = {"status": f"failed (exit {result.returncode})", "seconds": seconds,
                                            "attempts": attempts[tile], "log": str(out_root/f"{tile}.log")}
-                log(f"{tile}: FAILED (exit {result.returncode}) after {seconds:.0f} s; will retry once")
+                log(f"{tile}: FAILED (exit {result.returncode}) after {seconds:.0f} s"
+                    + ("; will retry" if attempts[tile] < MAX_ATTEMPTS else "; no attempts left"))
             save()
         if pending and not progressed:
-            if prepare_finished() and all(attempts[t] >= 2 for t in pending
+            if prepare_finished() and all(attempts[t] >= MAX_ATTEMPTS for t in pending
                                           if (RUN/"colorized"/f"{t}.json").exists()):
                 break
             time.sleep(POLL_SECONDS)
