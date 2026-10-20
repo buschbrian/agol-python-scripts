@@ -61,3 +61,24 @@ Nearly all the misses are vehicles, wires and poles, the classes with the fewest
 so a gain will be small in parts and needs the sign test, and 16 held-out parts cannot show much for those two classes.
 A fine-tuned model replaces the released one citywide only if it is no worse on ground, vegetation and building parts and
 better overall; that decision is Brian's.
+
+## Result of run-1 (October 20, 15:15 to 16:13)
+Training stopped early after 11 epochs (about 4.5 minutes each); the best validation loss was epoch 5's (0.271, against 0.294
+after the first epoch). Three prediction passes of `epoch_005.ckpt` over 12TVL2804 agreed unanimously on 97.6% of points.
+The first scoring attempt crashed natively (0xC0000005) five seconds in, with 12.9 GB headroom on the rerun; the rerun is
+`evaluation.json`, copied here as [evaluation-run1.json](evaluation-run1.json) with the training log
+[metrics-run1.csv](metrics-run1.csv) (epochs counted from 0).
+
+| Consensus of 3 passes | Points | Parts | Ground | Vegetation | Building | Other (vehicle, wire) | Structure (pole, other) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Released FRACTAL | 93.7% | 189 of 208 | 35 of 35 | 58 of 61 | 94 of 96 | 2 of 12 | 0 of 4 |
+| Fine-tuned, run-1 | 94.6% | 191 of 208 | 35 of 35 | 58 of 61 | 95 of 96 | 3 of 12 | 0 of 4 |
+
+Paired by part: 188 right in both, 3 only with the fine-tuned model, 1 only with the released one, 16 in neither; sign test
+p = 0.63. **No measurable difference**: the fine-tuned model is no worse anywhere and two parts better, which this sample cannot
+tell from chance. Across the whole tile it changes the class of 1.35% of points, with no single class swap reaching 100,000
+points; class totals move by less than 1% except water and bridge (a few thousand points each).
+
+What would move it: more labels in the weak classes (vehicles, wires, poles, fences), since ground, vegetation and building are
+already at or near the ceiling on these units; and a held-out sample large enough to show a gain there. A higher learning
+rate or longer training would mostly fit the 747 training units harder. Not swapped in citywide (October 20); Brian decides.

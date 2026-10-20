@@ -15,7 +15,7 @@ Start here, then follow the links. The [September 30 handoff](../2026-09-30/HAND
 | Training labels, refined cylinders | 225 sub-units from 167 MIXED/UNSURE parents; 101 imported and backed up, 116 answered on the page (import the rest with `label_page.bat import-refined --apply`) | label-page/README.md |
 | Auto-accepted triage answers | Triage v2 roof and tree candidates, REVIEWER `triage-v2`, never walls | [audit-2/README.md](../2026-09-30/audit-2/README.md) |
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
-| FRACTAL fine-tune | **Running** on the A4000 since 15:15 (`fractal\finetune-20261020\run-1`); released model scores 189 of 208 held-out parts | [fractal-finetune/README.md](fractal-finetune/README.md) |
+| FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in | [fractal-finetune/README.md](fractal-finetune/README.md) |
 | Esri building model, citywide | **Paused at Brian's request** (15:11) to free the GPU: 24 of 61 tiles complete, 12TVL2803 interrupted | [esri-city/README.md](esri-city/README.md) |
 
 ## 2. Decisions recorded on October 20
@@ -29,9 +29,11 @@ Start here, then follow the links. The [September 30 handoff](../2026-09-30/HAND
 - The Esri building run waits; nothing depends on it.
 
 ## 3. Resume, in order
-1. **Fine-tune result:** read `D:\lidar\2023-salt-lake-valley\fractal\finetune-20261020\run-1\evaluation.json` (or `driver.log` if
-   it stopped). Swap the fine-tuned model in only if it is no worse on ground, vegetation and building parts and better overall;
-   that is Brian's call. If it is swapped in: citywide inference with `repeat.py --checkpoint`, then refinement rules v3.
+1. **Fine-tune:** run-1 showed no measurable gain (`fractal\finetune-20261020\run-1\evaluation.json`). The misses left are
+   vehicles, wires and poles, so the next useful step is labels in those classes, then a run-2 (`make_training_las.py` into a
+   new folder, `make_config.py`, `create_hdf5`, `run_finetune.py`). A model is swapped in only if it is no worse on ground,
+   vegetation and building parts and better overall; that is Brian's call. Then: citywide inference with `repeat.py --checkpoint`
+   and refinement rules v3.
 2. **Esri building run:** close heavy apps, then
    `<arcgispro-py3-dl python> reviews\2026-10-20\esri-city\building_city.py --no-wait`; it skips the 24 complete tiles.
 3. **Labels:** relabel Q2-0010 on the page, import (`label_page.bat import --apply`, `import-refined --apply`), back up with
@@ -40,7 +42,7 @@ Start here, then follow the links. The [September 30 handoff](../2026-09-30/HAND
    discussed); the treetop candidates the refinement points at (a rebuilt canopy surface decides them).
 
 ## 4. Open decisions for Brian
-1. Whether a fine-tuned FRACTAL replaces the released one citywide (after its score).
+1. Whether to keep fine-tuning (run-1 tied the released model) and so whether to label more vehicles, wires and poles.
 2. Rule 12 (18.7 M building points FRACTAL calls ground) and rule 15 (water or bridge): still proposed only.
 3. The consensus roof-height product: which sources (October 8 native, FRACTAL, Esri) and how they combine.
 4. Whether the refined copies feed the canopy surface, and so the treetops and cover, or stay review layers.
