@@ -49,6 +49,15 @@ Importing split answers needs two new fields in the review table: close the proj
 `label_page.bat import --apply --add-split-fields` (the geodatabase is copied first, beside it). Imagery chip export leaves split
 units out, because a chip can carry only one label.
 
+## Refined cylinders for MIXED and UNSURE (decided October 20)
+`../refined-cylinders/build_refined_packet.py` turns every unit answered MIXED or UNSURE into smaller units in a separate packet
+(`packet-20261020-refined` beside the original): a 0.5 m cylinder at the same centre, cut into its natural height layers wherever
+the points have a vertical gap of more than 0.5 m (at least 6 points a layer, at most 4 layers). A roof with a tree above becomes two
+units, named `<parent>-a` (top) and `-b`. On October 20, 167 parents gave 225 sub-units; 18 parents were too sparse at 0.5 m.
+The packet has its own review geodatabase and page data; label it with `label_page.bat serve-refined` (http://127.0.0.1:8766) and
+import with `label_page.bat import-refined --apply`. The training export accepts layers at one centre because their height slabs do
+not overlap (`training_review.overlapping_patches`). Keep MIXED in the refined packet only for what still holds two objects.
+
 ## Blind by design
 The page data (build_label_data.py) contains no baseline class, model output, triage proposal or queue hypothesis, so the page
 cannot show one (decided October 20). Labels made here stay independent of FRACTAL and the triage, so they can keep testing them,

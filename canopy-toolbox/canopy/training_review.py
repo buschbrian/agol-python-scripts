@@ -782,11 +782,8 @@ def export_training_las(source, destination, units, frame, chunk=2_000_000):
     for u in exported:
         assert_patch_allowed(u["X"], u["Y"], frame, u.get("PATCH_R_M", PATCH_RADIUS_M), what=f"{u['UNIT_ID']} export")
     centres = np.array([[u["X"], u["Y"]] for u in exported], float).reshape(-1, 2)
-    if len(centres) > 1:
-        from scipy.spatial import cKDTree
-        pairs = cKDTree(centres).query_pairs(2*max(u.get("PATCH_R_M", PATCH_RADIUS_M) for u in exported))
-        if pairs:
-            raise ValueError("Labelled patches overlap; refusing ambiguous training labels")
+    if len(centres) > 1 and overlapping_patches(exported):
+        raise ValueError("Labelled patches overlap; refusing ambiguous training labels")
     before = (source.stat().st_size, source.stat().st_mtime_ns)
     destination.parent.mkdir(parents=True, exist_ok=True)
     pending = destination.with_name(destination.name+".pending")
@@ -811,8 +808,24 @@ def export_training_las(source, destination, units, frame, chunk=2_000_000):
             "label_codes": {k: v[1] for k, v in LABELS.items() if v[1] is not None}}
 
 
+def overlapping_patches(units):
+    """Pairs of patches that share points: their circles overlap and so do their height slabs. Patches stacked at one centre
+    with separate slabs (refined cylinders, October 20, 2026) do not overlap."""
+    from scipy.spatial import cKDTree
+    centres = np.array([[u["X"], u["Y"]] for u in units], float).reshape(-1, 2)
+    radius = [float(u.get("PATCH_R_M", PATCH_RADIUS_M)) for u in units]
+    out = []
+    for i, j in sorted(cKDTree(centres).query_pairs(2*max(radius))):
+        close = np.hypot(*(centres[i]-centres[j])) < radius[i]+radius[j]
+        if close and float(units[i]["Z_LOW"]) <= float(units[j]["Z_HIGH"]) and float(units[j]["Z_LOW"]) <= float(units[i]["Z_HIGH"]):
+            out.append((units[i]["UNIT_ID"], units[j]["UNIT_ID"]))
+    return out
+
+
 def _recode_copy(path, exported, centres, chunk):
-    """Write training codes into the modern-format copy at `path`; returns (per-unit, per-class) counts."""
+    """Write training codes into the modern-format copy at `path`; returns (per-unit, per-class) counts.
+
+    Patches are grouped by centre, so several height layers at one centre each get their own points."""
     points, scale, offset, modern, _ = las_records.records(path, "r+")
     codes = np.array([LABELS[u["LABEL"]][1] for u in exported], np.uint8)
     # A split unit codes the points at or below SPLIT_Z with its lower label; an unsplit unit never matches (split -inf).
@@ -826,7 +839,13 @@ def _recode_copy(path, exported, centres, chunk):
     tree = None
     if len(exported):
         from scipy.spatial import cKDTree
-        tree = cKDTree(centres)
+        unique, inverse = np.unique(centres, axis=0, return_inverse=True)
+        inverse = np.asarray(inverse).reshape(-1)
+        members = [np.flatnonzero(inverse == g) for g in range(len(unique))]
+        table = np.full((len(unique), max(len(m) for m in members)), -1, np.int64)
+        for g, m in enumerate(members):
+            table[g, :len(m)] = m
+        tree = cKDTree(unique)
     for start in range(0, len(points), chunk):
         block = points[start:start+chunk]
         x, y, z, classes, _, _ = las_records.decode(block, scale, offset, modern)
@@ -835,9 +854,18 @@ def _recode_copy(path, exported, centres, chunk):
         noise = np.isin(classes, NOISE_CODES)
         new[noise] = classes[noise]
         if tree is not None:
-            d, j = tree.query(np.column_stack([x, y]), distance_upper_bound=float(radius.max()))
-            hit = np.isfinite(d)
-            hit[hit] &= (d[hit] <= radius[j[hit]]) & (z[hit] >= zlow[j[hit]]) & (z[hit] <= zhigh[j[hit]]) & ~noise[hit]
+            d, g = tree.query(np.column_stack([x, y]), distance_upper_bound=float(radius.max()))
+            near = np.isfinite(d)
+            unit_of = np.full(len(block), -1, np.int64)
+            for slot in range(table.shape[1]):
+                cand = np.full(len(block), -1, np.int64)
+                cand[near] = table[g[near], slot]
+                ok = cand >= 0
+                ok[ok] &= ((d[ok] <= radius[cand[ok]]) & (z[ok] >= zlow[cand[ok]]) & (z[ok] <= zhigh[cand[ok]])
+                           & ~noise[ok] & (unit_of[ok] < 0))
+                unit_of[ok] = cand[ok]
+            hit = unit_of >= 0
+            j = unit_of
             new[hit] = codes[j[hit]]
             lower = np.zeros(len(block), bool)
             lower[hit] = z[hit] <= split_z[j[hit]]

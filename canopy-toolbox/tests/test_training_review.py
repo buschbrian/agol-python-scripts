@@ -504,3 +504,37 @@ class SplitAnswers(unittest.TestCase):
             roof, tree = tr.LABELS["BUILDING_ROOF"][1], tr.LABELS["TREE"][1]
             self.assertEqual(classes, [tr.IGNORE_CODE, roof, roof, tree, tree, tr.IGNORE_CODE])
             self.assertEqual(counts["points_per_unit"], {"Q1-0001": 4})
+
+
+class StackedPatches(unittest.TestCase):
+    """Refined cylinders: several height layers at one centre, each its own patch."""
+
+    def setUp(self):
+        self.frame = frame()
+
+    def layer(self, uid, label, zlow, zhigh, r=0.5):
+        u = unit(uid, X0+150, Y0+100, label, zlow=zlow, zhigh=zhigh)
+        u["PATCH_R_M"] = r
+        return u
+
+    def test_layers_at_one_centre_do_not_overlap_but_shared_heights_do(self):
+        a, b = self.layer("P-a", "TREE", 6., 10.), self.layer("P-b", "BUILDING_ROOF", 2., 5.)
+        self.assertEqual(tr.overlapping_patches([a, b]), [])
+        c = self.layer("P-c", "WALL", 4.5, 7.)
+        self.assertEqual(len(tr.overlapping_patches([a, b, c])), 2)
+        far = dict(self.layer("Q", "TREE", 2., 10.), X=X0+152)
+        self.assertEqual(tr.overlapping_patches([a, far]), [])
+
+    def test_export_codes_each_layer(self):
+        from canopy import las_records
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            pts = [(150., 100., z, 5) for z in (1., 3., 4.5, 7., 9., 11.)] + [(150.4, 100., 7., 5), (150.8, 100., 7., 5)]
+            write_las(root/"src.las", pts)
+            units = [self.layer("P-a", "TREE", 6., 10.), self.layer("P-b", "BUILDING_ROOF", 2., 5.)]
+            counts = tr.export_training_las(root/"src.las", root/"out.las", units, self.frame)
+            classes = np.asarray(las_records.records(root/"out.las")[0]["classification"]).tolist()
+            roof, tree, ign = tr.LABELS["BUILDING_ROOF"][1], tr.LABELS["TREE"][1], tr.IGNORE_CODE
+            self.assertEqual(classes, [ign, roof, roof, tree, tree, ign, tree, ign])
+            self.assertEqual(counts["points_per_unit"], {"P-a": 3, "P-b": 2})
+
