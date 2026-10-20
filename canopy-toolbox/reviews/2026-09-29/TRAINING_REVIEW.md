@@ -12,6 +12,13 @@ Code: [canopy/training_review.py](../../canopy/training_review.py) (no ArcPy),
 [TrainingReview.pyt](../../TrainingReview.pyt) (the Pro step-through tools). Tests:
 `tests/test_training_review.py` (plain) and `tests/test_training_review_arcpy.py` (ArcGIS).
 
+> **Since October 20, 2026** labels are made on the click-through page instead of the Pro step-through
+> ([label-page/README.md](../2026-10-20/label-page/README.md)): split answers (LABEL above SPLIT_Z, LABEL_BELOW under it),
+> refined cylinders for MIXED and UNSURE in their own packet, lawn = GROUND, and triage v2 roof and tree candidates
+> auto-accepted with REVIEWER `triage-v2` ([audit-2/README.md](../2026-09-30/audit-2/README.md)). The page still imports through
+> `restore` below, and the geodatabase, backup and exclusion rules here are unchanged. The labels are used to fine-tune FRACTAL
+> ([fractal-finetune/README.md](../2026-10-20/fractal-finetune/README.md)). Current state: [HANDOFF.md](../2026-10-20/HANDOFF.md).
+
 ## The packet
 
 `H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\training-review\packet-20260929\`

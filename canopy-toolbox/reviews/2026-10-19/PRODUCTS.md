@@ -114,3 +114,7 @@ a new output directory; do not rerun classification to recreate these products.
 Slope, contours, drainage and roof planes are separate products and were not
 generated in this batch. The [planning catalog](../../PLANNING_PRODUCTS.md)
 records their methods and limits.
+
+The classification work that followed (citywide FRACTAL refinement, training labels, the
+FRACTAL fine-tune and the Esri building run) has not changed these products yet; its state
+is in the [October 20 handoff](../2026-10-20/HANDOFF.md).

@@ -20,8 +20,12 @@ on October 20). Originals and working files are never written. Every change is r
   (70,013). **64% of them carry the October 15 SUSPECT flag, against 5.1% of the other treetops; the refinement reaches 72% of all
   SUSPECT treetops.** Two independent methods (FRACTAL on points and colour; fixed geometric rules) point at the same treetops,
   mostly roof edges. They are candidates for review, not removals: a rebuilt canopy surface decides that.
-- **Against Brian's training labels on 12TVL2804** (533 labels, 408 comparable parts; evaluate_variants.py): baseline 300 agree
-  (74%), version 1 322 (79%), version 2 384 (94%). These are training diagnostics on one tile, not an accuracy estimate.
+- **Against Brian's training labels on 12TVL2804** (evaluate_variants.py): with 533 labels (408 comparable parts) baseline 300 agree
+  (74%), version 1 322 (79%), version 2 384 (94%); with 904 labels later on October 20 (685 parts) baseline 73%, version 1 79%,
+  version 2 91%, SHRUB_LOW_VEG the weakest (41 of 57). These are training diagnostics on one tile, not an accuracy estimate.
+- **Next:** refinement from the labels by fine-tuning FRACTAL itself, see
+  [../../2026-10-20/fractal-finetune/README.md](../../2026-10-20/fractal-finetune/README.md); the overall state is in
+  [../../2026-10-20/HANDOFF.md](../../2026-10-20/HANDOFF.md).
 
 ## Where things are on the SSD
 | What | Path under `lidar\2023-salt-lake-valley` |
@@ -30,17 +34,18 @@ on October 20). Originals and working files are never written. Every change is r
 | NAIP 2024 tile per lidar tile (61, with flight date) | `naip\naip2024-tiles\<tile>` |
 | Colourised FRACTAL inputs (61) and `prepare.json` | `fractal\city-20261019\colorized` |
 | Three passes, consensus and manifest per tile; `infer.json`, `infer.log` | `fractal\city-20261019\fractal\<tile>` |
-| Refined copies and per-tile summaries; `refine.log` | `runs\refined-fractal-20261019\points` |
+| Refined copies and per-tile summaries, rules version 1; `refine.log` | `runs\refined-fractal-20261019\points` |
+| Refined copies, rules version 2 (current) | `runs\refined-fractal-20261020\points` |
 
 Folders named `<tile>.failed-*`, `<tile>.inconsistent-*` or `repeat-N.failed-*` are kept attempts, for diagnosis only.
 
 ## Rerunning (on whichever machine has the SSD and the Myria3D environment)
 ```
-reviews\2026-10-19\fractal-city\city_fractal.bat infer          (skips the 22 completed tiles; about 8 min a tile on the A4000)
+reviews\2026-10-19\fractal-city\city_fractal.bat infer          (skips completed tiles; about 8 min a tile on the A4000)
 reviews\2026-10-19\fractal-city\city_fractal.bat refine --wait  (start alongside; refines each tile as its consensus lands)
 reviews\2026-10-19\fractal-city\city_fractal.bat summarize <NEW_FOLDER>   (after all 61: city totals and the treetop impact)
 ```
-Then the training-label check on 12TVL2804 (it was the next tile but two when the run paused):
+Then the training-label check on 12TVL2804:
 ```
 <myria3d python> reviews\2026-10-19\fractal-city\label_check_refined.py <refined 12TVL2804.las> <...\packet-20260929> reviews\2026-09-29\packets\training-labels\labels-progress.csv <NEW.json>
 ```
@@ -53,9 +58,11 @@ codes 1 to 3 move height vegetation (3/4/5) to building, permanent structure (64
 vegetation (banded 3/4/5 by height above the run's ground mosaic), permanent structure or other. Proposed only, class unchanged:
 11 vegetation called ground, 12 building called ground, 13 a vendor class contradicted, 14 building called vegetation without a
 usable height, 15 water or bridge, 16 a baseline class-1 point called vegetation, building or structure.
+Rules version 2 (October 20, after lawn was decided to be ground; `--rules 2`, the default) adds code 7: unanimous vegetation
+(3/4/5) called ground becomes ground (2). Rule 11 is otherwise the same set, so it no longer appears as a proposal in version 2.
 Extra dimensions in each copy: `BASE_CLASS`, `FRACTAL_CLASS`, `FRACTAL_VOTES`, `REFINE_RULE`.
 
-## Results so far (22 tiles, 489,348,912 points; not yet a city total)
+## October 19 pause snapshot (22 tiles, rules version 1; superseded by the results above)
 - **13,101,902 points changed (2.68%)**; 97.0% of points had unanimous passes.
 - Largest moves: 0.5 to 2 m vegetation to other, 5.07 M (vehicles, fences, walls are the likely objects); high vegetation to building,
   2.53 M; building to vegetation, 1.26 M (overhanging canopy); building to other, 1.06 M; high vegetation to other, 0.95 M; high

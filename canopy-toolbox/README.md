@@ -1,6 +1,8 @@
 # Canopy Tools for ArcGIS Pro
 
 > **Current workstation products:** start with [the October 19 Millcreek raster and building-height library](reviews/2026-10-19/PRODUCTS.md). The [September 30 handoff](reviews/2026-09-30/HANDOFF.md) retains earlier environment and workstation setup details.
+>
+> **Classification work in progress (October 20):** citywide FRACTAL refinement, the click-through training-label page, FRACTAL fine-tuning and the Esri building run. See [the October 20 handoff](reviews/2026-10-20/HANDOFF.md) for their state, how to resume, and the open decisions.
 
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 

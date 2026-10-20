@@ -1,7 +1,8 @@
 # Canopy toolbox development
 
 ArcGIS Pro Python toolbox and CLI: copied/classified lidar to canopy estimates.
-Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
+Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits; the current state of the
+classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 
 ## Routing
 
@@ -12,6 +13,10 @@ Read README.md and reviews/2026-09-17/IMPLEMENTATION.md for current limits.
 - Optional roof-edge refinement and derived roof outlines: canopy/roofs.py.
 - Wall/pole/wire shape evidence and opt-in class-1 gate: canopy/shape_gate.py (ArcPy-free); reviews/2026-09-29/SHAPE_GATE.md.
 - Training-label review (never evaluation): canopy/training_review.py (ArcPy-free), canopy/training_review_arcpy.py, TrainingReview.pyt, reviews/2026-09-29/training_review_driver.py; reviews/2026-09-29/TRAINING_REVIEW.md. Labels are backed up to the repo with `backup`/`restore` (packets/training-labels); reviewer steps in reviews/2026-09-30/LABELLING_CHECKLIST.md, wrapper training_labels.bat.
+- Click-through labelling page (local server, blind by design), refined-cylinder packet, triage auto-accept: reviews/2026-10-20/label-page (label_page.bat), reviews/2026-10-20/refined-cylinders, reviews/2026-10-20/auto_accept.py. Answers import only through `restore`; never overwrite a human label without asking.
+- Citywide FRACTAL (Myria3D) inference and the provisional refined LAS copies (rules v1/v2): reviews/2026-10-19/fractal-city; the pass runner is reviews/2026-09-30/fractal/repeat.py (`--checkpoint` for a fine-tuned model).
+- FRACTAL fine-tuning on the training labels (patched Myria3D clone, config, driver, held-out scorer): reviews/2026-10-20/fractal-finetune.
+- Esri building model on every tile (copies only): reviews/2026-10-20/esri-city.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.
