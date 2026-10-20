@@ -5,6 +5,10 @@ Everything is committed on branch `canopy/classification-refinement` (PR
 the lidar SSD (`D:\lidar` on MC-PC13, the A4000 workstation; set `CANOPY_LIDAR_ROOT` to its root on any other machine).
 Start here, then follow the links. The [September 30 handoff](../2026-09-30/HANDOFF.md) still holds the machine setup.
 
+**Stopped cleanly at 16:50 on October 20 so the SSD could leave the workstation:** no job running, the three label-page
+servers stopped, every page answer imported into its packet's review geodatabase and backed up to the repo
+(`reviews/2026-09-29/packets/training-labels`, `-refined`, `-rare`).
+
 ## 1. Where things stand
 
 | Area | State on October 20 | Record |
@@ -12,12 +16,12 @@ Start here, then follow the links. The [September 30 handoff](../2026-09-30/HAND
 | Citywide FRACTAL inference | **Complete**, 61 tiles, 1,344,971,548 points, three passes each | [fractal-city/README.md](../2026-10-19/fractal-city/README.md) |
 | Refined LAS copies | Rules v2 is current (`runs/refined-fractal-20261020`): 39.8% of points changed, mostly class-3 bare surface to ground. Provisional copies; originals untouched | same |
 | Training labels, original packet | 1,019 units in the review geodatabase and the repo backup; 960 answers on the label page. Q1-0114 and Q2-0010 removed as ambiguous | [label-page/README.md](label-page/README.md), [TRAINING_REVIEW.md](../2026-09-29/TRAINING_REVIEW.md) |
-| Training labels, refined cylinders | 225 sub-units from 167 MIXED/UNSURE parents; 101 imported and backed up, 116 answered on the page (import the rest with `label_page.bat import-refined --apply`) | label-page/README.md |
-| Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), on the page at port 8767 (`label_page.bat serve-rare`); unlabelled on October 20 | [rare-classes/README.md](rare-classes/README.md) |
+| Training labels, refined cylinders | 225 sub-units from 167 MIXED/UNSURE parents; **116 labelled**, imported and backed up | label-page/README.md |
+| Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), port 8767 (`label_page.bat serve-rare`). **85 labelled**, imported and backed up: wire 19, vehicle 15, building roof 10, other structure 7, tree 6, wall 4, pole 1, shrub 1, UNSURE 22 | [rare-classes/README.md](rare-classes/README.md) |
 | Auto-accepted triage answers | Triage v2 roof and tree candidates, REVIEWER `triage-v2`, never walls | [audit-2/README.md](../2026-09-30/audit-2/README.md) |
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
 | FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in | [fractal-finetune/README.md](fractal-finetune/README.md) |
-| Esri building model, citywide | Paused 15:11 to 16:15 for the fine-tune, then **resumed**; 27 of 61 complete at 16:30 | [esri-city/README.md](esri-city/README.md) |
+| Esri building model, citywide | **Stopped at 16:46** to take the drive: 31 of 61 complete; 12TVL2806 and 12TVL2904 failed at start-up and await their retry; 12TVL3005 interrupted | [esri-city/README.md](esri-city/README.md) |
 
 ## 2. Decisions recorded on October 20
 - Lawn is GROUND; SHRUB_LOW_VEG is shrub, hedge, garden bed or tall grass. Rules v2 therefore moves unanimous vegetation called
@@ -35,7 +39,7 @@ Start here, then follow the links. The [September 30 handoff](../2026-09-30/HAND
 
 ## 3. Resume, in order
 1. **Fine-tune:** run-1 showed no measurable gain (`fractal\finetune-20261020\run-1\evaluation.json`). The misses left are
-   vehicles, wires and poles, so label the rare-class packet (`label_page.bat serve-rare`), import it, snapshot it, then run-2
+   vehicles, wires and poles, so finish the rare-class packet (`label_page.bat serve-rare`, 172 left), import it, snapshot it, then run-2
    (`make_training_las.py NEW --snapshot <rare packet> <snapshot>`, `make_config.py`, `create_hdf5`, `run_finetune.py`); see
    [rare-classes/README.md](rare-classes/README.md). A model is swapped in only if it is no worse on ground,
    vegetation and building parts and better overall; that is Brian's call. Then: citywide inference with `repeat.py --checkpoint`
