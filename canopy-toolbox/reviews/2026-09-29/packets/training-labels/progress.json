@@ -5,14 +5,14 @@
  "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
  "counts": {
   "units": 1065,
-  "saved": 1019,
-  "labelled": 1019,
+  "saved": 1018,
+  "labelled": 1018,
   "by_label": {
    "BUILDING_ROOF": 347,
    "OTHER_STRUCTURE": 20,
    "TREE": 228,
    "VEHICLE": 31,
-   "GROUND": 97,
+   "GROUND": 96,
    "MIXED": 122,
    "SHRUB_LOW_VEG": 68,
    "WALL": 27,
@@ -26,6 +26,6 @@
  ],
  "flagged": [],
  "problems": [],
- "labels_csv_sha256": "6947086e646e98ac0f88499cd31942377ce5bcaa7d9307c2db5f911af97de4e9",
+ "labels_csv_sha256": "313faa6705f3379be21de3fcb641df653e54f94352dfa8c7e747de17eab2b873",
  "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."
 }
