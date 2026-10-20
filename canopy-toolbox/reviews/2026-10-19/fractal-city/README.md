@@ -1,12 +1,27 @@
-# Citywide FRACTAL refinement of the Millcreek working LAS (October 19, 2026)
+# Citywide FRACTAL refinement of the Millcreek working LAS (October 19-20, 2026)
 
-**Status: paused at 22 of 61 tiles** so the lidar SSD could leave the workstation. Everything finished is verified and kept;
-the run resumes where it stopped. Snapshot of the state: [status-20261019.json](status-20261019.json).
+**Status: complete for all 61 tiles (October 20, 13:10).** 1,344,971,548 points, three FRACTAL passes each on the A4000, every
+tile's passes agreeing evenly (largest pairwise spread 0.19 points). Refined copies exist for rules version 1
+(`runs/refined-fractal-20261019`) and version 2 (`runs/refined-fractal-20261020`, the current one). Citywide summary of version 2:
+[summary-v2-20261020.json](summary-v2-20261020.json); the October 19 pause snapshot is [status-20261019.json](status-20261019.json).
 
 The refinement takes the October 8 working LAS (native building and height classes, `runs/city-count-20261008/prepared/points`),
-runs the IGN FRACTAL model three times per tile on the A4000 with NAIP 2024 colour, and writes **provisional refined copies**
-in which a class changes only where all three passes agree and contradict a toolbox-derived class (decided with Brian on
-October 19). Originals and working files are never written. Every change is reversible from extra dimensions in the copy.
+runs the IGN FRACTAL model three times per tile with NAIP 2024 colour, and writes **provisional refined copies** in which a class
+changes only where all three passes agree and contradict a toolbox-derived class (decided with Brian on October 19; rules version 2
+on October 20). Originals and working files are never written. Every change is reversible from extra dimensions in the copy.
+
+## Results, rules version 2 (all 61 tiles)
+- **535,490,628 points changed (39.8%)**; 96.7% of points had unanimous passes.
+- Vegetation to ground (code 7): 509.6 M, the bare surface the height classification had put in class 3 ("low vegetation"),
+  since the vendor's ground class is sparse. Vegetation to building 6.5 M; building to vegetation 5.4 M; vegetation to other 9.7 M
+  and to permanent structure 2.2 M; building to other 1.3 M and to permanent structure 0.8 M.
+- Still only proposed: building called ground 18.7 M (rule 12), water or bridge 2.8 M, vendor-class contradictions 1.1 M.
+- **Candidate treetops:** the top point of 102,527 of the 607,972 October 8 treetops (16.9%) left vegetation, mostly to building
+  (70,013). **64% of them carry the October 15 SUSPECT flag, against 5.1% of the other treetops; the refinement reaches 72% of all
+  SUSPECT treetops.** Two independent methods (FRACTAL on points and colour; fixed geometric rules) point at the same treetops,
+  mostly roof edges. They are candidates for review, not removals: a rebuilt canopy surface decides that.
+- **Against Brian's training labels on 12TVL2804** (533 labels, 408 comparable parts; evaluate_variants.py): baseline 300 agree
+  (74%), version 1 322 (79%), version 2 384 (94%). These are training diagnostics on one tile, not an accuracy estimate.
 
 ## Where things are on the SSD
 | What | Path under `lidar\2023-salt-lake-valley` |
@@ -19,7 +34,7 @@ October 19). Originals and working files are never written. Every change is reve
 
 Folders named `<tile>.failed-*`, `<tile>.inconsistent-*` or `repeat-N.failed-*` are kept attempts, for diagnosis only.
 
-## Resume (on whichever machine has the SSD and the Myria3D environment)
+## Rerunning (on whichever machine has the SSD and the Myria3D environment)
 ```
 reviews\2026-10-19\fractal-city\city_fractal.bat infer          (skips the 22 completed tiles; about 8 min a tile on the A4000)
 reviews\2026-10-19\fractal-city\city_fractal.bat refine --wait  (start alongside; refines each tile as its consensus lands)

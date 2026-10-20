@@ -24,7 +24,8 @@ sys.path.insert(0, str(TOOLBOX))
 from canopy.lidar_root import lidar_root  # noqa: E402
 
 LIDAR = lidar_root()/"2023-salt-lake-valley"
-REFINED = LIDAR/"runs"/"refined-fractal-20261019"/"points"
+REFINED_BY_RULES = {1: LIDAR/"runs"/"refined-fractal-20261019"/"points", 2: LIDAR/"runs"/"refined-fractal-20261020"/"points"}
+REFINED = REFINED_BY_RULES[2]
 TREETOPS = LIDAR/"runs"/"city-count-20261008"/"city-treetops.csv"
 EVIDENCE = LIDAR/"runs"/"treetop-evidence-20261015"/"treetop-evidence.csv"
 CELL = 0.5
@@ -48,7 +49,10 @@ def top_points(keys, z):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("out", type=Path)
+    parser.add_argument("--rules", type=int, choices=(1, 2), default=2, help="which refinement to summarize")
     args = parser.parse_args(argv)
+    global REFINED
+    REFINED = REFINED_BY_RULES[args.rules]
     if args.out.exists():
         raise FileExistsError(args.out)
     import laspy
