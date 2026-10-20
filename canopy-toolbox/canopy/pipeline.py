@@ -38,7 +38,8 @@ def _signature(lasd, files, parameters):
 
 def run(lasd, run_folder, extent, tile_size=200, overlap=None, cell_size=.5,
         band_spec=band_logic.DEFAULT_SPEC, smooth_cells=1, min_crown_area=3,
-        source_files=None, source_id=None, resume=False, z_unit=None, building_clearance=.35):
+        source_files=None, source_id=None, resume=False, z_unit=None, building_clearance=.35,
+        classified_background_zero=False):
     parsed = band_logic.parse_bands(band_spec)
     common.positive(min_crown_area,"Minimum crown area",allow_zero=True)
     common.positive(cell_size, "Cell size")
@@ -74,7 +75,8 @@ def run(lasd, run_folder, extent, tile_size=200, overlap=None, cell_size=.5,
         json.dumps([str(Path(p).resolve()) for p in source_files]).encode()).hexdigest()[:24]
     parameters={"extent":list(extent),"tile_size":tile_size,"overlap":overlap,"cell_size":cell_size,
                 "bands":band_spec,"smoothing":smooth_cells,"min_crown_area":min_crown_area,
-                "source_id":source_id,"z_unit":z_unit,"building_clearance":building_clearance}
+                "source_id":source_id,"z_unit":z_unit,"building_clearance":building_clearance,
+                "classified_background_zero":classified_background_zero}
     signature=_signature(lasd,source_files,parameters)
     manifest_path=root/"run.json"
     if root.exists():
@@ -105,7 +107,8 @@ def run(lasd, run_folder, extent, tile_size=200, overlap=None, cell_size=.5,
             gdb=str(attempt/"tile.gdb");arcpy.management.CreateFileGDB(str(attempt),"tile.gdb")
             products=rasters.build_chm(lasd,str(attempt),cell_size,
                                       tile.buffered.as_arcpy_string(),source_id=source_id,z_unit=z_unit,
-                                      building_clearance=building_clearance)
+                                      building_clearance=building_clearance,
+                                      classified_background_zero=classified_background_zero)
             core_chm=str(attempt/"core_chm.tif")
             with common.environment(products["chm"]):
                 arcpy.management.Clip(products["chm"],tile.core.as_arcpy_string(),core_chm,

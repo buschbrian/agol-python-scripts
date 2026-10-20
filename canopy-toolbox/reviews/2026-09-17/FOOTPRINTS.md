@@ -1,5 +1,8 @@
 # Footprint validation — 2026-09-17
 
+**Acquisition correction (2026-09-22):** The 2024 capture and 0.5 m nominal-spacing statements below are retained as historical notes. Delivery metadata establishes acquisition on 7 October–5 November 2023 and nominal point spacing of 0.32 m. See [delivery provenance](../../DELIVERY_PROVENANCE.md).
+
+
 Follows [ROOF_EDGES.md](ROOF_EDGES.md). The derived roof-support outlines have now been
 compared against an authoritative building layer. This is the first external reference check
 in the pilot; every earlier roof result was self-consistent only.

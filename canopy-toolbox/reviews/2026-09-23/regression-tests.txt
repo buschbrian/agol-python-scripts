@@ -1,0 +1,110 @@
+test_adjacent_seeds_are_preserved (tests.test_arcpy.ArcGISRegression.test_adjacent_seeds_are_preserved) ... ok
+test_all_unknown_raster_has_no_trees (tests.test_arcpy.ArcGISRegression.test_all_unknown_raster_has_no_trees) ... ok
+test_chm_requires_fresh_las_statistics (tests.test_arcpy.ArcGISRegression.test_chm_requires_fresh_las_statistics) ... ok
+test_cone_crown_contains_all_137_cells_and_input_unchanged (tests.test_arcpy.ArcGISRegression.test_cone_crown_contains_all_137_cells_and_input_unchanged) ... ok
+test_diagonal_plateau_is_one_seed (tests.test_arcpy.ArcGISRegression.test_diagonal_plateau_is_one_seed) ... ok
+test_invalid_building_method_is_rejected_before_output (tests.test_arcpy.ArcGISRegression.test_invalid_building_method_is_rejected_before_output) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_las_gap_and_class_one_do_not_become_canopy (tests.test_arcpy.ArcGISRegression.test_las_gap_and_class_one_do_not_become_canopy) ... ok
+WARNING: No vegetation classes: this run can only report observed non-canopy or unknown cells
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_las_without_vegetation_is_observed_noncanopy (tests.test_arcpy.ArcGISRegression.test_las_without_vegetation_is_observed_noncanopy) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_model_class_zero_background_is_observed_only_when_declared (tests.test_arcpy.ArcGISRegression.test_model_class_zero_background_is_observed_only_when_declared) ... ok
+test_no_trees_has_valid_empty_outputs (tests.test_arcpy.ArcGISRegression.test_no_trees_has_valid_empty_outputs) ... ok
+test_partial_cover_uses_raster_resolution_and_preserves_missing_zones (tests.test_arcpy.ArcGISRegression.test_partial_cover_uses_raster_resolution_and_preserves_missing_zones) ... ok
+r000c000: CHM core saved
+r000c001: CHM core saved
+r001c000: CHM core saved
+r001c001: CHM core saved
+test_tiled_rasters_use_exact_global_detection_and_crowns (tests.test_arcpy.ArcGISRegression.test_tiled_rasters_use_exact_global_detection_and_crowns) ... ok
+test_units_reject_geographic_and_feet (tests.test_arcpy.ArcGISRegression.test_units_reject_geographic_and_feet) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_upper_building_surface_occludes_lower_vegetation_but_preserves_overhang (tests.test_arcpy.ArcGISRegression.test_upper_building_surface_occludes_lower_vegetation_but_preserves_overhang) ... ok
+test_watershed_does_not_cross_unknown_or_bare_cells (tests.test_arcpy.ArcGISRegression.test_watershed_does_not_cross_unknown_or_bare_cells) ... ok
+test_workspace_contract_rejects_folder_before_processing (tests.test_arcpy.ArcGISRegression.test_workspace_contract_rejects_folder_before_processing) ... ok
+test_default_spec_round_trips (tests.test_bands.ParseBands.test_default_spec_round_trips) ... ok
+test_malformed_chunk_raises (tests.test_bands.ParseBands.test_malformed_chunk_raises) ... ok
+test_open_ended_final_band (tests.test_bands.ParseBands.test_open_ended_final_band) ... ok
+test_whitespace_and_trailing_comma (tests.test_bands.ParseBands.test_whitespace_and_trailing_comma) ... ok
+test_bad_cell_size_rejected (tests.test_bands.RadiusLookup.test_bad_cell_size_rejected) ... ok
+test_below_threshold_is_not_a_tree (tests.test_bands.RadiusLookup.test_below_threshold_is_not_a_tree) ... ok
+test_boundaries_are_half_open (tests.test_bands.RadiusLookup.test_boundaries_are_half_open) ... ok
+test_cells_at_half_metre (tests.test_bands.RadiusLookup.test_cells_at_half_metre) ... ok
+test_cells_never_round_to_zero (tests.test_bands.RadiusLookup.test_cells_never_round_to_zero) ... ok
+test_tall_tree_uses_open_band (tests.test_bands.RadiusLookup.test_tall_tree_uses_open_band) ... ok
+test_closed_final_band_rejected (tests.test_bands.ValidateBands.test_closed_final_band_rejected) ... ok
+test_descending_band_rejected (tests.test_bands.ValidateBands.test_descending_band_rejected) ... ok
+test_empty_rejected (tests.test_bands.ValidateBands.test_empty_rejected) ... ok
+test_gap_between_bands_rejected (tests.test_bands.ValidateBands.test_gap_between_bands_rejected) ... ok
+test_non_positive_radius_rejected (tests.test_bands.ValidateBands.test_non_positive_radius_rejected) ... ok
+test_nonfinite_parameters_rejected (tests.test_bands.ValidateBands.test_nonfinite_parameters_rejected) ... ok
+test_overlap_rejected (tests.test_bands.ValidateBands.test_overlap_rejected) ... ok
+test_dates_also_reach_the_json_report (tests.test_delivery.DeliveryIndex.test_dates_also_reach_the_json_report) ... ok
+test_delivery_without_a_coordinate_reference_is_refused (tests.test_delivery.DeliveryIndex.test_delivery_without_a_coordinate_reference_is_refused) ... ok
+test_existing_output_and_in_place_output_are_refused (tests.test_delivery.DeliveryIndex.test_existing_output_and_in_place_output_are_refused) ... ok
+test_headers_alone_produce_one_row_per_tile (tests.test_delivery.DeliveryIndex.test_headers_alone_produce_one_row_per_tile) ... ok
+test_missing_date_field_is_refused_before_any_output (tests.test_delivery.DeliveryIndex.test_missing_date_field_is_refused_before_any_output) ... ok
+test_mixed_coordinate_references_are_refused (tests.test_delivery.DeliveryIndex.test_mixed_coordinate_references_are_refused) ... ok
+test_only_intersecting_swaths_date_a_tile (tests.test_delivery.DeliveryIndex.test_only_intersecting_swaths_date_a_tile) ... ok
+test_swath_index_in_another_reference_is_refused (tests.test_delivery.DeliveryIndex.test_swath_index_in_another_reference_is_refused) ... ok
+test_blank_and_missing_dates_are_dropped_not_counted_as_a_date (tests.test_delivery.FlightSummary.test_blank_and_missing_dates_are_dropped_not_counted_as_a_date) ... ok
+test_no_swaths_leaves_every_date_field_null (tests.test_delivery.FlightSummary.test_no_swaths_leaves_every_date_field_null) ... ok
+test_repeated_dates_collapse_but_swath_count_does_not (tests.test_delivery.FlightSummary.test_repeated_dates_collapse_but_swath_count_does_not) ... ok
+test_too_many_distinct_dates_fail_rather_than_truncate (tests.test_delivery.FlightSummary.test_too_many_distinct_dates_fail_rather_than_truncate) ... ok
+test_only_dated_layers_are_listed_with_inherited_srs (tests.test_nearmap.NearmapHistoricalWMS.test_only_dated_layers_are_listed_with_inherited_srs) ... ok
+test_requires_custom_service_and_keeps_pilot_extent (tests.test_nearmap.NearmapHistoricalWMS.test_requires_custom_service_and_keeps_pilot_extent) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_end_to_end_prepared_las_bundle (tests.test_planning.PlanningArcGIS.test_end_to_end_prepared_las_bundle) ... ok
+test_footprint_overlap_missing_tiny_outside_and_partial (tests.test_planning.PlanningArcGIS.test_footprint_overlap_missing_tiny_outside_and_partial) ... ok
+test_terrain_plane_pit_area_units_and_source_preservation (tests.test_planning.PlanningArcGIS.test_terrain_plane_pit_area_units_and_source_preservation) ... ok
+test_boundary_connection_traces_east_and_stops_at_cycle (tests.test_planning.PlanningMetrics.test_boundary_connection_traces_east_and_stops_at_cycle) ... ok
+test_no_roof_and_no_cells_have_null_heights (tests.test_planning.PlanningMetrics.test_no_roof_and_no_cells_have_null_heights) ... ok
+test_nodata_neighbors_seed_downstream_uncertainty (tests.test_planning.PlanningMetrics.test_nodata_neighbors_seed_downstream_uncertainty) ... ok
+test_paired_heights_preserve_nodata_and_negative_values (tests.test_planning.PlanningMetrics.test_paired_heights_preserve_nodata_and_negative_values) ... ok
+test_flags_contact_without_mutating_candidates (tests.test_qa.FootprintReviewArcGIS.test_flags_contact_without_mutating_candidates) ... ok
+test_only_eligible_classification_bytes_change_in_legacy_and_modern_las (tests.test_roofs.RoofRefinement.test_only_eligible_classification_bytes_change_in_legacy_and_modern_las) ... ok
+test_plane_fit_rejects_complex_surface_and_preserves_courtyard (tests.test_roofs.RoofRefinement.test_plane_fit_rejects_complex_surface_and_preserves_courtyard) ... ok
+test_rejected_model_makes_no_changes (tests.test_roofs.RoofRefinement.test_rejected_model_makes_no_changes) ... ok
+test_floor_applies_for_small_radii (tests.test_tiling.RecommendedOverlap.test_floor_applies_for_small_radii) ... ok
+test_scales_with_largest_radius (tests.test_tiling.RecommendedOverlap.test_scales_with_largest_radius) ... ok
+test_dedupe_keeps_only_owned_detections (tests.test_tiling.SeamOwnership.test_dedupe_keeps_only_owned_detections) ... ok
+test_every_point_owned_exactly_once (tests.test_tiling.SeamOwnership.test_every_point_owned_exactly_once) ... ok
+test_halo_detections_dropped_by_both_tiles_but_kept_by_owner (tests.test_tiling.SeamOwnership.test_halo_detections_dropped_by_both_tiles_but_kept_by_owner) ... ok
+test_upper_boundary_of_study_area_is_not_owned (tests.test_tiling.SeamOwnership.test_upper_boundary_of_study_area_is_not_owned) ... ok
+test_already_snapped_is_unchanged (tests.test_tiling.SnapExtent.test_already_snapped_is_unchanged) ... ok
+test_grows_outward_to_whole_cells (tests.test_tiling.SnapExtent.test_grows_outward_to_whole_cells) ... ok
+test_negative_coordinates (tests.test_tiling.SnapExtent.test_negative_coordinates) ... ok
+test_area_smaller_than_tile_gives_one_tile (tests.test_tiling.TileGrid.test_area_smaller_than_tile_gives_one_tile) ... ok
+test_buffer_applied (tests.test_tiling.TileGrid.test_buffer_applied) ... ok
+test_cores_do_not_overlap (tests.test_tiling.TileGrid.test_cores_do_not_overlap) ... ok
+test_covers_extent (tests.test_tiling.TileGrid.test_covers_extent) ... ok
+test_edge_tiles_are_clipped_not_padded (tests.test_tiling.TileGrid.test_edge_tiles_are_clipped_not_padded) ... ok
+test_invalid_extent_rejected (tests.test_tiling.TileGrid.test_invalid_extent_rejected) ... ok
+test_overlap_at_least_half_tile_rejected (tests.test_tiling.TileGrid.test_overlap_at_least_half_tile_rejected) ... ok
+test_unsnapped_tile_and_halo_are_rejected (tests.test_tiling.TileGrid.test_unsnapped_tile_and_halo_are_rejected) ... ok
+test_existing_badelf_type_and_domain_conflicts_are_reported (tests.test_utilities.StandaloneUtilities.test_existing_badelf_type_and_domain_conflicts_are_reported) ... ok
+test_failed_append_restores_enabled_rules (tests.test_utilities.StandaloneUtilities.test_failed_append_restores_enabled_rules) ... ok
+test_negative_layer_is_rejected (tests.test_utilities.StandaloneUtilities.test_negative_layer_is_rejected) ... ok
+test_palette_exhaustion_fails_before_any_feature_edit (tests.test_utilities.StandaloneUtilities.test_palette_exhaustion_fails_before_any_feature_edit) ... ok
+test_sketch_dry_run_does_not_export_rules_or_write_dataset (tests.test_utilities.StandaloneUtilities.test_sketch_dry_run_does_not_export_rules_or_write_dataset) ... ok
+
+----------------------------------------------------------------------
+Ran 80 tests in 269.636s
+
+OK
+sketch      : sketch (1 features, test)
+target SR   : test
+transform   : none needed
+rules       : 1
+rules CSV   : C:\work\attribute_rules.csv
+mapped      : none - all attributes land null
+sketch      : sketch (1 features, test)
+target SR   : test
+transform   : none needed
+rules       : 1
+rules CSV   : C:\work\attribute_rules.csv
+mapped      : none - all attributes land null
+
+DRY_RUN - nothing written. Review this report, then set DRY_RUN = False.

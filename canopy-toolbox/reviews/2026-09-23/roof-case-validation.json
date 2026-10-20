@@ -1,0 +1,28 @@
+{
+  "comparison": "Tree-only CHM versus successful sequential building-then-tree CHM, 2 m threshold, current OSM roof mask",
+  "largest_added_roof_component": {
+    "cells": 55,
+    "area_m2": 13.75,
+    "centroid_xy_m": [428181.58636363636, 4504335.94090909],
+    "bounds_xy_m": [428179.0, 4504334.0, 428184.0, 4504338.0],
+    "connectivity": 8
+  },
+  "added_roof_mask_cells_across_pilot": 782,
+  "roof_window_xy_m_inclusive": [428178, 428184, 4504334, 4504338],
+  "roof_window_point_count": 300,
+  "tree_only_to_sequential_point_transitions": {
+    "0->0": 56, "2->2": 32, "5->5": 3, "5->6": 1,
+    "6->0": 30, "6->5": 89, "6->6": 89
+  },
+  "stage_evidence": "The sequential trial manifest records building-stage class-6 count falling from 346212 to 310538, then remaining 310538 through the tree stage. Tree-only preserved original class 6. No per-point after-building LAS was retained, so exact local intermediate transitions cannot be directly inspected. The final class-5 labels were assigned in the tree stage; the building stage must have first removed original class-6 protection for these 89 points if the recorded preserve-class contract held.",
+  "integrity": {
+    "all_three_las_point_counts": 1824463,
+    "xyz_returns_and_flags_identical_in_order": true,
+    "sha256_unchanged_before_after_validation": true,
+    "standard_sha256": "52e6cceaf8ddf4e12ce09c1cc168c7fe03b2d5113f0db4ceb47296e3f4282742",
+    "tree_only_sha256": "bed9b5a429fbedbe8a2e995dcabd6bc8a550bcfbd9e43dc1fe7b526bda38b3e9",
+    "sequential_sha256": "da97c6cb72ccbd1db866df7042dd23cfcd3a832c7e91c9e2e49b0816beb2b996"
+  },
+  "reference_note": "Current OSM footprints differ in date from 2023 lidar. Nearmap survey layer is dated 2023-08-31, before lidar capture; existing imagery display is visual triage, not a reference label.",
+  "script": "scratch/models/validate_roof_case_20260923.py"
+}

@@ -6,6 +6,7 @@ not regulatory building heights, flood predictions, or surveyed surfaces.
 from pathlib import Path
 import hashlib
 import json
+import math
 
 import arcpy
 import numpy as np
@@ -165,15 +166,31 @@ def building_heights(footprints, id_field, roof_path, dtm_path, output_gdb):
                 clipped = geometry.intersect(aoi, 4) if geometry and geometry.area else None
                 inside_area = clipped.area if clipped else 0
                 area = geometry.area if geometry else 0
-                mask = np.zeros(ground.shape, dtype=bool)
+                # Rasterize and summarize only cells near this footprint.
+                left = bottom = right = top = 0
                 if inside_area:
-                    arcpy.management.CopyFeatures([clipped], polygon)
-                    arcpy.conversion.PolygonToRaster(polygon, arcpy.Describe(polygon).OIDFieldName,
-                                                     mask_path, "CELL_CENTER", cellsize=cell)
-                    mask = arcpy.RasterToNumPyArray(mask_path, nodata_to_value=0) > 0
-                    arcpy.management.Delete(mask_path)
-                    arcpy.management.Delete(polygon)
-                values = planning_metrics.height_summary(roof, ground, mask)
+                    box = clipped.extent
+                    left = max(0, math.floor((box.XMin - e.XMin) / cell))
+                    right = min(reference.width, math.ceil((box.XMax - e.XMin) / cell))
+                    bottom = max(0, math.floor((box.YMin - e.YMin) / cell))
+                    top = min(reference.height, math.ceil((box.YMax - e.YMin) / cell))
+                rows = slice(reference.height - top, reference.height - bottom)
+                cols = slice(left, right)
+                mask = np.zeros((top - bottom, right - left), dtype=bool)
+                if inside_area and mask.size:
+                    window = f"{e.XMin + left * cell} {e.YMin + bottom * cell} {e.XMin + right * cell} {e.YMin + top * cell}"
+                    try:
+                        with arcpy.EnvManager(extent=window):
+                            arcpy.management.CopyFeatures([clipped], polygon)
+                            arcpy.conversion.PolygonToRaster(polygon, arcpy.Describe(polygon).OIDFieldName,
+                                                             mask_path, "CELL_CENTER", cellsize=cell)
+                            mask = arcpy.RasterToNumPyArray(
+                                mask_path, arcpy.Point(e.XMin + left * cell, e.YMin + bottom * cell),
+                                right - left, top - bottom, nodata_to_value=0) > 0
+                    finally:
+                        arcpy.management.Delete(mask_path)
+                        arcpy.management.Delete(polygon)
+                values = planning_metrics.height_summary(roof[rows, cols], ground[rows, cols], mask)
                 values.update(FOOTPRINT_M2=area, AOI_PCT=100 * inside_area / area if area else 0,
                               PARTIAL_AOI=int(inside_area < area - max(1e-6, area * 1e-8)))
                 flags = ["UNVALIDATED"]
