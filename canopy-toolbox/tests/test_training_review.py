@@ -436,3 +436,71 @@ class PointCloudExport(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SplitAnswers(unittest.TestCase):
+    """A patch holding two objects one above the other: LABEL above SPLIT_Z, LABEL_BELOW at or below it."""
+
+    def setUp(self):
+        self.frame = frame()
+        self.unit = unit("Q1-0001", X0+150, Y0+100, zlow=2., zhigh=10., queue="Q1_TREE_ON_ROOF")
+        self.good = {"LABEL": "tree", "LABEL_BELOW": "building_roof", "SPLIT_Z": "6.2349", "REVIEWER": "BB",
+                     "REVIEW_DATE": "2026-10-20"}
+
+    def test_a_valid_split_is_normalized(self):
+        a = tr.normalize_answer(self.unit, self.good, self.frame)
+        self.assertEqual((a["LABEL"], a["LABEL_BELOW"], a["SPLIT_Z"]), ("TREE", "BUILDING_ROOF", 6.235))
+        plain = tr.normalize_answer(self.unit, {**self.good, "LABEL_BELOW": "", "SPLIT_Z": None}, self.frame)
+        self.assertEqual((plain["LABEL_BELOW"], plain["SPLIT_Z"]), (None, None))
+
+    def test_invalid_splits_are_refused(self):
+        for bad, message in [({"SPLIT_Z": ""}, "both"), ({"LABEL_BELOW": ""}, "both"),
+                             ({"LABEL_BELOW": "TREE"}, "different"), ({"LABEL": "MIXED"}, "exported"),
+                             ({"LABEL_BELOW": "UNSURE"}, "exported"), ({"SPLIT_Z": "11"}, "inside"),
+                             ({"SPLIT_Z": "2"}, "inside"), ({"SPLIT_Z": "high"}, "number"), ({"SPLIT_Z": "nan"}, "inside")]:
+            with self.subTest(bad=bad), self.assertRaisesRegex(ValueError, message):
+                tr.normalize_answer(self.unit, {**self.good, **bad}, self.frame)
+
+    def test_answer_parts(self):
+        a = tr.normalize_answer(self.unit, self.good, self.frame)
+        self.assertEqual(tr.answer_parts(self.unit, a), [("TREE", 6.235, 10.), ("BUILDING_ROOF", 2., 6.235)])
+        plain = tr.normalize_answer(self.unit, {**self.good, "LABEL_BELOW": "", "SPLIT_Z": ""}, self.frame)
+        self.assertEqual(tr.answer_parts(self.unit, plain), [("TREE", 2., 10.)])
+
+    def test_a_backup_from_before_splits_still_reads(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d)/"old.csv"
+            path.write_text(",".join(tr.LEGACY_BACKUP_COLUMNS)+"\nQ1-0001,Q1_TREE_ON_ROOF,1,tok,TREE,,BB,2026-09-30,,OK\n",
+                            encoding="utf-8")
+            row = tr.read_backup(path)[0]
+            self.assertEqual((row["LABEL"], row["LABEL_BELOW"], row["SPLIT_Z"]), ("TREE", "", ""))
+            path.write_text("UNIT_ID,LABEL\nQ1-0001,TREE\n", encoding="utf-8")
+            with self.assertRaises(ValueError):
+                tr.read_backup(path)
+
+    def test_restore_compares_the_split_not_just_the_label(self):
+        units = [self.unit]
+        token = tr.unit_token(self.frame["digest"], self.unit)
+        row = {"UNIT_ID": "Q1-0001", "UNIT_TOKEN": token, **self.good}
+        same = [{**self.unit, "LABEL": "TREE", "LABEL_BELOW": "BUILDING_ROOF", "SPLIT_Z": 6.235}]
+        self.assertEqual(tr.plan_restore([row], same, units, self.frame)["unchanged"], ["Q1-0001"])
+        moved = [{**self.unit, "LABEL": "TREE", "LABEL_BELOW": "BUILDING_ROOF", "SPLIT_Z": 5.0}]
+        plan = tr.plan_restore([row], moved, units, self.frame)
+        self.assertEqual(len(plan["conflicts"]), 1)
+        self.assertIn("at 6.235", plan["conflicts"][0])
+        unsplit = [{**self.unit, "LABEL": "TREE", "LABEL_BELOW": None, "SPLIT_Z": None}]
+        self.assertEqual(len(tr.plan_restore([row], unsplit, units, self.frame, replace=True)["replace"]), 1)
+
+    def test_export_codes_each_part_of_a_split_patch(self):
+        from canopy import las_records
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            pts = [(150., 100., z, 5) for z in (1., 4., 6.235, 6.3, 9., 11.)]
+            write_las(root/"src.las", pts)
+            split = {**unit("Q1-0001", X0+150, Y0+100, "TREE", zlow=2., zhigh=10.), "LABEL_BELOW": "BUILDING_ROOF",
+                     "SPLIT_Z": 6.235}
+            counts = tr.export_training_las(root/"src.las", root/"out.las", [split], self.frame)
+            classes = np.asarray(las_records.records(root/"out.las")[0]["classification"]).tolist()
+            roof, tree = tr.LABELS["BUILDING_ROOF"][1], tr.LABELS["TREE"][1]
+            self.assertEqual(classes, [tr.IGNORE_CODE, roof, roof, tree, tree, tr.IGNORE_CODE])
+            self.assertEqual(counts["points_per_unit"], {"Q1-0001": 4})

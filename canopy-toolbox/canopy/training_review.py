@@ -89,7 +89,11 @@ QUEUES = {
 }
 QUEUE_CODES = {name: f"Q{i+1}" for i, name in enumerate(QUEUES)}
 IDENTITY_FIELDS = ("UNIT_ID", "QUEUE", "REVIEW_ORDER", "X", "Y", "Z_LOW", "Z_HIGH", "PATCH_R_M")
-ANSWER_FIELDS = ("LABEL", "IMAGERY_USABLE", "REVIEWER", "REVIEW_DATE", "NOTES")
+LEGACY_ANSWER_FIELDS = ("LABEL", "IMAGERY_USABLE", "REVIEWER", "REVIEW_DATE", "NOTES")
+# A split answer (decided October 20, 2026) labels a patch that holds two objects one above the other: LABEL is the class
+# of the patch points above SPLIT_Z (an elevation, like Z_LOW and Z_HIGH) and LABEL_BELOW the class of those at or below it.
+SPLIT_FIELDS = ("LABEL_BELOW", "SPLIT_Z")
+ANSWER_FIELDS = (*LEGACY_ANSWER_FIELDS, *SPLIT_FIELDS)
 SNAPSHOT_COLUMNS = ("UNIT_ID", "QUEUE", "REVIEW_ORDER", "UNIT_TOKEN", *ANSWER_FIELDS)
 
 
@@ -490,8 +494,42 @@ def normalize_answer(unit, answer, frame, labels=None, today=None):
     if parsed > (today or datetime.date.today()) + datetime.timedelta(days=1):
         raise ValueError(f"{uid}: REVIEW_DATE is in the future")
     assert_patch_allowed(unit["X"], unit["Y"], frame, unit.get("PATCH_R_M", PATCH_RADIUS_M), what=f"{uid} label")
+    below, split_z = _split(unit, answer, label)
     return {"LABEL": label, "IMAGERY_USABLE": usable or None, "REVIEWER": reviewer,
-            "REVIEW_DATE": date, "NOTES": notes or None}
+            "REVIEW_DATE": date, "NOTES": notes or None, "LABEL_BELOW": below, "SPLIT_Z": split_z}
+
+
+def _split(unit, answer, label):
+    """(LABEL_BELOW, SPLIT_Z) of an answer, both None when it is not split. Raises ValueError for a half or invalid split."""
+    uid = unit["UNIT_ID"]
+    below = _text(answer.get("LABEL_BELOW")).upper()
+    raw = answer.get("SPLIT_Z")
+    raw = "" if raw is None else str(raw).strip()
+    if not below and not raw:
+        return None, None
+    if not below or not raw:
+        raise ValueError(f"{uid}: a split needs both LABEL_BELOW and SPLIT_Z")
+    if label not in EXPORT_LABELS or below not in EXPORT_LABELS:
+        raise ValueError(f"{uid}: both parts of a split need an exported label (not MIXED or UNSURE)")
+    if label == below:
+        raise ValueError(f"{uid}: a split needs two different labels")
+    try:
+        split_z = float(raw)
+    except ValueError:
+        raise ValueError(f"{uid}: SPLIT_Z must be a number") from None
+    if not math.isfinite(split_z) or not float(unit["Z_LOW"]) < split_z < float(unit["Z_HIGH"]):
+        raise ValueError(f"{uid}: SPLIT_Z must lie inside the patch slab ({unit['Z_LOW']} to {unit['Z_HIGH']})")
+    return below, round(split_z, 3)
+
+
+def answer_parts(unit, answer):
+    """The labelled parts of a patch as (label, z_low, z_high): one for a plain answer, two for a split
+    (points at or below SPLIT_Z belong to the lower part, as in the training export)."""
+    z_low, z_high = float(unit["Z_LOW"]), float(unit["Z_HIGH"])
+    if answer.get("SPLIT_Z") in (None, ""):
+        return [(answer["LABEL"], z_low, z_high)]
+    split_z = float(answer["SPLIT_Z"])
+    return [(answer["LABEL"], split_z, z_high), (answer["LABEL_BELOW"], z_low, split_z)]
 
 
 def plan_snapshot(rows, packet_units, frame, labels=None, tolerance=0.005):
@@ -611,7 +649,9 @@ def plan_backup(rows, packet_units, frame, labels=None, tolerance=0.005):
                     "UNIT_TOKEN": unit_token(frame["digest"], unit),
                     "LABEL": _text(row.get("LABEL")), "IMAGERY_USABLE": _text(row.get("IMAGERY_USABLE")),
                     "REVIEWER": _text(row.get("REVIEWER")), "REVIEW_DATE": _text(date),
-                    "NOTES": "" if row.get("NOTES") is None else str(row.get("NOTES")), "CHECK": check})
+                    "NOTES": "" if row.get("NOTES") is None else str(row.get("NOTES")),
+                    "LABEL_BELOW": _text(row.get("LABEL_BELOW")),
+                    "SPLIT_Z": "" if row.get("SPLIT_Z") in (None, "") else str(row.get("SPLIT_Z")), "CHECK": check})
     missing = sorted(set(index) - seen)
     if missing:
         problems.append(f"{len(missing)} packet units are missing from the review table, e.g. {missing[:3]}")
@@ -671,22 +711,38 @@ def plan_restore(backup_rows, current_rows, packet_units, frame, labels=None, re
         now = _text(current.get("LABEL"))
         if not now:
             plan["write"].append({"UNIT_ID": uid, "answer": answer})
-        elif now == answer["LABEL"]:
-            plan["unchanged"].append(uid)       # same label: the live answer (reviewer, notes) is kept
+        elif label_key(current) == label_key(answer):
+            plan["unchanged"].append(uid)       # same label (and split): the live answer (reviewer, notes) is kept
         elif replace:
             plan["replace"].append({"UNIT_ID": uid, "answer": answer, "was": now})
         else:
-            plan["conflicts"].append(f"{uid}: live label {now} differs from backup {answer['LABEL']}")
+            plan["conflicts"].append(f"{uid}: live label {_describe(current)} differs from backup {_describe(answer)}")
     return plan
 
 
+def label_key(row):
+    """What makes two answers the same labelling: the label and, for a split, the lower label and split height."""
+    split = row.get("SPLIT_Z")
+    return (_text(row.get("LABEL")).upper(), _text(row.get("LABEL_BELOW")).upper(),
+            None if split in (None, "") else round(float(split), 3))
+
+
+def _describe(row):
+    label, below, split = label_key(row)
+    return f"{label} above {below} at {split}" if split is not None else label
+
+
+LEGACY_BACKUP_COLUMNS = ("UNIT_ID", "QUEUE", "REVIEW_ORDER", "UNIT_TOKEN", *LEGACY_ANSWER_FIELDS, "CHECK")
+
+
 def read_backup(path):
-    """Rows of a backup CSV as dicts; the header must be the backup columns."""
+    """Rows of a backup CSV as dicts; the header must be the backup columns (a pre-split backup reads with blank splits)."""
     with open(path, encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
-        if tuple(reader.fieldnames or ()) != BACKUP_COLUMNS:
+        columns = tuple(reader.fieldnames or ())
+        if columns not in (BACKUP_COLUMNS, LEGACY_BACKUP_COLUMNS):
             raise ValueError(f"{path} is not a training label backup (unexpected columns)")
-        return list(reader)
+        return [{**{k: "" for k in SPLIT_FIELDS}, **row} for row in reader]
 
 
 # ---------------------------------------------------------------- point-cloud training export
@@ -758,6 +814,9 @@ def _recode_copy(path, exported, centres, chunk):
     """Write training codes into the modern-format copy at `path`; returns (per-unit, per-class) counts."""
     points, scale, offset, modern, _ = las_records.records(path, "r+")
     codes = np.array([LABELS[u["LABEL"]][1] for u in exported], np.uint8)
+    # A split unit codes the points at or below SPLIT_Z with its lower label; an unsplit unit never matches (split -inf).
+    codes_below = np.array([LABELS[u["LABEL_BELOW"]][1] if u.get("LABEL_BELOW") else 0 for u in exported], np.uint8)
+    split_z = np.array([-np.inf if u.get("SPLIT_Z") in (None, "") else float(u["SPLIT_Z"]) for u in exported], float)
     radius = np.array([u.get("PATCH_R_M", PATCH_RADIUS_M) for u in exported], float)
     zlow = np.array([u["Z_LOW"] for u in exported], float)
     zhigh = np.array([u["Z_HIGH"] for u in exported], float)
@@ -779,6 +838,9 @@ def _recode_copy(path, exported, centres, chunk):
             hit = np.isfinite(d)
             hit[hit] &= (d[hit] <= radius[j[hit]]) & (z[hit] >= zlow[j[hit]]) & (z[hit] <= zhigh[j[hit]]) & ~noise[hit]
             new[hit] = codes[j[hit]]
+            lower = np.zeros(len(block), bool)
+            lower[hit] = z[hit] <= split_z[j[hit]]
+            new[lower] = codes_below[j[lower]]
             per_unit += np.bincount(j[hit], minlength=len(exported))
         counts += np.bincount(new, minlength=256)
         block["classification"] = new

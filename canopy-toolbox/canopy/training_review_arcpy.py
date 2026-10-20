@@ -37,8 +37,37 @@ UNIT_FIELDS = [
     ("BLDG_MODEL", "SHORT", None, None), ("SHAPE_GROUP", "TEXT", 16, None), ("CAND_FLAG", "TEXT", 16, None),
     ("EVIDENCE", "TEXT", 120, None),
     ("LABEL", "TEXT", 24, LABEL_DOMAIN), ("IMAGERY_USABLE", "TEXT", 3, YES_NO_DOMAIN),
-    ("REVIEWER", "TEXT", 64, None), ("REVIEW_DATE", "DATE", None, None), ("NOTES", "TEXT", 500, None)]
+    ("REVIEWER", "TEXT", 64, None), ("REVIEW_DATE", "DATE", None, None), ("NOTES", "TEXT", 500, None),
+    ("LABEL_BELOW", "TEXT", 24, LABEL_DOMAIN), ("SPLIT_Z", "DOUBLE", None, None)]
 BUILD_FIELDS = [f[0] for f in UNIT_FIELDS if f[0] not in tr.ANSWER_FIELDS]
+SPLIT_UNIT_FIELDS = [f for f in UNIT_FIELDS if f[0] in tr.SPLIT_FIELDS]
+
+
+def present_fields(fc):
+    return {f.name.upper() for f in arcpy.ListFields(str(fc))}
+
+
+def ensure_split_fields(fc):
+    """Add LABEL_BELOW and SPLIT_Z to a review table built before split answers existed. Additive only; returns the
+    fields added. Needs a schema lock, so the project must be closed in Pro."""
+    missing = [f for f in SPLIT_UNIT_FIELDS if f[0] not in present_fields(fc)]
+    if missing:
+        arcpy.management.AddFields(str(fc), [[n, t, n, length or "", "", d or ""] for n, t, length, d in missing])
+    return [f[0] for f in missing]
+
+
+def _answer_fields(fc, answer=None):
+    """The answer fields this table has. A split answer needs the split fields, which ensure_split_fields adds."""
+    present = present_fields(fc)
+    fields = [f for f in tr.ANSWER_FIELDS if f in present]
+    if answer is not None and answer.get("SPLIT_Z") not in (None, "") and not set(tr.SPLIT_FIELDS) <= present:
+        raise ValueError("This review table has no LABEL_BELOW/SPLIT_Z fields yet. Close the project in Pro and run "
+                         "training_labels.bat restore with --add-split-fields to add them.")
+    return fields
+
+
+def _answer_values(fields, answer):
+    return [datetime.datetime.fromisoformat(answer["REVIEW_DATE"]) if f == "REVIEW_DATE" else answer.get(f) for f in fields]
 
 
 # ---------------------------------------------------------------- reading evaluation geometry
@@ -191,11 +220,12 @@ def _domain_polygons(gdb, mask_info, sr):
 
 
 def read_review_rows(fc):
-    fields = ["OID@", *[f[0] for f in UNIT_FIELDS]]
+    present = present_fields(fc)
+    fields = ["OID@", *[f[0] for f in UNIT_FIELDS if f[0] in present]]
     rows = []
     with arcpy.da.SearchCursor(str(fc), fields) as cursor:
         for values in cursor:
-            row = dict(zip(fields, values))
+            row = {**{f: None for f in tr.SPLIT_FIELDS}, **dict(zip(fields, values))}
             if isinstance(row["REVIEW_DATE"], (datetime.date, datetime.datetime)):
                 row["REVIEW_DATE"] = row["REVIEW_DATE"].date().isoformat() if isinstance(row["REVIEW_DATE"], datetime.datetime) \
                     else row["REVIEW_DATE"].isoformat()
@@ -212,16 +242,16 @@ def domain_codes(workspace, name=LABEL_DOMAIN):
 
 def write_answer(fc, oid, answer, replace=False):
     """Write one validated answer to one unit. Refuses to overwrite a different label unless replace."""
-    fields = ["OID@", *tr.ANSWER_FIELDS]
+    answer_fields = _answer_fields(fc, answer)
+    fields = ["OID@", *answer_fields]
     with arcpy.da.UpdateCursor(str(fc), fields, f"{arcpy.Describe(str(fc)).OIDFieldName} = {int(oid)}") as cursor:
         rows = 0
         for row in cursor:
             rows += 1
-            before = dict(zip(tr.ANSWER_FIELDS, row[1:]))
+            before = {**{f: None for f in tr.SPLIT_FIELDS}, **dict(zip(answer_fields, row[1:]))}
             if before["LABEL"] and before["LABEL"] != answer["LABEL"] and not replace:
                 raise ValueError(f"Unit already labelled {before['LABEL']}; tick 'Replace existing label' to change it")
-            cursor.updateRow([row[0], answer["LABEL"], answer["IMAGERY_USABLE"], answer["REVIEWER"],
-                              datetime.datetime.fromisoformat(answer["REVIEW_DATE"]), answer["NOTES"]])
+            cursor.updateRow([row[0], *_answer_values(answer_fields, answer)])
     if rows != 1:
         raise ValueError(f"Expected exactly one unit with OID {oid}, found {rows}")
     return before
@@ -312,14 +342,14 @@ MAX_BULK = 500
 
 def write_answers(fc, oids, answer):
     """Write one validated answer to several units in a single pass. Returns the number of rows written."""
-    fields = ["OID@", *tr.ANSWER_FIELDS]
+    answer_fields = _answer_fields(fc, answer)
+    fields = ["OID@", *answer_fields]
     oid_field = arcpy.Describe(str(fc)).OIDFieldName
     where = f"{oid_field} IN ({','.join(str(int(o)) for o in sorted(oids))})"
     written = 0
     with arcpy.da.UpdateCursor(str(fc), fields, where) as cursor:
         for row in cursor:
-            cursor.updateRow([row[0], answer["LABEL"], answer["IMAGERY_USABLE"], answer["REVIEWER"],
-                              datetime.datetime.fromisoformat(answer["REVIEW_DATE"]), answer["NOTES"]])
+            cursor.updateRow([row[0], *_answer_values(answer_fields, answer)])
             written += 1
     return written
 
@@ -743,7 +773,9 @@ def imagery_patches(gdb, rows, raster, sr=None):
     if sr.factoryCode != 6341:
         raise ValueError("Imagery raster must be EPSG:6341 to match the review units")
     e = info.extent
-    chosen = [r for r in rows if r["LABEL"] in tr.EXPORT_LABELS and r.get("IMAGERY_USABLE") == "YES"]
+    # A split patch holds two classes one above the other; an imagery chip can carry only one, so splits are left out.
+    chosen = [r for r in rows if r["LABEL"] in tr.EXPORT_LABELS and r.get("IMAGERY_USABLE") == "YES"
+              and r.get("SPLIT_Z") in (None, "")]
     outside = [r["UNIT_ID"] for r in chosen if r["X"]-r["PATCH_R_M"] < e.XMin or r["X"]+r["PATCH_R_M"] > e.XMax
                or r["Y"]-r["PATCH_R_M"] < e.YMin or r["Y"]+r["PATCH_R_M"] > e.YMax]
     if outside:
