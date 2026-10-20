@@ -1,0 +1,30 @@
+{
+ "schema": "canopy-training-review/1",
+ "kind": "TRAINING_LABEL_BACKUP",
+ "packet_units_digest": "6824bdb4d875a8bbb8d2d4582b01395a2d58a5928fcb30f7280420715c4fc049",
+ "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
+ "counts": {
+  "units": 225,
+  "saved": 101,
+  "labelled": 101,
+  "by_label": {
+   "MIXED": 1,
+   "TREE": 24,
+   "BUILDING_ROOF": 28,
+   "GROUND": 19,
+   "WIRE": 1,
+   "WALL": 3,
+   "UNSURE": 14,
+   "OTHER_STRUCTURE": 6,
+   "VEHICLE": 2,
+   "SHRUB_LOW_VEG": 3
+  }
+ },
+ "reviewers": [
+  "bb"
+ ],
+ "flagged": [],
+ "problems": [],
+ "labels_csv_sha256": "a0976bab22e7e2d76d198b76d1c0c3c05a491cc1a27494c576f158a0d7bda323",
+ "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."
+}
