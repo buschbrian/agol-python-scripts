@@ -5,19 +5,19 @@
  "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
  "counts": {
   "units": 1065,
-  "saved": 323,
-  "labelled": 323,
+  "saved": 533,
+  "labelled": 533,
   "by_label": {
-   "BUILDING_ROOF": 103,
-   "OTHER_STRUCTURE": 12,
-   "TREE": 64,
-   "VEHICLE": 11,
-   "GROUND": 31,
-   "MIXED": 51,
-   "SHRUB_LOW_VEG": 22,
+   "BUILDING_ROOF": 182,
+   "OTHER_STRUCTURE": 14,
+   "TREE": 127,
+   "VEHICLE": 16,
+   "GROUND": 71,
+   "MIXED": 64,
+   "SHRUB_LOW_VEG": 24,
    "WALL": 9,
-   "WIRE": 9,
-   "UNSURE": 10,
+   "WIRE": 13,
+   "UNSURE": 12,
    "POLE": 1
   }
  },
@@ -26,6 +26,6 @@
  ],
  "flagged": [],
  "problems": [],
- "labels_csv_sha256": "25d4f67dad4892ca22f809d81ba584c5f68b858e542d2bbd713cc215a76e08ab",
+ "labels_csv_sha256": "3eac2a132ef960594d1f895a14ad5c766aab142b1cd557c737849faa772075ae",
  "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."
 }
