@@ -5,10 +5,10 @@
  "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
  "counts": {
   "units": 1065,
-  "saved": 1018,
-  "labelled": 1018,
+  "saved": 1019,
+  "labelled": 1019,
   "by_label": {
-   "BUILDING_ROOF": 347,
+   "BUILDING_ROOF": 348,
    "OTHER_STRUCTURE": 20,
    "TREE": 228,
    "VEHICLE": 31,
@@ -22,10 +22,11 @@
   }
  },
  "reviewers": [
-  "bb"
+  "bb",
+  "triage-v2"
  ],
  "flagged": [],
  "problems": [],
- "labels_csv_sha256": "313faa6705f3379be21de3fcb641df653e54f94352dfa8c7e747de17eab2b873",
+ "labels_csv_sha256": "e018d498740076213ce8ed9f7b1c751657d611882ec8f1efedbd96e7778b5b6e",
  "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."
 }
