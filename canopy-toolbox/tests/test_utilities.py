@@ -66,9 +66,10 @@ class StandaloneUtilities(unittest.TestCase):
         fake=MagicMock()
         edges=[(a,b) for a in range(10) for b in range(a+1,10)]
         fake.da.SearchCursor.return_value.__enter__.return_value=iter(edges)
-        with patch.dict(sys.modules,{"arcpy":fake}):
-            with self.assertRaises(RuntimeError):
-                runpy.run_path(str(ROOT/"assign_polygon_colors.py"))
+        argv=["assign_polygon_colors.py","polygons","neighbors"]
+        with patch.dict(sys.modules,{"arcpy":fake}), patch.object(sys,"argv",argv):
+            with self.assertRaises(ValueError):
+                runpy.run_path(str(ROOT/"assign_polygon_colors.py"),run_name="__main__")
         fake.AddField_management.assert_not_called()
         fake.da.UpdateCursor.assert_not_called()
 
