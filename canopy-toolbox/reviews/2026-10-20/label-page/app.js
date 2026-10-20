@@ -1,6 +1,6 @@
 // Click-through training-label page. Blind by design: the data carries no class, model or triage field.
 "use strict";
-const PAGE_VERSION = "2026-10-20 split v2";
+const PAGE_VERSION = "2026-10-20 split v2, priority, recheck";
 
 const EXPORT_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const COLOUR_MODES = ["imagery", "height", "intensity", "returns"];
@@ -281,6 +281,16 @@ function splitLabel(code) {             // true when the key was used by the spl
 // ---------------------------------------------------------------- unit list and display
 function buildList() {
   const filter = $("filter").value, queue = $("queue").value;
+  if (filter === "priority" || filter === "recheck") {
+    // priority: units chosen to test the refinement rules; recheck: answers to look at again. Reasons are not shown.
+    const byId = Object.fromEntries(state.units.map((u) => [u.UNIT_ID, u]));
+    const ids = (filter === "priority" ? state.priority : state.recheck) || [];
+    state.list = ids.map((id) => byId[id])
+      .filter((u) => u && (!queue || u.QUEUE_NO === queue) && (filter === "recheck" || !u.SAVED_LABEL));
+    storage("labelPage.filter", filter);
+    storage("labelPage.queue", queue);
+    return;
+  }
   state.list = state.units.filter((u) => {
     if (queue && u.QUEUE_NO !== queue) return false;
     const answered = !!state.answers[u.UNIT_ID], saved = !!u.SAVED_LABEL;
@@ -446,6 +456,8 @@ async function main() {
   init3d();
   state.meta = await getJSON("/data/units.json");
   state.units = state.meta.units;
+  state.priority = await getJSON("/data/priority.json").then((p) => p.order).catch(() => []);
+  state.recheck = await getJSON("/data/recheck.json").then((p) => p.order).catch(() => []);
   const server = await getJSON("/api/state");
   state.answers = server.answers;
   $("csv-path").textContent = server.csv;

@@ -43,12 +43,24 @@ class Rules(unittest.TestCase):
         new, rule = run([5, 5], [0, 6], withheld=[False, True])
         self.assertEqual((new.tolist(), rule.tolist()), ([5, 5], [0, 0]))
 
-    def test_ground_water_bridge_and_vendor_classes_are_only_proposed(self):
+    def test_version_1_only_proposes_vegetation_to_ground(self):
         base = [4, 6, 2, 20, 9, 17, 5, 1, 7, 18]
         fractal = [2, 2, 6, 5, 2, 5, 9, 6, 6, 5]
-        new, rule = run(base, fractal)
+        new, rule = rc.rules(np.array(base, np.uint8), np.array(fractal, np.uint8), np.ones(10, bool), np.zeros(10, bool),
+                             np.full(10, 10.0), version=1)
         self.assertEqual(new.tolist(), base)
         self.assertEqual(rule.tolist(), [11, 12, 13, 13, 13, 13, 15, 16, 0, 0])
+
+    def test_version_2_applies_vegetation_to_ground_and_proposes_the_rest(self):
+        base = [4, 3, 6, 2, 20, 9, 17, 5, 1, 7, 18]
+        fractal = [2, 2, 2, 6, 5, 2, 5, 9, 6, 6, 5]
+        new, rule = run(base, fractal)
+        self.assertEqual(new.tolist(), [2, 2, 6, 2, 20, 9, 17, 5, 1, 7, 18])
+        self.assertEqual(rule.tolist(), [7, 7, 12, 13, 13, 13, 13, 15, 16, 0, 0])
+
+    def test_version_2_vegetation_to_ground_needs_a_unanimous_vote(self):
+        new, rule = run([3], [2], unanimous=[False])
+        self.assertEqual((new.tolist(), rule.tolist()), ([3], [0]))
 
     def test_vendor_classes_that_agree_are_not_flagged(self):
         _, rule = run([2, 20, 9, 17], [2, 2, 9, 17])

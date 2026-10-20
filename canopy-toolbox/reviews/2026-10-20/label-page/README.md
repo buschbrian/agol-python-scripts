@@ -27,7 +27,13 @@ Label only the returns inside the patch, as before.
 | I | switch between the imagery map and the NAIP chip |
 | S | split the patch at a height: the line starts mid-patch, up/down arrows move it 10 cm (Shift 50 cm), then the label above, then below; Esc cancels |
 
-"Show" picks unlabelled units, all units, the units answered on the page, or the 40 audit-2 units. After a label the page
+"Show" picks the refinement priority list, the recheck list, unlabelled units, all units, the units answered on the page,
+mixed answers to split, or the 40 audit-2 units.
+- **Refinement priority** (build_priority.py): unlabelled units whose answers settle open refinement questions, interleaved from
+  four groups (rule-11 green, rule-11 bare, changed by the rules, model unsure). The page shows the order only; the groups are kept
+  beside the packet. These units are chosen by model disagreement, so they test rules and never estimate an accuracy.
+- **Recheck**: answers to look at again. On October 20 it held the two SHRUB_LOW_VEG answers that look like mown lawn, which is
+  GROUND since that day. Changing an answer already imported needs `label_page.bat import --apply --replace`. After a label the page
 moves to the next unanswered unit; the left arrow still goes back to fix one. The first label asks for your initials (REVIEWER).
 
 ## Splitting a mixed patch (decided October 20)

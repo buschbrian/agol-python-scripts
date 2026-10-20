@@ -16,8 +16,12 @@ Applied (all passes agree, the point is not withheld, and the baseline class cam
   2  height vegetation 3/4/5  -> 64 permanent structure            the run's ground mosaic at 0.5 m, 2 m and 80 m
   3  height vegetation 3/4/5  -> 1  other                       5  building 6 -> 64 permanent structure
                                                                 6  building 6 -> 1  other
+Rules version 2 (--rules 2, the default since October 20, 2026) also applies
+  7  height vegetation 3/4/5  -> 2  ground, where all passes call it ground. Decided with Brian after 323 training labels on
+     12TVL2804: it lifted agreement from 182 to 205 of 225 labelled parts, with mown lawn counted as ground.
 Proposed only, class unchanged (recorded for review):
-  11 vegetation that FRACTAL calls ground       12 building that FRACTAL calls ground
+  11 vegetation that FRACTAL calls ground (rules version 1 only)
+  12 building that FRACTAL calls ground
   13 a vendor class (ground 2/20, water 9, bridge 17) that FRACTAL contradicts
   14 building that FRACTAL calls vegetation where no ground height exists (or above 80 m)
   15 a toolbox class that FRACTAL calls water or bridge
@@ -45,14 +49,16 @@ LIDAR = lidar_root()/"2023-salt-lake-valley"
 WORK = LIDAR/"runs"/"city-count-20261008"/"prepared"/"points"
 GROUND = LIDAR/"runs"/"city-count-20261008"/"raster-ground-recovery"/"ground_mosaic.tif"
 FRACTAL = LIDAR/"fractal"/"city-20261019"/"fractal"
-OUT = LIDAR/"runs"/"refined-fractal-20261019"
+OUTPUTS = {1: LIDAR/"runs"/"refined-fractal-20261019", 2: LIDAR/"runs"/"refined-fractal-20261020"}
+OUT = OUTPUTS[2]
 CHUNK = 2_000_000
 MAX_PAIR_SPREAD = 0.02                                     # as infer_city.py: uneven passes mean a corrupt pass
 VEGETATION = (3, 4, 5)
 VENDOR_FAMILY = {2: 2, 20: 2, 9: 9, 17: 17}             # vendor class -> the FRACTAL code that agrees with it
 BANDS = ((0.5, 3), (2.0, 4), (80.0, 5))                    # October 8 upper thresholds for classes 3, 4 and 5
 APPLIED = {1: "vegetation -> building", 2: "vegetation -> permanent structure", 3: "vegetation -> other",
-           4: "building -> vegetation (height-banded)", 5: "building -> permanent structure", 6: "building -> other"}
+           4: "building -> vegetation (height-banded)", 5: "building -> permanent structure", 6: "building -> other",
+           7: "vegetation -> ground (rules version 2)"}
 PROPOSED = {11: "vegetation called ground", 12: "building called ground", 13: "vendor class contradicted",
             14: "building called vegetation, no usable height", 15: "toolbox class called water or bridge",
             16: "baseline class 1 called vegetation, building or structure"}
@@ -71,7 +77,7 @@ def band(hag):
     return out
 
 
-def rules(base, fractal, unanimous, withheld, hag):
+def rules(base, fractal, unanimous, withheld, hag, version=2):
     """(new class, rule code) for one block. Pure: arrays in, arrays out."""
     new = base.copy()
     rule = np.zeros(len(base), dtype=np.uint8)
@@ -88,7 +94,12 @@ def rules(base, fractal, unanimous, withheld, hag):
     new[ok] = banded[ok]
     rule[ok] = 4
     rule[to_veg & (banded == 0)] = 14
-    rule[veg & (fractal == 2)] = 11
+    to_ground = veg & (fractal == 2)
+    if version >= 2:
+        new[to_ground] = 2
+        rule[to_ground] = 7
+    else:
+        rule[to_ground] = 11
     rule[bld & (fractal == 2)] = 12
     rule[(veg | bld) & np.isin(fractal, (9, 17))] = 15
     for vendor, agrees in VENDOR_FAMILY.items():
@@ -126,7 +137,7 @@ def read_ground(bounds):
     return data, gt[0]+c0*gt[1], gt[3]+r0*gt[5], gt[1], band_.GetNoDataValue() or np.inf
 
 
-def refine_tile(tile, log):
+def refine_tile(tile, log, version=2):
     import laspy
     source, consensus = WORK/f"{tile}.las", FRACTAL/tile/"consensus.las"
     out = OUT/"points"/f"{tile}.las"
@@ -135,7 +146,8 @@ def refine_tile(tile, log):
         partial.rename(out.with_name(f"{tile}.interrupted-{int(time.time())}.las"))
     before = os.stat(source)
     repeats = json.loads((FRACTAL/tile/"manifest.json").read_text(encoding="utf-8"))["repeats"]
-    summary = {"tile": tile, "source": str(source), "consensus": str(consensus), "repeats": repeats, "points": 0,
+    summary = {"tile": tile, "rules_version": version, "source": str(source), "consensus": str(consensus),
+               "repeats": repeats, "points": 0,
                "withheld": 0, "unanimous": 0, "no_ground_height": 0,
                "rules": {str(k): 0 for k in (*APPLIED, *PROPOSED)},
                "baseline_by_fractal": {}, "baseline_by_fractal_unanimous": {}, "changed_from_to": {}}
@@ -161,7 +173,7 @@ def refine_tile(tile, log):
                 withheld = np.asarray(block.withheld).astype(bool)
                 x, y, z = np.asarray(block.x), np.asarray(block.y), np.asarray(block.z)
                 hag = z-ground_heights(ground, x, y)
-                new, rule = rules(base, fractal, unanimous, withheld, hag)
+                new, rule = rules(base, fractal, unanimous, withheld, hag, version)
                 record = laspy.ScaleAwarePointRecord.zeros(len(block), header=header)
                 for name in hb.point_format.dimension_names:
                     record[name] = block[name]
@@ -222,7 +234,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--tiles", nargs="+")
     parser.add_argument("--wait", action="store_true", help="wait for tiles whose inference has not finished")
+    parser.add_argument("--rules", type=int, choices=(1, 2), default=2, help="rules version (2 applies vegetation -> ground)")
     args = parser.parse_args(argv)
+    global OUT
+    OUT = OUTPUTS[args.rules]
 
     def log(text):
         print(f"{datetime.datetime.now():%H:%M:%S} {text}", flush=True)
@@ -234,7 +249,7 @@ def main(argv=None):
         ready = [t for t in pending if consensus_ready(t)]
         for tile in ready:
             try:
-                refine_tile(tile, log)
+                refine_tile(tile, log, args.rules)
             except Exception as exc:                        # record and continue with the other tiles
                 failed[tile] = str(exc)
                 log(f"{tile}: FAILED {exc}")

@@ -66,8 +66,9 @@ LABELS = {
     "WIRE": ("Overhead wire or cable (power, telephone, guy wire)", 14),
     "POLE": ("Pole or mast: utility, light, sign or flag pole", 73),
     "OTHER_STRUCTURE": ("Other built structure: carport, shade sail, playground, bridge, tank", 74),
-    "SHRUB_LOW_VEG": ("Non-tree vegetation: shrub, clipped hedge, lawn, garden, grass", 3),
-    "GROUND": ("Bare ground, pavement, gravel or low hardscape", 2),
+    # Mown lawn is GROUND, not SHRUB_LOW_VEG (decided October 20, 2026; FRACTAL and LiDAR HD treat it the same way).
+    "SHRUB_LOW_VEG": ("Non-tree vegetation: shrub, clipped hedge, garden bed, tall grass (not mown lawn)", 3),
+    "GROUND": ("Bare ground, pavement, gravel, low hardscape or mown lawn", 2),
     "VEHICLE": ("Car, truck, trailer or other vehicle", 75),
     "WATER": ("Water surface (pool, pond, stream)", 9),
     "MIXED": ("The patch slab clearly holds two or more classes (e.g. branch over a roof edge); not exported", None),

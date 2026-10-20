@@ -121,8 +121,8 @@ that slab** is.
 | WIRE | Overhead wire or cable | 14 |
 | POLE | Utility, light, sign or flag pole | 73 |
 | OTHER_STRUCTURE | Carport, shade sail, playground, bridge, tank | 74 |
-| SHRUB_LOW_VEG | Non-tree vegetation: shrub, clipped hedge, lawn, garden | 3 |
-| GROUND | Bare ground, pavement, gravel, low hardscape | 2 |
+| SHRUB_LOW_VEG | Non-tree vegetation: shrub, clipped hedge, garden bed, tall grass (not mown lawn) | 3 |
+| GROUND | Bare ground, pavement, gravel, low hardscape, mown lawn (since October 20, 2026) | 2 |
 | VEHICLE | Car, truck, trailer | 75 |
 | WATER | Pool, pond, stream | 9 |
 | MIXED | The slab clearly holds two or more classes (e.g. a branch over a roof edge) | not exported |
