@@ -82,3 +82,11 @@ points; class totals move by less than 1% except water and bridge (a few thousan
 What would move it: more labels in the weak classes (vehicles, wires, poles, fences), since ground, vegetation and building are
 already at or near the ceiling on these units; and a held-out sample large enough to show a gain there. A higher learning
 rate or longer training would mostly fit the 747 training units harder. Not swapped in citywide (October 20); Brian decides.
+
+## Next: run-2 with the rare-class labels
+Brian chose more labels in the weak classes ([../rare-classes/README.md](../rare-classes/README.md), 257 units). Also decided
+on October 20: fences and freestanding walls are labelled OTHER_STRUCTURE (64) from now on; WALL stays out of training.
+`make_training_las.py --snapshot PACKET SNAPSHOT` adds a packet's labels to run-1's. Run-1's 50 m block split is frozen: a
+new unit in a run-1 held-out block is held out, in a run-1 training block it trains, and only blocks no run-1 unit touched are
+split anew (20%). The data folder gets `holdout_units.json`, which `evaluate_finetune.py` uses, so run-2's score contains
+run-1's 191 held-out units and run-1 can be scored on run-2's held-out set for a like-for-like comparison.

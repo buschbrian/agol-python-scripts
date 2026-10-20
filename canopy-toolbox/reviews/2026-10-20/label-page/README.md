@@ -9,6 +9,10 @@ reviews\2026-10-20\label-page\label_page.bat import           preview importing 
 reviews\2026-10-20\label-page\label_page.bat import --apply   import them (close the review project in Pro first)
 reviews\2026-10-20\label-page\label_page.bat build            rebuild the page data (once per packet; Myria3D Python)
 ```
+Two more packets use the same page on their own ports: the refined cylinders (`serve-refined`, 8766, below) and the
+rare-class queue of vehicles, wires, poles and fences (`serve-rare`, 8767, [../rare-classes/README.md](../rare-classes/README.md)).
+Each has a matching `import-refined` / `import-rare`. **Since October 20, fences and freestanding walls are OTHER_STRUCTURE and
+WALL is a building facade only**; the label descriptions on all three pages say so.
 
 ## Using it
 Each unit shows a 3D view of every point within 12 m (drag to rotate, right-drag to pan, scroll to zoom), two 3 m-wide side

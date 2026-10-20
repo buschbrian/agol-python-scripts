@@ -62,10 +62,13 @@ EXCLUDED_TILES = {
 LABELS = {
     "TREE": ("Woody tree crown, branches or trunk (any height; includes overhanging branches)", 5),
     "BUILDING_ROOF": ("Roof of a building, including roof-mounted equipment", 6),
-    "WALL": ("Vertical face: building facade, retaining or garden wall, solid fence", 72),
+    # Fences and freestanding walls are OTHER_STRUCTURE and WALL is a building facade only (decided October 20, 2026, so the
+    # labels match FRACTAL's permanent-structure class). WALL answers made before then may still hold fences or garden walls.
+    "WALL": ("Building facade: the vertical face of a building (fences and freestanding walls are OTHER_STRUCTURE)", 72),
     "WIRE": ("Overhead wire or cable (power, telephone, guy wire)", 14),
     "POLE": ("Pole or mast: utility, light, sign or flag pole", 73),
-    "OTHER_STRUCTURE": ("Other built structure: carport, shade sail, playground, bridge, tank", 74),
+    "OTHER_STRUCTURE": ("Other built structure: fence, freestanding garden, retaining or property wall, carport, shade sail, "
+                        "playground, bridge, tank", 74),
     # Mown lawn is GROUND, not SHRUB_LOW_VEG (decided October 20, 2026; FRACTAL and LiDAR HD treat it the same way).
     "SHRUB_LOW_VEG": ("Non-tree vegetation: shrub, clipped hedge, garden bed, tall grass (not mown lawn)", 3),
     "GROUND": ("Bare ground, pavement, gravel, low hardscape or mown lawn", 2),

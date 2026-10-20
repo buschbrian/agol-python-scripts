@@ -66,9 +66,17 @@ def predicted_at(path, index, xyz):
     return out, dimension
 
 
-def parts(xyz, labels, units, split):
+def held_out_centres(labels_path):
+    """Centres of the held-out units: holdout_units.json beside val/ when make_training_las wrote one, else run-1's split."""
+    listed = Path(labels_path).resolve().parent.parent/"holdout_units.json"
+    if listed.is_file():
+        return sorted({(u["X"], u["Y"]) for u in json.loads(listed.read_text(encoding="utf-8"))})
+    units, _, split = mtl.load_units()
+    return sorted({(u["X"], u["Y"]) for u in units if split[u["UNIT_ID"]] == "VALIDATION"})
+
+
+def parts(xyz, labels, centres):
     """A part id per labelled point: the nearest held-out unit centre and the point's label."""
-    centres = sorted({(u["X"], u["Y"]) for u in units if split[u["UNIT_ID"]] == "VALIDATION"})
     _, nearest = cKDTree(np.array(centres)).query(xyz[:, :2])
     keys = nearest.astype(np.int64)*256 + labels
     _, part = np.unique(keys, return_inverse=True)
@@ -116,8 +124,7 @@ def main(argv=None):
     if args.out and args.out.exists():
         raise FileExistsError(args.out)
     index, xyz, labels = labelled_points(args.labels)
-    units, _, split = mtl.load_units()
-    part = parts(xyz, labels, units, split)
+    part = parts(xyz, labels, held_out_centres(args.labels))
     part_label = plurality(labels, part)
     report = {"labels": str(args.labels), "classes": "FRACTAL codes: 1 other, 2 ground, 5 vegetation, 6 building, 64 structure",
               "predictions": {}, "paired_parts": {}}

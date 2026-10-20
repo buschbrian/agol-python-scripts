@@ -1,6 +1,6 @@
 """Write the FRACTAL fine-tuning inputs from the training labels: one training and one validation LAS of 12TVL2804.
 
-    python reviews/2026-10-20/fractal-finetune/make_training_las.py NEW_DIR
+    python reviews/2026-10-20/fractal-finetune/make_training_las.py NEW_DIR [--snapshot PACKET_DIR SNAPSHOT_DIR ...]
 
 Run with the Myria3D environment's Python (PYTHONNOUSERSITE=1, CANOPY_LIDAR_ROOT set). Read-only on every input; writes a new folder.
 Inputs: the two label snapshots of October 20 (original packet and refined cylinders, re-verified by training_review.load_snapshot),
@@ -15,7 +15,11 @@ points (only to find noise, 7 and 18).
 3. Spatial hold-out: training_review.point_split puts each labelled unit's 50 m block in TRAINING or VALIDATION (20% of blocks,
    fixed seed). train/12TVL2804.las keeps only training-block labels and val/12TVL2804.las only validation-block labels; the other
    blocks' labelled points become 250 in each, so no label is seen by both. Both files keep every point, so context is never cut.
-Writes split.csv (Myria3D format), mapping.json and summary.json beside the two LAS files.
+   Run-1's block split is frozen (load_units): units from --snapshot packets (e.g. the rare-class packet) in a run-1 block take
+   that block's side, and only new blocks are split anew, so every run is scored on run-1's held-out blocks and more.
+Writes split.csv (Myria3D format), mapping.json, summary.json and holdout_units.json beside the two LAS files.
+Since October 20, 2026, fences and freestanding walls are labelled OTHER_STRUCTURE (64); WALL answers stay unlabelled because
+the earlier ones still mix facades with fences.
 """
 import argparse
 import json
@@ -58,29 +62,61 @@ def remap(classes, mapping, noise):
     return out
 
 
-def load_units():
-    """The exportable labelled units of both snapshots, the shared evaluation frame and the 50 m block hold-out split."""
+def read_snapshots(snapshots):
+    """The exportable labelled units of the given (packet, snapshot) pairs and their shared evaluation frame."""
     units, frame = [], None
-    for packet, snapshot in SNAPSHOTS:
-        document = json.loads((packet/"packet.json").read_text(encoding="utf-8"))
-        rows = tr.load_snapshot(snapshot, document)
+    for packet, snapshot in snapshots:
+        document = json.loads((Path(packet)/"packet.json").read_text(encoding="utf-8"))
+        rows = tr.load_snapshot(Path(snapshot), document)
         frame = frame or document["frame"]
         if document["frame"]["digest"] != frame["digest"]:
-            raise ValueError("The two packets use different evaluation frames")
+            raise ValueError("The packets use different evaluation frames")
         units += [r for r in rows if r["LABEL"] in tr.EXPORT_LABELS]
+    return units, frame
+
+
+def block_key(unit, block=50.):
+    origin = tr.ed.TILES[tr.TRAINING_TILE][:2]
+    return int((unit["X"]-origin[0])//block), int((unit["Y"]-origin[1])//block)
+
+
+def load_units(extra=()):
+    """Units of run-1's two snapshots plus any extra (packet, snapshot) pairs, the frame, and the 50 m block hold-out split.
+
+    Run-1's split is frozen so later runs are scored on the same held-out blocks: a block run-1 held out stays held out, a
+    run-1 training block stays training, and only blocks that no run-1 unit touches are split anew (20%, fixed seed). Without
+    this, adding labels in new blocks would redraw training_review.point_split over every block.
+    """
+    base, frame = read_snapshots(SNAPSHOTS)
+    base_split, _ = tr.point_split(base)
+    held = {block_key(u) for u in base if base_split[u["UNIT_ID"]] == "VALIDATION"}
+    known = {block_key(u) for u in base}
+    units, split = list(base), dict(base_split)
+    if extra:
+        more, more_frame = read_snapshots(extra)
+        if more_frame["digest"] != frame["digest"]:
+            raise ValueError("The extra packets use another evaluation frame")
+        fresh = [u for u in more if block_key(u) not in known]
+        fresh_split, _ = tr.point_split(fresh) if fresh else ({}, None)
+        for u in more:
+            if u["UNIT_ID"] in split:
+                raise ValueError(f"{u['UNIT_ID']} is in two snapshots")
+            split[u["UNIT_ID"]] = fresh_split.get(u["UNIT_ID"]) or ("VALIDATION" if block_key(u) in held else "TRAINING")
+        units += more
     if tr.overlapping_patches(units):
-        raise ValueError("Labelled patches from the two packets overlap")
-    split, _ = tr.point_split(units)
+        raise ValueError("Labelled patches from different packets overlap")
     return units, frame, split
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("out", type=Path)
+    parser.add_argument("--snapshot", nargs=2, action="append", default=[], metavar=("PACKET_DIR", "SNAPSHOT_DIR"),
+                        help="another packet's label snapshot to add to run-1's two (repeatable)")
     args = parser.parse_args(argv)
     if args.out.exists():
         raise FileExistsError(args.out)
-    units, frame, split = load_units()
+    units, frame, split = load_units([tuple(map(Path, s)) for s in args.snapshot])
     args.out.mkdir(parents=True)
     work = args.out/"work"
     work.mkdir()
@@ -124,7 +160,12 @@ def main(argv=None):
     (args.out/"split.csv").write_text(f"basename,split\n{TILE}.las,train\n{TILE}.las,val\n", encoding="utf-8")
     (args.out/"mapping.json").write_text(json.dumps({"label_to_fractal": LABEL_TO_FRACTAL, "ignore": IGNORE, "drop": DROP},
                                                     indent=1), encoding="utf-8")
+    summary["snapshots"] = [[str(p), str(s)] for p, s in SNAPSHOTS]+[list(s) for s in args.snapshot]
     (args.out/"summary.json").write_text(json.dumps(summary, indent=1, default=str), encoding="utf-8")
+    # The held-out units, so evaluate_finetune.py scores exactly these whatever snapshots exist later.
+    held = [{"UNIT_ID": u["UNIT_ID"], "X": u["X"], "Y": u["Y"], "LABEL": u["LABEL"]} for u in units
+            if split[u["UNIT_ID"]] == "VALIDATION"]
+    (args.out/"holdout_units.json").write_text(json.dumps(held, indent=1), encoding="utf-8")
     print(json.dumps({k: summary[k] for k in ("units", "unit_split", "files")}, indent=1))
 
 

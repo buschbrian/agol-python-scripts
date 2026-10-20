@@ -84,9 +84,9 @@ The training export gives your label to exactly the points inside the yellow cir
 |---|---|
 | TREE | woody tree: crown, branches or trunk (branches over a roof count) |
 | BUILDING_ROOF | a roof, including rooftop equipment |
-| WALL | a vertical face: facade, retaining wall, solid fence |
+| WALL | a building facade only (decided October 20, 2026) |
 | WIRE / POLE | an overhead wire or cable / a utility, light, sign or flag pole |
-| OTHER_STRUCTURE | carport, shade sail, playground, bridge, tank |
+| OTHER_STRUCTURE | a fence or freestanding garden, retaining or property wall (decided October 20, 2026); carport, shade sail, playground, bridge, tank |
 | SHRUB_LOW_VEG | non-tree vegetation: shrub, hedge, garden bed, tall grass (not mown lawn) |
 | GROUND | bare ground, pavement, gravel, low hardscape, mown lawn (decided October 20, 2026) |
 | VEHICLE / WATER | car, truck, trailer / pool, pond, stream |

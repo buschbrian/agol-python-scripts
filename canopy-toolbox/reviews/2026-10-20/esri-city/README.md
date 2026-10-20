@@ -5,8 +5,9 @@ product. `building_city.py` runs Esri's pretrained building point-classification
 batch 8) on a copy of each October 8 working LAS and checks that only classification bytes changed. The working LAS are never
 written; the output is an opinion, not a label. Details are in the script's docstring.
 
-**Status: paused at Brian's request at 15:11 on October 20** to free the A4000 for the FRACTAL fine-tune; nothing depends on it.
-24 of 61 tiles are complete (2203 to 2706, 2802, 2804); 12TVL2803 was interrupted twice (the system crash, then the pause).
+**Status: running.** Paused at Brian's request from 15:11 to 16:15 on October 20 to free the A4000 for the FRACTAL fine-tune
+(nothing depends on this run), with 24 of 61 tiles complete; 12TVL2803, interrupted by the system crash and then the pause,
+completed after the restart. 27 were complete at 16:30.
 Batch 8 against the September 29 batch-1 output on 12TVL2804: 406 of 26.9 M points differ (0.0015%), within the 0.1% guard.
 
 ## Resume

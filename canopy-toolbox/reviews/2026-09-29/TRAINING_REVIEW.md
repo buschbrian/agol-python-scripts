@@ -124,10 +124,10 @@ that slab** is.
 |---|---|---:|
 | TREE | Woody tree crown, branches or trunk (includes branches over roofs) | 5 |
 | BUILDING_ROOF | Roof of a building, including roof-mounted equipment | 6 |
-| WALL | Vertical face: facade, retaining/garden wall, solid fence | 72 |
+| WALL | Building facade only (since October 20, 2026; earlier answers may hold fences or garden walls) | 72 |
 | WIRE | Overhead wire or cable | 14 |
 | POLE | Utility, light, sign or flag pole | 73 |
-| OTHER_STRUCTURE | Carport, shade sail, playground, bridge, tank | 74 |
+| OTHER_STRUCTURE | Fence, freestanding garden, retaining or property wall (since October 20, 2026), carport, shade sail, playground, bridge, tank | 74 |
 | SHRUB_LOW_VEG | Non-tree vegetation: shrub, clipped hedge, garden bed, tall grass (not mown lawn) | 3 |
 | GROUND | Bare ground, pavement, gravel, low hardscape, mown lawn (since October 20, 2026) | 2 |
 | VEHICLE | Car, truck, trailer | 75 |

@@ -13,10 +13,11 @@ Start here, then follow the links. The [September 30 handoff](../2026-09-30/HAND
 | Refined LAS copies | Rules v2 is current (`runs/refined-fractal-20261020`): 39.8% of points changed, mostly class-3 bare surface to ground. Provisional copies; originals untouched | same |
 | Training labels, original packet | 1,019 units in the review geodatabase and the repo backup; 960 answers on the label page. Q1-0114 and Q2-0010 removed as ambiguous | [label-page/README.md](label-page/README.md), [TRAINING_REVIEW.md](../2026-09-29/TRAINING_REVIEW.md) |
 | Training labels, refined cylinders | 225 sub-units from 167 MIXED/UNSURE parents; 101 imported and backed up, 116 answered on the page (import the rest with `label_page.bat import-refined --apply`) | label-page/README.md |
+| Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), on the page at port 8767 (`label_page.bat serve-rare`); unlabelled on October 20 | [rare-classes/README.md](rare-classes/README.md) |
 | Auto-accepted triage answers | Triage v2 roof and tree candidates, REVIEWER `triage-v2`, never walls | [audit-2/README.md](../2026-09-30/audit-2/README.md) |
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
 | FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in | [fractal-finetune/README.md](fractal-finetune/README.md) |
-| Esri building model, citywide | **Paused at Brian's request** (15:11) to free the GPU: 24 of 61 tiles complete, 12TVL2803 interrupted | [esri-city/README.md](esri-city/README.md) |
+| Esri building model, citywide | Paused 15:11 to 16:15 for the fine-tune, then **resumed**; 27 of 61 complete at 16:30 | [esri-city/README.md](esri-city/README.md) |
 
 ## 2. Decisions recorded on October 20
 - Lawn is GROUND; SHRUB_LOW_VEG is shrub, hedge, garden bed or tall grass. Rules v2 therefore moves unanimous vegetation called
@@ -26,16 +27,21 @@ Start here, then follow the links. The [September 30 handoff](../2026-09-30/HAND
 - MIXED and UNSURE answers are re-asked as refined 0.5 m cylinders cut at vertical gaps, in their own packet.
 - Refinement from the labels is done by fine-tuning FRACTAL (chosen over more hand rules). WALL labels are left out of its
   training because our walls mix facades (FRACTAL building) with garden walls and fences (permanent structure).
-- The Esri building run waits; nothing depends on it.
+- The Esri building run waits; nothing depends on it. (Resumed at 16:15 after the fine-tune.)
+- Fences and freestanding walls (garden, retaining, property-line) are OTHER_STRUCTURE, trained as FRACTAL permanent structure;
+  WALL is a building facade only. Earlier WALL answers stay WALL and stay out of training.
+- After run-1 tied, more labels go to the classes FRACTAL misses (the rare-class packet). Run-1's held-out blocks are frozen so
+  later runs are scored on the same units.
 
 ## 3. Resume, in order
 1. **Fine-tune:** run-1 showed no measurable gain (`fractal\finetune-20261020\run-1\evaluation.json`). The misses left are
-   vehicles, wires and poles, so the next useful step is labels in those classes, then a run-2 (`make_training_las.py` into a
-   new folder, `make_config.py`, `create_hdf5`, `run_finetune.py`). A model is swapped in only if it is no worse on ground,
+   vehicles, wires and poles, so label the rare-class packet (`label_page.bat serve-rare`), import it, snapshot it, then run-2
+   (`make_training_las.py NEW --snapshot <rare packet> <snapshot>`, `make_config.py`, `create_hdf5`, `run_finetune.py`); see
+   [rare-classes/README.md](rare-classes/README.md). A model is swapped in only if it is no worse on ground,
    vegetation and building parts and better overall; that is Brian's call. Then: citywide inference with `repeat.py --checkpoint`
    and refinement rules v3.
 2. **Esri building run:** close heavy apps, then
-   `<arcgispro-py3-dl python> reviews\2026-10-20\esri-city\building_city.py --no-wait`; it skips the 24 complete tiles.
+   `<arcgispro-py3-dl python> reviews\2026-10-20\esri-city\building_city.py --no-wait`; it skips complete tiles.
 3. **Labels:** relabel Q2-0010 on the page, import (`label_page.bat import --apply`, `import-refined --apply`), back up with
    `training_labels.bat save`, then score audit 2 (`audit-2/README.md`).
 4. Then: a batch-1 control of the Esri model on 12TVL2804 on this card; the consensus roof-height product (design not yet
