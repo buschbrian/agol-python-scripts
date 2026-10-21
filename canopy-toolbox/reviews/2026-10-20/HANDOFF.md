@@ -17,10 +17,10 @@ servers stopped, every page answer imported into its packet's review geodatabase
 | Refined LAS copies | Rules v2 is current (`runs/refined-fractal-20261020`): 39.8% of points changed, mostly class-3 bare surface to ground. Provisional copies; originals untouched | same |
 | Training labels, original packet | 1,019 units in the review geodatabase and the repo backup; 960 answers on the label page. Q1-0114 and Q2-0010 removed as ambiguous | [label-page/README.md](label-page/README.md), [TRAINING_REVIEW.md](../2026-09-29/TRAINING_REVIEW.md) |
 | Training labels, refined cylinders | 225 sub-units from 167 MIXED/UNSURE parents; **116 labelled**, imported and backed up | label-page/README.md |
-| Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), port 8767 (`label_page.bat serve-rare`). **85 labelled**, imported and backed up: wire 19, vehicle 15, building roof 10, other structure 7, tree 6, wall 4, pole 1, shrub 1, UNSURE 22 | [rare-classes/README.md](rare-classes/README.md) |
+| Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), port 8767 (`label_page.bat serve-rare`). **252 of 257 labelled** (October 21), imported and backed up: vehicle 54, other structure 50, wire 36, building roof 32, tree 11, pole 8, shrub 8, wall 5, ground 1, MIXED 1, UNSURE 46 | [rare-classes/README.md](rare-classes/README.md) |
 | Auto-accepted triage answers | Triage v2 roof and tree candidates, REVIEWER `triage-v2`, never walls | [audit-2/README.md](../2026-09-30/audit-2/README.md) |
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
-| FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in. **Run-2** (adds the rare-class and newer refined labels) queued October 21 behind the Esri run | [fractal-finetune/README.md](fractal-finetune/README.md) |
+| FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in. **Run-2** (all rare-class and newer refined labels; 1,157 units, 242 held out) started October 21 (it waits for 8 GB of commit headroom first) | [fractal-finetune/README.md](fractal-finetune/README.md) |
 | Esri building model, citywide | **Complete**, all 61 tiles (October 21, 10:45); every first-try failure completed on retry | [esri-city/README.md](esri-city/README.md) |
 
 ## 2. Decisions recorded on October 20
@@ -39,9 +39,9 @@ servers stopped, every page answer imported into its packet's review geodatabase
 
 ## 3. Resume, in order
 1. **Fine-tune:** run-1 showed no measurable gain (`fractal\finetune-20261020\run-1\evaluation.json`). The misses left are
-   vehicles, wires and poles, so finish the rare-class packet (`label_page.bat serve-rare`, 172 left), import it, snapshot it, then run-2
-   (`make_training_las.py NEW --snapshot <rare packet> <snapshot>`, `make_config.py`, `create_hdf5`, `run_finetune.py`); see
-   [rare-classes/README.md](rare-classes/README.md). A model is swapped in only if it is no worse on ground,
+   vehicles, wires and poles, so the rare-class packet was labelled (252 of 257) and run-2 trains on it
+   (`fractal\finetune-20261021-full\run-2`; read its `evaluation.json`, or `driver.log` if it stopped); see
+   [rare-classes/README.md](rare-classes/README.md) and [fractal-finetune/README.md](fractal-finetune/README.md). A model is swapped in only if it is no worse on ground,
    vegetation and building parts and better overall; that is Brian's call. Then: citywide inference with `repeat.py --checkpoint`
    and refinement rules v3.
 2. **Esri building run:** complete (October 21). Outputs in `runs\esri-building-20261020\<tile>\building`.

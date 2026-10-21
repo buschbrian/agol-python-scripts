@@ -92,9 +92,11 @@ new unit in a run-1 held-out block is held out, in a run-1 training block it tra
 split anew (20%). The data folder gets `holdout_units.json`, which `evaluate_finetune.py` uses, so run-2's score contains
 run-1's 191 held-out units and run-1 can be scored on run-2's held-out set for a like-for-like comparison.
 
-**Run-2 (October 21):** data in `fractal\finetune-20261021\data` from run-1's snapshots plus the October 21 snapshots of the
-refined packet (116 labelled, 15 new) and the rare-class packet (85 labelled): 1,015 units, 801 training and 214 held out (run-1's
-191 and 23 new). The rare-class patches are small, so the gain in labelled points is modest: "other" 2,281 to 2,713 training
-points, "structure" 2,301 to 2,361. HDF5: 239 training and 73 held-out blocks, all with labels. Queued at 08:29 behind the Esri
-run with `run_finetune.py ... --wait-for-log building.log --compare run1=<run-1 consensus>`, so the score sets the released
-model, run-1 and run-2 side by side on run-2's held-out units.
+**Run-2 (October 21):** data in `fractal\finetune-20261021-full\data` from run-1's snapshots plus the October 21 snapshots of
+the refined packet (116 labelled, 15 new; `packet-20261020-refined-20261021`) and the rare-class packet (252 of 257 labelled;
+`packet-20261020-rare-20261021-1055`): 1,157 units, 915 training and 242 held out (run-1's 191 and 51 new). Labelled points,
+training: "other" 2,281 to 3,273, "structure" 2,301 to 2,744; held out: "other" 329 to 459, "structure" 207 to 405.
+HDF5: 253 training and 75 held-out blocks, all with labels. Started with
+`run_finetune.py ... --compare run1=<run-1 consensus>`, so the score sets the released model, run-1 and run-2 side by side on
+run-2's held-out units. (An earlier run-2 folder, `finetune-20261021`, built from the first 85 rare-class labels, was superseded
+before training and never trained; see its SUPERSEDED.txt.)
