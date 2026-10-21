@@ -5,13 +5,13 @@
  "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
  "counts": {
   "units": 257,
-  "saved": 252,
-  "labelled": 252,
+  "saved": 253,
+  "labelled": 253,
   "by_label": {
    "WALL": 5,
    "UNSURE": 46,
    "WIRE": 36,
-   "OTHER_STRUCTURE": 50,
+   "OTHER_STRUCTURE": 51,
    "TREE": 11,
    "VEHICLE": 54,
    "BUILDING_ROOF": 32,
@@ -26,6 +26,6 @@
  ],
  "flagged": [],
  "problems": [],
- "labels_csv_sha256": "c646f8aec9a2da7266d3babee2a94d40e790406eee4b268f6df37494a7fdbb5d",
+ "labels_csv_sha256": "4801539dceac93a139bfd4333b977434d37abf1f272ac1b20a39a5ba7a23e200",
  "note": "Working copy of TRAINING labels. Not evaluation answers; never enters reference.gdb."
 }
