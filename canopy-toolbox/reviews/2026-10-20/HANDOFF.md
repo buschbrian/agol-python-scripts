@@ -22,6 +22,7 @@ servers stopped, every page answer imported into its packet's review geodatabase
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
 | FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in. **Run-2** (all rare-class and newer refined labels; 1,157 units, 242 held out) done October 21: on 258 held-out parts released 208, run-1 212, run-2 208, none significant; structure never learned (FRACTAL files fences and poles as "other"); buildings a little better. **Fine-tuning stopped; the released model plus rules v2 stays current** | [fractal-finetune/README.md](fractal-finetune/README.md) |
 | Esri building model, citywide | **Complete**, all 61 tiles (October 21, 10:45); every first-try failure completed on retry | [esri-city/README.md](esri-city/README.md) |
+| Consensus roof heights | **Complete** (October 21): roof where 2 of 3 sources (native, FRACTAL majority, Esri) say building; on the labels 92.8% of roofs found, 2.8% false (native: 89.2%, 14.0%); 21,562 footprints with heights, negative-height footprints 633 to 35. `runs\roof-consensus-20261021` | [roof-consensus/README.md](../2026-10-21/roof-consensus/README.md) |
 
 ## 2. Decisions recorded on October 20
 - Lawn is GROUND; SHRUB_LOW_VEG is shrub, hedge, garden bed or tall grass. Rules v2 therefore moves unanimous vegetation called
@@ -45,14 +46,17 @@ servers stopped, every page answer imported into its packet's review geodatabase
 2. **Esri building run:** complete (October 21). Outputs in `runs\esri-building-20261020\<tile>\building`.
 3. **Labels:** relabel Q2-0010 on the page, import (`label_page.bat import --apply`), back up with
    `training_labels.bat save`, then score audit 2 (`audit-2/README.md`). Refined and rare-class answers are all imported.
-4. Then: a batch-1 control of the Esri model on 12TVL2804 on this card; the consensus roof-height product (design not yet
-   discussed); the treetop candidates the refinement points at (a rebuilt canopy surface decides them).
+4. **Canopy from the combined classification** (decided October 21: roofs first, then canopy): rebuild the canopy height
+   model, cover and treetops with the consensus building decision, and compare them with the October 8 and 19 products
+   before anything replaces them. This also decides the treetop candidates the refinement pointed at.
+5. Then: a batch-1 control of the Esri model on 12TVL2804 on this card.
 
 ## 4. Open decisions for Brian
 1. Whether to try a building-only fine-tune later (the one place both runs helped), or leave models as they are.
 2. Rule 12 (18.7 M building points FRACTAL calls ground) and rule 15 (water or bridge): still proposed only.
-3. The consensus roof-height product: which sources (October 8 native, FRACTAL, Esri) and how they combine.
-4. Whether the refined copies feed the canopy surface, and so the treetops and cover, or stay review layers.
+3. Whether the consensus building layer replaces the October 19 one in the products people use (it is a separate
+   layer for now), and how to treat the 459 footprints whose lower roofs only the native classification saw.
+4. Whether the combined classification feeds the canopy surface, and so the treetops and cover (step 4 above tests it).
 
 ## 5. Workstation health
 On October 20 the workstation crashed outright (bugcheck 0x3B, access violation in kernel code; minidump
@@ -68,6 +72,11 @@ On October 21, before a GPU job: **quit** (from the system tray, not just the wi
 pushed fine-tune run-2 over the card's 16 GB into shared memory and made it two to three times slower. One data build crashed
 silently at about 7 GB of headroom and succeeded on rerun. The Esri building run's first-try failures (ERROR 999999 in the
 classify tool, about 1 tile in 6) all succeeded on retry.
+**A likely memory fault, October 21, 15:15:** the same roof verification ran three times on identical code and data. The first
+stopped with "Exclusion frame digest mismatch" although every packet's frame verifies on disk and in a fresh process; the
+second died silently; the third completed. A checksum changing in memory points at RAM, so it strengthens the case for the
+memory test. The guards did their job: no wrong result was written. Treat a single odd result on this machine as a reason
+to rerun.
 
 ## 6. Where things are on the SSD (under `D:\lidar\2023-salt-lake-valley`)
 | What | Path |

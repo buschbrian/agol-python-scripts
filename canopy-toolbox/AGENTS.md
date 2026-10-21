@@ -17,6 +17,7 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Citywide FRACTAL (Myria3D) inference and the provisional refined LAS copies (rules v1/v2): reviews/2026-10-19/fractal-city; the pass runner is reviews/2026-09-30/fractal/repeat.py (`--checkpoint` for a fine-tuned model).
 - FRACTAL fine-tuning on the training labels (patched Myria3D clone, config, driver, held-out scorer): reviews/2026-10-20/fractal-finetune.
 - Esri building model on every tile (copies only): reviews/2026-10-20/esri-city.
+- Consensus roofs (2 of 3: native, FRACTAL majority, Esri) and their footprint heights: reviews/2026-10-21/roof-consensus.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.
