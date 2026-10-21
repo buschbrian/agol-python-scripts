@@ -21,7 +21,7 @@ servers stopped, every page answer imported into its packet's review geodatabase
 | Auto-accepted triage answers | Triage v2 roof and tree candidates, REVIEWER `triage-v2`, never walls | [audit-2/README.md](../2026-09-30/audit-2/README.md) |
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
 | FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in. **Run-2** (adds the rare-class and newer refined labels) queued October 21 behind the Esri run | [fractal-finetune/README.md](fractal-finetune/README.md) |
-| Esri building model, citywide | Stopped at 16:46 on October 20 with 31 of 61 complete; **resumed 08:24 on October 21** | [esri-city/README.md](esri-city/README.md) |
+| Esri building model, citywide | **Complete**, all 61 tiles (October 21, 10:45); every first-try failure completed on retry | [esri-city/README.md](esri-city/README.md) |
 
 ## 2. Decisions recorded on October 20
 - Lawn is GROUND; SHRUB_LOW_VEG is shrub, hedge, garden bed or tall grass. Rules v2 therefore moves unanimous vegetation called
@@ -44,8 +44,7 @@ servers stopped, every page answer imported into its packet's review geodatabase
    [rare-classes/README.md](rare-classes/README.md). A model is swapped in only if it is no worse on ground,
    vegetation and building parts and better overall; that is Brian's call. Then: citywide inference with `repeat.py --checkpoint`
    and refinement rules v3.
-2. **Esri building run:** close heavy apps, then
-   `<arcgispro-py3-dl python> reviews\2026-10-20\esri-city\building_city.py --no-wait`; it skips complete tiles.
+2. **Esri building run:** complete (October 21). Outputs in `runs\esri-building-20261020\<tile>\building`.
 3. **Labels:** relabel Q2-0010 on the page, import (`label_page.bat import --apply`, `import-refined --apply`), back up with
    `training_labels.bat save`, then score audit 2 (`audit-2/README.md`).
 4. Then: a batch-1 control of the Esri model on 12TVL2804 on this card; the consensus roof-height product (design not yet

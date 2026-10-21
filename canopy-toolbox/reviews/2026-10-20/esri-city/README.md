@@ -5,10 +5,11 @@ product. `building_city.py` runs Esri's pretrained building point-classification
 batch 8) on a copy of each October 8 working LAS and checks that only classification bytes changed. The working LAS are never
 written; the output is an opinion, not a label. Details are in the script's docstring.
 
-**Status: stopped at 16:46 on October 20 so the SSD could leave the workstation; 31 of 61 tiles complete.** Earlier it was
-paused from 15:11 to 16:15 for the FRACTAL fine-tune (nothing depends on this run). 12TVL2806 (Esri ERROR 999999 in the
-classify tool) and 12TVL2904 (exit 246 after 2 s) failed at start-up and had not had their second try; 12TVL3005 was
-interrupted by the stop. A rerun skips the complete tiles and tries these again.
+**Status: complete, all 61 tiles (10:45 on October 21; "finished; 61 complete, failed: []").** The run was paused for the
+FRACTAL fine-tune (October 20, 15:11 to 16:15), stopped at 31 tiles when the SSD left the workstation (16:46), and resumed on
+October 21 at 08:24. Every tile that failed on its first try completed on its second: 2203, 2303, 2602, 2705, 2802 (October 20),
+2806, 2904, 3007, 3106, 3205 (Esri ERROR 999999 in ClassifyPointCloudUsingTrainedModel, or exit 246, within a minute of starting).
+Two tiles were interrupted by the crash or a stop (2803, 3005) and completed on rerun.
 Batch 8 against the September 29 batch-1 output on 12TVL2804: 406 of 26.9 M points differ (0.0015%), within the 0.1% guard.
 
 ## Resume
@@ -25,7 +26,5 @@ fine-tune or another GPU job: the machine has crashed at its memory commit limit
 ## Output (under `D:\lidar\2023-salt-lake-valley\runs\esri-building-20261020`)
 `<tile>\building\<tile>.las` (class 6 where the model says building, 0 elsewhere, noise 7 and 18 kept), the runner's manifest
 and `dl_run.log`, and `integrity.json` (written last; a tile counts as complete only with it). `building.log` is the run log.
-Five tiles failed early in the first run (2203, 2303, 2602, 2705, 2802: start-up crashes in 27 to 46 s); all completed on retry.
-
-Still to do once the run is complete: a batch-1 control on 12TVL2804 on this card, to settle whether the 406-point difference
-comes from batch size or from the GPU.
+Still to do: a batch-1 control on 12TVL2804 on this card, to settle whether the 406-point difference comes from batch size or
+from the GPU; and the consensus roof-height product that uses this run (design to be discussed with Brian).
