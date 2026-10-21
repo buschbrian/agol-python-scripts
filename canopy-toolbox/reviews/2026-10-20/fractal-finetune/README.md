@@ -110,3 +110,32 @@ mid-run helped only a little (32 to 29 s), because the training process keeps th
 let it run rather than restart at a smaller batch, which would have changed two things at once. Validation loss: 0.376 after
 epoch 0, 0.362 after epoch 1 (not comparable with run-1's figures, which used a smaller held-out set).
 **Before the next run, quit Teams, ChatGPT and Chrome first**, so training starts with the card to itself.
+
+### Result of run-2 (October 21, 11:29 to 14:38)
+Training stopped early after 11 epochs (about 15 minutes each); the best validation loss was epoch 5's (0.347). Three prediction
+passes of `epoch_005.ckpt` agreed unanimously on 97.6% of points. Saved here as [evaluation-run2.json](evaluation-run2.json)
+and [metrics-run2.csv](metrics-run2.csv). On run-2's 242 held-out units (258 labelled parts; run-1's 191 units are among them):
+
+| Consensus of 3 passes | Points | Parts | Ground | Vegetation | Building | Other (vehicle, wire) | Structure (pole, fence) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Released FRACTAL | 92.4% | 208 of 258 | 38 of 38 | 61 of 65 | 95 of 104 | 13 of 26 | 1 of 25 |
+| Fine-tuned, run-1 | 93.3% | 212 of 258 | 38 of 38 | 60 of 65 | 100 of 104 | 14 of 26 | 0 of 25 |
+| Fine-tuned, run-2 | 92.8% | 208 of 258 | 38 of 38 | 59 of 65 | 99 of 104 | 12 of 26 | 0 of 25 |
+
+Paired by part, no difference is significant: released against run-1 p = 0.39 (8 parts only run-1, 4 only released), against
+run-2 p = 1.0 (7 and 7), run-1 against run-2 p = 0.22.
+
+What the points show (confusion, label to prediction):
+- **Structure is never learned.** Of the 405 held-out points labelled pole, fence or freestanding wall, the released model calls
+  218 "other" (1) and 6 "structure" (64); both fine-tuned models call none "structure". FRACTAL files fences and poles under
+  "other", not under its permanent-structure class, and about 450 more structure points did not move it. The fine-tunes also
+  send more of these points to vegetation (released 54, run-2 112), the wrong direction for a canopy product.
+- **"Other" does not improve** (vehicles and wires: 196, 181 and 181 of 459 points); the fine-tunes again send more to vegetation.
+- **Buildings improve a little, consistently**: 95 of 104 parts released, 100 run-1, 99 run-2 (5,730, 5,843 and 5,798 of 6,028
+  points), paid for with small losses in vegetation and the rare classes.
+
+**Conclusion (October 21): stop fine-tuning on these labels; no fine-tuned model is swapped in.** The released FRACTAL model with
+refinement rules v2 stays the current classification. The labels keep their value as the yardstick for rules and products
+(rules v2 agreed with 91% of label parts). Possible later experiments, not started: fine-tune that may change only the building
+decision (where it helps), or merge "other" and "structure" when scoring, since the canopy and building products do not need
+to tell them apart.

@@ -20,7 +20,7 @@ servers stopped, every page answer imported into its packet's review geodatabase
 | Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), port 8767 (`label_page.bat serve-rare`). **252 of 257 labelled** (October 21), imported and backed up: vehicle 54, other structure 50, wire 36, building roof 32, tree 11, pole 8, shrub 8, wall 5, ground 1, MIXED 1, UNSURE 46 | [rare-classes/README.md](rare-classes/README.md) |
 | Auto-accepted triage answers | Triage v2 roof and tree candidates, REVIEWER `triage-v2`, never walls | [audit-2/README.md](../2026-09-30/audit-2/README.md) |
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
-| FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in. **Run-2** (all rare-class and newer refined labels; 1,157 units, 242 held out) started October 21 (it waits for 8 GB of commit headroom first) | [fractal-finetune/README.md](fractal-finetune/README.md) |
+| FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in. **Run-2** (all rare-class and newer refined labels; 1,157 units, 242 held out) done October 21: on 258 held-out parts released 208, run-1 212, run-2 208, none significant; structure never learned (FRACTAL files fences and poles as "other"); buildings a little better. **Fine-tuning stopped; the released model plus rules v2 stays current** | [fractal-finetune/README.md](fractal-finetune/README.md) |
 | Esri building model, citywide | **Complete**, all 61 tiles (October 21, 10:45); every first-try failure completed on retry | [esri-city/README.md](esri-city/README.md) |
 
 ## 2. Decisions recorded on October 20
@@ -38,20 +38,18 @@ servers stopped, every page answer imported into its packet's review geodatabase
   later runs are scored on the same units.
 
 ## 3. Resume, in order
-1. **Fine-tune:** run-1 showed no measurable gain (`fractal\finetune-20261020\run-1\evaluation.json`). The misses left are
-   vehicles, wires and poles, so the rare-class packet was labelled (252 of 257) and run-2 trains on it
-   (`fractal\finetune-20261021-full\run-2`; read its `evaluation.json`, or `driver.log` if it stopped); see
-   [rare-classes/README.md](rare-classes/README.md) and [fractal-finetune/README.md](fractal-finetune/README.md). A model is swapped in only if it is no worse on ground,
-   vegetation and building parts and better overall; that is Brian's call. Then: citywide inference with `repeat.py --checkpoint`
-   and refinement rules v3.
+1. **Fine-tune: stopped (October 21).** Neither run-1 nor run-2 (with the 252 rare-class labels) beat the released model on the
+   held-out labels; FRACTAL files fences and poles as "other" and the fine-tunes never learned "structure"; they help buildings a
+   little and cost a little elsewhere ([fractal-finetune/README.md](fractal-finetune/README.md)). The released model plus rules
+   v2 stays the current classification. The labels are now the yardstick for rules and products.
 2. **Esri building run:** complete (October 21). Outputs in `runs\esri-building-20261020\<tile>\building`.
-3. **Labels:** relabel Q2-0010 on the page, import (`label_page.bat import --apply`, `import-refined --apply`), back up with
-   `training_labels.bat save`, then score audit 2 (`audit-2/README.md`).
+3. **Labels:** relabel Q2-0010 on the page, import (`label_page.bat import --apply`), back up with
+   `training_labels.bat save`, then score audit 2 (`audit-2/README.md`). Refined and rare-class answers are all imported.
 4. Then: a batch-1 control of the Esri model on 12TVL2804 on this card; the consensus roof-height product (design not yet
    discussed); the treetop candidates the refinement points at (a rebuilt canopy surface decides them).
 
 ## 4. Open decisions for Brian
-1. Whether to keep fine-tuning (run-1 tied the released model) and so whether to label more vehicles, wires and poles.
+1. Whether to try a building-only fine-tune later (the one place both runs helped), or leave models as they are.
 2. Rule 12 (18.7 M building points FRACTAL calls ground) and rule 15 (water or bridge): still proposed only.
 3. The consensus roof-height product: which sources (October 8 native, FRACTAL, Esri) and how they combine.
 4. Whether the refined copies feed the canopy surface, and so the treetops and cover, or stay review layers.
