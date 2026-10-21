@@ -1,6 +1,6 @@
 """Run the FRACTAL fine-tune end to end once the A4000 and memory are free: smoke test, fine-tune, predict, score.
 
-    python reviews/2026-10-20/fractal-finetune/run_finetune.py RUN_DIR [--wait-for-log FILE] [--skip-smoke]
+    python reviews/2026-10-20/fractal-finetune/run_finetune.py RUN_DIR [--wait-for-log FILE] [--skip-smoke] [--compare NAME=CONSENSUS.las ...]
 
 Run with the Myria3D environment's Python (PYTHONNOUSERSITE=1, CANOPY_LIDAR_ROOT set) after make_config.py and create_hdf5.
 RUN_DIR holds finetune.yaml and dataset.hdf5. Steps, each logged to RUN_DIR/driver.log; the first failure stops the chain:
@@ -9,7 +9,8 @@ RUN_DIR holds finetune.yaml and dataset.hdf5. Steps, each logged to RUN_DIR/driv
 1. smoke: 5 training and 3 validation batches for one epoch into RUN_DIR/smoke, so a config error costs a minute, not an hour;
 2. fine-tune into RUN_DIR (checkpoints/, logs/, hydra/);
 3. predict: repeat.py, three passes of the best checkpoint over the colourised 12TVL2804, into RUN_DIR/predict-12TVL2804;
-4. score: evaluate_finetune.py on the held-out labels, released consensus against the fine-tuned consensus, to
+4. score: evaluate_finetune.py on the run's held-out labels (its config's data_dir), the released consensus, any --compare
+   predictions and the fine-tuned consensus, to
    RUN_DIR/evaluation.json.
 Nothing here writes outside RUN_DIR.
 """
@@ -30,7 +31,6 @@ CHECKOUT = Path(r"C:\Users\bbusch\tools\myria3d")
 FRACTAL = Path(r"D:\lidar\2023-salt-lake-valley\fractal")
 COLOURISED = FRACTAL/"city-20261019"/"colorized"/"12TVL2804.las"
 RELEASED = FRACTAL/"city-20261019"/"fractal"/"12TVL2804"/"consensus.las"
-LABELS = FRACTAL/"finetune-20261020"/"data"/"val"/"12TVL2804.las"
 MIN_COMMIT_GB = 8.0
 POLL_SECONDS = 60
 
@@ -40,10 +40,16 @@ def main(argv=None):
     parser.add_argument("run_dir", type=Path)
     parser.add_argument("--wait-for-log", type=Path)
     parser.add_argument("--skip-smoke", action="store_true")
+    parser.add_argument("--compare", action="append", default=[], metavar="NAME=CONSENSUS.las",
+                        help="another prediction to score beside the released and the new model (e.g. an earlier run)")
     args = parser.parse_args(argv)
     run = args.run_dir.resolve()
     if not (run/"finetune.yaml").is_file() or not (run/"dataset.hdf5").is_file():
         raise FileNotFoundError(f"{run} needs finetune.yaml and dataset.hdf5 (make_config.py, then create_hdf5)")
+    from omegaconf import OmegaConf
+    labels = Path(OmegaConf.load(run/"finetune.yaml").datamodule.data_dir)/"val"/"12TVL2804.las"   # this run's held-out labels
+    if not labels.is_file():
+        raise FileNotFoundError(labels)
     for name in ("checkpoints", "predict-12TVL2804", "evaluation.json"):
         if (run/name).exists():
             raise FileExistsError(run/name)
@@ -96,8 +102,9 @@ def main(argv=None):
     step("predict", [sys.executable, str(TOOLBOX/"reviews"/"2026-09-30"/"fractal"/"repeat.py"), str(COLOURISED),
                      str(run/"predict-12TVL2804"), "--checkpoint", str(best[-1]), "--pass-retries", "2"],
          TOOLBOX, "predict.log")
-    step("score", [sys.executable, str(HERE.parent/"evaluate_finetune.py"), str(LABELS), f"released={RELEASED}",
-                   f"finetuned={run/'predict-12TVL2804'/'consensus.las'}", "--out", str(run/"evaluation.json")],
+    step("score", [sys.executable, str(HERE.parent/"evaluate_finetune.py"), str(labels), f"released={RELEASED}",
+                   *args.compare, f"finetuned={run/'predict-12TVL2804'/'consensus.las'}", "--out",
+                   str(run/"evaluation.json")],
          TOOLBOX, "score.log")
     log("all steps complete; see evaluation.json")
 

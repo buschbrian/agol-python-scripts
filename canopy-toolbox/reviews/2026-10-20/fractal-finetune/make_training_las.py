@@ -96,13 +96,24 @@ def load_units(extra=()):
         more, more_frame = read_snapshots(extra)
         if more_frame["digest"] != frame["digest"]:
             raise ValueError("The extra packets use another evaluation frame")
-        fresh = [u for u in more if block_key(u) not in known]
-        fresh_split, _ = tr.point_split(fresh) if fresh else ({}, None)
+        # A newer snapshot of a run-1 packet repeats run-1's units: keep run-1's copy (its label must not have changed) and
+        # add only the units run-1 did not have.
+        by_id = {u["UNIT_ID"]: u for u in base}
+        added, seen = [], set()
         for u in more:
-            if u["UNIT_ID"] in split:
-                raise ValueError(f"{u['UNIT_ID']} is in two snapshots")
+            if u["UNIT_ID"] in seen:
+                raise ValueError(f"{u['UNIT_ID']} is in two of the extra snapshots")
+            seen.add(u["UNIT_ID"])
+            old = by_id.get(u["UNIT_ID"])
+            if old is None:
+                added.append(u)
+            elif tr.label_key(old) != tr.label_key(u):
+                raise ValueError(f"{u['UNIT_ID']} changed label since run-1's snapshot; rebuild run-1's inputs instead")
+        fresh = [u for u in added if block_key(u) not in known]
+        fresh_split, _ = tr.point_split(fresh) if fresh else ({}, None)
+        for u in added:
             split[u["UNIT_ID"]] = fresh_split.get(u["UNIT_ID"]) or ("VALIDATION" if block_key(u) in held else "TRAINING")
-        units += more
+        units += added
     if tr.overlapping_patches(units):
         raise ValueError("Labelled patches from different packets overlap")
     return units, frame, split

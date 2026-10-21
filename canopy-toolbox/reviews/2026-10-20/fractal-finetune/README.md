@@ -86,7 +86,15 @@ rate or longer training would mostly fit the 747 training units harder. Not swap
 ## Next: run-2 with the rare-class labels
 Brian chose more labels in the weak classes ([../rare-classes/README.md](../rare-classes/README.md), 257 units). Also decided
 on October 20: fences and freestanding walls are labelled OTHER_STRUCTURE (64) from now on; WALL stays out of training.
-`make_training_las.py --snapshot PACKET SNAPSHOT` adds a packet's labels to run-1's. Run-1's 50 m block split is frozen: a
+`make_training_las.py --snapshot PACKET SNAPSHOT` adds a packet's labels to run-1's; a newer snapshot of one of run-1's packets
+adds only the units run-1 did not have, and refuses any whose label changed. Run-1's 50 m block split is frozen: a
 new unit in a run-1 held-out block is held out, in a run-1 training block it trains, and only blocks no run-1 unit touched are
 split anew (20%). The data folder gets `holdout_units.json`, which `evaluate_finetune.py` uses, so run-2's score contains
 run-1's 191 held-out units and run-1 can be scored on run-2's held-out set for a like-for-like comparison.
+
+**Run-2 (October 21):** data in `fractal\finetune-20261021\data` from run-1's snapshots plus the October 21 snapshots of the
+refined packet (116 labelled, 15 new) and the rare-class packet (85 labelled): 1,015 units, 801 training and 214 held out (run-1's
+191 and 23 new). The rare-class patches are small, so the gain in labelled points is modest: "other" 2,281 to 2,713 training
+points, "structure" 2,301 to 2,361. HDF5: 239 training and 73 held-out blocks, all with labels. Queued at 08:29 behind the Esri
+run with `run_finetune.py ... --wait-for-log building.log --compare run1=<run-1 consensus>`, so the score sets the released
+model, run-1 and run-2 side by side on run-2's held-out units.
