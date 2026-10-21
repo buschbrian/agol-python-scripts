@@ -1,13 +1,41 @@
-# Handoff: where the classification work stands (October 20, 2026)
+# Handoff: where the classification work stands (October 20, 2026; updated October 21)
 
 Everything is committed on branch `canopy/classification-refinement` (PR
 [buschbrian/agol-python-scripts#11](https://github.com/buschbrian/agol-python-scripts/pull/11)). Large data is not in git: it is on
 the lidar SSD (`D:\lidar` on MC-PC13, the A4000 workstation; set `CANOPY_LIDAR_ROOT` to its root on any other machine).
 Start here, then follow the links. The [September 30 handoff](../2026-09-30/HANDOFF.md) still holds the machine setup.
 
-**Stopped cleanly at 16:50 on October 20 so the SSD could leave the workstation:** no job running, the three label-page
-servers stopped, every page answer imported into its packet's review geodatabase and backed up to the repo
-(`reviews/2026-09-29/packets/training-labels`, `-refined`, `-rare`).
+## PICK UP HERE (end of October 21)
+**State:** stopped cleanly. No job running, no label server running, GPU idle, repo clean and pushed (`c5e6fb0` and this
+update). Every label answer is imported and backed up (original 1,019; refined 116 of 225; rare classes 253 of 257).
+
+**Done on October 21:** Esri building model complete on all 61 tiles. FRACTAL fine-tune run-2 trained and scored: no gain,
+fine-tuning stopped (the released FRACTAL plus rules v2 stays the classification). **Consensus roof heights built and
+verified** ([roof-consensus/README.md](../2026-10-21/roof-consensus/README.md)): a separate layer, not yet a replacement for
+October 19's.
+
+**Next task: the canopy rebuild** (Brian chose "roofs first, then canopy" on October 21). Proposed, awaiting Brian's go-ahead:
+1. Per point, one combined class on a copy of each working LAS: **building** where the consensus says so (2 of 3: native,
+   FRACTAL majority, Esri; exactly as `consensus_roofs.py`), otherwise the **rules-v2 refined class**
+   (`runs\refined-fractal-20261020\points`; matched 91% of label parts and moves bare ground out of "low vegetation").
+   Never write the working or source LAS.
+2. Rebuild the canopy rasters with the October 8 method (`canopy.rasters.build_chm` semantics: vegetation DSM from classes
+   3/4/5 first/single returns, binning maximum, building occlusion with the new roofs, October 19 terrain reused), on the
+   October 19 city grid. First reproduce October 19's `chm_m.tif` from the unchanged native classes cell for cell, as the
+   roofs were (`consensus_roofs.cell_index` holds the ArcGIS edge rule).
+   **Decide first:** `build_chm` counts only classes 2, 6, 9-11, 13-17 and 20 as known non-canopy (`NON_CANOPY_CLASSES`) and
+   skips class 1. The rules-v2 copies use 1 (other) and 64 (permanent structure), so cells holding only those would turn
+   from observed into unknown. Recommended: count 1 and 64 as observed non-canopy in the rebuild, and report the effect.
+3. Compare with October 19 (`chm_m.tif`, `observed.tif`, canopy cells at least 2 m) and the October 8 treetop count
+   ([CITY_COUNT.md](../2026-10-08/CITY_COUNT.md)); score canopy against the TREE and SHRUB labels as the roofs were scored.
+   Rerun treetops and crowns only after Brian reviews the raster comparison. Nothing replaces an October product without
+   his decision.
+Before starting: quit ChatGPT, Teams and Chrome from the tray; the job needs commit headroom (section 5). Rerun any single
+odd result once before believing it (memory fault seen October 21).
+
+**Smaller open items:** relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
+with the imagery map; batch-1 control of the Esri model on 12TVL2804; `runs\roof-consensus-20261021\work` (4.8 GB of working
+arrays) can be deleted.
 
 ## 1. Where things stand
 
@@ -17,7 +45,7 @@ servers stopped, every page answer imported into its packet's review geodatabase
 | Refined LAS copies | Rules v2 is current (`runs/refined-fractal-20261020`): 39.8% of points changed, mostly class-3 bare surface to ground. Provisional copies; originals untouched | same |
 | Training labels, original packet | 1,019 units in the review geodatabase and the repo backup; 960 answers on the label page. Q1-0114 and Q2-0010 removed as ambiguous | [label-page/README.md](label-page/README.md), [TRAINING_REVIEW.md](../2026-09-29/TRAINING_REVIEW.md) |
 | Training labels, refined cylinders | 225 sub-units from 167 MIXED/UNSURE parents; **116 labelled**, imported and backed up | label-page/README.md |
-| Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), port 8767 (`label_page.bat serve-rare`). **252 of 257 labelled** (October 21), imported and backed up: vehicle 54, other structure 50, wire 36, building roof 32, tree 11, pole 8, shrub 8, wall 5, ground 1, MIXED 1, UNSURE 46 | [rare-classes/README.md](rare-classes/README.md) |
+| Training labels, rare classes | 257 new 0.5 m units aimed at vehicles, wires, poles and fences (FRACTAL's misses), port 8767 (`label_page.bat serve-rare`). **253 of 257 labelled** (October 21), imported and backed up: vehicle 54, other structure 51, wire 36, building roof 32, tree 11, pole 8, shrub 8, wall 5, ground 1, MIXED 1, UNSURE 46 | [rare-classes/README.md](rare-classes/README.md) |
 | Auto-accepted triage answers | Triage v2 roof and tree candidates, REVIEWER `triage-v2`, never walls | [audit-2/README.md](../2026-09-30/audit-2/README.md) |
 | Audit 2 (blind, 40 units) | 36 or 37 of 40 before Q2-0010 was removed; **official score waits for Q2-0010 to be relabelled** | audit-2/README.md |
 | FRACTAL fine-tune | **Run-1 done** (15:15 to 16:13): 191 of 208 held-out parts against the released model's 189 (p = 0.63), no measurable difference; changes 1.35% of 12TVL2804's points. Not swapped in. **Run-2** (all rare-class and newer refined labels; 1,157 units, 242 held out) done October 21: on 258 held-out parts released 208, run-1 212, run-2 208, none significant; structure never learned (FRACTAL files fences and poles as "other"); buildings a little better. **Fine-tuning stopped; the released model plus rules v2 stays current** | [fractal-finetune/README.md](fractal-finetune/README.md) |
