@@ -100,3 +100,13 @@ HDF5: 253 training and 75 held-out blocks, all with labels. Started with
 `run_finetune.py ... --compare run1=<run-1 consensus>`, so the score sets the released model, run-1 and run-2 side by side on
 run-2's held-out units. (An earlier run-2 folder, `finetune-20261021`, built from the first 85 rare-class labels, was superseded
 before training and never trained; see its SUPERSEDED.txt.)
+
+Run-2 waited from 10:46 to 11:29 for 8 GB of commit headroom: Chrome (up to 4.9 GB while labelling) and the ChatGPT app
+(3 GB; closing its window left it running in the tray until it was quit) held the machine at 3.6 to 6.9 GB. Once they were
+quit, headroom was 13.9 GB and the smoke test passed in 36 s. **Training is two to three times slower than run-1**: about 29 s
+a training batch against about 12 s, roughly 15 minutes an epoch, with the card at 100% and its 16 GB full, so part of the
+work spills into shared system memory. Teams, the Claude app and Windows web views also draw on the card; quitting Teams
+mid-run helped only a little (32 to 29 s), because the training process keeps the memory it already reserved. Brian chose to
+let it run rather than restart at a smaller batch, which would have changed two things at once. Validation loss: 0.376 after
+epoch 0, 0.362 after epoch 1 (not comparable with run-1's figures, which used a smaller held-out set).
+**Before the next run, quit Teams, ChatGPT and Chrome first**, so training starts with the card to itself.

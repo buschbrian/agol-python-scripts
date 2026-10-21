@@ -65,6 +65,12 @@ at the memory commit limit with Chrome and Teams open. Guards now in place: jobs
 inference, 8 GB for the fine-tune), crashed passes rerun on their own, uneven passes are rejected.
 For IT: memory test, GPU reseat and PCIe link check, WinDbg on the minidump; a larger page file. Not ours to change.
 
+On October 21, before a GPU job: **quit** (from the system tray, not just the window) ChatGPT, Teams and Chrome. ChatGPT kept
+3 GB after its window closed; Chrome grew to 4.9 GB during labelling; Teams and other desktop apps also take GPU memory, which
+pushed fine-tune run-2 over the card's 16 GB into shared memory and made it two to three times slower. One data build crashed
+silently at about 7 GB of headroom and succeeded on rerun. The Esri building run's first-try failures (ERROR 999999 in the
+classify tool, about 1 tile in 6) all succeeded on retry.
+
 ## 6. Where things are on the SSD (under `D:\lidar\2023-salt-lake-valley`)
 | What | Path |
 |---|---|
