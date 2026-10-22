@@ -36,7 +36,22 @@ For each point: **what is the highest object within 1 m (horizontally) of this p
 WALL and OTHER_STRUCTURE follow the October 20 decision: fences and garden or retaining walls are OTHER_STRUCTURE.
 MIXED and UNSURE are reported apart and are not counted either way, so use them honestly rather than guessing.
 
-## Steps in ArcGIS Pro
+## Label it on the page (recommended)
+
+From the repo root, `canopy-toolbox\reviews\2026-10-20\label-page\label_page.bat serve-calibration` opens
+http://127.0.0.1:8768 ([label page, calibration mode](../../../2026-10-20/label-page/README.md#treetop-calibration-mode-october-22)).
+Each point shows its 12 m of delivery points in 3D, two side sections, NAIP 2024 and the imagery map; the red column is
+everything within 1 m. Press 1 to 0, M or U for the label; it moves to the next unlabelled point in review order. The page
+shows no heights, flags or strata. At the end of each session copy the answers into this folder and commit:
+
+```
+canopy-toolbox\reviews\2026-10-20\label-page\label_page.bat import-calibration           (preview)
+canopy-toolbox\reviews\2026-10-20\label-page\label_page.bat import-calibration --apply
+```
+
+Use one route, the page or Pro, not both: the Pro layer is not updated by the page.
+
+## Steps in ArcGIS Pro (the alternative)
 
 1. In any project, add `H:\lidar\2023-salt-lake-valley\runs\treetop-evidence-20261022\calibration-treetop-calibration-2\calibration.gdb\calibration_units`
    and `...\calibration-treetop-calibration-2\delivery.lasd`, plus World Imagery as a basemap. **Add only these two.**

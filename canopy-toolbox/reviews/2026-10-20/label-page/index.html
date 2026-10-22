@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-  <div class="title"><strong>Training labels</strong> <span id="unit-id">…</span> <span id="audit-badge" class="badge" hidden>audit 2 (blind)</span>
+  <div class="title"><strong id="page-title">Training labels</strong> <span id="unit-id">…</span> <span id="audit-badge" class="badge" hidden>audit 2 (blind)</span>
     <span id="version" class="small"></span></div>
   <div class="filters">
     <label>Show <select id="filter">
@@ -21,7 +21,7 @@
       <option value="mixed">Mixed (to split)</option>
       <option value="audit">Audit 2 units</option>
     </select></label>
-    <label>Queue <select id="queue"><option value="">All</option></select></label>
+    <label id="queue-label">Queue <select id="queue"><option value="">All</option></select></label>
     <span id="position"></span>
     <button id="reviewer" title="Initials recorded as REVIEWER on every answer; click to change">Reviewer: ?</button>
   </div>
@@ -53,7 +53,7 @@
     </div>
     <dl class="facts" id="facts"></dl>
     <div class="labels" id="labels"></div>
-    <div class="row">
+    <div class="row" id="usable-row">
       <label class="usable">Imagery usable <select id="usable"><option value="">—</option><option>YES</option><option>NO</option></select></label>
     </div>
     <textarea id="notes" rows="2" maxlength="500" placeholder="Notes (N to focus, Esc to leave)"></textarea>
@@ -65,7 +65,7 @@
     </div>
     <label class="advance"><input type="checkbox" id="auto-advance" checked> Go to the next unit after labelling</label>
     <p id="status" role="status"></p>
-    <p class="small">Label only the returns inside the cylinder (the patch). Nothing on this page shows a model or baseline class.
+    <p class="small" id="footer-note">Label only the returns inside the cylinder (the patch). Nothing on this page shows a model or baseline class.
       Answers are saved to <code id="csv-path"></code>; import them with <code>training_labels.bat restore --csv … --apply</code>.</p>
   </aside>
 </main>

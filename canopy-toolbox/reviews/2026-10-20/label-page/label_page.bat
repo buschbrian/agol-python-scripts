@@ -9,13 +9,16 @@ rem     label_page.bat serve-refined     the refined-cylinder packet (MIXED/UNSU
 rem     label_page.bat import-refined [--apply]   import its answers into that packet's own review geodatabase
 rem     label_page.bat serve-rare        the rare-class packet (vehicles, wires, poles, fences; 0.5 m patches) on port 8767
 rem     label_page.bat import-rare [--apply]      import its answers into that packet's own review geodatabase
+rem     label_page.bat serve-calibration          treetop calibration sample 2 (one question per point) on port 8768
+rem     label_page.bat import-calibration [--apply] [--replace]   copy its answers into the packet's labels.csv
+rem     label_page.bat build-calibration          build that page's data from the delivery LAS and NAIP (Pro Python; once)
 rem
 rem The page is blind: it shows points, sections and imagery, never a model or baseline class. Answers are kept in
 rem <packet>\label-page\answers\label-page-answers.csv and reach the geodatabase only through "restore", which checks them.
 setlocal
 set "PYTHONNOUSERSITE=1"
 set "HERE=%~dp0"
-if not defined CANOPY_LIDAR_ROOT if exist "D:\lidar\2023-salt-lake-valley" set "CANOPY_LIDAR_ROOT=D:\lidar"
+if not defined CANOPY_LIDAR_ROOT if exist "D:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29" set "CANOPY_LIDAR_ROOT=D:\lidar"
 if not defined CANOPY_LIDAR_ROOT if exist "H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29" set "CANOPY_LIDAR_ROOT=H:\lidar"
 if not defined CANOPY_LIDAR_ROOT (echo Could not find the lidar disk; set CANOPY_LIDAR_ROOT. & goto :end)
 if not defined FRACTAL_TOOLS set "FRACTAL_TOOLS=%USERPROFILE%\tools"
@@ -23,7 +26,16 @@ set "PRO_PY=C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe
 set "PACKET=%CANOPY_LIDAR_ROOT%\2023-salt-lake-valley\runs\pilot-2026-09-29\training-review\packet-20260929"
 set "REFINED=%CANOPY_LIDAR_ROOT%\2023-salt-lake-valley\runs\pilot-2026-09-29\training-review\packet-20261020-refined"
 set "RARE=%CANOPY_LIDAR_ROOT%\2023-salt-lake-valley\runs\pilot-2026-09-29\training-review\packet-20261020-rare"
+set "CAL=%HERE%..\..\2026-10-22\packets\treetop-calibration-2"
+set "CAL_DATA=%CANOPY_LIDAR_ROOT%\2023-salt-lake-valley\runs\treetop-evidence-20261022\calibration-treetop-calibration-2\label-page"
 set "STEP=%~1"
+if /i "%STEP%"=="serve-calibration" (
+  start "" "http://127.0.0.1:8768/"
+  "%PRO_PY%" "%HERE%serve_label_page.py" --calibration "%CAL%" --data "%CAL_DATA%" --imagery "%PACKET%\label-page\imagery-layers.json" --port 8768
+  goto :end
+)
+if /i "%STEP%"=="import-calibration" ("%PRO_PY%" "%HERE%..\..\2026-10-15\calibration_sample.py" import-page "%CAL%" %2 %3 & goto :end)
+if /i "%STEP%"=="build-calibration" ("%PRO_PY%" "%HERE%build_calibration_data.py" "%CAL%" & goto :end)
 if /i "%STEP%"=="serve" (
   start "" "http://127.0.0.1:8765/"
   "%PRO_PY%" "%HERE%serve_label_page.py" --packet "%PACKET%"

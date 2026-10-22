@@ -118,5 +118,29 @@ class ScoreTest(unittest.TestCase):
             cs.score(sample, {"C1-0001": "TREEE"})
 
 
+class MergeLabelsTest(unittest.TestCase):
+    @staticmethod
+    def row(uid, label, reviewer="BB"):
+        return {"UNIT_ID": uid, "LABEL": label, "REVIEWER": reviewer, "REVIEW_DATE": "2026-10-22", "NOTE": ""}
+
+    def test_new_and_unchanged(self):
+        existing = {"C2-0001": self.row("C2-0001", "TREE"), "C2-0002": self.row("C2-0002", "")}
+        merged, report = cs.merge_labels(existing, {"C2-0001": self.row("C2-0001", "TREE", "XX"),
+                                                    "C2-0002": self.row("C2-0002", "WIRE")})
+        self.assertEqual((report["new"], report["unchanged"], report["conflicts"]), (1, 1, []))
+        self.assertEqual(merged["C2-0002"]["LABEL"], "WIRE")
+        self.assertEqual(merged["C2-0001"]["REVIEWER"], "XX")
+
+    def test_a_label_is_never_changed_or_blanked_without_replace(self):
+        existing = {"C2-0001": self.row("C2-0001", "TREE"), "C2-0002": self.row("C2-0002", "WALL")}
+        incoming = {"C2-0001": self.row("C2-0001", ""), "C2-0002": self.row("C2-0002", "POLE")}
+        merged, report = cs.merge_labels(existing, incoming)
+        self.assertEqual(len(report["conflicts"]), 2)
+        self.assertEqual((merged["C2-0001"]["LABEL"], merged["C2-0002"]["LABEL"]), ("TREE", "WALL"))
+        merged, report = cs.merge_labels(existing, incoming, replace=True)
+        self.assertEqual(report["replaced"], 2)
+        self.assertEqual((merged["C2-0001"]["LABEL"], merged["C2-0002"]["LABEL"]), ("", "POLE"))
+
+
 if __name__ == "__main__":
     unittest.main()

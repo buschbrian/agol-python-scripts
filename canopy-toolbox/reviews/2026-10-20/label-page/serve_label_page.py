@@ -1,6 +1,7 @@
 """Serve the click-through training-label page on this machine only (http://127.0.0.1:8765).
 
     python reviews/2026-10-20/label-page/serve_label_page.py [--packet PACKET_DIR] [--data DATA_DIR] [--port 8765]
+    python reviews/2026-10-20/label-page/serve_label_page.py --calibration CAL_PACKET --data DATA_DIR [--imagery FILE] [--port 8768]
 
 Run with ArcGIS Pro's Python or any Python with numpy (label_page.bat serve does it). Listens on 127.0.0.1 only. Serves the
 page beside this file and the data that build_label_data.py wrote. Each answer is checked with training_review.normalize_answer,
@@ -13,6 +14,12 @@ which writes only units that are still blank in the geodatabase unless you add -
 Higher-resolution imagery for the map panel comes from `<data>/imagery-layers.json`, a list of XYZ tile layers you add yourself
 (see imagery-layers.example.json beside this file). It lives on the SSD, never in git, because a licensed UGRC Discover link
 is unique to the organisation and must not be shared outside it. The server only hands the list to the page on 127.0.0.1.
+--imagery points at such a file elsewhere (the calibration page uses the training packet's, without copying it).
+
+With --calibration the page labels a treetop calibration packet (reviews/2026-10-15/calibration_sample.py) whose data
+build_calibration_data.py wrote. Answers are checked against the packet's units.csv and training_review.LABELS and kept in
+`<data>/answers/calibration-answers.csv` (labels.csv format); `calibration_sample.py import-page` copies them into the
+packet's labels.csv.
 """
 import argparse
 import datetime
@@ -37,9 +44,9 @@ CSV_NAME = "label-page-answers.csv"
 IMAGERY_NAME = "imagery-layers.json"
 
 
-def imagery_layers(data_dir):
+def imagery_layers(data_dir, path=None):
     """The user's tile layers, checked for shape; an absent file means none. Values are passed through, never logged."""
-    path = Path(data_dir)/IMAGERY_NAME
+    path = Path(path) if path else Path(data_dir)/IMAGERY_NAME
     if not path.exists():
         return {"layers": [], "file": str(path)}
     layers = json.loads(path.read_text(encoding="utf-8"))
@@ -112,7 +119,74 @@ class Store:
                                                          for uid, r in self.rows.items()}}
 
 
-def handler(store, data_dir):
+class CalibrationStore:
+    """Answers for a treetop calibration packet, one row per unit in labels.csv format, saved after every change."""
+    COLUMNS = ("UNIT_ID", "LABEL", "REVIEWER", "REVIEW_DATE", "NOTE")
+
+    def __init__(self, packet_dir, data_dir):
+        import csv
+        import hashlib
+        units_csv = Path(packet_dir)/"units.csv"
+        built = json.loads((Path(data_dir)/"units.json").read_text(encoding="utf-8"))
+        if built.get("mode") != "calibration" or built["units_csv_sha256"] != hashlib.sha256(units_csv.read_bytes()).hexdigest():
+            raise ValueError("The page data was not built from this calibration packet")
+        with open(units_csv, newline="", encoding="utf-8-sig") as handle:
+            self.order = {r["UNIT_ID"]: int(r["ORDER"]) for r in csv.DictReader(handle)}
+        self.path = Path(data_dir)/"answers"/"calibration-answers.csv"
+        self.log = self.path.with_name("calibration-log.jsonl")     # append-only record of every save and clear
+        self.path.parent.mkdir(exist_ok=True)
+        self.lock = threading.Lock()
+        self.rows = {}
+        if self.path.exists():
+            with open(self.path, newline="", encoding="utf-8") as handle:
+                self.rows = {r["UNIT_ID"]: r for r in csv.DictReader(handle) if r["LABEL"].strip()}
+
+    def answer(self, payload, client=None):
+        uid = payload.get("UNIT_ID")
+        if uid not in self.order:
+            raise ValueError(f"{uid}: not a unit of this packet")
+        label = (payload.get("LABEL") or "").strip()
+        reviewer = (payload.get("REVIEWER") or "").strip()
+        note = " ".join(str(payload.get("NOTES") or "").split())[:254]
+        with self.lock:
+            if not label:
+                self.rows.pop(uid, None)
+            else:
+                if label not in tr.LABELS:
+                    raise ValueError(f"{label}: not a label")
+                if not reviewer:
+                    raise ValueError("REVIEWER is required")
+                self.rows[uid] = {"UNIT_ID": uid, "LABEL": label, "REVIEWER": reviewer[:40],
+                                  "REVIEW_DATE": datetime.date.today().isoformat(), "NOTE": note}
+            self._save()
+            with open(self.log, "a", encoding="utf-8") as handle:
+                handle.write(json.dumps({"time": datetime.datetime.now().isoformat(timespec="seconds"), "UNIT_ID": uid,
+                                         "LABEL": label or None, "REVIEWER": reviewer or None, "client": client}) + "\n")
+        return self.page_row(self.rows.get(uid))
+
+    def _save(self):
+        import csv
+        import io
+        text = io.StringIO()
+        w = csv.DictWriter(text, self.COLUMNS, lineterminator="\n")
+        w.writeheader()
+        w.writerows(sorted(self.rows.values(), key=lambda r: self.order[r["UNIT_ID"]]))
+        partial = self.path.with_suffix(".partial")
+        partial.write_text(text.getvalue(), encoding="utf-8")
+        os.replace(partial, self.path)
+
+    @staticmethod
+    def page_row(r):
+        if r is None:
+            return None
+        return {"LABEL": r["LABEL"], "NOTES": r["NOTE"], "REVIEWER": r["REVIEWER"], "REVIEW_DATE": r["REVIEW_DATE"]}
+
+    def state(self):
+        with self.lock:
+            return {"csv": str(self.path), "answers": {uid: self.page_row(r) for uid, r in self.rows.items()}}
+
+
+def handler(store, data_dir, imagery=None):
     data_dir = Path(data_dir).resolve()
 
     class Handler(BaseHTTPRequestHandler):
@@ -133,9 +207,9 @@ def handler(store, data_dir):
                 return self._send(200, store.state())
             elif path == "/api/imagery":
                 try:
-                    return self._send(200, imagery_layers(data_dir))
+                    return self._send(200, imagery_layers(data_dir, imagery))
                 except (ValueError, json.JSONDecodeError) as exc:
-                    return self._send(200, {"layers": [], "file": str(data_dir/IMAGERY_NAME), "error": str(exc)})
+                    return self._send(200, {"layers": [], "file": str(imagery or data_dir/IMAGERY_NAME), "error": str(exc)})
             elif path.startswith("/data/"):
                 file = (data_dir/urllib.parse.unquote(path[len("/data/"):])).resolve()
                 if data_dir not in file.parents:
@@ -166,10 +240,18 @@ def main(argv=None):
     parser.add_argument("--packet", type=Path, default=PACKET)
     parser.add_argument("--data", type=Path)
     parser.add_argument("--port", type=int, default=8765)
+    parser.add_argument("--calibration", type=Path, help="a treetop calibration packet folder (units.csv) instead of --packet")
+    parser.add_argument("--imagery", type=Path, help="imagery-layers.json to use instead of <data>/imagery-layers.json")
     args = parser.parse_args(argv)
-    data = args.data or args.packet/"label-page"
-    store = Store(args.packet, data)
-    server = ThreadingHTTPServer(("127.0.0.1", args.port), handler(store, data))
+    if args.calibration:
+        if not args.data:
+            parser.error("--calibration needs --data")
+        data = args.data
+        store = CalibrationStore(args.calibration, data)
+    else:
+        data = args.data or args.packet/"label-page"
+        store = Store(args.packet, data)
+    server = ThreadingHTTPServer(("127.0.0.1", args.port), handler(store, data, args.imagery))
     print(f"Label page: http://127.0.0.1:{args.port}/   (answers: {store.path})", flush=True)
     print("Close this window or press Ctrl+C to stop.", flush=True)
     try:

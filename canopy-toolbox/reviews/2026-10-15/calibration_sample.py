@@ -3,7 +3,8 @@ r"""Calibration sample for the treetop review evidence: a blind, stratified, see
     python reviews/2026-10-15/calibration_sample.py draw PACKET_DIR [--seed 20261015] [--evidence DIR] [--prefix C1]
                                                                                             plain or Pro Python
     python reviews/2026-10-15/calibration_sample.py build-gdb PACKET_DIR                     Pro Python
-    python reviews/2026-10-15/calibration_sample.py export-labels PACKET_DIR                 Pro Python
+    python reviews/2026-10-15/calibration_sample.py export-labels PACKET_DIR [--replace]     Pro Python
+    python reviews/2026-10-15/calibration_sample.py import-page PACKET_DIR [--apply] [--replace]   plain or Pro Python
     python reviews/2026-10-15/calibration_sample.py score PACKET_DIR [--out score.json]      plain or Pro Python
 
 draw         assigns every treetop in the evidence CSV to one stratum by priority (WIRE_HINT > WALL_HINT > FLAT_TOP >
@@ -19,6 +20,8 @@ build-gdb    writes the blind point layer (LABEL has a coded domain of training_
              ORIGINAL delivery LAS (classes 1/2/7/18 only, so no baseline class can bias the reviewer) on the SSD, in
              calibration-PACKET beside the evidence CSV the sample was drawn from.
 export-labels  copies LABEL/REVIEWER/REVIEW_DATE/NOTE from that layer to PACKET_DIR/labels.csv, for the repo.
+import-page    copies the label page's answers (reviews/2026-10-20/label-page, calibration mode) into labels.csv;
+             a preview unless --apply. Both refuse to change or blank a label already in labels.csv unless --replace.
 score        joins labels.csv to sample.json. TREE is a real treetop; every other definite class is not; MIXED and
              UNSURE are reported apart and left out of the share. A stratum is MEASURED only with at least 30 definite
              labels. Two-sided 95% Clopper-Pearson intervals. Partial packets are scored.
@@ -321,17 +324,78 @@ def build_gdb(packet_dir):
         raise SystemExit("Build check failed")
 
 
-def export_labels(packet_dir):
+def merge_labels(existing, incoming, replace=False):
+    """Merge incoming label rows into existing ones (both {UNIT_ID: row}). A unit's label is never changed or blanked
+    unless replace is set; such units are returned as conflicts and left as they were."""
+    out = {uid: dict(r) for uid, r in existing.items()}
+    report = {"new": 0, "unchanged": 0, "replaced": 0, "conflicts": []}
+    for uid, row in incoming.items():
+        old = (existing.get(uid, {}).get("LABEL") or "").strip()
+        new = (row.get("LABEL") or "").strip()
+        if old == new:
+            report["unchanged"] += 1
+            if new:
+                out[uid] = {**out[uid], **row}
+        elif not old:
+            out[uid] = dict(row)
+            report["new"] += 1
+        elif replace:
+            out[uid] = dict(row)
+            report["replaced"] += 1
+        else:
+            report["conflicts"].append({"UNIT_ID": uid, "labels.csv": old, "incoming": new or "(blank)"})
+    return out, report
+
+
+def write_labels(packet_dir, merged):
+    """labels.csv with one row per unit of units.csv, in review order."""
+    rows = []
+    for u in read_csv(packet_dir/"units.csv"):
+        r = merged.get(u["UNIT_ID"], {})
+        rows.append({k: (r.get(k) or "") if k != "UNIT_ID" else u["UNIT_ID"] for k in LABEL_COLUMNS})
+    write_csv(packet_dir/"labels.csv", LABEL_COLUMNS, rows)
+    return rows
+
+
+def apply_merge(packet_dir, incoming, replace, apply, source):
+    path = packet_dir/"labels.csv"
+    existing = {r["UNIT_ID"]: r for r in read_csv(path)} if path.exists() else {}
+    units = {u["UNIT_ID"] for u in read_csv(packet_dir/"units.csv")}
+    unknown = sorted(set(incoming)-units)
+    if unknown:
+        raise ValueError(f"{source} has units not in this packet: {unknown[:5]}")
+    bad = sorted({r["LABEL"] for r in incoming.values() if r["LABEL"] and r["LABEL"] not in tr.LABELS})
+    if bad:
+        raise ValueError(f"Unknown labels in {source}: {bad}")
+    merged, report = merge_labels(existing, incoming, replace)
+    print(json.dumps({k: v for k, v in report.items() if k != "conflicts"} | {"conflicts": len(report["conflicts"])}))
+    for c in report["conflicts"][:20]:
+        print(f"  conflict {c['UNIT_ID']}: labels.csv {c['labels.csv']}, {source} {c['incoming']}")
+    if report["conflicts"] and not replace:
+        raise SystemExit("Nothing written: add --replace to let these answers overwrite labels.csv")
+    if not apply:
+        print("Preview only: add --apply to write labels.csv")
+        return
+    rows = write_labels(packet_dir, merged)
+    print(f"{sum(1 for r in rows if r['LABEL'])} of {len(rows)} labelled -> {path}")
+
+
+def export_labels(packet_dir, replace=False):
     import arcpy
     packet_dir = Path(packet_dir).resolve()
     fc = str(calibration_dir(packet_dir)/"calibration.gdb"/"calibration_units")
-    rows = sorted(({"UNIT_ID": r[0], "LABEL": r[1] or "", "REVIEWER": r[2] or "", "REVIEW_DATE": r[3] or "",
-                    "NOTE": r[4] or ""} for r in arcpy.da.SearchCursor(fc, LABEL_COLUMNS)), key=lambda r: r["UNIT_ID"])
-    bad = sorted({r["LABEL"] for r in rows if r["LABEL"] and r["LABEL"] not in tr.LABELS})
-    if bad:
-        raise ValueError(f"Unknown labels in the layer: {bad}")
-    write_csv(packet_dir/"labels.csv", LABEL_COLUMNS, rows)
-    print(f"{sum(1 for r in rows if r['LABEL'])} of {len(rows)} labelled -> {packet_dir/'labels.csv'}")
+    rows = {r[0]: {"UNIT_ID": r[0], "LABEL": r[1] or "", "REVIEWER": r[2] or "", "REVIEW_DATE": r[3] or "",
+                   "NOTE": r[4] or ""} for r in arcpy.da.SearchCursor(fc, LABEL_COLUMNS)}
+    apply_merge(packet_dir, rows, replace, True, "the Pro layer")
+
+
+def import_page(packet_dir, replace=False, apply=False):
+    """Copy the label page's answers (serve_label_page.py --calibration) into labels.csv; preview unless apply."""
+    packet_dir = Path(packet_dir).resolve()
+    path = calibration_dir(packet_dir)/"label-page"/"answers"/"calibration-answers.csv"
+    rows = {r["UNIT_ID"]: {k: r.get(k, "") for k in LABEL_COLUMNS} for r in read_csv(path)}
+    print(f"{len(rows)} answers on the page ({path})")
+    apply_merge(packet_dir, rows, replace, apply, "the page")
 
 
 def score_command(packet_dir, out=None):
@@ -348,15 +412,19 @@ def score_command(packet_dir, out=None):
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("step", choices=("draw", "build-gdb", "export-labels", "score"))
+    p.add_argument("step", choices=("draw", "build-gdb", "export-labels", "import-page", "score"))
     p.add_argument("packet", type=Path)
     p.add_argument("--seed", type=int, default=20261015)
     p.add_argument("--out", type=Path)
     p.add_argument("--evidence", type=Path, default=EVIDENCE, help="evidence run folder to draw from")
     p.add_argument("--prefix", default="C1", help="UNIT_ID prefix")
+    p.add_argument("--apply", action="store_true", help="import-page: write labels.csv (default: preview)")
+    p.add_argument("--replace", action="store_true", help="export-labels, import-page: let answers change a label")
     a = p.parse_args(argv)
     {"draw": lambda: draw(a.packet, a.seed, a.evidence, a.prefix), "build-gdb": lambda: build_gdb(a.packet),
-     "export-labels": lambda: export_labels(a.packet), "score": lambda: score_command(a.packet, a.out)}[a.step]()
+     "export-labels": lambda: export_labels(a.packet, a.replace),
+     "import-page": lambda: import_page(a.packet, a.replace, a.apply),
+     "score": lambda: score_command(a.packet, a.out)}[a.step]()
 
 
 if __name__ == "__main__":

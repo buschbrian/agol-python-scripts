@@ -14,6 +14,29 @@ rare-class queue of vehicles, wires, poles and fences (`serve-rare`, 8767, [../r
 Each has a matching `import-refined` / `import-rare`. **Since October 20, fences and freestanding walls are OTHER_STRUCTURE and
 WALL is a building facade only**; the label descriptions on all three pages say so.
 
+## Treetop calibration mode (October 22)
+The same page labels [calibration sample 2](../../2026-10-22/packets/treetop-calibration-2/README.md), one question per
+point: **the highest object within 1 m** (the red column, from below ground to just above the highest point in it).
+```
+reviews\2026-10-20\label-page\label_page.bat build-calibration            build the data once (Pro Python, about 10 minutes)
+reviews\2026-10-20\label-page\label_page.bat serve-calibration            http://127.0.0.1:8768
+reviews\2026-10-20\label-page\label_page.bat import-calibration           preview copying the answers into the packet's labels.csv
+reviews\2026-10-20\label-page\label_page.bat import-calibration --apply   copy them; then commit labels.csv
+```
+- build_calibration_data.py reads only the packet's units.csv and labels.csv, the **original delivery LAS** (classes 1/2/7/18)
+  of every tile a 12 m circle reaches, and a mosaic of the NAIP 2024 tiles. It never reads sample.json or the evidence, and
+  does not write HEIGHT_M, so the page carries no flag, stratum, tree ID or treetop height. Ground is the median delivery
+  class-2 height within 5 m (12 m if none). Data goes to `calibration-treetop-calibration-2\label-page` on the SSD.
+- In this mode the page shows no heights in the side panel, has no split, queues or imagery-usable box, and lists only
+  unlabelled, all, or answered units, in REVIEW_ORDER. Keys and colours are as below.
+- The imagery map uses the training packet's `imagery-layers.json` where it already is (`--imagery`), so the licensed link is
+  not copied.
+- Answers are checked (a unit of units.csv, a label of training_review.LABELS, initials) and kept in
+  `label-page\answers\calibration-answers.csv` (labels.csv format) with an append-only `calibration-log.jsonl`.
+  `import-calibration` (calibration_sample.py import-page) merges them into labels.csv and refuses to change or blank a
+  label already there unless `--replace`; `export-labels` from the Pro layer now has the same guard, so the two routes
+  cannot overwrite each other.
+
 ## Using it
 Each unit shows a 3D view of every point within 12 m (drag to rotate, right-drag to pan, scroll to zoom), two 3 m-wide side
 sections (west to east, south to north), and a 40 m NAIP 2024 chip. The patch is the red cylinder; its own points are red.
@@ -99,5 +122,6 @@ Checked on October 20: the page's row for Q1-0001 carries the same unit token as
 ## Files
 - build_label_data.py: points (float32 x, y, z relative to the patch centre and ground; uint8 imagery RGB, intensity, returns),
   chips and units.json, in `<packet>\label-page` (about 2 GB, outside git).
-- serve_label_page.py: the local server (ArcGIS Pro Python; listens on 127.0.0.1 only).
+- build_calibration_data.py: the same data for a treetop calibration packet (calibration mode above).
+- serve_label_page.py: the local server (ArcGIS Pro Python; listens on 127.0.0.1 only; `--calibration` for that mode).
 - index.html, app.js, style.css: the page (three.js r128 from cdnjs).

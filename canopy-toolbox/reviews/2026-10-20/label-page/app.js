@@ -1,6 +1,7 @@
 // Click-through training-label page. Blind by design: the data carries no class, model or triage field.
 "use strict";
-const PAGE_VERSION = "2026-10-20 split v2, priority, recheck";
+const PAGE_VERSION = "2026-10-22 split v2, priority, recheck, calibration";
+const CALIBRATION_FILTERS = ["open", "all", "answered"];
 
 const EXPORT_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 const COLOUR_MODES = ["imagery", "height", "intensity", "returns"];
@@ -331,7 +332,13 @@ async function show(pos) {
   const ringR = 50 * u.R / (state.meta.chip_m / 2);
   $("chip-ring").querySelector("circle").setAttribute("r", ringR.toFixed(2));
   const h = u.PATCH_HEIGHT;
-  $("facts").innerHTML = [
+  // Calibration: no heights, so nothing printed can hint at a stratum (the points themselves are the evidence).
+  $("facts").innerHTML = state.cal ? [
+    ["Question", "What is the highest object within 1 m (the red column) of this point?"],
+    ["Review order", `${u.REVIEW_ORDER} of ${state.units.length}: label in order, do not skip`],
+    ["Points within 1 m", `${u.PATCH_POINTS}`],
+    ["Already in labels.csv", u.SAVED_LABEL ? `${u.SAVED_LABEL} (${u.SAVED_REVIEWER || "?"})` : "no"],
+  ].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("") : [
     ["Patch", `${u.R.toFixed(1)} m radius, ${u.Z_LOW.toFixed(1)} to ${u.Z_HIGH.toFixed(1)} m above ground`],
     ["Patch points", `${u.PATCH_POINTS}`],
     ["Patch heights", h ? `${h.min.toFixed(1)} to ${h.max.toFixed(1)} m (mean ${h.mean.toFixed(1)})` : "—"],
@@ -387,8 +394,9 @@ async function save(label, advance = true, extra = {}) {
   if (!u) return;
   if (!state.reviewer) askReviewer();
   if (!state.reviewer) return setStatus("Enter your initials first.", "error");
+  const where = state.cal ? "labels.csv" : "Pro", how = state.cal ? "import-page --replace" : "restore --replace";
   if (u.SAVED_LABEL && label && u.SAVED_LABEL !== label &&
-      !confirm(`${u.UNIT_ID} already has ${u.SAVED_LABEL} in Pro. Importing ${label} will need restore --replace. Save anyway?`)) return;
+      !confirm(`${u.UNIT_ID} already has ${u.SAVED_LABEL} in ${where}. Importing ${label} will need ${how}. Save anyway?`)) return;
   const body = { UNIT_ID: u.UNIT_ID, LABEL: label || "", NOTES: $("notes").value, IMAGERY_USABLE: $("usable").value,
                  REVIEWER: state.reviewer, LABEL_BELOW: "", SPLIT_Z: "", ...extra };
   const r = await fetch("/api/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -437,7 +445,7 @@ function keys(e) {
   const key = e.key.length === 1 ? e.key.toUpperCase() : e.key;
   const button = [...document.querySelectorAll(".labels button")].find((b) => b.dataset.key === key);
   if (button) { e.preventDefault(); if (splitLabel(button.dataset.code)) return; return save(button.dataset.code); }
-  if (key === "S") { e.preventDefault(); return startSplit(); }
+  if (key === "S" && !state.cal) { e.preventDefault(); return startSplit(); }
   if (state.split && (key === "ArrowUp" || key === "ArrowDown")) {
     e.preventDefault();
     return moveSplit((key === "ArrowUp" ? 1 : -1) * (e.shiftKey ? 0.5 : 0.1));
@@ -451,13 +459,29 @@ function keys(e) {
   else if (key === "I") showTab($("map").hidden ? "map" : "chip");
 }
 
+function calibrationLayout() {    // a treetop calibration packet: one question per point, no split, no queues
+  document.title = "Treetop Calibration";
+  $("page-title").textContent = "Treetop calibration";
+  for (const o of [...$("filter").options]) if (!CALIBRATION_FILTERS.includes(o.value)) o.remove();
+  $("queue-label").hidden = true;
+  $("split").hidden = true;
+  $("usable-row").hidden = true;
+  $("footer-note").innerHTML = "The red column is everything within 1 m of the point; label the highest object in it. Nothing " +
+    "on this page shows a flag, stratum or model class. Answers are saved to <code id=\"csv-path\"></code>; copy them into " +
+    "the packet with <code>label_page.bat import-calibration --apply</code>.";
+}
+
 async function main() {
   $("version").textContent = "page " + PAGE_VERSION;
   init3d();
   state.meta = await getJSON("/data/units.json");
   state.units = state.meta.units;
-  state.priority = await getJSON("/data/priority.json").then((p) => p.order).catch(() => []);
-  state.recheck = await getJSON("/data/recheck.json").then((p) => p.order).catch(() => []);
+  state.cal = state.meta.mode === "calibration";
+  if (state.cal) calibrationLayout();
+  if (!state.cal) {
+    state.priority = await getJSON("/data/priority.json").then((p) => p.order).catch(() => []);
+    state.recheck = await getJSON("/data/recheck.json").then((p) => p.order).catch(() => []);
+  }
   const server = await getJSON("/api/state");
   state.answers = server.answers;
   $("csv-path").textContent = server.csv;
@@ -470,6 +494,7 @@ async function main() {
     const o = document.createElement("option"); o.value = q; o.textContent = q; $("queue").appendChild(o);
   }
   $("filter").value = storage("labelPage.filter") || "open";
+  if (state.cal && !CALIBRATION_FILTERS.includes($("filter").value)) $("filter").value = "open";
   $("queue").value = storage("labelPage.queue") || "";
   for (const id of ["filter", "queue"]) $(id).addEventListener("change", () => { buildList(); show(0); });
   $("prev").addEventListener("click", () => show(state.pos - 1));
