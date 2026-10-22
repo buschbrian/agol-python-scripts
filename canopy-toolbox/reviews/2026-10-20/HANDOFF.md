@@ -31,9 +31,11 @@ SUSPECT. **Crowns:** bounded to 4 M cells, so only a pilot on 12TVL2804 (October
 Before a heavy job: quit ChatGPT, Teams and Chrome from the tray (section 5). Rerun any single odd result once before
 believing it (memory fault seen October 21).
 
-**Smaller open items:** the working arrays and binaries (`runsnopy-rebuild-20261022work`, about 5 GB; `runs	ty-count-20261022nonical-chm-native.bin` and the `.failed-1`/`.failed-2` folders) can be deleted; relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
-with the imagery map; batch-1 control of the Esri model on 12TVL2804; the working arrays in `runs\roof-consensus-20261021\work` (4.8 GB) and
-`runs\canopy-rebuild-20261022\work` (about 5 GB) can be deleted.
+**Smaller open items:** relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
+with the imagery map; batch-1 control of the Esri model on 12TVL2804. These can be deleted: the working arrays in
+`runs\roof-consensus-20261021\work` (4.8 GB) and `runs\canopy-rebuild-20261022\work` (about 5 GB),
+`runs\city-count-20261022\canonical-chm-native.bin` (1.2 GB), and the failed attempts `runs\city-count-20261022.failed-1`
+and `.failed-2`.
 
 ## 1. Where things stand
 
