@@ -120,8 +120,11 @@ class Store:
 
 
 class CalibrationStore:
-    """Answers for a treetop calibration packet, one row per unit in labels.csv format, saved after every change."""
-    COLUMNS = ("UNIT_ID", "LABEL", "REVIEWER", "REVIEW_DATE", "NOTE")
+    """Answers for a treetop calibration packet, one row per unit in labels.csv format, saved after every change.
+
+    LABEL is the highest object in the column and the only label scored. An optional split adds LABEL_BELOW, the object
+    under the line at SPLIT_Z (an elevation), for stacked objects such as a wire over a tree; it is kept, never scored."""
+    COLUMNS = ("UNIT_ID", "LABEL", "REVIEWER", "REVIEW_DATE", "NOTE", "LABEL_BELOW", "SPLIT_Z")
 
     def __init__(self, packet_dir, data_dir):
         import csv
@@ -132,6 +135,7 @@ class CalibrationStore:
             raise ValueError("The page data was not built from this calibration packet")
         with open(units_csv, newline="", encoding="utf-8-sig") as handle:
             self.order = {r["UNIT_ID"]: int(r["ORDER"]) for r in csv.DictReader(handle)}
+        self.column = {u["UNIT_ID"]: (u["GROUND_Z"]+u["Z_LOW"], u["GROUND_Z"]+u["Z_HIGH"]) for u in built["units"]}
         self.path = Path(data_dir)/"answers"/"calibration-answers.csv"
         self.log = self.path.with_name("calibration-log.jsonl")     # append-only record of every save and clear
         self.path.parent.mkdir(exist_ok=True)
@@ -148,6 +152,8 @@ class CalibrationStore:
         label = (payload.get("LABEL") or "").strip()
         reviewer = (payload.get("REVIEWER") or "").strip()
         note = " ".join(str(payload.get("NOTES") or "").split())[:254]
+        below = (payload.get("LABEL_BELOW") or "").strip()
+        split_z = str(payload.get("SPLIT_Z") or "").strip()
         with self.lock:
             if not label:
                 self.rows.pop(uid, None)
@@ -156,13 +162,35 @@ class CalibrationStore:
                     raise ValueError(f"{label}: not a label")
                 if not reviewer:
                     raise ValueError("REVIEWER is required")
+                if below or split_z:
+                    self.check_split(uid, label, below, split_z)
+                    split_z = f"{float(split_z):.3f}"
                 self.rows[uid] = {"UNIT_ID": uid, "LABEL": label, "REVIEWER": reviewer[:40],
-                                  "REVIEW_DATE": datetime.date.today().isoformat(), "NOTE": note}
+                                  "REVIEW_DATE": datetime.date.today().isoformat(), "NOTE": note,
+                                  "LABEL_BELOW": below, "SPLIT_Z": split_z}
             self._save()
             with open(self.log, "a", encoding="utf-8") as handle:
                 handle.write(json.dumps({"time": datetime.datetime.now().isoformat(timespec="seconds"), "UNIT_ID": uid,
-                                         "LABEL": label or None, "REVIEWER": reviewer or None, "client": client}) + "\n")
+                                         "LABEL": label or None, "LABEL_BELOW": (below or None) if label else None,
+                                         "REVIEWER": reviewer or None, "client": client}) + "\n")
         return self.page_row(self.rows.get(uid))
+
+    def check_split(self, uid, label, below, split_z):
+        """A split needs two different real classes (not MIXED or UNSURE) and a line inside the drawn column."""
+        if not below or not split_z:
+            raise ValueError("A split needs both LABEL_BELOW and SPLIT_Z")
+        for code in (label, below):
+            if code not in tr.LABELS or tr.LABELS[code][1] is None:
+                raise ValueError(f"Each part of a split needs a real class, not {code}")
+        if label == below:
+            raise ValueError("The two parts of a split need different labels")
+        try:
+            z = float(split_z)
+        except ValueError:
+            raise ValueError(f"SPLIT_Z {split_z!r} is not a number") from None
+        lo, hi = self.column[uid]
+        if not lo < z < hi:
+            raise ValueError(f"SPLIT_Z {z:.2f} is outside the column ({lo:.2f} to {hi:.2f})")
 
     def _save(self):
         import csv
@@ -170,7 +198,7 @@ class CalibrationStore:
         text = io.StringIO()
         w = csv.DictWriter(text, self.COLUMNS, lineterminator="\n")
         w.writeheader()
-        w.writerows(sorted(self.rows.values(), key=lambda r: self.order[r["UNIT_ID"]]))
+        w.writerows({k: r.get(k, "") for k in self.COLUMNS} for r in sorted(self.rows.values(), key=lambda r: self.order[r["UNIT_ID"]]))
         partial = self.path.with_suffix(".partial")
         partial.write_text(text.getvalue(), encoding="utf-8")
         os.replace(partial, self.path)
@@ -179,7 +207,8 @@ class CalibrationStore:
     def page_row(r):
         if r is None:
             return None
-        return {"LABEL": r["LABEL"], "NOTES": r["NOTE"], "REVIEWER": r["REVIEWER"], "REVIEW_DATE": r["REVIEW_DATE"]}
+        return {"LABEL": r["LABEL"], "NOTES": r["NOTE"], "REVIEWER": r["REVIEWER"], "REVIEW_DATE": r["REVIEW_DATE"],
+                "LABEL_BELOW": r.get("LABEL_BELOW") or "", "SPLIT_Z": r.get("SPLIT_Z") or ""}
 
     def state(self):
         with self.lock:

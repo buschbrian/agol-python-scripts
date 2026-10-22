@@ -1,6 +1,6 @@
 // Click-through training-label page. Blind by design: the data carries no class, model or triage field.
 "use strict";
-const PAGE_VERSION = "2026-10-22 split v2, priority, recheck, calibration";
+const PAGE_VERSION = "2026-10-22 split v2, priority, recheck, calibration with split";
 const CALIBRATION_FILTERS = ["open", "all", "answered"];
 
 const EXPORT_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
@@ -221,14 +221,16 @@ function splitBanner() {
   if (!state.split) { b.hidden = true; return; }
   b.hidden = false;
   const z = state.split.z.toFixed(2);
+  const top = state.cal ? " (the top, which is scored)" : "", under = state.cal ? " (the object under it)" : "";
   b.innerHTML = state.split.above
-    ? `Split at ${z} m · above: <b>${state.split.above}</b> · now press the label key for the points <b>BELOW</b> the line · <kbd>Esc</kbd> cancels`
-    : `Split at ${z} m · move the yellow line with <kbd>↑</kbd> <kbd>↓</kbd> (Shift = 50 cm) or click a section · then press the label key for the points <b>ABOVE</b> the line · <kbd>Esc</kbd> cancels`;
+    ? `Split at ${z} m · above: <b>${state.split.above}</b> · now press the label key for the points <b>BELOW</b> the line${under} · <kbd>Esc</kbd> cancels`
+    : `Split at ${z} m · move the yellow line with <kbd>↑</kbd> <kbd>↓</kbd> (Shift = 50 cm) or click a section · then press the label key for the points <b>ABOVE</b> the line${top} · <kbd>Esc</kbd> cancels`;
 }
 
 function startSplit() {
   const u = state.current;
   if (!u) return;
+  if (!state.reviewer) return askReviewer();          // ask before the split, so it is not lost at the save
   state.split = { z: (u.Z_LOW + u.Z_HIGH) / 2, above: null };
   redraw();
   splitBanner();
@@ -338,6 +340,7 @@ async function show(pos) {
     ["Review order", `${u.REVIEW_ORDER} of ${state.units.length}: label in order, do not skip`],
     ["Points within 1 m", `${u.PATCH_POINTS}`],
     ["Already in labels.csv", u.SAVED_LABEL ? `${u.SAVED_LABEL} (${u.SAVED_REVIEWER || "?"})` : "no"],
+    ...(state.answers[u.UNIT_ID] && state.answers[u.UNIT_ID].LABEL_BELOW ? [["Split", splitText(state.answers[u.UNIT_ID], u)]] : []),
   ].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("") : [
     ["Patch", `${u.R.toFixed(1)} m radius, ${u.Z_LOW.toFixed(1)} to ${u.Z_HIGH.toFixed(1)} m above ground`],
     ["Patch points", `${u.PATCH_POINTS}`],
@@ -392,11 +395,10 @@ function nextOpen(from) {          // the list stays as built, so earlier answer
 async function save(label, advance = true, extra = {}) {
   const u = state.current;
   if (!u) return;
-  if (!state.reviewer) askReviewer();
-  if (!state.reviewer) return setStatus("Enter your initials first.", "error");
+  if (!state.reviewer) return askReviewer();
   const where = state.cal ? "labels.csv" : "Pro", how = state.cal ? "import-page --replace" : "restore --replace";
   if (u.SAVED_LABEL && label && u.SAVED_LABEL !== label &&
-      !confirm(`${u.UNIT_ID} already has ${u.SAVED_LABEL} in ${where}. Importing ${label} will need ${how}. Save anyway?`)) return;
+      !confirmed(`${u.UNIT_ID} already has ${u.SAVED_LABEL} in ${where}. Importing ${label} will need ${how}. Save anyway?`)) return;
   const body = { UNIT_ID: u.UNIT_ID, LABEL: label || "", NOTES: $("notes").value, IMAGERY_USABLE: $("usable").value,
                  REVIEWER: state.reviewer, LABEL_BELOW: "", SPLIT_Z: "", ...extra };
   const r = await fetch("/api/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -414,13 +416,26 @@ async function save(label, advance = true, extra = {}) {
 }
 
 function askReviewer() {
-  const v = prompt("Your initials, recorded as REVIEWER on every label:", state.reviewer || "");
-  if (v && v.trim()) { state.reviewer = v.trim().slice(0, 64); storage("labelPage.reviewer", state.reviewer); }
-  showReviewer();
+  // An inline box, not prompt(): the Claude desktop browser pane does not support prompt() (October 22), and a save that
+  // waited on it failed silently before reaching the server.
+  $("reviewer").focus();
+  setStatus("Not saved: type your initials in the Initials box (top right), then label again.", "error");
+}
+
+function setReviewer() {
+  state.reviewer = $("reviewer").value.trim().slice(0, 64);
+  storage("labelPage.reviewer", state.reviewer);
 }
 
 function showReviewer() {
-  $("reviewer").textContent = `Reviewer: ${state.reviewer || "?"}`;
+  $("reviewer").value = state.reviewer;
+}
+
+function confirmed(message) {      // confirm() where the browser has it; otherwise refuse and say why
+  try { return confirm(message); } catch (e) {
+    setStatus(`Not saved: ${message} This browser cannot ask, so clear the unit or use --replace on import.`, "error");
+    return false;
+  }
 }
 
 function buildLabelButtons() {
@@ -439,13 +454,16 @@ function buildLabelButtons() {
 }
 
 function keys(e) {
-  if (e.target.tagName === "TEXTAREA") { if (e.key === "Escape") e.target.blur(); return; }
+  if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") {
+    if (e.key === "Escape" || (e.key === "Enter" && e.target.tagName === "INPUT")) e.target.blur();
+    return;
+  }
   if (e.key === "Escape" && state.split) return cancelSplit();
   if (e.target.tagName === "SELECT" || e.ctrlKey || e.altKey || e.metaKey) return;
   const key = e.key.length === 1 ? e.key.toUpperCase() : e.key;
   const button = [...document.querySelectorAll(".labels button")].find((b) => b.dataset.key === key);
   if (button) { e.preventDefault(); if (splitLabel(button.dataset.code)) return; return save(button.dataset.code); }
-  if (key === "S" && !state.cal) { e.preventDefault(); return startSplit(); }
+  if (key === "S") { e.preventDefault(); return startSplit(); }
   if (state.split && (key === "ArrowUp" || key === "ArrowDown")) {
     e.preventDefault();
     return moveSplit((key === "ArrowUp" ? 1 : -1) * (e.shiftKey ? 0.5 : 0.1));
@@ -464,11 +482,12 @@ function calibrationLayout() {    // a treetop calibration packet: one question 
   $("page-title").textContent = "Treetop calibration";
   for (const o of [...$("filter").options]) if (!CALIBRATION_FILTERS.includes(o.value)) o.remove();
   $("queue-label").hidden = true;
-  $("split").hidden = true;
   $("usable-row").hidden = true;
-  $("footer-note").innerHTML = "The red column is everything within 1 m of the point; label the highest object in it. Nothing " +
-    "on this page shows a flag, stratum or model class. Answers are saved to <code id=\"csv-path\"></code>; copy them into " +
-    "the packet with <code>label_page.bat import-calibration --apply</code>.";
+  $("split").title = "S: a stacked column (e.g. wire over a tree): the top label, which is scored, then the object below";
+  $("footer-note").innerHTML = "The red column is everything within 1 m of the point; label the highest object in it (only that " +
+    "label is scored). For two stacked objects, such as a wire over a tree, press S: the label above the line, then the one " +
+    "below. Ground under an object needs no split. Nothing on this page shows a flag, stratum or model class. Answers are " +
+    "saved to <code id=\"csv-path\"></code>; copy them into the packet with <code>label_page.bat import-calibration --apply</code>.";
 }
 
 async function main() {
@@ -488,7 +507,8 @@ async function main() {
   state.reviewer = storage("labelPage.reviewer") || "";
   if (state.reviewer === "TEST") state.reviewer = "";      // left over from testing on October 20; ask again
   showReviewer();
-  $("reviewer").addEventListener("click", askReviewer);
+  $("reviewer").addEventListener("input", setReviewer);
+  window.addEventListener("unhandledrejection", (e) => setStatus(`Not saved: ${(e.reason && e.reason.message) || e.reason}`, "error"));
   buildLabelButtons();
   for (const q of [...new Set(state.units.map((u) => u.QUEUE_NO))].sort()) {
     const o = document.createElement("option"); o.value = q; o.textContent = q; $("queue").appendChild(o);

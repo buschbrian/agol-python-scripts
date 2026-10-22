@@ -42,7 +42,10 @@ From the repo root, `canopy-toolbox\reviews\2026-10-20\label-page\label_page.bat
 http://127.0.0.1:8768 ([label page, calibration mode](../../../2026-10-20/label-page/README.md#treetop-calibration-mode-october-22)).
 Each point shows its 12 m of delivery points in 3D, two side sections, NAIP 2024 and the imagery map; the red column is
 everything within 1 m. Press 1 to 0, M or U for the label; it moves to the next unlabelled point in review order. The page
-shows no heights, flags or strata. At the end of each session copy the answers into this folder and commit:
+shows no heights, flags or strata. Where two objects are stacked (a wire over a tree, a branch over a roof edge), press S,
+then the label above the line and then the one below: the top is LABEL and is what is scored; the lower one is kept as
+LABEL_BELOW with SPLIT_Z, so the top-object rule could be revisited later without relabelling. Ground at the bottom of the
+column needs no split. At the end of each session copy the answers into this folder and commit:
 
 ```
 canopy-toolbox\reviews\2026-10-20\label-page\label_page.bat import-calibration           (preview)

@@ -72,6 +72,9 @@ MEASURED_MIN = 30
 NOT_SCORED = ("MIXED", "UNSURE")
 UNIT_COLUMNS = ["UNIT_ID", "ORDER", "X", "Y", "HEIGHT_M", "LABEL", "REVIEWER", "REVIEW_DATE", "NOTE"]
 LABEL_COLUMNS = ["UNIT_ID", "LABEL", "REVIEWER", "REVIEW_DATE", "NOTE"]
+# labels.csv also keeps an optional split from the label page: LABEL_BELOW under the line at SPLIT_Z (an elevation).
+# Only LABEL, the highest object, is scored.
+CSV_COLUMNS = LABEL_COLUMNS+["LABEL_BELOW", "SPLIT_Z"]
 NOTE = ("Calibration labels for canopy/treetop_evidence rules. Never evaluation answers, never training labels, never in "
         "reference.gdb. Label blind: do not open sample.json or the treetop_evidence layer until every unit is labelled. "
         "Once these labels have been looked at, a rule changed in response cannot be tested on them.")
@@ -352,8 +355,8 @@ def write_labels(packet_dir, merged):
     rows = []
     for u in read_csv(packet_dir/"units.csv"):
         r = merged.get(u["UNIT_ID"], {})
-        rows.append({k: (r.get(k) or "") if k != "UNIT_ID" else u["UNIT_ID"] for k in LABEL_COLUMNS})
-    write_csv(packet_dir/"labels.csv", LABEL_COLUMNS, rows)
+        rows.append({k: (r.get(k) or "") if k != "UNIT_ID" else u["UNIT_ID"] for k in CSV_COLUMNS})
+    write_csv(packet_dir/"labels.csv", CSV_COLUMNS, rows)
     return rows
 
 
@@ -364,7 +367,7 @@ def apply_merge(packet_dir, incoming, replace, apply, source):
     unknown = sorted(set(incoming)-units)
     if unknown:
         raise ValueError(f"{source} has units not in this packet: {unknown[:5]}")
-    bad = sorted({r["LABEL"] for r in incoming.values() if r["LABEL"] and r["LABEL"] not in tr.LABELS})
+    bad = sorted({v for r in incoming.values() for v in (r["LABEL"], r.get("LABEL_BELOW") or "") if v and v not in tr.LABELS})
     if bad:
         raise ValueError(f"Unknown labels in {source}: {bad}")
     merged, report = merge_labels(existing, incoming, replace)
@@ -393,7 +396,7 @@ def import_page(packet_dir, replace=False, apply=False):
     """Copy the label page's answers (serve_label_page.py --calibration) into labels.csv; preview unless apply."""
     packet_dir = Path(packet_dir).resolve()
     path = calibration_dir(packet_dir)/"label-page"/"answers"/"calibration-answers.csv"
-    rows = {r["UNIT_ID"]: {k: r.get(k, "") for k in LABEL_COLUMNS} for r in read_csv(path)}
+    rows = {r["UNIT_ID"]: {k: r.get(k, "") for k in CSV_COLUMNS} for r in read_csv(path)}
     print(f"{len(rows)} answers on the page ({path})")
     apply_merge(packet_dir, rows, replace, apply, "the page")
 

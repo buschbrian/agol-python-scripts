@@ -27,12 +27,19 @@ reviews\2026-10-20\label-page\label_page.bat import-calibration --apply   copy t
   of every tile a 12 m circle reaches, and a mosaic of the NAIP 2024 tiles. It never reads sample.json or the evidence, and
   does not write HEIGHT_M, so the page carries no flag, stratum, tree ID or treetop height. Ground is the median delivery
   class-2 height within 5 m (12 m if none). Data goes to `calibration-treetop-calibration-2\label-page` on the SSD.
-- In this mode the page shows no heights in the side panel, has no split, queues or imagery-usable box, and lists only
+- In this mode the page shows no heights in the side panel, has no queues or imagery-usable box, and lists only
   unlabelled, all, or answered units, in REVIEW_ORDER. Keys and colours are as below.
+- **Split for stacked objects (decided October 22):** where two objects are stacked in the column, such as a wire over a
+  tree or a branch over a roof edge, press S as on the training page: the label above the line (the top: LABEL, the only
+  label scored), then the one below (LABEL_BELOW, kept beside it with SPLIT_Z, never scored). Ground under an object is in
+  almost every column and needs no split. The server refuses a split with MIXED or UNSURE, two equal parts, or a line
+  outside the column.
 - The imagery map uses the training packet's `imagery-layers.json` where it already is (`--imagery`), so the licensed link is
   not copied.
 - Answers are checked (a unit of units.csv, a label of training_review.LABELS, initials) and kept in
-  `label-page\answers\calibration-answers.csv` (labels.csv format) with an append-only `calibration-log.jsonl`.
+  `label-page\answers\calibration-answers.csv` (labels.csv format plus LABEL_BELOW and SPLIT_Z) with an append-only
+  `calibration-log.jsonl`. The log's first six lines are tests from October 22 (reviewer TEST on C2-0001, each saved and
+  cleared); the answers file was left empty.
   `import-calibration` (calibration_sample.py import-page) merges them into labels.csv and refuses to change or blank a
   label already there unless `--replace`; `export-labels` from the Pro layer now has the same guard, so the two routes
   cannot overwrite each other.
@@ -61,7 +68,10 @@ mixed answers to split, or the 40 audit-2 units.
   beside the packet. These units are chosen by model disagreement, so they test rules and never estimate an accuracy.
 - **Recheck**: answers to look at again. On October 20 it held the two SHRUB_LOW_VEG answers that look like mown lawn, which is
   GROUND since that day. Changing an answer already imported needs `label_page.bat import --apply --replace`. After a label the page
-moves to the next unanswered unit; the left arrow still goes back to fix one. The first label asks for your initials (REVIEWER).
+moves to the next unanswered unit; the left arrow still goes back to fix one. Type your initials (REVIEWER) in the Initials box at the top right;
+the page remembers them. Until they are there, a label or split is refused with a message and the box is selected. (Until
+October 22 the page asked with a pop-up, which the Claude desktop browser pane does not support: answers there failed
+silently and never reached the server.)
 
 ## Splitting a mixed patch (decided October 20)
 A quarter of the first 79 answers were MIXED or UNSURE, mostly tall cylinders holding a roof with a tree above it. For those,

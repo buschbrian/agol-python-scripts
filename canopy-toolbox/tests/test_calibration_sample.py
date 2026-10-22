@@ -141,6 +141,13 @@ class MergeLabelsTest(unittest.TestCase):
         self.assertEqual(report["replaced"], 2)
         self.assertEqual((merged["C2-0001"]["LABEL"], merged["C2-0002"]["LABEL"]), ("", "POLE"))
 
+    def test_split_is_kept_and_only_the_top_label_is_compared(self):
+        split = {**self.row("C2-0001", "WIRE"), "LABEL_BELOW": "TREE", "SPLIT_Z": "1300.500"}
+        merged, report = cs.merge_labels({}, {"C2-0001": split})
+        self.assertEqual((merged["C2-0001"]["LABEL_BELOW"], report["new"]), ("TREE", 1))
+        merged, report = cs.merge_labels(merged, {"C2-0001": self.row("C2-0001", "WIRE")})   # the Pro layer has no split
+        self.assertEqual((merged["C2-0001"]["LABEL_BELOW"], report["unchanged"], report["conflicts"]), ("TREE", 1, []))
+
 
 if __name__ == "__main__":
     unittest.main()
