@@ -70,7 +70,7 @@ The training export gives your label to exactly the points inside the yellow cir
 
 - **Label what those points are, even when something more interesting is beside the circle.** A car, pole or wall next to
   the circle does not make the circle's points VEHICLE, POLE or WALL. Label what is *in* the circle (often GROUND or
-  SHRUB_LOW_VEG, lawn included), or use **UNSURE** or **MIXED**.
+  SHRUB_LOW_VEG; mown lawn is GROUND), or use **UNSURE** or **MIXED**.
 - **Imagery is a hint from a different date.** A vehicle in the imagery may not be in the lidar at all. Judge from the points
   and the cross-section.
 - **The tools help.** **Next Training Unit** prints how many points the patch holds and how high they reach above ground, and
@@ -84,11 +84,11 @@ The training export gives your label to exactly the points inside the yellow cir
 |---|---|
 | TREE | woody tree: crown, branches or trunk (branches over a roof count) |
 | BUILDING_ROOF | a roof, including rooftop equipment |
-| WALL | a vertical face: facade, retaining wall, solid fence |
+| WALL | a building facade only (decided October 20, 2026) |
 | WIRE / POLE | an overhead wire or cable / a utility, light, sign or flag pole |
-| OTHER_STRUCTURE | carport, shade sail, playground, bridge, tank |
-| SHRUB_LOW_VEG | non-tree vegetation: shrub, hedge, lawn, garden |
-| GROUND | bare ground, pavement, gravel, low hardscape |
+| OTHER_STRUCTURE | a fence or freestanding garden, retaining or property wall (decided October 20, 2026); carport, shade sail, playground, bridge, tank |
+| SHRUB_LOW_VEG | non-tree vegetation: shrub, hedge, garden bed, tall grass (not mown lawn) |
+| GROUND | bare ground, pavement, gravel, low hardscape, mown lawn (decided October 20, 2026) |
 | VEHICLE / WATER | car, truck, trailer / pool, pond, stream |
 
 **Imagery usable** (optional): YES only if you can see and identify the object in the imagery. Leave blank if unsure.

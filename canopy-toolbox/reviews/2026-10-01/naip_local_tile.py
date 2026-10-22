@@ -106,7 +106,11 @@ def write_geotiff(path, bands, top_left, cell, epsg):
     dataset = None
 
 
-def build(tile, extent, epsg, out_cell, out_dir, sheets_root, flight_date):
+DEFAULT_DATE_SOURCE = ("UGRC Utah Hexagon Service Dates layer (flight 2024-07-07 at the tile centre and corners); "
+                       "UGRC describes Hexagon as the same 2024 flight. Not read from the sheets.")
+
+
+def build(tile, extent, epsg, out_cell, out_dir, sheets_root, flight_date, flight_date_source=DEFAULT_DATE_SOURCE):
     out_dir = Path(out_dir)
     if out_dir.exists():
         raise FileExistsError(f"Choose a new output folder: {out_dir}")
@@ -147,10 +151,9 @@ def build(tile, extent, epsg, out_cell, out_dir, sheets_root, flight_date):
               "source_crs_label": "NAD83 UTM zone 12N (EPSG 26912), relabelled as EPSG 6341 with no shift",
               "band_order_evidence": "B4 is taken to be near-infrared by inference from the data, not from a UGRC band description: "
                                      "it is much brighter on vegetation than on pavement and roofs and nearly uncorrelated with luminance.",
-              "flight_date_source": "UGRC Utah Hexagon Service Dates layer (flight 2024-07-07 at the tile centre and corners); "
-                                    "UGRC describes Hexagon as the same 2024 flight. Not read from the sheets.",
+              "flight_date_source": flight_date_source,
               "fetched_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-              "limits": ["Acquired 2024-07-07 (summer, leaf-on), about eight months after the lidar (2023-10-07 to 2023-11-05).",
+              "limits": [f"Acquired {flight_date} (summer, leaf-on), months after the lidar (2023-10-07 to 2023-11-05).",
                          "Sheets are lossy JPEG (quality 65): colour and especially B4 are slightly smoothed and blocky.",
                          "Values are digital numbers, not reflectance; roof lean, shadow and seasonal colour apply.",
                          "RGB and B4 are separate delivered products and may not share a stretch: NDVI from them is uncalibrated "

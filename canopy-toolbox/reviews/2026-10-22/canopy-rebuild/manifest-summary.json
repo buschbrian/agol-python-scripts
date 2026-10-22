@@ -1,0 +1,77 @@
+{
+ "status": "complete",
+ "started": "2026-10-22T08:24:38",
+ "non_canopy": {
+  "native": [
+   2,
+   6,
+   9,
+   10,
+   11,
+   13,
+   14,
+   15,
+   16,
+   17,
+   20
+  ],
+  "combined": [
+   2,
+   6,
+   9,
+   10,
+   11,
+   13,
+   14,
+   15,
+   16,
+   17,
+   20,
+   1,
+   64
+  ]
+ },
+ "clearance_m": 0.3499999940395355,
+ "inputs": {
+  "native": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points",
+  "refined_v2": "D:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points",
+  "fractal": "D:\\lidar\\2023-salt-lake-valley\\fractal\\city-20261019\\fractal",
+  "esri": "D:\\lidar\\2023-salt-lake-valley\\runs\\esri-building-20261020",
+  "terrain_and_grid": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019"
+ },
+ "native_reproduces_oct19": {
+  "chm_m": {
+   "cells_compared": 133813488,
+   "mismatches": 0,
+   "max_abs_difference_m": 0.0
+  },
+  "observed": {
+   "cells_compared": 133813488,
+   "mismatches": 0
+  },
+  "vegetation_support": {
+   "cells_compared": 133813488,
+   "mismatches": 0
+  },
+  "building_occlusion": {
+   "cells_compared": 133813488,
+   "mismatches": 0
+  }
+ },
+ "native_reproduces_oct19_exactly": true,
+ "city_summary": {
+  "native": {
+   "observed": 132810424,
+   "canopy_2m": 34748843,
+   "support": 103427084,
+   "occluded": 390491
+  },
+  "combined": {
+   "observed": 133058292,
+   "canopy_2m": 34044344,
+   "support": 43952772,
+   "occluded": 315073
+  }
+ },
+ "finished": "2026-10-22T08:41:45"
+}

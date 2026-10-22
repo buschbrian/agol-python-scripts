@@ -29,7 +29,7 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[1]))
-from canopy import treetop_evidence as te  # noqa: E402
+from canopy import treetop_evidence_20261015 as te  # noqa: E402
 from canopy.lidar_root import lidar_root  # noqa: E402
 
 VALLEY = lidar_root()/"2023-salt-lake-valley"

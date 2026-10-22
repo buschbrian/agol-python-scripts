@@ -56,9 +56,11 @@ WIRE_HINT. Every raw feature is stored, so a threshold can be changed later with
 
 ## Method
 
-Code: [canopy/treetop_evidence.py](../../canopy/treetop_evidence.py) (no ArcPy; definitions in its docstring),
-driver [treetop_evidence_driver.py](treetop_evidence_driver.py), tests
-[tests/test_treetop_evidence.py](../../tests/test_treetop_evidence.py).
+Code: [canopy/treetop_evidence_20261015.py](../../canopy/treetop_evidence_20261015.py) (no ArcPy; definitions in its
+docstring), driver [treetop_evidence_driver.py](treetop_evidence_driver.py), tests
+[tests/test_treetop_evidence_20261015.py](../../tests/test_treetop_evidence_20261015.py). The module was named
+`canopy/treetop_evidence.py` until October 22, when an independent rebuild took that name
+([2026-10-22/treetop-evidence](../2026-10-22/treetop-evidence/README.md)).
 
 - **Near-building** is the 29 September [candidates_near_buildings.py](../2026-09-29/candidates_near_buildings.py)
   measurement, unchanged: class-6 points within 1 m, roof = 90th-percentile class-6 Z within 1 m minus the median

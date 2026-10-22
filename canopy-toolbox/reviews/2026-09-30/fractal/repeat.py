@@ -117,6 +117,10 @@ def main(argv=None):
     parser.add_argument("--tools", type=Path, default=Path(os.environ.get("FRACTAL_TOOLS", str(Path.home() / "tools"))))
     parser.add_argument("--repeats", type=int, choices=(3, 4, 5), default=3)
     parser.add_argument("--batch", type=int, default=10)
+    parser.add_argument("--pass-retries", type=int, default=0,
+                        help="rerun a pass that fails this many extra times; its folder and log are kept with a .failed-N suffix")
+    parser.add_argument("--checkpoint", type=Path,
+                        help="model weights to use instead of the released FRACTAL checkpoint (e.g. a fine-tuned one)")
     args = parser.parse_args(argv)
     if site.ENABLE_USER_SITE:
         raise RuntimeError("Set PYTHONNOUSERSITE=1 before starting Python")
@@ -127,7 +131,10 @@ def main(argv=None):
         raise ValueError("Batch must be positive")
     source, output, tools = args.source.resolve(), args.output.resolve(), args.tools.resolve()
     checkout = tools / "myria3d"
-    checkpoint = checkout / "trained_model_assets" / "FRACTAL-LidarHD_7cl_randlanet.ckpt"
+    released = checkout / "trained_model_assets" / "FRACTAL-LidarHD_7cl_randlanet.ckpt"
+    checkpoint = args.checkpoint.resolve() if args.checkpoint else released
+    if not checkpoint.is_file():
+        raise FileNotFoundError(checkpoint)
     import laspy
     with laspy.open(source) as reader:
         if reader.header.point_format.id != 8 or not reader.header.point_count:
@@ -153,7 +160,8 @@ def main(argv=None):
                                        checkout / "myria3d/pctl/dataset/utils.py",
                                        checkout / "myria3d/models/interpolation.py",
                                        checkout / "myria3d/models/las_writer.py",
-                                       checkpoint.with_name("FRACTAL-LidarHD_7cl_randlanet-inference-Myria3DV3.8.yaml"))},
+                                       released.with_name("FRACTAL-LidarHD_7cl_randlanet-inference-Myria3DV3.8.yaml"))},
+                "checkpoint": str(checkpoint),
                 "torch": torch.__version__, "gpu": torch.cuda.get_device_name(0), "repeats": args.repeats,
                 "batch": args.batch, "started": time.time(), "rows": [],
                 "interpretation": "Model opinions; repeat agreement is not confidence or accuracy. No labels modified."}
@@ -166,24 +174,36 @@ def main(argv=None):
         predicted = []
         for number in range(1, args.repeats + 1):
             row_dir = output / f"repeat-{number}"
-            command = [sys.executable, str(checkout / "run.py"), "task.task_name=predict",
-                       f"predict.src_las={source.as_posix()}", f"predict.output_dir={row_dir.as_posix()}",
-                       "predict.gpus=[0]", "datamodule.epsg=6341", f"datamodule.batch_size={args.batch}",
-                       "datamodule.num_workers=0", "datamodule.prefetch_factor=null", "model.num_workers=0",
-                       "predict.interpolator.probas_to_save=all", f"hydra.run.dir={(row_dir / 'hydra').as_posix()}"]
-            row = {"repeat": number, "command": command, "started": time.time()}
-            manifest["rows"].append(row)
-            save()
-            print(f"Repeat {number}/{args.repeats} on {manifest['gpu']}", flush=True)
-            with open(output / f"repeat-{number}.log", "w", encoding="utf-8") as log:
-                result = subprocess.run(command, cwd=checkout, env=env, stdout=log, stderr=subprocess.STDOUT)
-            row.update(exit_code=result.returncode, seconds=time.time() - row["started"])
-            row["source_sha256_after"] = sha256(source)
-            if row["source_sha256_after"] != source_hash:
-                raise ValueError("SOURCE CHANGED")
+            log_path = output / f"repeat-{number}.log"
             prediction = row_dir / source.name
-            if result.returncode or not prediction.is_file():
-                raise RuntimeError(f"Repeat {number} failed; see repeat-{number}.log")
+            for attempt in range(1, args.pass_retries + 2):
+                command = [sys.executable, str(checkout / "run.py"), "task.task_name=predict",
+                           f"predict.src_las={source.as_posix()}", f"predict.output_dir={row_dir.as_posix()}",
+                           "predict.gpus=[0]", "datamodule.epsg=6341", f"datamodule.batch_size={args.batch}",
+                           "datamodule.num_workers=0", "datamodule.prefetch_factor=null", "model.num_workers=0",
+                           "predict.interpolator.probas_to_save=all", f"predict.ckpt_path={checkpoint.as_posix()}",
+                           f"hydra.run.dir={(row_dir / 'hydra').as_posix()}"]
+                row = {"repeat": number, "attempt": attempt, "command": command, "started": time.time()}
+                manifest["rows"].append(row)
+                save()
+                print(f"Repeat {number}/{args.repeats} on {manifest['gpu']} (attempt {attempt})", flush=True)
+                with open(log_path, "w", encoding="utf-8") as log:
+                    result = subprocess.run(command, cwd=checkout, env=env, stdout=log, stderr=subprocess.STDOUT)
+                row.update(exit_code=result.returncode, seconds=time.time() - row["started"])
+                row["source_sha256_after"] = sha256(source)
+                if row["source_sha256_after"] != source_hash:
+                    raise ValueError("SOURCE CHANGED")
+                if not result.returncode and prediction.is_file():
+                    break
+                if attempt > args.pass_retries:
+                    raise RuntimeError(f"Repeat {number} failed; see repeat-{number}.log")
+                # Keep the failed attempt for diagnosis; a fresh pass needs an empty output folder.
+                kept = f"repeat-{number}.failed-{attempt}"
+                if row_dir.exists():
+                    row_dir.rename(output / kept)
+                log_path.rename(output / f"{kept}.log")
+                row["kept_as"] = kept
+                save()
             row["output_sha256"] = sha256(prediction)
             predicted.append(prediction)
             save()

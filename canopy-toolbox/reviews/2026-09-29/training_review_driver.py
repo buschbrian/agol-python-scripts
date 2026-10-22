@@ -20,6 +20,7 @@ import datetime
 import hashlib
 import json
 import os
+import shutil
 from pathlib import Path
 import sys
 import time
@@ -443,15 +444,31 @@ def restore(args):
     print(json.dumps({"mode": "APPLY" if args.apply else "PREVIEW", **summary}, indent=1))
     for line in (plan["conflicts"]+plan["refused"])[:20]:
         print("SKIPPED:", line)
+    todo = [(w, False) for w in plan["write"]] + [(w, True) for w in plan["replace"]]
+    splits = sum(item["answer"].get("SPLIT_Z") is not None for item, _ in todo)
+    missing = [f for f in tr.SPLIT_FIELDS if f not in tra.present_fields(fc)]
+    if splits:
+        print(f"{splits} of these answers split a patch at a height (LABEL above, LABEL_BELOW below).")
+    if splits and missing and not args.add_split_fields:
+        print("The review table has no LABEL_BELOW/SPLIT_Z fields yet. Close the project in Pro and re-run with "
+              "--add-split-fields (the geodatabase is copied first), or the split answers cannot be written.")
+        if args.apply:
+            return 2
     if not args.apply:
         print("Preview only. Re-run with --apply to write these labels.")
         return 3 if plan["conflicts"] or plan["refused"] else 0
+    if splits and missing:
+        if _pro_is_open():
+            print("ArcGIS Pro is open; adding fields needs a schema lock. Close Pro and run this again.")
+            return 2
+        copy_to = gdb.with_name(f"{gdb.stem}.before-split-fields-{datetime.datetime.now():%Y%m%d-%H%M%S}.gdb")
+        shutil.copytree(gdb, copy_to)
+        print(f"Copied the review geodatabase to {copy_to}; added fields: {tra.ensure_split_fields(fc)}")
     oids = {r["UNIT_ID"]: r["OID@"] for r in live_rows}
-    todo = [(w, False) for w in plan["write"]] + [(w, True) for w in plan["replace"]]
     for item, replacing in todo:
         tra.write_answer(fc, oids[item["UNIT_ID"]], item["answer"], replace=replacing)
     after = {r["UNIT_ID"]: r for r in tra.read_review_rows(fc)}
-    wrong = [item["UNIT_ID"] for item, _ in todo if after[item["UNIT_ID"]]["LABEL"] != item["answer"]["LABEL"]]
+    wrong = [item["UNIT_ID"] for item, _ in todo if tr.label_key(after[item["UNIT_ID"]]) != tr.label_key(item["answer"])]
     if wrong:
         raise RuntimeError(f"Read-back mismatch after restore for {wrong[:5]}")
     print(f"Restored {len(todo)} units and read them back.")
@@ -635,6 +652,8 @@ def main(argv=None):
     r = sub.add_parser("restore"); r.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
     r.add_argument("--csv", default=BACKUP_DIR/"labels-progress.csv", type=Path)
     r.add_argument("--apply", action="store_true"); r.add_argument("--replace", action="store_true")
+    r.add_argument("--add-split-fields", action="store_true",
+                   help="add LABEL_BELOW and SPLIT_Z to the review table when split answers need them (Pro closed)")
     sc = sub.add_parser("add-scene"); sc.add_argument("--packet", default=DEFAULT_PACKET, type=Path)
     sc.add_argument("--point-budget", type=int, default=1_500_000)
     sc.add_argument("--even-if-pro-is-open", action="store_true")

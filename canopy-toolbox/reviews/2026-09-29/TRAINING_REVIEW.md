@@ -12,6 +12,13 @@ Code: [canopy/training_review.py](../../canopy/training_review.py) (no ArcPy),
 [TrainingReview.pyt](../../TrainingReview.pyt) (the Pro step-through tools). Tests:
 `tests/test_training_review.py` (plain) and `tests/test_training_review_arcpy.py` (ArcGIS).
 
+> **Since October 20, 2026** labels are made on the click-through page instead of the Pro step-through
+> ([label-page/README.md](../2026-10-20/label-page/README.md)): split answers (LABEL above SPLIT_Z, LABEL_BELOW under it),
+> refined cylinders for MIXED and UNSURE in their own packet, lawn = GROUND, and triage v2 roof and tree candidates
+> auto-accepted with REVIEWER `triage-v2` ([audit-2/README.md](../2026-09-30/audit-2/README.md)). The page still imports through
+> `restore` below, and the geodatabase, backup and exclusion rules here are unchanged. The labels are used to fine-tune FRACTAL
+> ([fractal-finetune/README.md](../2026-10-20/fractal-finetune/README.md)). Current state: [HANDOFF.md](../2026-10-20/HANDOFF.md).
+
 ## The packet
 
 `H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\training-review\packet-20260929\`
@@ -117,12 +124,12 @@ that slab** is.
 |---|---|---:|
 | TREE | Woody tree crown, branches or trunk (includes branches over roofs) | 5 |
 | BUILDING_ROOF | Roof of a building, including roof-mounted equipment | 6 |
-| WALL | Vertical face: facade, retaining/garden wall, solid fence | 72 |
+| WALL | Building facade only (since October 20, 2026; earlier answers may hold fences or garden walls) | 72 |
 | WIRE | Overhead wire or cable | 14 |
 | POLE | Utility, light, sign or flag pole | 73 |
-| OTHER_STRUCTURE | Carport, shade sail, playground, bridge, tank | 74 |
-| SHRUB_LOW_VEG | Non-tree vegetation: shrub, clipped hedge, lawn, garden | 3 |
-| GROUND | Bare ground, pavement, gravel, low hardscape | 2 |
+| OTHER_STRUCTURE | Fence, freestanding garden, retaining or property wall (since October 20, 2026), carport, shade sail, playground, bridge, tank | 74 |
+| SHRUB_LOW_VEG | Non-tree vegetation: shrub, clipped hedge, garden bed, tall grass (not mown lawn) | 3 |
+| GROUND | Bare ground, pavement, gravel, low hardscape, mown lawn (since October 20, 2026) | 2 |
 | VEHICLE | Car, truck, trailer | 75 |
 | WATER | Pool, pond, stream | 9 |
 | MIXED | The slab clearly holds two or more classes (e.g. a branch over a roof edge) | not exported |

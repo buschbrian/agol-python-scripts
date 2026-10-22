@@ -62,12 +62,16 @@ EXCLUDED_TILES = {
 LABELS = {
     "TREE": ("Woody tree crown, branches or trunk (any height; includes overhanging branches)", 5),
     "BUILDING_ROOF": ("Roof of a building, including roof-mounted equipment", 6),
-    "WALL": ("Vertical face: building facade, retaining or garden wall, solid fence", 72),
+    # Fences and freestanding walls are OTHER_STRUCTURE and WALL is a building facade only (decided October 20, 2026, so the
+    # labels match FRACTAL's permanent-structure class). WALL answers made before then may still hold fences or garden walls.
+    "WALL": ("Building facade: the vertical face of a building (fences and freestanding walls are OTHER_STRUCTURE)", 72),
     "WIRE": ("Overhead wire or cable (power, telephone, guy wire)", 14),
     "POLE": ("Pole or mast: utility, light, sign or flag pole", 73),
-    "OTHER_STRUCTURE": ("Other built structure: carport, shade sail, playground, bridge, tank", 74),
-    "SHRUB_LOW_VEG": ("Non-tree vegetation: shrub, clipped hedge, lawn, garden, grass", 3),
-    "GROUND": ("Bare ground, pavement, gravel or low hardscape", 2),
+    "OTHER_STRUCTURE": ("Other built structure: fence, freestanding garden, retaining or property wall, carport, shade sail, "
+                        "playground, bridge, tank", 74),
+    # Mown lawn is GROUND, not SHRUB_LOW_VEG (decided October 20, 2026; FRACTAL and LiDAR HD treat it the same way).
+    "SHRUB_LOW_VEG": ("Non-tree vegetation: shrub, clipped hedge, garden bed, tall grass (not mown lawn)", 3),
+    "GROUND": ("Bare ground, pavement, gravel, low hardscape or mown lawn", 2),
     "VEHICLE": ("Car, truck, trailer or other vehicle", 75),
     "WATER": ("Water surface (pool, pond, stream)", 9),
     "MIXED": ("The patch slab clearly holds two or more classes (e.g. branch over a roof edge); not exported", None),
@@ -89,7 +93,11 @@ QUEUES = {
 }
 QUEUE_CODES = {name: f"Q{i+1}" for i, name in enumerate(QUEUES)}
 IDENTITY_FIELDS = ("UNIT_ID", "QUEUE", "REVIEW_ORDER", "X", "Y", "Z_LOW", "Z_HIGH", "PATCH_R_M")
-ANSWER_FIELDS = ("LABEL", "IMAGERY_USABLE", "REVIEWER", "REVIEW_DATE", "NOTES")
+LEGACY_ANSWER_FIELDS = ("LABEL", "IMAGERY_USABLE", "REVIEWER", "REVIEW_DATE", "NOTES")
+# A split answer (decided October 20, 2026) labels a patch that holds two objects one above the other: LABEL is the class
+# of the patch points above SPLIT_Z (an elevation, like Z_LOW and Z_HIGH) and LABEL_BELOW the class of those at or below it.
+SPLIT_FIELDS = ("LABEL_BELOW", "SPLIT_Z")
+ANSWER_FIELDS = (*LEGACY_ANSWER_FIELDS, *SPLIT_FIELDS)
 SNAPSHOT_COLUMNS = ("UNIT_ID", "QUEUE", "REVIEW_ORDER", "UNIT_TOKEN", *ANSWER_FIELDS)
 
 
@@ -490,8 +498,42 @@ def normalize_answer(unit, answer, frame, labels=None, today=None):
     if parsed > (today or datetime.date.today()) + datetime.timedelta(days=1):
         raise ValueError(f"{uid}: REVIEW_DATE is in the future")
     assert_patch_allowed(unit["X"], unit["Y"], frame, unit.get("PATCH_R_M", PATCH_RADIUS_M), what=f"{uid} label")
+    below, split_z = _split(unit, answer, label)
     return {"LABEL": label, "IMAGERY_USABLE": usable or None, "REVIEWER": reviewer,
-            "REVIEW_DATE": date, "NOTES": notes or None}
+            "REVIEW_DATE": date, "NOTES": notes or None, "LABEL_BELOW": below, "SPLIT_Z": split_z}
+
+
+def _split(unit, answer, label):
+    """(LABEL_BELOW, SPLIT_Z) of an answer, both None when it is not split. Raises ValueError for a half or invalid split."""
+    uid = unit["UNIT_ID"]
+    below = _text(answer.get("LABEL_BELOW")).upper()
+    raw = answer.get("SPLIT_Z")
+    raw = "" if raw is None else str(raw).strip()
+    if not below and not raw:
+        return None, None
+    if not below or not raw:
+        raise ValueError(f"{uid}: a split needs both LABEL_BELOW and SPLIT_Z")
+    if label not in EXPORT_LABELS or below not in EXPORT_LABELS:
+        raise ValueError(f"{uid}: both parts of a split need an exported label (not MIXED or UNSURE)")
+    if label == below:
+        raise ValueError(f"{uid}: a split needs two different labels")
+    try:
+        split_z = float(raw)
+    except ValueError:
+        raise ValueError(f"{uid}: SPLIT_Z must be a number") from None
+    if not math.isfinite(split_z) or not float(unit["Z_LOW"]) < split_z < float(unit["Z_HIGH"]):
+        raise ValueError(f"{uid}: SPLIT_Z must lie inside the patch slab ({unit['Z_LOW']} to {unit['Z_HIGH']})")
+    return below, round(split_z, 3)
+
+
+def answer_parts(unit, answer):
+    """The labelled parts of a patch as (label, z_low, z_high): one for a plain answer, two for a split
+    (points at or below SPLIT_Z belong to the lower part, as in the training export)."""
+    z_low, z_high = float(unit["Z_LOW"]), float(unit["Z_HIGH"])
+    if answer.get("SPLIT_Z") in (None, ""):
+        return [(answer["LABEL"], z_low, z_high)]
+    split_z = float(answer["SPLIT_Z"])
+    return [(answer["LABEL"], split_z, z_high), (answer["LABEL_BELOW"], z_low, split_z)]
 
 
 def plan_snapshot(rows, packet_units, frame, labels=None, tolerance=0.005):
@@ -611,7 +653,9 @@ def plan_backup(rows, packet_units, frame, labels=None, tolerance=0.005):
                     "UNIT_TOKEN": unit_token(frame["digest"], unit),
                     "LABEL": _text(row.get("LABEL")), "IMAGERY_USABLE": _text(row.get("IMAGERY_USABLE")),
                     "REVIEWER": _text(row.get("REVIEWER")), "REVIEW_DATE": _text(date),
-                    "NOTES": "" if row.get("NOTES") is None else str(row.get("NOTES")), "CHECK": check})
+                    "NOTES": "" if row.get("NOTES") is None else str(row.get("NOTES")),
+                    "LABEL_BELOW": _text(row.get("LABEL_BELOW")),
+                    "SPLIT_Z": "" if row.get("SPLIT_Z") in (None, "") else str(row.get("SPLIT_Z")), "CHECK": check})
     missing = sorted(set(index) - seen)
     if missing:
         problems.append(f"{len(missing)} packet units are missing from the review table, e.g. {missing[:3]}")
@@ -671,22 +715,38 @@ def plan_restore(backup_rows, current_rows, packet_units, frame, labels=None, re
         now = _text(current.get("LABEL"))
         if not now:
             plan["write"].append({"UNIT_ID": uid, "answer": answer})
-        elif now == answer["LABEL"]:
-            plan["unchanged"].append(uid)       # same label: the live answer (reviewer, notes) is kept
+        elif label_key(current) == label_key(answer):
+            plan["unchanged"].append(uid)       # same label (and split): the live answer (reviewer, notes) is kept
         elif replace:
             plan["replace"].append({"UNIT_ID": uid, "answer": answer, "was": now})
         else:
-            plan["conflicts"].append(f"{uid}: live label {now} differs from backup {answer['LABEL']}")
+            plan["conflicts"].append(f"{uid}: live label {_describe(current)} differs from backup {_describe(answer)}")
     return plan
 
 
+def label_key(row):
+    """What makes two answers the same labelling: the label and, for a split, the lower label and split height."""
+    split = row.get("SPLIT_Z")
+    return (_text(row.get("LABEL")).upper(), _text(row.get("LABEL_BELOW")).upper(),
+            None if split in (None, "") else round(float(split), 3))
+
+
+def _describe(row):
+    label, below, split = label_key(row)
+    return f"{label} above {below} at {split}" if split is not None else label
+
+
+LEGACY_BACKUP_COLUMNS = ("UNIT_ID", "QUEUE", "REVIEW_ORDER", "UNIT_TOKEN", *LEGACY_ANSWER_FIELDS, "CHECK")
+
+
 def read_backup(path):
-    """Rows of a backup CSV as dicts; the header must be the backup columns."""
+    """Rows of a backup CSV as dicts; the header must be the backup columns (a pre-split backup reads with blank splits)."""
     with open(path, encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
-        if tuple(reader.fieldnames or ()) != BACKUP_COLUMNS:
+        columns = tuple(reader.fieldnames or ())
+        if columns not in (BACKUP_COLUMNS, LEGACY_BACKUP_COLUMNS):
             raise ValueError(f"{path} is not a training label backup (unexpected columns)")
-        return list(reader)
+        return [{**{k: "" for k in SPLIT_FIELDS}, **row} for row in reader]
 
 
 # ---------------------------------------------------------------- point-cloud training export
@@ -725,11 +785,8 @@ def export_training_las(source, destination, units, frame, chunk=2_000_000):
     for u in exported:
         assert_patch_allowed(u["X"], u["Y"], frame, u.get("PATCH_R_M", PATCH_RADIUS_M), what=f"{u['UNIT_ID']} export")
     centres = np.array([[u["X"], u["Y"]] for u in exported], float).reshape(-1, 2)
-    if len(centres) > 1:
-        from scipy.spatial import cKDTree
-        pairs = cKDTree(centres).query_pairs(2*max(u.get("PATCH_R_M", PATCH_RADIUS_M) for u in exported))
-        if pairs:
-            raise ValueError("Labelled patches overlap; refusing ambiguous training labels")
+    if len(centres) > 1 and overlapping_patches(exported):
+        raise ValueError("Labelled patches overlap; refusing ambiguous training labels")
     before = (source.stat().st_size, source.stat().st_mtime_ns)
     destination.parent.mkdir(parents=True, exist_ok=True)
     pending = destination.with_name(destination.name+".pending")
@@ -754,10 +811,29 @@ def export_training_las(source, destination, units, frame, chunk=2_000_000):
             "label_codes": {k: v[1] for k, v in LABELS.items() if v[1] is not None}}
 
 
+def overlapping_patches(units):
+    """Pairs of patches that share points: their circles overlap and so do their height slabs. Patches stacked at one centre
+    with separate slabs (refined cylinders, October 20, 2026) do not overlap."""
+    from scipy.spatial import cKDTree
+    centres = np.array([[u["X"], u["Y"]] for u in units], float).reshape(-1, 2)
+    radius = [float(u.get("PATCH_R_M", PATCH_RADIUS_M)) for u in units]
+    out = []
+    for i, j in sorted(cKDTree(centres).query_pairs(2*max(radius))):
+        close = np.hypot(*(centres[i]-centres[j])) < radius[i]+radius[j]
+        if close and float(units[i]["Z_LOW"]) <= float(units[j]["Z_HIGH"]) and float(units[j]["Z_LOW"]) <= float(units[i]["Z_HIGH"]):
+            out.append((units[i]["UNIT_ID"], units[j]["UNIT_ID"]))
+    return out
+
+
 def _recode_copy(path, exported, centres, chunk):
-    """Write training codes into the modern-format copy at `path`; returns (per-unit, per-class) counts."""
+    """Write training codes into the modern-format copy at `path`; returns (per-unit, per-class) counts.
+
+    Patches are grouped by centre, so several height layers at one centre each get their own points."""
     points, scale, offset, modern, _ = las_records.records(path, "r+")
     codes = np.array([LABELS[u["LABEL"]][1] for u in exported], np.uint8)
+    # A split unit codes the points at or below SPLIT_Z with its lower label; an unsplit unit never matches (split -inf).
+    codes_below = np.array([LABELS[u["LABEL_BELOW"]][1] if u.get("LABEL_BELOW") else 0 for u in exported], np.uint8)
+    split_z = np.array([-np.inf if u.get("SPLIT_Z") in (None, "") else float(u["SPLIT_Z"]) for u in exported], float)
     radius = np.array([u.get("PATCH_R_M", PATCH_RADIUS_M) for u in exported], float)
     zlow = np.array([u["Z_LOW"] for u in exported], float)
     zhigh = np.array([u["Z_HIGH"] for u in exported], float)
@@ -766,7 +842,13 @@ def _recode_copy(path, exported, centres, chunk):
     tree = None
     if len(exported):
         from scipy.spatial import cKDTree
-        tree = cKDTree(centres)
+        unique, inverse = np.unique(centres, axis=0, return_inverse=True)
+        inverse = np.asarray(inverse).reshape(-1)
+        members = [np.flatnonzero(inverse == g) for g in range(len(unique))]
+        table = np.full((len(unique), max(len(m) for m in members)), -1, np.int64)
+        for g, m in enumerate(members):
+            table[g, :len(m)] = m
+        tree = cKDTree(unique)
     for start in range(0, len(points), chunk):
         block = points[start:start+chunk]
         x, y, z, classes, _, _ = las_records.decode(block, scale, offset, modern)
@@ -775,10 +857,22 @@ def _recode_copy(path, exported, centres, chunk):
         noise = np.isin(classes, NOISE_CODES)
         new[noise] = classes[noise]
         if tree is not None:
-            d, j = tree.query(np.column_stack([x, y]), distance_upper_bound=float(radius.max()))
-            hit = np.isfinite(d)
-            hit[hit] &= (d[hit] <= radius[j[hit]]) & (z[hit] >= zlow[j[hit]]) & (z[hit] <= zhigh[j[hit]]) & ~noise[hit]
+            d, g = tree.query(np.column_stack([x, y]), distance_upper_bound=float(radius.max()))
+            near = np.isfinite(d)
+            unit_of = np.full(len(block), -1, np.int64)
+            for slot in range(table.shape[1]):
+                cand = np.full(len(block), -1, np.int64)
+                cand[near] = table[g[near], slot]
+                ok = cand >= 0
+                ok[ok] &= ((d[ok] <= radius[cand[ok]]) & (z[ok] >= zlow[cand[ok]]) & (z[ok] <= zhigh[cand[ok]])
+                           & ~noise[ok] & (unit_of[ok] < 0))
+                unit_of[ok] = cand[ok]
+            hit = unit_of >= 0
+            j = unit_of
             new[hit] = codes[j[hit]]
+            lower = np.zeros(len(block), bool)
+            lower[hit] = z[hit] <= split_z[j[hit]]
+            new[lower] = codes_below[j[lower]]
             per_unit += np.bincount(j[hit], minlength=len(exported))
         counts += np.bincount(new, minlength=256)
         block["classification"] = new

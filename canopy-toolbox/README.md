@@ -1,6 +1,8 @@
 # Canopy Tools for ArcGIS Pro
 
-> **Continuing on another workstation:** start with [reviews/2026-09-30/HANDOFF.md](reviews/2026-09-30/HANDOFF.md) (data locations, environment setup, next GPU runs, open decisions).
+> **Current workstation products:** start with [the October 22 Millcreek library](reviews/2026-10-22/PRODUCTS.md), rebuilt from the combined classification (canopy, roofs, building heights, 527,140 treetops, cover by zone). The [October 19 library](reviews/2026-10-19/PRODUCTS.md) and the [October 8 count](reviews/2026-10-08/CITY_COUNT.md) remain for comparison. The [September 30 handoff](reviews/2026-09-30/HANDOFF.md) retains earlier environment and workstation setup details.
+>
+> **Classification work in progress (October 20):** citywide FRACTAL refinement, the click-through training-label page, FRACTAL fine-tuning and the Esri building run. See [the October 20 handoff](reviews/2026-10-20/HANDOFF.md) for their state, how to resume, and the open decisions.
 
 Classified LAS to an observed canopy-height model, canopy cover by zone, estimated treetops, and crown polygons. The toolbox also provides a field-review layer. These are candidate trees and estimated crowns, not a stem census.
 
@@ -94,7 +96,8 @@ for the agreed definition, inputs, totals and verification.
 `reviews/2026-10-15/treetop_evidence_driver.py` attaches review evidence to every
 city treetop: whether it sits at roof height beside a building, on a flat
 non-vegetation top, on a wire or against a wall, and whether its top has
-canopy-like returns. Flags are fixed rules (`canopy/treetop_evidence.py`), never
+canopy-like returns. Flags are fixed rules (`canopy/treetop_evidence_20261015.py`; rebuilt on October 22 as
+`canopy/treetop_evidence.py`), never
 labels or corrections; on October 8's run, 91,807 of 607,972 treetops are
 suspects. See [TREETOP_EVIDENCE.md](reviews/2026-10-15/TREETOP_EVIDENCE.md).
 
