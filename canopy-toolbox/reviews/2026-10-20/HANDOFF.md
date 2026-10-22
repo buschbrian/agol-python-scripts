@@ -15,16 +15,16 @@ October 22 (Brian: "keep rebuilding items with the better data"): canopy rasters
 zone rebuilt from the combined classification, each by the October method proven on the old classes first. **The current
 products are the [October 22 library](../2026-10-22/PRODUCTS.md)** (`runs\millcreek-products-20261022`): canopy 2.0%
 smaller at 2 m; **527,140 treetops** (October 8: 607,972); city canopy cover **25.59%** of observed area (October 19:
-26.16%); consensus roofs and building heights. The October 19 library and October 8 count stay for comparison.
-Details: [canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md).
+26.16%); consensus roofs and building heights; and **400,063 citywide crowns** from a tiled crown method, validated exact
+against the single-window method from a 20 m halo on three tiles and stable at 80 m
+([tiled-crowns/README.md](../2026-10-22/tiled-crowns/README.md)). The October 19 library and October 8 count stay for
+comparison. Details: [canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md).
 
 **Next options (Brian to choose):**
-1. A tiled crown method for citywide crowns (crowns are bounded to 4 M cells; only the 12TVL2804 pilot exists): design,
-   validate against the single-window result on the pilot tile, then run citywide.
-2. Rerun the October 15 treetop evidence on the new treetops: its script is not in this repository (the run was on H:);
+1. Rerun the October 15 treetop evidence on the new treetops: its script is not in this repository (the run was on H:);
    find it, or rebuild it from the rules in `runs\treetop-evidence-20261015\manifest.json`.
-3. Publish or share any of the October 22 products (manual staff step; live GIS data is never written from here).
-4. Building-only fine-tune, Esri batch-1 control, label rechecks (below).
+2. Publish or share any of the October 22 products (manual staff step; live GIS data is never written from here).
+3. Building-only fine-tune, Esri batch-1 control, label rechecks (below).
 Before a heavy job: quit ChatGPT, Teams and Chrome from the tray (section 5). Rerun any single odd result once before
 believing it (memory fault seen October 21).
 

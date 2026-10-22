@@ -46,6 +46,7 @@ Checked against 1,217 labelled parts on 12TVL2804 (Brian's training labels; a ha
 | building_sources.tif | Which sources saw roof in the cell: 1 native + 2 FRACTAL + 4 Esri |
 | buildings.gdb/building_heights, building-heights.csv | 22,042 county footprints with roof height statistics and flags |
 | tree-count.gdb/city_treetops, city-treetops.csv | 527,140 treetops at least 2 m, with parcel ownership; OCT8 = SAME_CELL or NEW |
+| crowns.gdb/crowns, crowns.gdb/trees_review | 400,063 estimated crowns (TREE_ID, HEIGHT_M, CROWN_AREA_M2, CROWN_DIAM_M); treetops with crown status |
 | cover.gdb (zones, cover_rebuilt, cover_oct19), cover-comparison.csv | Canopy cover by zone, both canopies |
 | review/canopy_change.tif | Canopy at least 2 m since October 19: 1 both, 2 lost, 3 gained |
 | review/treetop-changes.csv | Treetops removed and added since October 8 |
@@ -58,6 +59,7 @@ Checked against 1,217 labelled parts on 12TVL2804 (Brian's training labels; a ha
 | Canopy at least 2 m (cells) | 34,748,843 | 34,044,344 (-2.0%) |
 | Treetops in the city | 607,972 | **527,140** (-13.3%) |
 | Treetops on private / public / no parcel / uncertain | 454,849 / 75,176 / 59,212 / 18,735 | 387,414 / 72,828 / 48,697 / 18,201 |
+| Crowns (at least 3 m2) | not produced | **400,063** (826 ha; median 12.25 m2) |
 | Footprints with a roof height | 21,415 | 21,562 |
 | Footprints with a roof cell below terrain | 633 | 35 |
 | Footprints with low roof support (< 80%) | 1,848 | 2,380 |
@@ -94,9 +96,11 @@ lower. The first cover run crashed in ArcGIS's geometry engine (a Python union o
 the pairwise dissolve, clip and erase tools, and a second native crash was resumed cleanly (`--resume`).
 
 ## Limits
-- Crowns are not produced citywide: crown delineation is bounded to 4,000,000 cells. A pilot on 12TVL2804 compares
-  October 8 and rebuilt crowns (`runs\crowns-pilot-20261022\crowns.gdb`). A citywide crown layer needs a tiled method,
-  validated first.
+- Crowns come from a tiled version of the toolbox's crown method (`canopy.crowns.segment` in 950 m tiles with a 40 m halo,
+  seeded by every detected peak), validated against the single-window method on three tiles including the densest (exact
+  from a 20 m halo) and stable when rerun with an 80 m halo ([tiled-crowns](tiled-crowns/README.md)). They are estimated
+  canopy regions, not surveyed crowns: a broad tree can hold several, a clump of small trees can form one; 127,077 treetops
+  have a crown under 3 m2 (CROWN_TOO_SMALL in trees_review).
 - The October 15 treetop evidence (SUSPECT flags) describes the October 8 treetops; its script is not in this repository,
   so it has not been rerun on the new treetops.
 - Treetops are lidar detections, not a stem census: low or suppressed trees can be missed, broad trees can have several
