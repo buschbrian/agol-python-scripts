@@ -1,0 +1,97 @@
+{
+ "root": "D:\\lidar\\2023-salt-lake-valley\\runs\\canopy-rebuild-20261022",
+ "rasters": {
+  "neither": 98699783,
+  "canopy_both": 33679482,
+  "canopy_lost": 1069361,
+  "canopy_gained": 364862,
+  "oct19_canopy_2m": 34748843,
+  "rebuilt_canopy_2m": 34044344
+ },
+ "treetops": {
+  "treetops": 607972,
+  "suspect_total": 91807,
+  "by_status": {
+   "KEPT": {
+    "treetops": 520225,
+    "suspect": 32459
+   },
+   "BUILDING": {
+    "treetops": 11440,
+    "suspect": 10919
+   },
+   "NO_VEGETATION": {
+    "treetops": 74037,
+    "suspect": 48131
+   },
+   "LOWER": {
+    "treetops": 2270,
+    "suspect": 298
+   },
+   "UNOBSERVED": {
+    "treetops": 0,
+    "suspect": 0
+   }
+  },
+  "no_longer_standing": 87747,
+  "share_suspect_among_lost": 0.6764,
+  "share_suspect_among_kept": 0.0624
+ },
+ "labels": {
+  "tile": "12TVL2804",
+  "rule": "a part is vegetation when most of its clean points are class 3, 4 or 5",
+  "by_classification": {
+   "native": {
+    "tree": {
+     "parts": 270,
+     "called_vegetation": 240,
+     "share": 0.8889
+    },
+    "shrub": {
+     "parts": 85,
+     "called_vegetation": 73,
+     "share": 0.8588
+    },
+    "other": {
+     "parts": 862,
+     "called_vegetation": 355,
+     "share": 0.4118
+    }
+   },
+   "rules_v2": {
+    "tree": {
+     "parts": 270,
+     "called_vegetation": 257,
+     "share": 0.9519
+    },
+    "shrub": {
+     "parts": 85,
+     "called_vegetation": 64,
+     "share": 0.7529
+    },
+    "other": {
+     "parts": 862,
+     "called_vegetation": 82,
+     "share": 0.0951
+    }
+   },
+   "combined": {
+    "tree": {
+     "parts": 270,
+     "called_vegetation": 259,
+     "share": 0.9593
+    },
+    "shrub": {
+     "parts": 85,
+     "called_vegetation": 65,
+     "share": 0.7647
+    },
+    "other": {
+     "parts": 862,
+     "called_vegetation": 92,
+     "share": 0.1067
+    }
+   }
+  }
+ }
+}

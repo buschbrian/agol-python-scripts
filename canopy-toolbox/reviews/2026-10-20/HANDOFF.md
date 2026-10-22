@@ -5,37 +5,31 @@ Everything is committed on branch `canopy/classification-refinement` (PR
 the lidar SSD (`D:\lidar` on MC-PC13, the A4000 workstation; set `CANOPY_LIDAR_ROOT` to its root on any other machine).
 Start here, then follow the links. The [September 30 handoff](../2026-09-30/HANDOFF.md) still holds the machine setup.
 
-## PICK UP HERE (end of October 21)
-**State:** stopped cleanly. No job running, no label server running, GPU idle, repo clean and pushed (`c5e6fb0` and this
-update). Every label answer is imported and backed up (original 1,019; refined 116 of 225; rare classes 253 of 257).
+## PICK UP HERE (October 22)
+**State:** no job running, no label server running, GPU idle, repo clean and pushed. Every label answer is imported and backed
+up (original 1,019; refined 116 of 225; rare classes 253 of 257).
 
-**Done on October 21:** Esri building model complete on all 61 tiles. FRACTAL fine-tune run-2 trained and scored: no gain,
-fine-tuning stopped (the released FRACTAL plus rules v2 stays the classification). **Consensus roof heights built and
-verified** ([roof-consensus/README.md](../2026-10-21/roof-consensus/README.md)): a separate layer, not yet a replacement for
-October 19's.
+**Done:** October 21: Esri building model on all 61 tiles; fine-tuning stopped (no gain; the released FRACTAL plus rules v2
+stays the classification); **consensus roof heights** ([roof-consensus/README.md](../2026-10-21/roof-consensus/README.md)).
+October 22: **canopy rebuilt from the combined classification** ([canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md)):
+the native version reproduces all four October 19 canopy rasters on every city cell; the combined canopy has 2.0% fewer
+canopy cells at 2 m; 87,747 of the 607,972 October 8 treetops (14.4%) would no longer stand, 67.6% of them flagged SUSPECT
+on October 15 (6.2% of those kept); tree labels called vegetation 95.9% (native 88.9%). Both products sit beside the
+October ones; nothing has been replaced.
 
-**Next task: the canopy rebuild** (Brian chose "roofs first, then canopy" on October 21). Proposed, awaiting Brian's go-ahead:
-1. Per point, one combined class on a copy of each working LAS: **building** where the consensus says so (2 of 3: native,
-   FRACTAL majority, Esri; exactly as `consensus_roofs.py`), otherwise the **rules-v2 refined class**
-   (`runs\refined-fractal-20261020\points`; matched 91% of label parts and moves bare ground out of "low vegetation").
-   Never write the working or source LAS.
-2. Rebuild the canopy rasters with the October 8 method (`canopy.rasters.build_chm` semantics: vegetation DSM from classes
-   3/4/5 first/single returns, binning maximum, building occlusion with the new roofs, October 19 terrain reused), on the
-   October 19 city grid. First reproduce October 19's `chm_m.tif` from the unchanged native classes cell for cell, as the
-   roofs were (`consensus_roofs.cell_index` holds the ArcGIS edge rule).
-   **Decide first:** `build_chm` counts only classes 2, 6, 9-11, 13-17 and 20 as known non-canopy (`NON_CANOPY_CLASSES`) and
-   skips class 1. The rules-v2 copies use 1 (other) and 64 (permanent structure), so cells holding only those would turn
-   from observed into unknown. Recommended: count 1 and 64 as observed non-canopy in the rebuild, and report the effect.
-3. Compare with October 19 (`chm_m.tif`, `observed.tif`, canopy cells at least 2 m) and the October 8 treetop count
-   ([CITY_COUNT.md](../2026-10-08/CITY_COUNT.md)); score canopy against the TREE and SHRUB labels as the roofs were scored.
-   Rerun treetops and crowns only after Brian reviews the raster comparison. Nothing replaces an October product without
-   his decision.
-Before starting: quit ChatGPT, Teams and Chrome from the tray; the job needs commit headroom (section 5). Rerun any single
-odd result once before believing it (memory fault seen October 21).
+**Next task: Brian's review, then treetops and crowns.**
+1. Brian reviews in Pro: `runs\canopy-rebuild-20261022\canopy_change.tif` (1 kept, 2 lost, 3 gained) over imagery, and
+   `treetops-canopy.csv` (XY event layer, EPSG 6341) by STATUS and SUSPECT_OCT15, starting with BUILDING and NO_VEGETATION.
+2. If he accepts the rebuilt canopy: re-detect treetops and crowns on its `chm_m.tif` with canopy/treetops.py and
+   canopy/crowns.py (ArcGIS Pro; the October 8 count's settings in [CITY_COUNT.md](../2026-10-08/CITY_COUNT.md)), recompute
+   cover, compare with the October 8 count, and decide what replaces it. Also decide whether the consensus building layer
+   replaces October 19's.
+Before a heavy job: quit ChatGPT, Teams and Chrome from the tray (section 5). Rerun any single odd result once before
+believing it (memory fault seen October 21).
 
 **Smaller open items:** relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
-with the imagery map; batch-1 control of the Esri model on 12TVL2804; `runs\roof-consensus-20261021\work` (4.8 GB of working
-arrays) can be deleted.
+with the imagery map; batch-1 control of the Esri model on 12TVL2804; the working arrays in `runs\roof-consensus-20261021\work` (4.8 GB) and
+`runs\canopy-rebuild-20261022\work` (about 5 GB) can be deleted.
 
 ## 1. Where things stand
 
@@ -74,9 +68,8 @@ arrays) can be deleted.
 2. **Esri building run:** complete (October 21). Outputs in `runs\esri-building-20261020\<tile>\building`.
 3. **Labels:** relabel Q2-0010 on the page, import (`label_page.bat import --apply`), back up with
    `training_labels.bat save`, then score audit 2 (`audit-2/README.md`). Refined and rare-class answers are all imported.
-4. **Canopy from the combined classification** (decided October 21: roofs first, then canopy): rebuild the canopy height
-   model, cover and treetops with the consensus building decision, and compare them with the October 8 and 19 products
-   before anything replaces them. This also decides the treetop candidates the refinement pointed at.
+4. **Canopy from the combined classification:** rasters rebuilt and compared (October 22); treetops, crowns and cover wait
+   for Brian's review (see PICK UP HERE).
 5. Then: a batch-1 control of the Esri model on 12TVL2804 on this card.
 
 ## 4. Open decisions for Brian

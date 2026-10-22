@@ -18,6 +18,7 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - FRACTAL fine-tuning on the training labels (patched Myria3D clone, config, driver, held-out scorer): reviews/2026-10-20/fractal-finetune.
 - Esri building model on every tile (copies only): reviews/2026-10-20/esri-city.
 - Consensus roofs (2 of 3: native, FRACTAL majority, Esri) and their footprint heights: reviews/2026-10-21/roof-consensus.
+- Canopy rasters rebuilt from the combined classification, compared with October 19, the October 8 treetops and the labels: reviews/2026-10-22/canopy-rebuild.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.

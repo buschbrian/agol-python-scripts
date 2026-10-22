@@ -105,10 +105,15 @@ def max_into(target, index, z):
     return len(cells)
 
 
-def fractal_building(tile, native, scale, offset, chunk=2_000_000):
-    """FRACTAL's three-pass majority says building, per working-LAS point; the point order is checked on X, Y and Z."""
+def fractal_building(tile, native, scale, offset):
+    """FRACTAL's three-pass majority says building, per working-LAS point."""
+    return fractal_classes(tile, native, scale, offset) == BUILDING
+
+
+def fractal_classes(tile, native, scale, offset, chunk=2_000_000):
+    """FRACTAL's three-pass majority class (0 = tie) per working-LAS point; the point order is checked on X, Y and Z."""
     import laspy
-    out = np.zeros(len(native), bool)
+    out = np.zeros(len(native), np.uint8)
     start = 0
     with laspy.open(FRACTAL/tile/"consensus.las") as reader:
         if reader.header.point_count != len(native):
@@ -119,7 +124,7 @@ def fractal_building(tile, native, scale, offset, chunk=2_000_000):
                 mine = np.asarray(native[axis][start:stop])*scale[i]+offset[i]
                 if not np.allclose(np.asarray(getattr(block, axis)), mine, atol=1e-6, rtol=0):
                     raise ValueError(f"{tile}: FRACTAL consensus points are not the working LAS points in order ({axis})")
-            out[start:stop] = np.asarray(block["MajorityClassification"]) == BUILDING
+            out[start:stop] = np.asarray(block["MajorityClassification"])
             start = stop
     return out
 
