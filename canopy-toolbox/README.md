@@ -1,6 +1,6 @@
 # Canopy Tools for ArcGIS Pro
 
-> **Current workstation products:** start with [the October 19 Millcreek raster and building-height library](reviews/2026-10-19/PRODUCTS.md). The [September 30 handoff](reviews/2026-09-30/HANDOFF.md) retains earlier environment and workstation setup details.
+> **Current workstation products:** start with [the October 22 Millcreek library](reviews/2026-10-22/PRODUCTS.md), rebuilt from the combined classification (canopy, roofs, building heights, 527,140 treetops, cover by zone). The [October 19 library](reviews/2026-10-19/PRODUCTS.md) and the [October 8 count](reviews/2026-10-08/CITY_COUNT.md) remain for comparison. The [September 30 handoff](reviews/2026-09-30/HANDOFF.md) retains earlier environment and workstation setup details.
 >
 > **Classification work in progress (October 20):** citywide FRACTAL refinement, the click-through training-label page, FRACTAL fine-tuning and the Esri building run. See [the October 20 handoff](reviews/2026-10-20/HANDOFF.md) for their state, how to resume, and the open decisions.
 

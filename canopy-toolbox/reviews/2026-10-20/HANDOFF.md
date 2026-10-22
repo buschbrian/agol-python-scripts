@@ -11,23 +11,20 @@ up (original 1,019; refined 116 of 225; rare classes 253 of 257).
 
 **Done:** October 21: Esri building model on all 61 tiles; fine-tuning stopped (no gain; the released FRACTAL plus rules v2
 stays the classification); **consensus roof heights** ([roof-consensus/README.md](../2026-10-21/roof-consensus/README.md)).
-October 22: **canopy rebuilt from the combined classification** ([canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md)):
-the native version reproduces all four October 19 canopy rasters on every city cell; the combined canopy has 2.0% fewer
-canopy cells at 2 m; 87,747 of the 607,972 October 8 treetops (14.4%) would no longer stand, 67.6% of them flagged SUSPECT
-on October 15 (6.2% of those kept); tree labels called vegetation 95.9% (native 88.9%). Both products sit beside the
-October ones; nothing has been replaced.
+October 22 (Brian: "keep rebuilding items with the better data"): canopy rasters, treetop count, crown pilot and cover by
+zone rebuilt from the combined classification, each by the October method proven on the old classes first. **The current
+products are the [October 22 library](../2026-10-22/PRODUCTS.md)** (`runs\millcreek-products-20261022`): canopy 2.0%
+smaller at 2 m; **527,140 treetops** (October 8: 607,972); city canopy cover **25.59%** of observed area (October 19:
+26.16%); consensus roofs and building heights. The October 19 library and October 8 count stay for comparison.
+Details: [canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md).
 
-**Also October 22: treetops recounted on the rebuilt canopy** (Brian: go ahead) by the October 8 method, its input proven
-identical on the native classes: **527,140 treetops** (October 8: 607,972; private 387,414, public 72,828, no parcel 48,697,
-uncertain 18,201) in `runs\city-count-20261022`. Of the 92,668 removed with no replacement nearby, 68% were October 15
-SUSPECT. **Crowns:** bounded to 4 M cells, so only a pilot on 12TVL2804 (October 8 and rebuilt side by side,
-`runs\crowns-pilot-20261022\crowns.gdb`): crowns 9,719 to 9,083, too-small crowns 4,859 to 2,618, crown area -1%.
-
-**Next task: Brian's review and decisions** ([canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md), "Next"):
-1. In Pro: the new `city_treetops` beside October 8's (field OCT8), `treetop-changes.csv`, `canopy_change.tif`, and the
-   12TVL2804 crowns.
-2. Decide whether the rebuilt count and the consensus building layer replace the October products; whether to build and
-   validate a tiled crown method for citywide crowns; then cover by zone on the rebuilt canopy (canopy/cover.py).
+**Next options (Brian to choose):**
+1. A tiled crown method for citywide crowns (crowns are bounded to 4 M cells; only the 12TVL2804 pilot exists): design,
+   validate against the single-window result on the pilot tile, then run citywide.
+2. Rerun the October 15 treetop evidence on the new treetops: its script is not in this repository (the run was on H:);
+   find it, or rebuild it from the rules in `runs\treetop-evidence-20261015\manifest.json`.
+3. Publish or share any of the October 22 products (manual staff step; live GIS data is never written from here).
+4. Building-only fine-tune, Esri batch-1 control, label rechecks (below).
 Before a heavy job: quit ChatGPT, Teams and Chrome from the tray (section 5). Rerun any single odd result once before
 believing it (memory fault seen October 21).
 
