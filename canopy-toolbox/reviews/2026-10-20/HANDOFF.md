@@ -5,28 +5,33 @@ Everything is committed on branch `canopy/classification-refinement` (PR
 the lidar SSD (`D:\lidar` on MC-PC13, the A4000 workstation; set `CANOPY_LIDAR_ROOT` to its root on any other machine).
 Start here, then follow the links. The [September 30 handoff](../2026-09-30/HANDOFF.md) still holds the machine setup.
 
-## PICK UP HERE (October 22)
-**State:** no job running, no label server running, GPU idle, repo clean and pushed. Every label answer is imported and backed
-up (original 1,019; refined 116 of 225; rare classes 253 of 257).
+## PICK UP HERE (end of October 22: the A4000 work is complete)
+**State:** every GPU and lidar-processing step is done and committed; nothing is running; the label servers are off; every
+label answer is imported and backed up (original 1,019; refined 116 of 225; rare classes 253 of 257). Brian is continuing
+the other analyses on a different machine.
 
-**Done:** October 21: Esri building model on all 61 tiles; fine-tuning stopped (no gain; the released FRACTAL plus rules v2
-stays the classification); **consensus roof heights** ([roof-consensus/README.md](../2026-10-21/roof-consensus/README.md)).
-October 22 (Brian: "keep rebuilding items with the better data"): canopy rasters, treetop count, crown pilot and cover by
-zone rebuilt from the combined classification, each by the October method proven on the old classes first. **The current
-products are the [October 22 library](../2026-10-22/PRODUCTS.md)** (`runs\millcreek-products-20261022`): canopy 2.0%
-smaller at 2 m; **527,140 treetops** (October 8: 607,972); city canopy cover **25.59%** of observed area (October 19:
-26.16%); consensus roofs and building heights; and **400,063 citywide crowns** from a tiled crown method, validated exact
-against the single-window method from a 20 m halo on three tiles and stable at 80 m
-([tiled-crowns/README.md](../2026-10-22/tiled-crowns/README.md)). The October 19 library and October 8 count stay for
-comparison. Details: [canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md).
+**The current products are the [October 22 library](../2026-10-22/PRODUCTS.md)**, one folder on the lidar SSD:
+`<SSD>\lidar\2023-salt-lake-valley\runs\millcreek-products-20261022` (D: on MC-PC13; `library.json` lists every file's
+source and SHA-256). It holds the canopy height, observed, support and occlusion rasters and terrain; consensus roof
+elevation and height and building heights for 22,042 footprints; **527,140 treetops** with ownership; **400,063 crowns**;
+**treetop evidence** (32,986 SUSPECT); cover by zone (city **25.59%** of observed area); and `review\` change files. The
+October 19 library and October 8 count stay beside it, unchanged, for comparison.
 
-**Next options (Brian to choose):**
-1. Rerun the October 15 treetop evidence on the new treetops: its script is not in this repository (the run was on H:);
-   find it, or rebuild it from the rules in `runs\treetop-evidence-20261015\manifest.json`.
-2. Publish or share any of the October 22 products (manual staff step; live GIS data is never written from here).
-3. Building-only fine-tune, Esri batch-1 control, label rechecks (below).
-Before a heavy job: quit ChatGPT, Teams and Chrome from the tray (section 5). Rerun any single odd result once before
-believing it (memory fault seen October 21).
+How each was made and checked (each rebuild first reproduced the October product exactly on the old classification):
+- combined classification: consensus roofs ([roof-consensus](../2026-10-21/roof-consensus/README.md)) plus FRACTAL rules v2;
+- canopy, treetops, crown pilot, cover: [canopy-rebuild](../2026-10-22/canopy-rebuild/README.md);
+- citywide crowns: [tiled-crowns](../2026-10-22/tiled-crowns/README.md) (validated exact from a 20 m halo; run at 40 m);
+- treetop evidence: [treetop-evidence](../2026-10-22/treetop-evidence/README.md) (`canopy/treetop_evidence.py`, rebuilt from
+  the October 15 manifest and byte-identical on all 607,972 October 15 rows; the original script is probably on the laptop).
+
+**On another machine:** clone or pull branch `canopy/classification-refinement`
+([PR #11](https://github.com/buschbrian/agol-python-scripts/pull/11)); attach the SSD and set `CANOPY_LIDAR_ROOT` to its
+`lidar` folder (unset, `canopy.lidar_root` uses H:\lidar; the label-page and training batch files also look for D:\lidar). Analyses that only read the October 22 products need ArcGIS Pro
+or plain Python with GDAL, not the A4000. The Myria3D environment and the patched clone (`fractal-finetune/myria3d-finetune.patch`)
+are only needed to rerun FRACTAL.
+
+**Open (Brian's choice):** publish or share October 22 products (a manual staff step: live GIS data is never written from
+here); review the 32,986 SUSPECT treetops; a building-only fine-tune (the one place fine-tuning helped); the smaller items below.
 
 **Smaller open items:** relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
 with the imagery map; batch-1 control of the Esri model on 12TVL2804. These can be deleted: the working arrays in

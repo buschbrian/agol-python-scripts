@@ -46,6 +46,7 @@ Checked against 1,217 labelled parts on 12TVL2804 (Brian's training labels; a ha
 | building_sources.tif | Which sources saw roof in the cell: 1 native + 2 FRACTAL + 4 Esri |
 | buildings.gdb/building_heights, building-heights.csv | 22,042 county footprints with roof height statistics and flags |
 | tree-count.gdb/city_treetops, city-treetops.csv | 527,140 treetops at least 2 m, with parcel ownership; OCT8 = SAME_CELL or NEW |
+| treetop-evidence.csv | Review evidence per treetop (roof edge, flat top, wire, pole, wall hints); 32,986 SUSPECT |
 | crowns.gdb/crowns, crowns.gdb/trees_review | 400,063 estimated crowns (TREE_ID, HEIGHT_M, CROWN_AREA_M2, CROWN_DIAM_M); treetops with crown status |
 | cover.gdb (zones, cover_rebuilt, cover_oct19), cover-comparison.csv | Canopy cover by zone, both canopies |
 | review/canopy_change.tif | Canopy at least 2 m since October 19: 1 both, 2 lost, 3 gained |
@@ -101,8 +102,9 @@ the pairwise dissolve, clip and erase tools, and a second native crash was resum
   from a 20 m halo) and stable when rerun with an 80 m halo ([tiled-crowns](tiled-crowns/README.md)). They are estimated
   canopy regions, not surveyed crowns: a broad tree can hold several, a clump of small trees can form one; 127,077 treetops
   have a crown under 3 m2 (CROWN_TOO_SMALL in trees_review).
-- The October 15 treetop evidence (SUSPECT flags) describes the October 8 treetops; its script is not in this repository,
-  so it has not been rerun on the new treetops.
+- Treetop evidence: the October 15 script was missing, so it was rebuilt from its manifest as `canopy/treetop_evidence.py`
+  and proven to reproduce all 607,972 October 15 rows byte for byte, then run on the new treetops: 32,986 SUSPECT (6.3%,
+  October 15: 15.1%) ([treetop-evidence](treetop-evidence/README.md)). Evidence for review, never labels.
 - Treetops are lidar detections, not a stem census: low or suppressed trees can be missed, broad trees can have several
   peaks, and ownership uses the treetop cell and the 2025-tax-year parcel snapshot.
 - The combined classification is model-assisted and provisional; the label figures above are training diagnostics on one

@@ -33,6 +33,8 @@ PRODUCTS = {   # library name: (source, what it is)
     "tree-count.gdb": (COUNT/"tree-count.gdb", "city_treetops: 527,140 treetops >= 2 m with ownership; OCT8 field"),
     "city-treetops.csv": (COUNT/"city-treetops.csv", "the same treetops as CSV"),
     "crowns.gdb": (RUNS/"crowns-20261022"/"crowns.gdb", "crowns (400,063) and trees_review, tiled crown method"),
+    "treetop-evidence.csv": (RUNS/"treetop-evidence-20261022"/"treetop-evidence.csv",
+                             "review evidence and SUSPECT flags for the treetops (treetop-evidence/2, rebuilt module)"),
     "cover.gdb": (COVER/"cover.gdb", "zones, cover_rebuilt and cover_oct19 (canopy.cover.summarize)"),
     "cover-comparison.csv": (COVER/"cover-comparison.csv", "cover by zone, October 19 against rebuilt"),
     "review/canopy_change.tif": (REBUILD/"canopy_change.tif", "canopy >= 2 m: 1 both, 2 lost, 3 gained since October 19"),
