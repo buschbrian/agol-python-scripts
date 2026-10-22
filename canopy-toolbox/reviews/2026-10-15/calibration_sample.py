@@ -1,6 +1,7 @@
 r"""Calibration sample for the treetop review evidence: a blind, stratified, seeded draw of city treetops to label.
 
-    python reviews/2026-10-15/calibration_sample.py draw PACKET_DIR [--seed 20261015]       plain or Pro Python
+    python reviews/2026-10-15/calibration_sample.py draw PACKET_DIR [--seed 20261015] [--evidence DIR] [--prefix C1]
+                                                                                            plain or Pro Python
     python reviews/2026-10-15/calibration_sample.py build-gdb PACKET_DIR                     Pro Python
     python reviews/2026-10-15/calibration_sample.py export-labels PACKET_DIR                 Pro Python
     python reviews/2026-10-15/calibration_sample.py score PACKET_DIR [--out score.json]      plain or Pro Python
@@ -12,8 +13,11 @@ draw         assigns every treetop in the evidence CSV to one stratum by priorit
              replacement, keeping drawn treetops at least 2.5 m apart. All drawn units are shuffled together, so the first
              k in review order are a random subsample of every stratum. Writes units.csv (blind: no flags, no stratum,
              no TREE_ID) and sample.json (strata, populations, seed, digests). Refuses an existing packet.
+             --evidence is the evidence run to draw from (default October 15's); --prefix starts each UNIT_ID.
+             Seen training units are every labelled unit of SEEN_PACKETS plus the audit 2 units, as of the draw.
 build-gdb    writes the blind point layer (LABEL has a coded domain of training_review.LABELS) and a LAS dataset of the
-             ORIGINAL delivery LAS (classes 1/2/7/18 only, so no baseline class can bias the reviewer) on the SSD.
+             ORIGINAL delivery LAS (classes 1/2/7/18 only, so no baseline class can bias the reviewer) on the SSD, in
+             calibration-PACKET beside the evidence CSV the sample was drawn from.
 export-labels  copies LABEL/REVIEWER/REVIEW_DATE/NOTE from that layer to PACKET_DIR/labels.csv, for the repo.
 score        joins labels.csv to sample.json. TREE is a real treetop; every other definite class is not; MIXED and
              UNSURE are reported apart and left out of the share. A stratum is MEASURED only with at least 30 definite
@@ -39,9 +43,17 @@ from canopy.lidar_root import lidar_root  # noqa: E402
 
 VALLEY = lidar_root()/"2023-salt-lake-valley"
 EVIDENCE = VALLEY/"runs"/"treetop-evidence-20261015"
-EVIDENCE_CSV = EVIDENCE/"treetop-evidence.csv"
-TRAINING_PACKET = VALLEY/"runs"/"pilot-2026-09-29"/"training-review"/"packet-20260929"/"packet.json"
+TRAINING_REVIEW = VALLEY/"runs"/"pilot-2026-09-29"/"training-review"
+TRAINING_PACKET = TRAINING_REVIEW/"packet-20260929"/"packet.json"
 TRAINING_LABELS = HERE.parent/"2026-09-29"/"packets"/"training-labels"/"labels-progress.csv"
+# (packet, repo label backup) for every packet a person labels; the first gives the evaluation frame.
+SEEN_PACKETS = (
+    (TRAINING_PACKET, TRAINING_LABELS),
+    (TRAINING_REVIEW/"packet-20261020-refined"/"packet.json",
+     HERE.parent/"2026-09-29"/"packets"/"training-labels-refined"/"labels-progress.csv"),
+    (TRAINING_REVIEW/"packet-20261020-rare"/"packet.json",
+     HERE.parent/"2026-09-29"/"packets"/"training-labels-rare"/"labels-progress.csv"),
+)
 AUDIT2_UNITS = HERE.parent/"2026-09-30"/"audit-2"/"audit-units.txt"
 DELIVERY_LAS = VALLEY/"las"
 
@@ -175,21 +187,32 @@ def sha256(path):
 
 
 def seen_training_units():
-    packet = json.loads(TRAINING_PACKET.read_text(encoding="utf-8"))
-    labelled = {r["UNIT_ID"] for r in read_csv(TRAINING_LABELS) if r["LABEL"].strip()}
+    """The evaluation frame, the seen (packet, UNIT_ID) pairs and their XY, over every packet in SEEN_PACKETS."""
     audit = {line.strip() for line in AUDIT2_UNITS.read_text().splitlines() if line.strip()}
-    seen = labelled | audit
-    xy = [(u["X"], u["Y"]) for u in packet["units"] if u["UNIT_ID"] in seen]
-    return packet["frame"], seen, xy
+    frame, seen, xy = None, set(), []
+    for packet_path, labels_path in SEEN_PACKETS:
+        packet = json.loads(packet_path.read_text(encoding="utf-8"))
+        if frame is None:
+            frame = packet["frame"]
+        elif packet["frame"]["digest"] != frame["digest"]:
+            raise ValueError(f"{packet_path} has a different evaluation frame")
+        ids = {r["UNIT_ID"] for r in read_csv(labels_path) if r["LABEL"].strip()}
+        if packet_path == TRAINING_PACKET:
+            ids |= audit
+        seen |= {(packet_path.parent.name, i) for i in ids}
+        xy += [(u["X"], u["Y"]) for u in packet["units"] if u["UNIT_ID"] in ids]
+    return frame, seen, xy
 
 
-def draw(packet_dir, seed):
+def draw(packet_dir, seed, evidence=EVIDENCE, prefix="C1"):
     packet_dir = Path(packet_dir).resolve()
     if packet_dir.exists():
         raise FileExistsError(f"Use a new packet folder: {packet_dir}")
+    evidence = Path(evidence)
+    evidence_csv = evidence/"treetop-evidence.csv"
     frame, seen, seen_xy = seen_training_units()
     tr.check_frame(frame)
-    rows = read_csv(EVIDENCE_CSV)
+    rows = read_csv(evidence_csv)
     x = np.array([float(r["X"]) for r in rows])
     y = np.array([float(r["Y"]) for r in rows])
     strata = np.array([stratum(r) for r in rows])
@@ -208,7 +231,7 @@ def draw(packet_dir, seed):
             units.append({"TREE_ID": rows[idx[j]]["TREE_ID"], "STRATUM": s, "row": int(idx[j])})
     for order, k in enumerate(rng.permutation(len(units)), 1):
         units[k]["ORDER"] = order
-        units[k]["UNIT_ID"] = f"C1-{order:04d}"
+        units[k]["UNIT_ID"] = f"{prefix}-{order:04d}"
     units.sort(key=lambda u: u["ORDER"])
     packet_dir.mkdir(parents=True)
     write_csv(packet_dir/"units.csv", UNIT_COLUMNS,
@@ -226,10 +249,11 @@ def draw(packet_dir, seed):
                   "pool, taking units at least MIN_SPACING_M from every unit already taken; then one shared "
                   "permutation gives the review order",
         "priority": list(PRIORITY), "strata": list(STRATA), "sizes": SIZES, "min_spacing_m": MIN_SPACING_M,
-        "evidence_csv": str(EVIDENCE_CSV), "evidence_csv_sha256": sha256(EVIDENCE_CSV),
-        "evidence_rules_version": json.loads((EVIDENCE/"manifest.json").read_text())["rules_version"],
+        "evidence_csv": str(evidence_csv), "evidence_csv_sha256": sha256(evidence_csv),
+        "evidence_rules_version": json.loads((evidence/"manifest.json").read_text())["rules_version"],
         "frame_source": str(TRAINING_PACKET), "frame_digest": frame["digest"], "frame_buffer_m": frame["buffer_m"],
         "top_radius_m": TOP_RADIUS_M, "seen_training_units": len(seen), "seen_radius_m": SEEN_RADIUS_M,
+        "seen_packets": [str(p) for p, _ in SEEN_PACKETS],
         "populations": {"citywide": {s: int(np.count_nonzero(strata == s)) for s in STRATA},
                         "eligible": {s: pools[s]["eligible"] for s in STRATA}},
         "pool_digests": {s: pools[s]["digest"] for s in STRATA}, "excluded": excluded,
@@ -242,11 +266,18 @@ def draw(packet_dir, seed):
                       "min_spacing_m": round(float(spacing), 2)}, indent=1))
 
 
+def calibration_dir(packet_dir):
+    """The packet's folder on the SSD, beside the evidence it was drawn from (by run name, so any drive letter works)."""
+    sample = json.loads((packet_dir/"sample.json").read_text())
+    run = Path(sample["evidence_csv"].replace("\\", "/")).parent.name
+    return VALLEY/"runs"/run/f"calibration-{packet_dir.name}"
+
+
 def build_gdb(packet_dir):
     import arcpy
     packet_dir = Path(packet_dir).resolve()
     sample = json.loads((packet_dir/"sample.json").read_text())
-    out = EVIDENCE/f"calibration-{packet_dir.name}"
+    out = calibration_dir(packet_dir)
     if out.exists():
         raise FileExistsError(out)
     out.mkdir()
@@ -293,7 +324,7 @@ def build_gdb(packet_dir):
 def export_labels(packet_dir):
     import arcpy
     packet_dir = Path(packet_dir).resolve()
-    fc = str(EVIDENCE/f"calibration-{packet_dir.name}"/"calibration.gdb"/"calibration_units")
+    fc = str(calibration_dir(packet_dir)/"calibration.gdb"/"calibration_units")
     rows = sorted(({"UNIT_ID": r[0], "LABEL": r[1] or "", "REVIEWER": r[2] or "", "REVIEW_DATE": r[3] or "",
                     "NOTE": r[4] or ""} for r in arcpy.da.SearchCursor(fc, LABEL_COLUMNS)), key=lambda r: r["UNIT_ID"])
     bad = sorted({r["LABEL"] for r in rows if r["LABEL"] and r["LABEL"] not in tr.LABELS})
@@ -321,8 +352,10 @@ def main(argv=None):
     p.add_argument("packet", type=Path)
     p.add_argument("--seed", type=int, default=20261015)
     p.add_argument("--out", type=Path)
+    p.add_argument("--evidence", type=Path, default=EVIDENCE, help="evidence run folder to draw from")
+    p.add_argument("--prefix", default="C1", help="UNIT_ID prefix")
     a = p.parse_args(argv)
-    {"draw": lambda: draw(a.packet, a.seed), "build-gdb": lambda: build_gdb(a.packet),
+    {"draw": lambda: draw(a.packet, a.seed, a.evidence, a.prefix), "build-gdb": lambda: build_gdb(a.packet),
      "export-labels": lambda: export_labels(a.packet), "score": lambda: score_command(a.packet, a.out)}[a.step]()
 
 

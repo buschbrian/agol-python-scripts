@@ -31,7 +31,8 @@ or plain Python with GDAL, not the A4000. The Myria3D environment and the patche
 are only needed to rerun FRACTAL.
 
 **Open (Brian's choice):** publish or share October 22 products (a manual staff step: live GIS data is never written from
-here); review the 32,986 SUSPECT treetops; a building-only fine-tune (the one place fine-tuning helped); the smaller items below.
+here); review the 32,986 SUSPECT treetops (the blind
+[calibration sample 2](../2026-10-22/packets/treetop-calibration-2/README.md), 350 points, is built and ready to label in Pro); a building-only fine-tune (the one place fine-tuning helped); the smaller items below.
 
 **Smaller open items:** relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
 with the imagery map; batch-1 control of the Esri model on 12TVL2804. These can be deleted: the working arrays in

@@ -1,5 +1,10 @@
 # Treetop calibration sample 1 (350 treetops, blind)
 
+**Superseded on October 22, never labelled.** Label [calibration sample 2](../../../2026-10-22/packets/treetop-calibration-2/README.md)
+instead: it is drawn from the October 22 treetops and flags. Only 157 of these 350 points are still treetops on October 22
+(at the same spot and height); the other 193 were removed by the rebuilt count. That is a count of what changed, not a
+measure of accuracy. Its layer and LAS dataset stay on the SSD.
+
 These units measure how often each [treetop evidence](../../TREETOP_EVIDENCE.md) flag is right. They were drawn at
 random (seed 20261015) from the October 8 city treetops, stratified by flag, at least 25 m + 1 m from every evaluation
 unit and census plot, outside 12TVL3302 and 12TVL2203 with their halos, more than 3 m from any training unit a person has

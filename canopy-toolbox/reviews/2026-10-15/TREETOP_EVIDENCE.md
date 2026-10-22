@@ -121,6 +121,8 @@ Profile script and output: [pilot_feature_profile.py](pilot_feature_profile.py),
    holdout tiles. See [packets/treetop-calibration-1/README.md](packets/treetop-calibration-1/README.md) and
    [calibration_sample.py](calibration_sample.py). Labelling it gives the first measured rate for each flag and the
    shape-gate calibration sample the 30 September handoff asked for. Batch 1 is not used.
+   *Superseded on October 22, never labelled:* label
+   [calibration sample 2](../2026-10-22/packets/treetop-calibration-2/README.md), drawn from the October 22 treetops.
 2. **Esri Power Line Classification** pretrained model ([Esri](https://doc.arcgis.com/en/pretrained-models/latest/point-cloud/introduction-to-power-line-classification.htm)):
    RandLA-Net, X/Y/Z only, wires 14, poles 15, published validation F1 0.946 for wires and 0.622 for poles, 8 GB
    GPU recommended. It runs through Classify Point Cloud Using Trained Model, so it is the in-licence route for wires
