@@ -107,14 +107,16 @@ def tile_rows_cols(tile, g):
     return max(r0, 0), min(r1, g["rows"]), max(c0, 0), min(c1, g["cols"])
 
 
-def rasters(arrays, version, g, r0, r1):
-    """CHM, observed, support and occlusion rows for one version, before the city mask (canopy.rasters.build_chm)."""
+def rasters(arrays, version, g, r0, r1, terrain=None):
+    """CHM, observed, support and occlusion rows for one version, before the city mask (canopy.rasters.build_chm).
+    terrain: the terrain raster on the same grid; October 19's city-clipped terrain_m.tif by default, terrain_context.tif for
+    the October 8 count's canonical CHM (city plus a 20 m margin)."""
     sl = slice(r0*g["cols"], r1*g["cols"])
     shape = (r1-r0, g["cols"])
     veg = arrays[version]["veg"][sl].reshape(shape)
     bld = arrays[version]["bld"][sl].reshape(shape)
     non = arrays[version]["non"][sl].reshape(shape) == 1
-    dtm = cr.read_rows(cr.OCT19/"terrain_m.tif", r0, r1).astype(np.float32)
+    dtm = cr.read_rows(terrain or cr.OCT19/"terrain_m.tif", r0, r1).astype(np.float32)
     has_dtm = dtm > -1e30
     has_veg, has_bld = ~np.isnan(veg), ~np.isnan(bld)
     occluded = has_bld & has_veg & (bld > veg+CLEARANCE_M)

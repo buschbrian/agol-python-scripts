@@ -17,17 +17,21 @@ canopy cells at 2 m; 87,747 of the 607,972 October 8 treetops (14.4%) would no l
 on October 15 (6.2% of those kept); tree labels called vegetation 95.9% (native 88.9%). Both products sit beside the
 October ones; nothing has been replaced.
 
-**Next task: Brian's review, then treetops and crowns.**
-1. Brian reviews in Pro: `runs\canopy-rebuild-20261022\canopy_change.tif` (1 kept, 2 lost, 3 gained) over imagery, and
-   `treetops-canopy.csv` (XY event layer, EPSG 6341) by STATUS and SUSPECT_OCT15, starting with BUILDING and NO_VEGETATION.
-2. If he accepts the rebuilt canopy: re-detect treetops and crowns on its `chm_m.tif` with canopy/treetops.py and
-   canopy/crowns.py (ArcGIS Pro; the October 8 count's settings in [CITY_COUNT.md](../2026-10-08/CITY_COUNT.md)), recompute
-   cover, compare with the October 8 count, and decide what replaces it. Also decide whether the consensus building layer
-   replaces October 19's.
+**Also October 22: treetops recounted on the rebuilt canopy** (Brian: go ahead) by the October 8 method, its input proven
+identical on the native classes: **527,140 treetops** (October 8: 607,972; private 387,414, public 72,828, no parcel 48,697,
+uncertain 18,201) in `runs\city-count-20261022`. Of the 92,668 removed with no replacement nearby, 68% were October 15
+SUSPECT. **Crowns:** bounded to 4 M cells, so only a pilot on 12TVL2804 (October 8 and rebuilt side by side,
+`runs\crowns-pilot-20261022\crowns.gdb`): crowns 9,719 to 9,083, too-small crowns 4,859 to 2,618, crown area -1%.
+
+**Next task: Brian's review and decisions** ([canopy-rebuild/README.md](../2026-10-22/canopy-rebuild/README.md), "Next"):
+1. In Pro: the new `city_treetops` beside October 8's (field OCT8), `treetop-changes.csv`, `canopy_change.tif`, and the
+   12TVL2804 crowns.
+2. Decide whether the rebuilt count and the consensus building layer replace the October products; whether to build and
+   validate a tiled crown method for citywide crowns; then cover by zone on the rebuilt canopy (canopy/cover.py).
 Before a heavy job: quit ChatGPT, Teams and Chrome from the tray (section 5). Rerun any single odd result once before
 believing it (memory fault seen October 21).
 
-**Smaller open items:** relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
+**Smaller open items:** the working arrays and binaries (`runsnopy-rebuild-20261022work`, about 5 GB; `runs	ty-count-20261022nonical-chm-native.bin` and the `.failed-1`/`.failed-2` folders) can be deleted; relabel Q2-0010 for the official audit-2 score; the 46 UNSURE rare-class answers could be rechecked
 with the imagery map; batch-1 control of the Esri model on 12TVL2804; the working arrays in `runs\roof-consensus-20261021\work` (4.8 GB) and
 `runs\canopy-rebuild-20261022\work` (about 5 GB) can be deleted.
 
