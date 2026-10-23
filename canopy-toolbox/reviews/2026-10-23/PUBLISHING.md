@@ -93,6 +93,11 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   Checked online: 22,042 buildings (21,562 with a roof height) and 13 zones, Web Mercator, field aliases kept, city canopy
   25.59%, positions identical to the local file, summary carries the warning. Hosted size 21.5 MB (about 5 credits a month
   at 2.4 credits per 10 MB).
+- `slope`, October 23: Vector Tile Service `3b5b1a9110f14e93af68752be89e0df2` (package item
+  `bec13573a71c4df2b4642fda4a559021`). Checked online: Web Mercator, 512-pixel tiles, levels 0-17; the style's six fill
+  layers carry the class labels and YlOrRd colours in order; 16 tiles fetched at levels 10, 13, 15 and 16 are byte for byte
+  the package's (the package's deepest level is 16 here; clients overzoom). Hosted size 22.6 MB (under 0.1 credits a month).
+  Checking an online tile needs the signed-in session (`gis.session`); `GIS("pro")` gives no token for plain requests.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
