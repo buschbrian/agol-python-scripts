@@ -41,13 +41,17 @@ translates the two sources' georeferencing by the transformation's 1.197 m offse
 no cell changes. The October 22 packages (`runs\tiles-20261022`) are superseded and left on the SSD. The feature layers
 are now projected to Web Mercator with the same transformation before upload (`runs\hosting-features-20261023`).
 
-### Brian's decisions (from the plan, still open)
-1. **Cloud bucket** for the COGs: **Azure** (Brian, October 23), the city's own subscription. Proposal in section 3.
-2. **ArcGIS Image for ArcGIS Online**: gates the COGs as hosted imagery with pixel values and online raster analysis. The
-   web-app route from a bucket does not need it.
-3. **Audience per product** (public or internal), below.
-4. **Slope cleanup**: keep the 4 m2 minimum mapping unit (129,352 polygons; middle classes lose up to 15% of their area,
-   the "steeper than" areas hold within 0.54 points) or publish the uncleaned classes (924,458 polygons).
+### Brian's decisions (made October 23)
+1. **Cloud bucket** for the COGs: **Azure**, the city's own subscription, in a new storage account with a **public-read
+   container** and CORS for the city's sites (proposal in section 3). The Azure CLI and AzCopy may be installed with winget.
+2. **ArcGIS Image for ArcGIS Online: not now.** The web-app route from Azure does not need it; revisit when someone needs
+   raster analysis online.
+3. **Audience:** public for terrain, slope classes, hillshade, contours, LOD1.2 buildings and the canopy cover zones (with
+   the building heights). **Staff only** for treetops and crowns until the SUSPECT review, for the LOD2.0 roofs, and for the
+   Overture and address disagreement layers. Each layer is shared only after it has been checked online.
+4. **Slope cleanup:** publish the 4 m2 minimum mapping unit version (129,352 polygons). The uncleaned classes (924,458
+   polygons) only if someone needs exact class areas.
+5. **Uploads:** run from the repo with `upload.py`, one item at a time, each checked before Brian approves the next.
 
 ### Not ready to go public
 - The **LOD2.0 roofs** are marked experimental, not checked against roof shapes. LOD1.2 is the one to publish.
@@ -70,6 +74,13 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
 | 5 | `buildings_lod12.slpk` | hosted scene layer | 9 MB | < 0.1 |
 | 6 | `millcreek_terrain_20261023.tpkx` | hosted elevation layer | 228 MB | about 0.3 |
 | 7 | the 16 COGs | Azure Blob storage (below), then a web app | 4 GB | Azure, not credits |
+
+**Uploaded so far** (account GISMillcreek, folder Millcreek LiDAR 2023, all private; full log in
+`runs\hosting-uploads\uploads.json`):
+- `features`, October 23: Feature Service `d5effaee6c66497eaeb64e4c2e0f496e` (package item `ee182c9a7eec4994b7e19d2be8dd27b5`).
+  Checked online: 22,042 buildings (21,562 with a roof height) and 13 zones, Web Mercator, field aliases kept, city canopy
+  25.59%, positions identical to the local file, summary carries the warning. Hosted size 21.5 MB (about 5 credits a month
+  at 2.4 credits per 10 MB).
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
