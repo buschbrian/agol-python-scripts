@@ -58,6 +58,8 @@ are now projected to Web Mercator with the same transformation before upload (`r
    (create the storage, open public read, upload the COGs). The layers get professional styling (symbology, blend modes,
    legends) and full item text (summaries, descriptions, tags, a data dictionary), done from the repo. The uploaded package
    items cannot simply be deleted because the hosted layers depend on them; what to do with them is to be worked out.
+   SSD cleanup approved: about 21 GB of superseded and working files moved into
+   `runs\_to-delete-20261023` (its README.txt lists each); Brian deletes that folder.
 
 ### Overture licences (checked October 23)
 From `Z:\GIS\overture\2026-10-21.0\millcreek\LICENSES.md` (the Overture comparison session; not legal advice):
