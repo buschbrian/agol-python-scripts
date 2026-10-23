@@ -24,7 +24,7 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Citywide crowns in tiles (canopy.crowns.segment, measured halo, every peak as a seed): reviews/2026-10-22/tiled-crowns.
 - Citywide terrain products (slope, aspect, curvature, hillshade, terrain position, contours; planning.terrain's calls on the whole grid, proven equal on a window): reviews/2026-10-22/terrain-city.
 - 3D building massing (Extract LOD2 Buildings on the consensus roof surface; LOD1.2 blocks and LOD2.0 roofs): reviews/2026-10-22/massing.
-- Hosting the products for web GIS (plan, publish-ready feature layers, building scene layer packages; nothing is uploaded from here): reviews/2026-10-22/hosting.
+- Hosting the products for web GIS (plan, publish-ready feature layers in Web Mercator on the ITRF08 datum, building scene layer packages): reviews/2026-10-22/hosting. Uploads go through reviews/2026-10-22/hosting/upload/upload.py, one item per command and only with `--go` on Brian's word; never share or delete from here. Status, Azure plan for the COGs and app ideas: reviews/2026-10-23/PUBLISHING.md.
 - Cloud-optimised GeoTIFF masters of the 0.5 m rasters for a cloud bucket (lossless, every cell proven equal; not uploaded),
   the compression trial, and the local ArcGIS Maps SDK float-COG trial page with its range/CORS server: reviews/2026-10-22/hosting/cogs.
 - Slope in 6 classes as polygons and a vector tile package (4 m2 minimum mapping unit, areas proven against the raster): reviews/2026-10-22/slope-tiles. Vector tile packages of treetops, crowns and contours, scripting a Pro map without the UI, upload steps and credit cost: reviews/2026-10-22/hosting/vector-tiles.

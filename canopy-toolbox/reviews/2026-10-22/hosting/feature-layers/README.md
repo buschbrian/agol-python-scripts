@@ -1,9 +1,12 @@
-# Publish-ready feature layers (hosting plan step 2, October 22, 2026)
+# Publish-ready feature layers (hosting plan step 2, October 22, 2026; projected October 23)
 
 Two small layers for ArcGIS Online, prepared by [prepare_features.py](prepare_features.py) from the October 22 library and
 checked against it. **Not uploaded:** publishing them is Brian's step ([PLAN.md](../PLAN.md)).
 
-Output: `<SSD>\lidar\2023-salt-lake-valley\runs\hosting-features-20261022\features.gdb` (record: `features.json`, copied here).
+Output: `<SSD>\lidar\2023-salt-lake-valley\runs\hosting-features-20261023\features.gdb` (record: `features.json`, copied
+here), in **Web Mercator (EPSG 3857)**, projected with `WGS_1984_(ITRF08)_To_NAD_1983_2011`, the transformation every
+other hosted package carries, so ArcGIS Online never has to choose one. The EPSG 6341 copies are beside it in `work.gdb`.
+The October 22 build (`hosting-features-20261022`, EPSG 6341) is superseded.
 
 | Layer | Features | What changed from the library |
 |---|---:|---|
@@ -16,9 +19,14 @@ Both carry the estimate warning in their metadata. Coordinates stay EPSG 6341; A
 - buildings: 22,042 in, 22,042 out, keyed by SOURCE_OID; every copied attribute and every geometry (WKB) equal to the
   library's: 0 rows differ.
 - canopy_cover_zones: 13 zones, canopy % and zone acres equal to cover-comparison.csv for all 13.
+- **Projection** (`checks.projection`): every vertex of every output shape is within 0.07 mm of Esri's own projection
+  of the source with the ITRF08 transformation, and at least 1.578 m from its projection without one, for all 22,042
+  buildings and 13 zones (no vertex count differs). No attribute changed in projecting, and the metadata summary
+  carries the estimate warning.
 
 ## To publish (Brian)
-In ArcGIS Pro, signed in to the city's ArcGIS Online organisation: add both layers to a map, set the symbology, then Share >
-Web Layer > Feature, one layer each (or both in one service), sharing set to your organisation or the public as decided. Both
-are small (a few MB), so hosted feature-layer storage is a few credits a month (research: 2.4 credits per 10 MB per month;
-check Esri's credits page). Check the metadata summary carries the estimate warning on the item page.
+`upload.py features --go` ([upload](../upload/README.md)) publishes both layers as one hosted feature service, private
+to you. Or in ArcGIS Pro, signed in to the city's ArcGIS Online organisation: add both layers to a map, set the symbology,
+then Share > Web Layer > Feature. Both are small (7.8 MB), so hosted feature-layer storage is a few credits a month
+(research: 2.4 credits per 10 MB per month; check Esri's credits page). Check the metadata summary carries the estimate
+warning on the item page.

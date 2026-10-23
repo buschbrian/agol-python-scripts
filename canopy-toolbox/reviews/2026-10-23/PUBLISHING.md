@@ -24,7 +24,7 @@ on October 23; the only conflicts were the one-line entries in `AGENTS.md`, all 
 
 ## 2. Open before publishing
 
-### Datum: resolved October 23 (except the feature layers)
+### Datum: resolved October 23
 The packages did not all take NAD83(2011) to WGS84 / Web Mercator the same way: the hillshade and terrain `.tpkx` used no
 transformation and sat **1.197 m on the ground** (1.58 m in Web Mercator) from the buildings and vector tiles. They were
 rebuilt on October 23 to match; every packaged layer now carries the same transformation, each proven from its own output:
@@ -34,16 +34,15 @@ rebuilt on October 23 to match; every packaged layer now carries the same transf
 | Building scene layers (.slpk) | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | named in `make_slpk.py` and passed to the tool |
 | Vector tiles (slope, treetops, crowns, contours) | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | read from the tiles: vertices 6 cm from the transformed source, 0.7-1.6 m from the untransformed ([vector-tiles](../2026-10-22/hosting/vector-tiles/README.md#datum)) |
 | Hillshade and terrain (.tpkx), rebuilt | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | read from the tiles: steep terrain within 0.012 m transformed, 2.8 m untransformed ([tiles](../2026-10-22/hosting/tiles/README.md#datum-rebuilt-october-23)) |
-| Feature layers (features.gdb, EPSG 6341) | decided by ArcGIS Online when it projects them | not tested |
+| Feature layers (features.gdb), reprojected | `WGS_1984_(ITRF08)_To_NAD_1983_2011`, to Web Mercator before upload | every vertex within 0.07 mm of Esri's transformed projection, 1.58 m from the untransformed ([feature-layers](../2026-10-22/hosting/feature-layers/README.md)) |
 
 Manage Tile Cache ignores transformation settings and an elevation cache refuses a map as its source, so the rebuild
 translates the two sources' georeferencing by the transformation's 1.197 m offset (constant to 0.81 mm over the mosaic);
-no cell changes. The October 22 packages (`runs\tiles-20261022`) are superseded and left on the SSD. For the feature
-layers, publish them projected to Web Mercator with the same transformation, or check them against the vector tiles in Map
-Viewer after upload.
+no cell changes. The October 22 packages (`runs\tiles-20261022`) are superseded and left on the SSD. The feature layers
+are now projected to Web Mercator with the same transformation before upload (`runs\hosting-features-20261023`).
 
 ### Brian's decisions (from the plan, still open)
-1. **Cloud bucket** for the COGs (R2, S3, Azure or the city's). Gates only the COGs.
+1. **Cloud bucket** for the COGs: **Azure** (Brian, October 23), the city's own subscription. Proposal in section 3.
 2. **ArcGIS Image for ArcGIS Online**: gates the COGs as hosted imagery with pixel values and online raster analysis. The
    web-app route from a bucket does not need it.
 3. **Audience per product** (public or internal), below.
@@ -58,20 +57,47 @@ Viewer after upload.
 - Treetops and crowns are unvalidated detections; the 32,986 SUSPECT treetops and calibration sample 2 are unreviewed.
 
 ## 3. Uploading
-Ready for the browser upload now (Content > New item > Your device), each with written steps in its README:
+[upload.py](../2026-10-22/hosting/upload/README.md) uploads and publishes one item per command, only with `--go`, private
+to you, never sharing or deleting (`upload.py list` shows the status). Each README also has the browser steps
+(Content > New item > Your device).
 
 | Order | Item | Becomes | Size | Credits a month (Esri rates read October 22) |
 |---:|---|---|---:|---:|
-| 1 | `features.gdb` (via Pro, Share > Web Layer) | hosted feature layers: buildings, cover zones | a few MB | a few |
+| 1 | `features.gdb` (`upload.py features`) | hosted feature layers: buildings, cover zones | 7.8 MB | a few |
 | 2 | `millcreek_slope_classes.vtpk`, `millcreek_contours.vtpk` | hosted vector tile layers | 29 MB | < 0.1 |
 | 3 | `millcreek_hillshade_20261023.tpkx` | hosted tile layer | 134 MB | about 0.2 |
 | 4 | `millcreek_treetops.vtpk`, `millcreek_crowns.vtpk` | hosted vector tile layers | 42 MB | < 0.1 |
 | 5 | `buildings_lod12.slpk` | hosted scene layer | 9 MB | < 0.1 |
 | 6 | `millcreek_terrain_20261023.tpkx` | hosted elevation layer | 228 MB | about 0.3 |
-| 7 | the 16 COGs | bucket, then a web app or ArcGIS Image | 4 GB | decision 1 or 2 |
+| 7 | the 16 COGs | Azure Blob storage (below), then a web app | 4 GB | Azure, not credits |
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
+
+### The COGs on the city's Azure (proposal; nothing created)
+The city's estate ([millcreek-azure](https://github.com/buschbrian/millcreek-azure)) is one subscription, *Azure Cloud –
+Brian (Application Development)*, with Brian as its only Owner. Its one storage account, `stmillcreekpipeline`, holds the
+minutes pipeline's file share and has public blob access off, so the COGs get their own account rather than loosening that one:
+- **A new resource group and account**, for example `rg-millcreek-lidar` and `stmillcreeklidar` in westus3 beside the
+  rest: StorageV2, Standard LRS, hot tier, HTTPS only, TLS 1.2. One container, `cogs`, under the dated prefix
+  `millcreek-lidar/20261022/` the COG README's recipes already use.
+- **Read access:** public read on that container only (the account must allow blob public access), or private with a
+  long-lived read-only SAS in the web app. Public is simplest for a public viewer; these are planning products, not
+  sensitive data, but it is the city's call.
+- **CORS** on the blob service: GET, HEAD and OPTIONS from the city's web origins (`https://*.gis.millcreekut.gov`,
+  `https://*.arcgis.com`, and `*` only while testing), allowing the `Range` header and exposing `Content-Range`,
+  `Accept-Ranges`, `Content-Length` and `ETag`, exactly as the local trial server sent them.
+- **A friendly address** later: `lidar.gis.millcreekut.gov` in the city's zone. Blob storage serves a custom domain only over
+  HTTP, so HTTPS on it needs Azure Front Door (or a CDN profile) in front; the plain `blob.core.windows.net` address works
+  over HTTPS without it.
+- **Cost:** about 4 GB of hot LRS storage is well under a dollar a month; reads are billed as egress after Azure's
+  monthly free allowance, and a viewer reads one tile at a time (the trial's full-city first draw was 1.2 MB).
+- **Tools:** neither the Azure CLI nor AzCopy is installed on the laptop. The upload is the AzCopy recipe in the
+  [COG README](../2026-10-22/hosting/cogs/README.md#uploading-once-brian-picks-a-bucket), followed by the range-request check
+  there. The new account and its settings should go into `millcreek-azure`'s inventory and runbooks like the rest of the
+  estate.
+
+Creating the account, opening public read and uploading are each Brian's go-ahead.
 
 The uploads can also be scripted with the ArcGIS API for Python (`gis.content.add` then `publish`), in the same way
 `add_badelf_fields_to_agol.py` connects (`GIS(url, username, password)`), so each one is a single command run on Brian's
