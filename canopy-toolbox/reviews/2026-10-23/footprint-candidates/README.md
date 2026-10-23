@@ -16,6 +16,7 @@ Output: `H:\lidar\2023-salt-lake-valley\runs\footprint-candidates-20261023` (EPS
 | massing/massing.gdb/lod12 | 1,265 LOD1.2 blocks for the 1,264 candidates (FP_ID = the candidate's OBJECTID) |
 | massing-pilot/ | The 20-candidate pilot |
 | candidates.json, method-check.json, massing/massing.json | Run records; copies here, with massing-pilot.json |
+| old-set.json | The 08:30 set against this one: ids that stayed out, left and joined (copy here) |
 | superseded/ | Two earlier passes of this run (see Method); not for use |
 
 ## 1,264, not 1,219
@@ -25,6 +26,16 @@ footprints. Projected with `WGS_1984_(ITRF08)_To_NAD_1983_2011`, as the county f
 1,264 Overture-only buildings sit on a LiDAR roof. The comparison's README says to use only the rerun's files, so this
 layer is the 1,264. Its outlines are projected here the same way from `buildings.parquet`, and they equal the comparison's
 outlines exactly (Hausdorff distance 0 on all 1,264).
+
+**Of the original 1,219, 1,211 stayed, 8 left and 53 joined** ([old_set.py](old_set.py), `old-set.json` with the ids).
+The rerun overwrote the 08:30 GeoPackage, so the old set was rebuilt here with GeoPandas' default projection and the
+comparison script's own zonal and matching code, imported read-only. The rebuild reproduces the 08:30 README's
+MATCH × LIDAR table in all 12 cells. The same code on the ITRF08 projection gives every building the same classes as
+the rerun's GeoPackage.
+- **Left (8):** 6 now overlap a county footprint by at least 10% (PARTIAL), so they were county buildings seen 1.2 m
+  off. 2 now have under 50% roof (SOME_ROOF).
+- **Joined (53):** 27 had overlapped a county footprint only because of the shift (PARTIAL at 08:30), and 26 had under
+  50% roof under the shifted outline (SOME_ROOF). 30 are Microsoft ML only, 17 OSM only and 6 both.
 
 ## Method
 - **Selection:** `overture_vs_lidar.gpkg / overture_buildings` where MATCH = OVERTURE_ONLY (no county footprint covers
