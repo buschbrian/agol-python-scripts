@@ -1,7 +1,7 @@
 {
  "schema": "cog-web-trial/1",
  "date": "2026-10-22",
- "browser": "Playwright Chromium (headless pane hidden in the Claude app throttles timers, so it was not used for timings)",
+ "browser": "Playwright Chromium. The Claude app browser pane also runs the page, but throttles it while hidden, so it was not used for the recorded runs.",
  "server": "web/serve.py on 127.0.0.1: page on :8791, COGs on :8792 (cross-origin, Range + CORS, Cache-Control: no-store)",
  "points": "web/points.json (cell centres in EPSG:6341, values read by GDAL from the source raster)",
  "master_timings_ms": [
