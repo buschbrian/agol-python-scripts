@@ -1,0 +1,113 @@
+{
+ "version": 8,
+ "sprite": "../sprites/sprite",
+ "glyphs": "../fonts/{fontstack}/{range}.pbf",
+ "sources": {
+  "esri": {
+   "type": "vector",
+   "attribution": "Millcreek GIS from the 2023 Salt Lake Valley QL1 lidar",
+   "bounds": [
+    -111.921,
+    40.6587,
+    -111.776,
+    40.7146
+   ],
+   "minzoom": 0,
+   "maxzoom": 17,
+   "scheme": "xyz",
+   "url": "../../"
+  }
+ },
+ "layers": [
+  {
+   "id": "Slope classes/Under 10%/1",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Slope classes",
+   "filter": [
+    "==",
+    "_symbol",
+    0
+   ],
+   "layout": {},
+   "paint": {
+    "fill-color": "#FFFFB2"
+   }
+  },
+  {
+   "id": "Slope classes/10% to 15%/1",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Slope classes",
+   "filter": [
+    "==",
+    "_symbol",
+    1
+   ],
+   "layout": {},
+   "paint": {
+    "fill-color": "#FED976"
+   }
+  },
+  {
+   "id": "Slope classes/15% to 20%/1",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Slope classes",
+   "filter": [
+    "==",
+    "_symbol",
+    2
+   ],
+   "layout": {},
+   "paint": {
+    "fill-color": "#FEB24C"
+   }
+  },
+  {
+   "id": "Slope classes/20% to 25%/1",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Slope classes",
+   "filter": [
+    "==",
+    "_symbol",
+    3
+   ],
+   "layout": {},
+   "paint": {
+    "fill-color": "#FD8D3C"
+   }
+  },
+  {
+   "id": "Slope classes/25% to 30%/1",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Slope classes",
+   "filter": [
+    "==",
+    "_symbol",
+    4
+   ],
+   "layout": {},
+   "paint": {
+    "fill-color": "#F03B20"
+   }
+  },
+  {
+   "id": "Slope classes/30% and over/1",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Slope classes",
+   "filter": [
+    "==",
+    "_symbol",
+    5
+   ],
+   "layout": {},
+   "paint": {
+    "fill-color": "#BD0026"
+   }
+  }
+ ]
+}

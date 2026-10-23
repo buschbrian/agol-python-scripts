@@ -1,0 +1,22 @@
+{
+ "buildings": {
+  "id": "504554bd5a9545559db06aa6098e8e49",
+  "title": "Millcreek buildings",
+  "type": "Web Map"
+ },
+ "in-3d": {
+  "id": "5b5bdf4a63c9466fad5884039aa7357f",
+  "title": "Millcreek in 3D",
+  "type": "Web Scene"
+ },
+ "terrain-and-slope": {
+  "id": "177bfc592415451585ba72ab9207b3c6",
+  "title": "Millcreek terrain and slope",
+  "type": "Web Map"
+ },
+ "tree-canopy": {
+  "id": "e5efa719691045849108553394448f35",
+  "title": "Millcreek tree canopy",
+  "type": "Web Map"
+ }
+}
