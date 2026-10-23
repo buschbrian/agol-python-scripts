@@ -73,5 +73,5 @@ was checked, and the exact upload step written out for Brian.
 - Step 2 ready (October 22): [feature-layers](feature-layers/README.md), 22,042 buildings and 13 canopy zones, checked equal to the library.
 - Step 3 ready (October 22): [scene-layers](scene-layers/README.md), 21,561 buildings in each of two packages (9.2 and 19.3 MB),
   from the citywide [massing](../massing/README.md).
-- October 23: steps 1, 4, 5 and 6 are also built and verified, on their own branches. The roll-up, a datum mismatch
+- October 23: steps 1, 4, 5 and 6 are also built and verified, and their branches are merged here. The roll-up, a datum mismatch
   between the packages, the upload order and app ideas are in [PUBLISHING.md](../../2026-10-23/PUBLISHING.md).

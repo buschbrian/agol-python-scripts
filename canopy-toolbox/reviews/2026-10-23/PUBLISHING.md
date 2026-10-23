@@ -8,19 +8,19 @@ records; it reruns nothing. **Nothing has been uploaded, published or shared.**
 Every step of the [hosting plan](../2026-10-22/hosting/PLAN.md) is built and verified locally, and every output is on the
 SSD (H: on the laptop, under `lidar\2023-salt-lake-valley\runs`). Checked on disk this morning.
 
-| Plan step | Product | Run folder | Size | Record (branch) |
+| Plan step | Product | Run folder | Size | Record |
 |---|---|---|---:|---|
-| Terrain | slope, aspect, curvature, hillshade, terrain position, 2 m contours at 0.5 m | `terrain-city-20261022` | 16 GB | [terrain-city](../2026-10-22/terrain-city/README.md) (here) |
-| 1 | 16 COG masters, lossless, all verified cell for cell | `cog-20261022` | 4.0 GB of COGs | `hosting/cogs/README.md` (`claude/cog-masters-7bc671`) |
-| 2 | Feature layers: 22,042 buildings, 13 canopy cover zones | `hosting-features-20261022\features.gdb` | 76 MB | [feature-layers](../2026-10-22/hosting/feature-layers/README.md) (here) |
-| 3 | Building scene layers, LOD1.2 blocks and LOD2.0 roofs | `scene-layers-20261022` | 9 + 19 MB | [scene-layers](../2026-10-22/hosting/scene-layers/README.md) (here) |
-| 4 | Vector tiles: slope classes (129,352 polygons), treetops, crowns, contours | `slope-tiles-20261022`, `vector-tiles-20261022` | 71 MB | `hosting/vector-tiles/README.md`, `slope-tiles/README.md` (`claude/slope-vector-tiles-d3ff56`) |
-| 5 | Hillshade tile package, terrain elevation package (LERC 0.01 m) | `tiles-20261022` | 134 + 228 MB | `hosting/tiles/README.md` (`claude/tiles-elevation-148a15`) |
-| 6 | Float COG in an ArcGIS Maps SDK page: draws, exact identify, class renderer | (local servers) | | `hosting/cogs/README.md` (`claude/cog-masters-7bc671`) |
+| Terrain | slope, aspect, curvature, hillshade, terrain position, 2 m contours at 0.5 m | `terrain-city-20261022` | 16 GB | [terrain-city](../2026-10-22/terrain-city/README.md) |
+| 1 | 16 COG masters, lossless, all verified cell for cell | `cog-20261022` | 4.0 GB of COGs | [cogs](../2026-10-22/hosting/cogs/README.md) |
+| 2 | Feature layers: 22,042 buildings, 13 canopy cover zones | `hosting-features-20261022\features.gdb` | 76 MB | [feature-layers](../2026-10-22/hosting/feature-layers/README.md) |
+| 3 | Building scene layers, LOD1.2 blocks and LOD2.0 roofs | `scene-layers-20261022` | 9 + 19 MB | [scene-layers](../2026-10-22/hosting/scene-layers/README.md) |
+| 4 | Vector tiles: slope classes (129,352 polygons), treetops, crowns, contours | `slope-tiles-20261022`, `vector-tiles-20261022` | 71 MB | [vector-tiles](../2026-10-22/hosting/vector-tiles/README.md), [slope-tiles](../2026-10-22/slope-tiles/README.md) |
+| 5 | Hillshade tile package, terrain elevation package (LERC 0.01 m) | `tiles-20261022` | 134 + 228 MB | [tiles](../2026-10-22/hosting/tiles/README.md) |
+| 6 | Float COG in an ArcGIS Maps SDK page: draws, exact identify, class renderer | (local servers) | | [cogs](../2026-10-22/hosting/cogs/README.md#web-trial-slope-percent-in-the-arcgis-maps-sdk) |
 
-The records of steps 1, 4, 5 and 6 are on three side branches, all forked from `7ecffe4` and not yet merged into
-`canopy/classification-refinement`. Each adds its own folder under `reviews/2026-10-22/` and one line to `AGENTS.md`, so
-the merge should only conflict on that file.
+The records of steps 1, 4, 5 and 6 were built on three side branches (`claude/cog-masters-7bc671`,
+`claude/slope-vector-tiles-d3ff56`, `claude/tiles-elevation-148a15`) and merged into `canopy/classification-refinement`
+on October 23; the only conflicts were the one-line entries in `AGENTS.md`, all kept.
 
 ## 2. Open before publishing
 
