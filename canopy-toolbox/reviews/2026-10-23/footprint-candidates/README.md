@@ -6,7 +6,7 @@ with a Web Mercator copy and LOD1.2 blocks ([lidar_candidates.py](lidar_candidat
 estimates, not surveyed or field-verified data. Heights are roof minus terrain from 2023 LiDAR, not code-defined building
 heights, and no candidate has been reviewed.** Nothing was uploaded or shared, and no county or city data was edited.
 
-Brian decided on October 23 to "detect and outline candidates from the LiDAR roof clusters outside county footprints, and
+Brian decided on October 23 (as relayed by the Overture comparison session) to "detect and outline candidates from the LiDAR roof clusters outside county footprints, and
 use the 1,264 Overture outlines only as a comparison afterwards, so the layer isn't ODbL-derived". The first version,
 built from those Overture outlines, is kept as a review comparison only: [OVERTURE_VERSION.md](OVERTURE_VERSION.md).
 
@@ -36,9 +36,9 @@ footprints and the 2023 LiDAR), whose own terms apply; those weren't reviewed he
 1. **Roof cells:** cells where `roof_height_m.tif` has a value (the 2-of-3 consensus roof) inside the city.
 2. **Outside the county footprints:** cells whose centre is more than 1.5 m from every county footprint cell (footprints
    rasterized at cell centres, as building_heights counts them). The cut is set by the eave band seen in county data. Of
-   the cells just outside the footprints, the share that is roof falls fast and then levels off:
+   the cells just outside the footprints, the share that is roof falls fast and then levels off (the cut removes everything up to and including 1.5 m):
 
-   | Distance from a county footprint | 0.5 m | 1.0 m | 1.5 m | 2.0 m | 2.5-3 m | 5-7.5 m | over 10 m |
+   | Distance from a county footprint (cell centres) | 0.5-1 m | 1-1.5 m | 1.5-2 m | 2-2.5 m | 2.5-3 m | 5-7.5 m | over 10 m |
    |---|---:|---:|---:|---:|---:|---:|---:|
    | Cells that are roof | 62% | 23% | 8.3% | 4.9% | 3.6% | 2.0% | 1.2% |
 
@@ -112,6 +112,8 @@ Found by both when the overlap is at least 30% of either outline (`witness.json`
 - **The LiDAR finds 98% of what Overture had.** The 22 it misses are all small (11-29 m², median 15 m²): 13 are roof
   within 1.5 m of a county footprint, 7 are clusters under 10 m², and 2 were removed by the opening
   (`witness.gdb/overture_missed`, with each one's share of cells at every stage).
+- **The witness checks the method; it does not pick candidates.** Don't ACCEPT or REJECT a candidate because Overture
+  has or lacks it: that would bring back the dependency this layer avoids. Review against imagery and the LiDAR.
 - **49 LiDAR candidates each cover 2 to 6 Overture outlines:** touching structures merge into one roof cluster, such as
   townhouse rows and garages built wall to wall. Reviewers may want to split them.
 - **5,022 candidates are LiDAR only.** 3,432 of them lie within 2 m of a county footprint (Overture rarely draws

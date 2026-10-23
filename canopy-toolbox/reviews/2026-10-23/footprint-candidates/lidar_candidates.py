@@ -15,7 +15,7 @@ library; writes only under OUT. Brian decided on October 23 that the layer must 
 (`buildings.gdb/building_heights`) and, for context, the parcels. Rules, all fixed from county data before any comparison:
 - Roof cell: `roof_height_m.tif` has a value (2-of-3 consensus roof), inside the city (`observed.tif` != 3).
 - Not county: the cell centre is more than 1.5 m from every county footprint cell (cell centres rasterized as
-  building_heights counts them). Roof cells just outside the footprints fall from 62% of cells at 0.5 m to 8% at 1.5 m
+  building_heights counts them). Roof cells just outside the footprints fall from 62% of cells at 0.5-1 m to 8% at 1.5-2 m
   and near the 2-3% background by 2.5-3 m: eaves and outline offsets.
 - A 3 x 3 opening removes strips narrower than 1.5 m (fence tops, eave remnants); 8-connected clusters follow.
 - Kept: at least 40 cells (10 m2; the county footprints' 1st percentile is 12 m2) and a median roof height of at least
