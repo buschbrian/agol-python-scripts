@@ -1,0 +1,105 @@
+{
+ "schema": "slope-tiles-classes/1",
+ "started": "2026-10-22T21:48:15",
+ "finished": "2026-10-22T22:03:12",
+ "input": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\slope_percent.tif",
+ "valid_cells": 133813488,
+ "breaks_percent": [
+  10,
+  15,
+  20,
+  25,
+  30
+ ],
+ "classes": {
+  "1": "Under 10%",
+  "2": "10% to 15%",
+  "3": "15% to 20%",
+  "4": "20% to 25%",
+  "5": "25% to 30%",
+  "6": "30% and over"
+ },
+ "mmu_cells": 16,
+ "mmu_m2": 4.0,
+ "connectivity": 4,
+ "sieve_passes_small_left": [
+  3370,
+  15,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1
+ ],
+ "raw": {
+  "1": {
+   "cells": 94959406,
+   "patches": 13685,
+   "small_patches": 4920
+  },
+  "2": {
+   "cells": 8539685,
+   "patches": 189025,
+   "small_patches": 151356
+  },
+  "3": {
+   "cells": 4938388,
+   "patches": 237705,
+   "small_patches": 205625
+  },
+  "4": {
+   "cells": 3313918,
+   "patches": 244364,
+   "small_patches": 217907
+  },
+  "5": {
+   "cells": 2417877,
+   "patches": 228387,
+   "small_patches": 207416
+  },
+  "6": {
+   "cells": 19644214,
+   "patches": 11292,
+   "small_patches": 3299
+  }
+ },
+ "clean": {
+  "1": {
+   "cells": 95571483,
+   "patches": 8581,
+   "small_patches": 0
+  },
+  "2": {
+   "cells": 8379084,
+   "patches": 35783,
+   "small_patches": 0
+  },
+  "3": {
+   "cells": 4545498,
+   "patches": 31053,
+   "small_patches": 0
+  },
+  "4": {
+   "cells": 2897020,
+   "patches": 25764,
+   "small_patches": 0
+  },
+  "5": {
+   "cells": 2055357,
+   "patches": 20408,
+   "small_patches": 0
+  },
+  "6": {
+   "cells": 20365046,
+   "patches": 7763,
+   "small_patches": 1
+  }
+ },
+ "outputs": {
+  "raw": "H:\\lidar\\2023-salt-lake-valley\\runs\\slope-tiles-20261022\\slope_class_raw.tif",
+  "clean": "H:\\lidar\\2023-salt-lake-valley\\runs\\slope-tiles-20261022\\slope_class.tif"
+ }
+}

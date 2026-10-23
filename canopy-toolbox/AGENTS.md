@@ -27,6 +27,7 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Hosting the products for web GIS (plan, publish-ready feature layers, building scene layer packages; nothing is uploaded from here): reviews/2026-10-22/hosting.
 - Cloud-optimised GeoTIFF masters of the 0.5 m rasters for a cloud bucket (lossless, every cell proven equal; not uploaded),
   the compression trial, and the local ArcGIS Maps SDK float-COG trial page with its range/CORS server: reviews/2026-10-22/hosting/cogs.
+- Slope in 6 classes as polygons and a vector tile package (4 m2 minimum mapping unit, areas proven against the raster): reviews/2026-10-22/slope-tiles. Vector tile packages of treetops, crowns and contours, scripting a Pro map without the UI, upload steps and credit cost: reviews/2026-10-22/hosting/vector-tiles.
 - Treetop review evidence (SUSPECT flags), rebuilt from the October 15 manifest and proven byte-identical: canopy/treetop_evidence.py (ArcPy-free); reviews/2026-10-22/treetop-evidence. Its blind calibration sample: reviews/2026-10-22/packets/treetop-calibration-2 (drawn and scored with reviews/2026-10-15/calibration_sample.py).
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
