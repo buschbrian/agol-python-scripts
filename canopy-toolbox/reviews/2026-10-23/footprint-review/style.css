@@ -24,7 +24,8 @@ main { display: flex; gap: 12px; padding: 12px; align-items: flex-start; }
 .line-item { border: 2px solid #ff2a2a; } .line-county { border: 2px solid #fff; background: #555; } .line-cand { border: 2px dashed #00d5ff; }
 aside { flex: 0 0 340px; display: flex; flex-direction: column; gap: 8px; }
 .question { font-weight: 600; margin: 0; }
-.facts { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0; font-size: 13px; }
+.guess { margin: 0; padding: 6px 8px; background: #fff7d6; border-left: 3px solid #e0b400; font-weight: 600; }
+.facts { display: grid; grid-template-columns: minmax(110px, 40%) 1fr; gap: 2px 10px; margin: 0; font-size: 13px; }
 .facts dt { color: var(--muted); } .facts dd { margin: 0; }
 .answers { display: flex; flex-direction: column; gap: 6px; }
 .answers button { text-align: left; padding: 8px 10px; border: 1px solid var(--line); background: #fff; border-radius: 4px; cursor: pointer; font-size: 14px; }

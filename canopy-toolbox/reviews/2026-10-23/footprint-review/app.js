@@ -40,7 +40,14 @@ function store(key, value) { try { if (value === undefined) return localStorage.
 
 function status(text, error) { const s = $("status"); s.textContent = text || ""; s.className = error ? "error" : ""; }
 
-async function getJSON(url) { const r = await fetch(url, { cache: "no-store" }); if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); }
+const NO_SERVER = "Can't reach the review server. Start it with footprint_review.bat serve and keep its window open, then reload.";
+
+async function getJSON(url) {
+  let r;
+  try { r = await fetch(url, { cache: "no-store" }); } catch (e) { throw new Error(url.startsWith("/") ? NO_SERVER : e.message); }
+  if (!r.ok) throw new Error(`${url}: ${r.status}`);
+  return r.json();
+}
 
 function detail(id) {
   const file = byId[id].bundle;
@@ -119,7 +126,10 @@ function drawSide(d) {
   $("item-id").textContent = d.id;
   $("group-badge").textContent = GROUP_NAMES[d.group] || d.group;
   $("question").textContent = q.question;
-  $("facts").innerHTML = Object.entries(d.facts).map(([k, v]) => `<dt>${k}</dt><dd>${v ?? "—"}</dd>`).join("");
+  const { "Likely type (a guess)": guess, ...rest } = d.facts;
+  $("guess").hidden = !guess;
+  $("guess").innerHTML = guess ? `<span class="small">Likely type (a guess from size, height, roof and parcel):</span><br>${guess}` : "";
+  $("facts").innerHTML = Object.entries(rest).map(([k, v]) => `<dt>${k}</dt><dd>${v ?? "—"}</dd>`).join("");
   $("answers").innerHTML = q.answers.map(([code, text], i) =>
     `<button data-code="${code}" class="${a && a.ANSWER === code ? "chosen" : ""}"><kbd>${i + 1}</kbd> ${text}</button>`).join("");
   for (const b of $("answers").querySelectorAll("button")) b.onclick = () => save(b.dataset.code);
@@ -169,7 +179,7 @@ async function save(code) {
       if (at >= 0) { pos = at; drawSide(current); progress(); } else show(pos);
     }
     status(code ? `Saved ${id}: ${code}` : `Cleared ${id}`);
-  } catch (e) { status(`Not saved: ${e.message}. Is the server window still open?`, true); }
+  } catch (e) { status(`Not saved. ${NO_SERVER}`, true); }
 }
 
 const dateCache = new Map();

@@ -35,6 +35,7 @@ RUNS = lidar_root()/"2023-salt-lake-valley"/"runs"
 LIB = RUNS/"millcreek-products-20261022"
 CAND = RUNS/"footprint-candidates-lidar-20261023"
 COUNTY_WEB = RUNS/"hosting-features-20261023"/"features.gdb"     # county footprints in 3857 via ITRF08
+PARCELS = RUNS/"city-count-20261008"/"inputs.gdb"/"parcels"
 COMPARE = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\overture_vs_lidar.gpkg")
 OVERTURE_PARQUET = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\buildings.parquet")
 CELL = 0.5
@@ -141,6 +142,128 @@ def txt(v, fmt="{}"):
     return "—" if missing(v) else fmt.format(v)
 
 
+LOT_USE = {"R": "residential", "C": "commercial", "I": "industrial"}
+
+
+def pnorm(parcel):
+    return None if missing(parcel) else "".join(ch for ch in str(parcel) if ch.isalnum())
+
+
+def roof_form(p50, p95):
+    """Flat or sloped, from the spread of roof heights: a gable rises a quarter of its span or so, so P95 - median is
+    about 0.5 m or more on a pitched roof of 4 m span and up; under 0.2 m the roof is flat or nearly so."""
+    if missing(p50) or missing(p95):
+        return None
+    d = p95 - p50
+    return "flat or nearly flat" if d < 0.2 else ("low slope" if d < 0.45 else "pitched")
+
+
+def likely_type(area, p95, form, near_m, lot_use, county_on_parcel, units=None, built=None):
+    """A guess for the reviewer from size, height, roof form, distance to a county building and the parcel's use
+    (the assessor's housing units and year built). LiDAR can't see walls, so a carport and a garage of the same size
+    and roof look alike."""
+    if near_m <= 2:
+        return "Attached to a county building: addition, porch, patio cover or eave"
+    flat_low = form == "flat or nearly flat" and p95 < 3.2
+    single_home = lot_use == "R" and units == 1
+    if single_home and area >= 80 and p95 >= 4.5:
+        if county_on_parcel == 0:
+            year = f", built {built:.0f}" if not missing(built) and built > 0 else ""
+            return f"House: the parcel's main building{year}, with no county footprint"
+        return "House-sized: ADU, second house or large garage with living space"
+    if lot_use in ("C", "I") and area >= 40:
+        kind = ("Commercial/industrial building" if p95 >= 4.5 else
+                "Covered parking, canopy or low commercial structure")
+    elif area < 15:
+        kind = "Small shed, playhouse or shade structure"
+    elif area < 40:
+        kind = "Carport, shade or patio cover" if flat_low else ("Shed or single garage" if p95 < 4.5 else
+                                                                 "Small tall structure (shed, tower, tree?)")
+    elif area < 80:
+        kind = "Carport or covered parking" if flat_low else ("Garage or large shed" if p95 < 4.5 else
+                                                             "Two-storey garage or small ADU")
+    elif area < 150:
+        kind = "Large garage, workshop or covered parking" if p95 < 4.5 else "House-sized: ADU or unmapped house"
+    elif area < 300:
+        kind = "Large garage, barn or carport row" if p95 < 4.5 else "House or small multi-unit building"
+    else:
+        kind = ("Large low structure: covered parking, warehouse or canopy" if p95 < 4.5 else
+                "Large building: apartments, commercial or institutional")
+    if county_on_parcel == 0 and area >= 80 and p95 >= 4.5:
+        kind += "; no county building on this parcel"
+    return kind
+
+
+def parcel_text(row):
+    """The parcel's use and the assessor's figures, from the 2025-tax-year snapshot."""
+    if row is None:
+        return "—", "—"
+    lot = None if missing(row.lot_use) else str(row.lot_use).strip()
+    ptype = None if missing(row.property_type) else str(row.property_type).strip()
+    use = f"{LOT_USE.get(lot, txt(lot))} · property type {txt(ptype)}"
+    bits = []
+    if not missing(row.year_built) and row.year_built > 0:
+        bits.append(f"built {row.year_built:.0f}")
+    if not missing(row.total_sq_ft) and row.total_sq_ft > 0:
+        bits.append(f"{row.total_sq_ft:,.0f} ft² of building")
+    if not missing(row.num_housing_units) and row.num_housing_units > 0:
+        bits.append(f"{row.num_housing_units:.0f} unit{'s' if row.num_housing_units != 1 else ''}")
+    return use, (", ".join(bits) or "—")
+
+
+def candidate_facts(r, parcels, county_per_parcel):
+    key = pnorm(r.PARCEL_ID)
+    pr = parcels.get(key)
+    on_parcel = county_per_parcel.get(key, 0) if pr is not None else None
+    lot = None if pr is None or missing(pr.lot_use) else str(pr.lot_use).strip()
+    form = roof_form(r.HEIGHT_P50_M, r.HEIGHT_P95_M)
+    use, assessor = parcel_text(pr)
+    address = "" if missing(r.PARCEL_ADDRESS) else r.PARCEL_ADDRESS
+    units = None if pr is None or missing(pr.num_housing_units) else pr.num_housing_units
+    built = None if pr is None else pr.year_built
+    return {"Likely type (a guess)": likely_type(r.FOOTPRINT_M2, r.HEIGHT_P95_M, form, r.NEAR_FP_DIST_M, lot, on_parcel,
+                                                 units, built),
+            "Candidate": r.CAND_ID, "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
+            "Height (median / P95)": f"{r.HEIGHT_P50_M:.1f} / {r.HEIGHT_P95_M:.1f} m "
+                                     f"({r.HEIGHT_P50_M * FEET:.0f} / {r.HEIGHT_P95_M * FEET:.0f} ft)",
+            "Roof form (LiDAR)": txt(form), "Roof support": f"{r.ROOF_COV_PCT:.0f}%",
+            "Nearest county building": f"{r.NEAR_FP_DIST_M:.1f} m (ID {r.NEAR_FP_SOURCE_ID})",
+            "Parcel": f"{txt(r.PARCEL_ID)} {address}".strip(),
+            "Parcel use": use, "Assessor (main building)": assessor,
+            "County buildings on parcel": txt(on_parcel),
+            "Same parcel as nearest county building": txt(r.SAME_PARCEL)}
+
+
+def county_facts(r, chips, parcels):
+    cov = "no roof cells" if missing(r.ROOF_COV_PCT) else f"{r.ROOF_COV_PCT:.0f}%"
+    use, assessor = parcel_text(parcels.get(pnorm(r.PARCEL_ID)))
+    return {"County building ID": r.SOURCE_ID, "Address": txt(r.ADDRESS), "Parcel": txt(r.PARCEL_ID),
+            "Type / year built": f"{txt(r.BuildType)} / {txt(r.BuiltYear, '{:.0f}')}",
+            "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
+            "2023 LiDAR roof support": cov, "Under canopy (2 m or more)": txt(canopy_share(chips, r.geometry), "{}%"),
+            "Parcel use": use, "Assessor (main building)": assessor, "Height flags": txt(r.HEIGHT_STATUS)}
+
+
+def newbuild_facts(item, r, chips, county, parcels, parcel_of):
+    x0, y0, x1, y1 = r.geometry.buffer(5).bounds
+    near = county.geometry.distance(r.geometry.centroid).min()
+    use, assessor = parcel_text(parcels.get(pnorm(parcel_of)))
+    return {"Hint": item, "Hint box": f"{(x1 - x0):.0f} × {(y1 - y0):.0f} m",
+            "Nearest county building": f"{near:.1f} m",
+            "2023 LiDAR roof under it": txt(r.L_ROOF_COV_PCT, "{:.0f}%"),
+            "Under canopy (2 m or more)": txt(canopy_share(chips, r.geometry), "{}%"),
+            "Parcel": txt(parcel_of), "Parcel use": use, "Assessor (main building)": assessor}
+
+
+def load_parcels():
+    """The 2025-tax-year parcel snapshot: attributes by normalised parcel id, and the frame for point lookups."""
+    import geopandas as gpd
+    p = gpd.read_file(PARCELS.parent, layer=PARCELS.name,
+                      columns=["parcel_id", "lot_use", "property_type", "year_built", "total_sq_ft", "num_housing_units"])
+    table = {pnorm(r.parcel_id): r for r in p.itertuples() if not missing(r.parcel_id)}
+    return p, table
+
+
 def load(pilot):
     import geopandas as gpd
     cand = gpd.read_file(CAND/"candidates.gdb", layer="candidates")
@@ -162,6 +285,23 @@ def load(pilot):
     return cand, cand_web, county, county_web, low, hints
 
 
+def refresh_facts(data, facts):
+    """Replace the facts in every existing bundle, one bundle at a time (a partial file, then a rename), so a running
+    page keeps working. Chips, outlines and item ids stay as they are; the answers are untouched."""
+    import os
+    changed = 0
+    for path in sorted((data/"bundles").glob("b*.json")):
+        bundle = json.loads(path.read_text(encoding="utf-8"))
+        for item_id, detail in bundle.items():
+            detail["facts"] = facts[item_id]
+            changed += 1
+        partial = path.with_suffix(".partial")
+        partial.write_text(json.dumps(bundle, separators=(",", ":"), allow_nan=False), encoding="utf-8")
+        os.replace(partial, path)
+    assert changed == len(facts), (changed, len(facts))
+    print(f"facts refreshed on {changed} items")
+
+
 def main(argv=None):
     import duckdb
     import geopandas as gpd
@@ -169,11 +309,26 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("data", type=Path)
     p.add_argument("--pilot", action="store_true", help="20 candidates only (7 large and tall, 7 detached, 6 attached)")
+    p.add_argument("--facts-only", action="store_true",
+                   help="recompute the side-panel facts in existing bundles (atomically), leaving chips and outlines")
     a = p.parse_args(argv)
     data = a.data.resolve()
-    (data/"bundles").mkdir(parents=True, exist_ok=False)
     cand, cand_web, county, county_web, low, hints = load(a.pilot)
     chips = Chips()
+    parcel_frame, parcels = load_parcels()
+    county_per_parcel = county.assign(P=county.PARCEL_ID.map(pnorm)).groupby("P").size().to_dict()
+    hint_parcel = {}
+    if len(hints):
+        points = hints.assign(geometry=hints.geometry.centroid)[["id", "geometry"]]
+        hp = gpd.sjoin(points, parcel_frame[["parcel_id", "geometry"]], how="left", predicate="within").drop_duplicates("id")
+        hint_parcel = dict(zip(hp["id"], hp["parcel_id"]))
+    facts = {r.CAND_ID: candidate_facts(r, parcels, county_per_parcel) for r in cand.itertuples()}
+    facts.update({f"CF{r.SOURCE_ID}": county_facts(r, chips, parcels) for r in low.itertuples()})
+    facts.update({f"NB{k + 1:04d}": newbuild_facts(f"NB{k + 1:04d}", r, chips, county, parcels, hint_parcel.get(r.id))
+                  for k, r in enumerate(hints.itertuples())})
+    if a.facts_only:
+        return refresh_facts(data, facts)
+    (data/"bundles").mkdir(parents=True, exist_ok=False)
     county_tree = shapely.STRtree(list(county.geometry))
     cand_all = gpd.read_file(CAND/"candidates.gdb", layer="candidates")
     cand_tree = shapely.STRtree(list(cand_all.geometry))
@@ -223,14 +378,7 @@ def main(argv=None):
 
     for _, r in cand.iterrows():
         g = r.geometry
-        facts = {"Candidate": r.CAND_ID, "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
-                 "Height (median / P95)": f"{r.HEIGHT_P50_M:.1f} / {r.HEIGHT_P95_M:.1f} m "
-                                          f"({r.HEIGHT_P50_M * FEET:.0f} / {r.HEIGHT_P95_M * FEET:.0f} ft)",
-                 "Roof support": f"{r.ROOF_COV_PCT:.0f}%",
-                 "Nearest county building": f"{r.NEAR_FP_DIST_M:.1f} m (ID {r.NEAR_FP_SOURCE_ID})",
-                 "Parcel": f"{txt(r.PARCEL_ID)} {'' if missing(r.PARCEL_ADDRESS) else r.PARCEL_ADDRESS}".strip(),
-                 "Same parcel as that building": txt(r.SAME_PARCEL)}
-        write(r.CAND_ID, "candidates", r.GROUP, facts, rings_of(g), merc_to_ll(rings_of(cand_web.loc[r.CAND_ID].geometry)),
+        write(r.CAND_ID, "candidates", r.GROUP, facts[r.CAND_ID], rings_of(g), merc_to_ll(rings_of(cand_web.loc[r.CAND_ID].geometry)),
               g.bounds, exclude_cand=r.CAND_ID)
         if len(index) % 500 == 0:
             print(f"  {len(index)} items", flush=True)
@@ -238,14 +386,8 @@ def main(argv=None):
     for _, r in low.iterrows():
         g = r.geometry
         item = f"CF{r.SOURCE_ID}"
-        cov = "no roof cells" if missing(r.ROOF_COV_PCT) else f"{r.ROOF_COV_PCT:.0f}%"
-        facts = {"County building ID": r.SOURCE_ID, "Address": txt(r.ADDRESS), "Parcel": txt(r.PARCEL_ID),
-                 "Type / year built": f"{txt(r.BuildType)} / {txt(r.BuiltYear, '{:.0f}')}",
-                 "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
-                 "2023 LiDAR roof support": cov, "Under canopy (2 m or more)": txt(canopy_share(chips, g), "{}%"),
-                 "Height flags": txt(r.HEIGHT_STATUS)}
         ll = merc_to_ll(rings_of(county_web.loc[r.SOURCE_ID].geometry)) if r.SOURCE_ID in county_web.index else []
-        write(item, "county", "low_roof", facts, rings_of(g), ll, g.bounds, exclude_county=r.SOURCE_ID)
+        write(item, "county", "low_roof", facts[item], rings_of(g), ll, g.bounds, exclude_county=r.SOURCE_ID)
 
     mapping = []
     if len(hints):
@@ -262,12 +404,7 @@ def main(argv=None):
         dlat, dlon = 5 / 111320, 5 / (111320 * math.cos(math.radians((ly0 + ly1) / 2)))
         box_ll = [[[ly0 - dlat, lx0 - dlon], [ly0 - dlat, lx1 + dlon], [ly1 + dlat, lx1 + dlon], [ly1 + dlat, lx0 - dlon],
                    [ly0 - dlat, lx0 - dlon]]]
-        near = county.geometry.distance(r.geometry.centroid).min()
-        facts = {"Hint": item, "Hint box": f"{(x1 - x0):.0f} × {(y1 - y0):.0f} m",
-                 "Nearest county building": f"{near:.1f} m",
-                 "2023 LiDAR roof under it": txt(r.L_ROOF_COV_PCT, "{:.0f}%"),
-                 "Under canopy (2 m or more)": txt(canopy_share(chips, r.geometry), "{}%")}
-        write(item, "newbuild", "hint", facts, None, None, (x0, y0, x1, y1), hint=(box6341, box_ll))
+        write(item, "newbuild", "hint", facts[item], None, None, (x0, y0, x1, y1), hint=(box6341, box_ll))
     flush()
     if mapping:
         (data/"newbuild-hints.json").write_text(json.dumps({"note": "Internal: Overture ids behind the NB hints "

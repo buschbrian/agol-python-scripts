@@ -12,6 +12,9 @@ Start it (Windows; opens http://127.0.0.1:8770 in the browser):
 canopy-toolbox\reviews\2026-10-23\footprint-review\footprint_review.bat serve
 ```
 
+Keep the server's window open while you review: the page talks to it for every item and answer. If the window is
+closed, the page says it can't reach the server; run `serve` again and reload.
+
 Type your initials in the box at the top right first; the page remembers them. Answers are saved after every key press
 to `H:\lidar\2023-salt-lake-valley\runs\footprint-review-20261023\data\answers\footprint-review-answers.csv`. After a
 sitting, copy them into the repo with `footprint_review.bat backup`, then commit
@@ -51,6 +54,44 @@ back over answers.
   a county footprint, and "against a county building" 2 m or less. The facts are area, median and P95 height (m and ft),
   roof support, the nearest county building with its distance, and the parcel. **The queue is blind to Overture**: the
   page carries no Overture outline, id or flag for it.
+- **Likely type (candidates):** a highlighted guess above the facts, from the LiDAR and the 2025-tax-year parcel
+  snapshot only. LiDAR can't see walls, so a garage and a carport of the same size and roof look alike. The guess uses:
+  - **size and P95 height;**
+  - **roof form:** P95 minus median height is under 0.2 m for flat or nearly flat roofs, 0.2-0.45 m for a low slope,
+    and more above that for pitched;
+  - **distance to a county building:** 2 m or less reads as an addition, porch, patio cover or eave;
+  - **the parcel:** land use (R residential, C commercial, I industrial), and the assessor's housing units and year
+    built of the main building;
+  - **the county footprints on the parcel.** A house-sized candidate on a one-unit residential parcel with no county
+    building reads as "House: the parcel's main building, built YYYY, with no county footprint".
+
+  The facts also list the roof form, the parcel's use and property-type code, the assessor's main-building figures (year
+  built, building ft², units) and the number of county buildings on the parcel. The county and new-building queues get
+  the parcel use and assessor figures too. Across the 6,213:
+
+  | Likely type | n |
+  |---|---:|
+  | Attached to a county building: addition, porch, patio cover or eave | 3,775 |
+  | Shed or single garage | 724 |
+  | Carport, shade or patio cover | 328 |
+  | Small shed, playhouse or shade structure | 301 |
+  | Large garage, workshop or covered parking | 199 |
+  | Large garage, barn or carport row | 156 |
+  | Carport or covered parking | 139 |
+  | Garage or large shed | 125 |
+  | Covered parking, canopy or low commercial structure | 117 |
+  | **House: the parcel's main building, with no county footprint** | **116** |
+  | Large low structure: covered parking, warehouse or canopy | 47 |
+  | Small tall structure (shed, tower, tree?) | 46 |
+  | Large building: apartments, commercial or institutional | 42 |
+  | Commercial/industrial building | 29 |
+  | House-sized: ADU, second house or large garage with living space | 27 |
+  | Two-storey garage or small ADU | 25 |
+  | House or small multi-unit building; House-sized: ADU or unmapped house | 17 |
+
+  The guesses are hints and the answer is still Brian's. The 116 houses (for example, LC00115 and LC00128, both on
+  parcels whose house was built in 2018) are the clearest gaps in the county layer. `footprint_review.bat facts`
+  refreshes the facts in place without rebuilding the chips; it is safe while the page is open.
 - **County footprints:** the footprints in `buildings.gdb/building_heights` with under 10% roof support, or no roof
   cells at all (very small footprints). The facts include how much of the footprint is under canopy of 2 m or more,
   which points to "still there, under trees". The LiDAR view shows whether trees cover it.
@@ -97,7 +138,7 @@ full build:
 ## Files
 | File | Meaning |
 |---|---|
-| [footprint_review.bat](footprint_review.bat) | serve, backup, build, serve-pilot |
+| [footprint_review.bat](footprint_review.bat) | serve, backup, build, facts, serve-pilot |
 | [serve_footprint_review.py](serve_footprint_review.py) | the local server and `backup` |
 | [build_review_data.py](build_review_data.py) | builds `data\index.json` and `data\bundles\b*.json` (chips as PNG data URIs) |
 | index.html, app.js, style.css | the page (Leaflet 1.9.4 from cdnjs) |

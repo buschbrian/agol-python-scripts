@@ -6,6 +6,8 @@ rem     footprint_review.bat backup             copy the page's answers into the
 rem                                             an answer already in the repo is never changed
 rem     footprint_review.bat backup --replace   ... and take the page's answer where the two differ
 rem     footprint_review.bat build              rebuild the page data (Pro env millcreek-py3; about an hour; once)
+rem     footprint_review.bat facts              refresh only the side-panel facts in the built data (a few minutes;
+rem                                             safe while the page is open; answers are not touched)
 rem     footprint_review.bat serve-pilot        the 20-candidate pilot data on port 8771
 rem
 rem Answers are kept in <data>\answers\footprint-review-answers.csv on the lidar disk, saved after every key press.
@@ -32,6 +34,7 @@ if /i "%STEP%"=="serve-pilot" (
 )
 if /i "%STEP%"=="backup" ("%PRO_PY%" -I "%HERE%serve_footprint_review.py" backup --data "%RUN%\data" %2 & goto :end)
 if /i "%STEP%"=="build" ("%BUILD_PY%" -I "%HERE%build_review_data.py" "%RUN%\data" & goto :end)
+if /i "%STEP%"=="facts" ("%BUILD_PY%" -I "%HERE%build_review_data.py" "%RUN%\data" --facts-only & goto :end)
 findstr /b "rem" "%~f0"
 :end
 endlocal
