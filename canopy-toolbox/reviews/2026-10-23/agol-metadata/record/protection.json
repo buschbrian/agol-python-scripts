@@ -1,0 +1,178 @@
+[
+ {
+  "key": "features",
+  "kind": "package",
+  "id": "ee182c9a7eec4994b7e19d2be8dd27b5",
+  "type": "File Geodatabase",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "slope",
+  "kind": "package",
+  "id": "bec13573a71c4df2b4642fda4a559021",
+  "type": "Vector Tile Package",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "contours",
+  "kind": "package",
+  "id": "377dd1de82204e63addb6905a9322bb3",
+  "type": "Vector Tile Package",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "hillshade",
+  "kind": "package",
+  "id": "2d4f5092edfd4c54a9898a1a7dda5dd1",
+  "type": "Compact Tile Package",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "treetops",
+  "kind": "package",
+  "id": "2dcae544e70c47589f8226dc0ad74351",
+  "type": "Vector Tile Package",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "crowns",
+  "kind": "package",
+  "id": "d3ca707cda6544dd9962390c1e7e00db",
+  "type": "Vector Tile Package",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "buildings3d",
+  "kind": "package",
+  "id": "eb613927529347989755b0fcf9e9c8fa",
+  "type": "Scene Package",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "terrain",
+  "kind": "package",
+  "id": "7a520038be1b4e55accdfe6bed3a0a71",
+  "type": "Compact Tile Package",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "features",
+  "kind": "layer",
+  "id": "d5effaee6c66497eaeb64e4c2e0f496e",
+  "type": "Feature Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "slope",
+  "kind": "layer",
+  "id": "3b5b1a9110f14e93af68752be89e0df2",
+  "type": "Vector Tile Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "contours",
+  "kind": "layer",
+  "id": "50573eeba93f405a869a1d78a08d68e8",
+  "type": "Vector Tile Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "hillshade",
+  "kind": "layer",
+  "id": "cab8824e44384d479e1f302cdf34daf9",
+  "type": "Map Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "treetops",
+  "kind": "layer",
+  "id": "924b993cb23046cb87641253bcf786de",
+  "type": "Vector Tile Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "crowns",
+  "kind": "layer",
+  "id": "d9388dc83f894edbb63e0510a8c62fa8",
+  "type": "Vector Tile Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "buildings3d",
+  "kind": "layer",
+  "id": "5082b5bd063a4a03847f2082dc3533d1",
+  "type": "Scene Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ },
+ {
+  "key": "terrain",
+  "kind": "layer",
+  "id": "ce1680a5196e458ebfb60ead5150b946",
+  "type": "Image Service",
+  "protect_result": {
+   "success": true
+  },
+  "protected": true,
+  "access": "private"
+ }
+]
