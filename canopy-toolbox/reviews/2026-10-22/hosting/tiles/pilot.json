@@ -1,0 +1,160 @@
+{
+ "schema": "tiles-pilot/1",
+ "finished": "2026-10-22T22:38:34",
+ "window_utm": [
+  433349.0,
+  4506383.0,
+  434349.0,
+  4507383.0
+ ],
+ "levels": [
+  16,
+  17,
+  18
+ ],
+ "seconds": {
+  "hillshade_default": 40.7,
+  "terrain_default": 38.3,
+  "hillshade": 42.9,
+  "terrain": 35.7,
+  "package_terrain": 2.1
+ },
+ "caches": {
+  "hillshade_default": {
+   "conf": {
+    "format": "MIXED",
+    "lerc_error": 0.0,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 30,
+     "bytes": 608083
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 54,
+     "bytes": 640174
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 65,
+     "bytes": 596609
+    }
+   },
+   "values_L18": {
+    "pixels": 4320,
+    "source_valid": 1354,
+    "opaque": 1354,
+    "valid_but_transparent": 0,
+    "opaque_but_nodata": 0,
+    "mean_difference": -41.79,
+    "median_abs_difference": 43.0,
+    "p95_abs_difference": 113.0,
+    "max_abs_difference": 129
+   }
+  },
+  "hillshade": {
+   "conf": {
+    "format": "PNG",
+    "lerc_error": 0.0,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 30,
+     "bytes": 1482782
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 54,
+     "bytes": 2103984
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 65,
+     "bytes": 1756188
+    }
+   },
+   "values_L18": {
+    "pixels": 4320,
+    "source_valid": 1354,
+    "opaque": 1343,
+    "valid_but_transparent": 11,
+    "opaque_but_nodata": 0,
+    "mean_difference": 0.02,
+    "median_abs_difference": 1.0,
+    "p95_abs_difference": 5.0,
+    "max_abs_difference": 28
+   }
+  },
+  "terrain_default": {
+   "conf": {
+    "format": "LERC",
+    "lerc_error": 0.1,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 34,
+     "bytes": 1442886
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 64,
+     "bytes": 2524587
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 114,
+     "bytes": 4061862
+    }
+   },
+   "values_L18": {
+    "pixels": 610,
+    "max_abs_vs_bilinear_m": 0.0992,
+    "median_abs_vs_bilinear_m": 0.0501
+   }
+  },
+  "terrain": {
+   "conf": {
+    "format": "LERC",
+    "lerc_error": 0.01,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 34,
+     "bytes": 2225097
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 64,
+     "bytes": 4016662
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 114,
+     "bytes": 6778932
+    }
+   },
+   "values_L18": {
+    "pixels": 610,
+    "max_abs_vs_bilinear_m": 0.0118,
+    "median_abs_vs_bilinear_m": 0.0053
+   }
+  }
+ },
+ "tpkx_members": [
+  "iteminfo.json",
+  "root.json",
+  "thumbnail.png",
+  "tile/L16/R*C*.bundle",
+  "tile/L17/R*C*.bundle",
+  "tile/L18/R*C*.bundle"
+ ]
+}
