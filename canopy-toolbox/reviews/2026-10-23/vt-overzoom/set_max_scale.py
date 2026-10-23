@@ -12,6 +12,8 @@ last level of the packages), whatever the layer's own maxScale in a web map says
 VectorTileLayerManager.edit_tile_service sends, which skips a 0). Nothing else in the service changes: no tiles, no
 levels, no style. The item ID, item text and the item resource `styles/root.json` are untouched. The service JSON is
 saved to `originals/` before the first change; `--restore` sends its maxScale back. Never shares or deletes.
+Clients can keep seeing the old maxScale for up to an hour: CloudFront caches the service JSON (s-maxage=3600) per
+Origin header.
 """
 import argparse
 import datetime
@@ -43,7 +45,8 @@ def admin_url(service_url):
 
 def state(gis, key):
     item = gis.content.get(ITEMS[key])
-    public = gis.session.get(item.url, params={"f": "json"}).json()
+    # A unique query string, so CloudFront's cached copy (s-maxage=3600) is not what is read back.
+    public = gis.session.get(item.url, params={"f": "json", "_": str(time.time())}).json()
     admin = gis.session.get(admin_url(item.url), params={"f": "json"}).json()
     resources = [r["resource"] for r in item.resources.list()]
     return item, public, admin, resources
@@ -71,7 +74,7 @@ def go(gis, key, value):
     print("edit:", answer)
     if "error" in answer or answer.get("success") is False:
         raise SystemExit(f"{key}: ArcGIS Online refused the edit; nothing else was sent")
-    for wait in (0, 5, 15, 30, 60):  # the public JSON can be served stale for a short while
+    for wait in (0, 5, 15, 30, 60):
         time.sleep(wait)
         item, public, admin, resources = state(gis, key)
         if public.get("maxScale") == value and admin.get("maxScale") == value:

@@ -68,7 +68,8 @@ layer definitions are in `originals/`; the feature and scene items had no item d
   the buildings, zones and 3D buildings; the class keys for slope, contours, crowns and treetops are in the map
   descriptions with coloured swatches. A real legend entry needs a feature layer (or a legend image in the app).
 - **Vector tile layers stop drawing past 1:2,257** in the SDK. Pro overzooms. The cause is the services' `maxScale`
-  (2,257), not their levels. The fix needs no new tiles and is waiting for Brian's go-ahead: `../vt-overzoom/README.md`.
+  (2,257), not their levels. The fix needs no new tiles. Treetops was done on October 23; the other three wait for
+  Brian's go-ahead (`../vt-overzoom/README.md`).
 - **3D trees are not possible from the treetops**: they are vector tiles, which drape flat. 3D tree symbols need the
   treetops as a hosted point layer with heights (feature storage cost; see `hosting/PLAN.md`).
 - The web maps were checked with the SDK, not in Map Viewer itself (that needs a browser sign-in).

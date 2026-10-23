@@ -1,0 +1,38 @@
+{
+ "treetops": [
+  {
+   "when": "2026-10-23T15:50:24",
+   "sent": 0,
+   "answer": {
+    "status": "success"
+   },
+   "before": {
+    "item": "treetops",
+    "id": "924b993cb23046cb87641253bcf786de",
+    "title": "Millcreek treetops (2023 lidar), planning estimate",
+    "service maxScale": 2256.9943525,
+    "admin maxScale": 2256.9943525,
+    "minScale": 18055.9548215,
+    "levels": "0-17",
+    "maxLOD": 16,
+    "styles/root.json": true
+   },
+   "after": {
+    "item": "treetops",
+    "id": "924b993cb23046cb87641253bcf786de",
+    "title": "Millcreek treetops (2023 lidar), planning estimate",
+    "service maxScale": 2256.9943525,
+    "admin maxScale": 0.0,
+    "minScale": 18055.9548215,
+    "levels": "0-17",
+    "maxLOD": 16,
+    "styles/root.json": true
+   },
+   "confirmed": {
+    "when": "2026-10-23T15:51",
+    "service maxScale": 0.0,
+    "note": "The script's read-back got CloudFront's cached copy (s-maxage=3600); a fresh read (unique query string, or a plain request after the edit) returned maxScale 0. ArcGIS Maps SDK 5.1 from origin http://localhost:8799: treetops not suspended at 1:1,128 and 1:282, in the canopy web map and alone, styleUrl still the item resource. From http://127.0.0.1:8799 CloudFront still served the copy cached at 21:28:58 GMT (until about 22:29)."
+   }
+  }
+ ]
+}

@@ -1,0 +1,317 @@
+{
+ "service": {
+  "currentVersion": 10.81,
+  "name": "Millcreek_treetops_2023_lidar_planning_estimate",
+  "copyrightText": "Millcreek GIS from the 2023 Salt Lake Valley QL1 lidar",
+  "capabilities": "TilesOnly,Tilemap",
+  "type": "indexedVector",
+  "tileMap": "tilemap",
+  "defaultStyles": "resources/styles",
+  "tiles": [
+   "tile/{z}/{y}/{x}.pbf"
+  ],
+  "exportTilesAllowed": false,
+  "initialExtent": {
+   "xmin": -12459033.098167824,
+   "ymin": 4962161.795689374,
+   "xmax": -12442880.201156707,
+   "ymax": 4970251.885313829,
+   "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+   }
+  },
+  "fullExtent": {
+   "xmin": -12459033.098167824,
+   "ymin": 4962161.795689374,
+   "xmax": -12442880.201156707,
+   "ymax": 4970251.885313829,
+   "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+   }
+  },
+  "minScale": 18055.9548215,
+  "maxScale": 2256.9943525,
+  "tileInfo": {
+   "rows": 512,
+   "cols": 512,
+   "dpi": 96,
+   "format": "pbf",
+   "origin": {
+    "x": -20037508.342787,
+    "y": 20037508.342787
+   },
+   "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+   },
+   "lods": [
+    {
+     "level": 0,
+     "resolution": 78271.516964,
+     "scale": 295828763.7957775
+    },
+    {
+     "level": 1,
+     "resolution": 39135.75848199995,
+     "scale": 147914381.8978885
+    },
+    {
+     "level": 2,
+     "resolution": 19567.87924100005,
+     "scale": 73957190.9489445
+    },
+    {
+     "level": 3,
+     "resolution": 9783.93962049995,
+     "scale": 36978595.474472
+    },
+    {
+     "level": 4,
+     "resolution": 4891.96981024998,
+     "scale": 18489297.737236
+    },
+    {
+     "level": 5,
+     "resolution": 2445.98490512499,
+     "scale": 9244648.868618
+    },
+    {
+     "level": 6,
+     "resolution": 1222.992452562495,
+     "scale": 4622324.434309
+    },
+    {
+     "level": 7,
+     "resolution": 611.496226281245,
+     "scale": 2311162.2171545
+    },
+    {
+     "level": 8,
+     "resolution": 305.74811314069,
+     "scale": 1155581.1085775
+    },
+    {
+     "level": 9,
+     "resolution": 152.874056570279,
+     "scale": 577790.5542885
+    },
+    {
+     "level": 10,
+     "resolution": 76.4370282852055,
+     "scale": 288895.2771445
+    },
+    {
+     "level": 11,
+     "resolution": 38.2185141425366,
+     "scale": 144447.638572
+    },
+    {
+     "level": 12,
+     "resolution": 19.1092570712683,
+     "scale": 72223.819286
+    },
+    {
+     "level": 13,
+     "resolution": 9.55462853563415,
+     "scale": 36111.909643
+    },
+    {
+     "level": 14,
+     "resolution": 4.777314267817075,
+     "scale": 18055.9548215
+    },
+    {
+     "level": 15,
+     "resolution": 2.388657133974685,
+     "scale": 9027.977411
+    },
+    {
+     "level": 16,
+     "resolution": 1.19432856698734,
+     "scale": 4513.9887055
+    },
+    {
+     "level": 17,
+     "resolution": 0.597164283427525,
+     "scale": 2256.9943525
+    }
+   ]
+  },
+  "minzoom": 14,
+  "maxzoom": 17,
+  "minLOD": 0,
+  "maxLOD": 16,
+  "resourceInfo": {
+   "styleVersion": 8,
+   "tileCompression": "gzip",
+   "cacheInfo": {
+    "storageInfo": {
+     "packetSize": 128,
+     "storageFormat": "compactV2"
+    }
+   }
+  },
+  "serviceItemId": "924b993cb23046cb87641253bcf786de",
+  "maxExportTilesCount": 100000
+ },
+ "admin": {
+  "id": "9f037bd0a48f63ce",
+  "serverId": "XRrSFvEwSsReIxuA",
+  "name": "Millcreek_treetops_2023_lidar_planning_estimate",
+  "type": "VectorTileServer",
+  "access": "SECURE",
+  "status": "STARTED",
+  "sourceType": "VECTORTILEPACKAGE",
+  "cacheExecutionStatus": "NONE",
+  "lodInfos": null,
+  "tileInfo": {
+   "rows": 512,
+   "cols": 512,
+   "dpi": 96,
+   "format": "pbf",
+   "compressionQuality": 0,
+   "storageFormat": "esriMapCacheStorageModeCompactV2",
+   "origin": {
+    "x": -20037508.342787,
+    "y": 20037508.342787
+   },
+   "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+   },
+   "lods": [
+    {
+     "level": 0,
+     "resolution": 78271.516964,
+     "scale": 295828763.7957775
+    },
+    {
+     "level": 1,
+     "resolution": 39135.75848199995,
+     "scale": 147914381.8978885
+    },
+    {
+     "level": 2,
+     "resolution": 19567.87924100005,
+     "scale": 73957190.9489445
+    },
+    {
+     "level": 3,
+     "resolution": 9783.93962049995,
+     "scale": 36978595.474472
+    },
+    {
+     "level": 4,
+     "resolution": 4891.96981024998,
+     "scale": 18489297.737236
+    },
+    {
+     "level": 5,
+     "resolution": 2445.98490512499,
+     "scale": 9244648.868618
+    },
+    {
+     "level": 6,
+     "resolution": 1222.992452562495,
+     "scale": 4622324.434309
+    },
+    {
+     "level": 7,
+     "resolution": 611.496226281245,
+     "scale": 2311162.2171545
+    },
+    {
+     "level": 8,
+     "resolution": 305.74811314069,
+     "scale": 1155581.1085775
+    },
+    {
+     "level": 9,
+     "resolution": 152.874056570279,
+     "scale": 577790.5542885
+    },
+    {
+     "level": 10,
+     "resolution": 76.4370282852055,
+     "scale": 288895.2771445
+    },
+    {
+     "level": 11,
+     "resolution": 38.2185141425366,
+     "scale": 144447.638572
+    },
+    {
+     "level": 12,
+     "resolution": 19.1092570712683,
+     "scale": 72223.819286
+    },
+    {
+     "level": 13,
+     "resolution": 9.55462853563415,
+     "scale": 36111.909643
+    },
+    {
+     "level": 14,
+     "resolution": 4.777314267817075,
+     "scale": 18055.9548215
+    },
+    {
+     "level": 15,
+     "resolution": 2.388657133974685,
+     "scale": 9027.977411
+    },
+    {
+     "level": 16,
+     "resolution": 1.19432856698734,
+     "scale": 4513.9887055
+    },
+    {
+     "level": 17,
+     "resolution": 0.597164283427525,
+     "scale": 2256.9943525
+    }
+   ]
+  },
+  "minScale": 18055.9548215,
+  "maxScale": 2256.9943525,
+  "minLOD": 0,
+  "maxLOD": 16,
+  "resampling": null,
+  "exportTilesAllowed": false,
+  "maxExportTilesCount": 100000,
+  "created": 1792778418283,
+  "modified": 1792790937207,
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  },
+  "fullExtent": {
+   "xmin": -12459033.098167824,
+   "ymin": 4962161.795689374,
+   "xmax": -12442880.201156707,
+   "ymax": 4970251.885313829,
+   "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+   }
+  },
+  "initialExtent": {
+   "xmin": -12459033.098167824,
+   "ymin": 4962161.795689374,
+   "xmax": -12442880.201156707,
+   "ymax": 4970251.885313829,
+   "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+   }
+  },
+  "size": 7612921,
+  "count": 283,
+  "maxAge": -3,
+  "smaxAge": -3,
+  "readonly": null,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_treetops_2023_lidar_planning_estimate/VectorTileServer"
+ }
+}
