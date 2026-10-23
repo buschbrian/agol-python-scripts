@@ -33,6 +33,8 @@ for (const server of ["https://www.arcgis.com/sharing/rest", "https://tiles.arcg
 }
 
 const params = new URLSearchParams(location.search);
+// Thumbnail mode: the map alone at 600 x 400 (ArcGIS Online's item thumbnail size), without widgets or attribution.
+if (params.get("thumb")) document.body.classList.add("thumb");
 let map, view;
 if (params.get("item")) {
   const item = new PortalItem({ id: params.get("item") });
@@ -42,14 +44,18 @@ if (params.get("item")) {
   map = is3d ? new WebScene({ portalItem: item }) : new WebMap({ portalItem: item });
   view = new (is3d ? SceneView : MapView)({ container: "view", map });
 } else {
-  const layer = await Layer.fromPortalItem({ portalItem: { id: params.get("layer") } });
+  const [id, sublayer] = params.get("layer").split("/");
+  const layer = sublayer === undefined
+    ? await Layer.fromPortalItem({ portalItem: { id } })
+    : await Layer.fromPortalItem({ portalItem: { id }, layerId: Number(sublayer) });
   document.getElementById("title").textContent = layer.title;
-  map = new Map({ basemap: "gray-vector", layers: [layer] });
+  map = new Map({ basemap: params.get("basemap") || "gray-vector", layers: [layer] });
   view = new MapView({ container: "view", map });
 }
 await map.load?.();
 await view.when();
 new Legend({ view, container: "legend" });
+if (params.get("thumb")) view.ui.components = [];
 
 if (params.get("bm") && map.bookmarks?.length) {
   const bm = map.bookmarks.at(Number(params.get("bm")));
@@ -66,6 +72,10 @@ if (params.get("center")) {
   await view.goTo({ center: [x, y], scale: Number(params.get("scale") || 10000) }, { animate: false });
 } else if (params.get("scale")) {
   await view.goTo({ scale: Number(params.get("scale")) }, { animate: false });
+}
+for (const id of (params.get("hide") || "").split(",").filter(Boolean)) {
+  const layer = map.findLayerById(id);
+  if (layer) layer.visible = false;
 }
 
 await reactiveUtils.whenOnce(() => !view.updating);

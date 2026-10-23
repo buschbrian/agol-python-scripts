@@ -3,7 +3,9 @@ r"""Apply the Millcreek LiDAR styling to ArcGIS Online, or show what would chang
     python reviews/2026-10-23/agol-styling/apply_styling.py [STEP ...]          dry run: compares the repo JSON with what is online
     python reviews/2026-10-23/agol-styling/apply_styling.py [STEP ...] --go     send what differs, then read it back
 
-STEP is any of styles, layers, maps (default all three). ArcGIS Pro Python (PYTHONNOUSERSITE=1), ArcGIS API for Python
+    python reviews/2026-10-23/agol-styling/apply_styling.py thumbnails --thumbs DIR [--go]
+
+STEP is any of styles, layers, maps (default all three), or thumbnails. ArcGIS Pro Python (PYTHONNOUSERSITE=1), ArcGIS API for Python
 2.4; signs in with GIS("pro") and uses its session for every request. The JSON comes from build_definitions.py.
 - styles: each vector tile item's resource styles/root.json (the style ArcGIS Online and the Maps SDK use when the
   item is added to a map; removing the resource restores the service's own style, kept in originals/).
@@ -12,6 +14,9 @@ STEP is any of styles, layers, maps (default all three). ArcGIS Pro Python (PYTH
   descriptions are never sent (another session owns them).
 - maps: the three web maps and the web scene, private in the "Millcreek LiDAR 2023" folder. Found by the IDs in
   created.json, else by title in your content; created only if missing, otherwise updated in place.
+- thumbnails: each item in thumbnails.json gets DIR/<key>.png as its thumbnail (rendered by web/check.html?thumb=1 at
+  the view recorded there; the PNGs carry basemap imagery, so they are not kept in the repo). Only the thumbnail is sent;
+  a thumbnail it replaces is saved to DIR/replaced/ first.
 Nothing is ever shared or deleted.
 """
 import argparse
@@ -27,6 +32,7 @@ from build_definitions import ITEMS, PORTAL  # noqa: E402
 FOLDER = "Millcreek LiDAR 2023"
 CREATED = HERE/"created.json"
 STEPS = ("styles", "layers", "maps")
+THUMBNAILS = HERE/"thumbnails.json"
 
 
 def load(path):
@@ -178,17 +184,56 @@ def maps(p):
         CREATED.write_text(json.dumps(created, indent=1) + "\n")
 
 
+def thumbnails(p, folder):
+    print("thumbnails")
+    for key, entry in load(THUMBNAILS).items():
+        if key.startswith("_"):
+            continue
+        item_id, png = entry["item"], (Path(folder)/f"{key}.png").read_bytes()
+        info = p.item(item_id)
+
+        def current():
+            name = p.item(item_id).get("thumbnail")
+            # Plain requests get a 200-pixel copy; w=800 returns the stored original, byte for byte.
+            r = (p.session.get(f"{PORTAL}/content/items/{item_id}/info/{name}", params={"w": 800, "_": str(time.time())})
+                 if name else None)
+            return r.content if r is not None and r.status_code == 200 else None
+
+        before = current()
+        if before == png:
+            print(f"  {key} ({item_id}): unchanged")
+            continue
+        print(f"  {key} ({item_id}): {'replaces ' + info['thumbnail'] if info.get('thumbnail') else 'new'}, {len(png):,} bytes")
+        if p.go:
+            if before is not None:   # keep the thumbnail being replaced, beside the new ones
+                kept = Path(folder)/"replaced"/f"{key}_{Path(info['thumbnail']).name}"
+                kept.parent.mkdir(exist_ok=True)
+                kept.write_bytes(before)
+            r = p.session.post(f"{PORTAL}/content/users/{info['owner']}/items/{item_id}/update", data={"f": "json"},
+                               files={"thumbnail": (f"{key}.png", png, "image/png")})
+            r.raise_for_status()
+            if "error" in r.json() or r.json().get("success") is False:
+                raise RuntimeError(f"{key}: {r.json()}")
+            print(f"    sent; read back {'equal' if current() == png else 'DIFFERENT'}")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("steps", nargs="*", metavar="STEP", help=f"any of {', '.join(STEPS)} (default all)")
     parser.add_argument("--go", action="store_true", help="send the changes (default: dry run)")
+    parser.add_argument("--thumbs", help="folder of <key>.png thumbnails, for the thumbnails step")
     args = parser.parse_args()
-    unknown = set(args.steps) - set(STEPS)
+    unknown = set(args.steps) - set(STEPS) - {"thumbnails"}
     if unknown:
         parser.error(f"unknown steps {sorted(unknown)}")
     p = Portal(args.go)
     for step in args.steps or STEPS:
-        globals()[step](p)
+        if step == "thumbnails":
+            if not args.thumbs:
+                parser.error("thumbnails needs --thumbs DIR")
+            thumbnails(p, args.thumbs)
+        else:
+            globals()[step](p)
 
 
 if __name__ == "__main__":
