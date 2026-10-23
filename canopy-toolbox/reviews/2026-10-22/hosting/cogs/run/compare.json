@@ -1,0 +1,940 @@
+{
+ "schema": "cog-compression-trial/1",
+ "started": "2026-10-22T22:33:01",
+ "gdal": "3.12.2e",
+ "max_z_error": 0.01,
+ "rasters": {
+  "slope_percent": {
+   "uncompressed_float32_bytes": 1200254988,
+   "source_bytes": 1208555614,
+   "source_compression": {
+    "INTERLEAVE": "BAND"
+   },
+   "variants": {
+    "deflate-pred3": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\slope_percent.tif",
+     "creation_options": [
+      "COMPRESS=DEFLATE",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=FLOATING_POINT"
+     ],
+     "bytes": 550143658,
+     "write_s": null,
+     "ratio_vs_uncompressed_float32": 2.18,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       3
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       3
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       3
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       3
+      ]
+     ],
+     "full_resolution_bytes": 407196186,
+     "overview_bytes": 142918938,
+     "full_read_s": 4.28,
+     "full_read_s_all": [
+      9.53,
+      8.38,
+      4.28
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 1.387,
+     "ms_per_tile": 3.47,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true
+    },
+    "deflate-nopred": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\slope_percent.deflate-nopred.tif",
+     "creation_options": [
+      "COMPRESS=DEFLATE",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=NO"
+     ],
+     "bytes": 637741614,
+     "write_s": 12.8,
+     "ratio_vs_uncompressed_float32": 1.88,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       1
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       1
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       1
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       1
+      ]
+     ],
+     "full_resolution_bytes": 477663359,
+     "overview_bytes": 160049721,
+     "full_read_s": 3.91,
+     "full_read_s_all": [
+      4.22,
+      4.31,
+      3.91
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 1.009,
+     "ms_per_tile": 2.52,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "cells_equal_master": true
+    },
+    "zstd-pred3": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\slope_percent.zstd-pred3.tif",
+     "creation_options": [
+      "COMPRESS=ZSTD",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=FLOATING_POINT",
+      "OVERVIEW_COMPRESS=ZSTD",
+      "OVERVIEW_PREDICTOR=FLOATING_POINT"
+     ],
+     "bytes": 542729877,
+     "write_s": 14.6,
+     "ratio_vs_uncompressed_float32": 2.21,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "ZSTD",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "ZSTD",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "ZSTD",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "ZSTD",
+       3
+      ],
+      [
+       1531,
+       765,
+       "ZSTD",
+       3
+      ],
+      [
+       765,
+       382,
+       "ZSTD",
+       3
+      ],
+      [
+       382,
+       191,
+       "ZSTD",
+       3
+      ]
+     ],
+     "full_resolution_bytes": 401724556,
+     "overview_bytes": 140976787,
+     "full_read_s": 1.85,
+     "full_read_s_all": [
+      2.03,
+      1.85,
+      2.0
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.544,
+     "ms_per_tile": 1.36,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "cells_equal_master": true
+    },
+    "lerc-0.01": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\slope_percent.lerc-0.01.tif",
+     "creation_options": [
+      "COMPRESS=LERC",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "OVERVIEW_COMPRESS=LERC",
+      "MAX_Z_ERROR=0.01",
+      "MAX_Z_ERROR_OVERVIEW=0.01"
+     ],
+     "bytes": 219208243,
+     "write_s": 8.9,
+     "ratio_vs_uncompressed_float32": 5.48,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "LERC",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "LERC",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "LERC",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "LERC",
+       1
+      ],
+      [
+       1531,
+       765,
+       "LERC",
+       1
+      ],
+      [
+       765,
+       382,
+       "LERC",
+       1
+      ],
+      [
+       382,
+       191,
+       "LERC",
+       1
+      ]
+     ],
+     "full_resolution_bytes": 158633455,
+     "overview_bytes": 60546134,
+     "full_read_s": 1.86,
+     "full_read_s_all": [
+      2.14,
+      1.86,
+      1.9
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.486,
+     "ms_per_tile": 1.22,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133813488
+    }
+   }
+  },
+  "terrain_m": {
+   "uncompressed_float32_bytes": 1200254988,
+   "source_bytes": 1208257016,
+   "source_compression": {
+    "INTERLEAVE": "BAND"
+   },
+   "variants": {
+    "deflate-pred3": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\terrain_m.tif",
+     "creation_options": [
+      "COMPRESS=DEFLATE",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=FLOATING_POINT"
+     ],
+     "bytes": 260863855,
+     "write_s": null,
+     "ratio_vs_uncompressed_float32": 4.6,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       3
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       3
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       3
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       3
+      ]
+     ],
+     "full_resolution_bytes": 188826319,
+     "overview_bytes": 72009730,
+     "full_read_s": 2.94,
+     "full_read_s_all": [
+      3.16,
+      3.03,
+      2.94
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.793,
+     "ms_per_tile": 1.98,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true
+    },
+    "deflate-nopred": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\terrain_m.deflate-nopred.tif",
+     "creation_options": [
+      "COMPRESS=DEFLATE",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=NO"
+     ],
+     "bytes": 473782799,
+     "write_s": 12.5,
+     "ratio_vs_uncompressed_float32": 2.53,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       1
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       1
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       1
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       1
+      ]
+     ],
+     "full_resolution_bytes": 347462852,
+     "overview_bytes": 126292141,
+     "full_read_s": 3.31,
+     "full_read_s_all": [
+      3.97,
+      3.31,
+      3.47
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.928,
+     "ms_per_tile": 2.32,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "cells_equal_master": true
+    },
+    "zstd-pred3": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\terrain_m.zstd-pred3.tif",
+     "creation_options": [
+      "COMPRESS=ZSTD",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=FLOATING_POINT",
+      "OVERVIEW_COMPRESS=ZSTD",
+      "OVERVIEW_PREDICTOR=FLOATING_POINT"
+     ],
+     "bytes": 249768995,
+     "write_s": 12.5,
+     "ratio_vs_uncompressed_float32": 4.81,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "ZSTD",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "ZSTD",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "ZSTD",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "ZSTD",
+       3
+      ],
+      [
+       1531,
+       765,
+       "ZSTD",
+       3
+      ],
+      [
+       765,
+       382,
+       "ZSTD",
+       3
+      ],
+      [
+       382,
+       191,
+       "ZSTD",
+       3
+      ]
+     ],
+     "full_resolution_bytes": 180671094,
+     "overview_bytes": 69070095,
+     "full_read_s": 1.88,
+     "full_read_s_all": [
+      2.13,
+      1.9,
+      1.88
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.512,
+     "ms_per_tile": 1.28,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "cells_equal_master": true
+    },
+    "lerc-0.01": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\terrain_m.lerc-0.01.tif",
+     "creation_options": [
+      "COMPRESS=LERC",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "OVERVIEW_COMPRESS=LERC",
+      "MAX_Z_ERROR=0.01",
+      "MAX_Z_ERROR_OVERVIEW=0.01"
+     ],
+     "bytes": 134006725,
+     "write_s": 10.4,
+     "ratio_vs_uncompressed_float32": 8.96,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "LERC",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "LERC",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "LERC",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "LERC",
+       1
+      ],
+      [
+       1531,
+       765,
+       "LERC",
+       1
+      ],
+      [
+       765,
+       382,
+       "LERC",
+       1
+      ],
+      [
+       382,
+       191,
+       "LERC",
+       1
+      ]
+     ],
+     "full_resolution_bytes": 93453626,
+     "overview_bytes": 40525173,
+     "full_read_s": 1.79,
+     "full_read_s_all": [
+      2.06,
+      1.79,
+      2.43
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.465,
+     "ms_per_tile": 1.16,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133813488
+    }
+   }
+  },
+  "chm_m": {
+   "uncompressed_float32_bytes": 1200254988,
+   "source_bytes": 140426518,
+   "source_compression": {
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND"
+   },
+   "variants": {
+    "deflate-pred3": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\chm_m.tif",
+     "creation_options": [
+      "COMPRESS=DEFLATE",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=FLOATING_POINT"
+     ],
+     "bytes": 240608547,
+     "write_s": null,
+     "ratio_vs_uncompressed_float32": 4.99,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       3
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       3
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       3
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       3
+      ]
+     ],
+     "full_resolution_bytes": 141226809,
+     "overview_bytes": 99354134,
+     "full_read_s": 2.68,
+     "full_read_s_all": [
+      2.94,
+      2.72,
+      2.68
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.721,
+     "ms_per_tile": 1.8,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true
+    },
+    "deflate-nopred": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\chm_m.deflate-nopred.tif",
+     "creation_options": [
+      "COMPRESS=DEFLATE",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=NO"
+     ],
+     "bytes": 229897699,
+     "write_s": 9.0,
+     "ratio_vs_uncompressed_float32": 5.22,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       1
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       1
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       1
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       1
+      ]
+     ],
+     "full_resolution_bytes": 142260231,
+     "overview_bytes": 87609864,
+     "full_read_s": 2.32,
+     "full_read_s_all": [
+      2.32,
+      2.45,
+      2.38
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.605,
+     "ms_per_tile": 1.51,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "cells_equal_master": true
+    },
+    "zstd-pred3": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\chm_m.zstd-pred3.tif",
+     "creation_options": [
+      "COMPRESS=ZSTD",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "PREDICTOR=FLOATING_POINT",
+      "OVERVIEW_COMPRESS=ZSTD",
+      "OVERVIEW_PREDICTOR=FLOATING_POINT"
+     ],
+     "bytes": 231195940,
+     "write_s": 11.0,
+     "ratio_vs_uncompressed_float32": 5.19,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "ZSTD",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "ZSTD",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "ZSTD",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "ZSTD",
+       3
+      ],
+      [
+       1531,
+       765,
+       "ZSTD",
+       3
+      ],
+      [
+       765,
+       382,
+       "ZSTD",
+       3
+      ],
+      [
+       382,
+       191,
+       "ZSTD",
+       3
+      ]
+     ],
+     "full_resolution_bytes": 134803292,
+     "overview_bytes": 96365044,
+     "full_read_s": 1.73,
+     "full_read_s_all": [
+      1.82,
+      1.73,
+      1.81
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.488,
+     "ms_per_tile": 1.22,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "cells_equal_master": true
+    },
+    "lerc-0.01": {
+     "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\trials\\chm_m.lerc-0.01.tif",
+     "creation_options": [
+      "COMPRESS=LERC",
+      "BLOCKSIZE=512",
+      "OVERVIEW_RESAMPLING=AVERAGE",
+      "OVERVIEWS=IGNORE_EXISTING",
+      "NUM_THREADS=ALL_CPUS",
+      "BIGTIFF=IF_SAFER",
+      "OVERVIEW_COMPRESS=LERC",
+      "MAX_Z_ERROR=0.01",
+      "MAX_Z_ERROR_OVERVIEW=0.01"
+     ],
+     "bytes": 185619158,
+     "write_s": 7.6,
+     "ratio_vs_uncompressed_float32": 6.47,
+     "cog_errors": [],
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "LERC",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "LERC",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "LERC",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "LERC",
+       1
+      ],
+      [
+       1531,
+       765,
+       "LERC",
+       1
+      ],
+      [
+       765,
+       382,
+       "LERC",
+       1
+      ],
+      [
+       382,
+       191,
+       "LERC",
+       1
+      ]
+     ],
+     "full_resolution_bytes": 141904521,
+     "overview_bytes": 43686913,
+     "full_read_s": 1.69,
+     "full_read_s_all": [
+      1.69,
+      1.7,
+      1.77
+     ],
+     "random_tiles": 400,
+     "random_tiles_s": 0.44,
+     "ms_per_tile": 1.1,
+     "repeats": 3,
+     "every_ifd_codec_as_asked": true,
+     "max_abs_error": 0.010000228881835938,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133058292
+    }
+   }
+  }
+ },
+ "finished": "2026-10-22T22:37:56"
+}

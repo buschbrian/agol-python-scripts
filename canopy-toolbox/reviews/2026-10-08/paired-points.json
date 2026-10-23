@@ -1,0 +1,16 @@
+{
+  "points": 26982464,
+  "eligible_points": 26911864,
+  "flagged_points_excluded": 70600,
+  "different_consensus_codes_including_ties": 426736,
+  "difference_share_including_ties": 0.015856798325080714,
+  "both_consensuses_resolved_points": 26876716,
+  "different_resolved_codes": 392729,
+  "difference_share_when_both_resolved": 0.014612239084566731,
+  "either_consensus_tied_points": 35148,
+  "input_consensus_sha256": [
+    "bacc2863da8439810af8ab09f1ece716859ccdbfb6d9bd83e3b728dead94d194",
+    "0a8fae72a65726224c12b7c03cc8e5fd122e03c2183512c9ead50071bb9d5213"
+  ],
+  "interpretation": "Sensitivity to imagery year plus residual stochastic inference variation; not classification error or accuracy."
+}

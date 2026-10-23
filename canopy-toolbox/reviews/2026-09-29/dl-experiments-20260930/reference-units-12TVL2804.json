@@ -1,0 +1,49 @@
+{
+ "treetop": {
+  "all_tiles": 628,
+  "12TVL2804": 210,
+  "within_15m_of_tile_edge": 15,
+  "in_250m_bounded_extent": 19,
+  "strata_in_bounded": {
+   "ROOF_LEVEL": 4,
+   "ROOF_MID": 5,
+   "ABOVE_ROOF": 1,
+   "SMALL_CROWN": 7,
+   "NORMAL": 2
+  }
+ },
+ "omission": {
+  "all_tiles": 300,
+  "12TVL2804": 100,
+  "within_15m_of_tile_edge": 12,
+  "in_250m_bounded_extent": 6,
+  "strata_in_bounded": {
+   "OM_ROOF": 3,
+   "OM_DENSE": 1,
+   "OM_OPEN": 1,
+   "OM_NODATA": 1
+  }
+ },
+ "cell": {
+  "all_tiles": 360,
+  "12TVL2804": 120,
+  "within_15m_of_tile_edge": 9,
+  "in_250m_bounded_extent": 5,
+  "strata_in_bounded": {
+   "CANOPY_NEAR": 1,
+   "CANOPY_FAR": 1,
+   "NONCAN_FAR": 3
+  }
+ },
+ "crown": {
+  "all_tiles": 180,
+  "12TVL2804": 60,
+  "within_15m_of_tile_edge": 7,
+  "in_250m_bounded_extent": 4,
+  "strata_in_bounded": {
+   "CR_BLDG": 1,
+   "CR_SMALL": 2,
+   "CR_MEDIUM": 1
+  }
+ }
+}

@@ -1,0 +1,159 @@
+{
+ "renderer": {
+  "type": "classBreaks",
+  "field": "HEIGHT_P50_M",
+  "classificationMethod": "esriClassifyManual",
+  "minValue": 0,
+  "classBreakInfos": [
+   {
+    "classMaxValue": 4,
+    "label": "Under 4 m (13 ft)",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      242,
+      240,
+      247,
+      255
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       60,
+       60,
+       90,
+       70
+      ],
+      "width": 0.3
+     }
+    }
+   },
+   {
+    "classMaxValue": 6,
+    "label": "4 to 6 m (13 to 20 ft)",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      203,
+      201,
+      226,
+      255
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       60,
+       60,
+       90,
+       70
+      ],
+      "width": 0.3
+     }
+    }
+   },
+   {
+    "classMaxValue": 9,
+    "label": "6 to 9 m (20 to 30 ft)",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      158,
+      154,
+      200,
+      255
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       60,
+       60,
+       90,
+       70
+      ],
+      "width": 0.3
+     }
+    }
+   },
+   {
+    "classMaxValue": 12,
+    "label": "9 to 12 m (30 to 39 ft)",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      117,
+      107,
+      177,
+      255
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       60,
+       60,
+       90,
+       70
+      ],
+      "width": 0.3
+     }
+    }
+   },
+   {
+    "classMaxValue": 60,
+    "label": "12 m (39 ft) and over",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      84,
+      39,
+      143,
+      255
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       60,
+       60,
+       90,
+       70
+      ],
+      "width": 0.3
+     }
+    }
+   }
+  ],
+  "defaultLabel": "No lidar height (no roof points)",
+  "defaultSymbol": {
+   "type": "esriSFS",
+   "style": "esriSFSSolid",
+   "color": [
+    215,
+    215,
+    215,
+    200
+   ],
+   "outline": {
+    "type": "esriSLS",
+    "style": "esriSLSSolid",
+    "color": [
+     120,
+     120,
+     120,
+     200
+    ],
+    "width": 0.6
+   }
+  }
+ },
+ "transparency": 0,
+ "labelingInfo": null
+}

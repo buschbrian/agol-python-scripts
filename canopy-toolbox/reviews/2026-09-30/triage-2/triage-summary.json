@@ -1,0 +1,422 @@
+{
+ "units": 1065,
+ "auto_candidates": 99,
+ "review": 966,
+ "proposed_by_label": {
+  "BUILDING_ROOF": 58,
+  "SHRUB_LOW_VEG": 1,
+  "TREE": 38,
+  "WALL": 2
+ },
+ "hints_for_review": {
+  "GROUND": 54,
+  "POLE": 24,
+  "WIRE": 1
+ },
+ "by_queue": {
+  "Q1_TREE_ON_ROOF": {
+   "units": 170,
+   "auto": 12
+  },
+  "Q2_BLDG_BACKGROUND": {
+   "units": 173,
+   "auto": 20
+  },
+  "Q3_VEG_BACKGROUND": {
+   "units": 182,
+   "auto": 7
+  },
+  "Q4_SHAPE": {
+   "units": 165,
+   "auto": 27
+  },
+  "Q5_ROOF_CANDIDATE": {
+   "units": 182,
+   "auto": 2
+  },
+  "Q6_RANDOM": {
+   "units": 193,
+   "auto": 31
+  }
+ },
+ "footprint_state": {
+  "inside": 326,
+  "outside_both": 648,
+  "unknown": 91
+ },
+ "ndvi_missing": 0,
+ "own_ground_vs_packet_ground_m": {
+  "median": -0.28,
+  "p5": -2.16,
+  "p95": 0.04
+ },
+ "human_labelled": [
+  {
+   "unit": "Q1-0001",
+   "human": "BUILDING_ROOF",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0001",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q3-0001",
+   "human": "OTHER_STRUCTURE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q4-0001",
+   "human": "TREE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q5-0001",
+   "human": "BUILDING_ROOF",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0001",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q1-0002",
+   "human": "BUILDING_ROOF",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0002",
+   "human": "VEHICLE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q3-0002",
+   "human": "TREE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q5-0002",
+   "human": "BUILDING_ROOF",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0002",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0003",
+   "human": "OTHER_STRUCTURE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0005",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0008",
+   "human": "VEHICLE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q5-0010",
+   "human": "BUILDING_ROOF",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0011",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0019",
+   "human": "WALL",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q1-0021",
+   "human": "OTHER_STRUCTURE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q4-0022",
+   "human": "TREE",
+   "proposed": "TREE",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q3-0025",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0028",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0031",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q2-0034",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0034",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q1-0039",
+   "human": "BUILDING_ROOF",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0039",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0042",
+   "human": "SHRUB_LOW_VEG",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0046",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0047",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q1-0052",
+   "human": "UNSURE",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q4-0058",
+   "human": "TREE",
+   "proposed": "TREE",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q2-0060",
+   "human": "OTHER_STRUCTURE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0066",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0068",
+   "human": "SHRUB_LOW_VEG",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0072",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q4-0085",
+   "human": "MIXED",
+   "proposed": "TREE",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q4-0091",
+   "human": "UNSURE",
+   "proposed": "TREE",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q2-0103",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0104",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0108",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0109",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q4-0113",
+   "human": "TREE",
+   "proposed": "TREE",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q2-0115",
+   "human": "OTHER_STRUCTURE",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0116",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0119",
+   "human": "VEHICLE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0124",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0128",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q2-0133",
+   "human": "MIXED",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0133",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q4-0146",
+   "human": "TREE",
+   "proposed": "TREE",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0147",
+   "human": "OTHER_STRUCTURE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0148",
+   "human": "POLE",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q2-0152",
+   "human": "BUILDING_ROOF",
+   "proposed": "BUILDING_ROOF",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q6-0153",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q3-0161",
+   "human": "TREE",
+   "proposed": "TREE",
+   "tier": "AUTO_CANDIDATE"
+  },
+  {
+   "unit": "Q2-0163",
+   "human": "BUILDING_ROOF",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0171",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  },
+  {
+   "unit": "Q6-0173",
+   "human": "GROUND",
+   "proposed": null,
+   "tier": "REVIEW"
+  }
+ ],
+ "diagnostic_vs_models_not_an_input": {
+  "BUILDING_ROOF proposals vs BLDG_MODEL=6": {
+   "n": 58,
+   "agree": 37
+  },
+  "BUILDING_ROOF proposals vs BASE_CLASS=6": {
+   "n": 58,
+   "agree": 56
+  },
+  "TREE proposals vs TREE_MODEL=5": {
+   "n": 38,
+   "agree": 34
+  },
+  "TREE proposals vs BASE_CLASS=5": {
+   "n": 38,
+   "agree": 36
+  }
+ },
+ "seconds": 9.7
+}

@@ -1,0 +1,225 @@
+{
+ "schema": "tiles-pilot/1",
+ "finished": "2026-10-23T08:08:24",
+ "window_utm": [
+  433349.0,
+  4506383.0,
+  434349.0,
+  4507383.0
+ ],
+ "levels": [
+  16,
+  17,
+  18
+ ],
+ "geographic_transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+ "datum_shift": {
+  "origin": [
+   -12450955.353592921,
+   4966232.863269213
+  ],
+  "plane_dx": [
+   -1.3026639831811186,
+   2.0335143905954171e-07,
+   -1.0179392164773954e-07
+  ],
+  "plane_dy": [
+   0.8929679714515804,
+   1.0258450516683042e-07,
+   2.0306995150946516e-07
+  ],
+  "shift_m": 1.5793,
+  "spread_mm": 4.1057,
+  "plane_residual_max_mm": 0.0015,
+  "arcpy_untransformed_vs_this_script_mm": 0.0
+ },
+ "seconds": {
+  "hillshade_default": 45.1,
+  "terrain_default": 51.5,
+  "hillshade": 49.7,
+  "terrain": 41.3,
+  "package_terrain": 2.0
+ },
+ "caches": {
+  "hillshade_default": {
+   "conf": {
+    "format": "MIXED",
+    "lerc_error": 0.0,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 30,
+     "bytes": 608083
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 54,
+     "bytes": 640174
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 65,
+     "bytes": 596609
+    }
+   },
+   "values_L18": {
+    "pixels": 4320,
+    "source_valid": 1350,
+    "opaque": 1354,
+    "valid_but_transparent": 1,
+    "opaque_but_nodata": 5,
+    "gray_above_cap_pixels": 204,
+    "mean_difference_vs_capped_source": -41.65,
+    "median_abs_difference_vs_capped_source": 42.0,
+    "mean_difference": -41.66,
+    "median_abs_difference": 42.0,
+    "p95_abs_difference": 114.0,
+    "max_abs_difference": 172
+   },
+   "values_L18_if_untransformed": {
+    "pixels": 4320,
+    "source_valid": 1354,
+    "opaque": 1354,
+    "valid_but_transparent": 0,
+    "opaque_but_nodata": 0,
+    "gray_above_cap_pixels": 204,
+    "mean_difference_vs_capped_source": -41.77,
+    "median_abs_difference_vs_capped_source": 43.0,
+    "mean_difference": -41.79,
+    "median_abs_difference": 43.0,
+    "p95_abs_difference": 113.0,
+    "max_abs_difference": 129
+   }
+  },
+  "hillshade": {
+   "conf": {
+    "format": "PNG32",
+    "lerc_error": 0.0,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 30,
+     "bytes": 1648558
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 54,
+     "bytes": 2263473
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 65,
+     "bytes": 1878467
+    }
+   },
+   "values_L18": {
+    "pixels": 4320,
+    "source_valid": 1350,
+    "opaque": 1350,
+    "valid_but_transparent": 0,
+    "opaque_but_nodata": 0,
+    "gray_above_cap_pixels": 0,
+    "mean_difference_vs_capped_source": -0.04,
+    "median_abs_difference_vs_capped_source": 1.0,
+    "mean_difference": -0.06,
+    "median_abs_difference": 1.0,
+    "p95_abs_difference": 5.0,
+    "max_abs_difference": 47
+   },
+   "values_L18_if_untransformed": {
+    "pixels": 4320,
+    "source_valid": 1354,
+    "opaque": 1350,
+    "valid_but_transparent": 5,
+    "opaque_but_nodata": 1,
+    "gray_above_cap_pixels": 0,
+    "mean_difference_vs_capped_source": -0.3,
+    "median_abs_difference_vs_capped_source": 4.0,
+    "mean_difference": -0.31,
+    "median_abs_difference": 4.0,
+    "p95_abs_difference": 24.0,
+    "max_abs_difference": 93
+   }
+  },
+  "terrain_default": {
+   "conf": {
+    "format": "LERC",
+    "lerc_error": 0.1,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 34,
+     "bytes": 1442886
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 64,
+     "bytes": 2524587
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 114,
+     "bytes": 4061862
+    }
+   },
+   "values_L18": {
+    "pixels": 610,
+    "max_abs_vs_bilinear_m": 3.017,
+    "median_abs_vs_bilinear_m": 0.4354
+   },
+   "values_L18_if_untransformed": {
+    "pixels": 610,
+    "max_abs_vs_bilinear_m": 0.0992,
+    "median_abs_vs_bilinear_m": 0.0501
+   }
+  },
+  "terrain": {
+   "conf": {
+    "format": "LERC",
+    "lerc_error": 0.01,
+    "tile_size": 256
+   },
+   "levels": {
+    "16": {
+     "tiles": 36,
+     "with_data": 34,
+     "bytes": 2224592
+    },
+    "17": {
+     "tiles": 72,
+     "with_data": 64,
+     "bytes": 4015288
+    },
+    "18": {
+     "tiles": 144,
+     "with_data": 114,
+     "bytes": 6780303
+    }
+   },
+   "values_L18": {
+    "pixels": 608,
+    "max_abs_vs_bilinear_m": 0.017,
+    "median_abs_vs_bilinear_m": 0.0053
+   },
+   "values_L18_if_untransformed": {
+    "pixels": 608,
+    "max_abs_vs_bilinear_m": 4.3803,
+    "median_abs_vs_bilinear_m": 0.4558
+   }
+  }
+ },
+ "tpkx_members": [
+  "iteminfo.json",
+  "root.json",
+  "thumbnail.png",
+  "tile/L16/R*C*.bundle",
+  "tile/L17/R*C*.bundle",
+  "tile/L18/R*C*.bundle"
+ ]
+}

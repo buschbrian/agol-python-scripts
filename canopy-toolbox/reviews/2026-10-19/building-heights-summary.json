@@ -1,0 +1,177 @@
+{
+  "status": "complete",
+  "started": 1792432622.034163,
+  "warning": "Unvalidated roof-minus-terrain estimates from 2023 lidar and current county footprints. Not surveyed or code-defined building heights. Support below 80% is a review flag, not an accuracy threshold. Negative cells are retained.",
+  "runtime": {
+    "arcgis_pro": "3.7.3",
+    "build": "1901",
+    "python": "3.13.13",
+    "scipy": "1.16.3",
+    "license": "ArcInfo"
+  },
+  "code_sha256": "1f170a3ef661fe3b05e7437060825fc8f5dfdbe6ccceaa42e67af50c1efb8986",
+  "source_footprints": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\footprints\\footprints.gdb\\county_footprints",
+  "id_field": "SOURCE_ID",
+  "expected": 22042,
+  "pilot": [
+    {
+      "source_id": "734977",
+      "cells": 0,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "737385",
+      "cells": 169,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "731774",
+      "cells": 275,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "720707",
+      "cells": 402,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "721212",
+      "cells": 530,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "735158",
+      "cells": 614,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "733628",
+      "cells": 752,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "724253",
+      "cells": 839,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "720642",
+      "cells": 933,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "727628",
+      "cells": 1084,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "733297",
+      "cells": 1394,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "729742",
+      "cells": 77312,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "722876",
+      "cells": 324,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "723780",
+      "cells": 196,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "725321",
+      "cells": 1339,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "726277",
+      "cells": 4331,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "728604",
+      "cells": 1073,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "735326",
+      "cells": 1385,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "737240",
+      "cells": 870,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": "737790",
+      "cells": 239,
+      "arcgis_exact_match": true,
+      "cached_values_match_raster": true,
+      "boundary_fallback": false
+    }
+  ],
+  "output": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\buildings.gdb\\building_heights",
+  "completed": 22042,
+  "counts": {
+    "footprints": 22042,
+    "with_height": 21415,
+    "boundary_fallbacks": 0,
+    "UNVALIDATED": 22042,
+    "LOW_ROOF_SUPPORT": 1848,
+    "NO_ROOF_SUPPORT": 624,
+    "NEGATIVE_HEIGHT": 633,
+    "GEOMETRY_REPAIRED": 5,
+    "PARTIAL_AOI": 27,
+    "NO_CELL_CENTERS": 3
+  },
+  "finished": 1792432956.1476982,
+  "original_geometry_and_attributes_preserved": true,
+  "csv": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\building-heights.csv",
+  "max_window_cells": 4000000,
+  "seconds": 334.11353516578674
+}

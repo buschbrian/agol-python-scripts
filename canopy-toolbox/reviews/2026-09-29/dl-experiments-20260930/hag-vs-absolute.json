@@ -1,0 +1,30 @@
+{
+ "absolute": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+  "bytes": 809475416,
+  "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+ },
+ "hag": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\hag-20260929\\12TVL2804\\points\\12TVL2804.las",
+  "bytes": 809475416,
+  "sha256": "e5bae965bc9a23dea380bace138df14c942f65a15917ce318a5f16216aef00ba"
+ },
+ "status": "non_z_bytes_identical",
+ "header_z_fields": {
+  "z_offset": {
+   "absolute": 0.0,
+   "hag": 0.0
+  },
+  "max_z": {
+   "absolute": 1471.07,
+   "hag": 119.34
+  },
+  "min_z": {
+   "absolute": 1232.64,
+   "hag": -128.05
+  }
+ },
+ "points": 26982464,
+ "records_with_changed_z": 26982464,
+ "compared": "all header/VLR bytes except Z offset and max/min Z; all record bytes except Z; all bytes after the records"
+}

@@ -1,0 +1,361 @@
+{
+ "treetops": {
+  "features_in": 527140,
+  "recorded_features_in": 527140,
+  "vtpk_bytes": 7678182,
+  "levels": [
+   14,
+   17
+  ],
+  "package": {
+   "entries": 286,
+   "bundles": 18,
+   "lods": [
+    0,
+    17
+   ],
+   "min_scale": 18055.9548215,
+   "max_scale": 2256.9943525,
+   "style_layers": [
+    {
+     "id": "Treetops by height/2 to 5 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/5 to 10 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/10 to 15 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/15 to 20 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/20 m and over",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    }
+   ]
+  },
+  "opened_in_pro": {
+   "layer": "millcreek_treetops",
+   "cim_class": "CIMVectorTileLayer"
+  },
+  "tile_sample": {
+   "bundle": "p12/tile/L16/R6000C3000.bundle",
+   "tile_bytes": 14447,
+   "layers": {
+    "Treetops by height": {
+     "keys": [
+      "_symbol"
+     ],
+     "features": 4,
+     "extent": 4096
+    }
+   }
+  },
+  "source_fields": [
+   "TREE_ID",
+   "HEIGHT_M",
+   "MIN_HEIGHT",
+   "SMOOTH",
+   "SOURCE_ID",
+   "REVIEW_STATUS",
+   "SPECIES",
+   "DBH_CM",
+   "CONDITION",
+   "FIELD_NOTES",
+   "OWNERSHIP",
+   "OWNER_GROUP",
+   "PARCEL_MATCHES",
+   "OCT8"
+  ],
+  "tile_keys": [
+   "_symbol"
+  ],
+  "fields_dropped": [
+   "TREE_ID",
+   "HEIGHT_M",
+   "MIN_HEIGHT",
+   "SMOOTH",
+   "SOURCE_ID",
+   "REVIEW_STATUS",
+   "SPECIES",
+   "DBH_CM",
+   "CONDITION",
+   "FIELD_NOTES",
+   "OWNERSHIP",
+   "OWNER_GROUP",
+   "PARCEL_MATCHES",
+   "OCT8"
+  ],
+  "points_in_tiles": {
+   "by_level": {
+    "13": 1306,
+    "14": 525806,
+    "15": 498829,
+    "16": 406324
+   },
+   "in_leaf_tiles": 526997,
+   "on_leaf_tile_edges": 130
+  }
+ },
+ "crowns": {
+  "features_in": 400063,
+  "recorded_features_in": 400063,
+  "vtpk_bytes": 33867142,
+  "levels": [
+   14,
+   17
+  ],
+  "package": {
+   "entries": 286,
+   "bundles": 18,
+   "lods": [
+    0,
+    17
+   ],
+   "min_scale": 18055.9548215,
+   "max_scale": 2256.9943525,
+   "style_layers": [
+    {
+     "id": "Crowns by treetop height/2 to 5 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/5 to 10 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/10 to 15 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/15 to 20 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/20 m and over",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    }
+   ]
+  },
+  "opened_in_pro": {
+   "layer": "millcreek_crowns",
+   "cim_class": "CIMVectorTileLayer"
+  },
+  "tile_sample": {
+   "bundle": "p12/tile/L16/R6000C3000.bundle",
+   "tile_bytes": 159749,
+   "layers": {
+    "Crowns by treetop height": {
+     "keys": [
+      "_symbol",
+      "__minzoom"
+     ],
+     "features": 5342,
+     "extent": 4096
+    }
+   }
+  },
+  "source_fields": [
+   "Shape_Length",
+   "Shape_Area",
+   "TREE_ID",
+   "HEIGHT_M",
+   "CROWN_AREA_M2",
+   "CROWN_DIAM_M"
+  ],
+  "tile_keys": [
+   "__minzoom",
+   "_symbol"
+  ],
+  "fields_dropped": [
+   "Shape_Length",
+   "Shape_Area",
+   "TREE_ID",
+   "HEIGHT_M",
+   "CROWN_AREA_M2",
+   "CROWN_DIAM_M"
+  ]
+ },
+ "contours": {
+  "features_in": 15149,
+  "recorded_features_in": 15149,
+  "vtpk_bytes": 6672410,
+  "levels": [
+   10,
+   17
+  ],
+  "package": {
+   "entries": 286,
+   "bundles": 18,
+   "lods": [
+    0,
+    17
+   ],
+   "min_scale": 288895.2771445,
+   "max_scale": 2256.9943525,
+   "style_layers": [
+    {
+     "id": "Contours (2 m)",
+     "type": "line",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Index contours (10 m)",
+     "type": "line",
+     "minzoom": 10,
+     "maxzoom": null
+    }
+   ]
+  },
+  "opened_in_pro": {
+   "layer": "millcreek_contours",
+   "cim_class": "CIMVectorTileLayer"
+  },
+  "tile_sample": {
+   "bundle": "p12/tile/L16/R6000C3080.bundle",
+   "tile_bytes": 43011,
+   "layers": {
+    "Index contours (10 m)": {
+     "keys": [],
+     "features": 1,
+     "extent": 4096
+    },
+    "Contours (2 m)": {
+     "keys": [],
+     "features": 1,
+     "extent": 4096
+    }
+   }
+  },
+  "source_fields": [
+   "Id",
+   "Contour",
+   "Shape_Length",
+   "INDEX"
+  ],
+  "tile_keys": [],
+  "fields_dropped": [
+   "Id",
+   "Contour",
+   "Shape_Length",
+   "INDEX"
+  ]
+ },
+ "slope": {
+  "features_in": 129352,
+  "recorded_features_in": 129352,
+  "vtpk_bytes": 22732687,
+  "levels": [
+   0,
+   17
+  ],
+  "package": {
+   "entries": 286,
+   "bundles": 18,
+   "lods": [
+    0,
+    17
+   ],
+   "min_scale": 295828763.7957775,
+   "max_scale": 2256.9943525,
+   "style_layers": [
+    {
+     "id": "Slope classes/Under 10%/1",
+     "type": "fill",
+     "minzoom": null,
+     "maxzoom": null
+    },
+    {
+     "id": "Slope classes/10% to 15%/1",
+     "type": "fill",
+     "minzoom": null,
+     "maxzoom": null
+    },
+    {
+     "id": "Slope classes/15% to 20%/1",
+     "type": "fill",
+     "minzoom": null,
+     "maxzoom": null
+    },
+    {
+     "id": "Slope classes/20% to 25%/1",
+     "type": "fill",
+     "minzoom": null,
+     "maxzoom": null
+    },
+    {
+     "id": "Slope classes/25% to 30%/1",
+     "type": "fill",
+     "minzoom": null,
+     "maxzoom": null
+    },
+    {
+     "id": "Slope classes/30% and over/1",
+     "type": "fill",
+     "minzoom": null,
+     "maxzoom": null
+    }
+   ]
+  },
+  "opened_in_pro": {
+   "layer": "millcreek_slope_classes",
+   "cim_class": "CIMVectorTileLayer"
+  },
+  "tile_sample": {
+   "bundle": "p12/tile/L16/R6000C3000.bundle",
+   "tile_bytes": 193726,
+   "layers": {
+    "Slope classes": {
+     "keys": [
+      "_symbol",
+      "__minzoom"
+     ],
+     "features": 3378,
+     "extent": 4096
+    }
+   }
+  },
+  "source_fields": [
+   "SLOPE_CODE",
+   "Shape_Length",
+   "Shape_Area",
+   "SLOPE_CLASS"
+  ],
+  "tile_keys": [
+   "__minzoom",
+   "_symbol"
+  ],
+  "fields_dropped": [
+   "SLOPE_CODE",
+   "Shape_Length",
+   "Shape_Area",
+   "SLOPE_CLASS"
+  ]
+ }
+}

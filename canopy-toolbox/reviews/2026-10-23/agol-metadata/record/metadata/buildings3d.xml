@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='utf-8'?>
+<metadata xml:lang="en">
+        
+    <Esri>
+                
+        <ArcGISFormat>1.0</ArcGISFormat>
+                
+        <ArcGISProfile>DCPLUS</ArcGISProfile>
+                
+        <CreaDate>20261023</CreaDate>
+                
+        <CreaTime>18053200</CreaTime>
+                
+        <ModDate>20261023</ModDate>
+                
+        <ModTime>18053200</ModTime>
+                
+        <DataProperties>
+                        
+            <itemProps>
+                                
+                <portalDetails>
+                                        
+                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=5082b5bd063a4a03847f2082dc3533d1</itemDetailsURL>
+                                        
+                    <itemIdentifier>5082b5bd063a4a03847f2082dc3533d1</itemIdentifier>
+                                        
+                    <itemType>Scene Service</itemType>
+                                        
+                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_LOD1_2_2023_lidar_planning_estimate/SceneServer</resourceURL>
+                                    
+                </portalDetails>
+                            
+            </itemProps>
+                    
+        </DataProperties>
+            
+    </Esri>
+        
+    <dataIdInfo>
+                
+        <idCitation>
+                        
+            <resTitle>Millcreek 3D buildings LOD1.2 (2023 lidar), planning estimate</resTitle>
+                    
+            <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                
+        <searchKeys>
+                        
+            
+            
+            
+            
+            
+            
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>buildings</keyword><keyword>3D buildings</keyword><keyword>LOD1.2</keyword><keyword>building height</keyword><keyword>massing</keyword><keyword>scene layer</keyword></searchKeys>
+                
+        <idPurp>21,561 Millcreek, Utah, buildings as flat-roofed 3D blocks (LOD1.2): County footprints raised to their median 2023 lidar roof height. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
+                
+        <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
+surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
+property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
+&lt;h2&gt;What it shows&lt;/h2&gt;
+&lt;p&gt;Every Salt Lake County building footprint in Millcreek, Utah, that has a lidar roof, as a simple 3D block (CityGML level
+of detail 1.2): the footprint's outline, from the ground to a flat top at the building's median roof height. 21,561
+buildings. They show the city's massing in a web scene: building heights, the scale of streets and how buildings sit on
+the terrain. Roof shapes are &lt;strong&gt;not&lt;/strong&gt; modelled.&lt;/p&gt;
+&lt;p&gt;Each block carries its footprint's County attributes and lidar roof-height statistics (see the data dictionary), so a
+pop-up can show its height. The same statistics, for all 22,042 footprints, are in the Millcreek buildings and canopy
+cover zones feature layer; the two join on &lt;code&gt;SOURCE_OID&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Using it in a scene&lt;/h2&gt;
+&lt;p&gt;Put the &lt;strong&gt;Millcreek bare-earth terrain&lt;/strong&gt; elevation layer in the scene's Ground, above World Elevation. The blocks were
+built on that terrain, so they stand on it exactly. On Esri's World Elevation alone they can float or sink by up to about
+a metre (see Coordinates).&lt;/p&gt;
+&lt;h2&gt;How it was made&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Heights.&lt;/strong&gt; For each County footprint, the median of lidar roof elevation minus bare-earth terrain over its 0.5 m
+   cells (roof where at least two of three independent classifications agree that a point is building). The same
+   figures as HEIGHT_P50_M in the feature layer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blocks.&lt;/strong&gt; ArcGIS Pro's Extract LOD2 Buildings tool at LOD1.2, from a 0.5 m surface that is the lidar roof inside
+   the roofs and the terrain elsewhere, with the County footprints. Each block runs from the ground around the footprint to
+   the median roof. 21,562 footprints with a height went in; one sliver of 0.5 m2 (FP_ID 21952) gave no block.&lt;/li&gt;
+&lt;li&gt;Packaged as a scene layer package in WGS84 and published.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Accuracy and checks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Of 14,229 footprints with lidar roof on at least 95% of their area, the block top is within 1 m of the median roof for
+  all but 13. Of the 2,380 with less than 80% roof (LOW_ROOF_SUPPORT in HEIGHT_STATUS), 695 are more than 1 m off, mostly
+  low. 718 blocks in all are more than 1 m from the median roof (TOP_MINUS_ROOF50).&lt;/li&gt;
+&lt;li&gt;Block bases sit a median 0.11 m below the lowest terrain under the footprint. Four sit 3.6 to 7.2 m above it (FP_ID
+  22003, 16604, 4881, 6917): fully roofed sites where the tool read the ground near roof level.&lt;/li&gt;
+&lt;li&gt;The hosted layer's own statistics give 21,561 buildings with FP_ID 1 to 22,042, exactly the source's.&lt;/li&gt;
+&lt;li&gt;Roof classification on one hand-labelled 1 km tile (a hard sample, not a citywide accuracy): 92.8% of roof parts
+  found, 2.8% of non-roof parts called roof. No block height has been compared with a survey or plan set.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Limits&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Heights are roof-minus-terrain estimates&lt;/strong&gt;, not code-defined building heights. Pitched roofs are shown flat at their
+  median height, so ridges are higher than the block and eaves lower.&lt;/li&gt;
+&lt;li&gt;One block per County footprint. Footprints that hold several buildings, or buildings split across footprints, are shown
+  as the County drew them; buildings missing from the County layer or built since are absent.&lt;/li&gt;
+&lt;li&gt;Low-support footprints (LOW_ROOF_SUPPORT) often have a lower roof part missed by the lidar classification, so their
+  blocks are too low or too high over part of the footprint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Coordinates&lt;/h2&gt;
+&lt;p&gt;Horizontal: WGS84, taken from NAD83(2011) with the transformation &lt;code&gt;WGS_1984_(ITRF08)_To_NAD_1983_2011&lt;/code&gt;, the same as every
+layer in the Millcreek LiDAR 2023 set. &lt;strong&gt;Vertical: the layer is labelled EGM96 (EPSG 5773), but its heights are NAVD88
+(Geoid18) metres, left as they were measured.&lt;/strong&gt; The packaging tool assigned the label because the source carried no
+vertical system. In the Salt Lake Valley the two surfaces differ by well under a metre, so on Esri's World Elevation the
+blocks sit within about that of the ground; on the Millcreek bare-earth terrain they match exactly. Block elevations run
+from 1,294.1 m to 1,764.2 m.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lidar source.&lt;/strong&gt; The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
+flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
+non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.&lt;/p&gt;
+&lt;h2&gt;Data dictionary (43 fields)&lt;/h2&gt;
+&lt;p&gt;Field names are shown as stored (the scene layer has no aliases). Fields from SOURCE_ID to BuiltYear and GlobalID to
+Editor are Salt Lake County's, carried unchanged; FOOTPRINT_M2 to HEIGHT_STATUS are the lidar statistics (identical to the
+feature layer); FP_ID onward were added when the blocks were built. Values are for the 21,561 blocks.&lt;/p&gt;
+&lt;table style='border-collapse:collapse;font-size:90%'&gt;
+
+&lt;tr&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Field&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Alias&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Type&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Units&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;OBJECTID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OBJECTID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Row number of the block in the package (9 to 21,569, with gaps where empty features were removed). Not a key; use SOURCE_OID or FP_ID.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;SOURCE_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SOURCE_ID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Salt Lake County's OBJECTID for the footprint, as text (same number as SOURCE_OID).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;SOURCE_OID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SOURCE_OID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Salt Lake County's OBJECTID for the footprint, as a number. Join key to the Millcreek buildings feature layer and to the County footprints.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ADDRESS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ADDRESS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County address attribute; empty for almost every footprint in this snapshot.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CITY&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;CITY&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County city attribute (mostly MILLCREEK). Not used to select footprints.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;COUNTY&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;COUNTY&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County attribute (SALT LAKE COUNTY).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;PARCEL_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PARCEL_ID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County parcel number recorded on the footprint; not checked against current parcels.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;SOURCE&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SOURCE&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County attribute; empty for every footprint in this snapshot.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BuildType&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;BuildType&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County free-text building type; mostly empty; values include Appartments [sic], Residential, Commercial, Government and numeric codes. Not documented by the County.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Carto&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Carto&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SmallInteger&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County attribute with values 1, 2 and 6 on a few footprints; meaning not documented by the County.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;JURISDICTION&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;JURISDICTION&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County jurisdiction attribute (mostly Millcreek; some empty).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BLDGHEIGHT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;BLDGHEIGHT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County height field; empty for every footprint. Not used: the block height comes from the lidar.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BuiltYear&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;BuiltYear&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SmallInteger&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;year&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County year built; present for only a handful of footprints.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;GlobalID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;GlobalID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County editor-tracking global ID, carried unchanged (dropped from the feature layer).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CreationDate&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;CreationDate&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Date&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County editor tracking: when the County created the footprint record.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Creator&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Creator&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County editor tracking: the County account that created the record.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;EditDate&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;EditDate&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Date&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County editor tracking: when the County last edited the record.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Editor&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Editor&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County editor tracking: the County account that last edited the record.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;FOOTPRINT_M2&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;FOOTPRINT_M2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;square metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;True ground area of the whole footprint, computed in NAD83(2011) / UTM 12N.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;AOI_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;AOI_PCT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Share of the footprint inside the Millcreek city limits, 0 to 100.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ROOF_COV_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ROOF_COV_PCT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Roof support: share of the footprint's 0.5 m cells with a lidar roof and terrain. Under 80 sets LOW_ROOF_SUPPORT. A review indicator, not an accuracy.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ROOF_Z50_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ROOF_Z50_M&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres, NAVD88 (Geoid18)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median lidar roof elevation over the footprint's roof cells.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;GROUND_Z50_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;GROUND_Z50_M&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres, NAVD88 (Geoid18)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median bare-earth terrain elevation in the same cells (interpolated under the building).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_P50_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;HEIGHT_P50_M&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median roof minus terrain: the height the block is built to (0.80 to 37.06). Not a code-defined building height.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_P95_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;HEIGHT_P95_M&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;95th percentile of roof minus terrain; close to the highest roof parts.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_MAX_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;HEIGHT_MAX_M&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Highest single cell of roof minus terrain; can be a chimney, rooftop unit, branch or noise.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;GRID_CELLS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;GRID_CELLS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;cells of 0.25 m2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;0.5 m cells whose centres fall inside the footprint's part within the city.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ROOF_CELLS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ROOF_CELLS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;cells of 0.25 m2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Of those, cells with both a lidar roof and terrain; the cells the statistics use.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;NEG_H_CELLS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;NEG_H_CELLS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;cells of 0.25 m2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Cells with roof below terrain (kept in the statistics).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;PARTIAL_AOI&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PARTIAL_AOI&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;1 if the footprint crosses the city limit, otherwise 0.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_STATUS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;HEIGHT_STATUS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Review flags separated by semicolons; see HEIGHT_STATUS flags below.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;FP_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;FP_ID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;The footprint's row number in the lidar building-heights table (1 to 22,042), used to join each block back to its statistics when the blocks were built. Unique per block.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ORIG_OID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ORIG_OID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Written by Extract LOD2 Buildings; by its name and range, the row number of the footprint in the tool's input (1 to 21,562). Internal to the build; not the same as FP_ID. Do not use as a key.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;RMSE&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;RMSE&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres (presumed)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Written by Extract LOD2 Buildings; Esri's tool documentation does not define it. By its name and values a fit statistic of the block against the lidar height surface (median 1.04, range 0.02 to 19.43). Not reviewed; do not use as an accuracy.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;MEAN_ERR&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;MEAN_ERR&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres (presumed)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Written by Extract LOD2 Buildings; not defined in Esri's tool documentation. By its name and values a mean fit difference (median 0.66, range 0.01 to 13.74). Not reviewed; do not use as an accuracy.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;PCT_HI_ERR&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PCT_HI_ERR&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;fraction 0 to 1&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Written by Extract LOD2 Buildings; not defined in Esri's tool documentation. A fraction from 0 to 1 (median 0.45; 262 blocks 0, 4 blocks 1), by its name the share of the surface with a high fit difference. Not reviewed.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;LOD&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;LOD&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Level of detail of the block: 1.2 for every block (flat roof at the building's median height).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;MP_VOL&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;MP_VOL&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;cubic metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Volume of the block (0.06 to 264,766 m3); equals footprint area times block height (TOP_Z minus BASE_Z) to within 0.1% for 90% of blocks. Ground to median roof, not an interior volume.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BASE_Z&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;BASE_Z&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres, NAVD88 (Geoid18)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Elevation of the block's base, its lowest point (1,294.10 to 1,750.30).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;TOP_Z&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;TOP_Z&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres, NAVD88 (Geoid18)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Elevation of the block's flat top, its highest point (1,295.55 to 1,764.18).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;TERRAIN_MIN_Z&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;TERRAIN_MIN_Z&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres, NAVD88 (Geoid18)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Lowest bare-earth terrain cell under the footprint (1,294.30 to 1,750.51).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;TOP_MINUS_ROOF50&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;TOP_MINUS_ROOF50&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;TOP_Z minus ROOF_Z50_M: how far the block top is from the median lidar roof (median -0.05; -29.75 to +0.10). Large negatives are low-support footprints.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BASE_MINUS_TMIN&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;BASE_MINUS_TMIN&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;BASE_Z minus TERRAIN_MIN_Z: the block base against the lowest terrain under it (median -0.11; -10.91 to +7.17). Negative only hides wall below ground; four blocks are 3.6 to 7.2 m above.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;HEIGHT_STATUS flags&lt;/h3&gt;
+&lt;p&gt;Every block carries &lt;code&gt;UNVALIDATED&lt;/code&gt;, plus any of: &lt;code&gt;LOW_ROOF_SUPPORT&lt;/code&gt; (lidar roof on under 80% of the footprint's cells; a
+review flag, not an accuracy threshold), &lt;code&gt;NEGATIVE_HEIGHT&lt;/code&gt; (at least one cell with roof below terrain, kept),
+&lt;code&gt;PARTIAL_AOI&lt;/code&gt; (the footprint crosses the city limit; statistics use the part inside) and &lt;code&gt;GEOMETRY_REPAIRED&lt;/code&gt; (the County
+polygon was invalid and was repaired). Footprints with no roof support have no block.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Millcreek LiDAR 2023 set.&lt;/strong&gt; Eight layers from the same lidar and the same processing: buildings and canopy cover
+zones (feature layer), 3D buildings (scene layer), bare-earth terrain (elevation layer), hillshade (tile layer), slope
+classes, 2 m contours, treetops and tree crowns (vector tile layers). They share one coordinate transformation and one
+terrain, so they can be stacked in one map or scene.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
+of Millcreek GIS.&lt;/p&gt;</idAbs>
+                
+        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026).</idCredit>
+                
+        <resConst>
+                        
+            <Consts>
+                                
+                <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
+engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
+design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
+determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
+conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
+3DEP)" when you use or show them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Salt Lake County data.&lt;/strong&gt; The building footprints and their County attributes come from Salt Lake County (Assessor and
+Surveyor). The County's own terms apply to them: the County states that its footprints are not field verified, are for
+general reference only, and are not intended to determine property ownership, final building and site design or
+jurisdictional boundaries, or to replace a certified topographical or boundary survey or any other legal document.&lt;/p&gt;</useLimit>
+                            
+            </Consts>
+                    
+        </resConst>
+                
+        <dataExt>
+                        
+            <geoEle>
+                                
+                <GeoBndBox>
+                                        
+                    <westBL Sync="FALSE">-111.91823533357409</westBL>
+                                        
+                    <eastBL Sync="FALSE">-111.77680544621157</eastBL>
+                                        
+                    <northBL Sync="FALSE">40.713067398690626</northBL>
+                                        
+                    <southBL Sync="FALSE">40.65989163876071</southBL>
+                                        
+                    <exTypeCode Sync="TRUE">1</exTypeCode>
+                                    
+                </GeoBndBox>
+                            
+            </geoEle>
+                    
+            <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
+            
+        <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="017" /></tpCat><tpCat><TopicCatCd value="006" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
+        
+    <mdFileID>5082b5bd063a4a03847f2082dc3533d1</mdFileID>
+        
+    <distInfo>
+                
+        <distTranOps>
+                        
+            <onLineSrc>
+                                
+                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_LOD1_2_2023_lidar_planning_estimate/SceneServer</linkage>
+                            
+            </onLineSrc>
+                    
+        </distTranOps>
+                
+        <distFormat>
+                        
+            <formatName>Scene Service</formatName>
+                    
+        </distFormat>
+            
+    </distInfo>
+        
+    <refSysInfo>
+                
+        <RefSystem>
+                        
+            <refSysID>
+                                
+                <identCode code="4326" />
+                                
+                <idCodeSpace>EPSG</idCodeSpace>
+                            
+            </refSysID>
+                    
+        </RefSystem>
+            
+    </refSysInfo>
+    
+    <dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>County building footprints (Salt Lake County, downloaded 2026-10-19) extruded by ArcGIS Pro Extract LOD2 Buildings at LOD1.2 from a 0.5 m surface of consensus lidar roofs and bare-earth terrain from the 2023 Salt Lake Valley QL1 lidar, packaged as a scene layer package in WGS84 (WGS_1984_(ITRF08)_To_NAD_1983_2011); heights NAVD88 (Geoid18) metres, labelled EGM96. Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>

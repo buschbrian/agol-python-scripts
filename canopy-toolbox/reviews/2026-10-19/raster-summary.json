@@ -1,0 +1,34 @@
+{
+  "status": "complete",
+  "runtime": {
+    "arcgis_pro": "3.7.3",
+    "build": "1901",
+    "python": "3.13.13",
+    "scipy": "1.16.3",
+    "license": "ArcInfo"
+  },
+  "source": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008",
+  "source_id": "52b013e830b575984dc10a2e",
+  "source_count_sha256": "7968674c0ac91a77bcb6dcfa2cce58c4086910d22de96cf774d32f2951e781ba",
+  "code_sha256": "5e81c535753667f50aa0981e2a9c64524fbdbebf77e6775b37674e0636e95eb9",
+  "cell_m": 0.5,
+  "boundary": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\municipal_boundary",
+  "outputs": {
+    "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\chm_m.tif",
+    "terrain": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_m.tif",
+    "roof_elevation": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\roof_elevation_m.tif",
+    "vegetation_support": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\vegetation_support.tif",
+    "observed": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\observed.tif",
+    "building_occlusion": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\building_occlusion.tif",
+    "roof_height": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\roof_height_m.tif"
+  },
+  "observation": {
+    "city_grid_cells": 133813488,
+    "observed_cells": 132810424,
+    "missing_cells": 1003064,
+    "canopy_ge_2m_cells": 34748843
+  },
+  "source_fingerprints_unchanged": true,
+  "all_cores_verified": 63,
+  "seconds": 709.5490379333496
+}

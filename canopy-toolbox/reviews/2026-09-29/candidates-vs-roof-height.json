@@ -1,0 +1,44 @@
+{
+  "method": "roof = 90th percentile Z of class-6 points within 1 m of the treetop; ground = median class-2 Z within 5 m; candidate HEIGHT_M compared with roof height above ground",
+  "tiles": {
+    "12TVL2804": {
+      "candidates_within_1m": 4375,
+      "by_height_vs_roof": {
+        "at_roof_height_le_0.5m": 3293,
+        "0.5_to_2m_above_roof": 376,
+        "over_2m_above_roof": 706
+      },
+      "small_crown_subset": {
+        "at_roof_height_le_0.5m": 2619,
+        "0.5_to_2m_above_roof": 171,
+        "over_2m_above_roof": 116
+      }
+    },
+    "12TVL3302": {
+      "candidates_within_1m": 2338,
+      "by_height_vs_roof": {
+        "at_roof_height_le_0.5m": 1748,
+        "0.5_to_2m_above_roof": 271,
+        "over_2m_above_roof": 319
+      },
+      "small_crown_subset": {
+        "at_roof_height_le_0.5m": 1315,
+        "0.5_to_2m_above_roof": 129,
+        "over_2m_above_roof": 31
+      }
+    },
+    "12TVL2203": {
+      "candidates_within_1m": 994,
+      "by_height_vs_roof": {
+        "at_roof_height_le_0.5m": 887,
+        "0.5_to_2m_above_roof": 64,
+        "over_2m_above_roof": 43
+      },
+      "small_crown_subset": {
+        "at_roof_height_le_0.5m": 721,
+        "0.5_to_2m_above_roof": 31,
+        "over_2m_above_roof": 7
+      }
+    }
+  }
+}

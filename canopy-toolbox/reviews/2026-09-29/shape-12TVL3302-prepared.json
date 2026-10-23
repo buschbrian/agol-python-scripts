@@ -1,0 +1,91 @@
+{
+  "source": "12TVL3302.las",
+  "extent": null,
+  "parameters": {
+    "knn": 16,
+    "dominant_share": 0.6,
+    "wall_verticality": 0.7,
+    "near_building_m": 1.0,
+    "excluded_classes": [
+      2,
+      7,
+      18
+    ]
+  },
+  "non_ground_points": 32231202,
+  "by_class": {
+    "class_3_low": {
+      "points": 9061658,
+      "single_return_pct": 49.11,
+      "near_building_pct": 2.27,
+      "roof_like_pct": 34.77,
+      "roof_like_single_return_pct": 21.12,
+      "roof_like_near_building_pct": 1.15,
+      "wall_like_pct": 0.4,
+      "wall_like_single_return_pct": 0.13,
+      "wall_like_near_building_pct": 0.0,
+      "linear_pct": 16.05,
+      "linear_single_return_pct": 8.74,
+      "linear_near_building_pct": 0.35,
+      "scattered_pct": 0.58,
+      "scattered_single_return_pct": 0.16,
+      "scattered_near_building_pct": 0.0,
+      "mixed_pct": 48.2,
+      "mixed_single_return_pct": 18.96,
+      "mixed_near_building_pct": 0.76
+    },
+    "class_4_medium": {
+      "points": 4333427,
+      "single_return_pct": 25.55,
+      "near_building_pct": 1.19,
+      "roof_like_pct": 7.01,
+      "roof_like_single_return_pct": 2.7,
+      "roof_like_near_building_pct": 0.28,
+      "wall_like_pct": 0.57,
+      "wall_like_single_return_pct": 0.11,
+      "wall_like_near_building_pct": 0.0,
+      "linear_pct": 11.18,
+      "linear_single_return_pct": 3.46,
+      "linear_near_building_pct": 0.2,
+      "scattered_pct": 4.13,
+      "scattered_single_return_pct": 1.01,
+      "scattered_near_building_pct": 0.01,
+      "mixed_pct": 77.11,
+      "mixed_single_return_pct": 18.27,
+      "mixed_near_building_pct": 0.7
+    },
+    "class_5_high": {
+      "points": 16056576,
+      "single_return_pct": 20.02,
+      "near_building_pct": 1.29,
+      "roof_like_pct": 6.89,
+      "roof_like_single_return_pct": 1.75,
+      "roof_like_near_building_pct": 0.16,
+      "wall_like_pct": 0.59,
+      "wall_like_single_return_pct": 0.09,
+      "wall_like_near_building_pct": 0.01,
+      "linear_pct": 11.12,
+      "linear_single_return_pct": 2.56,
+      "linear_near_building_pct": 0.17,
+      "scattered_pct": 3.47,
+      "scattered_single_return_pct": 0.68,
+      "scattered_near_building_pct": 0.02,
+      "mixed_pct": 77.93,
+      "mixed_single_return_pct": 14.94,
+      "mixed_near_building_pct": 0.93
+    }
+  },
+  "note": "Shape groups are screening evidence, not validated classes.",
+  "review_las": {
+    "path": "12TVL3302-prepared-review.las",
+    "codes": {
+      "roof_like": 64,
+      "wall_like": 65,
+      "linear": 66,
+      "scattered": 67,
+      "mixed": 68
+    },
+    "note": "Only class 3/4/5 points are recoded; others keep their class."
+  },
+  "seconds": 182.6
+}

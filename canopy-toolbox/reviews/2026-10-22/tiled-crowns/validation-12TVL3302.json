@@ -1,0 +1,27 @@
+{
+ "tile": "12TVL3302",
+ "cells": 4000000,
+ "seeds": 42920,
+ "whole_window_seconds": 31.0,
+ "core_m": 250.0,
+ "halos": {
+  "10.0": {
+   "differing_cells": 179,
+   "canopy_cells": 2351697,
+   "crowns_touched": 4,
+   "seconds": 19.4
+  },
+  "20.0": {
+   "differing_cells": 0,
+   "canopy_cells": 2351697,
+   "crowns_touched": 0,
+   "seconds": 23.6
+  },
+  "40.0": {
+   "differing_cells": 0,
+   "canopy_cells": 2351697,
+   "crowns_touched": 0,
+   "seconds": 29.3
+  }
+ }
+}

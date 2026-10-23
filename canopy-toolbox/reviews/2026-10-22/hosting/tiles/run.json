@@ -1,0 +1,62 @@
+{
+ "schema": "tiles-run/1",
+ "started": "2026-10-23T08:08:53",
+ "warning": "Unvalidated LiDAR planning estimates. Hillshade is for display; terrain is interpolated class-2 ground at 0.5 m, NAVD88 (Geoid18) metres, not a surveyed surface.",
+ "inputs": {
+  "hillshade": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\hillshade.tif",
+  "hillshade_layer": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\hillshade_identity.lyrx",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_context.tif",
+  "terrain_shifted": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\terrain_shifted.vrt",
+  "terrain_city_check": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\terrain_m.tif",
+  "boundary": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\municipal_boundary"
+ },
+ "parameters": {
+  "levels": [
+   0,
+   18
+  ],
+  "hillshade_format": "PNG32",
+  "lerc_error_m": 0.01,
+  "tiling_schemes": {
+   "hillshade": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\schemes\\hillshade.xml",
+   "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\schemes\\terrain.xml"
+  },
+  "builtin_schemes": {
+   "hillshade": "ARCGISONLINE_SCHEME",
+   "terrain": "ARCGISONLINE_ELEVATION_SCHEME"
+  },
+  "geographic_transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+  "transformation_applied_as": {
+   "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+   "dx_m": -0.9822994708636902,
+   "dy_m": 0.6847654322254253,
+   "shift_m": 1.1974,
+   "max_departure_mm": 0.8136,
+   "grid": "9 x 9"
+  },
+  "hillshade_colorizer": "no stretch (eNone), no gamma, bilinear resampling",
+  "aoi": {
+   "hillshade": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\aoi.gdb\\hillshade",
+   "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\aoi.gdb\\terrain"
+  },
+  "storage": "COMPACT_V2",
+  "export": "TILE_PACKAGE_TPKX"
+ },
+ "seconds": {
+  "cache_hillshade": 951.3,
+  "package_hillshade": 3.3,
+  "cache_terrain": 82.0,
+  "package_terrain": 1.9
+ },
+ "packages": {
+  "hillshade": {
+   "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\millcreek_hillshade_20261023.tpkx",
+   "bytes": 133998959
+  },
+  "terrain": {
+   "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\millcreek_terrain_20261023.tpkx",
+   "bytes": 228112957
+  }
+ },
+ "finished": "2026-10-23T08:26:12"
+}

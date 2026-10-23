@@ -1,0 +1,461 @@
+{
+ "schema": "cog-display/1",
+ "started": "2026-10-23T11:23:49",
+ "gdal": "3.12.2e",
+ "max_z_error": 0.01,
+ "tolerance": 0.0101,
+ "masters": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022",
+ "products": {
+  "slope_percent": {
+   "ok": true,
+   "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-display-20261023\\slope_percent.lerc-0.01.tif",
+   "master": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\slope_percent.tif",
+   "creation_options": [
+    "COMPRESS=LERC",
+    "BLOCKSIZE=512",
+    "OVERVIEW_RESAMPLING=AVERAGE",
+    "OVERVIEWS=IGNORE_EXISTING",
+    "NUM_THREADS=ALL_CPUS",
+    "BIGTIFF=IF_SAFER",
+    "OVERVIEW_COMPRESS=LERC",
+    "MAX_Z_ERROR=0.01",
+    "MAX_Z_ERROR_OVERVIEW=0.01"
+   ],
+   "overview_config": {
+    "COMPRESS_OVERVIEW": "LERC",
+    "MAX_Z_ERROR_OVERVIEW": "0.01"
+   },
+   "seconds": 13.2,
+   "sha256": "f02078d2bbfbe9718789749d9c42d6354a2e0ec5bda9f7388c822f0ad5c69d1f",
+   "master_bytes": 550143658,
+   "display_bytes": 219208429,
+   "full_resolution_bytes": 158633455,
+   "overview_bytes": 60546134,
+   "display_vs_master": 0.398,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2916,
+      "overview_1": 3134,
+      "overview_2": 3352,
+      "overview_3": 3570,
+      "overview_4": 3788,
+      "overview_5": 4006
+     },
+     "data_offsets": {
+      "main": 60565762,
+      "overview_0": 16749780,
+      "overview_1": 4650128,
+      "overview_2": 1329431,
+      "overview_3": 383808,
+      "overview_4": 106032,
+      "overview_5": 16532
+     }
+    }
+   },
+   "same_as_master": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "overview_sizes": true
+   },
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "LERC",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "LERC",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "LERC",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "LERC",
+     1
+    ],
+    [
+     1531,
+     765,
+     "LERC",
+     1
+    ],
+    [
+     765,
+     382,
+     "LERC",
+     1
+    ],
+    [
+     382,
+     191,
+     "LERC",
+     1
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "tiff": "classic",
+   "against_master": {
+    "full": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133813488
+    },
+    "overview_1": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 33483222
+    },
+    "overview_2": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 8382250
+    },
+    "overview_3": {
+     "max_abs_error": 0.01000213623046875,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 2102957
+    },
+    "overview_4": {
+     "max_abs_error": 0.01000213623046875,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 527636
+    },
+    "overview_5": {
+     "max_abs_error": 0.01000213623046875,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133707
+    },
+    "overview_6": {
+     "max_abs_error": 0.009999513626098633,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 34054
+    }
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Slope (percent) over a 3 m neighbourhood",
+    "NOTE": "Display copy: LERC with MAX_Z_ERROR 0.01 (raster units), so values differ from the lossless master by up to 0.0101. Use the master (cog-20261022) for analysis.",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/slope_percent.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   }
+  },
+  "slope_degrees": {
+   "ok": true,
+   "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-display-20261023\\slope_degrees.lerc-0.01.tif",
+   "master": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\slope_degrees.tif",
+   "creation_options": [
+    "COMPRESS=LERC",
+    "BLOCKSIZE=512",
+    "OVERVIEW_RESAMPLING=AVERAGE",
+    "OVERVIEWS=IGNORE_EXISTING",
+    "NUM_THREADS=ALL_CPUS",
+    "BIGTIFF=IF_SAFER",
+    "OVERVIEW_COMPRESS=LERC",
+    "MAX_Z_ERROR=0.01",
+    "MAX_Z_ERROR_OVERVIEW=0.01"
+   ],
+   "overview_config": {
+    "COMPRESS_OVERVIEW": "LERC",
+    "MAX_Z_ERROR_OVERVIEW": "0.01"
+   },
+   "seconds": 13.6,
+   "sha256": "7e20ca65ace7d55822fe24c1915c5e2df624e8105d4c4f7ef8d43f9113e7c759",
+   "master_bytes": 549658276,
+   "display_bytes": 199804748,
+   "full_resolution_bytes": 144095982,
+   "overview_bytes": 55679924,
+   "display_vs_master": 0.364,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2918,
+      "overview_1": 3136,
+      "overview_2": 3354,
+      "overview_3": 3572,
+      "overview_4": 3790,
+      "overview_5": 4008
+     },
+     "data_offsets": {
+      "main": 55699554,
+      "overview_0": 15527780,
+      "overview_1": 4345120,
+      "overview_2": 1254823,
+      "overview_3": 366528,
+      "overview_4": 102656,
+      "overview_5": 16534
+     }
+    }
+   },
+   "same_as_master": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "overview_sizes": true
+   },
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "LERC",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "LERC",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "LERC",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "LERC",
+     1
+    ],
+    [
+     1531,
+     765,
+     "LERC",
+     1
+    ],
+    [
+     765,
+     382,
+     "LERC",
+     1
+    ],
+    [
+     382,
+     191,
+     "LERC",
+     1
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "tiff": "classic",
+   "against_master": {
+    "full": {
+     "max_abs_error": 0.01000213623046875,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133813488
+    },
+    "overview_1": {
+     "max_abs_error": 0.01000213623046875,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 33483222
+    },
+    "overview_2": {
+     "max_abs_error": 0.010000228881835938,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 8382250
+    },
+    "overview_3": {
+     "max_abs_error": 0.010000228881835938,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 2102957
+    },
+    "overview_4": {
+     "max_abs_error": 0.010000228881835938,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 527636
+    },
+    "overview_5": {
+     "max_abs_error": 0.010000228881835938,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133707
+    },
+    "overview_6": {
+     "max_abs_error": 0.009999752044677734,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 34054
+    }
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Slope (degrees) over a 3 m neighbourhood",
+    "NOTE": "Display copy: LERC with MAX_Z_ERROR 0.01 (raster units), so values differ from the lossless master by up to 0.0101. Use the master (cog-20261022) for analysis.",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/slope_degrees.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   }
+  },
+  "terrain_m": {
+   "ok": true,
+   "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-display-20261023\\terrain_m.lerc-0.01.tif",
+   "master": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022\\terrain_m.tif",
+   "creation_options": [
+    "COMPRESS=LERC",
+    "BLOCKSIZE=512",
+    "OVERVIEW_RESAMPLING=AVERAGE",
+    "OVERVIEWS=IGNORE_EXISTING",
+    "NUM_THREADS=ALL_CPUS",
+    "BIGTIFF=IF_SAFER",
+    "OVERVIEW_COMPRESS=LERC",
+    "MAX_Z_ERROR=0.01",
+    "MAX_Z_ERROR_OVERVIEW=0.01"
+   ],
+   "overview_config": {
+    "COMPRESS_OVERVIEW": "LERC",
+    "MAX_Z_ERROR_OVERVIEW": "0.01"
+   },
+   "seconds": 18.1,
+   "sha256": "48bc3ad3c819955439c6d261608979854fe3b0fa20a1071db56f96c954404bda",
+   "master_bytes": 260863855,
+   "display_bytes": 134006911,
+   "full_resolution_bytes": 93453626,
+   "overview_bytes": 40525173,
+   "display_vs_master": 0.514,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2188,
+      "overview_1": 2406,
+      "overview_2": 2624,
+      "overview_3": 2842,
+      "overview_4": 3060,
+      "overview_5": 3278
+     },
+     "data_offsets": {
+      "main": 40544073,
+      "overview_0": 12327071,
+      "overview_1": 3772873,
+      "overview_2": 1178444,
+      "overview_3": 366207,
+      "overview_4": 104872,
+      "overview_5": 15804
+     }
+    }
+   },
+   "same_as_master": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "overview_sizes": true
+   },
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "LERC",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "LERC",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "LERC",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "LERC",
+     1
+    ],
+    [
+     1531,
+     765,
+     "LERC",
+     1
+    ],
+    [
+     765,
+     382,
+     "LERC",
+     1
+    ],
+    [
+     382,
+     191,
+     "LERC",
+     1
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "tiff": "classic",
+   "against_master": {
+    "full": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133813488
+    },
+    "overview_1": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 33483222
+    },
+    "overview_2": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 8382250
+    },
+    "overview_3": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 2102957
+    },
+    "overview_4": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 527636
+    },
+    "overview_5": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 133707
+    },
+    "overview_6": {
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "valid_cells_compared": 34054
+    }
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "MEANING": "Bare-earth elevation (m, NAVD88 Geoid18)",
+    "NOTE": "Display copy: LERC with MAX_Z_ERROR 0.01 (raster units), so values differ from the lossless master by up to 0.0101. Use the master (cog-20261022) for analysis.",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/terrain_m.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   }
+  }
+ },
+ "all_ok": true,
+ "finished": "2026-10-23T11:25:28"
+}

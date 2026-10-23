@@ -1,0 +1,77 @@
+{
+ "mode": "reproduce",
+ "rules_version": "treetop-evidence/2",
+ "rules": {
+  "roof_height_above_roof_max": 0.5,
+  "overhang_above_roof_min": 2.0,
+  "flat_thickness_max": 0.1,
+  "flat_normal_z_min": 0.85,
+  "flat_nonlast_max": 0.15,
+  "min_top_points": 12,
+  "wire_ctx_linearity_min": 0.85,
+  "wire_ctx_axis_z_max": 0.5,
+  "wire_top_hag_min": 4.0,
+  "wire_building_clear_m": 2.0,
+  "wire_top_points_max": 60,
+  "pole_ctx_linearity_min": 0.85,
+  "pole_ctx_axis_z_min": 0.9,
+  "pole_ctx_extent_z_min": 2.5,
+  "wall_normal_z_max": 0.35,
+  "wall_thickness_max": 0.1,
+  "wall_top_hag_min": 1.5,
+  "wall_building_m": 2.5,
+  "canopy_nonlast_min": 0.3,
+  "canopy_thickness_gt": 0.1
+ },
+ "halo_m": 5.0,
+ "started": "2026-10-22T10:32:10",
+ "finished": "2026-10-22T10:39:18",
+ "summary": {
+  "treetops": 607972,
+  "flags": {
+   "NEAR_BUILDING": 115780,
+   "ROOF_HEIGHT": 86340,
+   "OVERHANG": 16124,
+   "FLAT_TOP": 4875,
+   "WIRE_HINT": 2413,
+   "POLE_HINT": 34771,
+   "WALL_HINT": 579,
+   "CANOPY_RETURNS": 354882,
+   "SUSPECT": 91807
+  }
+ },
+ "reproduces_october15": {
+  "tiles": 61,
+  "treetops": 607972,
+  "column_mismatches": {
+   "n_building_1m": 0,
+   "building_dist_m": 0,
+   "ground_z": 0,
+   "roof_hag_m": 0,
+   "above_roof_m": 0,
+   "n_top": 0,
+   "top_hag_m": 0,
+   "top_nonlast": 0,
+   "top_thickness": 0,
+   "top_normal_z": 0,
+   "top_linearity": 0,
+   "top_planarity": 0,
+   "ctx_n": 0,
+   "ctx_linearity": 0,
+   "ctx_axis_z": 0,
+   "ctx_extent_z": 0
+  },
+  "flag_mismatches": {
+   "NEAR_BUILDING": 0,
+   "ROOF_HEIGHT": 0,
+   "OVERHANG": 0,
+   "FLAT_TOP": 0,
+   "WIRE_HINT": 0,
+   "POLE_HINT": 0,
+   "WALL_HINT": 0,
+   "CANOPY_RETURNS": 0,
+   "SUSPECT": 0
+  },
+  "exact": true
+ }
+}

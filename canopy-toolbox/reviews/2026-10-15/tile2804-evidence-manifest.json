@@ -1,0 +1,81 @@
+{
+  "status": "complete",
+  "evidence_status": "UNVALIDATED_REVIEW_EVIDENCE",
+  "rules_version": "treetop-evidence/2",
+  "started": "2026-10-15T16:09:44.874480",
+  "treetops_csv": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\city-treetops.csv",
+  "treetops_csv_sha256": "9c74526fd45a5de5bf8c80dd7f1562ee80cf07cdc94219725cd15fa3b27b1be0",
+  "points": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points",
+  "tiles": [
+    "12TVL2804"
+  ],
+  "unassigned_treetops": {},
+  "rules": {
+    "roof_height_above_roof_max": 0.5,
+    "overhang_above_roof_min": 2.0,
+    "flat_thickness_max": 0.1,
+    "flat_normal_z_min": 0.85,
+    "flat_nonlast_max": 0.15,
+    "min_top_points": 12,
+    "wire_ctx_linearity_min": 0.85,
+    "wire_ctx_axis_z_max": 0.5,
+    "wire_top_hag_min": 4.0,
+    "wire_building_clear_m": 2.0,
+    "wire_top_points_max": 60,
+    "pole_ctx_linearity_min": 0.85,
+    "pole_ctx_axis_z_min": 0.9,
+    "pole_ctx_extent_z_min": 2.5,
+    "wall_normal_z_max": 0.35,
+    "wall_thickness_max": 0.1,
+    "wall_top_hag_min": 1.5,
+    "wall_building_m": 2.5,
+    "canopy_nonlast_min": 0.3,
+    "canopy_thickness_gt": 0.1
+  },
+  "halo_m": 5.0,
+  "definitions": "Review evidence for detected treetops: is this peak on a roof edge, a wire, a pole or a wall? No ArcPy.\n\nEvery value here is a measurement of the points around a treetop, and every flag is a fixed rule over those values.\nThey are REVIEW EVIDENCE, never labels: they must not enter reference.gdb, training labels or a score, and a flagged\ntreetop is not thereby a false detection. A flag count is a suspect count, not an error rate; rates need the\nindependent reference labels.\n\nTwo groups of measurements:\n\n* Near-building, exactly as the 29 September candidates_near_buildings.py review defined it: class-6 points within\n  1 m horizontally, the local roof height (90th-percentile class-6 Z within 1 m minus the median class-2 Z within 5 m)\n  and the treetop's HEIGHT_M against that roof height. These read the classification bytes, so they describe where a\n  peak sits relative to what the building step called building, not what the peak is.\n* Shape and returns, from the raw points as in triage.py: the top 1 m of non-ground, non-noise points within 1 m of\n  the treetop (its plane-fit thickness, normal, linearity and non-last-return share) and the above-ground points\n  within 3 m (whether they form one line, and its direction). The thresholds are triage.py's, fixed before any human\n  label; footprint and NAIP cues are not used here.\n\nTwo definition corrections were made after the first 12TVL2804 pilot pass (15 October), from the geometry of\nunlabelled treetops, with no human label consulted:\n  1. POLE_HINT is reported but is not part of SUSPECT. Without NAIP greenness, a tall narrow crown inside a 3 m context\n     is a vertical line too: the 2,120 pilot hits were 8-20 m tall with a median crown of 13 m2 and 95% non-last top\n     returns. triage.py already treats POLE as a hint for the same reason.\n  2. CANOPY_RETURNS means \"not a thin surface\": top thickness above FLAT_TOP's 0.10 m limit. triage.py's 0.25 m was set\n     for a tall patch cylinder; a 1 m deep, 1 m radius top cap cannot exceed about 0.29 m even when it is fully\n     volumetric, so 0.25 m held only 1,366 of 17,389 pilot treetops.\n",
+  "finished": "2026-10-15T16:10:12.976602",
+  "seconds": 28.1,
+  "inputs_unchanged": true,
+  "treetops_csv_sha256_after": "9c74526fd45a5de5bf8c80dd7f1562ee80cf07cdc94219725cd15fa3b27b1be0",
+  "summary": {
+    "treetops": 14578,
+    "flags": {
+      "NEAR_BUILDING": 3838,
+      "ROOF_HEIGHT": 2832,
+      "OVERHANG": 624,
+      "FLAT_TOP": 108,
+      "WIRE_HINT": 85,
+      "POLE_HINT": 1688,
+      "WALL_HINT": 19,
+      "CANOPY_RETURNS": 7330,
+      "SUSPECT": 2982
+    },
+    "near_building_bands": {
+      "at_roof_height_le_0.5m": 2832,
+      "0.5_to_2m_above_roof": 331,
+      "over_2m_above_roof": 624
+    },
+    "near_building_no_ground": 51,
+    "suspect_with_canopy_returns": 503,
+    "suspect_without_canopy_returns": 2479,
+    "suspect_flag_count": {
+      "0": 11596,
+      "1": 2920,
+      "2": 62
+    }
+  },
+  "per_tile": {
+    "12TVL2804": {
+      "NEAR_BUILDING": 3838,
+      "ROOF_HEIGHT": 2832,
+      "OVERHANG": 624,
+      "FLAT_TOP": 108,
+      "WIRE_HINT": 85,
+      "POLE_HINT": 1688,
+      "WALL_HINT": 19,
+      "CANOPY_RETURNS": 7330,
+      "SUSPECT": 2982
+    }
+  }
+}

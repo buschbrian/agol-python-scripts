@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "unique_treetops": 607972,
+  "ownership_totals": {
+    "NO_PARCEL": 59212,
+    "PRIVATE": 454849,
+    "UNKNOWN_OWNER": 18735,
+    "PUBLIC_GOVERNMENT": 75176
+  },
+  "public_breakdown": {
+    "SALT_LAKE_COUNTY": 61753,
+    "STATE_OF_UTAH": 722,
+    "SALT_LAKE_CITY": 4886,
+    "PUBLIC_SCHOOL": 4880,
+    "MILLCREEK": 1707,
+    "PUBLIC_DISTRICT": 712,
+    "PUBLIC_HOUSING": 322,
+    "FEDERAL": 194
+  },
+  "all_points_inside_city_and_ge_2m": true,
+  "csv_and_feature_class_match": true,
+  "all_unverified": true,
+  "source_and_working_fingerprints_unchanged": true,
+  "protected_height_recovery_hashes_match": 61,
+  "delivered_ground_and_noise_counts_unchanged": true,
+  "all_raster_cores_complete": 63,
+  "observation_counts_conserve": true,
+  "csv_sha256": "9c74526fd45a5de5bf8c80dd7f1562ee80cf07cdc94219725cd15fa3b27b1be0"
+}
