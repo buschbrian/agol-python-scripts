@@ -53,6 +53,11 @@ are now projected to Web Mercator with the same transformation before upload (`r
 4. **Slope cleanup:** publish the 4 m2 minimum mapping unit version (129,352 polygons). The uncleaned classes (924,458
    polygons) only if someone needs exact class areas.
 5. **Uploads:** run from the repo with `upload.py`, one item at a time, each checked before Brian approves the next.
+6. **Later the same day:** Brian has looked at the layers ("they look fine"). **All eight go public**, treetops and crowns
+   included, replacing the staff-only line in decision 3; Brian shares them himself. He approved all three Azure steps
+   (create the storage, open public read, upload the COGs). The layers get professional styling (symbology, blend modes,
+   legends) and full item text (summaries, descriptions, tags, a data dictionary), done from the repo. The uploaded package
+   items cannot simply be deleted because the hosted layers depend on them; what to do with them is to be worked out.
 
 ### Overture licences (checked October 23)
 From `Z:\GIS\overture\2026-10-21.0\millcreek\LICENSES.md` (the Overture comparison session; not legal advice):
