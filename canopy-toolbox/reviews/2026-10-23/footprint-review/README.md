@@ -34,7 +34,7 @@ answers.
 
 | Key | Action |
 |---|---|
-| 1 to 4 | answer (the buttons show which is which) |
+| 1 to 6 | answer (the buttons show which is which; the queues have 3 to 6 answers) |
 | → or Enter, ← | next, previous |
 | Backspace | clear this item's answer |
 | N | type a note (Enter saves it with the answer, Esc leaves the box) |
@@ -46,10 +46,10 @@ back over answers.
 ## Queues
 | Queue | Items | Order | Answers |
 |---|---:|---|---|
-| **LiDAR candidates** ([footprint-candidates](../footprint-candidates/README.md)) | 6,213 | large and tall (252), detached (2,286), against a county building (other, 1,883), lower roof against a county building (1,386), corner or edge of a county roof (406); north to south within each | 1 ACCEPT (a separate building), 2 PART_OF_EXISTING (an addition, porch or eave strip of the neighbouring county footprint), 3 REJECT, 4 UNSURE |
+| **LiDAR candidates** ([footprint-candidates](../footprint-candidates/README.md)) | 6,213 | large and tall (252), detached (2,286), against a county building (other, 1,883), lower roof against a county building (1,386), corner or edge of a county roof (406); north to south within each | 1 ACCEPT (a separate building), 2 PART_OF_EXISTING (an addition, porch or eave strip of the neighbouring county footprint), 3 VEHICLE (not a building: RV, trailer or vehicle), 4 REJECT (not a building: tree or other), 5 UNSURE |
 | **County footprints with no 2023 roof** | 586 | by county ID | 1 DEMOLISHED, 2 STILL_THERE (under trees or too small to see), 3 MISPLACED, 4 UNSURE |
 | **Possible new buildings** | 208 | by hint number | 1 NEW_BUILDING (in the imagery, not in the 2023 LiDAR), 2 NO_BUILDING, 3 UNSURE |
-| **Offset or rebuilt (county + LiDAR)** | 458 | county roof under 10% (60), 10-50% (94), 50-80% (304); weakest roof first | 1 OFFSET (the same building; the county outline is off or misshapen), 2 REBUILT (the county building is gone; the LiDAR building replaced it), 3 BOTH_REAL, 4 UNSURE |
+| **Offset or rebuilt (county + LiDAR)** | 458 | county roof under 10% (60), 10-50% (94), 50-80% (304); weakest roof first | What the red LiDAR piece is: 1 OFFSET (the same building; the county outline is off or the wrong shape), 2 PART_OF_EXISTING (an addition, porch or carport of it), 3 BOTH_REAL (a separate building), 4 REBUILT (its replacement; the county building is gone), 5 NOT_A_BUILDING (RV, trailer, vehicle or tree), 6 UNSURE |
 
 - **Candidates:** "Large and tall" is 150 m² or more with a P95 height of at least 6 m. "Detached" is more than 2 m from
   a county footprint, and "against a county building" 2 m or less. The facts are area, median and P95 height (m and ft),
@@ -120,6 +120,17 @@ back over answers.
   direction), trees over it, part roofed, or rebuilt or gone. That study found no systematic shift in the county layer
   (median 0.36 m per building, no shared neighbourhood shift). Realigning outlines explains only 4 candidates and 2
   pairs, which move to the last group, "Explained by realigning the county outline".
+- **Answers revised** (October 23, after Brian hit an RV in the pairs queue). The pairs question now asks what the red
+  LiDAR piece is, with six answers instead of four, adding Part of it and Not a building. Keys 1 (Offset) and 3 (Both
+  real) kept their meaning; Rebuilt moved from 2 to 4 and Unsure from 4 to 6. The candidates queue splits Reject into
+  3 VEHICLE (RV, trailer or vehicle) and 4 REJECT (tree or other), and Unsure moved to 5. Brian had used none of the
+  moved keys in the candidates queue; all his answers keep their codes.
+- **Length × width and a vehicle hint.** Every candidate shows its length × width (minimum rotated rectangle). The
+  guess starts "Possibly a vehicle (RV, trailer or truck…)" when the piece is 12-45 m², at most 3.3 m wide, at least
+  2.5 times as long as wide, 2.3-4.5 m high and flat or low slope, and more than 2 m from a county building. Nearer
+  than that, the same shape is usually an eave or porch strip; the first version without that rule flagged 792. With
+  it: 103 detached candidates and 2 pairs. LC00057, a 12.7 × 3 m box on a gravel lot that is gone in the 2025
+  imagery, is one. "Roof vs nearest county building" now shows only within 10 m.
 - **Offset or rebuilt** (added October 23, after Brian's first answers): county footprints whose outline is slightly
   off, or whose building was rebuilt beside or over its old footprint. These are the county footprints with under 80%
   2023 roof support and a LiDAR candidate within 3 m: 458 footprints and 489 candidates. Each item draws the county

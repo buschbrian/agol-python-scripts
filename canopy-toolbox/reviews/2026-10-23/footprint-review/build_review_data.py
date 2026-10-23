@@ -172,6 +172,24 @@ def roof_form(p50, p95):
     return "flat or nearly flat" if d < 0.2 else ("low slope" if d < 0.45 else "pitched")
 
 
+def dims(geom):
+    """Length and width of the outline's minimum rotated rectangle, in metres."""
+    coords = list(geom.minimum_rotated_rectangle.exterior.coords)
+    a = math.dist(coords[0], coords[1])
+    b = math.dist(coords[1], coords[2])
+    return max(a, b), min(a, b)
+
+
+def vehicle_like(geom, p95, form, near_m):
+    """Long, narrow, flat-topped and vehicle-high, and more than 2 m from a county building: an RV, trailer, bus or box
+    truck is 6-12 m by 2.4-3 m and 2.5-4 m high. Within 2 m of a building the same shape is usually an eave or porch
+    strip along a wall, so it isn't flagged there. Brian's first RV (October 23) came up as a LiDAR "building"; this
+    flags look-alikes, it doesn't decide."""
+    length, width = dims(geom)
+    return (near_m > 2 and 12 <= geom.area <= 45 and width <= 3.3 and length >= 2.5 * width and not missing(p95) and 2.3 <= p95 <= 4.5
+            and form in ("flat or nearly flat", "low slope"))
+
+
 def attached_group(near_m, area, share, dz):
     """Which kind of piece against a county building: a corner of its own roof, a lower roof, or something else."""
     if near_m > 2:
@@ -267,9 +285,13 @@ def candidate_facts(r, parcels, county_per_parcel, county_by_id):
     units = None if pr is None or missing(pr.num_housing_units) else pr.num_housing_units
     built = None if pr is None else pr.year_built
     share, dz = neighbour(r, county_by_id)
-    return {"Likely type (a guess)": likely_type(r.FOOTPRINT_M2, r.HEIGHT_P95_M, form, r.NEAR_FP_DIST_M, lot, on_parcel,
-                                                 units, built, share, dz),
+    guess = likely_type(r.FOOTPRINT_M2, r.HEIGHT_P95_M, form, r.NEAR_FP_DIST_M, lot, on_parcel, units, built, share, dz)
+    length, width = dims(r.geometry)
+    if vehicle_like(r.geometry, r.HEIGHT_P95_M, form, r.NEAR_FP_DIST_M):
+        guess = f"Possibly a vehicle (RV, trailer or truck: long, narrow, flat top); otherwise: {guess}"
+    return {"Likely type (a guess)": guess,
             "Candidate": r.CAND_ID, "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
+            "Length × width": f"{length:.1f} × {width:.1f} m ({length * FEET:.0f} × {width * FEET:.0f} ft)",
             "Height (median / P95)": f"{r.HEIGHT_P50_M:.1f} / {r.HEIGHT_P95_M:.1f} m "
                                      f"({r.HEIGHT_P50_M * FEET:.0f} / {r.HEIGHT_P95_M * FEET:.0f} ft)",
             "Roof form (LiDAR)": txt(form), "Roof support": f"{r.ROOF_COV_PCT:.0f}%",
@@ -278,7 +300,7 @@ def candidate_facts(r, parcels, county_per_parcel, county_by_id):
             "Parcel use": use, "Assessor (main building)": assessor,
             "County buildings on parcel": txt(on_parcel),
             "Same parcel as nearest county building": txt(r.SAME_PARCEL),
-            "Roof vs nearest county building": "—" if dz is None else
+            "Roof vs nearest county building": "—" if dz is None or r.NEAR_FP_DIST_M > 10 else
             f"{abs(dz):.1f} m {'below' if dz < 0 else 'above'} its median roof; {100 * share:.0f}% of its area",
             "That county outline vs the LiDAR": alignment_text(r.NEAR_FP_SOURCE_ID)}
 
@@ -323,7 +345,12 @@ def pair_facts(f, cands, parcels, share_near):
     else:
         guess = "County outline slightly off? Most of it has roof; the LiDAR building is the uncovered part"
     use, assessor = parcel_text(parcels.get(pnorm(f.PARCEL_ID)))
-    lidar = "; ".join(f"{c.CAND_ID} ({c.FOOTPRINT_M2:.0f} m², P95 {c.HEIGHT_P95_M:.1f} m)" for c in cands.itertuples())
+    lidar = "; ".join(f"{c.CAND_ID} ({c.FOOTPRINT_M2:.0f} m², {dims(c.geometry)[0]:.1f} × {dims(c.geometry)[1]:.1f} m, "
+                      f"P95 {c.HEIGHT_P95_M:.1f} m)" for c in cands.itertuples())
+    vehicles = [c.CAND_ID for c in cands.itertuples()
+                if vehicle_like(c.geometry, c.HEIGHT_P95_M, roof_form(c.HEIGHT_P50_M, c.HEIGHT_P95_M), c.NEAR_FP_DIST_M)]
+    if vehicles:
+        guess = f"{', '.join(vehicles)} may be a vehicle (RV, trailer or truck: long, narrow, flat top); otherwise: {guess}"
     return {"Likely type (a guess)": guess,
             "County building ID": f.SOURCE_ID,
             "County outline": f"{f.FOOTPRINT_M2:.0f} m² ({f.FOOTPRINT_M2 * 10.7639:.0f} ft²), "

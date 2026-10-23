@@ -7,7 +7,8 @@ const QUEUES = {
     answers: [
       ["ACCEPT", "Accept: a separate building"],
       ["PART_OF_EXISTING", "Part of existing: addition, porch or eave of the county building"],
-      ["REJECT", "Reject: not a building (tree, vehicle, …)"],
+      ["VEHICLE", "Not a building: RV, trailer or vehicle"],
+      ["REJECT", "Not a building: tree or other"],
       ["UNSURE", "Unsure"],
     ],
   },
@@ -21,11 +22,13 @@ const QUEUES = {
     ],
   },
   pairs: {
-    question: "The magenta county outline has little 2023 roof; the red LiDAR building is beside it. Which is it?",
+    question: "Magenta is the county outline (weak 2023 roof); red is what the LiDAR sees beside it. What is the red piece?",
     answers: [
-      ["OFFSET", "Offset: the same building; the county outline is off or misshapen"],
-      ["REBUILT", "Rebuilt: the county building is gone; the LiDAR building replaced it"],
-      ["BOTH_REAL", "Both real: two separate buildings"],
+      ["OFFSET", "The same building: the county outline is off or the wrong shape"],
+      ["PART_OF_EXISTING", "Part of it: an addition, porch or carport of the county building"],
+      ["BOTH_REAL", "A separate building: both are real"],
+      ["REBUILT", "Its replacement: the county building is gone"],
+      ["NOT_A_BUILDING", "Not a building: RV, trailer, vehicle or tree"],
       ["UNSURE", "Unsure"],
     ],
   },
@@ -228,7 +231,7 @@ function keys(e) {
       e.preventDefault();
       const a = current && answers[current.id];
       if (a) { $("auto-advance").checked = false; save(a.ANSWER).then(() => { $("auto-advance").checked = true; }); }
-      else status("Choose an answer (1–4); the note is saved with it.", true);
+      else status("Choose an answer with a number key; the note is saved with it.", true);
     }
     return;
   }

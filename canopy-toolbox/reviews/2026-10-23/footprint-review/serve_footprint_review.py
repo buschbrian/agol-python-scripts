@@ -29,10 +29,11 @@ import urllib.parse
 HERE = Path(__file__).resolve().parent
 STATIC = {"/": "index.html", "/index.html": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
 ANSWERS = {
-    "candidates": ("ACCEPT", "PART_OF_EXISTING", "REJECT", "UNSURE"),
+    "candidates": ("ACCEPT", "PART_OF_EXISTING", "VEHICLE", "REJECT", "UNSURE"),
     "county": ("DEMOLISHED", "STILL_THERE", "MISPLACED", "UNSURE"),
     "newbuild": ("NEW_BUILDING", "NO_BUILDING", "UNSURE"),
-    "pairs": ("OFFSET", "REBUILT", "BOTH_REAL", "UNSURE"),
+    # October 23: what the red LiDAR piece is, beside the magenta county outline (codes of the first version kept)
+    "pairs": ("OFFSET", "PART_OF_EXISTING", "BOTH_REAL", "REBUILT", "NOT_A_BUILDING", "UNSURE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")
 REPO_BACKUP = HERE/"answers"/"footprint-review-answers.csv"
