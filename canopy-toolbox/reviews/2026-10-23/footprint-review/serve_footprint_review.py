@@ -32,6 +32,7 @@ ANSWERS = {
     "candidates": ("ACCEPT", "PART_OF_EXISTING", "REJECT", "UNSURE"),
     "county": ("DEMOLISHED", "STILL_THERE", "MISPLACED", "UNSURE"),
     "newbuild": ("NEW_BUILDING", "NO_BUILDING", "UNSURE"),
+    "pairs": ("OFFSET", "REBUILT", "BOTH_REAL", "UNSURE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")
 REPO_BACKUP = HERE/"answers"/"footprint-review-answers.csv"

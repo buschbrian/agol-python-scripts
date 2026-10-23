@@ -49,6 +49,7 @@ back over answers.
 | **LiDAR candidates** ([footprint-candidates](../footprint-candidates/README.md)) | 6,213 | large and tall (252), then detached (2,286), then against a county building (3,675); north to south within each | 1 ACCEPT (a separate building), 2 PART_OF_EXISTING (an addition, porch or eave strip of the neighbouring county footprint), 3 REJECT, 4 UNSURE |
 | **County footprints with no 2023 roof** | 586 | by county ID | 1 DEMOLISHED, 2 STILL_THERE (under trees or too small to see), 3 MISPLACED, 4 UNSURE |
 | **Possible new buildings** | 208 | by hint number | 1 NEW_BUILDING (in the imagery, not in the 2023 LiDAR), 2 NO_BUILDING, 3 UNSURE |
+| **Offset or rebuilt (county + LiDAR)** | 458 | county roof under 10% (60), 10-50% (94), 50-80% (304); weakest roof first | 1 OFFSET (the same building; the county outline is off or misshapen), 2 REBUILT (the county building is gone; the LiDAR building replaced it), 3 BOTH_REAL, 4 UNSURE |
 
 - **Candidates:** "Large and tall" is 150 m² or more with a P95 height of at least 6 m. "Detached" is more than 2 m from
   a county footprint, and "against a county building" 2 m or less. The facts are area, median and P95 height (m and ft),
@@ -101,6 +102,15 @@ back over answers.
   Overture outline. Items are numbered NB0001-NB0208; their Overture ids stay in `data\newbuild-hints.json` on the SSD.
   **A confirmed new building must be digitised from the imagery or reported to the County, not copied from Overture.**
   Nothing Overture-derived goes into the output layer.
+- **Offset or rebuilt** (added October 23, after Brian's first answers): county footprints whose outline is slightly
+  off, or whose building was rebuilt beside or over its old footprint. These are the county footprints with under 80%
+  2023 roof support and a LiDAR candidate within 3 m: 458 footprints and 489 candidates. Each item draws the county
+  outline in magenta and the candidates beside it in red, on both views. The facts give the county roof support, the
+  candidates' sizes, their combined area against the county outline, how much of the outline lies within 3 m of them,
+  and the parcel. Any answer already given on those candidates in the first queue appears as "Your answer on LC…".
+  Among Brian's first 23 answers, LC00292 (PART_OF_EXISTING) is one: a 197 m² LiDAR building wrapped around a 65 m²
+  county outline with 25% roof. Added with `footprint_review.bat add-pairs`, which writes new bundle files (p0001…) and
+  appends to the index without touching other items or answers; restart `serve` afterwards.
 
 ## How long it should take
 From Brian's own pace on the label page (968 answers: median 4 s per answer, about 6 s on average including short pauses),
@@ -113,11 +123,12 @@ plus about a second for the next item to appear:
 | Against a county building | 3,675 | 5 | about 5 h 10 min | 7 |
 | County footprints with no 2023 roof | 586 | 10 | about 1 h 40 min | 2 |
 | Possible new buildings | 208 | 10 | about 35 min | 1 |
-| **All** | **7,007** | | **about 11 h 50 min** | **16** |
+| Offset or rebuilt | 458 | 10 | about 1 h 15 min | 2 |
+| **All** | **7,465** | | **about 13 h 5 min** | **18** |
 
 The group against a county building is the biggest and most repetitive. A suggestion, Brian's call: answer its first 300
 or so, and if nearly all are PART_OF_EXISTING or REJECT, decide whether the rest need a look one by one. That would bring
-the total to about 7 hours.
+the total to about 8 hours.
 
 ## Pilot (October 23)
 The page was first built for 20 candidates (7 large and tall, 7 detached, 6 against a county building;
@@ -138,7 +149,7 @@ full build:
 ## Files
 | File | Meaning |
 |---|---|
-| [footprint_review.bat](footprint_review.bat) | serve, backup, build, facts, serve-pilot |
+| [footprint_review.bat](footprint_review.bat) | serve, backup, build, add-pairs, facts, serve-pilot |
 | [serve_footprint_review.py](serve_footprint_review.py) | the local server and `backup` |
 | [build_review_data.py](build_review_data.py) | builds `data\index.json` and `data\bundles\b*.json` (chips as PNG data URIs) |
 | index.html, app.js, style.css | the page (Leaflet 1.9.4 from cdnjs) |

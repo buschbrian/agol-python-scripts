@@ -20,6 +20,15 @@ const QUEUES = {
       ["UNSURE", "Unsure"],
     ],
   },
+  pairs: {
+    question: "The magenta county outline has little 2023 roof; the red LiDAR building is beside it. Which is it?",
+    answers: [
+      ["OFFSET", "Offset: the same building; the county outline is off or misshapen"],
+      ["REBUILT", "Rebuilt: the county building is gone; the LiDAR building replaced it"],
+      ["BOTH_REAL", "Both real: two separate buildings"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
   newbuild: {
     question: "Does today's imagery show a building in the yellow box that the 2023 LiDAR doesn't?",
     answers: [
@@ -30,7 +39,8 @@ const QUEUES = {
   },
 };
 const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attached: "Against a county building",
-                      low_roof: "No 2023 roof", hint: "Hint" };
+                      low_roof: "No 2023 roof", hint: "Hint", under_10: "County roof under 10%",
+                      "10_50": "County roof 10-50%", "50_80": "County roof 50-80%" };
 
 const $ = (id) => document.getElementById(id);
 let index = null, byId = {}, answers = {}, list = [], pos = 0, current = null, map = null, layers = null, homeView = null;
@@ -97,7 +107,9 @@ function drawMap(d) {
     for (const ring of d.hint_ll) L.polygon(ring, { color: "#ffd400", weight: 2.5, dashArray: "6 4", fill: false }).addTo(layers);
     focus = d.hint_ll;
   }
+  for (const ring of d.focus_ll || []) L.polygon(ring, { color: "#ff3df5", weight: 3, fill: false }).addTo(layers);
   for (const ring of d.outline_ll) L.polygon(ring, { color: "#ff2a2a", weight: 2.5, fill: false }).addTo(layers);
+  if (d.focus_ll && d.focus_ll.length) focus = d.focus_ll.concat(d.outline_ll);
   map.invalidateSize({ animate: false });
   const c = centreOf(focus), px = $("map").clientWidth || 600;
   homeView = [c, Math.min(21, zoomFor(d.chip.metres, c[0], px))];
@@ -116,8 +128,9 @@ function drawChip(d) {
   const w = Math.max(0.6, n / 300);
   svg.innerHTML = `<style>polygon{fill:none;vector-effect:non-scaling-stroke}.county{stroke:#fff;stroke-width:1.5}
     .cand{stroke:#00d5ff;stroke-width:1.5;stroke-dasharray:4 4}.item{stroke:#ff2a2a;stroke-width:2.5}
-    .hint{stroke:#ffd400;stroke-width:2.5;stroke-dasharray:6 4}</style>` +
-    svgPoly(d.county_px, "county") + svgPoly(d.cand_px, "cand") + svgPoly(d.hint_px || [], "hint") + svgPoly(d.outline_px, "item");
+    .hint{stroke:#ffd400;stroke-width:2.5;stroke-dasharray:6 4}.focus{stroke:#ff3df5;stroke-width:3}</style>` +
+    svgPoly(d.county_px, "county") + svgPoly(d.cand_px, "cand") + svgPoly(d.hint_px || [], "hint") +
+    svgPoly(d.focus_px || [], "focus") + svgPoly(d.outline_px, "item");
   $("chip-metres").textContent = `${Math.round(d.chip.metres)} m across`;
 }
 
@@ -129,7 +142,8 @@ function drawSide(d) {
   const { "Likely type (a guess)": guess, ...rest } = d.facts;
   $("guess").hidden = !guess;
   $("guess").innerHTML = guess ? `<span class="small">Likely type (a guess from size, height, roof and parcel):</span><br>${guess}` : "";
-  $("facts").innerHTML = Object.entries(rest).map(([k, v]) => `<dt>${k}</dt><dd>${v ?? "—"}</dd>`).join("");
+  const earlier = (d.related || []).filter((id) => answers[id]).map((id) => [`Your answer on ${id}`, answers[id].ANSWER]);
+  $("facts").innerHTML = Object.entries(rest).concat(earlier).map(([k, v]) => `<dt>${k}</dt><dd>${v ?? "—"}</dd>`).join("");
   $("answers").innerHTML = q.answers.map(([code, text], i) =>
     `<button data-code="${code}" class="${a && a.ANSWER === code ? "chosen" : ""}"><kbd>${i + 1}</kbd> ${text}</button>`).join("");
   for (const b of $("answers").querySelectorAll("button")) b.onclick = () => save(b.dataset.code);

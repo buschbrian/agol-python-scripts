@@ -15,6 +15,7 @@
       <option value="candidates">LiDAR candidates</option>
       <option value="county">County footprints with no 2023 roof</option>
       <option value="newbuild">Possible new buildings</option>
+      <option value="pairs">Offset or rebuilt (county + LiDAR)</option>
     </select></label>
     <label>Group <select id="group"><option value="">All</option></select></label>
     <label>Show <select id="show">
@@ -38,7 +39,7 @@
       <figcaption>2023 LiDAR (Oct–Nov): roof by height, trees green, ground grey · <span id="chip-metres"></span></figcaption>
       <div class="chip-wrap"><img id="chip" alt="LiDAR view of the same area"><svg id="chip-svg"></svg></div>
       <div class="legend"><span class="sw roof-lo"></span>roof 0 m <span class="sw roof-mid"></span>6 m <span class="sw roof-hi"></span>12 m+
-        <span class="sw tree"></span>tree ≥ 2 m <span class="sw line-item"></span>this item <span class="sw line-county"></span>county
+        <span class="sw tree"></span>tree ≥ 2 m <span class="sw line-item"></span>this item <span class="sw line-focus"></span>county outline in question <span class="sw line-county"></span>county
         <span class="sw line-cand"></span>other candidates <span class="sw outside"></span>outside the city</div>
     </figure>
   </section>

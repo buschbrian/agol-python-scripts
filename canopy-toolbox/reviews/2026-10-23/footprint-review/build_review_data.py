@@ -12,6 +12,9 @@ LiDAR candidates, the hosted-feature copies and the Overture comparison; writes 
   OVERTURE_ONLY + NO_ROOF outlines, used internally to say where to look. The page shows a hint box (the outline's
   bounding box plus 5 m) and a marker, never the Overture outline, and items are numbered NB0001...; the id mapping stays
   in DATA/newbuild-hints.json on the SSD. Confirmed buildings are to be digitised from imagery or flagged to the county.
+- pairs (added later with --add-pairs, October 23): county footprints with under 80% 2023 roof support that have a
+  LiDAR candidate within 3 m: an outline that is off, or a building rebuilt beside its old footprint. Weakest roof
+  first. Their items go to DATA/bundles/pNNNN.json and are appended to the index; nothing else changes.
 Items are written 50 to a file, DATA/bundles/bNNNN.json (the SSD allocates 1 MB per file, so one file per item would
 take some 14 GB). Each holds the map outlines in WGS84 from the ITRF08 Web Mercator copies, the chip outlines in pixels
 and the chip itself as a PNG data URI, a LiDAR view at 0.5 m: hillshade of the surface (terrain plus the higher of roof and canopy), roofs
@@ -255,6 +258,28 @@ def newbuild_facts(item, r, chips, county, parcels, parcel_of):
             "Parcel": txt(parcel_of), "Parcel use": use, "Assessor (main building)": assessor}
 
 
+def pair_facts(f, cands, parcels, share_near):
+    """Facts for a county footprint with partial or no 2023 roof and the LiDAR candidates within 3 m of it."""
+    cov = f.ROOF_COV_PCT
+    if missing(cov) or cov < 10:
+        guess = "Rebuilt? The county building has no 2023 roof; a LiDAR building stands beside it"
+    elif cov < 50:
+        guess = "Offset or partly rebuilt? Part of the county outline has roof, the LiDAR building covers the rest"
+    else:
+        guess = "County outline slightly off? Most of it has roof; the LiDAR building is the uncovered part"
+    use, assessor = parcel_text(parcels.get(pnorm(f.PARCEL_ID)))
+    lidar = "; ".join(f"{c.CAND_ID} ({c.FOOTPRINT_M2:.0f} m², P95 {c.HEIGHT_P95_M:.1f} m)" for c in cands.itertuples())
+    return {"Likely type (a guess)": guess,
+            "County building ID": f.SOURCE_ID,
+            "County outline": f"{f.FOOTPRINT_M2:.0f} m² ({f.FOOTPRINT_M2 * 10.7639:.0f} ft²), "
+                              f"year built {txt(f.BuiltYear, '{:.0f}')}",
+            "2023 LiDAR roof under it": "no roof cells" if missing(cov) else f"{cov:.0f}%",
+            "LiDAR building(s) beside it": lidar,
+            "Combined LiDAR area / county area": f"{cands.FOOTPRINT_M2.sum() / f.FOOTPRINT_M2:.2f}",
+            "County outline within 3 m of them": f"{100 * share_near:.0f}%",
+            "Parcel": txt(f.PARCEL_ID), "Parcel use": use, "Assessor (main building)": assessor}
+
+
 def load_parcels():
     """The 2025-tax-year parcel snapshot: attributes by normalised parcel id, and the frame for point lookups."""
     import geopandas as gpd
@@ -290,16 +315,55 @@ def refresh_facts(data, facts):
     page keeps working. Chips, outlines and item ids stay as they are; the answers are untouched."""
     import os
     changed = 0
-    for path in sorted((data/"bundles").glob("b*.json")):
+    for path in sorted((data/"bundles").glob("*.json")):
         bundle = json.loads(path.read_text(encoding="utf-8"))
         for item_id, detail in bundle.items():
-            detail["facts"] = facts[item_id]
-            changed += 1
+            if item_id in facts:                      # the pairs queue keeps the facts --add-pairs gave it
+                detail["facts"] = facts[item_id]
+                changed += 1
         partial = path.with_suffix(".partial")
         partial.write_text(json.dumps(bundle, separators=(",", ":"), allow_nan=False), encoding="utf-8")
         os.replace(partial, path)
     assert changed == len(facts), (changed, len(facts))
     print(f"facts refreshed on {changed} items")
+
+
+def add_pairs(data, built, index, start, flush, write, county, county_web, cand_all, cand_web, parcels):
+    """The 'offset or rebuilt' queue: each county footprint under 80% roof support with the candidates within 3 m."""
+    import os
+    import geopandas as gpd
+    low = county[county.ROOF_COV_PCT.isna() | (county.ROOF_COV_PCT < 80)]
+    near = gpd.sjoin(low[["SOURCE_ID", "geometry"]], cand_all[["CAND_ID", "geometry"]].assign(
+        geometry=cand_all.geometry.buffer(3)), predicate="intersects")
+    by_county = near.groupby("SOURCE_ID")["CAND_ID"].apply(sorted).to_dict()
+    fp = county.set_index("SOURCE_ID")
+    cands = cand_all.set_index("CAND_ID", drop=False)
+    order = sorted(by_county, key=lambda sid: (-1 if missing(fp.loc[sid].ROOF_COV_PCT) else fp.loc[sid].ROOF_COV_PCT, sid))
+    for sid in order:
+        f = fp.loc[sid]
+        f = f.copy()
+        f["SOURCE_ID"] = sid
+        group = ("under_10" if missing(f.ROOF_COV_PCT) or f.ROOF_COV_PCT < 10 else
+                 "10_50" if f.ROOF_COV_PCT < 50 else "50_80")
+        cs = cands.loc[by_county[sid]]
+        union = cs.geometry.union_all()
+        share = f.geometry.intersection(union.buffer(3)).area / f.geometry.area
+        rings = [ring for g in cs.geometry for ring in rings_of(g)]
+        rings_ll = [ring for cid in cs.CAND_ID for ring in merc_to_ll(rings_of(cand_web.loc[cid].geometry))]
+        focus = (rings_of(f.geometry), merc_to_ll(rings_of(county_web.loc[sid].geometry)) if sid in county_web.index else [])
+        x0, y0, x1, y1 = union.union(f.geometry).bounds
+        write(f"PR{sid}", "pairs", group, pair_facts(f, cs, parcels, share), rings, rings_ll, (x0, y0, x1, y1),
+              exclude_county={sid}, exclude_cand=set(cs.CAND_ID), focus=focus, related=list(cs.CAND_ID))
+    flush()
+    counts = {}
+    for it in index:
+        counts.setdefault(it["queue"], {}).setdefault(it["group"], 0)
+        counts[it["queue"]][it["group"]] += 1
+    built.update(counts=counts, items=index, pairs_added=datetime.datetime.now().isoformat(timespec="seconds"))
+    partial = data/"index.partial"
+    partial.write_text(json.dumps(built, separators=(",", ":")), encoding="utf-8")
+    os.replace(partial, data/"index.json")
+    print(f"added {len(index) - start} pairs;", json.dumps(counts["pairs"]))
 
 
 def main(argv=None):
@@ -311,6 +375,8 @@ def main(argv=None):
     p.add_argument("--pilot", action="store_true", help="20 candidates only (7 large and tall, 7 detached, 6 attached)")
     p.add_argument("--facts-only", action="store_true",
                    help="recompute the side-panel facts in existing bundles (atomically), leaving chips and outlines")
+    p.add_argument("--add-pairs", action="store_true",
+                   help="append the 'offset or rebuilt' pairs queue to built data, leaving every other item as it is")
     a = p.parse_args(argv)
     data = a.data.resolve()
     cand, cand_web, county, county_web, low, hints = load(a.pilot)
@@ -328,58 +394,73 @@ def main(argv=None):
                   for k, r in enumerate(hints.itertuples())})
     if a.facts_only:
         return refresh_facts(data, facts)
-    (data/"bundles").mkdir(parents=True, exist_ok=False)
+    if a.add_pairs:
+        built = json.loads((data/"index.json").read_text(encoding="utf-8"))
+        if any(it["queue"] == "pairs" for it in built["items"]):
+            raise ValueError("The pairs queue is already in this data")
+        index, prefix = list(built["items"]), "p"
+    else:
+        (data/"bundles").mkdir(parents=True, exist_ok=False)
+        built, index, prefix = None, [], "b"
+    start = len(index)
     county_tree = shapely.STRtree(list(county.geometry))
     cand_all = gpd.read_file(CAND/"candidates.gdb", layer="candidates")
     cand_tree = shapely.STRtree(list(cand_all.geometry))
     county_ids, cand_ids = list(county.SOURCE_ID), list(cand_all.CAND_ID)
-    index, bundle = [], {}
+    bundle = {}
 
     def flush():
         if bundle:
-            name = f"b{(len(index) - 1) // BUNDLE + 1:04d}.json"
+            name = f"{prefix}{(len(index) - start - 1) // BUNDLE + 1:04d}.json"
             (data/"bundles"/name).write_text(json.dumps(bundle, separators=(",", ":"), allow_nan=False), encoding="utf-8")
             bundle.clear()
 
-    def context(chip, exclude_county=None, exclude_cand=None):
-        """County footprints and other candidates inside the chip: pixel rings, and WGS84 rings for the map."""
+    def context(chip, exclude_county=(), exclude_cand=()):
+        """County footprints and other candidates inside the chip (except the excluded ids): pixel rings, and WGS84
+        rings for the map."""
         n = chip["n"] * CELL
         box = shapely.box(chip["left"], chip["top"] - n, chip["left"] + n, chip["top"])
         out = {"county_px": [], "county_ll": [], "cand_px": [], "cand_ll": []}
         for j in county_tree.query(box, "intersects"):
             sid = county_ids[j]
-            if sid == exclude_county:
+            if sid in exclude_county:
                 continue
             out["county_px"] += Chips.px(rings_of(county.geometry.iloc[j]), chip)
             if sid in county_web.index:
                 out["county_ll"] += merc_to_ll(rings_of(county_web.loc[sid].geometry))
         for j in cand_tree.query(box, "intersects"):
             cid = cand_ids[j]
-            if cid == exclude_cand:
+            if cid in exclude_cand:
                 continue
             out["cand_px"] += Chips.px(rings_of(cand_all.geometry.iloc[j]), chip)
             out["cand_ll"] += merc_to_ll(rings_of(cand_web.loc[cid].geometry))
         return out
 
-    def write(item_id, queue, group, facts, rings6341, rings_ll, chip_bounds, exclude_county=None, exclude_cand=None,
-              hint=None):
-        """hint: (rings in EPSG 6341, rings in WGS84) of a hint box, drawn instead of an outline."""
+    def write(item_id, queue, group, facts, rings6341, rings_ll, chip_bounds, exclude_county=(), exclude_cand=(),
+              hint=None, focus=None, related=None):
+        """hint: (rings in EPSG 6341, rings in WGS84) of a hint box, drawn instead of an outline. focus: the same for a
+        county footprint drawn as part of the item (pairs). related: candidate ids whose earlier answers the page shows."""
         chip, uri = chips.render(chip_bounds)
         detail = {"id": item_id, "queue": queue, "group": group, "facts": facts,
                   "outline_ll": rings_ll or [], "outline_px": Chips.px(rings6341, chip) if rings6341 else [],
                   "hint_ll": hint[1] if hint else None, "hint_px": Chips.px(hint[0], chip) if hint else None,
+                  "focus_ll": focus[1] if focus else None, "focus_px": Chips.px(focus[0], chip) if focus else None,
+                  "related": related or [],
                   "chip": {"uri": uri, "size": chip["n"], "metres": chip["n"] * CELL},
                   **context(chip, exclude_county, exclude_cand)}
         index.append({"id": item_id, "queue": queue, "group": group, "order": len(index) + 1,
-                      "bundle": f"b{len(index) // BUNDLE + 1:04d}.json"})
+                      "bundle": f"{prefix}{(len(index) - start) // BUNDLE + 1:04d}.json"})
         bundle[item_id] = detail
-        if len(index) % BUNDLE == 0:
+        if (len(index) - start) % BUNDLE == 0:
             flush()
+
+    if a.add_pairs:
+        return add_pairs(data, built, index, start, flush, write, county, county_web, cand_all, cand_web, parcels)
 
     for _, r in cand.iterrows():
         g = r.geometry
         write(r.CAND_ID, "candidates", r.GROUP, facts[r.CAND_ID], rings_of(g), merc_to_ll(rings_of(cand_web.loc[r.CAND_ID].geometry)),
-              g.bounds, exclude_cand=r.CAND_ID)
+              g.bounds, exclude_cand={r.CAND_ID})
         if len(index) % 500 == 0:
             print(f"  {len(index)} items", flush=True)
 
@@ -387,7 +468,7 @@ def main(argv=None):
         g = r.geometry
         item = f"CF{r.SOURCE_ID}"
         ll = merc_to_ll(rings_of(county_web.loc[r.SOURCE_ID].geometry)) if r.SOURCE_ID in county_web.index else []
-        write(item, "county", "low_roof", facts[item], rings_of(g), ll, g.bounds, exclude_county=r.SOURCE_ID)
+        write(item, "county", "low_roof", facts[item], rings_of(g), ll, g.bounds, exclude_county={r.SOURCE_ID})
 
     mapping = []
     if len(hints):
