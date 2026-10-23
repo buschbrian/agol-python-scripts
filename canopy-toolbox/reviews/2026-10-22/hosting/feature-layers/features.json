@@ -1,0 +1,33 @@
+{
+ "schema": "hosting-features/1",
+ "created": "2026-10-22T22:27:33",
+ "sources": {
+  "buildings": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\buildings.gdb\\building_heights",
+  "zones": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\cover.gdb\\zones",
+  "cover": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\cover-comparison.csv"
+ },
+ "outputs": {
+  "buildings": "H:\\lidar\\2023-salt-lake-valley\\runs\\hosting-features-20261022\\features.gdb\\buildings",
+  "canopy_cover_zones": "H:\\lidar\\2023-salt-lake-valley\\runs\\hosting-features-20261022\\features.gdb\\canopy_cover_zones"
+ },
+ "dropped_fields": [
+  "GlobalID",
+  "CreationDate",
+  "Creator",
+  "EditDate",
+  "Editor"
+ ],
+ "checks": {
+  "buildings": {
+   "source": 22042,
+   "copied": 22042,
+   "rows_differing": 0,
+   "with_height": 21562
+  },
+  "canopy_cover_zones": {
+   "zones": 13,
+   "csv_rows": 13,
+   "values_differing": 0
+  }
+ }
+}

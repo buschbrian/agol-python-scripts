@@ -31,7 +31,9 @@ or plain Python with GDAL, not the A4000. The Myria3D environment and the patche
 are only needed to rerun FRACTAL.
 
 **Also built October 22 (evening), on the laptop:** citywide terrain products at 0.5 m in `runs	errain-city-20261022`
-([terrain-city](../2026-10-22/terrain-city/README.md)), to compare with the coarser-DEM layers on ArcGIS Online.
+([terrain-city](../2026-10-22/terrain-city/README.md)), to compare with the coarser-DEM layers on ArcGIS Online. Then 3D building
+massing ([massing](../2026-10-22/massing/README.md)) and the hosting plan ([hosting/PLAN.md](../2026-10-22/hosting/PLAN.md)): feature
+layers and scene layer packages are ready to upload; COGs, tile packages and vector tiles are in their own sessions' branches.
 
 **Open (Brian's choice):** publish or share October 22 products (a manual staff step: live GIS data is never written from
 here); review the 32,986 SUSPECT treetops (the blind
