@@ -44,7 +44,15 @@ OVERTURE_PARQUET = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\buildings.parqu
 CELL = 0.5
 FEET = 3.280839895
 BUNDLE = 50
-GROUPS = (("large_tall", "Large and tall"), ("detached", "Detached"), ("attached", "Against a county building"))
+GROUPS = (("large_tall", "Large and tall"), ("detached", "Detached"), ("attached", "Against a county building (other)"),
+          ("attached_lower", "Lower roof against a county building"),
+          ("attached_same_roof", "Corner or edge of a county roof"))
+# A piece against a county building is "the same roof" when it is small beside that building and its median roof
+# elevation is within this band of the building's. Set from Brian's answers of October 23: his same-house example
+# (PR724355) is a 10 m2 corner, 4% of the house, 0.6 m below its median roof; the four pieces he called BOTH_REAL are
+# 17-77 m2 and 13-85% of their county building. One positive example: widen only when more answers support it.
+SAME_ROOF = {"max_m2": 15, "max_share": 0.10, "dz_low": -1.5, "dz_high": 1.0}
+LOWER_ROOF_DZ = -1.5
 
 
 def rings_of(geom):
@@ -161,11 +169,33 @@ def roof_form(p50, p95):
     return "flat or nearly flat" if d < 0.2 else ("low slope" if d < 0.45 else "pitched")
 
 
-def likely_type(area, p95, form, near_m, lot_use, county_on_parcel, units=None, built=None):
-    """A guess for the reviewer from size, height, roof form, distance to a county building and the parcel's use
-    (the assessor's housing units and year built). LiDAR can't see walls, so a carport and a garage of the same size
-    and roof look alike."""
-    if near_m <= 2:
+def attached_group(near_m, area, share, dz):
+    """Which kind of piece against a county building: a corner of its own roof, a lower roof, or something else."""
+    if near_m > 2:
+        return None
+    if (not missing(dz) and area < SAME_ROOF["max_m2"] and share < SAME_ROOF["max_share"]
+            and SAME_ROOF["dz_low"] <= dz <= SAME_ROOF["dz_high"]):
+        return "attached_same_roof"
+    if not missing(dz) and dz < LOWER_ROOF_DZ:
+        return "attached_lower"
+    return "attached"
+
+
+def same_roof_text(area, share, dz):
+    return (f"Probably a corner or edge of the county building's own roof (its outline is a little off): {area:.0f} m², "
+            f"{100 * share:.0f}% of that building, median roof {abs(dz):.1f} m {'below' if dz < 0 else 'above'} its own")
+
+
+def likely_type(area, p95, form, near_m, lot_use, county_on_parcel, units=None, built=None, share=None, dz=None):
+    """A guess for the reviewer from size, height, roof form, distance to a county building (with the share of that
+    building's area and the roof-height difference) and the parcel's use (the assessor's housing units and year built).
+    LiDAR can't see walls, so a carport and a garage of the same size and roof look alike."""
+    group = attached_group(near_m, area, share if share is not None else 1, dz)
+    if group == "attached_same_roof":
+        return same_roof_text(area, share, dz)
+    if group == "attached_lower":
+        return f"Lower roof against a county building ({abs(dz):.1f} m below its roof): porch, patio cover, carport or addition"
+    if group == "attached":
         return "Attached to a county building: addition, porch, patio cover or eave"
     flat_low = form == "flat or nearly flat" and p95 < 3.2
     single_home = lot_use == "R" and units == 1
@@ -214,7 +244,16 @@ def parcel_text(row):
     return use, (", ".join(bits) or "—")
 
 
-def candidate_facts(r, parcels, county_per_parcel):
+def neighbour(r, county_by_id):
+    """Share of the nearest county building's area and the roof-height difference (candidate minus building)."""
+    f = county_by_id.get(r.NEAR_FP_SOURCE_ID)
+    if f is None or missing(f.FOOTPRINT_M2) or not f.FOOTPRINT_M2:
+        return 1.0, None
+    dz = None if missing(f.ROOF_Z50_M) or missing(r.ROOF_Z50_M) else r.ROOF_Z50_M - f.ROOF_Z50_M
+    return r.FOOTPRINT_M2 / f.FOOTPRINT_M2, dz
+
+
+def candidate_facts(r, parcels, county_per_parcel, county_by_id):
     key = pnorm(r.PARCEL_ID)
     pr = parcels.get(key)
     on_parcel = county_per_parcel.get(key, 0) if pr is not None else None
@@ -224,8 +263,9 @@ def candidate_facts(r, parcels, county_per_parcel):
     address = "" if missing(r.PARCEL_ADDRESS) else r.PARCEL_ADDRESS
     units = None if pr is None or missing(pr.num_housing_units) else pr.num_housing_units
     built = None if pr is None else pr.year_built
+    share, dz = neighbour(r, county_by_id)
     return {"Likely type (a guess)": likely_type(r.FOOTPRINT_M2, r.HEIGHT_P95_M, form, r.NEAR_FP_DIST_M, lot, on_parcel,
-                                                 units, built),
+                                                 units, built, share, dz),
             "Candidate": r.CAND_ID, "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
             "Height (median / P95)": f"{r.HEIGHT_P50_M:.1f} / {r.HEIGHT_P95_M:.1f} m "
                                      f"({r.HEIGHT_P50_M * FEET:.0f} / {r.HEIGHT_P95_M * FEET:.0f} ft)",
@@ -234,7 +274,9 @@ def candidate_facts(r, parcels, county_per_parcel):
             "Parcel": f"{txt(r.PARCEL_ID)} {address}".strip(),
             "Parcel use": use, "Assessor (main building)": assessor,
             "County buildings on parcel": txt(on_parcel),
-            "Same parcel as nearest county building": txt(r.SAME_PARCEL)}
+            "Same parcel as nearest county building": txt(r.SAME_PARCEL),
+            "Roof vs nearest county building": "—" if dz is None else
+            f"{abs(dz):.1f} m {'below' if dz < 0 else 'above'} its median roof; {100 * share:.0f}% of its area"}
 
 
 def county_facts(r, chips, parcels):
@@ -261,7 +303,15 @@ def newbuild_facts(item, r, chips, county, parcels, parcel_of):
 def pair_facts(f, cands, parcels, share_near):
     """Facts for a county footprint with partial or no 2023 roof and the LiDAR candidates within 3 m of it."""
     cov = f.ROOF_COV_PCT
-    if missing(cov) or cov < 10:
+    area = cands.FOOTPRINT_M2.sum()
+    share = area / f.FOOTPRINT_M2
+    dzs = [c.ROOF_Z50_M - f.ROOF_Z50_M for c in cands.itertuples() if not missing(c.ROOF_Z50_M) and not missing(f.ROOF_Z50_M)]
+    dz = max(dzs, key=abs) if dzs else None
+    gap = min(f.geometry.distance(g) for g in cands.geometry)
+    if (dz is not None and gap < 2 and area < SAME_ROOF["max_m2"] and share < SAME_ROOF["max_share"]
+            and SAME_ROOF["dz_low"] <= dz <= SAME_ROOF["dz_high"]):
+        guess = same_roof_text(area, share, dz) + "; answer Offset"
+    elif missing(cov) or cov < 10:
         guess = "Rebuilt? The county building has no 2023 roof; a LiDAR building stands beside it"
     elif cov < 50:
         guess = "Offset or partly rebuilt? Part of the county outline has roof, the LiDAR building covers the rest"
@@ -297,7 +347,9 @@ def load(pilot):
     county_web = gpd.read_file(COUNTY_WEB, layer="buildings").set_index("SOURCE_ID")
     assert cand.crs.to_epsg() == 6341 and cand_web.crs.to_epsg() == 3857 and county_web.crs.to_epsg() == 3857
     big = (cand.FOOTPRINT_M2 >= 150) & (cand.HEIGHT_P95_M >= 6)
-    cand["GROUP"] = np.where(big, "large_tall", np.where(cand.NEAR_FP_DIST_M > 2, "detached", "attached"))
+    by_id = {r.SOURCE_ID: r for r in county.itertuples()}
+    attached = [attached_group(r.NEAR_FP_DIST_M, r.FOOTPRINT_M2, *neighbour(r, by_id)) for r in cand.itertuples()]
+    cand["GROUP"] = np.where(big, "large_tall", np.where(cand.NEAR_FP_DIST_M > 2, "detached", attached))
     cand = cand.sort_values(["GROUP", "CAND_ID"], key=lambda s: s.map({g: i for i, (g, _) in enumerate(GROUPS)})
                             if s.name == "GROUP" else s)
     low = county[(county.ROOF_COV_PCT.isna()) | (county.ROOF_COV_PCT < 10)].sort_values("SOURCE_ID")
@@ -310,22 +362,46 @@ def load(pilot):
     return cand, cand_web, county, county_web, low, hints
 
 
-def refresh_facts(data, facts):
-    """Replace the facts in every existing bundle, one bundle at a time (a partial file, then a rename), so a running
-    page keeps working. Chips, outlines and item ids stay as they are; the answers are untouched."""
+def refresh_facts(data, facts, groups, pair_fact):
+    """Replace the facts (and the candidates' groups) in every existing bundle, one bundle at a time (a partial file,
+    then a rename), then rewrite the index with the candidates in group order. A running page keeps working; chips,
+    outlines and item ids stay as they are, and the answers are untouched (restart serve to pick up new groups)."""
     import os
     changed = 0
     for path in sorted((data/"bundles").glob("*.json")):
         bundle = json.loads(path.read_text(encoding="utf-8"))
         for item_id, detail in bundle.items():
-            if item_id in facts:                      # the pairs queue keeps the facts --add-pairs gave it
+            if item_id in facts:
                 detail["facts"] = facts[item_id]
                 changed += 1
+            elif detail["queue"] == "pairs":
+                detail["facts"] = pair_fact(item_id, detail["related"])
+            if item_id in groups:
+                detail["group"] = groups[item_id]
         partial = path.with_suffix(".partial")
         partial.write_text(json.dumps(bundle, separators=(",", ":"), allow_nan=False), encoding="utf-8")
         os.replace(partial, path)
     assert changed == len(facts), (changed, len(facts))
-    print(f"facts refreshed on {changed} items")
+    built = json.loads((data/"index.json").read_text(encoding="utf-8"))
+    rank = {g: i for i, (g, _) in enumerate(GROUPS)}
+    queues = list(dict.fromkeys(it["queue"] for it in built["items"]))
+    items = []
+    for q in queues:
+        part = [dict(it, group=groups.get(it["id"], it["group"])) for it in built["items"] if it["queue"] == q]
+        if q == "candidates":
+            part.sort(key=lambda it: (rank[it["group"]], it["id"]))
+        items += part
+    for k, it in enumerate(items, 1):
+        it["order"] = k
+    counts = {}
+    for it in items:
+        counts.setdefault(it["queue"], {}).setdefault(it["group"], 0)
+        counts[it["queue"]][it["group"]] += 1
+    built.update(items=items, counts=counts, groups=dict(GROUPS))
+    partial = data/"index.partial"
+    partial.write_text(json.dumps(built, separators=(",", ":")), encoding="utf-8")
+    os.replace(partial, data/"index.json")
+    print(f"facts refreshed on {changed} items;", json.dumps(counts.get("candidates")))
 
 
 def add_pairs(data, built, index, start, flush, write, county, county_web, cand_all, cand_web, parcels):
@@ -388,12 +464,22 @@ def main(argv=None):
         points = hints.assign(geometry=hints.geometry.centroid)[["id", "geometry"]]
         hp = gpd.sjoin(points, parcel_frame[["parcel_id", "geometry"]], how="left", predicate="within").drop_duplicates("id")
         hint_parcel = dict(zip(hp["id"], hp["parcel_id"]))
-    facts = {r.CAND_ID: candidate_facts(r, parcels, county_per_parcel) for r in cand.itertuples()}
+    county_by_id = {r.SOURCE_ID: r for r in county.itertuples()}
+    facts = {r.CAND_ID: candidate_facts(r, parcels, county_per_parcel, county_by_id) for r in cand.itertuples()}
     facts.update({f"CF{r.SOURCE_ID}": county_facts(r, chips, parcels) for r in low.itertuples()})
     facts.update({f"NB{k + 1:04d}": newbuild_facts(f"NB{k + 1:04d}", r, chips, county, parcels, hint_parcel.get(r.id))
                   for k, r in enumerate(hints.itertuples())})
     if a.facts_only:
-        return refresh_facts(data, facts)
+        groups = dict(zip(cand.CAND_ID, cand.GROUP))
+        fp, cands = county.set_index("SOURCE_ID"), gpd.read_file(CAND/"candidates.gdb", layer="candidates").set_index("CAND_ID", drop=False)
+
+        def pair_fact(item_id, related):
+            f = fp.loc[item_id[2:]].copy()
+            f["SOURCE_ID"] = item_id[2:]
+            cs = cands.loc[related]
+            share = f.geometry.intersection(cs.geometry.union_all().buffer(3)).area / f.geometry.area
+            return pair_facts(f, cs, parcels, share)
+        return refresh_facts(data, facts, groups, pair_fact)
     if a.add_pairs:
         built = json.loads((data/"index.json").read_text(encoding="utf-8"))
         if any(it["queue"] == "pairs" for it in built["items"]):

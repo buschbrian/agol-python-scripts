@@ -46,7 +46,7 @@ back over answers.
 ## Queues
 | Queue | Items | Order | Answers |
 |---|---:|---|---|
-| **LiDAR candidates** ([footprint-candidates](../footprint-candidates/README.md)) | 6,213 | large and tall (252), then detached (2,286), then against a county building (3,675); north to south within each | 1 ACCEPT (a separate building), 2 PART_OF_EXISTING (an addition, porch or eave strip of the neighbouring county footprint), 3 REJECT, 4 UNSURE |
+| **LiDAR candidates** ([footprint-candidates](../footprint-candidates/README.md)) | 6,213 | large and tall (252), detached (2,286), against a county building (other, 1,883), lower roof against a county building (1,386), corner or edge of a county roof (406); north to south within each | 1 ACCEPT (a separate building), 2 PART_OF_EXISTING (an addition, porch or eave strip of the neighbouring county footprint), 3 REJECT, 4 UNSURE |
 | **County footprints with no 2023 roof** | 586 | by county ID | 1 DEMOLISHED, 2 STILL_THERE (under trees or too small to see), 3 MISPLACED, 4 UNSURE |
 | **Possible new buildings** | 208 | by hint number | 1 NEW_BUILDING (in the imagery, not in the 2023 LiDAR), 2 NO_BUILDING, 3 UNSURE |
 | **Offset or rebuilt (county + LiDAR)** | 458 | county roof under 10% (60), 10-50% (94), 50-80% (304); weakest roof first | 1 OFFSET (the same building; the county outline is off or misshapen), 2 REBUILT (the county building is gone; the LiDAR building replaced it), 3 BOTH_REAL, 4 UNSURE |
@@ -102,6 +102,19 @@ back over answers.
   Overture outline. Items are numbered NB0001-NB0208; their Overture ids stay in `data\newbuild-hints.json` on the SSD.
   **A confirmed new building must be digitised from the imagery or reported to the County, not copied from Overture.**
   Nothing Overture-derived goes into the output layer.
+- **Corner of the same roof** (added October 23, from Brian's answers). Brian pointed out that some LiDAR "buildings"
+  are a small uncovered corner of a county house whose outline is a little off: PR724355 / LC02031, a 10 m² piece
+  beside a 271 m² house, 0.6 m below its median roof. Its 52% roof support comes from trees over the west half, not
+  from the outline. Sliding the county outline up to 3 m did not explain it (roof only rose from 52% to 65%). Size did:
+  - **The rule:** a piece within 2 m of a county building is a corner or edge of its roof when it is under 15 m²,
+    under 10% of that building's area, and its median roof is between 1.5 m below and 1 m above the building's.
+  - **Why these numbers:** the four pieces Brian called BOTH_REAL are 17-77 m² and 13-85% of their building, so the
+    rule keeps clear of all of them. That rests on one positive example, so widen it only when more answers support it.
+  - **What it changes:** 406 candidates move to the group "Corner or edge of a county roof", and 24 pairs get the guess
+    "…answer Offset". Candidates more than 1.5 m below the building's roof go to "Lower roof against a county
+    building" (1,386: porches, patio covers, carports, additions); the rest stay as "other" (1,883).
+  - **Shown on the page:** each candidate's facts include "Roof vs nearest county building" (height difference and
+    share of area). `footprint_review.bat facts` applied it in place, and Brian's 28 answers were unchanged.
 - **Offset or rebuilt** (added October 23, after Brian's first answers): county footprints whose outline is slightly
   off, or whose building was rebuilt beside or over its old footprint. These are the county footprints with under 80%
   2023 roof support and a LiDAR candidate within 3 m: 458 footprints and 489 candidates. Each item draws the county
