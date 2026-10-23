@@ -22,6 +22,7 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Consensus roofs (2 of 3: native, FRACTAL majority, Esri) and their footprint heights: reviews/2026-10-21/roof-consensus.
 - Canopy rasters, treetop recount, crown pilot and cover by zone from the combined classification: reviews/2026-10-22/canopy-rebuild; the current product library: reviews/2026-10-22/PRODUCTS.md (assemble_library.py).
 - Citywide crowns in tiles (canopy.crowns.segment, measured halo, every peak as a seed): reviews/2026-10-22/tiled-crowns.
+- Citywide terrain products (slope, aspect, curvature, hillshade, terrain position, contours; planning.terrain's calls on the whole grid, proven equal on a window): reviews/2026-10-22/terrain-city.
 - Treetop review evidence (SUSPECT flags), rebuilt from the October 15 manifest and proven byte-identical: canopy/treetop_evidence.py (ArcPy-free); reviews/2026-10-22/treetop-evidence. Its blind calibration sample: reviews/2026-10-22/packets/treetop-calibration-2 (drawn and scored with reviews/2026-10-15/calibration_sample.py).
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.

@@ -96,6 +96,11 @@ Cover falls by 0.2 to 1.7 points everywhere, as roof edges and structures leave 
 lower. The first cover run crashed in ArcGIS's geometry engine (a Python union of 21,743 parcels); zones are now built with
 the pairwise dissolve, clip and erase tools, and a second native crash was resumed cleanly (`--resume`).
 
+## Terrain products (added October 22, evening)
+Slope, aspect, curvature, hillshade, terrain position (10 m) and 2 m contours for the whole city at 0.5 m, from the same
+terrain as above, are in their own run folder, `runs	errain-city-20261022` (not copied into this library):
+[terrain-city](terrain-city/README.md).
+
 ## Limits
 - Crowns come from a tiled version of the toolbox's crown method (`canopy.crowns.segment` in 950 m tiles with a 40 m halo,
   seeded by every detected peak), validated against the single-window method on three tiles including the densest (exact

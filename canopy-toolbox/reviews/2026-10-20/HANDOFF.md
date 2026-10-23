@@ -30,6 +30,9 @@ How each was made and checked (each rebuild first reproduced the October product
 or plain Python with GDAL, not the A4000. The Myria3D environment and the patched clone (`fractal-finetune/myria3d-finetune.patch`)
 are only needed to rerun FRACTAL.
 
+**Also built October 22 (evening), on the laptop:** citywide terrain products at 0.5 m in `runs	errain-city-20261022`
+([terrain-city](../2026-10-22/terrain-city/README.md)), to compare with the coarser-DEM layers on ArcGIS Online.
+
 **Open (Brian's choice):** publish or share October 22 products (a manual staff step: live GIS data is never written from
 here); review the 32,986 SUSPECT treetops (the blind
 [calibration sample 2](../2026-10-22/packets/treetop-calibration-2/README.md), 350 points, is ready to label on the label page, `label_page.bat serve-calibration`, or in Pro); a building-only fine-tune (the one place fine-tuning helped); the smaller items below.
