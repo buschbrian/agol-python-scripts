@@ -35,6 +35,7 @@ rebuilt on October 23 to match; every packaged layer now carries the same transf
 | Vector tiles (slope, treetops, crowns, contours) | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | read from the tiles: vertices 6 cm from the transformed source, 0.7-1.6 m from the untransformed ([vector-tiles](../2026-10-22/hosting/vector-tiles/README.md#datum)) |
 | Hillshade and terrain (.tpkx), rebuilt | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | read from the tiles: steep terrain within 0.012 m transformed, 2.8 m untransformed ([tiles](../2026-10-22/hosting/tiles/README.md#datum-rebuilt-october-23)) |
 | Feature layers (features.gdb), reprojected | `WGS_1984_(ITRF08)_To_NAD_1983_2011`, to Web Mercator before upload | every vertex within 0.07 mm of Esri's transformed projection, 1.58 m from the untransformed ([feature-layers](../2026-10-22/hosting/feature-layers/README.md)) |
+| COGs (EPSG:6341) in an ArcGIS Maps SDK web map | `WGS_1984_(ITRF08)_To_NAD_1983_2011`, chosen by the SDK (5.1.27) with nothing named | identify and drawn cells within 7 mm of the transformed position, 1.20 m from the untransformed; the hosted contours' vertices fall on 2 m multiples of the COG terrain with no shift (best shift 0 on a 7 cm grid) ([cog-alignment](cog-alignment/README.md)) |
 
 Manage Tile Cache ignores transformation settings and an elevation cache refuses a map as its source, so the rebuild
 translates the two sources' georeferencing by the transformation's 1.197 m offset (constant to 0.81 mm over the mosaic);
@@ -70,6 +71,11 @@ From `Z:\GIS\overture\2026-10-21.0\millcreek\LICENSES.md` (the Overture comparis
 - **Vector tiles carry no attributes**: no pop-ups, identify or filters on treetops, crowns or slope. An app that needs a
   tree's height or crown size on click also needs a hosted feature layer of it, which costs more (feature storage is billed
   far above tile storage).
+- **Drawing the COGs in the SDK** (5.1.27) has one fault: a float COG whose first draw uses a class breaks renderer and
+  goes straight to a large scale (a deep link, say) draws coarse tiles in a repeating grid and stays wrong. Open at the
+  full extent, or give the layer its classes after its first draw, and it draws correctly at every place and zoom tested,
+  the partial last tile column and row included ([cog-drawing](cog-drawing/README.md)). Identify (exact values on click)
+  was never affected.
 - Treetops and crowns are unvalidated detections; the 32,986 SUSPECT treetops and calibration sample 2 are unreviewed.
 
 ## 3. Uploading
