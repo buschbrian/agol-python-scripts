@@ -1,0 +1,33 @@
+{
+ "footprints": 22042,
+ "fitted": 22042,
+ "reliable_fits": 17141,
+ "seconds": 86,
+ "rules": {
+  "min_m2": 40,
+  "min_best": 0.85,
+  "min_sharp": 0.02,
+  "min_margin": 0.02,
+  "max_canopy": 0.2
+ },
+ "search": {
+  "max_m": 3.0,
+  "step_m": 0.25
+ },
+ "all": {
+  "median_dx": -0.117,
+  "median_dy": 0.013,
+  "shift_p50": 0.406,
+  "shift_p90": 1.227,
+  "roof0_p50": 0.976,
+  "roof_best_p50": 0.986
+ },
+ "reliable": {
+  "median_dx": -0.125,
+  "median_dy": 0.023,
+  "shift_p50": 0.364,
+  "shift_p90": 0.77,
+  "roof0_p50": 0.983,
+  "roof_best_p50": 0.991
+ }
+}

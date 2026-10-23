@@ -115,6 +115,11 @@ back over answers.
     building" (1,386: porches, patio covers, carports, additions); the rest stay as "other" (1,883).
   - **Shown on the page:** each candidate's facts include "Roof vs nearest county building" (height difference and
     share of area). `footprint_review.bat facts` applied it in place, and Brian's 28 answers were unchanged.
+- **County outline vs the LiDAR** (added October 23): every candidate, pair and county item says how its county outline
+  sits on the 2023 roof, from [county-alignment](../county-alignment/README.md): aligned, offset (distance and
+  direction), trees over it, part roofed, or rebuilt or gone. That study found no systematic shift in the county layer
+  (median 0.36 m per building, no shared neighbourhood shift). Realigning outlines explains only 4 candidates and 2
+  pairs, which move to the last group, "Explained by realigning the county outline".
 - **Offset or rebuilt** (added October 23, after Brian's first answers): county footprints whose outline is slightly
   off, or whose building was rebuilt beside or over its old footprint. These are the county footprints with under 80%
   2023 roof support and a LiDAR candidate within 3 m: 458 footprints and 489 candidates. Each item draws the county

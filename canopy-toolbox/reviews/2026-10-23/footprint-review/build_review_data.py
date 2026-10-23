@@ -39,6 +39,8 @@ LIB = RUNS/"millcreek-products-20261022"
 CAND = RUNS/"footprint-candidates-lidar-20261023"
 COUNTY_WEB = RUNS/"hosting-features-20261023"/"features.gdb"     # county footprints in 3857 via ITRF08
 PARCELS = RUNS/"city-count-20261008"/"inputs.gdb"/"parcels"
+ALIGN = RUNS/"county-alignment-20261023"          # reviews/2026-10-23/county-alignment (optional)
+ALIGNMENT = {}                                     # SOURCE_ID -> row of ALIGN/classes.csv, filled by load_alignment()
 COMPARE = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\overture_vs_lidar.gpkg")
 OVERTURE_PARQUET = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\buildings.parquet")
 CELL = 0.5
@@ -46,7 +48,8 @@ FEET = 3.280839895
 BUNDLE = 50
 GROUPS = (("large_tall", "Large and tall"), ("detached", "Detached"), ("attached", "Against a county building (other)"),
           ("attached_lower", "Lower roof against a county building"),
-          ("attached_same_roof", "Corner or edge of a county roof"))
+          ("attached_same_roof", "Corner or edge of a county roof"),
+          ("explained_by_alignment", "Explained by realigning the county outline"))
 # A piece against a county building is "the same roof" when it is small beside that building and its median roof
 # elevation is within this band of the building's. Set from Brian's answers of October 23: his same-house example
 # (PR724355) is a 10 m2 corner, 4% of the house, 0.6 m below its median roof; the four pieces he called BOTH_REAL are
@@ -276,7 +279,8 @@ def candidate_facts(r, parcels, county_per_parcel, county_by_id):
             "County buildings on parcel": txt(on_parcel),
             "Same parcel as nearest county building": txt(r.SAME_PARCEL),
             "Roof vs nearest county building": "—" if dz is None else
-            f"{abs(dz):.1f} m {'below' if dz < 0 else 'above'} its median roof; {100 * share:.0f}% of its area"}
+            f"{abs(dz):.1f} m {'below' if dz < 0 else 'above'} its median roof; {100 * share:.0f}% of its area",
+            "That county outline vs the LiDAR": alignment_text(r.NEAR_FP_SOURCE_ID)}
 
 
 def county_facts(r, chips, parcels):
@@ -286,7 +290,8 @@ def county_facts(r, chips, parcels):
             "Type / year built": f"{txt(r.BuildType)} / {txt(r.BuiltYear, '{:.0f}')}",
             "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
             "2023 LiDAR roof support": cov, "Under canopy (2 m or more)": txt(canopy_share(chips, r.geometry), "{}%"),
-            "Parcel use": use, "Assessor (main building)": assessor, "Height flags": txt(r.HEIGHT_STATUS)}
+            "Parcel use": use, "Assessor (main building)": assessor, "Height flags": txt(r.HEIGHT_STATUS),
+            "County outline vs the LiDAR": alignment_text(r.SOURCE_ID)}
 
 
 def newbuild_facts(item, r, chips, county, parcels, parcel_of):
@@ -327,7 +332,49 @@ def pair_facts(f, cands, parcels, share_near):
             "LiDAR building(s) beside it": lidar,
             "Combined LiDAR area / county area": f"{cands.FOOTPRINT_M2.sum() / f.FOOTPRINT_M2:.2f}",
             "County outline within 3 m of them": f"{100 * share_near:.0f}%",
+            "County outline vs the LiDAR": alignment_text(f.SOURCE_ID),
             "Parcel": txt(f.PARCEL_ID), "Parcel use": use, "Assessor (main building)": assessor}
+
+
+def load_alignment():
+    """The county-alignment classes, and the candidates and pairs that realigning the county outlines explains."""
+    import csv
+    if not (ALIGN/"classes.csv").exists():
+        return set(), set()
+    with open(ALIGN/"classes.csv", newline="", encoding="utf-8") as handle:
+        ALIGNMENT.update({r["SOURCE_ID"]: r for r in csv.DictReader(handle)})
+    with open(ALIGN/"candidates-explained.csv", newline="", encoding="utf-8") as handle:
+        cands = {r["CAND_ID"] for r in csv.DictReader(handle) if r["EXPLAINED_BY_BEST_FIT"] == "1"}
+    pairs = set(json.loads((ALIGN/"classify.json").read_text(encoding="utf-8"))["best_fit"]["pairs_explained_ids"])
+    return cands, pairs
+
+
+def compass(dx, dy):
+    names = ["east", "north-east", "north", "north-west", "west", "south-west", "south", "south-east"]
+    return names[int(round(math.degrees(math.atan2(dy, dx)) / 45)) % 8]
+
+
+def alignment_text(source_id):
+    """How the county outline sits on the 2023 LiDAR roof (reviews/2026-10-23/county-alignment)."""
+    r = ALIGNMENT.get(str(source_id))
+    if r is None:
+        return "—"
+    roof0, best, canopy = float(r["ROOF0"]), float(r["ROOF_BEST"]), float(r["CANOPY"])
+    dx, dy = float(r["DX"]), float(r["DY"])
+    c = r["CLASS"]
+    if c == "ALIGNED":
+        return f"aligned with the LiDAR roof ({roof0:.0%} roof)"
+    if c == "REAL_OFFSET":
+        return f"offset: fits the LiDAR roof {math.hypot(dx, dy):.1f} m to the {compass(dx, dy)} (roof {roof0:.0%} → {best:.0%})"
+    if c == "SYSTEMATIC":
+        return "off by the same shift as its neighbours"
+    if c == "REBUILT_OR_GONE":
+        return f"rebuilt or gone: weak roof under any shift (best {best:.0%})"
+    if canopy >= 0.3:
+        return f"uncertain: trees cover {canopy:.0%} of it ({roof0:.0%} roof)"
+    if best < 0.85:
+        return f"uncertain: only part roofed under any shift (best {best:.0%})"
+    return f"uncertain: the fit is ambiguous ({roof0:.0%} roof)"
 
 
 def load_parcels():
@@ -390,6 +437,8 @@ def refresh_facts(data, facts, groups, pair_fact):
         part = [dict(it, group=groups.get(it["id"], it["group"])) for it in built["items"] if it["queue"] == q]
         if q == "candidates":
             part.sort(key=lambda it: (rank[it["group"]], it["id"]))
+        else:
+            part.sort(key=lambda it: it["group"] == "explained_by_alignment")
         items += part
     for k, it in enumerate(items, 1):
         it["order"] = k
@@ -458,6 +507,7 @@ def main(argv=None):
     cand, cand_web, county, county_web, low, hints = load(a.pilot)
     chips = Chips()
     parcel_frame, parcels = load_parcels()
+    explained_cands, explained_pairs = load_alignment()
     county_per_parcel = county.assign(P=county.PARCEL_ID.map(pnorm)).groupby("P").size().to_dict()
     hint_parcel = {}
     if len(hints):
@@ -470,7 +520,8 @@ def main(argv=None):
     facts.update({f"NB{k + 1:04d}": newbuild_facts(f"NB{k + 1:04d}", r, chips, county, parcels, hint_parcel.get(r.id))
                   for k, r in enumerate(hints.itertuples())})
     if a.facts_only:
-        groups = dict(zip(cand.CAND_ID, cand.GROUP))
+        groups = {c: ("explained_by_alignment" if c in explained_cands else g) for c, g in zip(cand.CAND_ID, cand.GROUP)}
+        groups.update({p: "explained_by_alignment" for p in explained_pairs})
         fp, cands = county.set_index("SOURCE_ID"), gpd.read_file(CAND/"candidates.gdb", layer="candidates").set_index("CAND_ID", drop=False)
 
         def pair_fact(item_id, related):
