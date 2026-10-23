@@ -33,7 +33,9 @@ are only needed to rerun FRACTAL.
 **Also built October 22 (evening), on the laptop:** citywide terrain products at 0.5 m in `runs	errain-city-20261022`
 ([terrain-city](../2026-10-22/terrain-city/README.md)), to compare with the coarser-DEM layers on ArcGIS Online. Then 3D building
 massing ([massing](../2026-10-22/massing/README.md)) and the hosting plan ([hosting/PLAN.md](../2026-10-22/hosting/PLAN.md)): feature
-layers and scene layer packages are ready to upload; COGs, tile packages and vector tiles are in their own sessions' branches.
+layers and scene layer packages are ready to upload, and the COGs, tile packages and vector tiles (merged October 23;
+the hillshade and terrain packages rebuilt on the ITRF08 datum): status, upload order and app ideas in
+[PUBLISHING.md](../2026-10-23/PUBLISHING.md).
 
 **Open (Brian's choice):** publish or share October 22 products (a manual staff step: live GIS data is never written from
 here); review the 32,986 SUSPECT treetops (the blind

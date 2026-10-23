@@ -27,8 +27,7 @@ Create Map Tile Package needs a map, so it is not used. Two tools take raster in
 - **Export Tile Cache** with `TILE_PACKAGE_TPKX` / `COMPACT_V2` turns the cache into a `.tpkx`.
 
 The layer file is made headless: `arcpy.mp.CreateArcGISProject`, `createMap`, `addDataFromPath`, a CIM edit of the
-colorizer, then `saveACopy`. A `.mapx` also worked as a data source in the pilot. The slope-vector-tiles branch had no
-commits when this was built; the findings are in the shared notes folder for that session.
+colorizer, then `saveACopy`. A `.mapx` also works as a hillshade data source (not for the terrain: see [Datum](#datum-rebuilt-october-23)).
 
 Quirks found on the way:
 - The scales passed to Manage Tile Cache must be the exact values in its list. A computed `591657527.591555/2**18` is
