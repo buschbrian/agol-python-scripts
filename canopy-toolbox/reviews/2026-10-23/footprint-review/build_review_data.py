@@ -40,13 +40,17 @@ CAND = RUNS/"footprint-candidates-lidar-20261023"
 COUNTY_WEB = RUNS/"hosting-features-20261023"/"features.gdb"     # county footprints in 3857 via ITRF08
 PARCELS = RUNS/"city-count-20261008"/"inputs.gdb"/"parcels"
 ALIGN = RUNS/"county-alignment-20261023"          # reviews/2026-10-23/county-alignment (optional)
+REDUCTION = HERE.parents[1]/"review-reduction"     # its pre-registered sample.csv and eyes.csv (optional)
 ALIGNMENT = {}                                     # SOURCE_ID -> row of ALIGN/classes.csv, filled by load_alignment()
 COMPARE = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\overture_vs_lidar.gpkg")
 OVERTURE_PARQUET = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\buildings.parquet")
 CELL = 0.5
 FEET = 3.280839895
 BUNDLE = 50
-GROUPS = (("large_tall", "Large and tall"), ("detached", "Detached"), ("attached", "Against a county building (other)"),
+GROUPS = (("large_tall", "Large and tall"), ("detached", "Detached"),
+          ("attached_sample", "Sample: answer these first"),
+          ("attached_eyes", "Needs eyes (80 m2 or more, or doubtful county building)"),
+          ("attached", "Against a county building (other)"),
           ("attached_lower", "Lower roof against a county building"),
           ("attached_same_roof", "Corner or edge of a county roof"),
           ("explained_by_alignment", "Explained by realigning the county outline"))
@@ -376,6 +380,19 @@ def load_alignment():
     return cands, pairs
 
 
+def reduction_groups(groups):
+    """The pre-registered sample first, then the pieces no rule may settle (reviews/2026-10-23/review-reduction)."""
+    import csv
+    out = {}
+    for name, group in (("eyes.csv", "attached_eyes"), ("sample.csv", "attached_sample")):
+        if (REDUCTION/name).exists():
+            with open(REDUCTION/name, newline="", encoding="utf-8") as handle:
+                for r in csv.DictReader(handle):
+                    if groups.get(r["CAND_ID"], "").startswith("attached"):
+                        out[r["CAND_ID"]] = group
+    return out
+
+
 def compass(dx, dy):
     names = ["east", "north-east", "north", "north-west", "west", "south-west", "south", "south-east"]
     return names[int(round(math.degrees(math.atan2(dy, dx)) / 45)) % 8]
@@ -548,6 +565,7 @@ def main(argv=None):
                   for k, r in enumerate(hints.itertuples())})
     if a.facts_only:
         groups = {c: ("explained_by_alignment" if c in explained_cands else g) for c, g in zip(cand.CAND_ID, cand.GROUP)}
+        groups.update(reduction_groups(groups))
         groups.update({p: "explained_by_alignment" for p in explained_pairs})
         fp, cands = county.set_index("SOURCE_ID"), gpd.read_file(CAND/"candidates.gdb", layer="candidates").set_index("CAND_ID", drop=False)
 

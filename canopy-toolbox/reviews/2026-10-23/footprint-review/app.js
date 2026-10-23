@@ -42,6 +42,7 @@ const QUEUES = {
   },
 };
 const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attached: "Against a county building (other)",
+                      attached_sample: "Sample: answer these first", attached_eyes: "Needs eyes (80 m² or more, or doubtful county building)",
                       attached_lower: "Lower roof against a county building", attached_same_roof: "Corner or edge of a county roof",
                       explained_by_alignment: "Explained by realigning the county outline",
                       low_roof: "No 2023 roof", hint: "Hint", under_10: "County roof under 10%",

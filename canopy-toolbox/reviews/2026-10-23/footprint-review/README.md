@@ -120,6 +120,10 @@ back over answers.
   direction), trees over it, part roofed, or rebuilt or gone. That study found no systematic shift in the county layer
   (median 0.36 m per building, no shared neighbourhood shift). Realigning outlines explains only 4 candidates and 2
   pairs, which move to the last group, "Explained by realigning the county outline".
+- **Sample first** (October 23, [review-reduction](../review-reduction/README.md)): the attached candidates are now
+  grouped "Sample: answer these first" (300, pre-registered in PROTOCOL.md), "Needs eyes" (443), then the earlier
+  attached groups (2,928). Answering the sample lets a pre-registered rule settle up to 3,228 attached pieces, if Brian
+  adopts it.
 - **Answers revised** (October 23, after Brian hit an RV in the pairs queue). The pairs question now asks what the red
   LiDAR piece is, with six answers instead of four, adding Part of it and Not a building. Keys 1 (Offset) and 3 (Both
   real) kept their meaning; Rebuilt moved from 2 to 4 and Unsure from 4 to 6. The candidates queue splits Reject into
