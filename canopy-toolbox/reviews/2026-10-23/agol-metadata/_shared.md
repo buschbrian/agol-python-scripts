@@ -13,8 +13,8 @@ property-boundary, permitting or code-compliance decisions.
 **Lidar source.** The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
 flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
 non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
-reviewed for these products. The points were reclassified for these products (see "How it was made"); the products are
-gridded at 0.5 m.
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.
 
 ## coordinates
 **Coordinates and heights.** Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator

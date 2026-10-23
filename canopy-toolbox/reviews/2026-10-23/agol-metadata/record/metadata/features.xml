@@ -1,28 +1,67 @@
 <?xml version='1.0' encoding='utf-8'?>
 <metadata xml:lang="en">
+        
     <Esri>
+                
         <ArcGISFormat>1.0</ArcGISFormat>
+                
         <ArcGISProfile>DCPLUS</ArcGISProfile>
+                
         <CreaDate>20261023</CreaDate>
+                
         <CreaTime>17233900</CreaTime>
+                
         <ModDate>20261023</ModDate>
+                
         <ModTime>17233900</ModTime>
+                
         <DataProperties>
+                        
             <itemProps>
+                                
                 <portalDetails>
+                                        
                     <itemDetailsURL>https://www.arcgis.com/home/item.html?id=d5effaee6c66497eaeb64e4c2e0f496e</itemDetailsURL>
+                                        
                     <itemIdentifier>d5effaee6c66497eaeb64e4c2e0f496e</itemIdentifier>
+                                        
                     <itemType>Feature Service</itemType>
+                                        
                     <resourceURL>https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer</resourceURL>
-                <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/d5effaee6c66497eaeb64e4c2e0f496e/info/thumbnail/ago_downloaded.png</thumbnailURL></portalDetails>
+                                    
+                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/d5effaee6c66497eaeb64e4c2e0f496e/info/thumbnail/thumbnail.JPEG</thumbnailURL>
+                </portalDetails>
+                            
             </itemProps>
+                    
         </DataProperties>
+            
     </Esri>
+        
     <dataIdInfo>
+                
         <idCitation>
+                        
             <resTitle>Millcreek buildings and canopy cover zones (2023 lidar), planning estimate</resTitle>
-        <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                    
+            <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                
         <searchKeys>
+                        
+            
+            
+            
+            
+            
+            
+            
+        
+            
+            
+            
+            
+            
+            
             
             
             
@@ -32,7 +71,9 @@
             
             
         <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>buildings</keyword><keyword>building footprints</keyword><keyword>building height</keyword><keyword>roof height</keyword><keyword>tree canopy</keyword><keyword>canopy cover</keyword><keyword>urban forest</keyword></searchKeys>
+                
         <idPurp>Building footprints with lidar roof heights, and tree canopy cover by ownership zone, for Millcreek, Utah, from 2023 lidar. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
+                
         <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
 surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
 property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
@@ -109,8 +150,8 @@ lidar bare-earth terrain.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Lidar source.&lt;/strong&gt; The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
 flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
 non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
-reviewed for these products. The points were reclassified for these products (see "How it was made"); the products are
-gridded at 0.5 m.&lt;/p&gt;
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.&lt;/p&gt;
 &lt;h2&gt;Data dictionary: buildings (layer 0)&lt;/h2&gt;
 &lt;p&gt;Field descriptions below are also stored on the layer's fields (Data tab, and field information in Map Viewer).&lt;/p&gt;
 &lt;table style='border-collapse:collapse;font-size:90%'&gt;
@@ -594,9 +635,13 @@ classes, 2 m contours, treetops and tree crowns (vector tile layers). They share
 terrain, so they can be stacked in one map or scene.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
 of Millcreek GIS.&lt;/p&gt;</idAbs>
+                
         <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026). Parcels: City of Millcreek parcel layer (2025 tax year).</idCredit>
+                
         <resConst>
+                        
             <Consts>
+                                
                 <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
 engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
 design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
@@ -610,37 +655,76 @@ jurisdictional boundaries, or to replace a certified topographical or boundary s
 &lt;p&gt;&lt;strong&gt;Parcels.&lt;/strong&gt; Ownership groups come from the City of Millcreek parcel layer (2025 tax-year snapshot, read October 8,
 2026). A tax year is not an ownership effective date, and the grouping of owners into private, public and uncertain is
 the City's own rule set for this analysis, not a legal finding of ownership.&lt;/p&gt;</useLimit>
+                            
             </Consts>
+                    
         </resConst>
+                
         <dataExt>
+                        
             <geoEle>
+                                
                 <GeoBndBox>
+                                        
                     <westBL Sync="FALSE">-111.92109033841207</westBL>
+                                        
                     <eastBL Sync="FALSE">-111.77654549109613</eastBL>
+                                        
                     <northBL Sync="FALSE">40.71437969044501</northBL>
+                                        
                     <southBL Sync="FALSE">40.65923007027499</southBL>
+                                        
                     <exTypeCode Sync="TRUE">1</exTypeCode>
+                                    
                 </GeoBndBox>
+                            
             </geoEle>
-        <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
-    <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="017" /></tpCat><tpCat><TopicCatCd value="007" /></tpCat><tpCat><TopicCatCd value="015" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
+                    
+            <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
+            
+        <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="017" /></tpCat><tpCat><TopicCatCd value="007" /></tpCat><tpCat><TopicCatCd value="015" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
+        
     <mdFileID>d5effaee6c66497eaeb64e4c2e0f496e</mdFileID>
+        
     <distInfo>
+                
         <distTranOps>
+                        
             <onLineSrc>
+                                
                 <linkage>https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer</linkage>
+                            
             </onLineSrc>
+                    
         </distTranOps>
+                
         <distFormat>
+                        
             <formatName>Feature Service</formatName>
+                    
         </distFormat>
+            
     </distInfo>
+        
     <refSysInfo>
+                
         <RefSystem>
+                        
             <refSysID>
+                                
                 <identCode code="102100" />
+                                
                 <idCodeSpace>EPSG</idCodeSpace>
+                            
             </refSysID>
+                    
         </RefSystem>
+            
     </refSysInfo>
-<Binary><Thumbnail><Data EsriPropertyType="PictureX">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</Data></Thumbnail></Binary><dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>County building footprints (Salt Lake County, downloaded 2026-10-19) summarised against 0.5 m lidar roof and bare-earth rasters from the 2023 Salt Lake Valley QL1 lidar: roof points where 2 of 3 independent classifications agree, heights as roof minus terrain per cell. Canopy cover from a 0.5 m canopy height model (canopy at least 2 m) summarised over ownership zones from the City parcel layer (2025 tax year). Projected to Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011 and checked against the source library. Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>
+    
+    <Binary>
+        <Thumbnail>
+            <Data EsriPropertyType="PictureX">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</Data>
+        </Thumbnail>
+    </Binary>
+    <dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>County building footprints (Salt Lake County, downloaded 2026-10-19) summarised against 0.5 m lidar roof and bare-earth rasters from the 2023 Salt Lake Valley QL1 lidar: roof points where 2 of 3 independent classifications agree, heights as roof minus terrain per cell. Canopy cover from a 0.5 m canopy height model (canopy at least 2 m) summarised over ownership zones from the City parcel layer (2025 tax year). Projected to Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011 and checked against the source library. Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>
