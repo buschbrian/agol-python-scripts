@@ -5,7 +5,7 @@
    "format": "MIXED",
    "lerc_error": 0.0
   },
-  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\schemes\\hillshade.xml",
+  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\schemes\\hillshade.xml",
   "levels": 24,
   "tile_size": 256
  },
@@ -15,7 +15,7 @@
    "format": "LERC",
    "lerc_error": 0.1
   },
-  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\schemes\\terrain.xml",
+  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\schemes\\terrain.xml",
   "levels": 24,
   "tile_size": 256
  }

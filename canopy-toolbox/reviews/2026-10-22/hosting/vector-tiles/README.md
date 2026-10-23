@@ -36,6 +36,25 @@ So a hosted vector tile layer draws and has a legend (the style's layer names ca
 feature class as a hosted feature layer too (feature storage costs far more per GB; see the plan's step 2), or use the
 vector tiles for drawing and the feature layer only for queries.
 
+## Datum
+All four packages carry `WGS_1984_(ITRF08)_To_NAD_1983_2011` from NAD83(2011) to WGS84 / Web Mercator, the transformation
+of the building scene layers and the rebuilt hillshade and terrain packages ([tiles](../tiles/README.md#datum-rebuilt-october-23)).
+The script sets none; Pro gives a map in Web Mercator that transformation by default, and each `.aprx` records it. Because
+Manage Tile Cache ignores transformation settings, the packages were checked from the tiles themselves on October 23
+([datum_check.py](datum_check.py), `datum.json`): every vertex in the four tiles nearest the city centre at the deepest
+level (16), against the nearest source vertex projected each way.
+
+| Package | Tile vertices | Median distance, with ITRF08 | Median distance, no transformation |
+|---|---:|---:|---:|
+| slope classes | 139,373 | 0.060 m | 0.732 m |
+| treetops | 11,551 | 0.059 m | 1.576 m |
+| crowns | 233,264 | 0.061 m | 0.734 m |
+| contours | 18,090 | 0.064 m | 0.946 m |
+
+About 6 cm is half a level-16 tile unit (15 cm), the tiles' own rounding. The treetops show the 1.58 m Web Mercator shift
+cleanly; polygon and line vertices on the 0.5 m grid often land near another vertex when shifted, so their wrong-choice
+distances are smaller, but still ten times the right one.
+
 ## How it was checked
 - **Pilot first**: each layer clipped to one 1 km window in the middle of the city (427,774 to 428,774 E, 4,503,821 to
   4,504,821 N: 11,216 treetops, 8,614 crowns, 527 contours), packaged in under a minute each (`pilot.json`).

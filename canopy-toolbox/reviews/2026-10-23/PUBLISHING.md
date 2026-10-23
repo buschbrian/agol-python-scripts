@@ -15,7 +15,7 @@ SSD (H: on the laptop, under `lidar\2023-salt-lake-valley\runs`). Checked on dis
 | 2 | Feature layers: 22,042 buildings, 13 canopy cover zones | `hosting-features-20261022\features.gdb` | 76 MB | [feature-layers](../2026-10-22/hosting/feature-layers/README.md) |
 | 3 | Building scene layers, LOD1.2 blocks and LOD2.0 roofs | `scene-layers-20261022` | 9 + 19 MB | [scene-layers](../2026-10-22/hosting/scene-layers/README.md) |
 | 4 | Vector tiles: slope classes (129,352 polygons), treetops, crowns, contours | `slope-tiles-20261022`, `vector-tiles-20261022` | 71 MB | [vector-tiles](../2026-10-22/hosting/vector-tiles/README.md), [slope-tiles](../2026-10-22/slope-tiles/README.md) |
-| 5 | Hillshade tile package, terrain elevation package (LERC 0.01 m) | `tiles-20261022` | 134 + 228 MB | [tiles](../2026-10-22/hosting/tiles/README.md) |
+| 5 | Hillshade tile package, terrain elevation package (LERC 0.01 m), rebuilt October 23 for the datum | `tiles-20261023` | 134 + 228 MB | [tiles](../2026-10-22/hosting/tiles/README.md) |
 | 6 | Float COG in an ArcGIS Maps SDK page: draws, exact identify, class renderer | (local servers) | | [cogs](../2026-10-22/hosting/cogs/README.md#web-trial-slope-percent-in-the-arcgis-maps-sdk) |
 
 The records of steps 1, 4, 5 and 6 were built on three side branches (`claude/cog-masters-7bc671`,
@@ -24,22 +24,23 @@ on October 23; the only conflicts were the one-line entries in `AGENTS.md`, all 
 
 ## 2. Open before publishing
 
-### A datum mismatch between the packages (about 1 m)
-The packages do not all take NAD83(2011) to WGS84 / Web Mercator the same way:
+### Datum: resolved October 23 (except the feature layers)
+The packages did not all take NAD83(2011) to WGS84 / Web Mercator the same way: the hillshade and terrain `.tpkx` used no
+transformation and sat **1.197 m on the ground** (1.58 m in Web Mercator) from the buildings and vector tiles. They were
+rebuilt on October 23 to match; every packaged layer now carries the same transformation, each proven from its own output:
 
-| Package | Transformation | Where it is recorded |
+| Package | Transformation | How it is known |
 |---|---|---|
-| Building scene layers (.slpk) | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | `make_slpk.py`, set explicitly |
-| Vector tiles (slope, treetops, crowns, contours) | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | each package's `.aprx` map CIM (Pro's default for the map; read October 23) |
-| Hillshade and terrain (.tpkx) | **none** (NAD83(2011) taken as WGS84) | `package_tiles.py`, `geographicTransformations = None` |
+| Building scene layers (.slpk) | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | named in `make_slpk.py` and passed to the tool |
+| Vector tiles (slope, treetops, crowns, contours) | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | read from the tiles: vertices 6 cm from the transformed source, 0.7-1.6 m from the untransformed ([vector-tiles](../2026-10-22/hosting/vector-tiles/README.md#datum)) |
+| Hillshade and terrain (.tpkx), rebuilt | `WGS_1984_(ITRF08)_To_NAD_1983_2011` | read from the tiles: steep terrain within 0.012 m transformed, 2.8 m untransformed ([tiles](../2026-10-22/hosting/tiles/README.md#datum-rebuilt-october-23)) |
 | Feature layers (features.gdb, EPSG 6341) | decided by ArcGIS Online when it projects them | not tested |
 
-In Utah the two choices differ by about 1 m, so the buildings and vector tiles would sit about a metre off the hillshade
-and off the ground in a web scene. The ITRF08 transformation is the one that matches Esri's WGS84 basemaps and World
-Elevation, and four of the six packages already use it, so the fix is to rebuild the two `.tpkx` with it (the hillshade cache
-took 9 minutes and the terrain 1 minute) and re-run their value checks with the same projection. Publishing the feature
-layers projected to Web Mercator with the same transformation takes the guess out of the last row. Until then, any single
-layer can go up on its own; the 3D scene (buildings on the city terrain) should wait.
+Manage Tile Cache ignores transformation settings and an elevation cache refuses a map as its source, so the rebuild
+translates the two sources' georeferencing by the transformation's 1.197 m offset (constant to 0.81 mm over the mosaic);
+no cell changes. The October 22 packages (`runs\tiles-20261022`) are superseded and left on the SSD. For the feature
+layers, publish them projected to Web Mercator with the same transformation, or check them against the vector tiles in Map
+Viewer after upload.
 
 ### Brian's decisions (from the plan, still open)
 1. **Cloud bucket** for the COGs (R2, S3, Azure or the city's). Gates only the COGs.
@@ -63,10 +64,10 @@ Ready for the browser upload now (Content > New item > Your device), each with w
 |---:|---|---|---:|---:|
 | 1 | `features.gdb` (via Pro, Share > Web Layer) | hosted feature layers: buildings, cover zones | a few MB | a few |
 | 2 | `millcreek_slope_classes.vtpk`, `millcreek_contours.vtpk` | hosted vector tile layers | 29 MB | < 0.1 |
-| 3 | `millcreek_hillshade_20261022.tpkx` (after the datum rebuild) | hosted tile layer | 134 MB | about 0.2 |
+| 3 | `millcreek_hillshade_20261023.tpkx` | hosted tile layer | 134 MB | about 0.2 |
 | 4 | `millcreek_treetops.vtpk`, `millcreek_crowns.vtpk` | hosted vector tile layers | 42 MB | < 0.1 |
 | 5 | `buildings_lod12.slpk` | hosted scene layer | 9 MB | < 0.1 |
-| 6 | `millcreek_terrain_20261022.tpkx` (after the datum rebuild) | hosted elevation layer | 228 MB | about 0.3 |
+| 6 | `millcreek_terrain_20261023.tpkx` | hosted elevation layer | 228 MB | about 0.3 |
 | 7 | the 16 COGs | bucket, then a web app or ArcGIS Image | 4 GB | decision 1 or 2 |
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
@@ -82,7 +83,7 @@ go-ahead. Not written yet.
 | Slope and terrain viewer | staff (planning, engineering); public later | slope classes, contours, hillshade, building heights | web map + Instant Apps (Sidebar or Basic) |
 | Tree canopy explorer | public | cover zones, crowns, treetops, hillshade | web map + Instant Apps or Experience Builder; pop-ups need the feature layers |
 | Canopy cover by zone | public and council | the 13 cover zones (October 19 against October 22) | Dashboard |
-| Millcreek in 3D | public | LOD1.2 buildings on the city terrain, treetops as 3D trees | web scene + Instant Apps 3D Viewer (after the datum fix) |
+| Millcreek in 3D | public | LOD1.2 buildings on the city terrain, treetops as 3D trees | web scene + Instant Apps 3D Viewer |
 | How the lidar products were made | public | method, limits, the estimate warning | StoryMap |
 | SUSPECT treetop review | staff | calibration sample 2 as an editable layer | Field Maps or a Survey123 form |
 

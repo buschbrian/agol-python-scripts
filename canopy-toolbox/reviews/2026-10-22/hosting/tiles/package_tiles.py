@@ -1,5 +1,5 @@
-r"""Hillshade raster tile package and terrain elevation tile package for ArcGIS Online (October 22, 2026), built and checked
-locally. Nothing here uploads, publishes or shares.
+r"""Hillshade raster tile package and terrain elevation tile package for ArcGIS Online (October 22, 2026; rebuilt October 23
+with the datum transformation), built and checked locally. Nothing here uploads, publishes or shares.
 
     python reviews/2026-10-22/hosting/tiles/package_tiles.py scheme OUT    tiling schemes from Pro's built-in ones, edited
     python reviews/2026-10-22/hosting/tiles/package_tiles.py layer OUT     the hillshade layer file (no stretch) and the AOIs
@@ -16,8 +16,14 @@ ArcGIS Pro Python (PYTHONNOUSERSITE=1). Read-only on the inputs; writes only und
   resampling. Tiles are PNG32 on the ArcGIS Online scheme.
 - Terrain: the unmasked mosaic on the ArcGIS Online elevation scheme (LERC, 257 x 257 corner-registered pixels), with
   the LERC maximum error set to 0.01 m instead of the scheme's 0.1 m.
-- No geographic transformation (env.geographicTransformations unset): NAD83(2011) coordinates are taken as WGS84 when
-  projected to Web Mercator. The pilot showed this is what the tool does, and the verifier projects the same way.
+- Datum: the tiles carry WGS_1984_(ITRF08)_To_NAD_1983_2011, the transformation of the building scene layers and the
+  vector tile maps, so every package lands in the same place on WGS84 basemaps. Manage Tile Cache always projects with no
+  transformation (it ignores env.geographicTransformations, and an elevation cache refuses a map as its source), so the
+  transformation is applied to the sources instead: both are drawn from copies whose georeferencing is translated by the
+  transformation's offset in UTM (1.197 m, constant across the mosaic to under 1 mm, from Esri's engine), so the tool's
+  untransformed projection puts every cell where the transformation would. No cell value changes and nothing is
+  resampled. The October 22 build used no transformation and sits 1.2 m off the other packages. The verifier fits the
+  transformation from Esri's engine on its own and checks the tiles against both choices.
 - Levels 0-18: level 18 is 0.597 m in Web Mercator, about 0.45 m on the ground at Millcreek (x cos 40.7 degrees), the
   first level at least as fine as the 0.5 m source; level 19 would be 4x the tiles with nothing new in them.
 """
@@ -60,7 +66,9 @@ MAX_LEVEL = 18
 ORIGIN = -20037508.342787001
 RES0 = 156543.03392799999
 EARTH_R = 6378137.0
-PACKAGES = {"hillshade": "millcreek_hillshade_20261022", "terrain": "millcreek_terrain_20261022"}
+PACKAGES = {"hillshade": "millcreek_hillshade_20261023", "terrain": "millcreek_terrain_20261023"}
+# Esri wkid 108363, as in scene-layers/make_slpk.py and the vector tile maps' datum transforms.
+TRANSFORM = "WGS_1984_(ITRF08)_To_NAD_1983_2011"
 # The pilot window: the north-east corner of the bounding box, where both the city edge and the mosaic edge cross it.
 PILOT = (433349.0, 4506383.0, 434349.0, 4507383.0)
 WARNING = ("Unvalidated LiDAR planning estimates. Hillshade is for display; terrain is interpolated class-2 ground at 0.5 m, "
@@ -96,8 +104,42 @@ def env(out):
     arcpy.env.scratchWorkspace = str(scratch)
     arcpy.env.workspace = str(scratch)
     arcpy.env.overwriteOutput = True
+    # The tile tools ignore it (see the docstring); left unset so projectAs never applies it unasked.
     arcpy.env.geographicTransformations = None
     return arcpy
+
+
+def source_shift():
+    """The translation (dx, dy) in UTM metres that makes the tile tools' untransformed projection equal TRANSFORM: a cell
+    at true p is given the coordinates p + (dx, dy), where the untransformed inverse of Esri's transformed Web Mercator
+    lands. Taken from Esri's engine on a 9 x 9 grid over the mosaic; the largest departure from the mean is recorded."""
+    import arcpy
+    import rasterio
+    with rasterio.open(TERRAIN_CONTEXT) as src:
+        b = src.bounds
+    x, y = np.meshgrid(np.linspace(b.left, b.right, 9), np.linspace(b.bottom, b.top, 9))
+    x, y = x.ravel(), y.ravel()
+    utm, merc = arcpy.SpatialReference(6341), arcpy.SpatialReference(3857)
+    m = np.array([[q.X, q.Y] for q in (arcpy.PointGeometry(arcpy.Point(a, c), utm).projectAs(merc, TRANSFORM).firstPoint
+                                       for a, c in zip(x, y))])
+    ux, uy = merc_to_utm(m[:, 0], m[:, 1], None)
+    dx, dy = ux - x, uy - y
+    return {"transformation": TRANSFORM, "dx_m": float(dx.mean()), "dy_m": float(dy.mean()),
+            "shift_m": round(float(np.hypot(dx.mean(), dy.mean())), 4),
+            "max_departure_mm": round(1000*float(np.hypot(dx - dx.mean(), dy - dy.mean()).max()), 4), "grid": "9 x 9"}
+
+
+def shifted_terrain(target, shift):
+    """A VRT over the terrain mosaic with its origin translated by the shift; same cells, CRS and NoData."""
+    from osgeo import gdal
+    gdal.UseExceptions()
+    gdal.Translate(str(target), str(TERRAIN_CONTEXT), format="VRT")
+    ds = gdal.Open(str(target), gdal.GA_Update)
+    g = list(ds.GetGeoTransform())
+    g[0] += shift["dx_m"]
+    g[3] += shift["dy_m"]
+    ds.SetGeoTransform(g)
+    ds = None
 
 
 # Tiling schemes ------------------------------------------------------------------------------------------------------
@@ -134,28 +176,35 @@ def scheme(out):
 
 # Layer file and areas of interest ------------------------------------------------------------------------------------
 
-def capped_hillshade(target):
-    """A copy of the hillshade with 253 and 254 set to HILLSHADE_TOP; NoData (255) and everything else unchanged."""
+def capped_hillshade(target, shift):
+    """A copy of the hillshade with 253 and 254 set to HILLSHADE_TOP, its origin translated by the shift; NoData (255) and
+    everything else unchanged."""
     import rasterio
+    from affine import Affine
     with rasterio.open(HILLSHADE) as src:
         data = src.read(1)
         profile = src.profile
     valid = data != src.nodata
     changed = int((valid & (data > HILLSHADE_TOP)).sum())
     data[valid & (data > HILLSHADE_TOP)] = HILLSHADE_TOP
-    profile.update(compress="lzw", tiled=True, blockxsize=512, blockysize=512)
+    profile.update(compress="lzw", tiled=True, blockxsize=512, blockysize=512,
+                   transform=Affine.translation(shift["dx_m"], shift["dy_m"])*profile["transform"])
     with rasterio.open(target, "w", **profile) as dst:
         dst.write(data, 1)
     return {"cells": int(valid.sum()), "changed": changed}
 
 
 def layer(out):
-    """The capped hillshade as a layer file drawn with no stretch, and the areas of interest for both caches."""
+    """The capped, shifted hillshade as a layer file drawn with no stretch; the shifted terrain VRT; the areas of interest
+    for both caches (in true coordinates: the 5 m and 15 m buffers cover the 1.2 m shift, and verify checks coverage)."""
     arcpy = env(out)
     folder = Path(out)/"layer"
     folder.mkdir(exist_ok=True)
+    shift = source_shift()
     display = folder/"hillshade_display.tif"
-    capped = capped_hillshade(display)
+    capped = capped_hillshade(display, shift)
+    terrain = folder/"terrain_shifted.vrt"
+    shifted_terrain(terrain, shift)
     if not (folder/"layers.aprx").exists():
         arcpy.mp.CreateArcGISProject(str(folder), "layers", False)
     aprx = arcpy.mp.ArcGISProject(str(folder/"layers.aprx"))
@@ -164,6 +213,9 @@ def layer(out):
     m = aprx.createMap("hillshade", "Map")
     m.spatialReference = arcpy.SpatialReference(3857)
     lyr = m.addDataFromPath(str(display))
+    for other in m.listLayers():
+        if other.isBasemapLayer:  # createMap can add the default basemap
+            m.removeLayer(other)
     definition = lyr.getDefinition("V3")
     c = definition.colorizer
     default = {"stretchType": c.stretchType, "standardDeviationParam": c.standardDeviationParam,
@@ -182,7 +234,8 @@ def layer(out):
         arcpy.management.CreateFileGDB(str(folder), "aoi.gdb")
     arcpy.analysis.PairwiseBuffer(str(BOUNDARY), str(gdb/"hillshade"), "5 Meters", "ALL")
     context_footprint(arcpy, gdb/"terrain")
-    write_json(folder/"layer.json", {"lyrx": str(lyrx), "display_raster": str(display),
+    write_json(folder/"layer.json", {"lyrx": str(lyrx), "display_raster": str(display), "terrain_source": str(terrain),
+                                     "source_shift": shift,
                                      "capped_at": HILLSHADE_TOP, "capped_cells": capped, "default_colorizer": default,
                                      "colorizer": "no stretch (eNone), no gamma, bilinear resampling",
                                      "aoi": {"hillshade": str(gdb/"hillshade"), "terrain": str(gdb/"terrain")}})
@@ -253,9 +306,11 @@ def pilot(out):
                                          str(aoi), None, scale(16), scale(18))
         runs[name] = round(time.time() - started, 1)
     runs["hillshade"] = cache(arcpy, folder, "hillshade", lyrx, schemes/"hillshade.xml", aoi, (16, 18))
-    runs["terrain"] = cache(arcpy, folder, "terrain", TERRAIN_CONTEXT, schemes/"terrain.xml", aoi, (16, 18))
+    terrain = json.loads((Path(out)/"layer"/"layer.json").read_text(encoding="utf-8"))["terrain_source"]
+    runs["terrain"] = cache(arcpy, folder, "terrain", terrain, schemes/"terrain.xml", aoi, (16, 18))
     runs["package_terrain"] = package(arcpy, folder/"terrain", folder, "terrain_pilot")
     record = {"schema": "tiles-pilot/1", "finished": now(), "window_utm": PILOT, "levels": [16, 17, 18],
+              "geographic_transformation": TRANSFORM, "datum_shift": datum_shift(),
               "seconds": runs, "caches": {}}
     for name in ("hillshade_default", "hillshade", "terrain_default", "terrain"):
         tiles = {lv: list(cache_tiles(folder/name, lv)) for lv in (16, 17, 18)}
@@ -263,8 +318,12 @@ def pilot(out):
                  "levels": {lv: level_summary(name.split("_")[0], t) for lv, t in tiles.items()}}
         if name.startswith("hillshade"):
             entry["values_L18"] = hillshade_values(tiles[18], np.random.default_rng(3), per_tile=30)
+            entry["values_L18_if_untransformed"] = hillshade_values(tiles[18], np.random.default_rng(3), per_tile=30,
+                                                                    transformation=None)
         else:
             entry["values_L18"] = terrain_values(tiles[18], np.random.default_rng(1), per_tile=6)
+            entry["values_L18_if_untransformed"] = terrain_values(tiles[18], np.random.default_rng(1), per_tile=6,
+                                                                  transformation=None)
         record["caches"][name] = entry
     with zipfile.ZipFile(folder/"terrain_pilot.tpkx") as z:
         record["tpkx_members"] = sorted({re.sub(r"R[0-9a-f]+C[0-9a-f]+", "R*C*", n) for n in z.namelist()})
@@ -280,15 +339,17 @@ def build(out):
     caches.mkdir(exist_ok=True)
     record = {"schema": "tiles-run/1", "started": now(), "warning": WARNING,
               "inputs": {"hillshade": str(HILLSHADE), "hillshade_layer": layer_record["lyrx"],
-                         "terrain": str(TERRAIN_CONTEXT), "terrain_city_check": str(TERRAIN_CITY),
+                         "terrain": str(TERRAIN_CONTEXT), "terrain_shifted": layer_record["terrain_source"],
+                         "terrain_city_check": str(TERRAIN_CITY),
                          "boundary": str(BOUNDARY)},
               "parameters": {"levels": [0, MAX_LEVEL], "hillshade_format": TILE_FORMAT, "lerc_error_m": LERC_ERROR_M,
                              "tiling_schemes": {k: str(schemes/f"{k}.xml") for k in PRO_SCHEMES},
-                             "builtin_schemes": PRO_SCHEMES, "geographic_transformation": None,
+                             "builtin_schemes": PRO_SCHEMES, "geographic_transformation": TRANSFORM,
+                             "transformation_applied_as": layer_record["source_shift"],
                              "hillshade_colorizer": layer_record["colorizer"], "aoi": layer_record["aoi"],
                              "storage": "COMPACT_V2", "export": "TILE_PACKAGE_TPKX"},
               "seconds": {}, "packages": {}}
-    sources = {"hillshade": layer_record["lyrx"], "terrain": TERRAIN_CONTEXT}
+    sources = {"hillshade": layer_record["lyrx"], "terrain": layer_record["terrain_source"]}
     for key in ("hillshade", "terrain"):
         print(f"{now()} cache {key}", flush=True)
         record["seconds"][f"cache_{key}"] = cache(arcpy, caches, key, sources[key], schemes/f"{key}.xml",
@@ -364,7 +425,8 @@ def level_summary(kind, tiles):
     return {"tiles": len(tiles), "with_data": with_data, "bytes": sum(len(t[2]) for t in tiles)}
 
 
-# Coordinates: no datum shift, so Web Mercator <-> NAD83(2011) geographic is the sphere formula, then UTM 12N.
+# Coordinates: Web Mercator <-> NAD83(2011) geographic is the sphere formula, then UTM 12N, plus the transformation's
+# offset in Web Mercator (none for transformation=None, the October 22 build).
 
 def _transforms():
     from osgeo import osr
@@ -377,19 +439,67 @@ def _transforms():
     return osr.CoordinateTransformation(geo, utm), osr.CoordinateTransformation(utm, geo)
 
 
-def merc_to_utm(x, y):
+_SHIFTS = {}
+
+
+def datum_shift(transformation=TRANSFORM):
+    """The Web Mercator offset (dx, dy) the transformation adds to the untransformed projection, from Esri's engine
+    (PointGeometry.projectAs) on a 5 x 5 grid over the city's bounding box. It is about 1.6 m and varies by a few
+    millimetres across Millcreek, so each component is fitted as a plane in Web Mercator x and y; the residual is recorded."""
+    if transformation is None:
+        return {"plane_dx": [0.0, 0.0, 0.0], "plane_dy": [0.0, 0.0, 0.0]}
+    if transformation not in _SHIFTS:
+        import arcpy
+        import rasterio
+        with rasterio.open(HILLSHADE) as src:
+            b = src.bounds
+        x, y = np.meshgrid(np.linspace(b.left, b.right, 5), np.linspace(b.bottom, b.top, 5))
+        x, y = x.ravel(), y.ravel()
+        utm, merc = arcpy.SpatialReference(6341), arcpy.SpatialReference(3857)
+        projected = [arcpy.PointGeometry(arcpy.Point(a, c), utm).projectAs(merc, transformation).firstPoint
+                     for a, c in zip(x, y)]
+        saved, arcpy.env.geographicTransformations = arcpy.env.geographicTransformations, None
+        plain = [arcpy.PointGeometry(arcpy.Point(a, c), utm).projectAs(merc).firstPoint for a, c in zip(x, y)]
+        arcpy.env.geographicTransformations = saved
+        nx, ny = utm_to_merc(x, y, None)
+        dx, dy = np.array([q.X for q in projected]) - nx, np.array([q.Y for q in projected]) - ny
+        px, py = np.array([q.X for q in plain]) - nx, np.array([q.Y for q in plain]) - ny
+        design = np.column_stack([np.ones_like(nx), nx - nx.mean(), ny - ny.mean()])
+        plane_dx, plane_dy = np.linalg.lstsq(design, dx, rcond=None)[0], np.linalg.lstsq(design, dy, rcond=None)[0]
+        residual = np.hypot(dx - design @ plane_dx, dy - design @ plane_dy)
+        _SHIFTS[transformation] = {
+            "origin": [float(nx.mean()), float(ny.mean())], "plane_dx": plane_dx.tolist(), "plane_dy": plane_dy.tolist(),
+            "shift_m": round(float(np.hypot(dx.mean(), dy.mean())), 4),
+            "spread_mm": round(1000*float(max(np.ptp(dx), np.ptp(dy))), 4),
+            "plane_residual_max_mm": round(1000*float(residual.max()), 4),
+            "arcpy_untransformed_vs_this_script_mm": round(1000*float(np.hypot(px, py).max()), 4)}
+    return _SHIFTS[transformation]
+
+
+def _offset(s, x, y):
+    ox, oy = s.get("origin", (0.0, 0.0))
+    a, b = s["plane_dx"], s["plane_dy"]
+    return a[0] + a[1]*(x - ox) + a[2]*(y - oy), b[0] + b[1]*(x - ox) + b[2]*(y - oy)
+
+
+def merc_to_utm(x, y, transformation=TRANSFORM):
     to_utm, _ = _transforms()
-    lon = np.degrees(np.asarray(x)/EARTH_R)
-    lat = np.degrees(2*np.arctan(np.exp(np.asarray(y)/EARTH_R)) - np.pi/2)
+    x, y = np.asarray(x, float), np.asarray(y, float)
+    dx, dy = _offset(datum_shift(transformation), x, y)
+    x, y = x - dx, y - dy
+    lon = np.degrees(x/EARTH_R)
+    lat = np.degrees(2*np.arctan(np.exp(y/EARTH_R)) - np.pi/2)
     p = np.array(to_utm.TransformPoints(np.column_stack([lon, lat]).tolist()))
     return p[:, 0], p[:, 1]
 
 
-def utm_to_merc(x, y):
+def utm_to_merc(x, y, transformation=TRANSFORM):
     _, to_geo = _transforms()
     p = np.array(to_geo.TransformPoints(np.column_stack([x, y]).tolist()))
     lon, lat = np.radians(p[:, 0]), np.radians(p[:, 1])
-    return EARTH_R*lon, EARTH_R*np.log(np.tan(np.pi/4 + lat/2))
+    mx, my = EARTH_R*lon, EARTH_R*np.log(np.tan(np.pi/4 + lat/2))
+    dx, dy = _offset(datum_shift(transformation), mx, my)
+    return mx + dx, my + dy
 
 
 def bilinear(src, x, y):
@@ -416,7 +526,7 @@ def containing(src, x, y):
     return np.array([src.read(1, window=((r, r + 1), (c, c + 1)))[0, 0] for r, c in zip(row, col)], float)
 
 
-def hillshade_values(tiles, rng, per_tile):
+def hillshade_values(tiles, rng, per_tile, transformation=TRANSFORM):
     """Random L18 pixels: tile gray against the source hillshade cell containing the pixel centre."""
     import rasterio
     res = resolution(18)
@@ -428,7 +538,7 @@ def hillshade_values(tiles, rng, per_tile):
             ys.append(-ORIGIN - (r*256 + j + 0.5)*res)
             gray.append(int(g[j, i]))
             opaque.append(bool(o[j, i]))
-    ux, uy = merc_to_utm(xs, ys)
+    ux, uy = merc_to_utm(xs, ys, transformation)
     with rasterio.open(HILLSHADE) as src:
         t = src.transform
         inside = (ux > t.c) & (ux < t.c + t.a*src.width) & (uy < t.f) & (uy > t.f + t.e*src.height)
@@ -447,7 +557,7 @@ def hillshade_values(tiles, rng, per_tile):
             "p95_abs_difference": float(np.percentile(np.abs(d), 95)), "max_abs_difference": int(np.abs(d).max())}
 
 
-def terrain_values(tiles, rng, per_tile):
+def terrain_values(tiles, rng, per_tile, transformation=TRANSFORM):
     """Random L18 pixels (corner-registered: pixel i sits at col*256 + i) against bilinear source at the same place."""
     import rasterio
     res = resolution(18)
@@ -459,7 +569,7 @@ def terrain_values(tiles, rng, per_tile):
                 xs.append(ORIGIN + (c*256 + i)*res)
                 ys.append(-ORIGIN - (r*256 + j)*res)
                 values.append(float(v[j, i]))
-    ux, uy = merc_to_utm(xs, ys)
+    ux, uy = merc_to_utm(xs, ys, transformation)
     with rasterio.open(TERRAIN_CONTEXT) as src:
         expected = bilinear(src, ux, uy)
     ok = ~np.isnan(expected)
@@ -535,7 +645,7 @@ def hillshade_coverage(with_data):
     return result
 
 
-def terrain_samples(tpkx, n_flat=150, n_steep=150, seed=20261022):
+def terrain_samples(tpkx, n_flat=150, n_steep=150, seed=20261022, transformation=TRANSFORM):
     """City cells away from the mask edge, half flat (slope < 2 degrees) and half steep (slope > 25 degrees). Each is moved
     to the nearest L18 elevation pixel, whose value is compared with terrain_m.tif there by bilinear interpolation (the
     resampling the cache uses), and with the terrain_m cell the original point falls in (what a click would compare)."""
@@ -559,9 +669,9 @@ def terrain_samples(tpkx, n_flat=150, n_steep=150, seed=20261022):
             if (np.abs(w) < 1e30).all() and sum(p[2] == stratum for p in kept) < quota[stratum]:
                 kept.append((row, col, stratum))
         px, py = t.c + (np.array([k[1] for k in kept]) + 0.5)*t.a, t.f + (np.array([k[0] for k in kept]) + 0.5)*t.e
-        mx, my = utm_to_merc(px, py)
+        mx, my = utm_to_merc(px, py, transformation)
         gi, gj = np.rint((mx - ORIGIN)/res).astype(int), np.rint((-ORIGIN - my)/res).astype(int)
-        nx, ny = merc_to_utm(ORIGIN + gi*res, -ORIGIN - gj*res)
+        nx, ny = merc_to_utm(ORIGIN + gi*res, -ORIGIN - gj*res, transformation)
         expected = bilinear(city, nx, ny)
         clicked = containing(city, px, py)
     wanted = {}
@@ -577,7 +687,7 @@ def terrain_samples(tpkx, n_flat=150, n_steep=150, seed=20261022):
             if ok[j, i]:
                 values[k] = v[j, i]
     strata = np.array([k[2] for k in kept])
-    out = {"points": len(kept), "lerc_error_m": LERC_ERROR_M}
+    out = {"points": len(kept), "lerc_error_m": LERC_ERROR_M, "transformation": transformation}
     for name, sel in (("all", np.ones(len(kept), bool)), ("flat", strata == "flat"), ("steep", strata == "steep")):
         ok = sel & ~np.isnan(values) & ~np.isnan(expected)
         d, dc = np.abs(values[ok] - expected[ok]), np.abs(values[ok] - clicked[ok])
@@ -645,7 +755,9 @@ def opens_in_pro(out, packages):
 def verify(out):
     run = json.loads((Path(out)/"run.json").read_text(encoding="utf-8"))
     packages = {k: v["file"] for k, v in run["packages"].items()}
-    record = {"schema": "tiles-verify/1", "started": now(), "levels": {}, "packages": {}}
+    record = {"schema": "tiles-verify/1", "started": now(),
+              "geographic_transformation": run["parameters"]["geographic_transformation"],
+              "datum_shift": datum_shift(), "levels": {}, "packages": {}}
     for key in ("hillshade", "terrain"):
         with zipfile.ZipFile(packages[key]) as z:
             members = z.namelist()
@@ -658,16 +770,19 @@ def verify(out):
         if key == "hillshade":
             record["hillshade_coverage"] = hillshade_coverage(with_data)
             record["hillshade_holes_L18"] = hillshade_holes(packages[key])
-            record["hillshade_values_L18"] = hillshade_values(
-                [t for t in package_tiles(packages[key], MAX_LEVEL)][::7], np.random.default_rng(5), per_tile=20)
+            sample = [t for t in package_tiles(packages[key], MAX_LEVEL)][::7]
+            record["hillshade_values_L18"] = hillshade_values(sample, np.random.default_rng(5), per_tile=20)
+            record["hillshade_values_L18_if_untransformed"] = hillshade_values(
+                sample, np.random.default_rng(5), per_tile=20, transformation=None)
         else:
             record["terrain_lerc_headers"] = lerc_headers(packages[key])
             record["terrain_samples"] = terrain_samples(packages[key])
+            record["terrain_samples_if_untransformed"] = terrain_samples(packages[key], transformation=None)
         write_json(Path(out)/"verify.json", record)
     record["opens_in_pro"] = opens_in_pro(out, packages)
     record["finished"] = now()
     write_json(Path(out)/"verify.json", record)
-    print(json.dumps({k: v for k, v in record.items() if k != "terrain_samples"}, indent=1))
+    print(json.dumps({k: v for k, v in record.items() if not k.startswith("terrain_samples")}, indent=1))
 
 
 def main(argv=None):
