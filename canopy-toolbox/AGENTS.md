@@ -34,6 +34,8 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Whether the COGs line up with the hosted layers in a Web Mercator web map (they do: the ArcGIS Maps SDK applies the ITRF08 transformation itself; within about 5 cm of the hosted contours): reviews/2026-10-23/cog-alignment.
 - ArcGIS Online cartography of the eight hosted layers (vector tile styles as item resources, feature/scene renderers
   and pop-ups in item data, the three web maps and the web scene; apply_styling.py, dry run by default): reviews/2026-10-23/agol-styling.
+- Why the hosted vector tile layers stop at 1:2,257 in the Maps SDK (the services' maxScale) and the fix without new
+  tiles (set_max_scale.py, dry run by default; SDK check page agol-styling/web/zoom.html): reviews/2026-10-23/vt-overzoom.
 - How the SDK draws the COGs (drawn colour against identify over COGs, zooms, tile edges and interpolation; one fault: a float COG with a class breaks renderer on its first draw, straight at a large scale, draws coarse tiles in a repeating grid; workaround and app advice): reviews/2026-10-23/cog-drawing.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.

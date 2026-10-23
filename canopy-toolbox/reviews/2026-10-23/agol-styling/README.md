@@ -67,9 +67,8 @@ layer definitions are in `originals/`; the feature and scene items had no item d
   support VectorTileLayer (Esri's Legend reference lists it as unsupported; seen here as "No legend"). The legends show
   the buildings, zones and 3D buildings; the class keys for slope, contours, crowns and treetops are in the map
   descriptions with coloured swatches. A real legend entry needs a feature layer (or a legend image in the app).
-- **Vector tile layers stop drawing past 1:2,257** in the SDK: their services stop at level 17 and the SDK suspends the
-  layer beyond its last level rather than overzooming. Pro overzooms. Republishing with deeper levels, or capping the
-  apps' zoom at 1:2,257, would avoid the gap.
+- **Vector tile layers stop drawing past 1:2,257** in the SDK. Pro overzooms. The cause is the services' `maxScale`
+  (2,257), not their levels. The fix needs no new tiles and is waiting for Brian's go-ahead: `../vt-overzoom/README.md`.
 - **3D trees are not possible from the treetops**: they are vector tiles, which drape flat. 3D tree symbols need the
   treetops as a hosted point layer with heights (feature storage cost; see `hosting/PLAN.md`).
 - The web maps were checked with the SDK, not in Map Viewer itself (that needs a browser sign-in).
