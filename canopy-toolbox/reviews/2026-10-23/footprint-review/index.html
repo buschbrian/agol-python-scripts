@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Footprint Review</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="title"><strong>Footprint review</strong> <span id="item-id">…</span> <span id="group-badge" class="badge"></span></div>
+  <div class="filters">
+    <label>Queue <select id="queue">
+      <option value="candidates">LiDAR candidates</option>
+      <option value="county">County footprints with no 2023 roof</option>
+      <option value="newbuild">Possible new buildings</option>
+    </select></label>
+    <label>Group <select id="group"><option value="">All</option></select></label>
+    <label>Show <select id="show">
+      <option value="open">Unanswered</option>
+      <option value="all">All</option>
+      <option value="answered">Answered</option>
+    </select></label>
+    <span id="position"></span>
+    <label class="reviewer" title="Initials recorded as REVIEWER on every answer">Initials
+      <input id="reviewer" size="5" maxlength="40" autocomplete="off" placeholder="?"></label>
+  </div>
+  <div class="progress"><div id="progress-bar"></div><span id="progress-text"></span></div>
+</header>
+<main>
+  <section class="panels">
+    <figure class="panel">
+      <figcaption>Esri World Imagery <span id="imagery-date" class="small"></span></figcaption>
+      <div id="map" aria-label="Imagery map; the red outline is the item"></div>
+    </figure>
+    <figure class="panel">
+      <figcaption>2023 LiDAR (Oct–Nov): roof by height, trees green, ground grey · <span id="chip-metres"></span></figcaption>
+      <div class="chip-wrap"><img id="chip" alt="LiDAR view of the same area"><svg id="chip-svg"></svg></div>
+      <div class="legend"><span class="sw roof-lo"></span>roof 0 m <span class="sw roof-mid"></span>6 m <span class="sw roof-hi"></span>12 m+
+        <span class="sw tree"></span>tree ≥ 2 m <span class="sw line-item"></span>this item <span class="sw line-county"></span>county
+        <span class="sw line-cand"></span>other candidates <span class="sw outside"></span>outside the city</div>
+    </figure>
+  </section>
+  <aside>
+    <p id="question" class="question"></p>
+    <dl class="facts" id="facts"></dl>
+    <div class="answers" id="answers"></div>
+    <textarea id="note" rows="2" maxlength="500" placeholder="Optional note (N to type, Enter to save with the answer, Esc to leave)"></textarea>
+    <div class="row nav">
+      <button id="prev" title="←">← Previous</button>
+      <button id="clear" title="Backspace">Clear</button>
+      <button id="reset" title="R">Reset map (R)</button>
+      <button id="next" title="→">Next →</button>
+    </div>
+    <label class="advance"><input type="checkbox" id="auto-advance" checked> Go to the next item after answering</label>
+    <p id="status" role="status"></p>
+    <p class="small">Keys: 1–4 answer · ← → move · Backspace clear · N note · R reset the map. Answers are saved to
+      <code id="csv-path"></code>. Unvalidated planning estimates: heights are roof minus terrain from the 2023 LiDAR.</p>
+  </aside>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
