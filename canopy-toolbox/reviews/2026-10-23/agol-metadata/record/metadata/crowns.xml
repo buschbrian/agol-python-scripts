@@ -1,54 +1,78 @@
 <?xml version='1.0' encoding='utf-8'?>
 <metadata xml:lang="en">
-        
+            
+    
     <Esri>
-                
-        <ArcGISFormat>1.0</ArcGISFormat>
-                
-        <ArcGISProfile>DCPLUS</ArcGISProfile>
-                
-        <CreaDate>20261023</CreaDate>
-                
-        <CreaTime>18030100</CreaTime>
-                
-        <ModDate>20261023</ModDate>
-                
-        <ModTime>18030100</ModTime>
-                
-        <DataProperties>
                         
-            <itemProps>
-                                
-                <portalDetails>
-                                        
-                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/d9388dc83f894edbb63e0510a8c62fa8/info/thumbnail/thumbnail.JPEG</thumbnailURL>
-                                        
-                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=d9388dc83f894edbb63e0510a8c62fa8</itemDetailsURL>
-                                        
-                    <itemIdentifier>d9388dc83f894edbb63e0510a8c62fa8</itemIdentifier>
-                                        
-                    <itemType>Vector Tile Service</itemType>
-                                        
-                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_tree_crowns_2023_lidar_planning_estimate/VectorTileServer</resourceURL>
-                                    
-                </portalDetails>
-                            
-            </itemProps>
-                    
-        </DataProperties>
-            
-    </Esri>
         
+        <ArcGISFormat>1.0</ArcGISFormat>
+                        
+        
+        <ArcGISProfile>DCPLUS</ArcGISProfile>
+                        
+        
+        <CreaDate>20261023</CreaDate>
+                        
+        
+        <CreaTime>18030100</CreaTime>
+                        
+        
+        <ModDate>20261023</ModDate>
+                        
+        
+        <ModTime>18030100</ModTime>
+                        
+        
+        <DataProperties>
+                                    
+            
+            <itemProps>
+                                                
+                
+                <portalDetails>
+                                                            
+                    
+                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/d9388dc83f894edbb63e0510a8c62fa8/info/thumbnail/thumbnail.JPEG</thumbnailURL>
+                                                            
+                    
+                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=d9388dc83f894edbb63e0510a8c62fa8</itemDetailsURL>
+                                                            
+                    
+                    <itemIdentifier>d9388dc83f894edbb63e0510a8c62fa8</itemIdentifier>
+                                                            
+                    
+                    <itemType>Vector Tile Service</itemType>
+                                                            
+                    
+                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_tree_crowns_2023_lidar_planning_estimate/VectorTileServer</resourceURL>
+                                                        
+                
+                </portalDetails>
+                                            
+            
+            </itemProps>
+                                
+        
+        </DataProperties>
+                    
+    
+    </Esri>
+            
+    
     <dataIdInfo>
-                
+                        
+        
         <idCitation>
-                        
+                                    
+            
             <resTitle>Millcreek tree crowns (2023 lidar), planning estimate</resTitle>
-                    
+                                
+            
             <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
-                
-        <searchKeys>
                         
+        
+        <searchKeys>
+                                    
             
                         
             
@@ -75,10 +99,26 @@
                         
             
                     
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
         <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>trees</keyword><keyword>tree crowns</keyword><keyword>crown area</keyword><keyword>urban forest</keyword><keyword>tree canopy</keyword><keyword>vector tiles</keyword></searchKeys>
-                
+                        
+        
         <idPurp>400,063 estimated tree crown areas around lidar treetops for Millcreek, Utah, by treetop height class. Estimated canopy regions, not surveyed crowns. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
-                
+                        
+        
         <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
 surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
 property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
@@ -138,7 +178,7 @@ the Millcreek treetops layer. Each class includes its upper value.&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;The legend labels come from the layer's style (one style layer per class). This is a vector tile layer: it &lt;strong&gt;draws
+&lt;p&gt;Fills run from pale yellow-green (2 to 5 m) to dark green (20 m and over) (ColorBrewer YlGn), the same colours as the treetops. &lt;strong&gt;Map Viewer's legend does not list vector tile layers&lt;/strong&gt;, so this table is the key to the colours. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. The class names come from the layer's style (one style layer per class). This is a vector tile layer: it &lt;strong&gt;draws
 only&lt;/strong&gt;. The tiles carry no attributes, so there are no pop-ups, no identify and no filtering; each crown's area,
 diameter and height are kept by City of Millcreek GIS.&lt;/p&gt;
 &lt;h2&gt;How it was made&lt;/h2&gt;
@@ -184,94 +224,137 @@ classes, 2 m contours, treetops and tree crowns (vector tile layers). They share
 terrain, so they can be stacked in one map or scene.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
 of Millcreek GIS.&lt;/p&gt;</idAbs>
-                
-        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).</idCredit>
-                
-        <resConst>
                         
+        
+        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).</idCredit>
+                        
+        
+        <resConst>
+                                    
+            
             <Consts>
-                                
+                                                
+                
                 <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
 engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
 design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
 determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
 conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
 3DEP)" when you use or show them.&lt;/p&gt;</useLimit>
-                            
+                                            
+            
             </Consts>
-                    
+                                
+        
         </resConst>
-                
+                        
+        
         <dataExt>
-                        
-            <geoEle>
-                                
-                <GeoBndBox>
-                                        
-                    <westBL Sync="FALSE">-111.92128923133478</westBL>
-                                        
-                    <eastBL Sync="FALSE">-111.77626510496339</eastBL>
-                                        
-                    <northBL Sync="FALSE">40.71403919537392</northBL>
-                                        
-                    <southBL Sync="FALSE">40.65917933367661</southBL>
-                                        
-                    <exTypeCode Sync="TRUE">1</exTypeCode>
                                     
+            
+            <geoEle>
+                                                
+                
+                <GeoBndBox>
+                                                            
+                    
+                    <westBL Sync="FALSE">-111.92128923133478</westBL>
+                                                            
+                    
+                    <eastBL Sync="FALSE">-111.77626510496339</eastBL>
+                                                            
+                    
+                    <northBL Sync="FALSE">40.71403919537392</northBL>
+                                                            
+                    
+                    <southBL Sync="FALSE">40.65917933367661</southBL>
+                                                            
+                    
+                    <exTypeCode Sync="TRUE">1</exTypeCode>
+                                                        
+                
                 </GeoBndBox>
-                            
+                                            
+            
             </geoEle>
-                    
+                                
+            
             <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
-            
+                    
+        
         <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="002" /></tpCat><tpCat><TopicCatCd value="007" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
-        
+            
+    
     <Binary>
-                
+                        
+        
         <Thumbnail>
-                        
+                                    
+            
             <Data EsriPropertyType="PictureX">/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACFAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKAc0jdKitwwj+YEH0Lbj+dAE1FFFABRRRQAUmaGzt461RaC4U5VgfbtSbE2Xs0uaqKk6IgDD5eKD9pIwSB7g+3+NFwuW6KYhfo2PqKfTGFFQSmfafKC5JGCT0Gef0qVR3yTSuA6iiimAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH//2Q==</Data>
-                    
+                                
+        
         </Thumbnail>
-            
+                    
+    
     </Binary>
-        
+            
+    
     <mdFileID>d9388dc83f894edbb63e0510a8c62fa8</mdFileID>
-        
+            
+    
     <distInfo>
-                
-        <distTranOps>
                         
-            <onLineSrc>
-                                
-                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_tree_crowns_2023_lidar_planning_estimate/VectorTileServer</linkage>
-                            
-            </onLineSrc>
-                    
-        </distTranOps>
-                
-        <distFormat>
-                        
-            <formatName>Vector Tile Service</formatName>
-                    
-        </distFormat>
-            
-    </distInfo>
         
-    <refSysInfo>
-                
-        <RefSystem>
-                        
-            <refSysID>
-                                
-                <identCode code="102100" />
-                                
-                <idCodeSpace>EPSG</idCodeSpace>
-                            
-            </refSysID>
-                    
-        </RefSystem>
+        <distTranOps>
+                                    
             
+            <onLineSrc>
+                                                
+                
+                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_tree_crowns_2023_lidar_planning_estimate/VectorTileServer</linkage>
+                                            
+            
+            </onLineSrc>
+                                
+        
+        </distTranOps>
+                        
+        
+        <distFormat>
+                                    
+            
+            <formatName>Vector Tile Service</formatName>
+                                
+        
+        </distFormat>
+                    
+    
+    </distInfo>
+            
+    
+    <refSysInfo>
+                        
+        
+        <RefSystem>
+                                    
+            
+            <refSysID>
+                                                
+                
+                <identCode code="102100" />
+                                                
+                
+                <idCodeSpace>EPSG</idCodeSpace>
+                                            
+            
+            </refSysID>
+                                
+        
+        </RefSystem>
+                    
+    
     </refSysInfo>
+        
     
     <dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>Canopy at least 2 m tall in the 0.5 m canopy height model from the 2023 Salt Lake Valley QL1 lidar, divided among the detected treetops by a priority flood in 950 m tiles with a 40 m overlap, crowns under 3 m2 dropped, and packaged as vector tiles by treetop height class (WGS_1984_(ITRF08)_To_NAD_1983_2011). Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>

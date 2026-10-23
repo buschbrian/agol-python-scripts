@@ -138,5 +138,33 @@
   "when": "2026-10-23T14:39:52",
   "item_update": true,
   "layers": {}
+ },
+ {
+  "key": "slope",
+  "id": "3b5b1a9110f14e93af68752be89e0df2",
+  "when": "2026-10-23T14:45:31",
+  "item_update": true,
+  "layers": {}
+ },
+ {
+  "key": "contours",
+  "id": "50573eeba93f405a869a1d78a08d68e8",
+  "when": "2026-10-23T14:45:33",
+  "item_update": true,
+  "layers": {}
+ },
+ {
+  "key": "treetops",
+  "id": "924b993cb23046cb87641253bcf786de",
+  "when": "2026-10-23T14:45:36",
+  "item_update": true,
+  "layers": {}
+ },
+ {
+  "key": "crowns",
+  "id": "d9388dc83f894edbb63e0510a8c62fa8",
+  "when": "2026-10-23T14:45:38",
+  "item_update": true,
+  "layers": {}
  }
 ]

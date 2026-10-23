@@ -1,54 +1,91 @@
 <?xml version='1.0' encoding='utf-8'?>
 <metadata xml:lang="en">
-        
-    <Esri>
-                
-        <ArcGISFormat>1.0</ArcGISFormat>
-                
-        <ArcGISProfile>DCPLUS</ArcGISProfile>
-                
-        <CreaDate>20261023</CreaDate>
-                
-        <CreaTime>17433300</CreaTime>
-                
-        <ModDate>20261023</ModDate>
-                
-        <ModTime>17433300</ModTime>
-                
-        <DataProperties>
-                        
-            <itemProps>
-                                
-                <portalDetails>
-                                        
-                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/3b5b1a9110f14e93af68752be89e0df2/info/thumbnail/thumbnail.JPEG</thumbnailURL>
-                                        
-                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=3b5b1a9110f14e93af68752be89e0df2</itemDetailsURL>
-                                        
-                    <itemIdentifier>3b5b1a9110f14e93af68752be89e0df2</itemIdentifier>
-                                        
-                    <itemType>Vector Tile Service</itemType>
-                                        
-                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_slope_classes_0_5_m_2023_lidar_planning_estimate/VectorTileServer</resourceURL>
-                                    
-                </portalDetails>
-                            
-            </itemProps>
-                    
-        </DataProperties>
             
-    </Esri>
+    
+    <Esri>
+                        
         
-    <dataIdInfo>
-                
-        <idCitation>
+        <ArcGISFormat>1.0</ArcGISFormat>
                         
-            <resTitle>Millcreek slope classes 0.5 m (2023 lidar), planning estimate</resTitle>
+        
+        <ArcGISProfile>DCPLUS</ArcGISProfile>
+                        
+        
+        <CreaDate>20261023</CreaDate>
+                        
+        
+        <CreaTime>17433300</CreaTime>
+                        
+        
+        <ModDate>20261023</ModDate>
+                        
+        
+        <ModTime>17433300</ModTime>
+                        
+        
+        <DataProperties>
+                                    
+            
+            <itemProps>
+                                                
+                
+                <portalDetails>
+                                                            
                     
-            <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/3b5b1a9110f14e93af68752be89e0df2/info/thumbnail/thumbnail.JPEG</thumbnailURL>
+                                                            
+                    
+                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=3b5b1a9110f14e93af68752be89e0df2</itemDetailsURL>
+                                                            
+                    
+                    <itemIdentifier>3b5b1a9110f14e93af68752be89e0df2</itemIdentifier>
+                                                            
+                    
+                    <itemType>Vector Tile Service</itemType>
+                                                            
+                    
+                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_slope_classes_0_5_m_2023_lidar_planning_estimate/VectorTileServer</resourceURL>
+                                                        
                 
-        <searchKeys>
+                </portalDetails>
+                                            
+            
+            </itemProps>
+                                
+        
+        </DataProperties>
+                    
+    
+    </Esri>
+            
+    
+    <dataIdInfo>
                         
+        
+        <idCitation>
+                                    
+            
+            <resTitle>Millcreek slope classes 0.5 m (2023 lidar), planning estimate</resTitle>
+                                
+            
+            <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                        
+        
+        <searchKeys>
+                                    
+            
+            
+            
+            
+            
+            
+        
+            
+            
+            
+            
+            
+            
             
             
             
@@ -69,9 +106,11 @@
             
             
         <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>slope</keyword><keyword>steep slopes</keyword><keyword>hillside</keyword><keyword>terrain</keyword><keyword>vector tiles</keyword></searchKeys>
-                
+                        
+        
         <idPurp>Ground slope in six classes (under 10% to 30% and over) for Millcreek, Utah, from the 0.5 m bare-earth terrain of the 2023 lidar. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
-                
+                        
+        
         <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
 surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
 property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
@@ -140,7 +179,7 @@ channels appear as well as the east-bench hillsides.&lt;/p&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Share of the city at or above each threshold: 10%: 28.58%; 15%: 22.32%; 20%: 18.92%; 25%: 16.75%; 30%: 15.22%.&lt;/p&gt;
-&lt;p&gt;The legend labels come from the layer's style (one style layer per class). This is a vector tile layer: it &lt;strong&gt;draws
+&lt;p&gt;Colours run from pale yellow (under 10%) through orange to dark red (30% and over) (ColorBrewer YlOrRd). &lt;strong&gt;Map Viewer's legend does not list vector tile layers&lt;/strong&gt;, so this table is the key to the colours. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. The class names come from the layer's style (one style layer per class). This is a vector tile layer: it &lt;strong&gt;draws
 only&lt;/strong&gt;. The tiles carry no attributes, so there are no pop-ups, no identify and no filtering by class. Classes can be
 switched on and off, or recoloured, in the style.&lt;/p&gt;
 &lt;h2&gt;How it was made&lt;/h2&gt;
@@ -153,7 +192,7 @@ switched on and off, or recoloured, in the style.&lt;/p&gt;
    because on a graded hillside slope wanders back and forth across a class break. Every patch smaller than 16 cells
    (4 m2) was merged into its largest neighbouring patch; nothing else changed. Polygon edges follow the 0.5 m cells; there
    is no smoothing.&lt;/li&gt;
-&lt;li&gt;Converted to 129,352 polygons and packaged as vector tiles (levels 0 to 17; clients draw deeper by overzooming).&lt;/li&gt;
+&lt;li&gt;Converted to 129,352 polygons and packaged as vector tiles (levels 0 to 17).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;Accuracy and checks&lt;/h2&gt;
 &lt;ul&gt;
@@ -192,94 +231,137 @@ classes, 2 m contours, treetops and tree crowns (vector tile layers). They share
 terrain, so they can be stacked in one map or scene.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
 of Millcreek GIS.&lt;/p&gt;</idAbs>
-                
-        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).</idCredit>
-                
-        <resConst>
                         
+        
+        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).</idCredit>
+                        
+        
+        <resConst>
+                                    
+            
             <Consts>
-                                
+                                                
+                
                 <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
 engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
 design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
 determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
 conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
 3DEP)" when you use or show them.&lt;/p&gt;</useLimit>
-                            
+                                            
+            
             </Consts>
-                    
+                                
+        
         </resConst>
-                
+                        
+        
         <dataExt>
-                        
-            <geoEle>
-                                
-                <GeoBndBox>
-                                        
-                    <westBL Sync="FALSE">-111.92146228561036</westBL>
-                                        
-                    <eastBL Sync="FALSE">-111.77628348880846</eastBL>
-                                        
-                    <northBL Sync="FALSE">40.714570499631236</northBL>
-                                        
-                    <southBL Sync="FALSE">40.65872312908196</southBL>
-                                        
-                    <exTypeCode Sync="TRUE">1</exTypeCode>
                                     
+            
+            <geoEle>
+                                                
+                
+                <GeoBndBox>
+                                                            
+                    
+                    <westBL Sync="FALSE">-111.92146228561036</westBL>
+                                                            
+                    
+                    <eastBL Sync="FALSE">-111.77628348880846</eastBL>
+                                                            
+                    
+                    <northBL Sync="FALSE">40.714570499631236</northBL>
+                                                            
+                    
+                    <southBL Sync="FALSE">40.65872312908196</southBL>
+                                                            
+                    
+                    <exTypeCode Sync="TRUE">1</exTypeCode>
+                                                        
+                
                 </GeoBndBox>
-                            
+                                            
+            
             </geoEle>
-                    
+                                
+            
             <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
-            
+                    
+        
         <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="006" /></tpCat><tpCat><TopicCatCd value="015" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
-        
+            
+    
     <Binary>
-                
+                        
+        
         <Thumbnail>
-                        
+                                    
+            
             <Data EsriPropertyType="PictureX">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</Data>
-                    
+                                
+        
         </Thumbnail>
-            
+                    
+    
     </Binary>
-        
+            
+    
     <mdFileID>3b5b1a9110f14e93af68752be89e0df2</mdFileID>
-        
+            
+    
     <distInfo>
-                
-        <distTranOps>
                         
-            <onLineSrc>
-                                
-                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_slope_classes_0_5_m_2023_lidar_planning_estimate/VectorTileServer</linkage>
-                            
-            </onLineSrc>
-                    
-        </distTranOps>
-                
-        <distFormat>
-                        
-            <formatName>Vector Tile Service</formatName>
-                    
-        </distFormat>
-            
-    </distInfo>
         
-    <refSysInfo>
-                
-        <RefSystem>
-                        
-            <refSysID>
-                                
-                <identCode code="102100" />
-                                
-                <idCodeSpace>EPSG</idCodeSpace>
-                            
-            </refSysID>
-                    
-        </RefSystem>
+        <distTranOps>
+                                    
             
+            <onLineSrc>
+                                                
+                
+                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_slope_classes_0_5_m_2023_lidar_planning_estimate/VectorTileServer</linkage>
+                                            
+            
+            </onLineSrc>
+                                
+        
+        </distTranOps>
+                        
+        
+        <distFormat>
+                                    
+            
+            <formatName>Vector Tile Service</formatName>
+                                
+        
+        </distFormat>
+                    
+    
+    </distInfo>
+            
+    
+    <refSysInfo>
+                        
+        
+        <RefSystem>
+                                    
+            
+            <refSysID>
+                                                
+                
+                <identCode code="102100" />
+                                                
+                
+                <idCodeSpace>EPSG</idCodeSpace>
+                                            
+            
+            </refSysID>
+                                
+        
+        </RefSystem>
+                    
+    
     </refSysInfo>
+        
     
     <dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>Percent slope from the 0.5 m bare-earth terrain of the 2023 Salt Lake Valley QL1 lidar (ArcGIS Pro Surface Parameters, 3 m neighbourhood), classified at 10, 15, 20, 25 and 30 percent, patches under 4 m2 merged into their largest neighbour, converted to polygons and packaged as vector tiles (WGS_1984_(ITRF08)_To_NAD_1983_2011). Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>

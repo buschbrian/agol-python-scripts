@@ -30,13 +30,13 @@ property-boundary, permitting or code-compliance decisions.</p>
 </tr>
 </tbody>
 </table>
-<p>This is a vector tile layer: it <strong>draws only</strong>. The tiles carry no attributes, so the lines have no elevation labels, no
+<p>Index lines are drawn heavier, the 2 m lines thinner. <strong>Map Viewer's legend does not list vector tile layers</strong>, so this table is the key to the lines. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. This is a vector tile layer: it <strong>draws only</strong>. The tiles carry no attributes, so the lines have no elevation labels, no
 pop-ups and no identify. To read an elevation, count from a labelled index line or use the Millcreek bare-earth terrain
 layer. At small scales the tiling simplifies the lines to the pixel size.</p>
 <h2>How it was made</h2>
 <p>Contours at a 2 m interval were traced from the 0.5 m bare-earth terrain (interpolated from the lidar's ground returns),
 for the city only; every fifth line (each multiple of 10 m) is marked as an index contour. They were packaged as vector
-tiles for levels 10 to 17; clients draw deeper by overzooming.</p>
+tiles for levels 10 to 17.</p>
 <h2>Accuracy and checks</h2>
 <ul>
 <li>The hosted lines fall on 2 m multiples of the source terrain with no shift (the best-fitting shift on a 7 cm search grid is

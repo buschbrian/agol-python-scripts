@@ -37,7 +37,7 @@ Each polygon belongs to one class. A break value belongs to the class above it (
 
 Share of the city at or above each threshold: 10%: 28.58%; 15%: 22.32%; 20%: 18.92%; 25%: 16.75%; 30%: 15.22%.
 
-The legend labels come from the layer's style (one style layer per class). This is a vector tile layer: it **draws
+Colours run from pale yellow (under 10%) through orange to dark red (30% and over) (ColorBrewer YlOrRd). **Map Viewer's legend does not list vector tile layers**, so this table is the key to the colours. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. The class names come from the layer's style (one style layer per class). This is a vector tile layer: it **draws
 only**. The tiles carry no attributes, so there are no pop-ups, no identify and no filtering by class. Classes can be
 switched on and off, or recoloured, in the style.
 
@@ -50,7 +50,7 @@ switched on and off, or recoloured, in the style.
    because on a graded hillside slope wanders back and forth across a class break. Every patch smaller than 16 cells
    (4 m2) was merged into its largest neighbouring patch; nothing else changed. Polygon edges follow the 0.5 m cells; there
    is no smoothing.
-4. Converted to 129,352 polygons and packaged as vector tiles (levels 0 to 17; clients draw deeper by overzooming).
+4. Converted to 129,352 polygons and packaged as vector tiles (levels 0 to 17).
 
 ## Accuracy and checks
 - The polygons' areas equal the cleaned class raster's cells exactly for every class, and together they cover the whole

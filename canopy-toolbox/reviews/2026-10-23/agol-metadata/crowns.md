@@ -32,7 +32,7 @@ the Millcreek treetops layer. Each class includes its upper value.
 | 15 to 20 m | over 15 to 20 m | 49 to 66 ft | 30,404 | 154.4 |
 | 20 m and over | over 20 m (tallest 42.9 m) | over 66 ft | 6,133 | 43.3 |
 
-The legend labels come from the layer's style (one style layer per class). This is a vector tile layer: it **draws
+Fills run from pale yellow-green (2 to 5 m) to dark green (20 m and over) (ColorBrewer YlGn), the same colours as the treetops. **Map Viewer's legend does not list vector tile layers**, so this table is the key to the colours. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. The class names come from the layer's style (one style layer per class). This is a vector tile layer: it **draws
 only**. The tiles carry no attributes, so there are no pop-ups, no identify and no filtering; each crown's area,
 diameter and height are kept by City of Millcreek GIS.
 

@@ -27,14 +27,14 @@ Lines of equal ground elevation across Millcreek, Utah, drawn from the 0.5 m bar
 | Index contours | 1:288,895 (zoom level 10) inward | Every 10 m of elevation (1,290, 1,300, 1,310 m ...) |
 | 2 m contours | 1:18,056 (zoom level 14) inward | Every 2 m between the index lines |
 
-This is a vector tile layer: it **draws only**. The tiles carry no attributes, so the lines have no elevation labels, no
+Index lines are drawn heavier, the 2 m lines thinner. **Map Viewer's legend does not list vector tile layers**, so this table is the key to the lines. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. This is a vector tile layer: it **draws only**. The tiles carry no attributes, so the lines have no elevation labels, no
 pop-ups and no identify. To read an elevation, count from a labelled index line or use the Millcreek bare-earth terrain
 layer. At small scales the tiling simplifies the lines to the pixel size.
 
 ## How it was made
 Contours at a 2 m interval were traced from the 0.5 m bare-earth terrain (interpolated from the lidar's ground returns),
 for the city only; every fifth line (each multiple of 10 m) is marked as an index contour. They were packaged as vector
-tiles for levels 10 to 17; clients draw deeper by overzooming.
+tiles for levels 10 to 17.
 
 ## Accuracy and checks
 - The hosted lines fall on 2 m multiples of the source terrain with no shift (the best-fitting shift on a 7 cm search grid is
