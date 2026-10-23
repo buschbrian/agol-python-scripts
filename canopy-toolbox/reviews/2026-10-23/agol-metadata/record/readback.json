@@ -1,0 +1,108 @@
+{
+ "features": {
+  "id": "d5effaee6c66497eaeb64e4c2e0f496e",
+  "access": "private",
+  "modified": 1792787326000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true,
+   "layer 0 field descriptions": true,
+   "layer 1 field descriptions": true
+  }
+ },
+ "slope": {
+  "id": "3b5b1a9110f14e93af68752be89e0df2",
+  "access": "private",
+  "modified": 1792787366000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true
+  }
+ },
+ "contours": {
+  "id": "50573eeba93f405a869a1d78a08d68e8",
+  "access": "private",
+  "modified": 1792787369000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true
+  }
+ },
+ "treetops": {
+  "id": "924b993cb23046cb87641253bcf786de",
+  "access": "private",
+  "modified": 1792787371000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true
+  }
+ },
+ "crowns": {
+  "id": "d9388dc83f894edbb63e0510a8c62fa8",
+  "access": "private",
+  "modified": 1792787373000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true
+  }
+ },
+ "hillshade": {
+  "id": "cab8824e44384d479e1f302cdf34daf9",
+  "access": "private",
+  "modified": 1792787375000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true
+  }
+ },
+ "buildings3d": {
+  "id": "5082b5bd063a4a03847f2082dc3533d1",
+  "access": "private",
+  "modified": 1792787378000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true
+  }
+ },
+ "terrain": {
+  "id": "ce1680a5196e458ebfb60ead5150b946",
+  "access": "private",
+  "modified": 1792787380000,
+  "matches": {
+   "title": true,
+   "snippet": true,
+   "tags": true,
+   "accessInformation": true,
+   "description": true,
+   "licenseInfo": true
+  }
+ }
+}
