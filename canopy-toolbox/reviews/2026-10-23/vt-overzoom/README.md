@@ -5,10 +5,12 @@ stop drawing in the ArcGIS Maps SDK 5.1 past 1:2,257, so in Map Viewer and the a
 1:1,128. ArcGIS Pro overzooms and draws them. This note confirms the cause, picks a fix that needs **no new tiles**, and
 applies it one item at a time on Brian's go-ahead.
 
-**Applied so far: treetops** (October 23, 15:50 local, on Brian's go-ahead). Its service now reads `maxScale` 0, and in
-the SDK it draws at 1:1,128 and 1:282 from the live service, both in the canopy web map and alone, still with its item
-style (`canopy_map_live_1128.jpg`; the crowns, not yet changed, are missing from the same view, as expected).
-**Crowns, slope and contours are unchanged** and still stop at 1:2,257. Each needs its own go-ahead.
+**Applied to all four** on Brian's go-ahead, October 23 (local time): treetops at 15:50, crowns at 15:55, slope at 15:56,
+contours at 15:57. Each service now reads `maxScale` 0, its item ID is unchanged, and `styles/root.json` is still
+listed (`applied.json`). Checked in the SDK on the live services, with nothing simulated, at 1:1,128 over Highland
+Drive at 3900 South. Each layer drew in its web map and on its own, using its item style:
+`canopy_map_live_1128.jpg` (crowns and treetops) and `terrain_map_live_1128.png` (slope and contours). Treetops was
+also checked at 1:282. After each change, the layers not yet changed stayed suspended in the same view, as expected.
 
 ## Cause: the service's `maxScale`, not the depth of the tiles
 
@@ -58,14 +60,15 @@ Treetops should read `suspended: false`, with `styleUrl` still the item resource
 same way. Port 8797 may already be in use by another session's check server. Windows let a second server bind it
 silently, and the page then came from the other checkout.
 
-**ArcGIS Online accepts it** (treetops: `{"status": "success"}`, and the admin and service JSON both read 0).
+**ArcGIS Online accepts it**: all four answered `{"status": "success"}`, and their admin and service JSON read 0.
 
 **Allow up to an hour before it shows everywhere.** CloudFront caches the service JSON (`s-maxage=3600`) separately
 for each `Origin` header. After the treetops edit, the check page on `http://127.0.0.1:8799` still got the copy cached
 at 21:28:58 GMT, 22 minutes before the edit (`Hit from cloudfront`), so the layer stayed suspended. On
 `http://localhost:8799`, a new origin, it got the new JSON and drew. Map Viewer and the apps behave the same way: each
 origin sees the change once its cached copy, at most an hour old, expires. To check sooner, open the page on an origin
-not used in the last hour. The script's read-back now adds a unique query string so it is not fooled. Its first run
+not used in the last hour. Crowns and slope were checked on `http://localhost:8800` and contours on
+`http://localhost:8801`, opened after each edit. The script's read-back now adds a unique query string so it is not fooled. Its first run
 was fooled, and it reported a failure that a fresh read then disproved (`applied.json`).
 
 ## Fallback: a `tiles` source in the item styles
@@ -112,5 +115,5 @@ Use this only if the services ever need new tiles. It was not run.
   answer and the read-back. `originals/`: each service's JSON before its first change.
 - `../agol-styling/web/zoom.html`, `zoom.js`: the SDK check page. `layer=` or `webmap=`, `mode=` one of item, maxscale0,
   tiles, patch (`tiles` source in flight), svcmax0, svclods; `center=`, `scale=`. Served by `serve_check.py`.
-- Screenshots: `canopy_map_live_1128.jpg` (after the treetops edit), `canopy_map_svcmax0_1128.jpg`, `canopy_map_patched_1128.jpg`, `terrain_map_svcmax0_564.png`,
+- Screenshots: `canopy_map_live_1128.jpg` and `terrain_map_live_1128.png` (live, after the edits), `canopy_map_svcmax0_1128.jpg`, `canopy_map_patched_1128.jpg`, `terrain_map_svcmax0_564.png`,
   `treetops_tiles_vs_svcmax0.png` (the two fixes side by side).
