@@ -59,9 +59,9 @@ apart from carrying the empty county ADDRESS instead of the parcel address.
 
 ## Checks
 - **Method check (before any candidate figure):** the zonal code was rerun on 2,000 random county footprints (seed 1).
-  All 13 fields equal `building_heights` exactly on every one, including GRID_CELLS on footprints crossing the city
-  boundary and ROOF_Z50_M and GROUND_Z50_M (`method-check.json`). The comparison's own rasterio check could not show
-  this: it missed GRID_CELLS on 3 of 2,000 and has no elevation medians.
+  All 13 fields equal `building_heights` exactly on every one, GRID_CELLS included, and ROOF_Z50_M and GROUND_Z50_M on
+  the 1,945 with a roof (`method-check.json`). Two of the sample cross the city boundary (PARTIAL_AOI). The comparison's
+  own rasterio check could not show this: it missed GRID_CELLS on 3 of 2,000 and has no elevation medians.
 - **Rasterization pilot:** the October 19 script's own pilot ran on 13 candidates (12 spread by size, plus the one that
   crosses the boundary). Its NumPy cell-centre mask equals ArcGIS PolygonToRaster CELL_CENTER on all 13.
 - **Cross-check with the comparison:** ROOF_COV_PCT here equals the comparison's L_ROOF_COV_PCT on all 1,264 (largest
@@ -98,9 +98,11 @@ Overture classes only 186 of them, so size and LiDAR height are the better guide
 - **Overture's own classes** agree where they exist: 38 carports (34 under 3 m), 9 parking (covered parking, all under
   3 m), 4 garages, 1 shed, 5 roofs and 4 shelters; 53 more carry the subtype outbuilding.
 - **Not outbuildings: 148 large, tall buildings** (150 m² or more and P95 at least 6 m), mostly OSM + Microsoft (128).
-  They include 24 terraces (townhouse rows), 27 semidetached houses (80-150 m², 6-9 m), apartments and a sports centre.
-  The largest is a 6,403 m² apartment building 23 m high, 4.5 m from the nearest county footprint. These are most likely
-  buildings newer than the county layer, or places where it is incomplete. **They are the ones to review first.**
+  Overture classes 43 of them: 24 terraces (townhouse rows), 9 detached, 4 apartments, 2 houses, a sports centre and
+  others. The largest is a 6,403 m² apartment building 23 m high, 4.5 m from the nearest county footprint. These are
+  most likely buildings newer than the county layer, or places where it is incomplete. **They are the ones to review
+  first.** Another 104 are house-sized (80-150 m²) and at least 6 m tall, two storeys rather than a shed; Overture's 27
+  semidetached houses (all 80-150 m² and 6-9 m) are among them.
 - Distance to the nearest county footprint: median 4.6 m; 113 touch one (under 0.5 m) and 248 are more than 10 m away.
 
 ## Blocks (LOD1.2)
