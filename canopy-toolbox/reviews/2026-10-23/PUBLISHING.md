@@ -151,7 +151,14 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   No unverified HTTPS requests, so the four during the hillshade publish come from the map-service (tile layer) path
   only.
 
-**All eight items are published** (private). Next, in ArcGIS Online: look at each in Map Viewer or Scene Viewer, delete
+**Shared publicly, October 23 evening** (Brian's request): the eight layers, the three web maps (terrain and slope
+`177bfc59…`, tree canopy `e5efa719…`, buildings `504554bd…`) and the "Millcreek in 3D" scene `5b5bdf4a…`, with
+`hosting/upload/share.py share --go` (log: `runs\hosting-uploads\sharing.json`). Checked with no token, as a member of
+the public: every item reads `public`; every service answers; the feature layer returns 22,042 buildings; a stored tile
+of each tile and vector tile layer is served (200); the scene layer reads as 3DObject; every item the web maps and the
+scene reference is public. Rerun the check any time with `share.py check`. The source packages stay private.
+
+**All eight items are published** (private until the share above). Next, in ArcGIS Online: look at each in Map Viewer or Scene Viewer, delete
 the eight package items, then share by audience (decision 3). The 3D check is a web scene with `terrain` in the Ground
 above World Elevation and `buildings3d` on it.
 
