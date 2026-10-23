@@ -4,6 +4,8 @@ r"""Cloud-optimised GeoTIFF (COG) masters of the October 22 lidar rasters, for h
     python reviews/2026-10-22/hosting/cogs/cogs.py verify OUT    COG layout, every cell against its source, overviews
     python reviews/2026-10-22/hosting/cogs/cogs.py compare OUT   DEFLATE, ZSTD and LERC on three float rasters
     python reviews/2026-10-22/hosting/cogs/cogs.py summary OUT   cog-run.json from the three records above
+    python reviews/2026-10-22/hosting/cogs/cogs.py display OUT   LERC display copies for the web viewer, checked
+                                                                 against the masters (October 23)
 
 ArcGIS Pro Python (GDAL 3.12; PYTHONNOUSERSITE=1). Read-only on the sources; writes only under OUT.
 - Masters are lossless: floats DEFLATE with the floating-point predictor (3), 8-bit rasters DEFLATE (hillshade with the
@@ -66,6 +68,12 @@ PRODUCTS = {
 # Trial encodings for `compare`; the masters' own encoding is the baseline.
 TRIAL_RASTERS = ("slope_percent", "terrain_m", "chm_m")
 MAX_Z_ERROR = 0.01  # in the raster's units: 0.01 m for terrain, 0.01 percentage points for slope
+# LERC display copies for the web viewer (`display`), approved by Brian on October 23. Not aspect: its flat cells hold
+# exactly -1, which LERC would blur, and 0 and 360 degrees meet. Not the CHM: LERC saves only 23% on it.
+DISPLAY_RASTERS = ("slope_percent", "slope_degrees", "terrain_m")
+# MAX_Z_ERROR plus float32 rounding: the October 22 trial measured 0.0100098 on terrain near 1,300 m.
+DISPLAY_TOLERANCE = 0.0101
+MASTERS = RUNS/"cog-20261022"
 
 
 def source(name):
@@ -180,7 +188,7 @@ def epsg_6341():
     return srs
 
 
-def translate(name, dst, creation):
+def translate(name, dst, creation, note=None):
     src = gdal.Open(str(source(name)))
     if not src.GetSpatialRef().IsSame(epsg_6341()):
         raise SystemExit(f"{name}: CRS is not EPSG:6341; refusing to assign it")
@@ -193,7 +201,8 @@ def translate(name, dst, creation):
     with gdal.config_options(config):
         gdal.Translate(str(dst), src, format="COG", outputSRS="EPSG:6341", creationOptions=creation,
                        metadataOptions=[f"WARNING={WARNING}", f"MEANING={PRODUCTS[name][2]}",
-                                        "SOURCE=" + str(source(name)).replace("\\", "/")])
+                                        "SOURCE=" + str(source(name)).replace("\\", "/")]
+                       + ([f"NOTE={note}"] if note else []))
     return round(time.perf_counter()-start, 1)
 
 
@@ -405,22 +414,30 @@ def level_bytes(path):
             "overview_bytes": sum(total(band.GetOverview(i)) for i in range(band.GetOverviewCount()))}
 
 
-def lossy_error(src_path, path):
-    """Largest absolute difference from the source on valid cells, and whether NoData stays exactly where it was."""
-    src, ds = gdal.Open(str(src_path)), gdal.Open(str(path))
-    a, b = src.GetRasterBand(1), ds.GetRasterBand(1)
-    nodata = np.float32(a.GetNoDataValue())
+def band_error(a, b, nodata):
+    """Largest absolute difference between two float32 bands (or overview levels) of one size on valid cells, read in
+    strips, and whether NoData is on exactly the same cells."""
+    nodata = np.float32(nodata)
     worst, same_mask, valid = 0.0, True, 0
-    for y, rows in strips(src):
-        s = np.frombuffer(a.ReadRaster(0, y, src.RasterXSize, rows), np.float32)
-        d = np.frombuffer(b.ReadRaster(0, y, src.RasterXSize, rows), np.float32)
-        ms, md = s == nodata, d == np.float32(b.GetNoDataValue())
+    for y in range(0, a.YSize, STRIP):
+        rows = min(STRIP, a.YSize-y)
+        s = np.frombuffer(a.ReadRaster(0, y, a.XSize, rows), np.float32)
+        d = np.frombuffer(b.ReadRaster(0, y, a.XSize, rows), np.float32)
+        ms, md = s == nodata, d == nodata
         same_mask &= bool(np.array_equal(ms, md))
         both = ~ms & ~md
         valid += int(both.sum())
         if both.any():
             worst = max(worst, float(np.abs(s[both].astype(np.float64)-d[both]).max()))
     return {"max_abs_error": worst, "nodata_cells_unchanged": same_mask, "valid_cells_compared": valid}
+
+
+def lossy_error(src_path, path):
+    """Largest absolute difference from the source on valid cells, and whether NoData stays exactly where it was."""
+    src, ds = gdal.Open(str(src_path)), gdal.Open(str(path))
+    if src.GetRasterBand(1).GetNoDataValue() != ds.GetRasterBand(1).GetNoDataValue():
+        return {"max_abs_error": None, "nodata_cells_unchanged": False, "valid_cells_compared": 0}
+    return band_error(src.GetRasterBand(1), ds.GetRasterBand(1), src.GetRasterBand(1).GetNoDataValue())
 
 
 def compare(out):
@@ -505,13 +522,64 @@ def summary(out):
     (out/"cog-run.json").write_text(json.dumps(record, indent=1))
 
 
+def display_name(name):
+    return f"{name}.lerc-{MAX_Z_ERROR:g}.tif"
+
+
+def display(out):
+    """LERC display copies of DISPLAY_RASTERS, built from the sources like the masters, then checked against the masters
+    at full resolution and at every overview level."""
+    record = {"schema": "cog-display/1", "started": datetime.datetime.now().isoformat(timespec="seconds"),
+              "gdal": gdal.__version__, "max_z_error": MAX_Z_ERROR, "tolerance": DISPLAY_TOLERANCE,
+              "masters": str(MASTERS), "products": {}}
+    note = (f"Display copy: LERC with MAX_Z_ERROR {MAX_Z_ERROR:g} (raster units), so values differ from the lossless "
+            f"master by up to {DISPLAY_TOLERANCE:g}. Use the master ({MASTERS.name}) for analysis.")
+    for name in DISPLAY_RASTERS:
+        print(f"{name} ...", flush=True)
+        master_path, path = MASTERS/f"{name}.tif", out/display_name(name)
+        creation = options(name, "LERC", None, (f"MAX_Z_ERROR={MAX_Z_ERROR}", f"MAX_Z_ERROR_OVERVIEW={MAX_Z_ERROR}"))
+        seconds = translate(name, path, creation, note)
+        warnings, errors, details = validate_cloud_optimized_geotiff.validate(str(path), full_check=True)
+        master, copy = gdal.Open(str(master_path)), gdal.Open(str(path))
+        a, b = master.GetRasterBand(1), copy.GetRasterBand(1)
+        same = {"size": (master.RasterXSize, master.RasterYSize) == (copy.RasterXSize, copy.RasterYSize),
+                "geotransform": master.GetGeoTransform() == copy.GetGeoTransform(),
+                "dtype": a.DataType == b.DataType, "nodata": a.GetNoDataValue() == b.GetNoDataValue(),
+                "overview_sizes": [[a.GetOverview(i).XSize, a.GetOverview(i).YSize] for i in range(a.GetOverviewCount())]
+                == [[b.GetOverview(i).XSize, b.GetOverview(i).YSize] for i in range(b.GetOverviewCount())]}
+        levels = {"full": band_error(a, b, a.GetNoDataValue())}
+        if same["overview_sizes"]:
+            for i in range(a.GetOverviewCount()):
+                levels[f"overview_{i+1}"] = band_error(a.GetOverview(i), b.GetOverview(i), a.GetNoDataValue())
+        ifds = codecs(path)
+        sizes = {"master_bytes": master_path.stat().st_size, "display_bytes": path.stat().st_size, **level_bytes(path)}
+        sizes["display_vs_master"] = round(sizes["display_bytes"]/sizes["master_bytes"], 3)
+        ok = (not errors and all(same.values()) and all(c[2] == "LERC" for c in ifds)
+              and geokeys(path).get(3072) == 6341 and len(levels) == 1+a.GetOverviewCount()
+              and all(v["nodata_cells_unchanged"] and v["max_abs_error"] <= DISPLAY_TOLERANCE for v in levels.values()))
+        record["products"][name] = {
+            "ok": ok, "file": str(path), "master": str(master_path), "creation_options": creation,
+            "overview_config": overview_config(creation), "seconds": seconds, "sha256": sha256(path), **sizes,
+            "cog_validation": {"errors": errors, "warnings": warnings, "details": details}, "same_as_master": same,
+            "ifd_codecs": ifds, "projected_cs_type_geokey": geokeys(path).get(3072), "tiff": tiff_kind(path),
+            "against_master": levels, "metadata": copy.GetMetadata()}
+        print(f"  {'ok' if ok else 'FAILED'}: {sizes['display_bytes']/1e6:,.1f} MB "
+              f"({sizes['display_vs_master']:.0%} of the master), max error {levels['full']['max_abs_error']:.7f}", flush=True)
+    record["all_ok"] = all(p["ok"] for p in record["products"].values())
+    record["finished"] = datetime.datetime.now().isoformat(timespec="seconds")
+    (out/"display.json").write_text(json.dumps(record, indent=1))
+    if not record["all_ok"]:
+        raise SystemExit("display copies failed their checks")
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("command", choices=("build", "verify", "compare", "summary"))
+    p.add_argument("command", choices=("build", "verify", "compare", "summary", "display"))
     p.add_argument("out", type=Path)
     args = p.parse_args(argv)
     args.out.mkdir(parents=True, exist_ok=True)
-    {"build": build, "verify": verify, "compare": compare, "summary": summary}[args.command](args.out)
+    {"build": build, "verify": verify, "compare": compare, "summary": summary,
+     "display": display}[args.command](args.out)
 
 
 if __name__ == "__main__":
