@@ -187,6 +187,51 @@ hillshade tile package uses the Web Mercator tiling scheme. A COG in Web Mercato
 `TILING_SCHEME=GoogleMapsCompatible`) would resample every cell onto a new grid, so it should never replace the 0.5 m
 masters, which keep the lidar grid exactly.
 
+## Display copies (October 23)
+Brian approved LERC display copies for the click-anywhere web viewer on October 23, as the compression trial recommended.
+The masters stay lossless DEFLATE and remain the files to use for analysis. Output:
+`<SSD>\lidar\2023-salt-lake-valley\runs\cog-display-20261023` ([cogs.py](cogs.py) `display`; `run/display.json`).
+
+| Display copy | MB | Master MB | Share | Full res. | Overviews | Largest difference from the master |
+|---|---:|---:|---:|---:|---:|---:|
+| slope_percent.lerc-0.01.tif | 219.2 | 550.1 | 40% | 158.6 | 60.5 | 0.0100098% |
+| slope_degrees.lerc-0.01.tif | 199.8 | 549.7 | 36% | 144.1 | 55.7 | 0.0100021 degrees |
+| terrain_m.lerc-0.01.tif | 134.0 | 260.9 | 51% | 93.5 | 40.5 | 0.0100098 m |
+
+553 MB in all, against 1,361 MB for the three masters. Each copy is built from the source like the master (same 512
+tiles, AVERAGE overviews, EPSG:6341 key, `WARNING` and `MEANING` metadata), with `COMPRESS=LERC`,
+`MAX_Z_ERROR=0.01` and, through the `COMPRESS_OVERVIEW` config option, LERC overviews with the same error. A `NOTE`
+metadata item says it is a display copy and names the master folder.
+
+Checked for each copy (all passed; building and checking the three took under 2 minutes):
+- **COG layout:** `validate_cloud_optimized_geotiff` with `full_check=True`, no errors or warnings; classic TIFF.
+- **Codec:** every image directory, full resolution and all six overviews, is LERC (from the TIFF tags).
+- **Against the master**, at full resolution and at each of the six overview levels separately, read in strips: NoData on
+  exactly the master's cells, and every valid cell within 0.0101 of the master's value. The largest differences are in
+  the table: 0.01 plus float32 rounding, as in the October 22 trial. Size, geotransform, data type, NoData value,
+  overview sizes and the EPSG:6341 key also match.
+- **In the web page** ([web/display-trial-results.json](web/display-trial-results.json)): the trial page, served from the
+  display folder on another port, read `slope_percent.lerc-0.01.tif` with SDK 5.1.27. Identify was within 0.0095 of
+  GDAL's source value at all 19 check points, through EPSG:6341 points and Web Mercator points alike, and NoData
+  identified as empty. 17 of 19 cells drew in their class. The other two are the cells at 19.999998% and 25.000004%:
+  LERC moved them to 20.0089% and 24.9959%, across the break, so a class edge in the viewer can sit up to one cell
+  differently from the master's. A first draw needed 3 requests and 1.14 MB. The checked run was slow, an 82 s first draw
+  while the laptop was busy; a reload a few minutes later loaded in 0.23 s and drew in 6.0 s, as on October 22.
+
+Not made: `aspect_degrees`, because its flat cells hold exactly -1, which LERC could turn into values like -0.995 that
+no longer match a `-1` test, and because 0 and 360 degrees meet. The CHM, because LERC saves only 23% on it (trial
+above). If the viewer shows aspect, it should read the lossless master.
+
+Uploading the copies, once Brian approves that upload (Azure, the account's chosen container; a separate prefix keeps them
+apart from the masters):
+
+```bash
+azcopy copy "H:/lidar/2023-salt-lake-valley/runs/cog-display-20261023/*.tif" "https://ACCOUNT.blob.core.windows.net/CONTAINER/millcreek-lidar/display-20261023/?SAS_TOKEN" --content-type image/tiff --cache-control "public, max-age=604800"
+```
+
+The checks after upload (below) apply unchanged, with `slope_percent.lerc-0.01.tif` and
+`Content-Range: bytes 0-1023/219208429`; `run/display.json` has each copy's size and SHA-256.
+
 ## Uploading, once Brian picks a bucket
 Not run: nothing goes up without Brian's go-ahead for that upload. None of these command-line tools is installed on the
 laptop yet (AWS CLI v2 for S3 and R2, AzCopy and the Azure CLI for Azure). Each recipe uploads only the 16 masters (not
@@ -263,10 +308,12 @@ it in place, and the trial page reads it with `?data=BASE/`:
 The uploaded files' sizes and SHA-256 can be compared with `run/cog-run.json`.
 
 ## Files
-- [cogs.py](cogs.py): `build`, `verify`, `compare`, `summary` (ArcGIS Pro Python; `CANOPY_LIDAR_ROOT=H:\lidar`,
-  `PYTHONNOUSERSITE=1`). On October 22 the build took 6 minutes, verify 4 and compare 5.
+- [cogs.py](cogs.py): `build`, `verify`, `compare`, `summary`, and `display` for the October 23 display copies (ArcGIS
+  Pro Python; `CANOPY_LIDAR_ROOT=H:\lidar`, `PYTHONNOUSERSITE=1`). On October 22 the build took 6 minutes, verify 4 and
+  compare 5.
 - [web/](web/): `index.html` and `trial.js` (the trial page), `serve.py` (the range and CORS server), `make_points.py`
-  and `points.json` (the check points), `trial-results.json` (what the page reported).
+  and `points.json` (the check points), `trial-results.json` and `display-trial-results.json` (what the page reported).
+- [run/](run/): copies of `build.json`, `verify.json`, `compare.json`, `cog-run.json` and `display.json`.
 
 To open the trial page, start the servers (they stop when the terminal closes) and open http://127.0.0.1:8791/ ; add
 `?check=1` to run the point checks, `file=trials/slope_percent.lerc-0.01.tif&tol=0.0101` for the LERC copy, or
@@ -275,7 +322,10 @@ To open the trial page, start the servers (they stop when the terminal closes) a
 ```bash
 "C:/Program Files/ArcGIS/Pro/bin/Python/envs/arcgispro-py3/python.exe" canopy-toolbox/reviews/2026-10-22/hosting/cogs/web/serve.py H:/lidar/2023-salt-lake-valley/runs/cog-20261022
 ```
-- [run/](run/): copies of `build.json`, `verify.json`, `compare.json` and `cog-run.json`.
+
+For the display copies, serve their folder on other ports (`serve.py H:/lidar/2023-salt-lake-valley/runs/cog-display-20261023
+--page-port 8793 --data-port 8794`) and open
+`http://127.0.0.1:8791/?check=1&tol=0.0101&data=http://127.0.0.1:8794/&file=slope_percent.lerc-0.01.tif`.
 
 Rerun:
 
