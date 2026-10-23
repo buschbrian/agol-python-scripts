@@ -123,6 +123,11 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   `d3ca707cda6544dd9962390c1e7e00db`). **Staff only**, as the treetops. Checked online: Web Mercator, levels 14-17; the
   style's five fill layers carry the treetop-height classes in YlGn with a dark green outline; 14 tiles across every
   package level are byte for byte the package's. Hosted size 33.8 MB. No unverified HTTPS requests.
+- `buildings3d`, October 23: Scene Service `5082b5bd063a4a03847f2082dc3533d1` (package item
+  `eb613927529347989755b0fcf9e9c8fa`). Checked online: a 3D object layer in WGS84 (4326) labelled EGM96 (5773), as
+  packaged (heights are NAVD88 metres; scene-layers README); z from 1,294.1 to 1,764.2 m; 43 fields including FP_ID and the
+  roof-height statistics; the service's own FP_ID statistics give 21,561 buildings summing to 237,493,394, IDs 1 to 22,042,
+  exactly the source's. Hosted size 9.3 MB. No unverified HTTPS requests.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
