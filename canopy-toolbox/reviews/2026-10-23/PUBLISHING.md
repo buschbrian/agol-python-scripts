@@ -53,6 +53,18 @@ are now projected to Web Mercator with the same transformation before upload (`r
    polygons) only if someone needs exact class areas.
 5. **Uploads:** run from the repo with `upload.py`, one item at a time, each checked before Brian approves the next.
 
+### Overture licences (checked October 23)
+From `Z:\GIS\overture\2026-10-21.0\millcreek\LICENSES.md` (the Overture comparison session; not legal advice):
+- **ODbL, share-alike:** buildings (OSM and Microsoft ML outlines), road segments, land use, water, infrastructure. A map or
+  tile layer drawn from them is a Produced Work (attribution only: "© OpenStreetMap contributors, Overture Maps
+  Foundation"). A **queryable or downloadable** layer of them, or a City layer built from them, must be offered under ODbL.
+  That covers the candidate footprints: keep them staff-only, and ask the City Attorney before any public release.
+- **Addresses:** National Address Database, public domain (keep USDOT's disclaimer). **Places:** CDLA-Permissive-2.0.
+  **Land cover:** ESA WorldCover, CC BY 4.0 (credit it wherever it is shown).
+- The 2.8 ft address offset was the comparison script's own default transformation, not a difference in the data: with
+  an ITRF transformation the City and Overture points agree to 0.01 m. The building comparison had the same default and
+  has been rerun with ITRF08.
+
 ### Not ready to go public
 - The **LOD2.0 roofs** are marked experimental, not checked against roof shapes. LOD1.2 is the one to publish.
 - **Vector tiles carry no attributes**: no pop-ups, identify or filters on treetops, crowns or slope. An app that needs a
