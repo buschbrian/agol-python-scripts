@@ -1,0 +1,307 @@
+{
+ "schema": "footprint-candidates-lidar/1",
+ "created": "2026-10-23T12:13:25",
+ "pilot_window": [
+  428000.0,
+  4504000.0,
+  429000.0,
+  4505000.0
+ ],
+ "inputs": {
+  "roof_height": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_height_m.tif",
+  "observed": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\observed.tif",
+  "county": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\buildings.gdb\\building_heights",
+  "parcels": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\parcels",
+  "roof_elevation": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_elevation_m.tif",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\terrain_m.tif",
+  "boundary": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\municipal_boundary",
+  "overture_read": false
+ },
+ "rules": {
+  "exclude_within_m_of_county": 1.5,
+  "opening": "3 x 3",
+  "connectivity": 8,
+  "min_cells": 40,
+  "min_cluster_median_height_m": 2.0,
+  "regularize": {
+   "method": "RIGHT_ANGLES_AND_DIAGONALS",
+   "tolerance": 0.75,
+   "densification": 0.75,
+   "precision": 0.25
+  }
+ },
+ "stages": {
+  "1": "roof within 1.5 m of a county footprint",
+  "2": "removed by the opening",
+  "3": "cluster under 10 m2",
+  "4": "cluster median height under 2.0 m",
+  "5": "candidate"
+ },
+ "counts": {
+  "roof_cells_in_city": 22249847,
+  "stage_cells": {
+   "roof within 1.5 m of a county footprint": 20406205,
+   "removed by the opening": 207241,
+   "cluster under 10 m2": 68768,
+   "cluster median height under 2.0 m": 2709,
+   "candidate": 33375
+  },
+  "clusters_after_opening": 9644,
+  "clusters_under_10m2": 3404,
+  "clusters_median_under_2m": 27,
+  "candidates": 138
+ },
+ "outlines": {
+  "regularized": 138,
+  "cell_edges": 0,
+  "status_field": "STATUS"
+ },
+ "method_check": {
+  "sample": 2000,
+  "exact": true,
+  "field_differences": {}
+ },
+ "rasterization_pilot": [
+  {
+   "source_id": "LC00110",
+   "cells": 38,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00014",
+   "cells": 48,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00036",
+   "cells": 58,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00096",
+   "cells": 64,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00127",
+   "cells": 71,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00012",
+   "cells": 85,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00086",
+   "cells": 94,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00074",
+   "cells": 132,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00048",
+   "cells": 155,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00033",
+   "cells": 196,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00009",
+   "cells": 347,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00064",
+   "cells": 4671,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  }
+ ],
+ "boundary_fallbacks": 0,
+ "output": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-candidates-lidar-20261023\\detect-pilot\\candidates.gdb\\candidates",
+ "count": 138,
+ "county_overlap": {
+  "outlines": 138,
+  "touching_county": 0,
+  "over_1pct": 0,
+  "over_10pct": 0,
+  "max_pct": 0.0
+ },
+ "summary": {
+  "headline": {
+   "candidates": 138,
+   "with_height": 138,
+   "outline_area_m2": {
+    "n": 138,
+    "p05": 11.75,
+    "p25": 15.26,
+    "p50": 22.08,
+    "p75": 41.22,
+    "p95": 180.03,
+    "max": 1172.11
+   },
+   "cluster_area_m2": {
+    "n": 138,
+    "p05": 11.75,
+    "p25": 15.25,
+    "p50": 22.0,
+    "p75": 40.0,
+    "p95": 180.38,
+    "max": 1170.75
+   },
+   "outline_over_cluster": {
+    "n": 138,
+    "p05": 0.93,
+    "p25": 0.97,
+    "p50": 1.0,
+    "p75": 1.01,
+    "p95": 1.07,
+    "max": 1.12
+   },
+   "height_p95_m": {
+    "n": 138,
+    "p05": 2.42,
+    "p25": 2.81,
+    "p50": 3.2,
+    "p75": 3.94,
+    "p95": 8.93,
+    "max": 13.79
+   },
+   "roof_cov_pct": {
+    "n": 138,
+    "p05": 90.0,
+    "p25": 94.92,
+    "p50": 97.38,
+    "p75": 98.66,
+    "p95": 100.0,
+    "max": 100.0
+   },
+   "near_county_footprint_m": {
+    "n": 138,
+    "p05": 0.82,
+    "p25": 1.26,
+    "p50": 1.47,
+    "p75": 5.05,
+    "p95": 15.73,
+    "max": 26.53
+   },
+   "no_parcel": 0,
+   "same_parcel_as_nearest_county_building": {
+    "YES": 104,
+    "NO": 34
+   },
+   "outline": {
+    "REGULARIZED": 138
+   }
+  },
+  "size_by_height": {
+   "under 20 m2": {
+    "under 3 m": 31,
+    "3-4.5 m": 25,
+    "4.5-6 m": 1,
+    "6-9 m": 2,
+    "9 m and over": 0,
+    "all": 59
+   },
+   "20-40 m2": {
+    "under 3 m": 15,
+    "3-4.5 m": 24,
+    "4.5-6 m": 1,
+    "6-9 m": 3,
+    "9 m and over": 0,
+    "all": 43
+   },
+   "40-80 m2": {
+    "under 3 m": 4,
+    "3-4.5 m": 9,
+    "4.5-6 m": 2,
+    "6-9 m": 4,
+    "9 m and over": 0,
+    "all": 19
+   },
+   "80-150 m2": {
+    "under 3 m": 0,
+    "3-4.5 m": 2,
+    "4.5-6 m": 4,
+    "6-9 m": 0,
+    "9 m and over": 1,
+    "all": 7
+   },
+   "150-300 m2": {
+    "under 3 m": 2,
+    "3-4.5 m": 2,
+    "4.5-6 m": 0,
+    "6-9 m": 0,
+    "9 m and over": 1,
+    "all": 5
+   },
+   "300 m2 and over": {
+    "under 3 m": 0,
+    "3-4.5 m": 0,
+    "4.5-6 m": 0,
+    "6-9 m": 0,
+    "9 m and over": 5,
+    "all": 5
+   }
+  },
+  "same_parcel_by_size": {
+   "under 20 m2": {
+    "YES": 48,
+    "NO": 11
+   },
+   "20-40 m2": {
+    "YES": 34,
+    "NO": 9
+   },
+   "40-80 m2": {
+    "YES": 14,
+    "NO": 5
+   },
+   "80-150 m2": {
+    "YES": 6,
+    "NO": 1
+   },
+   "150-300 m2": {
+    "NO": 4,
+    "YES": 1
+   },
+   "300 m2 and over": {
+    "NO": 4,
+    "YES": 1
+   }
+  },
+  "height_status_flags": {
+   "UNVALIDATED": 138
+  }
+ }
+}

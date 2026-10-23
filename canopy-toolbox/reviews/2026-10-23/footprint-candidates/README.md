@@ -1,168 +1,170 @@
-# Candidate footprints from Overture, with LiDAR heights (October 23, 2026)
+# Candidate footprints from the LiDAR, with LiDAR heights (October 23, 2026)
 
-Overture Maps buildings that sit on a 2023 LiDAR roof but match no county footprint, made into a reviewable layer with the
-county footprints' roof-height statistics, a Web Mercator copy and LOD1.2 blocks
-([footprint_candidates.py](footprint_candidates.py)). Brian approved the layer on October 23 after the Overture vs LiDAR
-comparison (`Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\README.md`). **These are unvalidated planning estimates, not surveyed or
-field-verified data. Heights are roof minus terrain from 2023 LiDAR, not code-defined building heights, and none of these
-outlines has been reviewed.** Nothing was uploaded or shared, and no county or city data was edited.
+Buildings the 2023 LiDAR sees that the county footprint layer lacks: clusters of consensus roof cells outside every county
+footprint, outlined from the cells. Each carries the county footprints' roof-height statistics and empty review fields,
+with a Web Mercator copy and LOD1.2 blocks ([lidar_candidates.py](lidar_candidates.py)). **These are unvalidated planning
+estimates, not surveyed or field-verified data. Heights are roof minus terrain from 2023 LiDAR, not code-defined building
+heights, and no candidate has been reviewed.** Nothing was uploaded or shared, and no county or city data was edited.
 
-Output: `H:\lidar\2023-salt-lake-valley\runs\footprint-candidates-20261023` (EPSG 6341 unless stated; elevations NAVD88).
+Brian decided on October 23 to "detect and outline candidates from the LiDAR roof clusters outside county footprints, and
+use the 1,264 Overture outlines only as a comparison afterwards, so the layer isn't ODbL-derived". The first version,
+built from those Overture outlines, is kept as a review comparison only: [OVERTURE_VERSION.md](OVERTURE_VERSION.md).
+
+Output: `H:\lidar\2023-salt-lake-valley\runs\footprint-candidates-lidar-20261023` (EPSG 6341 unless stated; elevations
+NAVD88).
 
 | File | Meaning |
 |---|---|
-| candidates.gdb/candidates | **1,264 candidate outlines** with roof statistics, nearest county footprint, parcel and empty review fields |
+| candidates.gdb/candidates | **6,213 candidate outlines** with roof statistics, nearest county footprint, parcel and empty review fields |
 | web.gdb/candidates | The same in Web Mercator (EPSG 3857), with the REVIEW_STATUS domain, for a staff-only layer later |
-| massing/massing.gdb/lod12 | 1,265 LOD1.2 blocks for the 1,264 candidates (FP_ID = the candidate's OBJECTID) |
-| massing-pilot/ | The 20-candidate pilot |
-| candidates.json, method-check.json, massing/massing.json | Run records; copies here, with massing-pilot.json |
-| old-set.json | The 08:30 set against this one: ids that stayed out, left and joined (copy here) |
-| superseded/ | Two earlier passes of this run (see Method); not for use |
+| massing/massing.gdb/lod12 | 6,233 LOD1.2 blocks for the 6,213 candidates (FP_ID = the candidate's OBJECTID) |
+| clusters.tif | Candidate number per 0.5 m cell (CAND_ID LC00001 = 1) |
+| stage.tif | Every roof cell's fate: 1 on or within 1.5 m of a county footprint, 2 removed by the opening, 3 in a cluster under 10 m², 4 in a cluster with a median under 2 m, 5 candidate |
+| witness.gdb (pairs, overture_missed), witness.json | The comparison with Overture, afterwards and apart from the layer |
+| detect-pilot/, massing-pilot/, view0-2.png | The 12TVL2804 detection pilot, the 20-block massing pilot, and pilot maps |
+| candidates.json, method-check.json, massing/massing.json | Run records; copies in [lidar/](lidar/) |
 
-## 1,264, not 1,219
-The comparison was rerun at 11:31 the same day. Its first run projected Overture's WGS84 outlines with GeoPandas, whose
-default for this pair is a null transformation, leaving every outline 1.2 m west-northwest of the LiDAR and the county
-footprints. Projected with `WGS_1984_(ITRF08)_To_NAD_1983_2011`, as the county footprints and every hosted package are,
-1,264 Overture-only buildings sit on a LiDAR roof. The comparison's README says to use only the rerun's files, so this
-layer is the 1,264. Its outlines are projected here the same way from `buildings.parquet`, and they equal the comparison's
-outlines exactly (Hausdorff distance 0 on all 1,264).
-
-**Of the original 1,219, 1,211 stayed, 8 left and 53 joined** ([old_set.py](old_set.py), `old-set.json` with the ids).
-The rerun overwrote the 08:30 GeoPackage, so the old set was rebuilt here with GeoPandas' default projection and the
-comparison script's own zonal and matching code, imported read-only. The rebuild reproduces the 08:30 README's
-MATCH × LIDAR table in all 12 cells. The same code on the ITRF08 projection gives every building the same classes as
-the rerun's GeoPackage.
-- **Left (8):** 6 now overlap a county footprint by at least 10% (PARTIAL), so they were county buildings seen 1.2 m
-  off. 2 now have under 50% roof (SOME_ROOF).
-- **Joined (53):** 27 had overlapped a county footprint only because of the shift (PARTIAL at 08:30), and 26 had under
-  50% roof under the shifted outline (SOME_ROOF). 30 are Microsoft ML only, 17 OSM only and 6 both.
+## Not derived from Overture
+`detect` reads only the library's `roof_height_m.tif`, `observed.tif`, `roof_elevation_m.tif` and `terrain_m.tif`, the
+county footprints (`buildings.gdb/building_heights`), the city boundary and, for context fields, the 2025-tax-year
+parcels. Every threshold below was fixed from the county footprints and the LiDAR before the comparison ran, and none was
+changed after it. Overture is read only by `witness`, which writes to its own `witness.gdb` and `witness.json`. The
+candidate layer and its web copy hold no Overture geometry, id or attribute. The layer is built on County data (the
+footprints and the 2023 LiDAR), whose own terms apply; those weren't reviewed here.
 
 ## Method
-- **Selection:** `overture_vs_lidar.gpkg / overture_buildings` where MATCH = OVERTURE_ONLY (no county footprint covers
-  10% of the outline) and LIDAR = ROOF (at least 50% of the outline's cells are consensus roof), by Overture id.
-- **Roof statistics:** `summarize()` from [summarize_city_buildings.py](../../2026-10-19/summarize_city_buildings.py), the
-  code that made `buildings.gdb/building_heights`, run unchanged on the library's `roof_elevation_m.tif` and
-  `terrain_m.tif` and clipped to the same municipal boundary. Every candidate carries the full `building_heights` set:
-  FOOTPRINT_M2, AOI_PCT, ROOF_COV_PCT, ROOF_Z50_M, GROUND_Z50_M, HEIGHT_P50_M, HEIGHT_P95_M, HEIGHT_MAX_M, GRID_CELLS,
-  ROOF_CELLS, NEG_H_CELLS, PARTIAL_AOI, HEIGHT_STATUS.
-- **Overture fields:** OVERTURE_ID, SOURCES (OSM, Microsoft ML, OSM + Microsoft ML; Esri Community Maps would be its own
-  value, but none of the 1,264 are Esri), SOURCE_DATASETS (Overture's own string), OSM_RECORD (the OSM way or relation),
-  OV_CLASS, OV_SUBTYPE, OV_HEIGHT_M (Microsoft's ML estimate; the comparison found it unreliable above one storey), and
-  SIZE_CLASS.
-- **Context:** NEAR_FP_SOURCE_ID, NEAR_FP_DIST_M and NEAR_FP_PARCEL_ID are the nearest county footprint (planar, edge to
-  edge). PARCEL_ID and PARCEL_ADDRESS are the parcel holding most of the outline, from the 2025-tax-year snapshot
-  `city-count-20261008\inputs.gdb\parcels`. That snapshot was projected with the ITRF00 transformation, not ITRF08, a
-  difference of 6 mm here. Owner names are left out. SAME_PARCEL says whether the parcel matches the nearest
-  county footprint's. The county ADDRESS field is filled on only 82 footprints, so the parcel address is used instead.
-- **Review fields** (empty): REVIEW_STATUS with the coded domain REVIEW_STATUS (ACCEPT, REJECT, UNSURE), REVIEW_NOTE
-  (500 characters), REVIEWER.
-- **Web copy:** `project()` and `projection_check()` from the October 22
-  [prepare_features.py](../../2026-10-22/hosting/feature-layers/prepare_features.py), imported unchanged.
-- **Blocks:** the October 22 [massing method](../../2026-10-22/massing/README.md): Extract LOD2 Buildings at LOD1.2 on the
-  consensus roof elevation, with the unmasked terrain elsewhere. Its helpers (`terrain_min`, `annotate`, `summary`) are
-  imported from run_massing.py, and its empty-block cleanup is repeated. The height source covers only the candidates'
-  extent plus 50 m.
+1. **Roof cells:** cells where `roof_height_m.tif` has a value (the 2-of-3 consensus roof) inside the city.
+2. **Outside the county footprints:** cells whose centre is more than 1.5 m from every county footprint cell (footprints
+   rasterized at cell centres, as building_heights counts them). The cut is set by the eave band seen in county data. Of
+   the cells just outside the footprints, the share that is roof falls fast and then levels off:
 
-The statistics are computed on the outlines as stored in the geodatabase, as `building_heights` was. A first pass used the
-unsnapped in-memory shapes: their clip to the city boundary differed by a sliver, and 402 were flagged PARTIAL_AOI
-against 1 now (`superseded/candidates-unsnapped.*`). A second pass is kept in `superseded/first-pass`. It was identical
-apart from carrying the empty county ADDRESS instead of the parcel address.
+   | Distance from a county footprint | 0.5 m | 1.0 m | 1.5 m | 2.0 m | 2.5-3 m | 5-7.5 m | over 10 m |
+   |---|---:|---:|---:|---:|---:|---:|---:|
+   | Cells that are roof | 62% | 23% | 8.3% | 4.9% | 3.6% | 2.0% | 1.2% |
+
+3. **Opening and clusters:** a 3 × 3 opening removes strips narrower than 1.5 m (fence tops, eave remnants). Clusters are
+   8-connected.
+4. **Kept:** at least 40 cells (10 m²; the county footprints' 1st percentile is 12 m²) and a median roof height of at least
+   2.0 m (the 1st percentile of county footprints under 40 m² is 2.2 m). Of 9,644 clusters, 3,404 are under 10 m² and 27
+   too low.
+5. **Outline:** the cluster's cell edges (Raster To Polygon, unsimplified), regularized by Regularize Building Footprint
+   (right angles and diagonals, 0.75 m tolerance, 0.75 m densification, 0.25 m precision). 6,201 regularized; for 12 the
+   tool failed and the cell outline is kept (OUTLINE = CELL_EDGES). Median outline-to-cluster area ratio 1.00 (5th-95th
+   percentile 0.93-1.07).
+6. **Heights and context:** the helpers in [footprint_candidates.py](footprint_candidates.py), shared with the Overture
+   version. Roof statistics come from `summarize()` in the October 19
+   [summarize_city_buildings.py](../../2026-10-19/summarize_city_buildings.py), the code that made `building_heights`, on
+   the stored outlines: FOOTPRINT_M2, AOI_PCT, ROOF_COV_PCT, ROOF_Z50_M, GROUND_Z50_M, HEIGHT_P50_M, HEIGHT_P95_M,
+   HEIGHT_MAX_M, GRID_CELLS, ROOF_CELLS, NEG_H_CELLS, PARTIAL_AOI, HEIGHT_STATUS. The context fields are
+   NEAR_FP_SOURCE_ID, NEAR_FP_DIST_M, NEAR_FP_PARCEL_ID, PARCEL_ID, PARCEL_ADDRESS and SAME_PARCEL. The layer also carries
+   CAND_ID, CLUSTER_CELLS, CLUSTER_M2, CLUSTER_H50_M, OUTLINE and SIZE_CLASS.
+7. **Review fields** (empty): REVIEW_STATUS with the coded domain REVIEW_STATUS (ACCEPT, REJECT, UNSURE), REVIEW_NOTE,
+   REVIEWER.
+8. **Web copy and blocks:** `web()` and `massing()` from footprint_candidates.py: the October 22 feature-layer projection
+   with its vertex check, and the October 22 massing method at LOD1.2 with its empty-block cleanup.
 
 ## Checks
-- **Method check (before any candidate figure):** the zonal code was rerun on 2,000 random county footprints (seed 1).
-  All 13 fields equal `building_heights` exactly on every one, GRID_CELLS included, and ROOF_Z50_M and GROUND_Z50_M on
-  the 1,945 with a roof (`method-check.json`). Two of the sample cross the city boundary (PARTIAL_AOI). The comparison's
-  own rasterio check could not show this: it missed GRID_CELLS on 3 of 2,000 and has no elevation medians.
-- **Rasterization pilot:** the October 19 script's own pilot ran on 13 candidates (12 spread by size, plus the one that
-  crosses the boundary). Its NumPy cell-centre mask equals ArcGIS PolygonToRaster CELL_CENTER on all 13.
-- **Cross-check with the comparison:** ROOF_COV_PCT here equals the comparison's L_ROOF_COV_PCT on all 1,264 (largest
-  difference 0.0 points).
-- **Counts:** 1,264 selected, 1,264 written, 1,264 projected, 1,264 with a block.
-- **Boundary:** county footprints were kept when they touch the city, so only a candidate crossing the boundary could hide
-  a county footprint that lies wholly outside the city. One candidate crosses (89.8% inside), and none of the county's
-  26,915 footprints outside the city overlaps it.
-- **Web copy:** 1,264 features, no attribute differences, no vertex-count mismatches. The largest vertex distance from
-  Esri's own projection of the source with the ITRF08 transformation is 0.07 mm, against at least 1.58 m from the
-  untransformed projection. The REVIEW_STATUS domain is in web.gdb and assigned to the field. The warning is in the
-  metadata of both layers and of the blocks.
+- **Method check:** the zonal code reproduces `building_heights` exactly on all 13 fields for 2,000 random county
+  footprints. The check ran once at 11:33 on the same code and rasters, and its record is reused here
+  (`method-check.json`). The October 19 rasterization pilot also ran on 14 candidates: the NumPy cell-centre mask equals
+  ArcGIS CELL_CENTER on all 14.
+- **Pilot first:** detection on 12TVL2804 gave 138 candidates; [pilot-view-12TVL2804.png](lidar/pilot-view-12TVL2804.png)
+  is one of the maps checked before the citywide run. The candidates are mostly detached backyard structures, some
+  additions against houses, and a few eave or porch strips just past the 1.5 m cut.
+- **Counts:** 6,213 clusters, 6,213 outlines, 6,213 projected, 6,213 with a block. Every candidate has a height (one has
+  LOW_ROOF_SUPPORT, 9 NEGATIVE_HEIGHT, 2 PARTIAL_AOI).
+- **No outline touches a county footprint**, regularization included.
+- **Web copy:** no attribute differences or vertex-count mismatches. The largest distance from Esri's own ITRF08
+  projection is 0.07 mm, against at least 1.58 m untransformed. The domain is in web.gdb and assigned to the field. The
+  warning is in the metadata of both layers and the blocks.
 
 ## What the candidates are
-Every candidate has a height: none falls below 50% roof cover, and 155 are below 80% (LOW_ROOF_SUPPORT). The median
-outline is 90 m² and the median P95 height 3.2 m. 540 come from Microsoft ML only, 437 from OSM and Microsoft together,
-and 287 from OSM only.
+The median outline is 24 m² and the median P95 height 3.1 m.
 
-Overture classes only 186 of them, so size and LiDAR height are the better guide:
+| Size | n | P95 under 3 m | 3-4.5 m | 4.5-6 m | 6-9 m | 9 m and over | Within 2 m of a county footprint | More than 5 m | Same parcel as nearest county building |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| under 20 m² | 2,357 | 1,161 | 997 | 139 | 48 | 12 | 1,727 | 424 | 1,746 |
+| 20-40 m² | 2,019 | 760 | 1,070 | 114 | 59 | 16 | 1,250 | 467 | 1,394 |
+| 40-80 m² | 807 | 278 | 369 | 85 | 64 | 11 | 453 | 194 | 520 |
+| 80-150 m² | 431 | 194 | 97 | 73 | 51 | 16 | 169 | 157 | 257 |
+| 150-300 m² | 359 | 169 | 52 | 27 | 78 | 33 | 105 | 156 | 161 |
+| 300 m² and over | 240 | 48 | 30 | 21 | 61 | 80 | 71 | 131 | 72 |
+| **All** | **6,213** | 2,610 | 2,615 | 459 | 361 | 168 | 3,775 | 1,529 | 4,150 |
 
-| Size | n | P95 under 3 m | 3-4.5 m | 4.5-6 m | 6-9 m | 9 m and over | Same parcel as nearest county building |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| under 20 m² | 55 | 24 | 25 | 4 | 1 | 1 | 43 |
-| 20-40 m² | 176 | 70 | 96 | 7 | 2 | 1 | 116 |
-| 40-80 m² | 326 | 140 | 134 | 42 | 3 | 7 | 175 |
-| 80-150 m² | 321 | 144 | 44 | 29 | 62 | 42 | 153 |
-| 150-300 m² | 249 | 133 | 33 | 15 | 49 | 19 | 104 |
-| 300 m² and over | 137 | 37 | 8 | 12 | 29 | 51 | 33 |
-| **All** | **1,264** | 548 | 340 | 109 | 146 | 121 | 624 (627 not, 13 unknown) |
+- **Sheds, garages and carports: about 4,600.** 4,635 candidates are under 80 m² and under 4.5 m (P95), and most share a
+  parcel with the nearest county building.
+- **Against a house: 3,775 lie within 2 m of a county footprint.** These are additions, attached garages, covered
+  patios and porches the county outline leaves out, plus some eave or porch strips just past the cut. They are the
+  likeliest REJECTs, and filtering NEAR_FP_DIST_M > 2 leaves 2,438 detached candidates.
+- **Large and tall: 252** are 150 m² or more with a P95 of at least 6 m, the buildings the county layer most likely lacks
+  because they are newer. The largest is 7,220 m² and 23 m high.
 
-- **Sheds, garages and carports: about 490.** 489 candidates are under 80 m² and under 4.5 m (P95). Of the 557 under
-  80 m², 334 share a parcel with the nearest county building, as an outbuilding would. The 548 under 3 m include low
-  carports and shade structures at every size.
-- **Overture's own classes** agree where they exist: 38 carports (34 under 3 m), 9 parking (covered parking, all under
-  3 m), 4 garages, 1 shed, 5 roofs and 4 shelters; 53 more carry the subtype outbuilding.
-- **Not outbuildings: 148 large, tall buildings** (150 m² or more and P95 at least 6 m), mostly OSM + Microsoft (128).
-  Overture classes 43 of them: 24 terraces (townhouse rows), 9 detached, 4 apartments, 2 houses, a sports centre and
-  others. The largest is a 6,403 m² apartment building 23 m high, 4.5 m from the nearest county footprint. These are
-  most likely buildings newer than the county layer, or places where it is incomplete. **They are the ones to review
-  first.** Another 104 are house-sized (80-150 m²) and at least 6 m tall, two storeys rather than a shed; Overture's 27
-  semidetached houses (all 80-150 m² and 6-9 m) are among them.
-- Distance to the nearest county footprint: median 4.6 m; 113 touch one (under 0.5 m) and 248 are more than 10 m away.
+## Witness: against the 1,264 Overture outlines (afterwards)
+Found by both when the overlap is at least 30% of either outline (`witness.json`; pairs in `witness.gdb/pairs`).
+
+| | n |
+|---|---:|
+| Overture outlines found by a LiDAR candidate | **1,242 of 1,264** (median IoU 0.76) |
+| LiDAR candidates that match an Overture outline | 1,191 |
+| LiDAR only | 5,022 |
+| Overture only | 22 |
+
+- **The LiDAR finds 98% of what Overture had.** The 22 it misses are all small (11-29 m², median 15 m²): 13 are roof
+  within 1.5 m of a county footprint, 7 are clusters under 10 m², and 2 were removed by the opening
+  (`witness.gdb/overture_missed`, with each one's share of cells at every stage).
+- **49 LiDAR candidates each cover 2 to 6 Overture outlines:** touching structures merge into one roof cluster, such as
+  townhouse rows and garages built wall to wall. Reviewers may want to split them.
+- **5,022 candidates are LiDAR only.** 3,432 of them lie within 2 m of a county footprint (Overture rarely draws
+  additions or porches separately), and 4,202 are under 40 m² (sheds Overture lacks). 1,022 are detached buildings more
+  than 5 m from any county footprint that neither source has.
 
 ## Blocks (LOD1.2)
-| | Pilot (20) | All (1,264) |
+| | Pilot (20) | All (6,213) |
 |---|---:|---:|
-| Features from the tool | 20 | 1,265 |
-| Empty features removed | 0 | 0 |
+| Features from the tool | 20 | 6,240 |
+| Empty features removed | 0 | 7 |
 | Candidates without a block | 0 | 0 |
-| Top minus median roof (m): p5 / median / p95 | -0.14 / -0.02 / 0.00 | -0.25 / -0.01 / 0.00 |
-| Base minus lowest terrain (m): p5 / median / p95 | -0.37 / -0.09 / +0.01 | -0.60 / -0.09 / +0.02 |
+| Top minus median roof (m): p5 / median / p95 | -0.06 / -0.01 / 0.00 | -0.10 / -0.01 / 0.00 |
+| Base minus lowest terrain (m): p5 / median / p95 | -0.72 / -0.08 / +0.03 | -0.77 / -0.09 / +0.02 |
 | Bases more than 2 m above the lowest terrain | 0 | 0 |
 
-These match the county blocks of October 22: tops follow the median roof, and bases sit just below the ground.
-- Candidate 564 (714 m², OSM + Microsoft) is a two-part outline and gets one block per part, which is correct.
-- Four tops are more than 1 m below the median roof: FP_ID 333, 566 and 594 have 52-70% roof support, and FP_ID 383 has
-  98%. Of the 761 candidates with 95% or more support, only 383 is off by more than 1 m.
+The 20 extra blocks belong to 19 multipart outlines (25 candidates are multipart, mostly clusters joined only at a
+corner), one block per part. Seven tops are more than 1 m below the median roof (listed in `massing.json`).
 
-## Licences: what this means for publishing
-From `Z:\GIS\overture\2026-10-21.0\millcreek\LICENSES.md` (written the same day; a working summary, not legal advice).
-- **Every outline here is ODbL.** The Overture buildings theme is ODbL, and so are both sources these candidates come
-  from: OpenStreetMap and Microsoft ML Buildings. The share-alike terms therefore cover all 1,264, not only the
-  OSM-derived ones. The LiDAR figures attached to them are the County's measurements, not Overture's.
-- **A staff-only review layer** is not public use, so ODbL's share-alike terms aren't triggered. Credit
-  "© OpenStreetMap contributors, Overture Maps Foundation" on it anyway.
-- **A public map, image or scene of them** is a Produced Work: the attribution line plus a notice that the data is ODbL.
-- **A public queryable or downloadable layer** of the candidates, or of the blocks massed from them, is a database
-  derived from ODbL data. It would have to be offered under ODbL.
-- **Accepted candidates going into a City or County footprint layer:** copying the Overture outline makes that layer, or
-  that part of it, a Derivative Database if it is published as data. Redrawing the building from imagery or the LiDAR
-  roof, with Overture used only to find it, does not. Anything published as data should go to the City Attorney first,
-  as LICENSES.md says.
+## Limits
+- Anything at least 10 m² and 2 m high that the consensus calls roof is a candidate. That includes trailers, RVs, box
+  trucks and the occasional tree the consensus mistakes for roof (2.8% of non-roof parts were called roof on the
+  labelled tile). Review decides.
+- Buildings built after the October-November 2023 flight aren't there, and ones removed since still are.
+- Regularized outlines are LiDAR estimates of the roof edge (eaves included), not wall lines.
+- The thresholds are a first setting from county data. A 2 m attached-cut or a larger minimum area would shrink the
+  review load, but that is Brian's call: it wasn't tuned against Overture, and it shouldn't be.
+
+## Licences
+The layer, its web copy and its blocks contain no Overture data, so ODbL doesn't attach to them. Publishing them is a
+question of the County's terms for the footprints and LiDAR. `witness.gdb` and `witness.json` hold Overture ids and
+measures and belong with the ODbL comparison material: keep them out of anything published. The Overture-based version and
+its terms are in [OVERTURE_VERSION.md](OVERTURE_VERSION.md) and `Z:\GIS\overture\2026-10-21.0\millcreek\LICENSES.md`.
 
 ## Next
-- Field Maps review: publish web.gdb/candidates as a **staff-only** hosted feature layer with editing limited to the three
-  review fields, only on Brian's word, through `reviews/2026-10-22/hosting/upload/upload.py` (one item, `--go`).
-- After review, ACCEPT outlines can be passed to the County as missing buildings. How they are drawn decides the licence
-  (see above).
+- Field Maps review: publish web.gdb/candidates as a **staff-only** hosted feature layer, editing limited to the three
+  review fields, only on Brian's word, through `reviews/2026-10-22/hosting/upload/upload.py` (one item, `--go`). Detached
+  candidates and the 252 large tall ones first.
+- After review, ACCEPT outlines can go to the County as missing buildings, drawn from the LiDAR.
 - A scene layer package of the blocks would follow the [scene-layers](../../2026-10-22/hosting/scene-layers/README.md)
-  steps. Under the same licence terms, keep it staff-only unless the City Attorney agrees otherwise.
+  steps.
 
 ## Rerun
 From `canopy-toolbox`, with ArcGIS Pro's `millcreek-py3` env, `PYTHONNOUSERSITE=1` and `-I`:
 
 ```
-python -I reviews/2026-10-23/footprint-candidates/footprint_candidates.py check OUT
-python -I reviews/2026-10-23/footprint-candidates/footprint_candidates.py build OUT
-python -I reviews/2026-10-23/footprint-candidates/footprint_candidates.py web OUT
-python -I reviews/2026-10-23/footprint-candidates/footprint_candidates.py pilot OUT
-python -I reviews/2026-10-23/footprint-candidates/footprint_candidates.py massing OUT
+python -I reviews/2026-10-23/footprint-candidates/lidar_candidates.py detect OUT --pilot
+python -I reviews/2026-10-23/footprint-candidates/lidar_candidates.py detect OUT
+python -I reviews/2026-10-23/footprint-candidates/lidar_candidates.py web OUT
+python -I reviews/2026-10-23/footprint-candidates/lidar_candidates.py pilot OUT
+python -I reviews/2026-10-23/footprint-candidates/lidar_candidates.py massing OUT
+python -I reviews/2026-10-23/footprint-candidates/lidar_candidates.py witness OUT
 ```
 
-`build` reuses OUT\method-check.json when present and refuses to compute anything if it is not exact.
+`detect` reuses OUT\method-check.json when present (otherwise it runs the check) and refuses to compute anything if the
+check is not exact.

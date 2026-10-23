@@ -169,27 +169,10 @@ def _add_review_fields(gdb, fc):
     arcpy.management.AddField(fc, "REVIEWER", "TEXT", field_length=100, field_alias=ALIASES["REVIEWER"])
 
 
-def build(out):
+def add_height_and_context_fields(gdb, fc):
+    """The building_heights statistics, the nearest county footprint and parcel, and the empty review fields."""
     import arcpy
-    import shapely
     import summarize_city_buildings as scb
-    from canopy import common, planning
-    done = out/"method-check.json"
-    check = json.loads(done.read_text(encoding="utf-8")) if done.exists() else method_check(out)
-    if not check["exact"]:
-        raise RuntimeError("The zonal code does not reproduce building_heights; candidate figures not computed")
-    sel, rows = overture_rows()
-    print(f"{len(rows)} candidates", flush=True)
-    wgs, sr = arcpy.SpatialReference(4326), arcpy.SpatialReference(CRS)
-    arcpy.env.geographicTransformations = None
-    gdb = arcpy.management.CreateFileGDB(str(out), "candidates.gdb")[0]
-    fc = str(Path(gdb)/"candidates")
-    arcpy.management.CreateFeatureclass(gdb, "candidates", "POLYGON", spatial_reference=sr)
-    text = [("OVERTURE_ID", 64), ("SOURCES", 30), ("SOURCE_DATASETS", 80), ("OSM_RECORD", 40), ("OV_CLASS", 40),
-            ("OV_SUBTYPE", 40), ("SIZE_CLASS", 20)]
-    for name, length in text:
-        arcpy.management.AddField(fc, name, "TEXT", field_length=length, field_alias=ALIASES[name])
-    arcpy.management.AddField(fc, "OV_HEIGHT_M", "DOUBLE", field_alias=ALIASES["OV_HEIGHT_M"])
     for name in scb.NUMERIC:
         arcpy.management.AddField(fc, name, "DOUBLE", field_alias=ALIASES[name])
     for name in scb.INTEGER:
@@ -201,24 +184,16 @@ def build(out):
         arcpy.management.AddField(fc, name, kind, field_length=length, field_alias=ALIASES[name])
     _add_review_fields(gdb, fc)
 
+
+def fill_heights(fc, id_field):
+    """building_heights statistics on the stored (resolution-snapped) shapes, as building_heights was measured on its
+    stored copy; unsnapped shapes clip to the city with a sliver of difference and would all be flagged PARTIAL_AOI.
+    The October 19 rasterization pilot runs first. Returns the pilot record and the boundary-fallback count."""
+    import arcpy
+    import summarize_city_buildings as scb
+    from canopy import common
     windows, city = _windows(), _city()
-    entries, compare_shift = [], []
-    by_id = sel.set_index("id")
-    for oid_, src, cls, sub, height, name, osm, wkb in rows:
-        shape = arcpy.FromWKB(bytes(wkb), wgs).projectAs(sr, TRANSFORM)
-        # the comparison's outline should be this one (it was projected the same way since its 11:31 rerun)
-        old = by_id.loc[oid_, "geometry"]
-        new = shapely.from_wkb(bytes(shape.WKB))
-        compare_shift.append(float(shapely.hausdorff_distance(old, new)))
-        entries.append((oid_, shape, src, cls, sub, height, osm))
-    with arcpy.da.InsertCursor(fc, ["SHAPE@", "OVERTURE_ID", "SOURCES", "SOURCE_DATASETS", "OSM_RECORD", "OV_CLASS",
-                                    "OV_SUBTYPE", "SIZE_CLASS", "OV_HEIGHT_M"]) as cursor:
-        for oid_, shape, src, cls, sub, height, osm in entries:
-            cursor.insertRow([shape, oid_, SOURCES[src], src, osm[0] if osm else None, cls, sub,
-                              size_class(shape.area), height])
-    # Statistics on the stored (resolution-snapped) shapes, as building_heights was measured on its stored copy;
-    # the unsnapped shapes clip to the city with a sliver of difference and would all be flagged PARTIAL_AOI.
-    stored = list(arcpy.da.SearchCursor(fc, ["OVERTURE_ID", "SHAPE@"]))
+    stored = list(arcpy.da.SearchCursor(fc, [id_field, "SHAPE@"]))
     with common.scratch() as (_, scratch_gdb):
         pilot = scb.pilot(stored, city, windows, scratch_gdb)
         print(f"rasterization pilot: {len(pilot)} ArcGIS CELL_CENTER matches", flush=True)
@@ -229,9 +204,14 @@ def build(out):
                 fallbacks += fallback
                 cursor.updateRow([row[0]] + [summary[f] for f in scb.FIELDS])
                 if i % 250 == 0:
-                    print(f"  {i}/{len(entries)}", flush=True)
+                    print(f"  {i}/{len(stored)}", flush=True)
+    return pilot, fallbacks
 
-    # nearest county footprint
+
+def fill_context(fc, gdb):
+    """Nearest county footprint (planar, edge to edge) and the parcel holding most of each outline."""
+    import arcpy
+    import shapely
     near = str(Path(gdb)/"near_tmp")
     arcpy.analysis.GenerateNearTable(fc, str(BUILDINGS), near, closest="CLOSEST", method="PLANAR")
     county = {r[0]: r[1:] for r in arcpy.da.SearchCursor(str(BUILDINGS), ["OID@", "SOURCE_ID", "PARCEL_ID"])}
@@ -253,6 +233,46 @@ def build(out):
             source_id, fp_parcel = county[fid] if fid is not None else (None, None)
             same = None if not parcel or not fp_parcel else ("YES" if _pnorm(parcel) == _pnorm(fp_parcel) else "NO")
             cursor.updateRow([oid, wkb, source_id, dist, fp_parcel, parcel, address, same])
+
+
+def build(out):
+    import arcpy
+    import shapely
+    from canopy import planning
+    done = out/"method-check.json"
+    check = json.loads(done.read_text(encoding="utf-8")) if done.exists() else method_check(out)
+    if not check["exact"]:
+        raise RuntimeError("The zonal code does not reproduce building_heights; candidate figures not computed")
+    sel, rows = overture_rows()
+    print(f"{len(rows)} candidates", flush=True)
+    wgs, sr = arcpy.SpatialReference(4326), arcpy.SpatialReference(CRS)
+    arcpy.env.geographicTransformations = None
+    gdb = arcpy.management.CreateFileGDB(str(out), "candidates.gdb")[0]
+    fc = str(Path(gdb)/"candidates")
+    arcpy.management.CreateFeatureclass(gdb, "candidates", "POLYGON", spatial_reference=sr)
+    text = [("OVERTURE_ID", 64), ("SOURCES", 30), ("SOURCE_DATASETS", 80), ("OSM_RECORD", 40), ("OV_CLASS", 40),
+            ("OV_SUBTYPE", 40), ("SIZE_CLASS", 20)]
+    for name, length in text:
+        arcpy.management.AddField(fc, name, "TEXT", field_length=length, field_alias=ALIASES[name])
+    arcpy.management.AddField(fc, "OV_HEIGHT_M", "DOUBLE", field_alias=ALIASES["OV_HEIGHT_M"])
+    add_height_and_context_fields(gdb, fc)
+
+    entries, compare_shift = [], []
+    by_id = sel.set_index("id")
+    for oid_, src, cls, sub, height, name, osm, wkb in rows:
+        shape = arcpy.FromWKB(bytes(wkb), wgs).projectAs(sr, TRANSFORM)
+        # the comparison's outline should be this one (it was projected the same way since its 11:31 rerun)
+        old = by_id.loc[oid_, "geometry"]
+        new = shapely.from_wkb(bytes(shape.WKB))
+        compare_shift.append(float(shapely.hausdorff_distance(old, new)))
+        entries.append((oid_, shape, src, cls, sub, height, osm))
+    with arcpy.da.InsertCursor(fc, ["SHAPE@", "OVERTURE_ID", "SOURCES", "SOURCE_DATASETS", "OSM_RECORD", "OV_CLASS",
+                                    "OV_SUBTYPE", "SIZE_CLASS", "OV_HEIGHT_M"]) as cursor:
+        for oid_, shape, src, cls, sub, height, osm in entries:
+            cursor.insertRow([shape, oid_, SOURCES[src], src, osm[0] if osm else None, cls, sub,
+                              size_class(shape.area), height])
+    pilot, fallbacks = fill_heights(fc, "OVERTURE_ID")
+    fill_context(fc, gdb)
     dropped = dropped_county_overlaps(fc, gdb)
     planning._metadata(fc, "Candidate building footprints: Overture Maps 2026-10-21.0 buildings that sit on a 2023 LiDAR "
                            "roof (at least 50% consensus roof cells) but match no county footprint. Roof statistics by "
@@ -353,7 +373,7 @@ def summarize_candidates(fc, sel):
     }
 
 
-def web(out):
+def web(out, extra=WARNING_EXTRA):
     """Web Mercator copy with the October 22 feature-layer projection and its vertex check."""
     import arcpy
     pf = _module(REVIEWS/"2026-10-22"/"hosting"/"feature-layers"/"prepare_features.py", "prepare_features")
@@ -363,7 +383,7 @@ def web(out):
     path = pf.project(work, gdb, "candidates")
     from canopy import planning
     planning._metadata(path, (arcpy.metadata.Metadata(str(work/"candidates")).description or "").split("\n\n")[0] +
-                       " Projected to Web Mercator with " + TRANSFORM + "." + WARNING_EXTRA)
+                       " Projected to Web Mercator with " + TRANSFORM + "." + extra)
     check = pf.projection_check(work, gdb, "candidates")
     domains = {d.name: dict(d.codedValues) for d in arcpy.da.ListDomains(str(gdb))}
     assigned = {f.name: f.domain for f in arcpy.ListFields(path) if f.domain}
@@ -379,7 +399,12 @@ def web(out):
     print(json.dumps(check, indent=1), flush=True)
 
 
-def massing(out, pilot):
+MASSING_TEXT = ("3D massing, LOD1.2, of the footprint candidates (Overture outlines with no county footprint) from the "
+                "consensus roof surface (Extract LOD2 Buildings). Heights are roof-minus-terrain estimates, not "
+                "code-defined building heights." + WARNING_EXTRA)
+
+
+def massing(out, pilot, id_field="OVERTURE_ID", text=MASSING_TEXT):
     """LOD1.2 blocks by the October 22 method; FP_ID is the candidate's OBJECTID in candidates.gdb/candidates."""
     import arcpy
     from arcpy.sa import Con, IsNull, Raster
@@ -401,10 +426,10 @@ def massing(out, pilot):
     layer = arcpy.management.MakeFeatureLayer(source, "cand", f"OBJECTID IN ({','.join(map(str, oids))})").getOutput(0)
     arcpy.management.CopyFeatures(layer, footprints)
     arcpy.management.AddField(footprints, "FP_ID", "LONG")
-    with arcpy.da.UpdateCursor(footprints, ["OVERTURE_ID", "FP_ID"]) as cursor:
-        ids = {r[0]: r[1] for r in arcpy.da.SearchCursor(source, ["OVERTURE_ID", "OID@"])}
-        for overture_id, _ in cursor:
-            cursor.updateRow([overture_id, ids[overture_id]])
+    with arcpy.da.UpdateCursor(footprints, [id_field, "FP_ID"]) as cursor:
+        ids = {r[0]: r[1] for r in arcpy.da.SearchCursor(source, [id_field, "OID@"])}
+        for key, _ in cursor:
+            cursor.updateRow([key, ids[key]])
     ext = arcpy.Describe(footprints).extent
     window = (ext.XMin-50, ext.YMin-50, ext.XMax+50, ext.YMax+50)
     dsm = str(target/"height_source.tif")
@@ -421,9 +446,7 @@ def massing(out, pilot):
     seconds = round((datetime.datetime.now()-started).total_seconds())
     from_tool = int(arcpy.management.GetCount(lod)[0])
     rm.annotate(lod, tmin)
-    planning._metadata(lod, "3D massing, LOD1.2, of the footprint candidates (Overture outlines with no county footprint) "
-                            "from the consensus roof surface (Extract LOD2 Buildings). Heights are roof-minus-terrain "
-                            "estimates, not code-defined building heights." + WARNING_EXTRA)
+    planning._metadata(lod, text)
     # the October 22 cleanup: drop empty features (zero area, Z = 0)
     removed = []
     with arcpy.da.UpdateCursor(lod, ["SHAPE@", "FP_ID"]) as cursor:

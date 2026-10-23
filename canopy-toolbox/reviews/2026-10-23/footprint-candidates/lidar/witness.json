@@ -1,0 +1,43 @@
+{
+ "note": "Witness only: Overture outlines (ODbL) were not used to choose or shape the candidates.",
+ "overture": {
+  "source": "Z:\\GIS\\overture\\2026-10-21.0\\millcreek\\lidar-compare\\overture_vs_lidar.gpkg",
+  "where": "MATCH = 'OVERTURE_ONLY' AND LIDAR = 'ROOF'",
+  "n": 1264
+ },
+ "lidar_candidates": 6213,
+ "rule": "found by both when the overlap is at least 30% of either outline",
+ "found_by_both": {
+  "lidar_candidates": 1191,
+  "overture_outlines": 1242
+ },
+ "lidar_only": 5022,
+ "overture_only": 22,
+ "iou_of_best_pairs": {
+  "n": 1242,
+  "p05": 0.22,
+  "p25": 0.57,
+  "p50": 0.76,
+  "p75": 0.85,
+  "p95": 0.91,
+  "max": 0.98
+ },
+ "overture_only_by_reason": {
+  "roof on or within 1.5 m of a county footprint": 13,
+  "removed by the opening": 2,
+  "cluster under 10 m2": 7
+ },
+ "overture_only_area_m2": {
+  "n": 22,
+  "p05": 11.05,
+  "p25": 11.86,
+  "p50": 15.14,
+  "p75": 19.31,
+  "p95": 28.07,
+  "max": 28.65
+ },
+ "outputs": {
+  "pairs": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-candidates-lidar-20261023\\witness.gdb\\pairs",
+  "overture_missed": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-candidates-lidar-20261023\\witness.gdb\\overture_missed"
+ }
+}
