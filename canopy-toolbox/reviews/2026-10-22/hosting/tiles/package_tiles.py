@@ -11,8 +11,9 @@ ArcGIS Pro Python (PYTHONNOUSERSITE=1). Read-only on the inputs; writes only und
 - No map or Pro UI: Manage Tile Cache takes a raster dataset, or a raster layer file, as its data source, and Export Tile
   Cache turns the cache into a .tpkx. Create Map Tile Package is the tool that needs a map; it is not used.
 - Hillshade: the layer file is needed because Manage Tile Cache renders a raster with its default renderer, a 2-standard-
-  deviation stretch, which put every hillshade value below about 115 to black in the pilot. The layer file has a min-max
-  stretch fixed at 0-255 (the identity) and bilinear display resampling. Tiles are PNG on the ArcGIS Online scheme.
+  deviation stretch, which put every hillshade value below about 115 to black in the pilot. A rendered (253, 253, 253) is
+  the cache's transparent background, so the layer file draws a copy capped at 252 with no stretch and bilinear display
+  resampling. Tiles are PNG32 on the ArcGIS Online scheme.
 - Terrain: the unmasked mosaic on the ArcGIS Online elevation scheme (LERC, 257 x 257 corner-registered pixels), with
   the LERC maximum error set to 0.01 m instead of the scheme's 0.1 m.
 - No geographic transformation (env.geographicTransformations unset): NAD83(2011) coordinates are taken as WGS84 when
@@ -48,7 +49,12 @@ TERRAIN_CITY = RUNS/"millcreek-products-20261022"/"terrain_m.tif"
 TERRAIN_CONTEXT = RUNS/"millcreek-products-20261019"/"terrain_context.tif"
 BOUNDARY = RUNS/"city-count-20261008"/"inputs.gdb"/"municipal_boundary"
 PRO_SCHEMES = {"hillshade": "ARCGISONLINE_SCHEME", "terrain": "ARCGISONLINE_ELEVATION_SCHEME"}
-TILE_FORMAT = "PNG"
+# PNG32, not PNG: Pro's PNG writes gray RGB tiles with a (253, 253, 253) transparency key; PNG32 carries an alpha channel.
+TILE_FORMAT = "PNG32"
+# Manage Tile Cache treats a rendered (253, 253, 253) as its transparent background in either format, which punched the
+# brightest hillshade pixels out. Bilinear display makes 253 from neighbouring 252 and 254, so the tiles are drawn from a
+# copy capped at 252 (253 and 254 become 252) with no stretch: no rendered value can then reach 253.
+HILLSHADE_TOP = 252
 LERC_ERROR_M = 0.01
 MAX_LEVEL = 18
 ORIGIN = -20037508.342787001
@@ -128,11 +134,28 @@ def scheme(out):
 
 # Layer file and areas of interest ------------------------------------------------------------------------------------
 
+def capped_hillshade(target):
+    """A copy of the hillshade with 253 and 254 set to HILLSHADE_TOP; NoData (255) and everything else unchanged."""
+    import rasterio
+    with rasterio.open(HILLSHADE) as src:
+        data = src.read(1)
+        profile = src.profile
+    valid = data != src.nodata
+    changed = int((valid & (data > HILLSHADE_TOP)).sum())
+    data[valid & (data > HILLSHADE_TOP)] = HILLSHADE_TOP
+    profile.update(compress="lzw", tiled=True, blockxsize=512, blockysize=512)
+    with rasterio.open(target, "w", **profile) as dst:
+        dst.write(data, 1)
+    return {"cells": int(valid.sum()), "changed": changed}
+
+
 def layer(out):
-    """The hillshade as a layer file with an identity stretch, and the areas of interest for both caches."""
+    """The capped hillshade as a layer file drawn with no stretch, and the areas of interest for both caches."""
     arcpy = env(out)
     folder = Path(out)/"layer"
     folder.mkdir(exist_ok=True)
+    display = folder/"hillshade_display.tif"
+    capped = capped_hillshade(display)
     if not (folder/"layers.aprx").exists():
         arcpy.mp.CreateArcGISProject(str(folder), "layers", False)
     aprx = arcpy.mp.ArcGISProject(str(folder/"layers.aprx"))
@@ -140,15 +163,12 @@ def layer(out):
         aprx.deleteItem(m)
     m = aprx.createMap("hillshade", "Map")
     m.spatialReference = arcpy.SpatialReference(3857)
-    lyr = m.addDataFromPath(str(HILLSHADE))
+    lyr = m.addDataFromPath(str(display))
     definition = lyr.getDefinition("V3")
     c = definition.colorizer
     default = {"stretchType": c.stretchType, "standardDeviationParam": c.standardDeviationParam,
                "resamplingType": c.resamplingType}
-    c.stretchType = "MinimumMaximum"
-    c.useCustomStretchMinMax = True
-    c.customStretchMin = 0
-    c.customStretchMax = 255
+    c.stretchType = "eNone"
     c.useGammaStretch = False
     c.gammaValue = 1
     c.resamplingType = "BilinearInterpolation"
@@ -162,8 +182,9 @@ def layer(out):
         arcpy.management.CreateFileGDB(str(folder), "aoi.gdb")
     arcpy.analysis.PairwiseBuffer(str(BOUNDARY), str(gdb/"hillshade"), "5 Meters", "ALL")
     context_footprint(arcpy, gdb/"terrain")
-    write_json(folder/"layer.json", {"lyrx": str(lyrx), "default_colorizer": default,
-                                     "colorizer": "MinimumMaximum, custom 0-255, no gamma, bilinear resampling",
+    write_json(folder/"layer.json", {"lyrx": str(lyrx), "display_raster": str(display),
+                                     "capped_at": HILLSHADE_TOP, "capped_cells": capped, "default_colorizer": default,
+                                     "colorizer": "no stretch (eNone), no gamma, bilinear resampling",
                                      "aoi": {"hillshade": str(gdb/"hillshade"), "terrain": str(gdb/"terrain")}})
     print(lyrx)
 
@@ -416,8 +437,12 @@ def hillshade_values(tiles, rng, per_tile):
     gray, opaque, valid = np.array(gray), np.array(opaque), source != 255
     both = valid & opaque
     d = gray[both] - source[both]
+    capped = gray[both] - np.minimum(source[both], HILLSHADE_TOP)
     return {"pixels": len(gray), "source_valid": int(valid.sum()), "opaque": int(opaque.sum()),
             "valid_but_transparent": int((valid & ~opaque).sum()), "opaque_but_nodata": int((~valid & opaque).sum()),
+            "gray_above_cap_pixels": int((gray[opaque] > HILLSHADE_TOP).sum()),
+            "mean_difference_vs_capped_source": round(float(capped.mean()), 2),
+            "median_abs_difference_vs_capped_source": round(float(np.median(np.abs(capped))), 2),
             "mean_difference": round(float(d.mean()), 2), "median_abs_difference": float(np.median(np.abs(d))),
             "p95_abs_difference": float(np.percentile(np.abs(d), 95)), "max_abs_difference": int(np.abs(d).max())}
 
@@ -468,6 +493,21 @@ def expected_tiles(level=MAX_LEVEL, stride=10):
         for key, count in zip(k.tolist(), n.tolist()):
             tiles[key] = tiles.get(key, 0) + count
     return {(key >> 32, key & 0xFFFFFFFF): n for key, n in tiles.items()}
+
+
+def hillshade_holes(tpkx, level=MAX_LEVEL):
+    """Transparent pixels whose eight neighbours are all opaque, and the PNG modes and transparency keys used."""
+    from PIL import Image
+    from scipy import ndimage
+    holes, opaque, modes = 0, 0, {}
+    for _, _, data in package_tiles(tpkx, level):
+        image = Image.open(io.BytesIO(data))
+        mode = f"{image.mode} key={image.info.get('transparency')}"
+        modes[mode] = modes.get(mode, 0) + 1
+        _, o = decode("hillshade", data)
+        opaque += int(o.sum())
+        holes += int(((~o) & (ndimage.convolve(o.astype(int), np.ones((3, 3), int), mode="constant") == 8)).sum())
+    return {"opaque_pixels": opaque, "single_pixel_holes": holes, "png_modes": modes}
 
 
 def tile_inventory(tpkx, kind):
@@ -617,6 +657,7 @@ def verify(out):
         print(f"{now()} {key} inventory done", flush=True)
         if key == "hillshade":
             record["hillshade_coverage"] = hillshade_coverage(with_data)
+            record["hillshade_holes_L18"] = hillshade_holes(packages[key])
             record["hillshade_values_L18"] = hillshade_values(
                 [t for t in package_tiles(packages[key], MAX_LEVEL)][::7], np.random.default_rng(5), per_tile=20)
         else:

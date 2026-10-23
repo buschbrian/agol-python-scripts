@@ -1,102 +1,102 @@
 {
  "schema": "tiles-verify/1",
- "started": "2026-10-22T22:43:21",
+ "started": "2026-10-22T23:16:22",
  "levels": {
   "hillshade": {
    "0": {
     "tiles": 1,
     "with_data": 0,
-    "bytes": 799
+    "bytes": 876
    },
    "1": {
     "tiles": 1,
     "with_data": 0,
-    "bytes": 799
+    "bytes": 876
    },
    "2": {
     "tiles": 1,
     "with_data": 0,
-    "bytes": 799
+    "bytes": 876
    },
    "3": {
     "tiles": 1,
     "with_data": 0,
-    "bytes": 799
+    "bytes": 876
    },
    "4": {
     "tiles": 1,
     "with_data": 0,
-    "bytes": 799
+    "bytes": 876
    },
    "5": {
     "tiles": 1,
     "with_data": 1,
-    "bytes": 817
+    "bytes": 894
    },
    "6": {
     "tiles": 1,
     "with_data": 1,
-    "bytes": 858
+    "bytes": 946
    },
    "7": {
     "tiles": 1,
     "with_data": 1,
-    "bytes": 997
+    "bytes": 1091
    },
    "8": {
     "tiles": 1,
     "with_data": 1,
-    "bytes": 1455
+    "bytes": 1583
    },
    "9": {
     "tiles": 2,
     "with_data": 2,
-    "bytes": 3419
+    "bytes": 3696
    },
    "10": {
     "tiles": 4,
     "with_data": 2,
-    "bytes": 8854
+    "bytes": 9191
    },
    "11": {
     "tiles": 4,
     "with_data": 2,
-    "bytes": 20479
+    "bytes": 20266
    },
    "12": {
     "tiles": 6,
     "with_data": 3,
-    "bytes": 59518
+    "bytes": 59696
    },
    "13": {
     "tiles": 11,
     "with_data": 9,
-    "bytes": 194061
+    "bytes": 204278
    },
    "14": {
     "tiles": 34,
     "with_data": 22,
-    "bytes": 620689
+    "bytes": 729184
    },
    "15": {
     "tiles": 106,
     "with_data": 61,
-    "bytes": 2234746
+    "bytes": 2638687
    },
    "16": {
     "tiles": 386,
     "with_data": 209,
-    "bytes": 8080424
+    "bytes": 9427661
    },
    "17": {
     "tiles": 1216,
     "with_data": 761,
-    "bytes": 27515229
+    "bytes": 30572319
    },
    "18": {
     "tiles": 3760,
     "with_data": 2752,
-    "bytes": 80879749
+    "bytes": 87119902
    }
   },
   "terrain": {
@@ -199,7 +199,7 @@
  },
  "packages": {
   "hillshade": {
-   "bytes": 122828479,
+   "bytes": 133999152,
    "members": 27,
    "compressed": false,
    "root": {
@@ -214,7 +214,7 @@
     "minScale": 591657527.591555,
     "maxScale": 2256.994353,
     "tileImageInfo": {
-     "format": "PNG",
+     "format": "PNG32",
      "compressionQuality": 75,
      "bandCount": 1,
      "lercError": 0
@@ -384,12 +384,22 @@
    "extra_with_data": 0
   }
  },
+ "hillshade_holes_L18": {
+  "opaque_pixels": 163438018,
+  "single_pixel_holes": 0,
+  "png_modes": {
+   "RGBA key=None": 3760
+  }
+ },
  "hillshade_values_L18": {
   "pixels": 10760,
   "source_valid": 7269,
-  "opaque": 7262,
-  "valid_but_transparent": 7,
+  "opaque": 7267,
+  "valid_but_transparent": 2,
   "opaque_but_nodata": 0,
+  "gray_above_cap_pixels": 0,
+  "mean_difference_vs_capped_source": -0.01,
+  "median_abs_difference_vs_capped_source": 1.0,
   "mean_difference": -0.01,
   "median_abs_difference": 1.0,
   "p95_abs_difference": 3.0,
@@ -655,5 +665,5 @@
   },
   "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\check\\check.aprx"
  },
- "finished": "2026-10-22T22:43:46"
+ "finished": "2026-10-22T23:16:54"
 }
