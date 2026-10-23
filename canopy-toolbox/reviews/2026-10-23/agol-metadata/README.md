@@ -92,4 +92,5 @@ place afterwards.
 - **Thumbnails**: none made here. A thumbnail drawn now would show the default styling; better made once the styling
   session has finished (Item page > Edit thumbnail).
 - **Sharing**: Brian's step. The text is written for a public audience (no internal paths or repository links).
-- **Delete protection** on the packages and layers: recommended in [PACKAGES.md](PACKAGES.md), not done.
+- **Delete protection**: turned on later on October 23 for the eight packages and the eight hosted layers, on Brian's
+  go-ahead (all 16 read back protected; `record/protection.json`).

@@ -51,8 +51,9 @@ feature-storage rate, about 5 credits a month.
 1. **Keep all eight**, in the new folder, **private**. The whole cost is about 6 credits a year, and they are the only
    copies online of exactly what was published. Never share them: a shared package can be downloaded whole.
 2. **Turn on delete protection** for the eight packages and the eight hosted layers, so a clean-up of the folder cannot
-   remove them by mistake. Not done here (only the move was approved). In ArcGIS Online: item page > Settings >
-   *Delete protection*; or from the repo with ArcGIS Pro's Python:
+   remove them by mistake. **Done October 23 on Brian's go-ahead**: all 16 read back `protected: True` and still
+   private (`record/protection.json`). To delete one later, first turn protection off (item page > Settings >
+   *Delete protection*, or `protect(enable=False)`). The calls used, for the eight packages (the layers the same):
    ```
    from arcgis.gis import GIS
    gis = GIS("pro")
