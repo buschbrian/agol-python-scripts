@@ -114,6 +114,11 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   verifies certificates; the call site is inside the API, not `upload.py`. `upload.py` now logs the call stack of any such
   request to `runs\hosting-uploads\unverified-https.log`, so the terrain publish (the other `.tpkx`) will show where it
   comes from.
+- `treetops`, October 23: Vector Tile Service `924b993cb23046cb87641253bcf786de` (package item
+  `2dcae544e70c47589f8226dc0ad74351`). **Staff only** (decision 3): share with the organisation or a staff group, not the
+  public, until the SUSPECT review. Checked online: Web Mercator, levels 14-17 (1:18,056 inward); the style's five circle
+  layers carry the height classes (2-5, 5-10, 10-15, 15-20, 20 m and over) in YlGn, all 2.4 px; 13 tiles across every
+  package level are byte for byte the package's. Hosted size 7.6 MB. No unverified HTTPS requests during this publish.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
