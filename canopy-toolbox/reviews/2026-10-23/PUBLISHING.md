@@ -119,6 +119,10 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   public, until the SUSPECT review. Checked online: Web Mercator, levels 14-17 (1:18,056 inward); the style's five circle
   layers carry the height classes (2-5, 5-10, 10-15, 15-20, 20 m and over) in YlGn, all 2.4 px; 13 tiles across every
   package level are byte for byte the package's. Hosted size 7.6 MB. No unverified HTTPS requests during this publish.
+- `crowns`, October 23: Vector Tile Service `d9388dc83f894edbb63e0510a8c62fa8` (package item
+  `d3ca707cda6544dd9962390c1e7e00db`). **Staff only**, as the treetops. Checked online: Web Mercator, levels 14-17; the
+  style's five fill layers carry the treetop-height classes in YlGn with a dark green outline; 14 tiles across every
+  package level are byte for byte the package's. Hosted size 33.8 MB. No unverified HTTPS requests.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
