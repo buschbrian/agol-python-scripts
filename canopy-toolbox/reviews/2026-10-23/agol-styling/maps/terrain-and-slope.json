@@ -3,7 +3,7 @@
   "title": "Millcreek terrain and slope",
   "type": "Web Map",
   "snippet": "Slope classes, 2 m contours and hillshade from the 0.5 m lidar terrain. Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
-  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>Slope in six classes from the 0.5 m bare-earth terrain (3 m neighbourhood, 4 m² minimum mapping unit), shaded by the lidar hillshade blended over it (multiply), with 2 m contours (10 m index lines heavier) from 1:288,000 inward and the 2 m lines from 1:18,000.</p><p><b>Slope classes:</b> <span style='color:#FFFFCC'>■</span> Under 10% &nbsp; <span style='color:#FED976'>■</span> 10% to 15% &nbsp; <span style='color:#FEB24C'>■</span> 15% to 20% &nbsp; <span style='color:#FD8D3C'>■</span> 20% to 25% &nbsp; <span style='color:#F03B20'>■</span> 25% to 30% &nbsp; <span style='color:#BD0026'>■</span> 30% and over</p><p><b>Contours:</b> <span style='color:#3D2610'>▬</span> 10 m index (heavy) &nbsp; <span style='color:#5A3A1A'>─</span> 2 m (thin), elevations in metres (NAVD88); the tiles carry no elevation values, so the lines are unlabelled</p><p>Slope and contours are vector tiles: they draw but have no pop-ups, and the map legend cannot list them (the key above stands in).</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
+  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>Slope in six classes from the 0.5 m bare-earth terrain (3 m neighbourhood, 4 m² minimum mapping unit), shaded by the lidar hillshade blended over it (multiply), with 2 m contours (10 m index lines heavier) from 1:288,000 inward and the 2 m lines from 1:18,000.</p><p><b>Slope classes:</b> <span style='color:#FFFFCC'>■</span> Under 10% &nbsp; <span style='color:#FED976'>■</span> 10% to 15% &nbsp; <span style='color:#FEB24C'>■</span> 15% to 20% &nbsp; <span style='color:#FD8D3C'>■</span> 20% to 25% &nbsp; <span style='color:#F03B20'>■</span> 25% to 30% &nbsp; <span style='color:#BD0026'>■</span> 30% and over</p><p><b>Contours:</b> <span style='color:#3D2610'>▬</span> 10 m index (heavy) &nbsp; <span style='color:#5A3A1A'>─</span> 2 m (thin), elevations in metres (NAVD88); the tiles carry no elevation values, so the lines are unlabelled</p><p>Slope and contours are vector tiles: they draw but have no pop-ups. The legend cannot read a vector tile style, so each is grouped with a small key layer that carries its classes into the legend.</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
   "tags": [
    "Millcreek",
    "lidar",
@@ -36,15 +36,233 @@
  "data": {
   "operationalLayers": [
    {
-    "id": "slope",
+    "id": "slope-group",
     "title": "Slope (percent)",
-    "layerType": "VectorTileLayer",
-    "itemId": "3b5b1a9110f14e93af68752be89e0df2",
-    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/3b5b1a9110f14e93af68752be89e0df2/resources/styles/root.json",
+    "layerType": "GroupLayer",
     "visibility": true,
     "opacity": 1,
-    "minScale": 0,
-    "maxScale": 0
+    "listMode": "hide-children",
+    "layers": [
+     {
+      "id": "slope",
+      "title": "Slope (percent)",
+      "layerType": "VectorTileLayer",
+      "itemId": "3b5b1a9110f14e93af68752be89e0df2",
+      "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/3b5b1a9110f14e93af68752be89e0df2/resources/styles/root.json",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 0,
+      "maxScale": 0,
+      "showLegend": false
+     },
+     {
+      "id": "slope-key",
+      "title": "Slope classes",
+      "layerType": "ArcGISFeatureLayer",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 0,
+      "maxScale": 0,
+      "featureCollection": {
+       "layers": [
+        {
+         "layerDefinition": {
+          "name": "Slope classes",
+          "type": "Feature Layer",
+          "geometryType": "esriGeometryPolygon",
+          "objectIdField": "OBJECTID",
+          "fields": [
+           {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID"
+           },
+           {
+            "name": "CLASS",
+            "type": "esriFieldTypeString",
+            "alias": "Class",
+            "length": 40
+           }
+          ],
+          "drawingInfo": {
+           "renderer": {
+            "type": "uniqueValue",
+            "field1": "CLASS",
+            "uniqueValueInfos": [
+             {
+              "value": "Under 10%",
+              "label": "Under 10%",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                255,
+                255,
+                204,
+                38
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSNull",
+                "color": [
+                 0,
+                 0,
+                 0,
+                 0
+                ],
+                "width": 0
+               }
+              }
+             },
+             {
+              "value": "10% to 15%",
+              "label": "10% to 15%",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                254,
+                217,
+                118,
+                115
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSNull",
+                "color": [
+                 0,
+                 0,
+                 0,
+                 0
+                ],
+                "width": 0
+               }
+              }
+             },
+             {
+              "value": "15% to 20%",
+              "label": "15% to 20%",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                254,
+                178,
+                76,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSNull",
+                "color": [
+                 0,
+                 0,
+                 0,
+                 0
+                ],
+                "width": 0
+               }
+              }
+             },
+             {
+              "value": "20% to 25%",
+              "label": "20% to 25%",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                253,
+                141,
+                60,
+                140
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSNull",
+                "color": [
+                 0,
+                 0,
+                 0,
+                 0
+                ],
+                "width": 0
+               }
+              }
+             },
+             {
+              "value": "25% to 30%",
+              "label": "25% to 30%",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                240,
+                59,
+                32,
+                153
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSNull",
+                "color": [
+                 0,
+                 0,
+                 0,
+                 0
+                ],
+                "width": 0
+               }
+              }
+             },
+             {
+              "value": "30% and over",
+              "label": "30% and over",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                189,
+                0,
+                38,
+                158
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSNull",
+                "color": [
+                 0,
+                 0,
+                 0,
+                 0
+                ],
+                "width": 0
+               }
+              }
+             }
+            ]
+           }
+          },
+          "extent": {
+           "xmin": -12459067.21,
+           "ymin": 4962105.56,
+           "xmax": -12442851.81,
+           "ymax": 4970359.57,
+           "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+           }
+          }
+         },
+         "featureSet": {
+          "geometryType": "esriGeometryPolygon",
+          "features": []
+         }
+        }
+       ],
+       "showLegend": true
+      }
+     }
+    ]
    },
    {
     "id": "hillshade",
@@ -66,15 +284,113 @@
     ]
    },
    {
-    "id": "contours",
+    "id": "contours-group",
     "title": "Contours (2 m, 10 m index)",
-    "layerType": "VectorTileLayer",
-    "itemId": "50573eeba93f405a869a1d78a08d68e8",
-    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/50573eeba93f405a869a1d78a08d68e8/resources/styles/root.json",
+    "layerType": "GroupLayer",
     "visibility": true,
     "opacity": 1,
-    "minScale": 288895,
-    "maxScale": 0
+    "listMode": "hide-children",
+    "layers": [
+     {
+      "id": "contours",
+      "title": "Contours (2 m, 10 m index)",
+      "layerType": "VectorTileLayer",
+      "itemId": "50573eeba93f405a869a1d78a08d68e8",
+      "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/50573eeba93f405a869a1d78a08d68e8/resources/styles/root.json",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 288895,
+      "maxScale": 0,
+      "showLegend": false
+     },
+     {
+      "id": "contours-key",
+      "title": "Contour lines",
+      "layerType": "ArcGISFeatureLayer",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 288895,
+      "maxScale": 0,
+      "featureCollection": {
+       "layers": [
+        {
+         "layerDefinition": {
+          "name": "Contour lines",
+          "type": "Feature Layer",
+          "geometryType": "esriGeometryPolyline",
+          "objectIdField": "OBJECTID",
+          "fields": [
+           {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID"
+           },
+           {
+            "name": "CLASS",
+            "type": "esriFieldTypeString",
+            "alias": "Class",
+            "length": 40
+           }
+          ],
+          "drawingInfo": {
+           "renderer": {
+            "type": "uniqueValue",
+            "field1": "CLASS",
+            "uniqueValueInfos": [
+             {
+              "value": "10 m index contour",
+              "label": "10 m index contour",
+              "symbol": {
+               "type": "esriSLS",
+               "style": "esriSLSSolid",
+               "color": [
+                61,
+                38,
+                16,
+                217
+               ],
+               "width": 1.2
+              }
+             },
+             {
+              "value": "2 m contour",
+              "label": "2 m contour",
+              "symbol": {
+               "type": "esriSLS",
+               "style": "esriSLSSolid",
+               "color": [
+                90,
+                58,
+                26,
+                128
+               ],
+               "width": 0.52
+              }
+             }
+            ]
+           }
+          },
+          "extent": {
+           "xmin": -12459067.21,
+           "ymin": 4962105.56,
+           "xmax": -12442851.81,
+           "ymax": 4970359.57,
+           "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+           }
+          }
+         },
+         "featureSet": {
+          "geometryType": "esriGeometryPolyline",
+          "features": []
+         }
+        }
+       ],
+       "showLegend": true
+      }
+     }
+    ]
    }
   ],
   "baseMap": {

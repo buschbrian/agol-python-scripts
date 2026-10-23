@@ -1,5 +1,5 @@
 {
- "_about": "Item thumbnails: each rendered at 600 x 400 by web/check.html?thumb=1&<query> (Maps SDK 5.1), saved as <key>.png and sent by apply_styling.py thumbnails --thumbs DIR. The PNGs hold basemap imagery, so they stay out of the repo.",
+ "_about": "Item thumbnails: each rendered at 600 x 400 by web/check.html?thumb=1&<query> (Maps SDK 5.1), saved as <key>.png and sent by apply_styling.py thumbnails --thumbs DIR. The PNGs hold basemap imagery, so they stay out of the repo. Entries with a resource are the web scene's slide pictures (JPEG, <key>.jpg), sent as item resources.",
  "terrain-and-slope": {"item": "177bfc592415451585ba72ab9207b3c6", "query": "item=177bfc592415451585ba72ab9207b3c6&center=-111.792,40.689&scale=18056"},
  "tree-canopy": {"item": "e5efa719691045849108553394448f35", "query": "item=e5efa719691045849108553394448f35&center=-111.8085,40.7035&scale=2257"},
  "buildings": {"item": "504554bd5a9545559db06aa6098e8e49", "query": "item=504554bd5a9545559db06aa6098e8e49&center=-111.8545,40.7005&scale=4514"},
@@ -11,5 +11,9 @@
  "crowns": {"item": "d9388dc83f894edbb63e0510a8c62fa8", "query": "layer=d9388dc83f894edbb63e0510a8c62fa8&basemap=satellite&center=-111.8085,40.7035&scale=2257"},
  "hillshade": {"item": "cab8824e44384d479e1f302cdf34daf9", "query": "layer=cab8824e44384d479e1f302cdf34daf9&center=-111.800,40.688&scale=36112"},
  "buildings3d": {"item": "5082b5bd063a4a03847f2082dc3533d1", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=3"},
- "terrain": {"item": "ce1680a5196e458ebfb60ead5150b946", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=3&hide=buildings3d"}
+ "terrain": {"item": "ce1680a5196e458ebfb60ead5150b946", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=3&hide=buildings3d,osm-labels"},
+ "in-3d-slide_1": {"item": "5b5bdf4a63c9466fad5884039aa7357f", "resource": "slides/slide_1.jpg", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=0"},
+ "in-3d-slide_2": {"item": "5b5bdf4a63c9466fad5884039aa7357f", "resource": "slides/slide_2.jpg", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=1"},
+ "in-3d-slide_3": {"item": "5b5bdf4a63c9466fad5884039aa7357f", "resource": "slides/slide_3.jpg", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=2"},
+ "in-3d-slide_4": {"item": "5b5bdf4a63c9466fad5884039aa7357f", "resource": "slides/slide_4.jpg", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=3"}
 }

@@ -2,8 +2,8 @@
  "item": {
   "title": "Millcreek in 3D",
   "type": "Web Scene",
-  "snippet": "Lidar building blocks coloured by roof height on the 0.5 m lidar terrain. Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
-  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), the LOD1.2 building blocks coloured by median roof height (click one for its heights and flags), and the lidar hillshade draped on the ground. Slides show four parts of the city.</p><p>Treetops are not in the scene: they are vector tiles without heights, which can only lie flat on the ground. 3D trees need the treetops as a hosted point layer with their heights.</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
+  "snippet": "Lidar building blocks shaded by roof height on the 0.5 m lidar terrain. Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), the LOD1.2 building blocks shaded light to darker grey by median roof height, with edges (click one for its heights and flags), and the lidar hillshade draped on the ground. Slides show four parts of the city.</p><p>Place labels are Esri's OpenStreetMap 3D labels (map data © OpenStreetMap contributors).</p><p>Trees are not in the scene: the lidar treetops are vector tiles without heights, which can only lie flat on the ground, and OpenStreetMap maps no trees in Millcreek. 3D trees need the lidar treetops as a hosted point layer with their heights.</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
   "tags": [
    "Millcreek",
    "lidar",
@@ -29,7 +29,7 @@
     40.71476
    ]
   ],
-  "accessInformation": "Millcreek GIS; 2023 Salt Lake Valley QL1 lidar"
+  "accessInformation": "Millcreek GIS; 2023 Salt Lake Valley QL1 lidar; place labels © OpenStreetMap contributors, scene layer by Esri"
  },
  "data": {
   "operationalLayers": [
@@ -69,21 +69,21 @@
             "type": "Fill",
             "material": {
              "color": [
-              242,
-              240,
-              247
+              247,
+              246,
+              242
              ],
              "colorMixMode": "replace"
             },
             "edges": {
              "type": "solid",
              "color": [
-              60,
-              60,
-              60
+              70,
+              70,
+              70
              ],
-             "size": 0.4,
-             "transparency": 60
+             "size": 0.5,
+             "transparency": 35
             }
            }
           ]
@@ -99,8 +99,8 @@
             "type": "Fill",
             "material": {
              "color": [
-              203,
-              201,
+              233,
+              231,
               226
              ],
              "colorMixMode": "replace"
@@ -108,12 +108,12 @@
             "edges": {
              "type": "solid",
              "color": [
-              60,
-              60,
-              60
+              70,
+              70,
+              70
              ],
-             "size": 0.4,
-             "transparency": 60
+             "size": 0.5,
+             "transparency": 35
             }
            }
           ]
@@ -129,21 +129,21 @@
             "type": "Fill",
             "material": {
              "color": [
-              158,
-              154,
-              200
+              216,
+              214,
+              209
              ],
              "colorMixMode": "replace"
             },
             "edges": {
              "type": "solid",
              "color": [
-              60,
-              60,
-              60
+              70,
+              70,
+              70
              ],
-             "size": 0.4,
-             "transparency": 60
+             "size": 0.5,
+             "transparency": 35
             }
            }
           ]
@@ -159,21 +159,21 @@
             "type": "Fill",
             "material": {
              "color": [
-              117,
-              107,
-              177
+              196,
+              194,
+              190
              ],
              "colorMixMode": "replace"
             },
             "edges": {
              "type": "solid",
              "color": [
-              60,
-              60,
-              60
+              70,
+              70,
+              70
              ],
-             "size": 0.4,
-             "transparency": 60
+             "size": 0.5,
+             "transparency": 35
             }
            }
           ]
@@ -189,21 +189,21 @@
             "type": "Fill",
             "material": {
              "color": [
-              84,
-              39,
-              143
+              172,
+              170,
+              167
              ],
              "colorMixMode": "replace"
             },
             "edges": {
              "type": "solid",
              "color": [
-              60,
-              60,
-              60
+              70,
+              70,
+              70
              ],
-             "size": 0.4,
-             "transparency": 60
+             "size": 0.5,
+             "transparency": 35
             }
            }
           ]
@@ -218,21 +218,21 @@
           "type": "Fill",
           "material": {
            "color": [
-            215,
-            215,
-            215
+            232,
+            220,
+            200
            ],
            "colorMixMode": "replace"
           },
           "edges": {
            "type": "solid",
            "color": [
-            60,
-            60,
-            60
+            70,
+            70,
+            70
            ],
-           "size": 0.4,
-           "transparency": 60
+           "size": 0.5,
+           "transparency": 35
           }
          }
         ]
@@ -321,6 +321,15 @@
       }
      ]
     }
+   },
+   {
+    "id": "osm-labels",
+    "title": "Place labels (OpenStreetMap)",
+    "layerType": "ArcGISSceneServiceLayer",
+    "url": "https://basemaps3d.arcgis.com/arcgis/rest/services/OpenStreetMap3D_DarkLabels_v1/SceneServer/layers/0",
+    "visibility": true,
+    "opacity": 1,
+    "showLegend": false
    }
   ],
   "baseMap": {
@@ -331,15 +340,6 @@
      "title": "Light Gray Base",
      "layerType": "VectorTileLayer",
      "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
-     "visibility": true,
-     "opacity": 1
-    },
-    {
-     "id": "light-gray-reference",
-     "title": "Light Gray Reference",
-     "layerType": "VectorTileLayer",
-     "isReference": true,
-     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
      "visibility": true,
      "opacity": 1
     }
@@ -408,6 +408,9 @@
      "title": {
       "text": "Millcreek and the Wasatch"
      },
+     "thumbnail": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_1.jpg"
+     },
      "viewpoint": {
       "camera": {
        "position": {
@@ -431,15 +434,6 @@
         "title": "Light Gray Base",
         "layerType": "VectorTileLayer",
         "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
-        "visibility": true,
-        "opacity": 1
-       },
-       {
-        "id": "light-gray-reference",
-        "title": "Light Gray Reference",
-        "layerType": "VectorTileLayer",
-        "isReference": true,
-        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
         "visibility": true,
         "opacity": 1
        }
@@ -466,6 +460,9 @@
        "id": "buildings3d"
       },
       {
+       "id": "osm-labels"
+      },
+      {
        "id": "world-elevation"
       },
       {
@@ -477,6 +474,9 @@
      "id": "slide_2",
      "title": {
       "text": "Millcreek Common"
+     },
+     "thumbnail": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_2.jpg"
      },
      "viewpoint": {
       "camera": {
@@ -503,15 +503,6 @@
         "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
         "visibility": true,
         "opacity": 1
-       },
-       {
-        "id": "light-gray-reference",
-        "title": "Light Gray Reference",
-        "layerType": "VectorTileLayer",
-        "isReference": true,
-        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
-        "visibility": true,
-        "opacity": 1
        }
       ]
      },
@@ -536,6 +527,9 @@
        "id": "buildings3d"
       },
       {
+       "id": "osm-labels"
+      },
+      {
        "id": "world-elevation"
       },
       {
@@ -547,6 +541,9 @@
      "id": "slide_3",
      "title": {
       "text": "Canyon Rim"
+     },
+     "thumbnail": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_3.jpg"
      },
      "viewpoint": {
       "camera": {
@@ -573,15 +570,6 @@
         "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
         "visibility": true,
         "opacity": 1
-       },
-       {
-        "id": "light-gray-reference",
-        "title": "Light Gray Reference",
-        "layerType": "VectorTileLayer",
-        "isReference": true,
-        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
-        "visibility": true,
-        "opacity": 1
        }
       ]
      },
@@ -606,6 +594,9 @@
        "id": "buildings3d"
       },
       {
+       "id": "osm-labels"
+      },
+      {
        "id": "world-elevation"
       },
       {
@@ -617,6 +608,9 @@
      "id": "slide_4",
      "title": {
       "text": "Olympus Cove foothills"
+     },
+     "thumbnail": {
+      "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_4.jpg"
      },
      "viewpoint": {
       "camera": {
@@ -643,15 +637,6 @@
         "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
         "visibility": true,
         "opacity": 1
-       },
-       {
-        "id": "light-gray-reference",
-        "title": "Light Gray Reference",
-        "layerType": "VectorTileLayer",
-        "isReference": true,
-        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
-        "visibility": true,
-        "opacity": 1
        }
       ]
      },
@@ -674,6 +659,9 @@
       },
       {
        "id": "buildings3d"
+      },
+      {
+       "id": "osm-labels"
       },
       {
        "id": "world-elevation"

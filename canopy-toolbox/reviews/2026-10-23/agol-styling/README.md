@@ -12,7 +12,7 @@ summaries, descriptions, tags) and field descriptions of the eight layers were n
 | Web map "Millcreek terrain and slope" | `177bfc592415451585ba72ab9207b3c6` | slope classes, hillshade blended over them (multiply), contours; Light Gray Canvas |
 | Web map "Millcreek tree canopy" | `e5efa719691045849108553394448f35` | canopy cover zones at city scale, crowns and treetops from 1:18,000 / 1:10,000; hillshade soft-light over Imagery Hybrid |
 | Web map "Millcreek buildings" | `504554bd5a9545559db06aa6098e8e49` | buildings by median roof height over the hillshade (multiply); Light Gray Canvas |
-| Web scene "Millcreek in 3D" | `5b5bdf4a63c9466fad5884039aa7357f` | city terrain in the ground above World Elevation, LOD1.2 buildings by height, hillshade draped; four slides |
+| Web scene "Millcreek in 3D" | `5b5bdf4a63c9466fad5884039aa7357f` | city terrain in the ground above World Elevation, LOD1.2 buildings in greys by height with edges, hillshade draped, OpenStreetMap 3D place labels; four slides with pictures |
 
 Each map has bookmarks (whole city, Millcreek Common, Canyon Rim, Evergreen and East Millcreek, Olympus Cove foothills,
 Scott Avenue), the estimate warning in its summary and description, and the hillshade kept out of the legend.
@@ -23,7 +23,7 @@ Scott Avenue), the estimate warning in its summary and description, and the hill
 |---|---|---|
 | Slope, contours, treetops, crowns | the item's resource `styles/root.json` | see below; the service's own style is untouched (`originals/*_service_style.json`) |
 | Buildings, canopy cover zones | the feature service item's data (drawing and pop-ups), and each layer's service `drawingInfo` (updateDefinition with that key only) | class renderers and pop-ups |
-| 3D buildings | the scene service item's data | renderer by height, pop-up |
+| 3D buildings | the scene service item's data | greys by height with edges, pop-up |
 | Hillshade, terrain | none | blend modes and opacity live in the maps |
 
 The ArcGIS Maps SDK (5.1) loads a vector tile item's style from `{item}/resources/styles/root.json` when the item has
@@ -46,6 +46,32 @@ layer definitions are in `originals/`; the feature and scene items had no item d
   finest non-overlapping tier only, in four classes (under 10%, 10-20, 20-30, 30% and over); the city and the public /
   government total draw nothing. Pop-up: cover, bounds, acres, the October 19 comparison, observed share, the warning.
 
+- **3D buildings** (revised October 23 evening): the same five height classes in near-white to mid grey (taller
+  darker), pale sand for no lidar height, dark solid edges at 35% transparency, as Esri's 3D basemaps draw buildings;
+  the scene's sun and shadows give the form. The 2D buildings map keeps its purple classes.
+
+## Legend keys for the vector tile layers (October 23 evening)
+
+Map Viewer and the apps showed the four vector tile layers' styles but "No legend": the Legend cannot read a vector
+tile style. Each vector tile layer in the two maps now sits in a group layer with a **key layer**, an empty feature
+collection stored in the map (no item, nothing to share) whose class renderer repeats the item style: slope's six
+classes, the 10 m index and 2 m contour lines, the five treetop heights (dots sized as at level 17) and the five crown
+classes. The key carries its layer's scale range, so it is listed only while the tiles draw (treetops from 1:10,000,
+crowns from 1:18,056). The group gives one entry and one switch in the layer list; the tile layer itself has
+`showLegend` off. Checked in Map Viewer itself as an anonymous viewer: the Legend lists slope and contours at city
+scale and treetops and crowns at level 17 over Canyon Rim. A key for a map built elsewhere would need a separate
+(shared) item.
+
+## The web scene (October 23 evening)
+
+- Esri's OpenStreetMap 3D place labels (`OpenStreetMap3D_DarkLabels_v1`, public) replace the basemap's draped
+  reference labels. They include businesses, so commercial streets are busy.
+- Esri's OpenStreetMap trees (`OpenStreetMap3D_Trees_Thematic_v1`) were tried and left out: OpenStreetMap maps no trees
+  in Millcreek, so the layer drew none at any slide or at 1:1,500 over Canyon Rim Park.
+- Each slide has a picture: a 600 x 400 JPEG of the slide from `check.html?thumb=1&slide=N`, stored as the scene's item
+  resource `slides/slide_N.jpg`, which the slide's thumbnail URL names (`thumbnails.json` entries with a `resource`).
+  Scene Viewer had shown broken images; it now loads all four for an anonymous viewer.
+
 ## Thumbnails
 
 All twelve items (the eight layers, the three maps, the scene) have a 600 x 400 thumbnail rendered from their own
@@ -55,7 +81,9 @@ the terrain from the scene's Olympus Cove slide (terrain with the buildings hidd
 shows both its layers. The PNGs hold basemap imagery, so they are not in the repo; render them again from
 `thumbnails.json` to resend. The seven layer thumbnails generated at publishing (JPEGs) were saved before being
 replaced, outside the repo. ArcGIS Online stores the PNG as sent (`/info/<thumbnail>?w=800` returns it byte for
-byte) and serves 200-pixel copies by default.
+byte) and serves 200-pixel copies by default. Once, on October 23, six thumbnails read back a few bytes different from
+the local PNGs and were resent; the copies saved to `replaced/` had identical pixels, so nothing visible changed. The
+scene, 3D buildings and terrain thumbnails were rendered again after the scene restyle.
 
 ## Checks (October 23)
 
@@ -75,22 +103,23 @@ byte) and serves 200-pixel copies by default.
 ## Limits found
 
 - **The legend cannot list vector tile layers.** The SDK's Legend widget, which Map Viewer and the apps use, does not
-  support VectorTileLayer (Esri's Legend reference lists it as unsupported; seen here as "No legend"). The legends show
-  the buildings, zones and 3D buildings; the class keys for slope, contours, crowns and treetops are in the map
-  descriptions with coloured swatches. A real legend entry needs a feature layer (or a legend image in the app).
+  support VectorTileLayer (Esri's Legend reference lists it as unsupported; seen here as "No legend"). Worked around in
+  the two maps with key layers (above); the item styles are not involved, so the vector tile items added to a new map
+  still show "No legend". The map descriptions keep their coloured swatch keys.
 - **Vector tile layers stop drawing past 1:2,257** in the SDK: their services stop at level 17 and the SDK suspends the
   layer beyond its last level rather than overzooming. Pro overzooms. Republishing with deeper levels, or capping the
   apps' zoom at 1:2,257, would avoid the gap.
 - **3D trees are not possible from the treetops**: they are vector tiles, which drape flat. 3D tree symbols need the
   treetops as a hosted point layer with heights (feature storage cost; see `hosting/PLAN.md`).
-- The web maps were checked with the SDK, not in Map Viewer itself (that needs a browser sign-in).
+- The web maps were first checked with the SDK only; since the items went public, Map Viewer and Scene Viewer have been
+  checked anonymously in Playwright's Chromium (legends, layer list, slide pictures).
 
 ## Rerun
 
     python reviews/2026-10-23/agol-styling/build_definitions.py          standard library; writes styles/, layers/, maps/
     python reviews/2026-10-23/agol-styling/apply_styling.py [STEP ...]   ArcGIS Pro Python; dry run (styles, layers, maps)
     python reviews/2026-10-23/agol-styling/apply_styling.py ... --go     send what differs, read it back
-    python reviews/2026-10-23/agol-styling/apply_styling.py thumbnails --thumbs DIR [--go]   DIR holds <key>.png
+    python reviews/2026-10-23/agol-styling/apply_styling.py thumbnails --thumbs DIR [--go]   DIR holds <key>.png and slide <key>.jpg
     python reviews/2026-10-23/agol-styling/web/serve_check.py            ArcGIS Pro Python; check page on 127.0.0.1:8797
 
 Edit `build_definitions.py`, not the JSON. `created.json` records the new map and scene IDs so reruns update them in place.

@@ -16,7 +16,8 @@ STEP is any of styles, layers, maps (default all three), or thumbnails. ArcGIS P
   created.json, else by title in your content; created only if missing, otherwise updated in place.
 - thumbnails: each item in thumbnails.json gets DIR/<key>.png as its thumbnail (rendered by web/check.html?thumb=1 at
   the view recorded there; the PNGs carry basemap imagery, so they are not kept in the repo). Only the thumbnail is sent;
-  a thumbnail it replaces is saved to DIR/replaced/ first.
+  a thumbnail it replaces is saved to DIR/replaced/ first. Entries with a "resource" are the web scene's slide
+  pictures: DIR/<key>.jpg goes to that item resource, which the slide's thumbnail URL names.
 Nothing is ever shared or deleted.
 """
 import argparse
@@ -184,10 +185,43 @@ def maps(p):
         CREATED.write_text(json.dumps(created, indent=1) + "\n")
 
 
+def slide_resource(p, key, item_id, resource, image):
+    """A web scene slide's picture, kept as an item resource (the slide's thumbnail URL in maps/in-3d.json)."""
+    prefix, name = resource.rsplit("/", 1)
+    url = f"{PORTAL}/content/items/{item_id}/resources/{resource}"
+
+    def current():
+        r = p.session.get(url, params={"_": str(time.time())})
+        return r.content if r.status_code == 200 else None
+
+    before = current()
+    if before == image:
+        print(f"  {key} ({item_id} resource {resource}): unchanged")
+        return
+    print(f"  {key} ({item_id} resource {resource}): {'replaced' if before else 'new'}, {len(image):,} bytes")
+    if p.go:
+        action = "updateResources" if before is not None else "addResources"
+        r = p.session.post(f"{PORTAL}/content/users/{p.item(item_id)['owner']}/items/{item_id}/{action}",
+                           data={"f": "json", "resourcesPrefix": prefix, "fileName": name},
+                           files={"file": (name, image, "image/jpeg")})
+        r.raise_for_status()
+        if "error" in r.json() or r.json().get("success") is False:
+            raise RuntimeError(f"{key}: {r.json()}")
+        for _ in range(6):   # a replaced resource can be served stale for a few seconds
+            back = current()
+            if back == image:
+                break
+            time.sleep(5)
+        print(f"    {action}; read back {'equal' if back == image else 'DIFFERENT'}")
+
+
 def thumbnails(p, folder):
     print("thumbnails")
     for key, entry in load(THUMBNAILS).items():
         if key.startswith("_"):
+            continue
+        if "resource" in entry:
+            slide_resource(p, key, entry["item"], entry["resource"], (Path(folder)/f"{key}.jpg").read_bytes())
             continue
         item_id, png = entry["item"], (Path(folder)/f"{key}.png").read_bytes()
         info = p.item(item_id)

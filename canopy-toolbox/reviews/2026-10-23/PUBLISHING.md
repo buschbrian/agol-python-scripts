@@ -167,8 +167,9 @@ its default symbology and pop-ups (vector tile styles as item resources, feature
 data) and a thumbnail rendered from its own symbology. Four new private items in the same folder: web maps "Millcreek
 terrain and slope" `177bfc592415451585ba72ab9207b3c6`, "Millcreek tree canopy" `e5efa719691045849108553394448f35` and
 "Millcreek buildings" `504554bd5a9545559db06aa6098e8e49`, and web scene "Millcreek in 3D"
-`5b5bdf4a63c9466fad5884039aa7357f`. Limits: the map legend cannot list vector tile layers (class keys are in the map
-descriptions instead); the vector tile layers stop drawing past 1:2,257 in the web viewers; 3D trees need a hosted
+`5b5bdf4a63c9466fad5884039aa7357f`. Limits: the map legend cannot list vector tile layers (since the evening of October
+23 each map carries key layers that list their classes; [agol-styling](agol-styling/README.md#legend-keys-for-the-vector-tile-layers-october-23-evening));
+the vector tile layers stop drawing past 1:2,257 in the web viewers; 3D trees need a hosted
 treetop point layer.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each

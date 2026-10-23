@@ -3,7 +3,7 @@
   "title": "Millcreek tree canopy",
   "type": "Web Map",
   "snippet": "Canopy cover by ownership zone, and lidar tree crowns and treetops by height, over imagery. Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
-  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>At city scale: canopy cover (vegetation at least 2 m tall, as a share of the area the lidar observed) for each ownership zone; click a zone for its figure, bounds and the October 19 comparison. Zoom in past 1:20,000 for the tree crowns and, from 1:10,000, the treetops, coloured and sized by treetop height. The lidar hillshade is blended over the imagery (soft light).</p><p>Treetops and crowns are unvalidated automatic detections; about 6% of treetops carry an unreviewed SUSPECT flag.</p><p><b>Treetop height (crowns and treetops):</b> <span style='color:#D9F0A3'>■</span> 2 to 5 m &nbsp; <span style='color:#ADDD8E'>■</span> 5 to 10 m &nbsp; <span style='color:#78C679'>■</span> 10 to 15 m &nbsp; <span style='color:#31A354'>■</span> 15 to 20 m &nbsp; <span style='color:#006837'>■</span> 20 m and over; larger treetop dots are taller trees.</p><p>Crowns and treetops are vector tiles: they draw but have no pop-ups, and the map legend cannot list them (the key above stands in).</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
+  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>At city scale: canopy cover (vegetation at least 2 m tall, as a share of the area the lidar observed) for each ownership zone; click a zone for its figure, bounds and the October 19 comparison. Zoom in past 1:20,000 for the tree crowns and, from 1:10,000, the treetops, coloured and sized by treetop height. The lidar hillshade is blended over the imagery (soft light).</p><p>Treetops and crowns are unvalidated automatic detections; about 6% of treetops carry an unreviewed SUSPECT flag.</p><p><b>Treetop height (crowns and treetops):</b> <span style='color:#D9F0A3'>■</span> 2 to 5 m &nbsp; <span style='color:#ADDD8E'>■</span> 5 to 10 m &nbsp; <span style='color:#78C679'>■</span> 10 to 15 m &nbsp; <span style='color:#31A354'>■</span> 15 to 20 m &nbsp; <span style='color:#006837'>■</span> 20 m and over; larger treetop dots are taller trees.</p><p>Crowns and treetops are vector tiles: they draw but have no pop-ups. The legend cannot read a vector tile style, so each is grouped with a small key layer that carries its classes into the legend.</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
   "tags": [
    "Millcreek",
    "lidar",
@@ -271,26 +271,417 @@
     }
    },
    {
-    "id": "crowns",
+    "id": "crowns-group",
     "title": "Tree crowns by treetop height",
-    "layerType": "VectorTileLayer",
-    "itemId": "d9388dc83f894edbb63e0510a8c62fa8",
-    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/d9388dc83f894edbb63e0510a8c62fa8/resources/styles/root.json",
+    "layerType": "GroupLayer",
     "visibility": true,
     "opacity": 1,
-    "minScale": 18056,
-    "maxScale": 0
+    "listMode": "hide-children",
+    "layers": [
+     {
+      "id": "crowns",
+      "title": "Tree crowns by treetop height",
+      "layerType": "VectorTileLayer",
+      "itemId": "d9388dc83f894edbb63e0510a8c62fa8",
+      "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/d9388dc83f894edbb63e0510a8c62fa8/resources/styles/root.json",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 18056,
+      "maxScale": 0,
+      "showLegend": false
+     },
+     {
+      "id": "crowns-key",
+      "title": "Crowns by treetop height",
+      "layerType": "ArcGISFeatureLayer",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 18056,
+      "maxScale": 0,
+      "featureCollection": {
+       "layers": [
+        {
+         "layerDefinition": {
+          "name": "Crowns by treetop height",
+          "type": "Feature Layer",
+          "geometryType": "esriGeometryPolygon",
+          "objectIdField": "OBJECTID",
+          "fields": [
+           {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID"
+           },
+           {
+            "name": "CLASS",
+            "type": "esriFieldTypeString",
+            "alias": "Class",
+            "length": 40
+           }
+          ],
+          "drawingInfo": {
+           "renderer": {
+            "type": "uniqueValue",
+            "field1": "CLASS",
+            "uniqueValueInfos": [
+             {
+              "value": "2 to 5 m",
+              "label": "2 to 5 m",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                217,
+                240,
+                163,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "5 to 10 m",
+              "label": "5 to 10 m",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                173,
+                221,
+                142,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "10 to 15 m",
+              "label": "10 to 15 m",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                120,
+                198,
+                121,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "15 to 20 m",
+              "label": "15 to 20 m",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                49,
+                163,
+                84,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "20 m and over",
+              "label": "20 m and over",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                0,
+                104,
+                55,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             }
+            ]
+           }
+          },
+          "extent": {
+           "xmin": -12459067.21,
+           "ymin": 4962105.56,
+           "xmax": -12442851.81,
+           "ymax": 4970359.57,
+           "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+           }
+          }
+         },
+         "featureSet": {
+          "geometryType": "esriGeometryPolygon",
+          "features": []
+         }
+        }
+       ],
+       "showLegend": true
+      }
+     }
+    ]
    },
    {
-    "id": "treetops",
+    "id": "treetops-group",
     "title": "Treetops by height",
-    "layerType": "VectorTileLayer",
-    "itemId": "924b993cb23046cb87641253bcf786de",
-    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/924b993cb23046cb87641253bcf786de/resources/styles/root.json",
+    "layerType": "GroupLayer",
     "visibility": true,
     "opacity": 1,
-    "minScale": 10000,
-    "maxScale": 0
+    "listMode": "hide-children",
+    "layers": [
+     {
+      "id": "treetops",
+      "title": "Treetops by height",
+      "layerType": "VectorTileLayer",
+      "itemId": "924b993cb23046cb87641253bcf786de",
+      "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/924b993cb23046cb87641253bcf786de/resources/styles/root.json",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 10000,
+      "maxScale": 0,
+      "showLegend": false
+     },
+     {
+      "id": "treetops-key",
+      "title": "Treetop height",
+      "layerType": "ArcGISFeatureLayer",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 10000,
+      "maxScale": 0,
+      "featureCollection": {
+       "layers": [
+        {
+         "layerDefinition": {
+          "name": "Treetop height",
+          "type": "Feature Layer",
+          "geometryType": "esriGeometryPoint",
+          "objectIdField": "OBJECTID",
+          "fields": [
+           {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID"
+           },
+           {
+            "name": "CLASS",
+            "type": "esriFieldTypeString",
+            "alias": "Class",
+            "length": 40
+           }
+          ],
+          "drawingInfo": {
+           "renderer": {
+            "type": "uniqueValue",
+            "field1": "CLASS",
+            "uniqueValueInfos": [
+             {
+              "value": "2 to 5 m",
+              "label": "2 to 5 m",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                217,
+                240,
+                163,
+                255
+               ],
+               "size": 3.0,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "5 to 10 m",
+              "label": "5 to 10 m",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                173,
+                221,
+                142,
+                255
+               ],
+               "size": 4.2,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "10 to 15 m",
+              "label": "10 to 15 m",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                120,
+                198,
+                121,
+                255
+               ],
+               "size": 5.4,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "15 to 20 m",
+              "label": "15 to 20 m",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                49,
+                163,
+                84,
+                255
+               ],
+               "size": 6.6,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "20 m and over",
+              "label": "20 m and over",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                0,
+                104,
+                55,
+                255
+               ],
+               "size": 7.8,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             }
+            ]
+           }
+          },
+          "extent": {
+           "xmin": -12459067.21,
+           "ymin": 4962105.56,
+           "xmax": -12442851.81,
+           "ymax": 4970359.57,
+           "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+           }
+          }
+         },
+         "featureSet": {
+          "geometryType": "esriGeometryPoint",
+          "features": []
+         }
+        }
+       ],
+       "showLegend": true
+      }
+     }
+    ]
    }
   ],
   "baseMap": {
