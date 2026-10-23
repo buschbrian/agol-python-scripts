@@ -44,9 +44,16 @@ set PY="C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe"
 Not included: the LOD2.0 roofs (experimental), the COGs (they go to Azure Blob storage, not ArcGIS Online:
 [PUBLISHING.md](../../../2026-10-23/PUBLISHING.md)), and the superseded October 22 tile packages.
 
-## Untested until the first real run
-The publish calls come from the API's own handling of each package type (ArcGIS API for Python 2.4.3), read from its
-source, not from a run against the portal. Go one item at a time and look at each before the next:
+## How the first run went (October 23, 2026)
+All eight published as the expected types, each checked online against its package (details and item IDs in
+[PUBLISHING.md](../../../2026-10-23/PUBLISHING.md), section 3). Two things to expect on a rerun:
+- A `.tpkx` publish returns before ArcGIS Online has imported the tiles; for a minute or two its tiles return 404 and the
+  service's admin status reads `cacheExecutionStatus: PROCESSING`. Check again once it reads `NONE`.
+- The hillshade (map service) publish made four HTTPS requests without certificate verification from inside the ArcGIS
+  API; no other item did. `upload.py` now logs the call stack of any such request to `hosting-uploads\unverified-https.log`.
+- To fetch tiles of a private service from a script, use the signed-in `gis.session`; `GIS("pro")` exposes no token.
+
+The publish calls follow the API's own handling of each package type (ArcGIS API for Python 2.4.3):
 - `features` (a zipped file geodatabase) and the `.vtpk` and `.slpk` items use the API's default publish for their type.
 - The `.tpkx` items are published with `build_initial_cache=True`, which unpacks the package's own tiles (the cache already
   exists, so Esri's page expects no tile-generation credits). The script prints the type it got and warns if it differs

@@ -128,6 +128,19 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   packaged (heights are NAVD88 metres; scene-layers README); z from 1,294.1 to 1,764.2 m; 43 fields including FP_ID and the
   roof-height statistics; the service's own FP_ID statistics give 21,561 buildings summing to 237,493,394, IDs 1 to 22,042,
   exactly the source's. Hosted size 9.3 MB. No unverified HTTPS requests.
+- `terrain`, October 23: Image Service `ce1680a5196e458ebfb60ead5150b946`, type keyword **Elevation 3D Layer** (package
+  item `7a520038be1b4e55accdfe6bed3a0a71`). Checked online: F32, one band, LERC, 257-pixel elevation tiles, TilesOnly;
+  the stored tiles per level equal the package's (108, 398, 1,312 and 4,864 at levels 15-18; 6,754 in all; "PARTIAL"
+  in the admin status only means the rectangle would hold more than the area of interest); 17 tiles with data at levels
+  8, 12, 15, 17 and 18 are byte for byte the package's, elevations 1,290.8 to 2,146.6 m. Hosted size 228.1 MB (about
+  0.27 credits a month once the package item is deleted). Tiles returned 404 for a minute or two after `upload.py`
+  finished, while ArcGIS Online imported the cache (`cacheExecutionStatus: PROCESSING`); they served once it read `NONE`.
+  No unverified HTTPS requests, so the four during the hillshade publish come from the map-service (tile layer) path
+  only.
+
+**All eight items are published** (private). Next, in ArcGIS Online: look at each in Map Viewer or Scene Viewer, delete
+the eight package items, then share by audience (decision 3). The 3D check is a web scene with `terrain` in the Ground
+above World Elevation and `buildings3d` on it.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
