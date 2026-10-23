@@ -30,7 +30,7 @@ like the LiDAR products they're built on.
   holes (36-67 m²), and edges run in straight segments of 24 to 67 m (5th to 75th percentile; median 47 m). A street of
   trees, a wooded yard or a 0.5 ha park can't appear. 75% of the city is a single `urban` class.
 
-## Canopy under each class (cells drawn as each class, observed cells only)
+## Canopy under each class (cells drawn as each class)
 | Overture class | Polygons | City ha | Share of city | **LiDAR canopy ≥ 2 m** | 0.5-2 m vegetation | Share of the city's canopy |
 |---|---:|---:|---:|---:|---:|---:|
 | forest | 16 | 483.3 | 14.45% | **45.9%** | 9.6% | 25.9% |
@@ -41,7 +41,7 @@ like the LiDAR products they're built on.
 | urban | 6 | 2,524.2 | 75.45% | 22.9% | 3.5% | **67.4%** |
 | **City** | | 3,345.3 | | **25.59%** | | |
 
-Every city cell is under some Overture class. Observed coverage is 99.2-99.8% in every class. The 0.5-2 m column is the
+City ha and share of city include unobserved cells; the canopy and vegetation columns are shares of observed cells only. Every city cell is under some Overture class. Observed coverage is 99.2-99.8% in every class. The 0.5-2 m column is the
 share of observed cells whose CHM falls in that band (bare ground, pavement and roofs are 0 in the CHM).
 
 ## Overture's tree area against the LiDAR's 25.59%
