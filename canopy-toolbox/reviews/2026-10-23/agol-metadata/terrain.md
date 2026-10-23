@@ -5,6 +5,9 @@ title: Millcreek bare-earth terrain 0.5 m (2023 lidar), planning estimate
 summary: Bare-earth ground elevation for Millcreek, Utah, at 0.5 m from the 2023 lidar, in metres NAVD88, as an elevation layer for 3D scenes. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, elevation, terrain, bare earth, DEM, ground, elevation layer, 3D
 credits: City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).
+iso_topics: elevation
+resolution_m: 0.5
+lineage: Bare-earth terrain interpolated at 0.5 m from ground returns of the 2023 Salt Lake Valley QL1 lidar, cached as LERC elevation tiles (maximum error 0.01 m), levels 0 to 18, on the ArcGIS Online elevation scheme (WGS_1984_(ITRF08)_To_NAD_1983_2011); NAVD88 (Geoid18) metres.
 ---
 
 # Description

@@ -1,0 +1,646 @@
+<?xml version='1.0' encoding='utf-8'?>
+<metadata xml:lang="en">
+    <Esri>
+        <ArcGISFormat>1.0</ArcGISFormat>
+        <ArcGISProfile>DCPLUS</ArcGISProfile>
+        <CreaDate>20261023</CreaDate>
+        <CreaTime>17233900</CreaTime>
+        <ModDate>20261023</ModDate>
+        <ModTime>17233900</ModTime>
+        <DataProperties>
+            <itemProps>
+                <portalDetails>
+                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=d5effaee6c66497eaeb64e4c2e0f496e</itemDetailsURL>
+                    <itemIdentifier>d5effaee6c66497eaeb64e4c2e0f496e</itemIdentifier>
+                    <itemType>Feature Service</itemType>
+                    <resourceURL>https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer</resourceURL>
+                <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/d5effaee6c66497eaeb64e4c2e0f496e/info/thumbnail/ago_downloaded.png</thumbnailURL></portalDetails>
+            </itemProps>
+        </DataProperties>
+    </Esri>
+    <dataIdInfo>
+        <idCitation>
+            <resTitle>Millcreek buildings and canopy cover zones (2023 lidar), planning estimate</resTitle>
+        <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+        <searchKeys>
+            
+            
+            
+            
+            
+            
+            
+            
+        <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>buildings</keyword><keyword>building footprints</keyword><keyword>building height</keyword><keyword>roof height</keyword><keyword>tree canopy</keyword><keyword>canopy cover</keyword><keyword>urban forest</keyword></searchKeys>
+        <idPurp>Building footprints with lidar roof heights, and tree canopy cover by ownership zone, for Millcreek, Utah, from 2023 lidar. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
+        <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
+surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
+property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
+&lt;h2&gt;What it shows&lt;/h2&gt;
+&lt;p&gt;Two layers for Millcreek, Utah:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Buildings&lt;/strong&gt; (22,042 polygons): Salt Lake County's building footprints inside or crossing the city limits, each with
+  roof-height statistics measured from the 2023 lidar. 21,562 footprints have a height; 480 have no lidar roof inside
+  them and their height fields are empty (possible reasons include buildings demolished since the County drew them,
+  very small structures and roofs hidden under trees).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Canopy cover zones&lt;/strong&gt; (13 polygons): the share of the ground covered by tree canopy at least 2 m tall, for the whole
+  city and for groups of land by ownership (private, public and its owner groups, uncertain owner, and land outside every
+  parcel). Citywide canopy cover is &lt;strong&gt;25.59%&lt;/strong&gt; of the observed area (2,103 acres).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Typical uses: a citywide look at building heights and massing, finding tall or unusual buildings for review, canopy goals
+and comparisons between ownership groups. Heights are &lt;strong&gt;roof minus ground&lt;/strong&gt;, not building heights as a building code
+defines them.&lt;/p&gt;
+&lt;h2&gt;How it was made&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Roofs.&lt;/strong&gt; Every lidar point was classified three independent ways: this project's own first classification, the
+  IGN FRACTAL model, and Esri's pretrained building model. A point counts as roof when at least two of the three call it
+  building. The roof surface is the highest first or single return in each 0.5 m cell from those points.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ground.&lt;/strong&gt; The bare-earth terrain is interpolated at 0.5 m from the ground-classified returns (under a building it is
+  interpolated from the ground around it).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Heights.&lt;/strong&gt; For every 0.5 m cell whose centre lies inside a footprint (and inside the city), roof elevation minus
+  terrain elevation. A footprint's median (HEIGHT_P50_M), 95th percentile and maximum are taken over the cells that have
+  both a roof and terrain value. Footprint shapes and County attributes are unchanged.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Canopy.&lt;/strong&gt; A canopy height model at 0.5 m: vegetation returns minus terrain, with roofs masked out. Canopy is any
+  observed cell at least 2 m above the ground. Cover for a zone is canopy cells as a share of the zone's observed cells,
+  counted by cell centres.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zones.&lt;/strong&gt; From the City's parcel layer: parcels grouped by owner with fixed rules (named public agencies, schools,
+  housing authorities and districts are public; everyone else, including utilities, churches and nonprofits, is private;
+  missing or mixed owners are uncertain), dissolved by group and clipped to the city. "No parcel" is the city outside every
+  parcel, mostly streets and other rights-of-way. &lt;strong&gt;Zones overlap&lt;/strong&gt;: the whole-city zone contains all the others and the
+  public owner groups sit inside "Public / government parcels", so do not add areas across rows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Accuracy and checks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Roof classification&lt;/strong&gt;, against 1,217 hand-labelled roof and non-roof parts on one 1 km tile (a deliberately hard
+  sample, not a citywide accuracy): 92.8% of roofs found; 2.8% of non-roof parts called roof.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vegetation classification&lt;/strong&gt;, same tile: 95.9% of tree parts called vegetation; 10.7% of non-vegetation parts called
+  vegetation; shrubs 76.5%.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Roof support.&lt;/strong&gt; 2,380 footprints have a lidar roof on less than 80% of their area (LOW_ROOF_SUPPORT). Their heights
+  are less reliable: lower roofs, porches and carports are often the part missed. Of the footprints with at least 95%
+  support, the 3D blocks built from these heights are within 1 m of the median roof for all but 13 of 14,229.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Canopy coverage.&lt;/strong&gt; About 99.4% of every zone is observed by the lidar; the low and high bounds in the layer show how far
+  the unobserved cells could move each figure (about half a point at most).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Copies.&lt;/strong&gt; Every value and every footprint shape was checked against the source library before upload (0 rows
+  differ), and the projection to Web Mercator was checked vertex by vertex (all within 0.07 mm of Esri's own projection
+  with the ITRF08 transformation).&lt;/li&gt;
+&lt;li&gt;None of these figures is a field validation. No building height has been compared with a survey or a plan set.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Limits&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Heights are roof-minus-terrain estimates&lt;/strong&gt;, not code-defined building heights (which are measured to a defined point
+  of the roof from a defined grade). Chimneys, rooftop equipment, parapets and branches over a roof raise the maximum;
+  the median is the safest single figure.&lt;/li&gt;
+&lt;li&gt;Footprints are the County's. A footprint can hold several buildings, a building can have several footprints, and
+  buildings built or demolished since the County drew them show up as missing or empty roofs. 22,042 is a count of
+  footprint records, not of buildings.&lt;/li&gt;
+&lt;li&gt;Many County fields are empty in this snapshot (BLDGHEIGHT, SOURCE, most ADDRESS and BuiltYear values). They are carried
+  unchanged so the layer joins back to the County's.&lt;/li&gt;
+&lt;li&gt;Canopy at 2 m includes tall shrubs and excludes lower plants. Leaf-off trees in early November may be under-counted
+  where few returns came back from bare branches.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Do not use &lt;code&gt;Shape__Area&lt;/code&gt; or &lt;code&gt;Shape__Length&lt;/code&gt; for measurement.&lt;/strong&gt; ArcGIS Online computes them in Web Mercator, which
+  inflates areas here by about 1.74 times and lengths by about 1.32 times. Use FOOTPRINT_M2 and ZONE_ACRES, which were
+  computed in UTM before upload.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Coordinates and heights.&lt;/strong&gt; Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator
+for ArcGIS Online with the transformation &lt;code&gt;WGS_1984_(ITRF08)_To_NAD_1983_2011&lt;/code&gt;. Every layer in the Millcreek LiDAR 2023
+set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres;
+without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in &lt;strong&gt;metres&lt;/strong&gt;; heights are metres above the
+lidar bare-earth terrain.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lidar source.&lt;/strong&gt; The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
+flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
+non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
+reviewed for these products. The points were reclassified for these products (see "How it was made"); the products are
+gridded at 0.5 m.&lt;/p&gt;
+&lt;h2&gt;Data dictionary: buildings (layer 0)&lt;/h2&gt;
+&lt;p&gt;Field descriptions below are also stored on the layer's fields (Data tab, and field information in Map Viewer).&lt;/p&gt;
+&lt;table style='border-collapse:collapse;font-size:90%'&gt;
+
+&lt;tr&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Field&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Alias&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Type&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Units&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;OBJECTID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OBJECTID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Row number assigned by ArcGIS Online. Not stable if the layer is republished; do not use it as a key. Use SOURCE_OID to join to the County footprints or to the 3D buildings layer.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;SOURCE_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County building ID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (40)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Salt Lake County's OBJECTID for this footprint, as text (the same number as SOURCE_OID). Unique and never empty. From the County's public Building Footprints service, downloaded October 19, 2026.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;SOURCE_OID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SOURCE_OID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Salt Lake County's OBJECTID for this footprint, as a number (719,802 to 1,077,673). Unique and never empty. The join key to the County footprints and to the Millcreek 3D buildings scene layer, which carries the same field.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ADDRESS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Address&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (75)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County address attribute, carried unchanged. Empty for 21,960 of 22,042 footprints in this snapshot; not a complete address list.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CITY&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;CITY&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (35)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County city attribute, carried unchanged: MILLCREEK (21,945), UNINCORPORATED (73), SALT LAKE CITY (19), MURRAY (4), empty (1). Footprints were selected by their position inside the Millcreek boundary, not by this field.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;COUNTY&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;COUNTY&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (20)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County attribute, carried unchanged: SALT LAKE COUNTY (22,038), SALT LAKE (3), empty (1).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;PARCEL_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcel ID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (25)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County parcel number recorded on the footprint, carried unchanged. Empty for 103 footprints. Not checked against the current parcel layer.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;SOURCE&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SOURCE&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (30)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County attribute, carried unchanged. Empty for every footprint in this snapshot.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BuildType&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Building type&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (50)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County building-type attribute, carried unchanged; free text, not documented by the County. Empty for 21,879. Values seen: Appartments [sic] 56, Residential 42, Commercial 33, Government 5, numeric codes (111, 112, 114, 142, 566, 954, 115 10-19) and "?".&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Carto&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Carto&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SmallInteger&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County attribute, carried unchanged; its meaning is not documented by the County. Empty for 21,906; values 1 (98), 6 (33) and 2 (5).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;JURISDICTION&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;JURISDICTION&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (50)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County jurisdiction attribute, carried unchanged: Millcreek (20,266), empty (1,677), Unincorporated SLCo (73), Salt Lake (20), MILLCREEK CITY (5), MURRAY (1).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BLDGHEIGHT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County height field&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;The County's own building-height field, carried unchanged. Empty for every footprint in this snapshot and not used in any calculation. For a height, use HEIGHT_P50_M or HEIGHT_P50_FT.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;BuiltYear&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Year built&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;SmallInteger&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;year&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;County year-built attribute, carried unchanged. Present for only 21 footprints (1956 to 2021); empty otherwise.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;FOOTPRINT_M2&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Footprint area (m2)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;square metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;True ground area of the whole footprint polygon, computed in NAD83(2011) / UTM 12N before upload (0.10 to 19,324.6 m2). Use this for area, not Shape__Area. Multiply by 10.7639 for square feet.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;AOI_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;AOI_PCT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Share of the footprint's area inside the Millcreek city limits, 0 to 100. Under 100 for the 27 footprints that cross the boundary (PARTIAL_AOI = 1); their statistics use only the part inside.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ROOF_COV_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Roof support (% of footprint cells)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Roof support: ROOF_CELLS as a percentage of GRID_CELLS, 0 to 100. The share of the footprint's 0.5 m cells that have a lidar roof (2 of 3 classifiers agree) and terrain. Under 80 sets LOW_ROOF_SUPPORT. A review indicator, not an accuracy. Empty for the 3 footprints with no cell centre.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ROOF_Z50_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median roof elevation (m, NAVD88)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres, NAVD88 (Geoid18)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median elevation of the lidar roof cells in the footprint, in metres above the NAVD88 datum (Geoid18), 1,297.6 to 1,764.2. Empty for the 480 footprints with no roof cell.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;GROUND_Z50_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median ground elevation (m, NAVD88)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres, NAVD88 (Geoid18)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median bare-earth terrain elevation in the same cells as the roof statistics, in metres NAVD88 (Geoid18), 1,294.4 to 1,757.9. Under a building the terrain is interpolated from the ground around it. Empty for the 480 footprints with no roof cell.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_P50_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median roof height (m)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Main height estimate: the median of roof elevation minus terrain over the footprint's cells with both values, in metres (0.80 to 37.06). Roof minus ground, not a code-defined building height. Empty for the 480 footprints with no roof cell. Feet: HEIGHT_P50_FT.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_P95_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;95th percentile roof height (m)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;95th percentile of roof minus terrain over the same cells, in metres (0.80 to 42.22): close to the highest roof parts but not set by one stray cell. Empty for the 480 footprints with no roof cell. Feet: HEIGHT_P95_FT.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_MAX_M&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Maximum roof height (m)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Highest single cell of roof minus terrain, in metres (0.80 to 43.32). Can be a chimney, antenna, rooftop unit, overhanging branch or noise; use with care. Empty for the 480 footprints with no roof cell.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;GRID_CELLS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;GRID_CELLS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;cells of 0.25 m2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Number of 0.5 m grid cells (0.25 m2 each) whose centres fall inside the part of the footprint within the city (0 to 77,312). 0 means a sliver with no cell centre (NO_CELL_CENTERS).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ROOF_CELLS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ROOF_CELLS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;cells of 0.25 m2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Number of those cells with both a lidar roof value and a terrain value; the cells the height statistics use (0 to 68,926). 0 means no roof support (NO_ROOF_SUPPORT).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;NEG_H_CELLS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Cells with roof below terrain&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;cells of 0.25 m2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Number of cells whose roof is below the terrain (negative height), 0 to 9. They are kept in the statistics; any sets NEGATIVE_HEIGHT (35 footprints).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;PARTIAL_AOI&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PARTIAL_AOI&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Integer&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;1 if the footprint extends outside the Millcreek city limits (27 footprints), otherwise 0. Statistics use only the part inside the city.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_STATUS&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Height flags&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (160)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Review flags, separated by semicolons. Always UNVALIDATED, plus any of: LOW_ROOF_SUPPORT (roof on under 80% of cells, 2,380), NO_ROOF_SUPPORT (no roof cell, 477), NEGATIVE_HEIGHT (35), PARTIAL_AOI (crosses city limit, 27), GEOMETRY_REPAIRED (5), NO_CELL_CENTERS (3). Example: UNVALIDATED;LOW_ROOF_SUPPORT.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_P50_FT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Median roof height (ft)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;feet&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;HEIGHT_P50_M in feet (multiplied by 3.280839895, rounded to 0.01 ft; 2.64 to 121.60). Empty where HEIGHT_P50_M is empty. Roof minus ground, not a code-defined building height.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;HEIGHT_P95_FT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;95th percentile roof height (ft)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;feet&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;HEIGHT_P95_M in feet (multiplied by 3.280839895, rounded to 0.01 ft; 2.64 to 138.52). Empty where HEIGHT_P95_M is empty.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Shape__Area&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Shape__Area&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Web Mercator square metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Polygon area computed by ArcGIS Online in Web Mercator. Not a true area: about 1.74 times too large at Millcreek's latitude. Use FOOTPRINT_M2.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Shape__Length&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Shape__Length&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Web Mercator metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Perimeter computed by ArcGIS Online in Web Mercator. Not a true length: about 1.32 times too long at Millcreek's latitude.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;HEIGHT_STATUS flags&lt;/h3&gt;
+&lt;p&gt;Every footprint carries &lt;code&gt;UNVALIDATED&lt;/code&gt;; the other flags are added, separated by semicolons, when they apply
+(for example &lt;code&gt;UNVALIDATED;LOW_ROOF_SUPPORT&lt;/code&gt;).&lt;/p&gt;
+&lt;table style='border-collapse:collapse;font-size:90%'&gt;
+
+&lt;tr&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Flag&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Footprints&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Meaning&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;UNVALIDATED&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;22,042&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Every record: no height has been checked against a survey.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;LOW_ROOF_SUPPORT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;2,380&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Lidar roof on less than 80% of the footprint's cells (ROOF_COV_PCT under 80). A review flag, not an accuracy threshold.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;NO_ROOF_SUPPORT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;477&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;No cell in the footprint has a lidar roof; height fields are empty. Often a demolished, very small or tree-covered building.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;NEGATIVE_HEIGHT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;35&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;At least one cell has its roof below the terrain (NEG_H_CELLS above 0). Those cells are kept; no footprint has a negative median.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PARTIAL_AOI&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;27&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;The footprint crosses the city limit; statistics use only the part inside (AOI_PCT under 100).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;GEOMETRY_REPAIRED&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;5&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;The County polygon was invalid and was repaired (area change under 0.000000001 m2).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;NO_CELL_CENTERS&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;3&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;A sliver inside the city that holds no 0.5 m cell centre; no statistics.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;Data dictionary: canopy cover zones (layer 1)&lt;/h2&gt;
+&lt;table style='border-collapse:collapse;font-size:90%'&gt;
+
+&lt;tr&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Field&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Alias&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Type&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Units&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;OBJECTID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OBJECTID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Row number assigned by ArcGIS Online; use ZONE_ID as the key.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ZONE_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ZONE_ID&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (80)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Zone code: CITY (whole city); OWNERSHIP:PRIVATE, OWNERSHIP:PUBLIC_GOVERNMENT, OWNERSHIP:UNKNOWN_OWNER, OWNERSHIP:NO_PARCEL (land outside every parcel); PUBLIC:OWNER_GROUP for each public owner group (for example PUBLIC:SALT_LAKE_COUNTY). Zones overlap: CITY holds all others and the PUBLIC zones sit inside OWNERSHIP:PUBLIC_GOVERNMENT.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ZONE_NAME&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Zone&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;String (60)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Readable zone name for legends and pop-ups, one per ZONE_ID (for example "Private parcels", "No parcel (streets, rights-of-way)").&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;ZONE_ACRES&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Zone area (acres)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;acres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;True area of the zone polygon in acres (square metres / 4,046.8564224), computed in NAD83(2011) / UTM 12N, rounded to 0.1 acre. Do not add across rows: zones overlap.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;OBSERVED_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Lidar coverage (% observed)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Share of the zone's 0.5 m cells (by cell centre) where the lidar could tell whether canopy is present, 99.06 to 99.76. The rest are unobserved and are left out of CANOPY_PCT.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CANOPY_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy cover (% of observed area)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Tree canopy cover: cells with vegetation at least 2 m above the ground as a percentage of the zone's observed cells. The figure to quote (city 25.59). Unvalidated planning estimate from 2023 lidar.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CANOPY_LOW_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy cover, low bound (%)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy as a percentage of all the zone's cells, counting every unobserved cell as no canopy. With CANOPY_HIGH_PCT it bounds what the unobserved cells could do to the figure. A coverage bound, not a statistical confidence interval.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CANOPY_HIGH_PCT&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy cover, high bound (%)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy as a percentage of all the zone's cells, counting every unobserved cell as canopy. A coverage bound, not a statistical confidence interval.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CANOPY_ACRES&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy (acres)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;acres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Area of canopy at least 2 m tall in the zone: canopy cells times 0.25 m2, in acres, rounded to 0.1 acre (city 2,103.1). Counts observed canopy only.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;CANOPY_PCT_OCT19&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy cover, October 19 (%)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;percent&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;The same measure from the October 19, 2026 canopy, built from an earlier single classification of the same lidar. For comparison only: the current figures are 0.2 to 1.7 points lower, mostly because roof edges and structures left the canopy.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Shape__Area&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Shape__Area&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Web Mercator square metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Polygon area computed by ArcGIS Online in Web Mercator; about 1.74 times the true area here. Use ZONE_ACRES.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;&lt;code&gt;Shape__Length&lt;/code&gt;&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Shape__Length&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Double&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Web Mercator metres&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Perimeter computed by ArcGIS Online in Web Mercator; about 1.32 times the true length here.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Zones&lt;/h3&gt;
+&lt;table style='border-collapse:collapse;font-size:90%'&gt;
+
+&lt;tr&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ZONE_ID&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;ZONE_NAME&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Acres&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Canopy cover&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;What it is&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;CITY&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Millcreek (whole city)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;8,266.5&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;25.59%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;The municipal boundary. Contains every other zone.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OWNERSHIP:PRIVATE&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Private parcels&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;5,751.0&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;29.10%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels with a private owner (people, companies, utilities, churches, nonprofits).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OWNERSHIP:PUBLIC_GOVERNMENT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Public / government parcels&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;838.9&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;24.91%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels owned by a government body; split into the PUBLIC zones below.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OWNERSHIP:UNKNOWN_OWNER&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Uncertain owner&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;206.3&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;19.59%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Owner missing, truncated or mixed in the parcel record.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;OWNERSHIP:NO_PARCEL&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;No parcel (streets, rights-of-way)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;1,470.4&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;13.12%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;The city outside every parcel, mostly streets. Not proof of public ownership.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:SALT_LAKE_COUNTY&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Salt Lake County&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;536.1&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;29.08%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels owned by Salt Lake County.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:PUBLIC_SCHOOL&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Public schools&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;162.6&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;8.06%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels of public schools.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:SALT_LAKE_CITY&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Salt Lake City&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;53.3&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;50.53%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels owned by Salt Lake City inside Millcreek.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:MILLCREEK&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Millcreek (city-owned)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;32.6&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;26.43%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels owned by the City of Millcreek.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:PUBLIC_DISTRICT&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Public districts&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;31.2&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;6.87%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Public districts (for example Mt. Olympus Improvement District).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:STATE_OF_UTAH&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;State of Utah&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;13.8&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;11.48%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels owned by the State of Utah.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:PUBLIC_HOUSING&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Public housing&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;5.4&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;8.64%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels of public housing authorities.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;PUBLIC:FEDERAL&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Federal&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;3.9&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;10.00%&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Parcels owned by the federal government.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;The Millcreek LiDAR 2023 set.&lt;/strong&gt; Eight layers from the same lidar and the same processing: buildings and canopy cover
+zones (feature layer), 3D buildings (scene layer), bare-earth terrain (elevation layer), hillshade (tile layer), slope
+classes, 2 m contours, treetops and tree crowns (vector tile layers). They share one coordinate transformation and one
+terrain, so they can be stacked in one map or scene.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
+of Millcreek GIS.&lt;/p&gt;</idAbs>
+        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026). Parcels: City of Millcreek parcel layer (2025 tax year).</idCredit>
+        <resConst>
+            <Consts>
+                <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
+engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
+design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
+determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
+conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
+3DEP)" when you use or show them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Salt Lake County data.&lt;/strong&gt; The building footprints and their County attributes come from Salt Lake County (Assessor and
+Surveyor). The County's own terms apply to them: the County states that its footprints are not field verified, are for
+general reference only, and are not intended to determine property ownership, final building and site design or
+jurisdictional boundaries, or to replace a certified topographical or boundary survey or any other legal document.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Parcels.&lt;/strong&gt; Ownership groups come from the City of Millcreek parcel layer (2025 tax-year snapshot, read October 8,
+2026). A tax year is not an ownership effective date, and the grouping of owners into private, public and uncertain is
+the City's own rule set for this analysis, not a legal finding of ownership.&lt;/p&gt;</useLimit>
+            </Consts>
+        </resConst>
+        <dataExt>
+            <geoEle>
+                <GeoBndBox>
+                    <westBL Sync="FALSE">-111.92109033841207</westBL>
+                    <eastBL Sync="FALSE">-111.77654549109613</eastBL>
+                    <northBL Sync="FALSE">40.71437969044501</northBL>
+                    <southBL Sync="FALSE">40.65923007027499</southBL>
+                    <exTypeCode Sync="TRUE">1</exTypeCode>
+                </GeoBndBox>
+            </geoEle>
+        <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
+    <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="017" /></tpCat><tpCat><TopicCatCd value="007" /></tpCat><tpCat><TopicCatCd value="015" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
+    <mdFileID>d5effaee6c66497eaeb64e4c2e0f496e</mdFileID>
+    <distInfo>
+        <distTranOps>
+            <onLineSrc>
+                <linkage>https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer</linkage>
+            </onLineSrc>
+        </distTranOps>
+        <distFormat>
+            <formatName>Feature Service</formatName>
+        </distFormat>
+    </distInfo>
+    <refSysInfo>
+        <RefSystem>
+            <refSysID>
+                <identCode code="102100" />
+                <idCodeSpace>EPSG</idCodeSpace>
+            </refSysID>
+        </RefSystem>
+    </refSysInfo>
+<Binary><Thumbnail><Data EsriPropertyType="PictureX">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</Data></Thumbnail></Binary><dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>County building footprints (Salt Lake County, downloaded 2026-10-19) summarised against 0.5 m lidar roof and bare-earth rasters from the 2023 Salt Lake Valley QL1 lidar: roof points where 2 of 3 independent classifications agree, heights as roof minus terrain per cell. Canopy cover from a 0.5 m canopy height model (canopy at least 2 m) summarised over ownership zones from the City parcel layer (2025 tax year). Projected to Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011 and checked against the source library. Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>

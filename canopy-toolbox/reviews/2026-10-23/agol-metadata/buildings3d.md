@@ -5,6 +5,9 @@ title: Millcreek 3D buildings LOD1.2 (2023 lidar), planning estimate
 summary: 21,561 Millcreek, Utah, buildings as flat-roofed 3D blocks (LOD1.2): County footprints raised to their median 2023 lidar roof height. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, buildings, 3D buildings, LOD1.2, building height, massing, scene layer
 credits: City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026).
+iso_topics: structure, elevation
+resolution_m: 0.5
+lineage: County building footprints (Salt Lake County, downloaded 2026-10-19) extruded by ArcGIS Pro Extract LOD2 Buildings at LOD1.2 from a 0.5 m surface of consensus lidar roofs and bare-earth terrain from the 2023 Salt Lake Valley QL1 lidar, packaged as a scene layer package in WGS84 (WGS_1984_(ITRF08)_To_NAD_1983_2011); heights NAVD88 (Geoid18) metres, labelled EGM96.
 ---
 
 # Description

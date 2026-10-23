@@ -309,6 +309,88 @@ def cmd_readback(args):
     return 1 if failures else 0
 
 
+TOPICS = {"farming": "001", "biota": "002", "boundaries": "003", "climatologyMeteorologyAtmosphere": "004",
+          "economy": "005", "elevation": "006", "environment": "007", "geoscientificInformation": "008",
+          "health": "009", "imageryBaseMapsEarthCover": "010", "inlandWaters": "012", "location": "013",
+          "planningCadastre": "015", "society": "016", "structure": "017", "transportation": "018",
+          "utilitiesCommunication": "019"}
+FLIGHTS = ("2023-10-07", "2023-11-04")
+PUBLISHED = "2026-10-23"
+
+
+def iso_metadata(key, synced_xml):
+    """ArcGIS Online keeps an item's metadata (ArcGIS format, shown in the org's ISO 19115-3 style) in step with its
+    title, summary, description, tags, credits and terms. This adds what the item text cannot carry: publication date,
+    the lidar flight dates as the temporal extent, ISO topic categories, a point of contact, the 0.5 m resolution and a
+    lineage statement. Elements already there are replaced, so rerunning gives the same file."""
+    import xml.etree.ElementTree as ET
+    front = parse(key)[0]
+    root = ET.fromstring(synced_xml)
+    ident = root.find("dataIdInfo")
+
+    def child(parent, tag, **attrib):
+        return ET.SubElement(parent, tag, attrib)
+
+    def replace(parent, tag):
+        for old in parent.findall(tag):
+            parent.remove(old)
+        return child(parent, tag)
+
+    citation = ident.find("idCitation")
+    date = replace(citation, "date")
+    child(date, "pubDate").text = f"{PUBLISHED}T00:00:00"
+    party = replace(citation, "citRespParty")
+    child(party, "rpOrgName").text = "City of Millcreek GIS"
+    child(child(party, "role"), "RoleCd", value="006")                      # originator
+    poc = replace(ident, "idPoC")
+    child(poc, "rpOrgName").text = "City of Millcreek GIS"
+    child(child(poc, "role"), "RoleCd", value="007")                        # point of contact
+    for old in ident.findall("tpCat"):
+        ident.remove(old)
+    for topic in [t.strip() for t in front["iso_topics"].split(",")]:
+        child(child(ident, "tpCat"), "TopicCatCd", value=TOPICS[topic])
+    scale = replace(ident, "dataScale")
+    child(child(scale, "scaleDist"), "value", uom="m").text = front["resolution_m"]
+    ext = ident.find("dataExt")
+    for old in ext.findall("tempEle"):
+        ext.remove(old)
+    period = child(child(child(child(ext, "tempEle"), "TempExtent"), "exTemp"), "TM_Period")
+    child(period, "tmBegin").text = f"{FLIGHTS[0]}T00:00:00"
+    child(period, "tmEnd").text = f"{FLIGHTS[1]}T00:00:00"
+    dq = replace(root, "dqInfo")
+    child(child(child(dq, "dqScope"), "scpLvl"), "ScopeCd", value="005")    # dataset
+    child(child(dq, "dataLineage"), "statement").text = (
+        front["lineage"] + " Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). "
+        "Unvalidated planning estimate; not surveyed or field-verified.")
+    contact = replace(root, "mdContact")
+    child(contact, "rpOrgName").text = "City of Millcreek GIS"
+    child(child(contact, "role"), "RoleCd", value="007")
+    return ET.tostring(root, encoding="unicode", xml_declaration=True)
+
+
+def cmd_metadata(args):
+    gis = connect()
+    out = HERE/"record"/"metadata"
+    out.mkdir(parents=True, exist_ok=True)
+    for key in args.items:
+        r = render(key)
+        item = gis.content.get(r["id"])
+        synced = Path(item.metadata).read_text(encoding="utf-8")
+        new = iso_metadata(key, synced)
+        path = out/f"{key}.xml"
+        path.write_text(new, encoding="utf-8")
+        print(f"{key}: wrote {path.name} ({len(new)} characters; online now {len(synced)})")
+        if not args.go:
+            continue
+        print(f"  item.update(metadata=...): {item.update(metadata=str(path))}")
+        _, state = online_state(gis, key, r["id"])
+        same = {n: (text_of(state['props'][n]) == text_of(v) if n in ("description", "licenseInfo") else
+                    (list(state['props'][n] or []) if n == "tags" else state['props'][n]) == v)
+                for n, v in r["props"].items()}
+        print("  item text after the upload: " + " ".join(f"{n}={'ok' if ok else 'CHANGED'}" for n, ok in same.items()))
+    return 0
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -317,6 +399,9 @@ def main(argv=None):
     a = sub.add_parser("apply")
     a.add_argument("items", nargs="+")
     a.add_argument("--go", action="store_true", help="write to ArcGIS Online; without it this is the dry run")
+    m = sub.add_parser("metadata")
+    m.add_argument("items", nargs="+")
+    m.add_argument("--go", action="store_true", help="upload the metadata; without it, only write record/metadata")
     sub.add_parser("snapshot").add_argument("out")
     sub.add_parser("readback")
     args = p.parse_args(argv)
@@ -329,6 +414,8 @@ def main(argv=None):
         return cmd_diff(args)
     if args.cmd == "apply":
         return cmd_diff(args, go=args.go)
+    if args.cmd == "metadata":
+        return cmd_metadata(args)
     if args.cmd == "snapshot":
         return cmd_snapshot(args)
     return cmd_readback(args)

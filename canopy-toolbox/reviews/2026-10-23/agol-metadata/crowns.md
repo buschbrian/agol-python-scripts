@@ -5,6 +5,9 @@ title: Millcreek tree crowns (2023 lidar), planning estimate
 summary: 400,063 estimated tree crown areas around lidar treetops for Millcreek, Utah, by treetop height class. Estimated canopy regions, not surveyed crowns. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, trees, tree crowns, crown area, urban forest, tree canopy, vector tiles
 credits: City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).
+iso_topics: biota, environment
+resolution_m: 0.5
+lineage: Canopy at least 2 m tall in the 0.5 m canopy height model from the 2023 Salt Lake Valley QL1 lidar, divided among the detected treetops by a priority flood in 950 m tiles with a 40 m overlap, crowns under 3 m2 dropped, and packaged as vector tiles by treetop height class (WGS_1984_(ITRF08)_To_NAD_1983_2011).
 ---
 
 # Description

@@ -5,6 +5,9 @@ title: Millcreek buildings and canopy cover zones (2023 lidar), planning estimat
 summary: Building footprints with lidar roof heights, and tree canopy cover by ownership zone, for Millcreek, Utah, from 2023 lidar. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, buildings, building footprints, building height, roof height, tree canopy, canopy cover, urban forest
 credits: City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026). Parcels: City of Millcreek parcel layer (2025 tax year).
+iso_topics: structure, environment, planningCadastre
+resolution_m: 0.5
+lineage: County building footprints (Salt Lake County, downloaded 2026-10-19) summarised against 0.5 m lidar roof and bare-earth rasters from the 2023 Salt Lake Valley QL1 lidar: roof points where 2 of 3 independent classifications agree, heights as roof minus terrain per cell. Canopy cover from a 0.5 m canopy height model (canopy at least 2 m) summarised over ownership zones from the City parcel layer (2025 tax year). Projected to Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011 and checked against the source library.
 ---
 
 # Description

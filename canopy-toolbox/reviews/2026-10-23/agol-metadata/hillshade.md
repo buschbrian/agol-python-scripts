@@ -5,6 +5,9 @@ title: Millcreek hillshade 0.5 m (2023 lidar), planning estimate
 summary: Shaded relief of the bare ground in Millcreek, Utah, at 0.5 m from the 2023 lidar, for use as a background under other layers. Display only. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, hillshade, shaded relief, terrain, basemap, tile layer
 credits: City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).
+iso_topics: elevation, imageryBaseMapsEarthCover
+resolution_m: 0.5
+lineage: Hillshade (azimuth 315, altitude 45, no shadows) of the 0.5 m bare-earth terrain of the 2023 Salt Lake Valley QL1 lidar, clipped to the city and cached as PNG32 tiles, levels 0 to 18, on the ArcGIS Online scheme (WGS_1984_(ITRF08)_To_NAD_1983_2011).
 ---
 
 # Description

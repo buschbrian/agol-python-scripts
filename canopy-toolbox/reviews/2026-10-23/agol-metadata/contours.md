@@ -5,6 +5,9 @@ title: Millcreek 2 m contours (2023 lidar), planning estimate
 summary: Ground contours every 2 m (index lines every 10 m) for Millcreek, Utah, from the 0.5 m bare-earth terrain of the 2023 lidar. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, contours, elevation, topography, terrain, vector tiles
 credits: City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).
+iso_topics: elevation
+resolution_m: 0.5
+lineage: 2 m contours (10 m index) traced from the 0.5 m bare-earth terrain of the 2023 Salt Lake Valley QL1 lidar, interpolated from ground returns, and packaged as vector tiles (WGS_1984_(ITRF08)_To_NAD_1983_2011).
 ---
 
 # Description

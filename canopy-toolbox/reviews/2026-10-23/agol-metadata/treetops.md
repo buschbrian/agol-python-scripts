@@ -5,6 +5,9 @@ title: Millcreek treetops (2023 lidar), planning estimate
 summary: 527,140 treetops at least 2 m tall detected in the 2023 lidar for Millcreek, Utah, by height class. Detections, not a tree census. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, trees, treetops, tree height, urban forest, tree canopy, vector tiles
 credits: City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).
+iso_topics: biota, environment
+resolution_m: 0.5
+lineage: Local maxima of a 0.5 m canopy height model from the 2023 Salt Lake Valley QL1 lidar (combined classification, roofs excluded), with a search radius that grows with height, at least 2 m tall, clipped to the city, and packaged as vector tiles by height class (WGS_1984_(ITRF08)_To_NAD_1983_2011).
 ---
 
 # Description
