@@ -158,6 +158,12 @@ the public: every item reads `public`; every service answers; the feature layer 
 of each tile and vector tile layer is served (200); the scene layer reads as 3DObject; every item the web maps and the
 scene reference is public. Rerun the check any time with `share.py check`. The source packages stay private.
 
+**Apps, October 23 evening** (private until Brian has looked at each): Sidebar Instant Apps on the three web maps
+(Millcreek Terrain and Slope `66693381…`, Millcreek Tree Canopy `9d701107…`, Millcreek Building Heights `370a1f38…`),
+a 3D Viewer Instant App on the scene (Millcreek in 3D `021866ad…`), and an ArcGIS StoryMap landing page linking them
+(Millcreek LiDAR 2023 `8d43f724…`). Each app opens on a splash screen with the planning-estimate warning. Made and
+checked with `reviews/2026-10-23/agol-apps/make_apps.py` (IDs and URLs in its `created.json`).
+
 **All eight items are published** (private until the share above). Next, in ArcGIS Online: look at each in Map Viewer or Scene Viewer, delete
 the eight package items, then share by audience (decision 3). The 3D check is a web scene with `terrain` in the Ground
 above World Elevation and `buildings3d` on it.
