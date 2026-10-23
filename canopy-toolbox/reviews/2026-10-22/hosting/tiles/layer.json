@@ -1,0 +1,13 @@
+{
+ "lyrx": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\layer\\hillshade_identity.lyrx",
+ "default_colorizer": {
+  "stretchType": "StandardDeviations",
+  "standardDeviationParam": 2,
+  "resamplingType": "NearestNeighbor"
+ },
+ "colorizer": "MinimumMaximum, custom 0-255, no gamma, bilinear resampling",
+ "aoi": {
+  "hillshade": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\layer\\aoi.gdb\\hillshade",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\layer\\aoi.gdb\\terrain"
+ }
+}

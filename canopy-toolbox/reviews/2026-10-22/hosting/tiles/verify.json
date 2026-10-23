@@ -1,0 +1,659 @@
+{
+ "schema": "tiles-verify/1",
+ "started": "2026-10-22T22:43:21",
+ "levels": {
+  "hillshade": {
+   "0": {
+    "tiles": 1,
+    "with_data": 0,
+    "bytes": 799
+   },
+   "1": {
+    "tiles": 1,
+    "with_data": 0,
+    "bytes": 799
+   },
+   "2": {
+    "tiles": 1,
+    "with_data": 0,
+    "bytes": 799
+   },
+   "3": {
+    "tiles": 1,
+    "with_data": 0,
+    "bytes": 799
+   },
+   "4": {
+    "tiles": 1,
+    "with_data": 0,
+    "bytes": 799
+   },
+   "5": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 817
+   },
+   "6": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 858
+   },
+   "7": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 997
+   },
+   "8": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 1455
+   },
+   "9": {
+    "tiles": 2,
+    "with_data": 2,
+    "bytes": 3419
+   },
+   "10": {
+    "tiles": 4,
+    "with_data": 2,
+    "bytes": 8854
+   },
+   "11": {
+    "tiles": 4,
+    "with_data": 2,
+    "bytes": 20479
+   },
+   "12": {
+    "tiles": 6,
+    "with_data": 3,
+    "bytes": 59518
+   },
+   "13": {
+    "tiles": 11,
+    "with_data": 9,
+    "bytes": 194061
+   },
+   "14": {
+    "tiles": 34,
+    "with_data": 22,
+    "bytes": 620689
+   },
+   "15": {
+    "tiles": 106,
+    "with_data": 61,
+    "bytes": 2234746
+   },
+   "16": {
+    "tiles": 386,
+    "with_data": 209,
+    "bytes": 8080424
+   },
+   "17": {
+    "tiles": 1216,
+    "with_data": 761,
+    "bytes": 27515229
+   },
+   "18": {
+    "tiles": 3760,
+    "with_data": 2752,
+    "bytes": 80879749
+   }
+  },
+  "terrain": {
+   "0": {
+    "tiles": 1,
+    "with_data": 0,
+    "bytes": 70
+   },
+   "1": {
+    "tiles": 1,
+    "with_data": 0,
+    "bytes": 70
+   },
+   "2": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 100
+   },
+   "3": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 101
+   },
+   "4": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 100
+   },
+   "5": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 144
+   },
+   "6": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 200
+   },
+   "7": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 378
+   },
+   "8": {
+    "tiles": 1,
+    "with_data": 1,
+    "bytes": 889
+   },
+   "9": {
+    "tiles": 2,
+    "with_data": 2,
+    "bytes": 2797
+   },
+   "10": {
+    "tiles": 4,
+    "with_data": 4,
+    "bytes": 8475
+   },
+   "11": {
+    "tiles": 4,
+    "with_data": 4,
+    "bytes": 26804
+   },
+   "12": {
+    "tiles": 6,
+    "with_data": 5,
+    "bytes": 89320
+   },
+   "13": {
+    "tiles": 12,
+    "with_data": 11,
+    "bytes": 310631
+   },
+   "14": {
+    "tiles": 35,
+    "with_data": 27,
+    "bytes": 1090682
+   },
+   "15": {
+    "tiles": 108,
+    "with_data": 86,
+    "bytes": 3856101
+   },
+   "16": {
+    "tiles": 398,
+    "with_data": 292,
+    "bytes": 13552096
+   },
+   "17": {
+    "tiles": 1312,
+    "with_data": 1046,
+    "bytes": 46880118
+   },
+   "18": {
+    "tiles": 4864,
+    "with_data": 3926,
+    "bytes": 158848919
+   }
+  }
+ },
+ "packages": {
+  "hillshade": {
+   "bytes": 122828479,
+   "members": 27,
+   "compressed": false,
+   "root": {
+    "wkid": 3857,
+    "tile_size": [
+     256,
+     256
+    ],
+    "lods_in_scheme": 24,
+    "minLOD": 0,
+    "maxLOD": 18,
+    "minScale": 591657527.591555,
+    "maxScale": 2256.994353,
+    "tileImageInfo": {
+     "format": "PNG",
+     "compressionQuality": 75,
+     "bandCount": 1,
+     "lercError": 0
+    },
+    "storageFormat": "esriMapCacheStorageModeCompactV2",
+    "fullExtent": {
+     "xmin": -12459066.016464774,
+     "ymin": 4962104.3679591,
+     "xmax": -12442850.617512582,
+     "ymax": 4970358.372684635,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    }
+   }
+  },
+  "terrain": {
+   "bytes": 228117372,
+   "members": 29,
+   "compressed": false,
+   "root": {
+    "wkid": 3857,
+    "tile_size": [
+     256,
+     256
+    ],
+    "lods_in_scheme": 24,
+    "minLOD": 0,
+    "maxLOD": 18,
+    "minScale": 591657527.591555,
+    "maxScale": 2256.994353,
+    "tileImageInfo": {
+     "format": "LERC",
+     "compressionQuality": 0,
+     "bandCount": 1,
+     "lercError": 0.01
+    },
+    "storageFormat": "esriMapCacheStorageModeCompactV2",
+    "fullExtent": {
+     "xmin": -12459066.016464774,
+     "ymin": 4962104.3679591,
+     "xmax": -12442850.617512582,
+     "ymax": 4970358.372684635,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    }
+   }
+  }
+ },
+ "hillshade_coverage": {
+  "18": {
+   "expected": 2752,
+   "present_with_data": 2752,
+   "missing": 0,
+   "extra_with_data": 0,
+   "missing_source_cells": []
+  },
+  "17": {
+   "expected": 761,
+   "present_with_data": 761,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "16": {
+   "expected": 209,
+   "present_with_data": 209,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "15": {
+   "expected": 61,
+   "present_with_data": 61,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "14": {
+   "expected": 22,
+   "present_with_data": 22,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "13": {
+   "expected": 9,
+   "present_with_data": 9,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "12": {
+   "expected": 4,
+   "present_with_data": 3,
+   "missing": 1,
+   "extra_with_data": 0
+  },
+  "11": {
+   "expected": 3,
+   "present_with_data": 2,
+   "missing": 1,
+   "extra_with_data": 0
+  },
+  "10": {
+   "expected": 3,
+   "present_with_data": 2,
+   "missing": 1,
+   "extra_with_data": 0
+  },
+  "9": {
+   "expected": 2,
+   "present_with_data": 2,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "8": {
+   "expected": 1,
+   "present_with_data": 1,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "7": {
+   "expected": 1,
+   "present_with_data": 1,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "6": {
+   "expected": 1,
+   "present_with_data": 1,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "5": {
+   "expected": 1,
+   "present_with_data": 1,
+   "missing": 0,
+   "extra_with_data": 0
+  },
+  "4": {
+   "expected": 1,
+   "present_with_data": 0,
+   "missing": 1,
+   "extra_with_data": 0
+  },
+  "3": {
+   "expected": 1,
+   "present_with_data": 0,
+   "missing": 1,
+   "extra_with_data": 0
+  },
+  "2": {
+   "expected": 1,
+   "present_with_data": 0,
+   "missing": 1,
+   "extra_with_data": 0
+  },
+  "1": {
+   "expected": 1,
+   "present_with_data": 0,
+   "missing": 1,
+   "extra_with_data": 0
+  },
+  "0": {
+   "expected": 1,
+   "present_with_data": 0,
+   "missing": 1,
+   "extra_with_data": 0
+  }
+ },
+ "hillshade_values_L18": {
+  "pixels": 10760,
+  "source_valid": 7269,
+  "opaque": 7262,
+  "valid_but_transparent": 7,
+  "opaque_but_nodata": 0,
+  "mean_difference": -0.01,
+  "median_abs_difference": 1.0,
+  "p95_abs_difference": 3.0,
+  "max_abs_difference": 43
+ },
+ "terrain_lerc_headers": {
+  "tiles_read": 98,
+  "max_z_error_in_blobs": [
+   0.01
+  ]
+ },
+ "terrain_samples": {
+  "points": 300,
+  "lerc_error_m": 0.01,
+  "all": {
+   "points": 300,
+   "compared": 300,
+   "max_abs_vs_bilinear_m": 0.0112,
+   "median_abs_vs_bilinear_m": 0.0044,
+   "max_abs_vs_containing_cell_m": 0.335,
+   "median_abs_vs_containing_cell_m": 0.012
+  },
+  "flat": {
+   "points": 150,
+   "compared": 150,
+   "max_abs_vs_bilinear_m": 0.0099,
+   "median_abs_vs_bilinear_m": 0.0041,
+   "max_abs_vs_containing_cell_m": 0.03,
+   "median_abs_vs_containing_cell_m": 0.005
+  },
+  "steep": {
+   "points": 150,
+   "compared": 150,
+   "max_abs_vs_bilinear_m": 0.0112,
+   "median_abs_vs_bilinear_m": 0.0048,
+   "max_abs_vs_containing_cell_m": 0.335,
+   "median_abs_vs_containing_cell_m": 0.066
+  },
+  "missing_from_package": 0,
+  "sample": [
+   {
+    "utm": [
+     428830.25,
+     4502615.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1328.787,
+    "bilinear_m": 1328.785,
+    "cell_m": 1328.784
+   },
+   {
+    "utm": [
+     428148.25,
+     4506395.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1348.789,
+    "bilinear_m": 1348.797,
+    "cell_m": 1348.803
+   },
+   {
+    "utm": [
+     428112.25,
+     4503257.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1320.329,
+    "bilinear_m": 1320.323,
+    "cell_m": 1320.321
+   },
+   {
+    "utm": [
+     433734.25,
+     4503645.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1604.491,
+    "bilinear_m": 1604.494,
+    "cell_m": 1604.497
+   },
+   {
+    "utm": [
+     427664.25,
+     4505087.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1323.875,
+    "bilinear_m": 1323.882,
+    "cell_m": 1323.883
+   },
+   {
+    "utm": [
+     424150.25,
+     4503855.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1296.0,
+    "bilinear_m": 1295.999,
+    "cell_m": 1295.996
+   },
+   {
+    "utm": [
+     427966.25,
+     4505273.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1329.044,
+    "bilinear_m": 1329.041,
+    "cell_m": 1329.042
+   },
+   {
+    "utm": [
+     433122.25,
+     4505331.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1534.233,
+    "bilinear_m": 1534.23,
+    "cell_m": 1534.227
+   },
+   {
+    "utm": [
+     430062.25,
+     4505907.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1392.237,
+    "bilinear_m": 1392.236,
+    "cell_m": 1392.236
+   },
+   {
+    "utm": [
+     422628.25,
+     4504255.75
+    ],
+    "stratum": "flat",
+    "tile_m": 1298.27,
+    "bilinear_m": 1298.267,
+    "cell_m": 1298.265
+   },
+   {
+    "utm": [
+     432942.25,
+     4501757.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1780.44,
+    "bilinear_m": 1780.434,
+    "cell_m": 1780.455
+   },
+   {
+    "utm": [
+     432534.25,
+     4506813.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1448.395,
+    "bilinear_m": 1448.405,
+    "cell_m": 1448.277
+   },
+   {
+    "utm": [
+     433888.25,
+     4505021.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1805.613,
+    "bilinear_m": 1805.603,
+    "cell_m": 1805.613
+   },
+   {
+    "utm": [
+     432938.25,
+     4507017.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1475.156,
+    "bilinear_m": 1475.148,
+    "cell_m": 1475.216
+   },
+   {
+    "utm": [
+     434322.25,
+     4502457.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1876.195,
+    "bilinear_m": 1876.201,
+    "cell_m": 1876.059
+   },
+   {
+    "utm": [
+     433420.25,
+     4505967.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1646.579,
+    "bilinear_m": 1646.587,
+    "cell_m": 1646.559
+   },
+   {
+    "utm": [
+     433508.25,
+     4502329.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1764.641,
+    "bilinear_m": 1764.641,
+    "cell_m": 1764.638
+   },
+   {
+    "utm": [
+     434350.25,
+     4504909.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1674.992,
+    "bilinear_m": 1675.0,
+    "cell_m": 1675.228
+   },
+   {
+    "utm": [
+     433838.25,
+     4505425.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1675.351,
+    "bilinear_m": 1675.353,
+    "cell_m": 1675.392
+   },
+   {
+    "utm": [
+     433044.25,
+     4505543.75
+    ],
+    "stratum": "steep",
+    "tile_m": 1539.703,
+    "bilinear_m": 1539.708,
+    "cell_m": 1539.649
+   }
+  ]
+ },
+ "opens_in_pro": {
+  "hillshade": {
+   "layer": "millcreek_hillshade_20261022.tpkx",
+   "isRasterLayer": true,
+   "isBroken": false,
+   "dataSource": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\millcreek_hillshade_20261022.tpkx",
+   "describe_dataType": "RasterDataset",
+   "cim_type": "CIMRasterLayer"
+  },
+  "terrain": {
+   "layer": "millcreek_terrain_20261022.tpkx",
+   "isRasterLayer": true,
+   "isBroken": false,
+   "dataSource": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\millcreek_terrain_20261022.tpkx",
+   "describe_dataType": "RasterDataset",
+   "cim_type": "CIMRasterLayer",
+   "elevation_surfaces": [
+    "Ground"
+   ],
+   "ground_source": "not added by arcpy: 'ElevationSurface' object has no attribute 'addSource'"
+  },
+  "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261022\\check\\check.aprx"
+ },
+ "finished": "2026-10-22T22:43:46"
+}
