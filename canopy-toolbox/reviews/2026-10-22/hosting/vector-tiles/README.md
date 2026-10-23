@@ -13,7 +13,7 @@ package's summary says so.
 | `runs\slope-tiles-20261022\millcreek_slope_classes.vtpk` | slope-tiles `slope_classes` | 129,352 polygons | 22.7 MB | 0-17 (all scales) | 6 slope classes, YlOrRd |
 | `runs\vector-tiles-20261022\millcreek_treetops.vtpk` | `millcreek-products-20261022\tree-count.gdb\city_treetops` | 527,140 points | 7.7 MB | 14-17 (1:18,056 and closer) | 5 height classes, YlGn circles |
 | `runs\vector-tiles-20261022\millcreek_crowns.vtpk` | `millcreek-products-20261022\crowns.gdb\crowns` | 400,063 polygons | 33.9 MB | 14-17 (1:18,056 and closer) | 5 treetop-height classes, YlGn fills |
-| `runs\vector-tiles-20261022\millcreek_contours.vtpk` | `terrain-city-20261022\terrain.gdb\contours` | 15,149 lines | 6.7 MB | 10-17 (1:288,895 and closer) | index lines (INDEX = 1, 10 m) 1.2 pt at every level; 2 m lines 0.5 pt from 1:18,056 |
+| `runs\vector-tiles-20261022\millcreek_contours.vtpk` | `terrain-city-20261022\terrain.gdb\contours` | 15,149 lines | 6.7 MB | 10-17 (1:288,895 and closer) | index lines (INDEX = 1, 10 m) solid at every level; 2 m lines at 60% opacity from 1:18,056. The script set 1.2 pt and 0.5 pt, but the package's style has 1.33 px (1 pt) for both (found October 23 after upload); set widths in the online style |
 
 All four: 71 MB. Heights are classed 2 to 5, 5 to 10, 10 to 15, 15 to 20 and 20 m and over (treetop height; a crown carries
 its treetop's). Levels are the ArcGIS Online vector tile scheme (512-pixel tiles, level n = 1:295,828,763.795777 / 2^n,

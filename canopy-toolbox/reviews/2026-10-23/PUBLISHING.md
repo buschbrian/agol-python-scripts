@@ -98,6 +98,14 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   layers carry the class labels and YlOrRd colours in order; 16 tiles fetched at levels 10, 13, 15 and 16 are byte for byte
   the package's (the package's deepest level is 16 here; clients overzoom). Hosted size 22.6 MB (under 0.1 credits a month).
   Checking an online tile needs the signed-in session (`gis.session`); `GIS("pro")` gives no token for plain requests.
+- `contours`, October 23: Vector Tile Service `50573eeba93f405a869a1d78a08d68e8` (package item
+  `377dd1de82204e63addb6905a9322bb3`). Checked online: Web Mercator, levels 10-17 (1:288,895 inward); index contours from
+  level 10 and the 2 m lines from level 14, as built; 21 tiles fetched at levels 10-16 are byte for byte the package's.
+  Hosted size 6.6 MB. **One difference from the README:** both line layers are 1.33 px (1 pt) wide in the style; the
+  index lines are set apart only by opacity (solid against 60%). The script asked for 1.2 pt and 0.5 pt, and the package's
+  own style already has 1.33 px for both, so Pro's export flattened the widths. Fix in the style, not the tiles: save a
+  copy of the style in ArcGIS Online's Vector Tile Style Editor with the index lines about 1.6 px and the 2 m lines about
+  0.7 px, or set the widths when the layer is added to a web map.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
