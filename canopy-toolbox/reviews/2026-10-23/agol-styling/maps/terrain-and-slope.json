@@ -1,0 +1,276 @@
+{
+ "item": {
+  "title": "Millcreek terrain and slope",
+  "type": "Web Map",
+  "snippet": "Slope classes, 2 m contours and hillshade from the 0.5 m lidar terrain. Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>Slope in six classes from the 0.5 m bare-earth terrain (3 m neighbourhood, 4 m² minimum mapping unit), shaded by the lidar hillshade blended over it (multiply), with 2 m contours (10 m index lines heavier) from 1:288,000 inward and the 2 m lines from 1:18,000.</p><p><b>Slope classes:</b> <span style='color:#FFFFCC'>■</span> Under 10% &nbsp; <span style='color:#FED976'>■</span> 10% to 15% &nbsp; <span style='color:#FEB24C'>■</span> 15% to 20% &nbsp; <span style='color:#FD8D3C'>■</span> 20% to 25% &nbsp; <span style='color:#F03B20'>■</span> 25% to 30% &nbsp; <span style='color:#BD0026'>■</span> 30% and over</p><p><b>Contours:</b> <span style='color:#3D2610'>▬</span> 10 m index (heavy) &nbsp; <span style='color:#5A3A1A'>─</span> 2 m (thin), elevations in metres (NAVD88); the tiles carry no elevation values, so the lines are unlabelled</p><p>Slope and contours are vector tiles: they draw but have no pop-ups, and the map legend cannot list them (the key above stands in).</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "slope",
+   "terrain",
+   "contours",
+   "hillshade"
+  ],
+  "typeKeywords": [
+   "ArcGIS Online",
+   "Explorer Web Map",
+   "Map",
+   "Online Map",
+   "Web Map"
+  ],
+  "extent": [
+   [
+    -111.92171,
+    40.65854
+   ],
+   [
+    -111.77604,
+    40.71476
+   ]
+  ],
+  "accessInformation": "Millcreek GIS; 2023 Salt Lake Valley QL1 lidar"
+ },
+ "data": {
+  "operationalLayers": [
+   {
+    "id": "slope",
+    "title": "Slope (percent)",
+    "layerType": "VectorTileLayer",
+    "itemId": "3b5b1a9110f14e93af68752be89e0df2",
+    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/3b5b1a9110f14e93af68752be89e0df2/resources/styles/root.json",
+    "visibility": true,
+    "opacity": 1,
+    "minScale": 0,
+    "maxScale": 0
+   },
+   {
+    "id": "hillshade",
+    "title": "Hillshade (0.5 m lidar terrain)",
+    "layerType": "ArcGISTiledMapServiceLayer",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+    "itemId": "cab8824e44384d479e1f302cdf34daf9",
+    "visibility": true,
+    "opacity": 0.9,
+    "showLegend": false,
+    "minScale": 300000,
+    "maxScale": 0,
+    "blendMode": "multiply",
+    "effect": [
+     {
+      "type": "brightness",
+      "amount": 1.3
+     }
+    ]
+   },
+   {
+    "id": "contours",
+    "title": "Contours (2 m, 10 m index)",
+    "layerType": "VectorTileLayer",
+    "itemId": "50573eeba93f405a869a1d78a08d68e8",
+    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/50573eeba93f405a869a1d78a08d68e8/resources/styles/root.json",
+    "visibility": true,
+    "opacity": 1,
+    "minScale": 288895,
+    "maxScale": 0
+   }
+  ],
+  "baseMap": {
+   "title": "Light Gray Canvas",
+   "baseMapLayers": [
+    {
+     "id": "light-gray-base",
+     "title": "Light Gray Base",
+     "layerType": "VectorTileLayer",
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    },
+    {
+     "id": "light-gray-reference",
+     "title": "Light Gray Reference",
+     "layerType": "VectorTileLayer",
+     "isReference": true,
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    }
+   ]
+  },
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  },
+  "initialState": {
+   "viewpoint": {
+    "targetGeometry": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    }
+   }
+  },
+  "bookmarks": [
+   {
+    "name": "Whole city",
+    "extent": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12459067.21,
+      "ymin": 4962105.56,
+      "xmax": -12442851.81,
+      "ymax": 4970359.57,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Millcreek Common (city centre)",
+    "extent": {
+     "xmin": -12452534.9,
+     "ymin": 4967644.1,
+     "xmax": -12450160.6,
+     "ymax": 4969068.7,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12452534.9,
+      "ymin": 4967644.1,
+      "xmax": -12450160.6,
+      "ymax": 4969068.7,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Canyon Rim",
+    "extent": {
+     "xmin": -12447386.4,
+     "ymin": 4968055.2,
+     "xmax": -12445012.0,
+     "ymax": 4969479.9,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12447386.4,
+      "ymin": 4968055.2,
+      "xmax": -12445012.0,
+      "ymax": 4969479.9,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Evergreen and East Millcreek",
+    "extent": {
+     "xmin": -12449709.5,
+     "ymin": 4966888.0,
+     "xmax": -12447335.4,
+     "ymax": 4968312.4,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12449709.5,
+      "ymin": 4966888.0,
+      "xmax": -12447335.4,
+      "ymax": 4968312.4,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Olympus Cove foothills",
+    "extent": {
+     "xmin": -12445147.4,
+     "ymin": 4965130.8,
+     "xmax": -12442773.8,
+     "ymax": 4966555.0,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12445147.4,
+      "ymin": 4965130.8,
+      "xmax": -12442773.8,
+      "ymax": 4966555.0,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Scott Avenue (west Millcreek)",
+    "extent": {
+     "xmin": -12454150.1,
+     "ymin": 4966835.1,
+     "xmax": -12451776.0,
+     "ymax": 4968259.6,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12454150.1,
+      "ymin": 4966835.1,
+      "xmax": -12451776.0,
+      "ymax": 4968259.6,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   }
+  ],
+  "authoringApp": "apply_styling.py (ArcGIS API for Python)",
+  "authoringAppVersion": "2.4.3",
+  "version": "2.31"
+ }
+}

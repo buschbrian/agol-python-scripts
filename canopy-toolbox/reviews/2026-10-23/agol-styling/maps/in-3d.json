@@ -1,0 +1,697 @@
+{
+ "item": {
+  "title": "Millcreek in 3D",
+  "type": "Web Scene",
+  "snippet": "Lidar building blocks coloured by roof height on the 0.5 m lidar terrain. Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), the LOD1.2 building blocks coloured by median roof height (click one for its heights and flags), and the lidar hillshade draped on the ground. Slides show four parts of the city.</p><p>Treetops are not in the scene: they are vector tiles without heights, which can only lie flat on the ground. 3D trees need the treetops as a hosted point layer with their heights.</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "3D",
+   "buildings",
+   "terrain",
+   "scene"
+  ],
+  "typeKeywords": [
+   "ArcGIS Online",
+   "Web Scene",
+   "ViewingMode-Global"
+  ],
+  "extent": [
+   [
+    -111.92171,
+    40.65854
+   ],
+   [
+    -111.77604,
+    40.71476
+   ]
+  ],
+  "accessInformation": "Millcreek GIS; 2023 Salt Lake Valley QL1 lidar"
+ },
+ "data": {
+  "operationalLayers": [
+   {
+    "id": "hillshade",
+    "title": "Hillshade (0.5 m lidar terrain)",
+    "layerType": "ArcGISTiledMapServiceLayer",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+    "itemId": "cab8824e44384d479e1f302cdf34daf9",
+    "visibility": true,
+    "opacity": 0.4,
+    "showLegend": false
+   },
+   {
+    "id": "buildings3d",
+    "title": "Buildings by median roof height (LOD1.2)",
+    "layerType": "ArcGISSceneServiceLayer",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_LOD1_2_2023_lidar_planning_estimate/SceneServer/layers/0",
+    "itemId": "5082b5bd063a4a03847f2082dc3533d1",
+    "visibility": true,
+    "opacity": 1,
+    "layerDefinition": {
+     "drawingInfo": {
+      "renderer": {
+       "type": "classBreaks",
+       "field": "HEIGHT_P50_M",
+       "classificationMethod": "esriClassifyManual",
+       "minValue": 0,
+       "classBreakInfos": [
+        {
+         "classMaxValue": 4,
+         "label": "Under 4 m (13 ft)",
+         "symbol": {
+          "type": "MeshSymbol3D",
+          "symbolLayers": [
+           {
+            "type": "Fill",
+            "material": {
+             "color": [
+              242,
+              240,
+              247
+             ],
+             "colorMixMode": "replace"
+            },
+            "edges": {
+             "type": "solid",
+             "color": [
+              60,
+              60,
+              60
+             ],
+             "size": 0.4,
+             "transparency": 60
+            }
+           }
+          ]
+         }
+        },
+        {
+         "classMaxValue": 6,
+         "label": "4 to 6 m (13 to 20 ft)",
+         "symbol": {
+          "type": "MeshSymbol3D",
+          "symbolLayers": [
+           {
+            "type": "Fill",
+            "material": {
+             "color": [
+              203,
+              201,
+              226
+             ],
+             "colorMixMode": "replace"
+            },
+            "edges": {
+             "type": "solid",
+             "color": [
+              60,
+              60,
+              60
+             ],
+             "size": 0.4,
+             "transparency": 60
+            }
+           }
+          ]
+         }
+        },
+        {
+         "classMaxValue": 9,
+         "label": "6 to 9 m (20 to 30 ft)",
+         "symbol": {
+          "type": "MeshSymbol3D",
+          "symbolLayers": [
+           {
+            "type": "Fill",
+            "material": {
+             "color": [
+              158,
+              154,
+              200
+             ],
+             "colorMixMode": "replace"
+            },
+            "edges": {
+             "type": "solid",
+             "color": [
+              60,
+              60,
+              60
+             ],
+             "size": 0.4,
+             "transparency": 60
+            }
+           }
+          ]
+         }
+        },
+        {
+         "classMaxValue": 12,
+         "label": "9 to 12 m (30 to 39 ft)",
+         "symbol": {
+          "type": "MeshSymbol3D",
+          "symbolLayers": [
+           {
+            "type": "Fill",
+            "material": {
+             "color": [
+              117,
+              107,
+              177
+             ],
+             "colorMixMode": "replace"
+            },
+            "edges": {
+             "type": "solid",
+             "color": [
+              60,
+              60,
+              60
+             ],
+             "size": 0.4,
+             "transparency": 60
+            }
+           }
+          ]
+         }
+        },
+        {
+         "classMaxValue": 60,
+         "label": "12 m (39 ft) and over",
+         "symbol": {
+          "type": "MeshSymbol3D",
+          "symbolLayers": [
+           {
+            "type": "Fill",
+            "material": {
+             "color": [
+              84,
+              39,
+              143
+             ],
+             "colorMixMode": "replace"
+            },
+            "edges": {
+             "type": "solid",
+             "color": [
+              60,
+              60,
+              60
+             ],
+             "size": 0.4,
+             "transparency": 60
+            }
+           }
+          ]
+         }
+        }
+       ],
+       "defaultLabel": "No lidar height (no roof points)",
+       "defaultSymbol": {
+        "type": "MeshSymbol3D",
+        "symbolLayers": [
+         {
+          "type": "Fill",
+          "material": {
+           "color": [
+            215,
+            215,
+            215
+           ],
+           "colorMixMode": "replace"
+          },
+          "edges": {
+           "type": "solid",
+           "color": [
+            60,
+            60,
+            60
+           ],
+           "size": 0.4,
+           "transparency": 60
+          }
+         }
+        ]
+       },
+       "legendOptions": {
+        "title": "Median roof height above the ground"
+       }
+      }
+     }
+    },
+    "popupInfo": {
+     "title": "Building {SOURCE_ID}",
+     "expressionInfos": [
+      {
+       "name": "h50",
+       "title": "Median roof height",
+       "expression": "var m = $feature.HEIGHT_P50_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text($feature.HEIGHT_P50_M * 3.28084, '#,##0') + ' ft)';",
+       "returnType": "string"
+      },
+      {
+       "name": "h95",
+       "title": "95th percentile roof height",
+       "expression": "var m = $feature.HEIGHT_P95_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text($feature.HEIGHT_P95_M * 3.28084, '#,##0') + ' ft)';",
+       "returnType": "string"
+      },
+      {
+       "name": "support",
+       "title": "Roof support",
+       "expression": "var c = $feature.ROOF_COV_PCT;\nif (IsEmpty(c)) { return 'none'; }\nreturn Text(c, '#,##0') + '% of the footprint\\'s 0.5 m cells have lidar roof points';",
+       "returnType": "string"
+      },
+      {
+       "name": "flags",
+       "title": "Notes",
+       "expression": "var words = Dictionary(\"LOW_ROOF_SUPPORT\", \"Lidar roof points cover less than 80% of the footprint, so the height is less certain.\", \"NO_ROOF_SUPPORT\", \"No lidar roof points fall inside the footprint, so no height was estimated.\", \"NO_CELL_CENTERS\", \"The footprint is too small to hold a 0.5 m cell centre, so no height was estimated.\", \"NEGATIVE_HEIGHT\", \"Some roof cells sit below the ground surface; the footprint may not match the building.\", \"PARTIAL_AOI\", \"Part of the footprint lies outside the lidar coverage.\", \"GEOMETRY_REPAIRED\", \"The county footprint's shape was repaired before measuring.\");\nvar parts = Split(DefaultValue($feature.HEIGHT_STATUS, ''), ';');\nvar out = [];\nfor (var i in parts) { if (HasKey(words, parts[i])) { Push(out, words[parts[i]]); } }\nreturn IIf(Count(out) == 0, 'None beyond the estimate warning.', Concatenate(out, ' '));",
+       "returnType": "string"
+      },
+      {
+       "name": "area",
+       "title": "Footprint",
+       "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\nreturn Text(a, '#,##0') + ' m² (' + Text(a * 10.7639, '#,##0') + ' ft²)';",
+       "returnType": "string"
+      }
+     ],
+     "popupElements": [
+      {
+       "type": "text",
+       "text": "<p><b>Roof height above the ground</b><br />Median: {expression/h50}<br />95th percentile: {expression/h95}</p><p><b>Roof support:</b> {expression/support}.</p><p><b>Notes:</b> {expression/flags}</p><p>Footprint {expression/area}. Parcel {PARCEL_ID}. County building ID {SOURCE_ID}.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+      }
+     ],
+     "fieldInfos": [
+      {
+       "fieldName": "PARCEL_ID",
+       "visible": false,
+       "isEditable": false
+      },
+      {
+       "fieldName": "SOURCE_ID",
+       "visible": false,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/h50",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/h95",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/support",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/flags",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/area",
+       "visible": true,
+       "isEditable": false
+      }
+     ]
+    }
+   }
+  ],
+  "baseMap": {
+   "title": "Light Gray Canvas",
+   "baseMapLayers": [
+    {
+     "id": "light-gray-base",
+     "title": "Light Gray Base",
+     "layerType": "VectorTileLayer",
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    },
+    {
+     "id": "light-gray-reference",
+     "title": "Light Gray Reference",
+     "layerType": "VectorTileLayer",
+     "isReference": true,
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    }
+   ]
+  },
+  "ground": {
+   "layers": [
+    {
+     "id": "world-elevation",
+     "title": "Terrain3D",
+     "listMode": "hide",
+     "layerType": "ArcGISTiledElevationServiceLayer",
+     "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+     "itemId": "7029fb60158543ad845c7e1527af11e4",
+     "visibility": true
+    },
+    {
+     "id": "millcreek-terrain",
+     "title": "Millcreek bare-earth terrain (0.5 m lidar)",
+     "layerType": "ArcGISTiledElevationServiceLayer",
+     "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_bare_earth_terrain_0_5_m_2023_lidar_planning_estimate/ImageServer",
+     "itemId": "ce1680a5196e458ebfb60ead5150b946",
+     "visibility": true
+    }
+   ],
+   "transparency": 0,
+   "navigationConstraint": {
+    "type": "stayAbove"
+   }
+  },
+  "heightModelInfo": {
+   "heightModel": "gravity_related_height",
+   "heightUnit": "meter"
+  },
+  "initialState": {
+   "environment": {
+    "lighting": {
+     "type": "sun",
+     "datetime": 1697389200000,
+     "directShadows": true,
+     "displayUTCOffset": -6
+    },
+    "atmosphereEnabled": true,
+    "starsEnabled": false
+   },
+   "viewpoint": {
+    "camera": {
+     "position": {
+      "x": -12459283.52,
+      "y": 4965169.66,
+      "z": 4637.8,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     },
+     "heading": 80,
+     "tilt": 64
+    }
+   }
+  },
+  "presentation": {
+   "slides": [
+    {
+     "id": "slide_1",
+     "title": {
+      "text": "Millcreek and the Wasatch"
+     },
+     "viewpoint": {
+      "camera": {
+       "position": {
+        "x": -12459283.52,
+        "y": 4965169.66,
+        "z": 4637.8,
+        "spatialReference": {
+         "wkid": 102100,
+         "latestWkid": 3857
+        }
+       },
+       "heading": 80,
+       "tilt": 64
+      }
+     },
+     "baseMap": {
+      "title": "Light Gray Canvas",
+      "baseMapLayers": [
+       {
+        "id": "light-gray-base",
+        "title": "Light Gray Base",
+        "layerType": "VectorTileLayer",
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       },
+       {
+        "id": "light-gray-reference",
+        "title": "Light Gray Reference",
+        "layerType": "VectorTileLayer",
+        "isReference": true,
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       }
+      ]
+     },
+     "ground": {
+      "transparency": 0
+     },
+     "environment": {
+      "lighting": {
+       "type": "sun",
+       "datetime": 1697389200000,
+       "directShadows": true,
+       "displayUTCOffset": -6
+      },
+      "atmosphereEnabled": true,
+      "starsEnabled": false
+     },
+     "visibleLayers": [
+      {
+       "id": "hillshade"
+      },
+      {
+       "id": "buildings3d"
+      },
+      {
+       "id": "world-elevation"
+      },
+      {
+       "id": "millcreek-terrain"
+      }
+     ]
+    },
+    {
+     "id": "slide_2",
+     "title": {
+      "text": "Millcreek Common"
+     },
+     "viewpoint": {
+      "camera": {
+       "position": {
+        "x": -12452255.51,
+        "y": 4967828.77,
+        "z": 1757.5,
+        "spatialReference": {
+         "wkid": 102100,
+         "latestWkid": 3857
+        }
+       },
+       "heading": 60,
+       "tilt": 62
+      }
+     },
+     "baseMap": {
+      "title": "Light Gray Canvas",
+      "baseMapLayers": [
+       {
+        "id": "light-gray-base",
+        "title": "Light Gray Base",
+        "layerType": "VectorTileLayer",
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       },
+       {
+        "id": "light-gray-reference",
+        "title": "Light Gray Reference",
+        "layerType": "VectorTileLayer",
+        "isReference": true,
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       }
+      ]
+     },
+     "ground": {
+      "transparency": 0
+     },
+     "environment": {
+      "lighting": {
+       "type": "sun",
+       "datetime": 1697389200000,
+       "directShadows": true,
+       "displayUTCOffset": -6
+      },
+      "atmosphereEnabled": true,
+      "starsEnabled": false
+     },
+     "visibleLayers": [
+      {
+       "id": "hillshade"
+      },
+      {
+       "id": "buildings3d"
+      },
+      {
+       "id": "world-elevation"
+      },
+      {
+       "id": "millcreek-terrain"
+      }
+     ]
+    },
+    {
+     "id": "slide_3",
+     "title": {
+      "text": "Canyon Rim"
+     },
+     "viewpoint": {
+      "camera": {
+       "position": {
+        "x": -12447366.82,
+        "y": 4968974.8,
+        "z": 1838.4,
+        "spatialReference": {
+         "wkid": 102100,
+         "latestWkid": 3857
+        }
+       },
+       "heading": 100,
+       "tilt": 64
+      }
+     },
+     "baseMap": {
+      "title": "Light Gray Canvas",
+      "baseMapLayers": [
+       {
+        "id": "light-gray-base",
+        "title": "Light Gray Base",
+        "layerType": "VectorTileLayer",
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       },
+       {
+        "id": "light-gray-reference",
+        "title": "Light Gray Reference",
+        "layerType": "VectorTileLayer",
+        "isReference": true,
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       }
+      ]
+     },
+     "ground": {
+      "transparency": 0
+     },
+     "environment": {
+      "lighting": {
+       "type": "sun",
+       "datetime": 1697389200000,
+       "directShadows": true,
+       "displayUTCOffset": -6
+      },
+      "atmosphereEnabled": true,
+      "starsEnabled": false
+     },
+     "visibleLayers": [
+      {
+       "id": "hillshade"
+      },
+      {
+       "id": "buildings3d"
+      },
+      {
+       "id": "world-elevation"
+      },
+      {
+       "id": "millcreek-terrain"
+      }
+     ]
+    },
+    {
+     "id": "slide_4",
+     "title": {
+      "text": "Olympus Cove foothills"
+     },
+     "viewpoint": {
+      "camera": {
+       "position": {
+        "x": -12445545.46,
+        "y": 4966423.63,
+        "z": 2069.4,
+        "spatialReference": {
+         "wkid": 102100,
+         "latestWkid": 3857
+        }
+       },
+       "heading": 110,
+       "tilt": 66
+      }
+     },
+     "baseMap": {
+      "title": "Light Gray Canvas",
+      "baseMapLayers": [
+       {
+        "id": "light-gray-base",
+        "title": "Light Gray Base",
+        "layerType": "VectorTileLayer",
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       },
+       {
+        "id": "light-gray-reference",
+        "title": "Light Gray Reference",
+        "layerType": "VectorTileLayer",
+        "isReference": true,
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
+        "visibility": true,
+        "opacity": 1
+       }
+      ]
+     },
+     "ground": {
+      "transparency": 0
+     },
+     "environment": {
+      "lighting": {
+       "type": "sun",
+       "datetime": 1697389200000,
+       "directShadows": true,
+       "displayUTCOffset": -6
+      },
+      "atmosphereEnabled": true,
+      "starsEnabled": false
+     },
+     "visibleLayers": [
+      {
+       "id": "hillshade"
+      },
+      {
+       "id": "buildings3d"
+      },
+      {
+       "id": "world-elevation"
+      },
+      {
+       "id": "millcreek-terrain"
+      }
+     ]
+    }
+   ]
+  },
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  },
+  "viewingMode": "global",
+  "version": "1.29",
+  "authoringApp": "apply_styling.py (ArcGIS API for Python)",
+  "authoringAppVersion": "2.4.3"
+ }
+}

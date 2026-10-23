@@ -32,6 +32,8 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Treetop review evidence (SUSPECT flags), rebuilt from the October 15 manifest and proven byte-identical: canopy/treetop_evidence.py (ArcPy-free); reviews/2026-10-22/treetop-evidence. Its blind calibration sample: reviews/2026-10-22/packets/treetop-calibration-2 (drawn and scored with reviews/2026-10-15/calibration_sample.py).
 - Overture land cover (ESA WorldCover 2021, about 1 ha effective) and OSM land use against the LiDAR canopy, with the method check against the 25.59% city cover and the disagreement regions: reviews/2026-10-23/overture-landcover (outputs on Z:\GIS\overture\2026-10-21.0\millcreek\landcover-compare).
 - Whether the COGs line up with the hosted layers in a Web Mercator web map (they do: the ArcGIS Maps SDK applies the ITRF08 transformation itself; within about 5 cm of the hosted contours): reviews/2026-10-23/cog-alignment.
+- ArcGIS Online cartography of the eight hosted layers (vector tile styles as item resources, feature/scene renderers
+  and pop-ups in item data, the three web maps and the web scene; apply_styling.py, dry run by default): reviews/2026-10-23/agol-styling.
 - How the SDK draws the COGs (drawn colour against identify over COGs, zooms, tile edges and interpolation; one fault: a float COG with a class breaks renderer on its first draw, straight at a large scale, draws coarse tiles in a repeating grid; workaround and app advice): reviews/2026-10-23/cog-drawing.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.

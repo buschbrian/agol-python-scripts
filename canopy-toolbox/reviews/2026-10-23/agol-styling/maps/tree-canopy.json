@@ -1,0 +1,493 @@
+{
+ "item": {
+  "title": "Millcreek tree canopy",
+  "type": "Web Map",
+  "snippet": "Canopy cover by ownership zone, and lidar tree crowns and treetops by height, over imagery. Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p><b>Unvalidated LiDAR planning estimates from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</b></p><p>At city scale: canopy cover (vegetation at least 2 m tall, as a share of the area the lidar observed) for each ownership zone; click a zone for its figure, bounds and the October 19 comparison. Zoom in past 1:20,000 for the tree crowns and, from 1:10,000, the treetops, coloured and sized by treetop height. The lidar hillshade is blended over the imagery (soft light).</p><p>Treetops and crowns are unvalidated automatic detections; about 6% of treetops carry an unreviewed SUSPECT flag.</p><p><b>Treetop height (crowns and treetops):</b> <span style='color:#D9F0A3'>■</span> 2 to 5 m &nbsp; <span style='color:#ADDD8E'>■</span> 5 to 10 m &nbsp; <span style='color:#78C679'>■</span> 10 to 15 m &nbsp; <span style='color:#31A354'>■</span> 15 to 20 m &nbsp; <span style='color:#006837'>■</span> 20 m and over; larger treetop dots are taller trees.</p><p>Crowns and treetops are vector tiles: they draw but have no pop-ups, and the map legend cannot list them (the key above stands in).</p><p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in buschbrian/agol-python-scripts.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "canopy",
+   "tree canopy",
+   "trees",
+   "treetops",
+   "crowns"
+  ],
+  "typeKeywords": [
+   "ArcGIS Online",
+   "Explorer Web Map",
+   "Map",
+   "Online Map",
+   "Web Map"
+  ],
+  "extent": [
+   [
+    -111.92171,
+    40.65854
+   ],
+   [
+    -111.77604,
+    40.71476
+   ]
+  ],
+  "accessInformation": "Millcreek GIS; 2023 Salt Lake Valley QL1 lidar"
+ },
+ "data": {
+  "operationalLayers": [
+   {
+    "id": "hillshade",
+    "title": "Hillshade (0.5 m lidar terrain)",
+    "layerType": "ArcGISTiledMapServiceLayer",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+    "itemId": "cab8824e44384d479e1f302cdf34daf9",
+    "visibility": true,
+    "opacity": 0.5,
+    "showLegend": false,
+    "minScale": 300000,
+    "maxScale": 0,
+    "blendMode": "soft-light"
+   },
+   {
+    "id": "canopy-zones",
+    "title": "Canopy cover by ownership zone",
+    "layerType": "ArcGISFeatureLayer",
+    "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer/1",
+    "itemId": "d5effaee6c66497eaeb64e4c2e0f496e",
+    "visibility": true,
+    "opacity": 0.85,
+    "minScale": 0,
+    "maxScale": 20000,
+    "layerDefinition": {
+     "drawingInfo": {
+      "renderer": {
+       "type": "classBreaks",
+       "classificationMethod": "esriClassifyManual",
+       "minValue": 0,
+       "valueExpression": "var z = $feature.ZONE_ID;\nif (z == 'CITY' || z == 'OWNERSHIP:PUBLIC_GOVERNMENT') { return null; }\nreturn $feature.CANOPY_PCT;",
+       "valueExpressionTitle": "Canopy cover (% of the area the lidar observed)",
+       "classBreakInfos": [
+        {
+         "classMaxValue": 10,
+         "label": "Under 10%",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           247,
+           252,
+           185,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        },
+        {
+         "classMaxValue": 20,
+         "label": "10% to 20%",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           173,
+           221,
+           142,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        },
+        {
+         "classMaxValue": 30,
+         "label": "20% to 30%",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           65,
+           171,
+           93,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        },
+        {
+         "classMaxValue": 100,
+         "label": "30% and over",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           0,
+           90,
+           50,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        }
+       ]
+      },
+      "transparency": 0,
+      "labelingInfo": null
+     },
+     "minScale": 0,
+     "maxScale": 20000
+    },
+    "popupInfo": {
+     "title": "{expression/title}",
+     "expressionInfos": [
+      {
+       "name": "pct",
+       "title": "Canopy cover",
+       "returnType": "string",
+       "expression": "return Text($feature.CANOPY_PCT, '#0.0') + '%';"
+      },
+      {
+       "name": "bounds",
+       "title": "Bounds",
+       "returnType": "string",
+       "expression": "return Text($feature.CANOPY_LOW_PCT, '#0.0') + '% to ' + Text($feature.CANOPY_HIGH_PCT, '#0.0') + '%';"
+      },
+      {
+       "name": "change",
+       "title": "Against October 19",
+       "returnType": "string",
+       "expression": "var d = $feature.CANOPY_PCT - $feature.CANOPY_PCT_OCT19;\nif (Abs(d) < 0.005) { return 'The same as'; }\nreturn Text(Abs(d), '0.00') + ' points ' + IIf(d < 0, 'below', 'above');"
+      },
+      {
+       "name": "title",
+       "title": "Zone",
+       "returnType": "string",
+       "expression": "var n = $feature.ZONE_NAME;\nreturn IIf(Left($feature.ZONE_ID, 7) == 'PUBLIC:', 'Public owner: ' + n, n);"
+      }
+     ],
+     "popupElements": [
+      {
+       "type": "text",
+       "text": "<p><b>Canopy cover {expression/pct}</b> of the area the lidar observed (bounds {expression/bounds}).</p><p>About {CANOPY_ACRES} acres of tree canopy in {ZONE_ACRES} acres. The whole city: 25.59%.</p><p>{expression/change} the October 19 estimate of {CANOPY_PCT_OCT19}%, which came from the earlier classification; the October 22 figure above is the current one.</p><p>The lidar observed {OBSERVED_PCT}% of the zone; the bounds count the unobserved part as no canopy or as all canopy. Canopy is vegetation at least 2 m tall.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+      }
+     ],
+     "fieldInfos": [
+      {
+       "fieldName": "CANOPY_ACRES",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 1,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "ZONE_ACRES",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 1,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "OBSERVED_PCT",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 1,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "CANOPY_PCT_OCT19",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 2,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "expression/pct",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/bounds",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/change",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/title",
+       "visible": true,
+       "isEditable": false
+      }
+     ]
+    }
+   },
+   {
+    "id": "crowns",
+    "title": "Tree crowns by treetop height",
+    "layerType": "VectorTileLayer",
+    "itemId": "d9388dc83f894edbb63e0510a8c62fa8",
+    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/d9388dc83f894edbb63e0510a8c62fa8/resources/styles/root.json",
+    "visibility": true,
+    "opacity": 1,
+    "minScale": 18056,
+    "maxScale": 0
+   },
+   {
+    "id": "treetops",
+    "title": "Treetops by height",
+    "layerType": "VectorTileLayer",
+    "itemId": "924b993cb23046cb87641253bcf786de",
+    "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/924b993cb23046cb87641253bcf786de/resources/styles/root.json",
+    "visibility": true,
+    "opacity": 1,
+    "minScale": 10000,
+    "maxScale": 0
+   }
+  ],
+  "baseMap": {
+   "title": "Imagery Hybrid",
+   "baseMapLayers": [
+    {
+     "id": "world-imagery",
+     "title": "World Imagery",
+     "layerType": "ArcGISTiledMapServiceLayer",
+     "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+     "visibility": true,
+     "opacity": 1,
+     "showLegend": false
+    },
+    {
+     "id": "hybrid-reference",
+     "title": "Hybrid Reference Layer",
+     "layerType": "VectorTileLayer",
+     "isReference": true,
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/30d6b8271e1849cd9c3042060001f425/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    }
+   ]
+  },
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  },
+  "initialState": {
+   "viewpoint": {
+    "targetGeometry": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    }
+   }
+  },
+  "bookmarks": [
+   {
+    "name": "Whole city",
+    "extent": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12459067.21,
+      "ymin": 4962105.56,
+      "xmax": -12442851.81,
+      "ymax": 4970359.57,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Millcreek Common (city centre)",
+    "extent": {
+     "xmin": -12452534.9,
+     "ymin": 4967644.1,
+     "xmax": -12450160.6,
+     "ymax": 4969068.7,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12452534.9,
+      "ymin": 4967644.1,
+      "xmax": -12450160.6,
+      "ymax": 4969068.7,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Canyon Rim",
+    "extent": {
+     "xmin": -12447386.4,
+     "ymin": 4968055.2,
+     "xmax": -12445012.0,
+     "ymax": 4969479.9,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12447386.4,
+      "ymin": 4968055.2,
+      "xmax": -12445012.0,
+      "ymax": 4969479.9,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Evergreen and East Millcreek",
+    "extent": {
+     "xmin": -12449709.5,
+     "ymin": 4966888.0,
+     "xmax": -12447335.4,
+     "ymax": 4968312.4,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12449709.5,
+      "ymin": 4966888.0,
+      "xmax": -12447335.4,
+      "ymax": 4968312.4,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Olympus Cove foothills",
+    "extent": {
+     "xmin": -12445147.4,
+     "ymin": 4965130.8,
+     "xmax": -12442773.8,
+     "ymax": 4966555.0,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12445147.4,
+      "ymin": 4965130.8,
+      "xmax": -12442773.8,
+      "ymax": 4966555.0,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Scott Avenue (west Millcreek)",
+    "extent": {
+     "xmin": -12454150.1,
+     "ymin": 4966835.1,
+     "xmax": -12451776.0,
+     "ymax": 4968259.6,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12454150.1,
+      "ymin": 4966835.1,
+      "xmax": -12451776.0,
+      "ymax": 4968259.6,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   }
+  ],
+  "authoringApp": "apply_styling.py (ArcGIS API for Python)",
+  "authoringAppVersion": "2.4.3",
+  "version": "2.31"
+ }
+}

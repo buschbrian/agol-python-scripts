@@ -1,0 +1,2001 @@
+{
+ "id": 0,
+ "version": "lod12",
+ "name": "lod12",
+ "layerType": "3DObject",
+ "fullExtent": {
+  "spatialReference": {
+   "wkid": 4326,
+   "latestWkid": 4326,
+   "vcsWkid": 5773,
+   "latestVcsWkid": 5773
+  },
+  "xmin": -111.91823533357409,
+  "xmax": -111.77680544621157,
+  "ymin": 40.65989163876071,
+  "ymax": 40.713067398690626,
+  "zmin": 1294.0967999999993,
+  "zmax": 1764.1800999999978
+ },
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326,
+  "vcsWkid": 5773,
+  "latestVcsWkid": 5773
+ },
+ "alias": "lod12",
+ "serviceUpdateTimeStamp": {
+  "lastUpdate": 1792730344000
+ },
+ "capabilities": [
+  "View",
+  "Query"
+ ],
+ "store": {
+  "profile": "meshpyramids",
+  "version": "1.10",
+  "resourcePattern": [
+   "Geometry",
+   "Texture",
+   "Attributes"
+  ],
+  "rootNode": "./nodes/root",
+  "extent": [
+   -111.91823533357409,
+   40.65989163876071,
+   -111.77680544621157,
+   40.713067398690626
+  ],
+  "indexCRS": "http://www.opengis.net/def/crs/EPSG/0/4326",
+  "vertexCRS": "http://www.opengis.net/def/crs/EPSG/0/4326",
+  "normalReferenceFrame": "east-north-up",
+  "lodType": "MeshPyramid",
+  "lodModel": "node-switching",
+  "defaultGeometrySchema": {
+   "header": [
+    {
+     "property": "vertexCount",
+     "type": "UInt32"
+    },
+    {
+     "property": "featureCount",
+     "type": "UInt32"
+    }
+   ],
+   "topology": "PerAttributeArray",
+   "ordering": [
+    "position",
+    "uv0",
+    "color"
+   ],
+   "vertexAttributes": {
+    "position": {
+     "valueType": "Float32",
+     "valuesPerElement": 3
+    },
+    "uv0": {
+     "valueType": "Float32",
+     "valuesPerElement": 2
+    },
+    "color": {
+     "valueType": "UInt8",
+     "valuesPerElement": 4
+    }
+   },
+   "featureAttributeOrder": [
+    "id",
+    "faceRange"
+   ],
+   "featureAttributes": {
+    "id": {
+     "valueType": "UInt64",
+     "valuesPerElement": 1
+    },
+    "faceRange": {
+     "valueType": "UInt32",
+     "valuesPerElement": 2
+    }
+   }
+  }
+ },
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID"
+  },
+  {
+   "name": "SOURCE_ID",
+   "type": "esriFieldTypeString",
+   "alias": "SOURCE_ID"
+  },
+  {
+   "name": "SOURCE_OID",
+   "type": "esriFieldTypeInteger",
+   "alias": "SOURCE_OID"
+  },
+  {
+   "name": "ADDRESS",
+   "type": "esriFieldTypeString",
+   "alias": "ADDRESS"
+  },
+  {
+   "name": "CITY",
+   "type": "esriFieldTypeString",
+   "alias": "CITY"
+  },
+  {
+   "name": "COUNTY",
+   "type": "esriFieldTypeString",
+   "alias": "COUNTY"
+  },
+  {
+   "name": "PARCEL_ID",
+   "type": "esriFieldTypeString",
+   "alias": "PARCEL_ID"
+  },
+  {
+   "name": "SOURCE",
+   "type": "esriFieldTypeString",
+   "alias": "SOURCE"
+  },
+  {
+   "name": "BuildType",
+   "type": "esriFieldTypeString",
+   "alias": "BuildType"
+  },
+  {
+   "name": "Carto",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "Carto"
+  },
+  {
+   "name": "JURISDICTION",
+   "type": "esriFieldTypeString",
+   "alias": "JURISDICTION"
+  },
+  {
+   "name": "BLDGHEIGHT",
+   "type": "esriFieldTypeDouble",
+   "alias": "BLDGHEIGHT"
+  },
+  {
+   "name": "BuiltYear",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "BuiltYear"
+  },
+  {
+   "name": "GlobalID",
+   "type": "esriFieldTypeString",
+   "alias": "GlobalID"
+  },
+  {
+   "name": "CreationDate",
+   "type": "esriFieldTypeDate",
+   "alias": "CreationDate"
+  },
+  {
+   "name": "Creator",
+   "type": "esriFieldTypeString",
+   "alias": "Creator"
+  },
+  {
+   "name": "EditDate",
+   "type": "esriFieldTypeDate",
+   "alias": "EditDate"
+  },
+  {
+   "name": "Editor",
+   "type": "esriFieldTypeString",
+   "alias": "Editor"
+  },
+  {
+   "name": "FOOTPRINT_M2",
+   "type": "esriFieldTypeDouble",
+   "alias": "FOOTPRINT_M2"
+  },
+  {
+   "name": "AOI_PCT",
+   "type": "esriFieldTypeDouble",
+   "alias": "AOI_PCT"
+  },
+  {
+   "name": "ROOF_COV_PCT",
+   "type": "esriFieldTypeDouble",
+   "alias": "ROOF_COV_PCT"
+  },
+  {
+   "name": "ROOF_Z50_M",
+   "type": "esriFieldTypeDouble",
+   "alias": "ROOF_Z50_M"
+  },
+  {
+   "name": "GROUND_Z50_M",
+   "type": "esriFieldTypeDouble",
+   "alias": "GROUND_Z50_M"
+  },
+  {
+   "name": "HEIGHT_P50_M",
+   "type": "esriFieldTypeDouble",
+   "alias": "HEIGHT_P50_M"
+  },
+  {
+   "name": "HEIGHT_P95_M",
+   "type": "esriFieldTypeDouble",
+   "alias": "HEIGHT_P95_M"
+  },
+  {
+   "name": "HEIGHT_MAX_M",
+   "type": "esriFieldTypeDouble",
+   "alias": "HEIGHT_MAX_M"
+  },
+  {
+   "name": "GRID_CELLS",
+   "type": "esriFieldTypeInteger",
+   "alias": "GRID_CELLS"
+  },
+  {
+   "name": "ROOF_CELLS",
+   "type": "esriFieldTypeInteger",
+   "alias": "ROOF_CELLS"
+  },
+  {
+   "name": "NEG_H_CELLS",
+   "type": "esriFieldTypeInteger",
+   "alias": "NEG_H_CELLS"
+  },
+  {
+   "name": "PARTIAL_AOI",
+   "type": "esriFieldTypeInteger",
+   "alias": "PARTIAL_AOI"
+  },
+  {
+   "name": "HEIGHT_STATUS",
+   "type": "esriFieldTypeString",
+   "alias": "HEIGHT_STATUS"
+  },
+  {
+   "name": "FP_ID",
+   "type": "esriFieldTypeInteger",
+   "alias": "FP_ID"
+  },
+  {
+   "name": "ORIG_OID",
+   "type": "esriFieldTypeInteger",
+   "alias": "ORIG_OID"
+  },
+  {
+   "name": "RMSE",
+   "type": "esriFieldTypeDouble",
+   "alias": "RMSE"
+  },
+  {
+   "name": "MEAN_ERR",
+   "type": "esriFieldTypeDouble",
+   "alias": "MEAN_ERR"
+  },
+  {
+   "name": "PCT_HI_ERR",
+   "type": "esriFieldTypeDouble",
+   "alias": "PCT_HI_ERR"
+  },
+  {
+   "name": "LOD",
+   "type": "esriFieldTypeDouble",
+   "alias": "LOD"
+  },
+  {
+   "name": "MP_VOL",
+   "type": "esriFieldTypeDouble",
+   "alias": "MP_VOL"
+  },
+  {
+   "name": "BASE_Z",
+   "type": "esriFieldTypeDouble",
+   "alias": "BASE_Z"
+  },
+  {
+   "name": "TOP_Z",
+   "type": "esriFieldTypeDouble",
+   "alias": "TOP_Z"
+  },
+  {
+   "name": "TERRAIN_MIN_Z",
+   "type": "esriFieldTypeDouble",
+   "alias": "TERRAIN_MIN_Z"
+  },
+  {
+   "name": "TOP_MINUS_ROOF50",
+   "type": "esriFieldTypeDouble",
+   "alias": "TOP_MINUS_ROOF50"
+  },
+  {
+   "name": "BASE_MINUS_TMIN",
+   "type": "esriFieldTypeDouble",
+   "alias": "BASE_MINUS_TMIN"
+  }
+ ],
+ "attributeStorageInfo": [
+  {
+   "key": "f_0",
+   "name": "OBJECTID",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Oid32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_1",
+   "name": "SOURCE_ID",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_2",
+   "name": "SOURCE_OID",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_3",
+   "name": "ADDRESS",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_4",
+   "name": "CITY",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_5",
+   "name": "COUNTY",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_6",
+   "name": "PARCEL_ID",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_7",
+   "name": "SOURCE",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_8",
+   "name": "BuildType",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_9",
+   "name": "Carto",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int16",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_10",
+   "name": "JURISDICTION",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_11",
+   "name": "BLDGHEIGHT",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_12",
+   "name": "BuiltYear",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int16",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_13",
+   "name": "GlobalID",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_14",
+   "name": "CreationDate",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8",
+    "timeEncoding": "ECMA_ISO8601"
+   }
+  },
+  {
+   "key": "f_15",
+   "name": "Creator",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_16",
+   "name": "EditDate",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8",
+    "timeEncoding": "ECMA_ISO8601"
+   }
+  },
+  {
+   "key": "f_17",
+   "name": "Editor",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_18",
+   "name": "FOOTPRINT_M2",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_19",
+   "name": "AOI_PCT",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_20",
+   "name": "ROOF_COV_PCT",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_21",
+   "name": "ROOF_Z50_M",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_22",
+   "name": "GROUND_Z50_M",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_23",
+   "name": "HEIGHT_P50_M",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_24",
+   "name": "HEIGHT_P95_M",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_25",
+   "name": "HEIGHT_MAX_M",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_26",
+   "name": "GRID_CELLS",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_27",
+   "name": "ROOF_CELLS",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_28",
+   "name": "NEG_H_CELLS",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_29",
+   "name": "PARTIAL_AOI",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_30",
+   "name": "HEIGHT_STATUS",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    },
+    {
+     "property": "attributeValuesByteCount",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeByteCounts",
+    "attributeValues"
+   ],
+   "attributeByteCounts": {
+    "valueType": "UInt32",
+    "valuesPerElement": 1
+   },
+   "attributeValues": {
+    "valueType": "String",
+    "valuesPerElement": 1,
+    "encoding": "UTF-8"
+   }
+  },
+  {
+   "key": "f_31",
+   "name": "FP_ID",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_32",
+   "name": "ORIG_OID",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Int32",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_33",
+   "name": "RMSE",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_34",
+   "name": "MEAN_ERR",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_35",
+   "name": "PCT_HI_ERR",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_36",
+   "name": "LOD",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_37",
+   "name": "MP_VOL",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_38",
+   "name": "BASE_Z",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_39",
+   "name": "TOP_Z",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_40",
+   "name": "TERRAIN_MIN_Z",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_41",
+   "name": "TOP_MINUS_ROOF50",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  },
+  {
+   "key": "f_42",
+   "name": "BASE_MINUS_TMIN",
+   "header": [
+    {
+     "property": "count",
+     "valueType": "UInt32"
+    }
+   ],
+   "ordering": [
+    "attributeValues"
+   ],
+   "attributeValues": {
+    "valueType": "Float64",
+    "valuesPerElement": 1
+   }
+  }
+ ],
+ "statisticsInfo": [
+  {
+   "key": "f_1",
+   "name": "SOURCE_ID",
+   "href": "./statistics/f_1/0"
+  },
+  {
+   "key": "f_2",
+   "name": "SOURCE_OID",
+   "href": "./statistics/f_2/0"
+  },
+  {
+   "key": "f_3",
+   "name": "ADDRESS",
+   "href": "./statistics/f_3/0"
+  },
+  {
+   "key": "f_4",
+   "name": "CITY",
+   "href": "./statistics/f_4/0"
+  },
+  {
+   "key": "f_5",
+   "name": "COUNTY",
+   "href": "./statistics/f_5/0"
+  },
+  {
+   "key": "f_6",
+   "name": "PARCEL_ID",
+   "href": "./statistics/f_6/0"
+  },
+  {
+   "key": "f_7",
+   "name": "SOURCE",
+   "href": "./statistics/f_7/0"
+  },
+  {
+   "key": "f_8",
+   "name": "BuildType",
+   "href": "./statistics/f_8/0"
+  },
+  {
+   "key": "f_9",
+   "name": "Carto",
+   "href": "./statistics/f_9/0"
+  },
+  {
+   "key": "f_10",
+   "name": "JURISDICTION",
+   "href": "./statistics/f_10/0"
+  },
+  {
+   "key": "f_11",
+   "name": "BLDGHEIGHT",
+   "href": "./statistics/f_11/0"
+  },
+  {
+   "key": "f_12",
+   "name": "BuiltYear",
+   "href": "./statistics/f_12/0"
+  },
+  {
+   "key": "f_13",
+   "name": "GlobalID",
+   "href": "./statistics/f_13/0"
+  },
+  {
+   "key": "f_14",
+   "name": "CreationDate",
+   "href": "./statistics/f_14/0"
+  },
+  {
+   "key": "f_15",
+   "name": "Creator",
+   "href": "./statistics/f_15/0"
+  },
+  {
+   "key": "f_16",
+   "name": "EditDate",
+   "href": "./statistics/f_16/0"
+  },
+  {
+   "key": "f_17",
+   "name": "Editor",
+   "href": "./statistics/f_17/0"
+  },
+  {
+   "key": "f_18",
+   "name": "FOOTPRINT_M2",
+   "href": "./statistics/f_18/0"
+  },
+  {
+   "key": "f_19",
+   "name": "AOI_PCT",
+   "href": "./statistics/f_19/0"
+  },
+  {
+   "key": "f_20",
+   "name": "ROOF_COV_PCT",
+   "href": "./statistics/f_20/0"
+  },
+  {
+   "key": "f_21",
+   "name": "ROOF_Z50_M",
+   "href": "./statistics/f_21/0"
+  },
+  {
+   "key": "f_22",
+   "name": "GROUND_Z50_M",
+   "href": "./statistics/f_22/0"
+  },
+  {
+   "key": "f_23",
+   "name": "HEIGHT_P50_M",
+   "href": "./statistics/f_23/0"
+  },
+  {
+   "key": "f_24",
+   "name": "HEIGHT_P95_M",
+   "href": "./statistics/f_24/0"
+  },
+  {
+   "key": "f_25",
+   "name": "HEIGHT_MAX_M",
+   "href": "./statistics/f_25/0"
+  },
+  {
+   "key": "f_26",
+   "name": "GRID_CELLS",
+   "href": "./statistics/f_26/0"
+  },
+  {
+   "key": "f_27",
+   "name": "ROOF_CELLS",
+   "href": "./statistics/f_27/0"
+  },
+  {
+   "key": "f_28",
+   "name": "NEG_H_CELLS",
+   "href": "./statistics/f_28/0"
+  },
+  {
+   "key": "f_29",
+   "name": "PARTIAL_AOI",
+   "href": "./statistics/f_29/0"
+  },
+  {
+   "key": "f_30",
+   "name": "HEIGHT_STATUS",
+   "href": "./statistics/f_30/0"
+  },
+  {
+   "key": "f_31",
+   "name": "FP_ID",
+   "href": "./statistics/f_31/0"
+  },
+  {
+   "key": "f_32",
+   "name": "ORIG_OID",
+   "href": "./statistics/f_32/0"
+  },
+  {
+   "key": "f_33",
+   "name": "RMSE",
+   "href": "./statistics/f_33/0"
+  },
+  {
+   "key": "f_34",
+   "name": "MEAN_ERR",
+   "href": "./statistics/f_34/0"
+  },
+  {
+   "key": "f_35",
+   "name": "PCT_HI_ERR",
+   "href": "./statistics/f_35/0"
+  },
+  {
+   "key": "f_36",
+   "name": "LOD",
+   "href": "./statistics/f_36/0"
+  },
+  {
+   "key": "f_37",
+   "name": "MP_VOL",
+   "href": "./statistics/f_37/0"
+  },
+  {
+   "key": "f_38",
+   "name": "BASE_Z",
+   "href": "./statistics/f_38/0"
+  },
+  {
+   "key": "f_39",
+   "name": "TOP_Z",
+   "href": "./statistics/f_39/0"
+  },
+  {
+   "key": "f_40",
+   "name": "TERRAIN_MIN_Z",
+   "href": "./statistics/f_40/0"
+  },
+  {
+   "key": "f_41",
+   "name": "TOP_MINUS_ROOF50",
+   "href": "./statistics/f_41/0"
+  },
+  {
+   "key": "f_42",
+   "name": "BASE_MINUS_TMIN",
+   "href": "./statistics/f_42/0"
+  }
+ ],
+ "heightModelInfo": {
+  "heightModel": "gravity_related_height",
+  "vertCRS": "EGM96_height",
+  "heightUnit": "meter"
+ },
+ "drawingInfo": {
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "MeshSymbol3D",
+    "symbolLayers": [
+     {
+      "type": "Fill",
+      "material": {
+       "color": [
+        255,
+        255,
+        255
+       ],
+       "transparency": 0,
+       "colorMixMode": "multiply"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "popupInfo": {
+  "title": "{OBJECTID}",
+  "popupElements": [
+   {
+    "type": "fields",
+    "fieldInfos": [
+     {
+      "fieldName": "OBJECTID",
+      "label": "OBJECTID",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "SOURCE_ID",
+      "label": "SOURCE_ID",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "SOURCE_OID",
+      "label": "SOURCE_OID",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "ADDRESS",
+      "label": "ADDRESS",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "CITY",
+      "label": "CITY",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "COUNTY",
+      "label": "COUNTY",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "PARCEL_ID",
+      "label": "PARCEL_ID",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "SOURCE",
+      "label": "SOURCE",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "BuildType",
+      "label": "BuildType",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "Carto",
+      "label": "Carto",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "JURISDICTION",
+      "label": "JURISDICTION",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "BLDGHEIGHT",
+      "label": "BLDGHEIGHT",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "BuiltYear",
+      "label": "BuiltYear",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "GlobalID",
+      "label": "GlobalID",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "CreationDate",
+      "label": "CreationDate",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "Creator",
+      "label": "Creator",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "EditDate",
+      "label": "EditDate",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "Editor",
+      "label": "Editor",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "FOOTPRINT_M2",
+      "label": "FOOTPRINT_M2",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "AOI_PCT",
+      "label": "AOI_PCT",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "ROOF_COV_PCT",
+      "label": "ROOF_COV_PCT",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "ROOF_Z50_M",
+      "label": "ROOF_Z50_M",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "GROUND_Z50_M",
+      "label": "GROUND_Z50_M",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "HEIGHT_P50_M",
+      "label": "HEIGHT_P50_M",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "HEIGHT_P95_M",
+      "label": "HEIGHT_P95_M",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "HEIGHT_MAX_M",
+      "label": "HEIGHT_MAX_M",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "GRID_CELLS",
+      "label": "GRID_CELLS",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "ROOF_CELLS",
+      "label": "ROOF_CELLS",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "NEG_H_CELLS",
+      "label": "NEG_H_CELLS",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "PARTIAL_AOI",
+      "label": "PARTIAL_AOI",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "HEIGHT_STATUS",
+      "label": "HEIGHT_STATUS",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "FP_ID",
+      "label": "FP_ID",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "ORIG_OID",
+      "label": "ORIG_OID",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "RMSE",
+      "label": "RMSE",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "MEAN_ERR",
+      "label": "MEAN_ERR",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "PCT_HI_ERR",
+      "label": "PCT_HI_ERR",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "LOD",
+      "label": "LOD",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "MP_VOL",
+      "label": "MP_VOL",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "BASE_Z",
+      "label": "BASE_Z",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "TOP_Z",
+      "label": "TOP_Z",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "TERRAIN_MIN_Z",
+      "label": "TERRAIN_MIN_Z",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "TOP_MINUS_ROOF50",
+      "label": "TOP_MINUS_ROOF50",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "BASE_MINUS_TMIN",
+      "label": "BASE_MINUS_TMIN",
+      "visible": true,
+      "isEditable": false
+     }
+    ]
+   }
+  ],
+  "fieldInfos": [
+   {
+    "fieldName": "OBJECTID",
+    "label": "OBJECTID",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "SOURCE_ID",
+    "label": "SOURCE_ID",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "SOURCE_OID",
+    "label": "SOURCE_OID",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "ADDRESS",
+    "label": "ADDRESS",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "CITY",
+    "label": "CITY",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "COUNTY",
+    "label": "COUNTY",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "PARCEL_ID",
+    "label": "PARCEL_ID",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "SOURCE",
+    "label": "SOURCE",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "BuildType",
+    "label": "BuildType",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "Carto",
+    "label": "Carto",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "JURISDICTION",
+    "label": "JURISDICTION",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "BLDGHEIGHT",
+    "label": "BLDGHEIGHT",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "BuiltYear",
+    "label": "BuiltYear",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "GlobalID",
+    "label": "GlobalID",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "CreationDate",
+    "label": "CreationDate",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "Creator",
+    "label": "Creator",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "EditDate",
+    "label": "EditDate",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "Editor",
+    "label": "Editor",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "FOOTPRINT_M2",
+    "label": "FOOTPRINT_M2",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "AOI_PCT",
+    "label": "AOI_PCT",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "ROOF_COV_PCT",
+    "label": "ROOF_COV_PCT",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "ROOF_Z50_M",
+    "label": "ROOF_Z50_M",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "GROUND_Z50_M",
+    "label": "GROUND_Z50_M",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "HEIGHT_P50_M",
+    "label": "HEIGHT_P50_M",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "HEIGHT_P95_M",
+    "label": "HEIGHT_P95_M",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "HEIGHT_MAX_M",
+    "label": "HEIGHT_MAX_M",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "GRID_CELLS",
+    "label": "GRID_CELLS",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "ROOF_CELLS",
+    "label": "ROOF_CELLS",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "NEG_H_CELLS",
+    "label": "NEG_H_CELLS",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "PARTIAL_AOI",
+    "label": "PARTIAL_AOI",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "HEIGHT_STATUS",
+    "label": "HEIGHT_STATUS",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "FP_ID",
+    "label": "FP_ID",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "ORIG_OID",
+    "label": "ORIG_OID",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "RMSE",
+    "label": "RMSE",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "MEAN_ERR",
+    "label": "MEAN_ERR",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "PCT_HI_ERR",
+    "label": "PCT_HI_ERR",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "LOD",
+    "label": "LOD",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "MP_VOL",
+    "label": "MP_VOL",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "BASE_Z",
+    "label": "BASE_Z",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "TOP_Z",
+    "label": "TOP_Z",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "TERRAIN_MIN_Z",
+    "label": "TERRAIN_MIN_Z",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "TOP_MINUS_ROOF50",
+    "label": "TOP_MINUS_ROOF50",
+    "visible": true,
+    "isEditable": false
+   },
+   {
+    "fieldName": "BASE_MINUS_TMIN",
+    "label": "BASE_MINUS_TMIN",
+    "visible": true,
+    "isEditable": false
+   }
+  ]
+ },
+ "nodePages": {
+  "nodesPerPage": 64,
+  "lodSelectionMetricType": "maxScreenThresholdSQ"
+ },
+ "materialDefinitions": [
+  {
+   "doubleSided": true
+  }
+ ],
+ "geometryDefinitions": [
+  {
+   "geometryBuffers": [
+    {
+     "offset": 8,
+     "position": {
+      "type": "Float32",
+      "component": 3
+     },
+     "featureId": {
+      "type": "UInt64",
+      "component": 1,
+      "binding": "per-feature"
+     },
+     "faceRange": {
+      "type": "UInt32",
+      "component": 2,
+      "binding": "per-feature"
+     }
+    },
+    {
+     "compressedAttributes": {
+      "encoding": "draco",
+      "attributes": [
+       "position",
+       "feature-index"
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
