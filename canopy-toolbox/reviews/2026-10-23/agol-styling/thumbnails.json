@@ -1,0 +1,15 @@
+{
+ "_about": "Item thumbnails: each rendered at 600 x 400 by web/check.html?thumb=1&<query> (Maps SDK 5.1), saved as <key>.png and sent by apply_styling.py thumbnails --thumbs DIR. The PNGs hold basemap imagery, so they stay out of the repo.",
+ "terrain-and-slope": {"item": "177bfc592415451585ba72ab9207b3c6", "query": "item=177bfc592415451585ba72ab9207b3c6&center=-111.792,40.689&scale=18056"},
+ "tree-canopy": {"item": "e5efa719691045849108553394448f35", "query": "item=e5efa719691045849108553394448f35&center=-111.8085,40.7035&scale=2257"},
+ "buildings": {"item": "504554bd5a9545559db06aa6098e8e49", "query": "item=504554bd5a9545559db06aa6098e8e49&center=-111.8545,40.7005&scale=4514"},
+ "in-3d": {"item": "5b5bdf4a63c9466fad5884039aa7357f", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=0"},
+ "features": {"item": "d5effaee6c66497eaeb64e4c2e0f496e", "query": "layer=d5effaee6c66497eaeb64e4c2e0f496e/0&center=-111.8545,40.7005&scale=4514"},
+ "slope": {"item": "3b5b1a9110f14e93af68752be89e0df2", "query": "layer=3b5b1a9110f14e93af68752be89e0df2&center=-111.792,40.689&scale=18056"},
+ "contours": {"item": "50573eeba93f405a869a1d78a08d68e8", "query": "layer=50573eeba93f405a869a1d78a08d68e8&center=-111.795,40.690&scale=9028"},
+ "treetops": {"item": "924b993cb23046cb87641253bcf786de", "query": "layer=924b993cb23046cb87641253bcf786de&basemap=satellite&center=-111.8085,40.7035&scale=2257"},
+ "crowns": {"item": "d9388dc83f894edbb63e0510a8c62fa8", "query": "layer=d9388dc83f894edbb63e0510a8c62fa8&basemap=satellite&center=-111.8085,40.7035&scale=2257"},
+ "hillshade": {"item": "cab8824e44384d479e1f302cdf34daf9", "query": "layer=cab8824e44384d479e1f302cdf34daf9&center=-111.800,40.688&scale=36112"},
+ "buildings3d": {"item": "5082b5bd063a4a03847f2082dc3533d1", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=3"},
+ "terrain": {"item": "ce1680a5196e458ebfb60ead5150b946", "query": "item=5b5bdf4a63c9466fad5884039aa7357f&slide=3&hide=buildings3d"}
+}

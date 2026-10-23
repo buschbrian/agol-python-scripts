@@ -46,6 +46,17 @@ layer definitions are in `originals/`; the feature and scene items had no item d
   finest non-overlapping tier only, in four classes (under 10%, 10-20, 20-30, 30% and over); the city and the public /
   government total draw nothing. Pop-up: cover, bounds, acres, the October 19 comparison, observed share, the warning.
 
+## Thumbnails
+
+All twelve items (the eight layers, the three maps, the scene) have a 600 x 400 thumbnail rendered from their own
+symbology by `web/check.html?thumb=1` in Playwright's Chromium, at the views in `thumbnails.json`: slope, contours,
+hillshade and the buildings on light grey; treetops and crowns over imagery at Canyon Rim Park; the 3D buildings and
+the terrain from the scene's Olympus Cove slide (terrain with the buildings hidden). The feature service's thumbnail
+shows both its layers. The PNGs hold basemap imagery, so they are not in the repo; render them again from
+`thumbnails.json` to resend. The seven layer thumbnails generated at publishing (JPEGs) were saved before being
+replaced, outside the repo. ArcGIS Online stores the PNG as sent (`/info/<thumbnail>?w=800` returns it byte for
+byte) and serves 200-pixel copies by default.
+
 ## Checks (October 23)
 
 - `apply_styling.py` reads everything back after sending; a dry run afterwards reports every style, item data, service
@@ -79,6 +90,7 @@ layer definitions are in `originals/`; the feature and scene items had no item d
     python reviews/2026-10-23/agol-styling/build_definitions.py          standard library; writes styles/, layers/, maps/
     python reviews/2026-10-23/agol-styling/apply_styling.py [STEP ...]   ArcGIS Pro Python; dry run (styles, layers, maps)
     python reviews/2026-10-23/agol-styling/apply_styling.py ... --go     send what differs, read it back
+    python reviews/2026-10-23/agol-styling/apply_styling.py thumbnails --thumbs DIR [--go]   DIR holds <key>.png
     python reviews/2026-10-23/agol-styling/web/serve_check.py            ArcGIS Pro Python; check page on 127.0.0.1:8797
 
 Edit `build_definitions.py`, not the JSON. `created.json` records the new map and scene IDs so reruns update them in place.
