@@ -1,0 +1,30 @@
+{
+ "footprints": 22042,
+ "sample": 2000,
+ "seed": 1,
+ "fields": [
+  "FOOTPRINT_M2",
+  "AOI_PCT",
+  "ROOF_COV_PCT",
+  "ROOF_Z50_M",
+  "GROUND_Z50_M",
+  "HEIGHT_P50_M",
+  "HEIGHT_P95_M",
+  "HEIGHT_MAX_M",
+  "GRID_CELLS",
+  "ROOF_CELLS",
+  "NEG_H_CELLS",
+  "PARTIAL_AOI",
+  "HEIGHT_STATUS"
+ ],
+ "rows_differing": 0,
+ "field_differences": {},
+ "examples": [],
+ "boundary_fallbacks": 0,
+ "exact": true,
+ "rasters": {
+  "roof_elevation": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_elevation_m.tif",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\terrain_m.tif"
+ },
+ "boundary": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\municipal_boundary"
+}
