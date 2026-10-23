@@ -169,6 +169,26 @@ def upload_file(key):
     return target
 
 
+def trace_unverified_https():
+    """Log where any HTTPS request without certificate verification comes from. The hillshade publish (October 23) made
+    four to www.arcgis.com from inside the ArcGIS API although the session verifies certificates; this records the
+    call stack of each so the source can be found and reported."""
+    import traceback
+    import warnings
+    shown = warnings.showwarning
+
+    def show(message, category, filename, lineno, file=None, line=None):
+        if category.__name__ == "InsecureRequestWarning":
+            stack = "".join(traceback.format_stack(limit=14)[:-1])
+            LOG_DIR.mkdir(parents=True, exist_ok=True)
+            with open(LOG_DIR/"unverified-https.log", "a", encoding="utf-8") as fh:
+                fh.write(f"{datetime.datetime.now().isoformat(timespec='seconds')} {message}\n{stack}\n")
+            print("WARNING: an unverified HTTPS request was made; call stack in", LOG_DIR/"unverified-https.log")
+        else:
+            shown(message, category, filename, lineno, file, line)
+    warnings.showwarning = show
+
+
 def sign_in(args):
     from arcgis.gis import GIS
     if args.url:
@@ -179,6 +199,7 @@ def sign_in(args):
 
 def go(key, args):
     from arcgis.gis import GIS  # noqa: F401  (fail before signing in if the API is missing)
+    trace_unverified_https()
     record = describe(key)
     log = read_log()
     if log.get(key, {}).get("published_id") and not args.again:

@@ -106,6 +106,14 @@ to you, never sharing or deleting (`upload.py list` shows the status). Each READ
   own style already has 1.33 px for both, so Pro's export flattened the widths. Fix in the style, not the tiles: save a
   copy of the style in ArcGIS Online's Vector Tile Style Editor with the index lines about 1.6 px and the 2 m lines about
   0.7 px, or set the widths when the layer is added to a web map.
+- `hillshade`, October 23: Map Service (hosted tile layer) `cab8824e44384d479e1f302cdf34daf9` (package item
+  `2d4f5092edfd4c54a9898a1a7dda5dd1`). Checked online: Web Mercator, 256-pixel PNG32 tiles on the ArcGIS Online scheme;
+  16 tiles with data at levels 8, 12, 15, 17 and 18 are byte for byte the package's. Hosted size 134 MB (about 0.16
+  credits a month once the package item is deleted). **During the publish the ArcGIS API made four HTTPS requests to
+  www.arcgis.com without certificate verification** (urllib3 InsecureRequestWarning), although the signed-in session
+  verifies certificates; the call site is inside the API, not `upload.py`. `upload.py` now logs the call stack of any such
+  request to `runs\hosting-uploads\unverified-https.log`, so the terrain publish (the other `.tpkx`) will show where it
+  comes from.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
