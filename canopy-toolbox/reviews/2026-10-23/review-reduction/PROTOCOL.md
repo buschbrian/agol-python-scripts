@@ -41,9 +41,11 @@ rule or the stratum, only the usual facts and guess.
 ## Decision (per stratum, once every sample item in it is answered)
 UNSURE answers are left out of n.
 - **Rule A passes** when the Wilson 95% upper bound of the ACCEPT share is at most 12%. With 50 answers that allows
-  at most 1 ACCEPT; with 40 or 60, at most 1 or 2.
+  at most 1 ACCEPT; with 40, none; with 60, at most 2.
 - **Rule B passes** when the Wilson 95% upper bound of the share that isn't PART_OF_EXISTING is at most 15%. With 50
-  answers that allows at most 2.
+  answers that allows at most 2; with 40, at most 1; with 60, at most 3.
+- (Correction, made before any answer: the first version of this file said 40 answers allow 1 ACCEPT. Checked with
+  `reduce_queue.wilson_upper`; the thresholds are unchanged.)
 - **Expected error if adopted:** the stratum's size times the observed share, reported with the size times the upper
   bound.
 - **A failed rule falls back to review:** that stratum is reviewed one by one.
