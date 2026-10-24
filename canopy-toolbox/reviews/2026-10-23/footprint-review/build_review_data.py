@@ -41,6 +41,9 @@ COUNTY_WEB = RUNS/"hosting-features-20261023"/"features.gdb"     # county footpr
 PARCELS = RUNS/"city-count-20261008"/"inputs.gdb"/"parcels"
 ALIGN = RUNS/"county-alignment-20261023"          # reviews/2026-10-23/county-alignment (optional)
 REDUCTION = HERE.parents[1]/"review-reduction"     # its pre-registered sample.csv and eyes.csv (optional)
+USA = RUNS/"usa-structures-20261023"/"votes.csv"   # reviews/2026-10-23/usa-structures (optional)
+USA_VOTES = {}                                     # item id -> vote row, filled by load_usa()
+USA_MIN_M2 = 450 / 10.7639
 ALIGNMENT = {}                                     # SOURCE_ID -> row of ALIGN/classes.csv, filled by load_alignment()
 COMPARE = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\overture_vs_lidar.gpkg")
 OVERTURE_PARQUET = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\buildings.parquet")
@@ -306,7 +309,8 @@ def candidate_facts(r, parcels, county_per_parcel, county_by_id):
             "Same parcel as nearest county building": txt(r.SAME_PARCEL),
             "Roof vs nearest county building": "—" if dz is None or r.NEAR_FP_DIST_M > 10 else
             f"{abs(dz):.1f} m {'below' if dz < 0 else 'above'} its median roof; {100 * share:.0f}% of its area",
-            "That county outline vs the LiDAR": alignment_text(r.NEAR_FP_SOURCE_ID)}
+            "That county outline vs the LiDAR": alignment_text(r.NEAR_FP_SOURCE_ID),
+            "USA Structures (FEMA, 2010-2020 imagery)": usa_text(r.CAND_ID, r.FOOTPRINT_M2)}
 
 
 def county_facts(r, chips, parcels):
@@ -317,7 +321,8 @@ def county_facts(r, chips, parcels):
             "Area": f"{r.FOOTPRINT_M2:.0f} m² ({r.FOOTPRINT_M2 * 10.7639:.0f} ft²)",
             "2023 LiDAR roof support": cov, "Under canopy (2 m or more)": txt(canopy_share(chips, r.geometry), "{}%"),
             "Parcel use": use, "Assessor (main building)": assessor, "Height flags": txt(r.HEIGHT_STATUS),
-            "County outline vs the LiDAR": alignment_text(r.SOURCE_ID)}
+            "County outline vs the LiDAR": alignment_text(r.SOURCE_ID),
+            "USA Structures (FEMA, 2010-2020 imagery)": usa_text(f"CF{r.SOURCE_ID}", r.FOOTPRINT_M2)}
 
 
 def newbuild_facts(item, r, chips, county, parcels, parcel_of):
@@ -328,7 +333,8 @@ def newbuild_facts(item, r, chips, county, parcels, parcel_of):
             "Nearest county building": f"{near:.1f} m",
             "2023 LiDAR roof under it": txt(r.L_ROOF_COV_PCT, "{:.0f}%"),
             "Under canopy (2 m or more)": txt(canopy_share(chips, r.geometry), "{}%"),
-            "Parcel": txt(parcel_of), "Parcel use": use, "Assessor (main building)": assessor}
+            "Parcel": txt(parcel_of), "Parcel use": use, "Assessor (main building)": assessor,
+            "USA Structures (FEMA, 2010-2020 imagery)": usa_text(item)}
 
 
 def pair_facts(f, cands, parcels, share_near):
@@ -364,6 +370,8 @@ def pair_facts(f, cands, parcels, share_near):
             "Combined LiDAR area / county area": f"{cands.FOOTPRINT_M2.sum() / f.FOOTPRINT_M2:.2f}",
             "County outline within 3 m of them": f"{100 * share_near:.0f}%",
             "County outline vs the LiDAR": alignment_text(f.SOURCE_ID),
+            "USA Structures at the LiDAR piece(s)": "; ".join(
+                f"{c.CAND_ID}: {usa_text(c.CAND_ID, c.FOOTPRINT_M2)}" for c in cands.itertuples()),
             "Parcel": txt(f.PARCEL_ID), "Parcel use": use, "Assessor (main building)": assessor}
 
 
@@ -391,6 +399,28 @@ def reduction_groups(groups):
                     if groups.get(r["CAND_ID"], "").startswith("attached"):
                         out[r["CAND_ID"]] = group
     return out
+
+
+def load_usa():
+    import csv
+    if USA.exists():
+        with open(USA, newline="", encoding="utf-8") as handle:
+            USA_VOTES.update({r["ITEM_ID"]: r for r in csv.DictReader(handle)})
+
+
+def usa_text(item_id, area=None):
+    """FEMA/ORNL USA Structures (CC BY 4.0) at this place: mostly traced from 2010 imagery, some from 2019-2020, and
+    only structures over 450 ft2. A "yes" means a structure stood here then, not necessarily this building: three of
+    the 2018-2021 houses Brian accepted match the 2010 house they replaced."""
+    r = USA_VOTES.get(item_id)
+    if r is None:
+        return "—"
+    if r["US_ID"]:
+        occ = r["US_OCC"] or "structure"
+        return f"yes: {occ.lower()}, imagery {r['US_IMAGE_DATE']} (a structure stood here then)"
+    if area is not None and area < USA_MIN_M2:
+        return "no record (it lists only structures over 42 m²)"
+    return "no structure here in its imagery (2010-2020)"
 
 
 def compass(dx, dy):
@@ -552,6 +582,7 @@ def main(argv=None):
     chips = Chips()
     parcel_frame, parcels = load_parcels()
     explained_cands, explained_pairs = load_alignment()
+    load_usa()
     county_per_parcel = county.assign(P=county.PARCEL_ID.map(pnorm)).groupby("P").size().to_dict()
     hint_parcel = {}
     if len(hints):

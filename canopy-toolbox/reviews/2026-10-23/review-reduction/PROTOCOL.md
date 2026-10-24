@@ -50,3 +50,9 @@ UNSURE answers are left out of n.
   bound.
 - **A failed rule falls back to review:** that stratum is reviewed one by one.
 - **Thresholds stay fixed.** They are not changed after seeing the answers. A different rule would need a new sample.
+
+## Changes to what the page shows (after pre-registration)
+- October 23: a "USA Structures (FEMA, 2010-2020 imagery)" fact was added to every item
+  ([usa-structures](../usa-structures/README.md)). It was added before any sample answer was given. The strata,
+  sample and thresholds are unchanged. The extra fact can only make Brian's answers better informed; it does not
+  change what the rule tests.

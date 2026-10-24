@@ -120,6 +120,10 @@ back over answers.
   direction), trees over it, part roofed, or rebuilt or gone. That study found no systematic shift in the county layer
   (median 0.36 m per building, no shared neighbourhood shift). Realigning outlines explains only 4 candidates and 2
   pairs, which move to the last group, "Explained by realigning the county outline".
+- **USA Structures vote** (October 23, [usa-structures](../usa-structures/README.md)): every candidate, county
+  no-roof item, new-building hint and pair shows whether FEMA/ORNL USA Structures has a structure there, with its
+  imagery date. Here that is mostly 2010, and it lists nothing under 42 m², so a "yes" means a structure stood there
+  then, not necessarily this building.
 - **Sample first** (October 23, [review-reduction](../review-reduction/README.md)): the attached candidates are now
   grouped "Sample: answer these first" (300, pre-registered in PROTOCOL.md), "Needs eyes" (443), then the earlier
   attached groups (2,928). Answering the sample lets a pre-registered rule settle up to 3,228 attached pieces, if Brian

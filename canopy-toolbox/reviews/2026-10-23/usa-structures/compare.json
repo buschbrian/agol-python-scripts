@@ -1,0 +1,74 @@
+{
+ "usa_structures_in_city": 20615,
+ "attribution": "USA Structures: FEMA Geospatial Response Office and Oak Ridge National Laboratory, via Esri (CC BY 4.0)",
+ "image_dates": {
+  "2010-09-18": 19169,
+  "2019-08-18": 1050,
+  "2020-05-04": 396
+ },
+ "county_footprints_in_usa_structures": {
+  "n": 22042,
+  "in_usa_structures": 19525,
+  "share": 0.886
+ },
+ "candidates_all": {
+  "n": 6213,
+  "in_usa_structures": 1261,
+  "share": 0.203
+ },
+ "candidates_42m2_and_over": {
+  "n": 1752,
+  "in_usa_structures": 803,
+  "share": 0.458
+ },
+ "candidates_42m2_and_over_by_group": {
+  "attached": {
+   "n": 190,
+   "in_usa_structures": 34,
+   "share": 0.179
+  },
+  "attached_eyes": {
+   "n": 285,
+   "in_usa_structures": 108,
+   "share": 0.379
+  },
+  "attached_lower": {
+   "n": 120,
+   "in_usa_structures": 27,
+   "share": 0.225
+  },
+  "attached_sample": {
+   "n": 49,
+   "in_usa_structures": 8,
+   "share": 0.163
+  },
+  "detached": {
+   "n": 856,
+   "in_usa_structures": 558,
+   "share": 0.652
+  },
+  "large_tall": {
+   "n": 252,
+   "in_usa_structures": 68,
+   "share": 0.27
+  }
+ },
+ "county_no_roof": {
+  "n": 586,
+  "in_usa_structures": 155,
+  "share": 0.265
+ },
+ "county_no_roof_42m2_and_over": {
+  "n": 210,
+  "in_usa_structures": 139,
+  "share": 0.662
+ },
+ "county_no_roof_imagery_after_lidar": 0,
+ "newbuild_hints": {
+  "n": 208,
+  "in_usa_structures": 24,
+  "share": 0.115
+ },
+ "newbuild_hints_imagery_after_lidar": 0,
+ "usa_structures_in_no_county_or_candidate": 549
+}
