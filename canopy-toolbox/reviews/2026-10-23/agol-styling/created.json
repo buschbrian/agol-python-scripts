@@ -6,7 +6,7 @@
  },
  "in-3d": {
   "id": "5b5bdf4a63c9466fad5884039aa7357f",
-  "title": "Millcreek in 3D",
+  "title": "Millcreek buildings in 3D",
   "type": "Web Scene"
  },
  "terrain-and-slope": {
@@ -18,5 +18,10 @@
   "id": "e5efa719691045849108553394448f35",
   "title": "Millcreek tree canopy",
   "type": "Web Map"
+ },
+ "terrain-3d": {
+  "id": "71b680b486b245fd8ec17eb80387be94",
+  "title": "Millcreek terrain and slope in 3D",
+  "type": "Web Scene"
  }
 }

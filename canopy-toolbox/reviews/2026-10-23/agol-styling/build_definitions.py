@@ -7,7 +7,8 @@ apply_styling.py sends:
 - styles/<layer>.json: the item resource styles/root.json of each vector tile layer (its layer-level default style);
 - layers/<item>.json: item data (layer drawing and pop-ups) for the feature service and the scene service, and the
   service drawingInfo of each feature layer;
-- maps/<name>.json: the three web maps and the web scene, each with its item properties.
+- maps/<name>.json: the three web maps and the two web scenes, each with its item properties (house style:
+  agol-metadata/_shared.md).
 Change the constants here and rebuild; apply_styling.py only reads the JSON, so the JSON in the repo is what goes online.
 """
 import copy
@@ -366,7 +367,7 @@ def no_outline():
 
 # The keys repeat the item styles (styles()): style pixels to symbol points at 0.75, treetop sizes as at level 17.
 def slope_key():
-    return key_layer("slope", "Slope classes", "esriGeometryPolygon",
+    return key_layer("slope", SLOPE_KEY_TITLE, "esriGeometryPolygon",
                      [(label, {"type": "esriSFS", "style": "esriSFSSolid", "color": colour_list(colour, alpha),
                                "outline": no_outline()}) for label, colour, alpha in SLOPE], 0)
 
@@ -374,13 +375,13 @@ def slope_key():
 def contour_key(min_scale):
     def line(colour, alpha, px):
         return {"type": "esriSLS", "style": "esriSLSSolid", "color": colour_list(colour, alpha), "width": round(px*0.75, 2)}
-    return key_layer("contours", "Contour lines", "esriGeometryPolyline",
+    return key_layer("contours", CONTOUR_KEY_TITLE, "esriGeometryPolyline",
                      [("10 m index contour", line("#3D2610", 0.85, 1.6)),
                       ("2 m contour", line("#5A3A1A", 0.5, 0.7))], min_scale)
 
 
 def treetop_key(min_scale):
-    return key_layer("treetops", "Treetop height", "esriGeometryPoint",
+    return key_layer("treetops", HEIGHT_KEY_TITLE, "esriGeometryPoint",
                      [(label, {"type": "esriSMS", "style": "esriSMSCircle", "color": colour_list(colour),
                                "size": round(2*r*0.75, 2),
                                "outline": {"type": "esriSLS", "style": "esriSLSSolid", "color": [20, 45, 25, 204],
@@ -388,7 +389,7 @@ def treetop_key(min_scale):
 
 
 def crown_key(min_scale):
-    return key_layer("crowns", "Crowns by treetop height", "esriGeometryPolygon",
+    return key_layer("crowns", HEIGHT_KEY_TITLE, "esriGeometryPolygon",
                      [(label, {"type": "esriSFS", "style": "esriSFSSolid", "color": colour_list(colour, 0.5),
                                "outline": {"type": "esriSLS", "style": "esriSLSSolid", "color": [0, 68, 27, 217],
                                            "width": 0.75}}) for label, colour, _ in HEIGHTS], min_scale)
@@ -441,11 +442,63 @@ def wgs_extent():
     return [[round(x0, 5), round(y0, 5)], [round(x1, 5), round(y1, 5)]]
 
 
-def description(lines):
-    return (f"<p><b>{WARNING}</b></p>" + "".join(f"<p>{line}</p>" for line in lines) +
-            "<p>Datum: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same "
-            "for every layer. Records: canopy-toolbox/reviews/2026-10-23/agol-styling in "
-            "buschbrian/agol-python-scripts.</p>")
+# ---------------------------------------------------------------- item pages (house style: agol-metadata)
+
+SHARED_MD = HERE.parent/"agol-metadata"/"_shared.md"
+
+
+def shared_blocks():
+    """The `## name` blocks of agol-metadata/_shared.md, so the maps, scenes and apps word the lidar source, coordinates,
+    contact and terms exactly as the eight layers do."""
+    blocks, name = {}, None
+    for line in SHARED_MD.read_text(encoding="utf-8").splitlines():
+        if line.startswith("## "):
+            name = line[3:].strip()
+            blocks[name] = []
+        elif name:
+            blocks[name].append(line)
+    return {k: " ".join(x.strip() for x in v if x.strip()) for k, v in blocks.items()}
+
+
+def inline_html(text):
+    """**bold** to <b>, `code` to plain text: all the Markdown the shared blocks use."""
+    parts = text.replace("`", "").split("**")
+    return "".join(f"<b>{p}</b>" if i % 2 else p for i, p in enumerate(parts))
+
+
+SHARED = shared_blocks()
+SNIPPET_END = "Unvalidated planning estimates; not surveyed or field-verified."
+TAGS = ["Millcreek", "Utah", "Salt Lake County", "lidar", "2023 lidar", "3DEP", "planning estimate"]
+CREDITS = "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)"
+CREDITS_BUILDINGS = CREDITS + "; building footprints: Salt Lake County (Assessor and Surveyor)"
+CREDITS_OSM = "; 3D place labels: Esri, map data © OpenStreetMap contributors"
+
+
+def warning(kind):
+    return (f"<b>Planning estimates.</b> The layers in this {kind} are unvalidated estimates derived from lidar by City "
+            "of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, "
+            "screening and display, not for legal, engineering, property-boundary, permitting or code-compliance "
+            "decisions.")
+
+
+def description(lines, kind="map"):
+    """Warning first, what the map shows, then the lidar source, coordinates and contact, as on the layers' pages."""
+    paragraphs = [warning(kind)] + lines + [inline_html(SHARED[k]) for k in ("lidar", "coordinates", "contact")]
+    return "".join(f"<p>{p}</p>" for p in paragraphs)
+
+
+def terms(buildings=False):
+    paragraphs = [SHARED["terms"]] + ([SHARED["terms_county"]] if buildings else [])
+    return "".join(f"<p>{inline_html(p)}</p>" for p in paragraphs)
+
+
+def item_text(title, kind, what, lines, tags, buildings=False, credits_extra=""):
+    snippet = f"{what} {SNIPPET_END}"
+    if len(snippet) > 250:
+        raise ValueError(f"{title}: summary is {len(snippet)} characters, over 250")
+    return {"title": title, "snippet": snippet, "description": description(lines, kind), "tags": TAGS + tags,
+            "licenseInfo": terms(buildings),
+            "accessInformation": (CREDITS_BUILDINGS if buildings else CREDITS) + credits_extra}
 
 
 def key(title, rows):
@@ -459,15 +512,18 @@ CONTOUR_KEY = ("<b>Contours:</b> <span style='color:#3D2610'>▬</span> 10 m ind
                "<span style='color:#5A3A1A'>─</span> 2 m (thin), elevations in metres (NAVD88); the tiles "
                "carry no elevation values, so the lines are unlabelled")
 HEIGHT_KEY = key("Treetop height (crowns and treetops)", [(label, colour) for label, colour, _ in HEIGHTS])
+VECTOR_NOTE = ("{} vector tiles: they draw but have no pop-ups. A legend cannot read a vector tile style, so each is "
+               "grouped with a small key layer that carries its classes into the legend.")
+SLOPE_TITLE, CONTOUR_TITLE = "Slope classes", "Contours (2 m, 10 m index)"
+CROWN_TITLE, TREETOP_TITLE = "Tree crowns by treetop height", "Treetops by height"
+# The legend shows a group's title, then its key's title as the heading of the classes: say what is classed.
+SLOPE_KEY_TITLE, CONTOUR_KEY_TITLE, HEIGHT_KEY_TITLE = "Slope (percent rise)", "Contour interval", "Treetop height"
 
-TAGS = ["Millcreek", "lidar", "2023", "planning estimate"]
 
-
-def web_map(title, snippet, lines, tags, base, layers):
-    return {"item": {"title": title, "type": "Web Map", "snippet": f"{snippet} {WARNING}",
-                     "description": description(lines), "tags": TAGS + tags,
+def web_map(item, base, layers):
+    return {"item": {**item, "type": "Web Map",
                      "typeKeywords": ["ArcGIS Online", "Explorer Web Map", "Map", "Online Map", "Web Map"],
-                     "extent": wgs_extent(), "accessInformation": "Millcreek GIS; 2023 Salt Lake Valley QL1 lidar"},
+                     "extent": wgs_extent()},
             "data": {"operationalLayers": layers, "baseMap": basemap(base), "spatialReference": WEB_MERCATOR,
                      "initialState": {"viewpoint": {"targetGeometry": CITY}}, "bookmarks": bookmarks(),
                      "authoringApp": "apply_styling.py (ArcGIS API for Python)", "authoringAppVersion": "2.4.3",
@@ -477,47 +533,48 @@ def web_map(title, snippet, lines, tags, base, layers):
 def web_maps(data):
     buildings, zones = data["layers"]
     return {
-        "terrain-and-slope": web_map(
-            "Millcreek terrain and slope", "Slope classes, 2 m contours and hillshade from the 0.5 m lidar terrain.",
-            ["Slope in six classes from the 0.5 m bare-earth terrain (3 m neighbourhood, 4 m² minimum mapping "
-             "unit), shaded by the lidar hillshade blended over it (multiply), with 2 m contours (10 m index lines "
-             "heavier) from 1:288,000 inward and the 2 m lines from 1:18,000.",
-             SLOPE_KEY, CONTOUR_KEY,
-             "Slope and contours are vector tiles: they draw but have no pop-ups. The legend cannot read a vector "
-             "tile style, so each is grouped with a small key layer that carries its classes into the legend."],
-            ["slope", "terrain", "contours", "hillshade"], "light",
-            [keyed(vector_layer("slope", "Slope (percent)", 0), slope_key()),
+        "terrain-and-slope": web_map(item_text(
+            "Millcreek terrain and slope", "map",
+            "Slope classes, 2 m contours and hillshade from the 0.5 m lidar bare-earth terrain of Millcreek, Utah.",
+            ["Slope in six classes from the 0.5 m bare-earth terrain (3 m neighbourhood, 4 m² minimum mapping unit), "
+             "shaded by the lidar hillshade blended over it (multiply), with 2 m contours: the 10 m index lines from "
+             "1:288,000 inward and the 2 m lines from 1:18,000.",
+             SLOPE_KEY, CONTOUR_KEY, VECTOR_NOTE.format("Slope and contours are")],
+            ["slope", "terrain", "contours", "hillshade", "web map"]), "light",
+            [keyed(vector_layer("slope", SLOPE_TITLE, 0), slope_key()),
              hillshade_layer(0.9, "multiply", 1.3),
-             keyed(vector_layer("contours", "Contours (2 m, 10 m index)", 288895), contour_key(288895))]),
-        "tree-canopy": web_map(
-            "Millcreek tree canopy",
-            "Canopy cover by ownership zone, and lidar tree crowns and treetops by height, over imagery.",
+             keyed(vector_layer("contours", CONTOUR_TITLE, 288895), contour_key(288895))]),
+        "tree-canopy": web_map(item_text(
+            "Millcreek tree canopy", "map",
+            "Tree canopy cover by ownership zone, with lidar tree crowns and treetops by height, over imagery of "
+            "Millcreek, Utah.",
             ["At city scale: canopy cover (vegetation at least 2 m tall, as a share of the area the lidar observed) "
              "for each ownership zone; click a zone for its figure, bounds and the October 19 comparison. "
              "Zoom in past 1:20,000 for the tree crowns and, from 1:10,000, the treetops, coloured and sized by "
              "treetop height. The lidar hillshade is blended over the imagery (soft light).",
              "Treetops and crowns are unvalidated automatic detections; about 6% of treetops carry an unreviewed "
              "SUSPECT flag.", HEIGHT_KEY + "; larger treetop dots are taller trees.",
-             "Crowns and treetops are vector tiles: they draw but have no pop-ups. The legend cannot read a vector "
-             "tile style, so each is grouped with a small key layer that carries its classes into the legend."],
-            ["canopy", "tree canopy", "trees", "treetops", "crowns"], "imagery",
+             VECTOR_NOTE.format("Crowns and treetops are")],
+            ["tree canopy", "urban forest", "trees", "treetops", "crowns", "web map"]), "imagery",
             [hillshade_layer(0.5, "soft-light"),
              feature_layer(1, "canopy-zones", "Canopy cover by ownership zone", zones, 0, 20000, 0.85),
-             keyed(vector_layer("crowns", "Tree crowns by treetop height", 18056), crown_key(18056)),
-             keyed(vector_layer("treetops", "Treetops by height", 10000), treetop_key(10000))]),
-        "buildings": web_map(
-            "Millcreek buildings", "County building footprints coloured by lidar roof height, over the hillshade.",
+             keyed(vector_layer("crowns", CROWN_TITLE, 18056), crown_key(18056)),
+             keyed(vector_layer("treetops", TREETOP_TITLE, 10000), treetop_key(10000))]),
+        "buildings": web_map(item_text(
+            "Millcreek buildings", "map",
+            "Salt Lake County building footprints in Millcreek, Utah, coloured by median roof height from the 2023 "
+            "lidar, over the lidar hillshade.",
             ["22,042 county footprints coloured by median roof height above the ground (October 22 consensus roofs); "
              "grey where the lidar saw no roof. Click a building for its median and 95th percentile heights in "
              "metres and feet, the share of the footprint with lidar roof points, and any flags in plain words. "
              "Buildings draw from 1:150,000 inward."],
-            ["buildings", "building height"], "light",
+            ["buildings", "building height", "web map"], buildings=True), "light",
             [hillshade_layer(0.9, "multiply", 1.4),
              feature_layer(0, "buildings", "Building height (median roof)", buildings, BUILDINGS_MIN_SCALE)]),
     }
 
 
-# ---------------------------------------------------------------- web scene
+# ---------------------------------------------------------------- web scenes
 
 def camera(lon, lat, ground, heading, tilt, distance):
     """A camera `distance` metres from a target on the ground, looking along `heading` with `tilt` (0 = straight down)."""
@@ -533,10 +590,17 @@ def camera(lon, lat, ground, heading, tilt, distance):
 ENVIRONMENT = {"lighting": {"type": "sun", "datetime": 1697389200000, "directShadows": True,
                             "displayUTCOffset": -6},   # October 15, 2023, 11:00 MDT
                "atmosphereEnabled": True, "starsEnabled": False}
+# Slides: title, (lon, lat, ground z), heading, tilt, distance (m). Ground heights for the terrain scene's targets were
+# read from the scene's own ground (city terrain over World Elevation) with queryElevation on October 23.
 SLIDES = [("Millcreek and the Wasatch", (-111.845, 40.690, 1350), 80, 64, 7500),
           ("Millcreek Common", PLACES["Millcreek Common (city centre)"], 60, 62, 900),
           ("Canyon Rim", PLACES["Canyon Rim"], 100, 64, 1000),
           ("Olympus Cove foothills", PLACES["Olympus Cove foothills"], 110, 66, 1400)]
+TERRAIN_SLIDES = [("The east bench", (-111.795, 40.690, 1501), 85, 66, 5200),
+                  ("Olympus Cove", (-111.786, 40.684, 1576), 100, 64, 1500),
+                  ("Mount Olympus foothills", (-111.7808, 40.6802, 1631), 115, 64, 1400),
+                  ("Millcreek Canyon mouth", (-111.787, 40.6905, 1571), 80, 62, 1300),
+                  ("Canyon Rim bench", (-111.806, 40.704, 1469), 95, 64, 1300)]
 
 
 # Esri's OpenStreetMap 3D layers, as its Topographic 3D basemap uses them (public). Its trees layer
@@ -550,27 +614,39 @@ def osm_scene_layer(layer_id, title, service):
             "url": f"{BASEMAPS3D}{service}/SceneServer/layers/0", "visibility": True, "opacity": 1, "showLegend": False}
 
 
-def slide_thumbnail(slide_id):
+def slide_thumbnail(scene_key, slide_id):
     """The slide's picture, an item resource of the scene (apply_styling.py thumbnails sends it)."""
-    scene = json.loads(CREATED.read_text()).get("in-3d", {}).get("id") if CREATED.exists() else None
+    scene = json.loads(CREATED.read_text()).get(scene_key, {}).get("id") if CREATED.exists() else None
     return {"url": f"{PORTAL}/content/items/{scene}/resources/slides/{slide_id}.jpg"} if scene else None
 
 
-def web_scene(data):
-    layers = [
-        {"id": "hillshade", "title": "Hillshade (0.5 m lidar terrain)", "layerType": "ArcGISTiledMapServiceLayer",
-         "url": ITEMS["hillshade"]["url"], "itemId": ITEMS["hillshade"]["id"], "visibility": True, "opacity": 0.4,
-         "showLegend": False},
-        {"id": "buildings3d", "title": "Buildings by median roof height (LOD1.2)", "layerType": "ArcGISSceneServiceLayer",
-         "url": ITEMS["buildings3d"]["url"] + "/layers/0", "itemId": ITEMS["buildings3d"]["id"], "visibility": True,
-         "opacity": 1, "layerDefinition": copy.deepcopy(data["layers"][0]["layerDefinition"]),
-         "popupInfo": copy.deepcopy(data["layers"][0]["popupInfo"])},
-        osm_scene_layer("osm-labels", "Place labels (OpenStreetMap)", "OpenStreetMap3D_DarkLabels_v1"),
-    ]
-    base = basemap("light")
-    # The 3D labels replace the basemap's draped reference labels.
-    base["baseMapLayers"] = [layer for layer in base["baseMapLayers"] if not layer.get("isReference")]
-    ground = {"layers": [
+def key_layer_3d(name, title, rows, min_scale=0):
+    """The scene's legend-only layer. A web scene drops in-map feature collections (the 2D maps' key layers: "Feature
+    layer must be created with either a url or a source") and takes only 3D symbols, so the key points at the hosted
+    canopy-zones layer with a filter that matches nothing (1=0): it draws nothing, has no pop-up, and its renderer
+    gives the Legend the vector tile classes (checked in the Maps SDK 5.1 on October 23)."""
+    return {"id": f"{name}-key", "title": title, "layerType": "ArcGISFeatureLayer", "url": f"{FEATURES}/1",
+            "itemId": ITEMS["features"]["id"], "visibility": True, "opacity": 1, "disablePopup": True,
+            "minScale": min_scale, "maxScale": 0,
+            "layerDefinition": {"definitionExpression": "1=0", "minScale": min_scale, "maxScale": 0,
+                                "drawingInfo": {"renderer": {
+                                    "type": "uniqueValue", "field1": "ZONE_ID",
+                                    "uniqueValueInfos": [{"value": label, "label": label, "symbol": symbol}
+                                                         for label, symbol in rows]}}}}
+
+
+def fill_3d(hex_colour, alpha):
+    return {"type": "PolygonSymbol3D", "symbolLayers": [{"type": "Fill", "material": {
+        "color": colour_list(hex_colour)[:3], "transparency": round(100*(1 - alpha))}}]}
+
+
+def line_3d(hex_colour, alpha, px):
+    return {"type": "LineSymbol3D", "symbolLayers": [{"type": "Line", "size": round(px*0.75, 2), "material": {
+        "color": colour_list(hex_colour)[:3], "transparency": round(100*(1 - alpha))}}]}
+
+
+def ground():
+    return {"layers": [
         {"id": "world-elevation", "title": "Terrain3D", "listMode": "hide", "layerType": "ArcGISTiledElevationServiceLayer",
          "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
          "itemId": "7029fb60158543ad845c7e1527af11e4", "visibility": True},
@@ -578,34 +654,91 @@ def web_scene(data):
          "layerType": "ArcGISTiledElevationServiceLayer", "url": ITEMS["terrain"]["url"],
          "itemId": ITEMS["terrain"]["id"], "visibility": True}],
         "transparency": 0, "navigationConstraint": {"type": "stayAbove"}}
-    slides = [{"id": f"slide_{i}", "title": {"text": title}, "thumbnail": slide_thumbnail(f"slide_{i}"),
+
+
+def scene_hillshade(opacity):
+    return {"id": "hillshade", "title": "Hillshade (0.5 m lidar terrain)", "layerType": "ArcGISTiledMapServiceLayer",
+            "url": ITEMS["hillshade"]["url"], "itemId": ITEMS["hillshade"]["id"], "visibility": True,
+            "opacity": opacity, "showLegend": False}
+
+
+def web_scene(scene_key, item, layers, slides_spec):
+    base = basemap("light")
+    # The 3D labels replace the basemap's draped reference labels.
+    base["baseMapLayers"] = [layer for layer in base["baseMapLayers"] if not layer.get("isReference")]
+    grd = ground()
+
+    def ids(entries):   # a slide hides every layer it does not list, the layers inside a group included
+        return [i for e in entries for i in [e["id"]] + ids(e.get("layers", []))]
+
+    slides = [{"id": f"slide_{i}", "title": {"text": title}, "thumbnail": slide_thumbnail(scene_key, f"slide_{i}"),
                "viewpoint": {"camera": camera(lon, lat, z, heading, tilt, dist)},
                "baseMap": base, "ground": {"transparency": 0}, "environment": ENVIRONMENT,
-               "visibleLayers": [{"id": layer["id"]} for layer in layers] + [{"id": g["id"]} for g in ground["layers"]]}
-              for i, (title, (lon, lat, z), heading, tilt, dist) in enumerate(SLIDES, 1)]
-    return {"item": {"title": "Millcreek in 3D", "type": "Web Scene",
-                     "snippet": "Lidar building blocks shaded by roof height on the 0.5 m lidar terrain. " + WARNING,
-                     "description": description([
-                         "The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), the "
-                         "LOD1.2 building blocks shaded light to darker grey by median roof height, with edges (click "
-                         "one for its heights and flags), and the lidar hillshade draped on the ground. Slides show "
-                         "four parts of the city.",
-                         "Place labels are Esri's OpenStreetMap 3D labels (map data © OpenStreetMap contributors).",
-                         "Trees are not in the scene: the lidar treetops are vector tiles without heights, which can "
-                         "only lie flat on the ground, and OpenStreetMap maps no trees in Millcreek. 3D trees need the "
-                         "lidar treetops as a hosted point layer with their heights."]),
-                     "tags": TAGS + ["3D", "buildings", "terrain", "scene"],
-                     "typeKeywords": ["ArcGIS Online", "Web Scene", "ViewingMode-Global"],
-                     "extent": wgs_extent(),
-                     "accessInformation": "Millcreek GIS; 2023 Salt Lake Valley QL1 lidar; place labels © "
-                                          "OpenStreetMap contributors, scene layer by Esri"},
-            "data": {"operationalLayers": layers, "baseMap": base, "ground": ground,
+               "visibleLayers": [{"id": i} for i in ids(layers) + ids(grd["layers"])]}
+              for i, (title, (lon, lat, z), heading, tilt, dist) in enumerate(slides_spec, 1)]
+    return {"item": {**item, "type": "Web Scene", "typeKeywords": ["ArcGIS Online", "Web Scene", "ViewingMode-Global"],
+                     "extent": wgs_extent()},
+            "data": {"operationalLayers": layers, "baseMap": base, "ground": grd,
                      "heightModelInfo": {"heightModel": "gravity_related_height", "heightUnit": "meter"},
                      "initialState": {"environment": ENVIRONMENT,
                                       "viewpoint": {"camera": slides[0]["viewpoint"]["camera"]}},
                      "presentation": {"slides": slides}, "spatialReference": WEB_MERCATOR,
                      "viewingMode": "global", "version": "1.29",
                      "authoringApp": "apply_styling.py (ArcGIS API for Python)", "authoringAppVersion": "2.4.3"}}
+
+
+OSM_LABELS = "Place labels are Esri's OpenStreetMap 3D labels (map data © OpenStreetMap contributors)."
+
+
+def buildings_scene(data):
+    layers = [
+        scene_hillshade(0.4),
+        {"id": "buildings3d", "title": "Buildings by median roof height (LOD1.2)", "layerType": "ArcGISSceneServiceLayer",
+         "url": ITEMS["buildings3d"]["url"] + "/layers/0", "itemId": ITEMS["buildings3d"]["id"], "visibility": True,
+         "opacity": 1, "layerDefinition": copy.deepcopy(data["layers"][0]["layerDefinition"]),
+         "popupInfo": copy.deepcopy(data["layers"][0]["popupInfo"])},
+        osm_scene_layer("osm-labels", "Place labels (OpenStreetMap)", "OpenStreetMap3D_DarkLabels_v1"),
+    ]
+    item = item_text(
+        "Millcreek buildings in 3D", "scene",
+        "Lidar building blocks of Millcreek, Utah, shaded by median roof height, standing on the city's 0.5 m lidar "
+        "terrain.",
+        ["The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), the LOD1.2 building blocks "
+         "shaded light to darker grey by median roof height, with edges (click one for its heights and flags), and "
+         "the lidar hillshade draped on the ground. Slides show four parts of the city.", OSM_LABELS,
+         "Trees are not in the scene: the lidar treetops are vector tiles without heights, which can only lie flat on "
+         "the ground, and OpenStreetMap maps no trees in Millcreek. 3D trees need the lidar treetops as a hosted point "
+         "layer with their heights."],
+        ["3D", "buildings", "building height", "terrain", "web scene"], buildings=True, credits_extra=CREDITS_OSM)
+    return web_scene("in-3d", item, layers, SLIDES)
+
+
+def terrain_scene():
+    """Slope classes and contours draped on the city terrain. A scene has no blend modes (the Maps SDK draws every layer
+    normally in 3D), so the hillshade lies under the slope classes, whose own fill opacities (0.15 to 0.62) let it through,
+    and the terrain's sun lighting adds the larger relief."""
+    slope_rows = [(label, fill_3d(colour, alpha)) for label, colour, alpha in SLOPE]
+    contour_rows = [("10 m index contour", line_3d("#3D2610", 0.85, 1.6)), ("2 m contour", line_3d("#5A3A1A", 0.5, 0.7))]
+    layers = [
+        scene_hillshade(0.65),
+        keyed(vector_layer("slope", SLOPE_TITLE, 0), key_layer_3d("slope", SLOPE_KEY_TITLE, slope_rows)),
+        keyed(vector_layer("contours", CONTOUR_TITLE, 288895),
+              key_layer_3d("contours", CONTOUR_KEY_TITLE, contour_rows, 288895)),
+        osm_scene_layer("osm-labels", "Place labels (OpenStreetMap)", "OpenStreetMap3D_DarkLabels_v1"),
+    ]
+    item = item_text(
+        "Millcreek terrain and slope in 3D", "scene",
+        "Slope classes and 2 m contours draped on the 0.5 m lidar terrain of Millcreek, Utah, with the lidar "
+        "hillshade, from the valley to the east bench.",
+        ["The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), with the slope classes, "
+         "the 2 m contours (10 m index lines heavier; the 2 m lines from 1:18,000 inward) and the lidar hillshade "
+         "draped on it. Scenes have no blend modes, so the hillshade lies under the half-transparent slope classes "
+         "instead of being multiplied over them as in the 2D map. Slides visit the east bench and its hillside "
+         "neighbourhoods.", SLOPE_KEY, CONTOUR_KEY,
+         "Slope and contours are vector tiles: they draw but have no pop-ups. Each is grouped with a key layer that "
+         "draws nothing and carries its classes into the legend.", OSM_LABELS],
+        ["3D", "slope", "terrain", "contours", "hillshade", "web scene"], credits_extra=CREDITS_OSM)
+    return web_scene("terrain-3d", item, layers, TERRAIN_SLIDES)
 
 
 def write(path, value):
@@ -625,7 +758,8 @@ def main():
     write(LAYERS/"buildings3d_item_data.json", scene)
     for name, web in web_maps(data).items():
         write(MAPS/f"{name}.json", web)
-    write(MAPS/"in-3d.json", web_scene(scene))
+    write(MAPS/"in-3d.json", buildings_scene(scene))
+    write(MAPS/"terrain-3d.json", terrain_scene())
 
 
 if __name__ == "__main__":

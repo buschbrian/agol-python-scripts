@@ -12,7 +12,8 @@ summaries, descriptions, tags) and field descriptions of the eight layers were n
 | Web map "Millcreek terrain and slope" | `177bfc592415451585ba72ab9207b3c6` | slope classes, hillshade blended over them (multiply), contours; Light Gray Canvas |
 | Web map "Millcreek tree canopy" | `e5efa719691045849108553394448f35` | canopy cover zones at city scale, crowns and treetops from 1:18,000 / 1:10,000; hillshade soft-light over Imagery Hybrid |
 | Web map "Millcreek buildings" | `504554bd5a9545559db06aa6098e8e49` | buildings by median roof height over the hillshade (multiply); Light Gray Canvas |
-| Web scene "Millcreek in 3D" | `5b5bdf4a63c9466fad5884039aa7357f` | city terrain in the ground above World Elevation, LOD1.2 buildings in greys by height with edges, hillshade draped, OpenStreetMap 3D place labels; four slides with pictures |
+| Web scene "Millcreek buildings in 3D" (was "Millcreek in 3D") | `5b5bdf4a63c9466fad5884039aa7357f` | city terrain in the ground above World Elevation, LOD1.2 buildings in greys by height with edges, hillshade draped, OpenStreetMap 3D place labels; four slides with pictures |
+| Web scene "Millcreek terrain and slope in 3D" (October 23 evening, **private**) | `71b680b486b245fd8ec17eb80387be94` | the same ground, with the hillshade (0.65), slope classes and contours draped, OpenStreetMap 3D place labels; five slides with pictures (the east bench, Olympus Cove, Mount Olympus foothills, Millcreek Canyon mouth, Canyon Rim bench) |
 
 Each map has bookmarks (whole city, Millcreek Common, Canyon Rim, Evergreen and East Millcreek, Olympus Cove foothills,
 Scott Avenue), the estimate warning in its summary and description, and the hillshade kept out of the legend.
@@ -72,6 +73,33 @@ scale and treetops and crowns at level 17 over Canyon Rim. A key for a map built
   resource `slides/slide_N.jpg`, which the slide's thumbnail URL names (`thumbnails.json` entries with a `resource`).
   Scene Viewer had shown broken images; it now loads all four for an anonymous viewer.
 
+## Terrain and slope in 3D, apps and clean-up (October 23 evening)
+
+Brian asked to rebuild some apps in 3D (terrain and slope, buildings) and to clean up map contents, basemaps and look,
+and item pages, and to remove the StoryMap.
+
+- **New scene "Millcreek terrain and slope in 3D"** (`71b680b4…`, private). A scene has no blend modes (the Maps SDK draws
+  every layer normally in 3D), so the hillshade lies under the half-transparent slope classes instead of being multiplied
+  over them, and the terrain's sun lighting adds the larger relief. Slide ground heights were read from the scene's own
+  ground (`queryElevation`). The slides' visible-layer lists name the layers inside each group too: a slide hides every
+  layer it does not list, which first hid the slope and contours.
+- **Legend in a scene.** A web scene drops the 2D maps' in-map key layers ("Feature layer must be created with either a
+  url or a source") and takes only 3D symbols. Its keys point at the hosted canopy-zones layer with the filter `1=0`: they
+  draw nothing and have no pop-up, and their renderers (PolygonSymbol3D, LineSymbol3D) give the legend the slope and
+  contour classes. Checked in the SDK at every slide.
+- **Names.** The layer list shows a group's title and the legend shows it again above the key's own title, so the keys
+  now name what is classed: "Slope (percent rise)", "Contour interval", "Treetop height". Groups: "Slope classes",
+  "Contours (2 m, 10 m index)", "Tree crowns by treetop height", "Treetops by height", the same in the maps and the scene.
+- **Item pages** of the three maps and two scenes follow the item-text session's house style (`agol-metadata`): summary
+  ending "Unvalidated planning estimates; not surveyed or field-verified.", the warning first in the description, then the
+  lidar, coordinates and contact blocks read from `agol-metadata/_shared.md`, its terms of use, its tags and credits.
+  The repository line was dropped from the public descriptions. "Millcreek in 3D" became "Millcreek buildings in 3D".
+- **Apps** (`../agol-apps/make_apps.py update` and `delete`): the terrain app (`66693381…`) became a 3D Viewer app on the
+  new scene, updated in place; the "Millcreek in 3D" app (`021866ad…`) became "Millcreek Buildings in 3D"; the tree canopy
+  app stays a Sidebar app. The Sidebar buildings app (`370a1f38…`) and the StoryMap (`8d43f724…`) were deleted to the
+  recycle bin (both listed there afterwards; restorable for the bin's retention period). All apps private, each with the
+  warning splash and a thumbnail; the 2D buildings web map stays, without an app.
+
 ## Thumbnails
 
 All twelve items (the eight layers, the three maps, the scene) have a 600 x 400 thumbnail rendered from their own
@@ -106,9 +134,9 @@ scene, 3D buildings and terrain thumbnails were rendered again after the scene r
   support VectorTileLayer (Esri's Legend reference lists it as unsupported; seen here as "No legend"). Worked around in
   the two maps with key layers (above); the item styles are not involved, so the vector tile items added to a new map
   still show "No legend". The map descriptions keep their coloured swatch keys.
-- **Vector tile layers stop drawing past 1:2,257** in the SDK: their services stop at level 17 and the SDK suspends the
-  layer beyond its last level rather than overzooming. Pro overzooms. Republishing with deeper levels, or capping the
-  apps' zoom at 1:2,257, would avoid the gap.
+- **Vector tile layers stopped drawing past 1:2,257** in the SDK. The cause was each service's `maxScale` (2,257), not
+  its levels; a separate session cleared it on all four services on October 23 (`set_max_scale.py`, branch
+  `claude/silly-shaw-01edf4`), and they now draw closer in, with no new tiles.
 - **3D trees are not possible from the treetops**: they are vector tiles, which drape flat. 3D tree symbols need the
   treetops as a hosted point layer with heights (feature storage cost; see `hosting/PLAN.md`).
 - The web maps were first checked with the SDK only; since the items went public, Map Viewer and Scene Viewer have been

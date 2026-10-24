@@ -220,10 +220,15 @@ def thumbnails(p, folder):
     for key, entry in load(THUMBNAILS).items():
         if key.startswith("_"):
             continue
-        if "resource" in entry:
-            slide_resource(p, key, entry["item"], entry["resource"], (Path(folder)/f"{key}.jpg").read_bytes())
+        # Only the pictures present in DIR are sent, so a folder of a few new renders leaves the others alone.
+        image = Path(folder)/f"{key}.{'jpg' if 'resource' in entry else 'png'}"
+        if not image.exists():
+            print(f"  {key}: no {image.name} in DIR, left as it is")
             continue
-        item_id, png = entry["item"], (Path(folder)/f"{key}.png").read_bytes()
+        if "resource" in entry:
+            slide_resource(p, key, entry["item"], entry["resource"], image.read_bytes())
+            continue
+        item_id, png = entry["item"], image.read_bytes()
         info = p.item(item_id)
 
         def current():

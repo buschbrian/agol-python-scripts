@@ -1,27 +1,31 @@
 {
  "terrain": {
   "id": "66693381d9e94d10b79a28a6059d463a",
-  "url": "https://Millcrk.maps.arcgis.com/apps/instant/sidebar/index.html?appid=66693381d9e94d10b79a28a6059d463a",
-  "title": "Millcreek Terrain and Slope"
+  "url": "https://Millcrk.maps.arcgis.com/apps/instant/3dviewer/index.html?appid=66693381d9e94d10b79a28a6059d463a",
+  "title": "Millcreek Terrain and Slope in 3D"
  },
  "canopy": {
   "id": "9d70110793004a0ca24b88ea6f008cf5",
   "url": "https://Millcrk.maps.arcgis.com/apps/instant/sidebar/index.html?appid=9d70110793004a0ca24b88ea6f008cf5",
   "title": "Millcreek Tree Canopy"
  },
- "buildings": {
-  "id": "370a1f38728545e4a0c57d29386143f4",
-  "url": "https://Millcrk.maps.arcgis.com/apps/instant/sidebar/index.html?appid=370a1f38728545e4a0c57d29386143f4",
-  "title": "Millcreek Building Heights"
- },
  "in3d": {
   "id": "021866adf7ab40fea430d4d10fc3a934",
   "url": "https://Millcrk.maps.arcgis.com/apps/instant/3dviewer/index.html?appid=021866adf7ab40fea430d4d10fc3a934",
-  "title": "Millcreek in 3D"
+  "title": "Millcreek Buildings in 3D"
  },
- "landing": {
-  "id": "8d43f724a81e4c1d8ed91a9520cf0e29",
-  "url": "https://storymaps.arcgis.com/stories/8d43f724a81e4c1d8ed91a9520cf0e29",
-  "title": "Millcreek LiDAR 2023"
+ "retired": {
+  "buildings": {
+   "id": "370a1f38728545e4a0c57d29386143f4",
+   "type": "Web Mapping Application",
+   "title": "Millcreek Building Heights",
+   "deleted": "2026-10-23, to the recycle bin (restore from Content > Recycle bin)"
+  },
+  "landing": {
+   "id": "8d43f724a81e4c1d8ed91a9520cf0e29",
+   "type": "StoryMap",
+   "title": "Millcreek LiDAR 2023",
+   "deleted": "2026-10-23, to the recycle bin (restore from Content > Recycle bin)"
+  }
  }
 }
