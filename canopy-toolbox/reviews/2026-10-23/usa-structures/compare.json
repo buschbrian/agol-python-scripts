@@ -70,5 +70,21 @@
   "share": 0.115
  },
  "newbuild_hints_imagery_after_lidar": 0,
- "usa_structures_in_no_county_or_candidate": 549
+ "usa_structures_in_no_county_or_candidate": 409,
+ "of_those_by_2023_roof_share": {
+  "under 10%": 320,
+  "10-50%": 86,
+  "50-80%": 3,
+  "80% or more": 0
+ },
+ "of_those_with_fragmented_roof": [
+  "16101209",
+  "16134057",
+  "16149322",
+  "3669959",
+  "3711950",
+  "3683117",
+  "3718848",
+  "3723640"
+ ]
 }

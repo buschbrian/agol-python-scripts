@@ -24,6 +24,8 @@ import time
 import urllib.parse
 import urllib.request
 
+import numpy as np
+
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parents[3]))
 from canopy.lidar_root import lidar_root  # noqa: E402
@@ -107,6 +109,44 @@ def overlaps(left, right, rid):
     return best
 
 
+def covered_share(left, layers):
+    """Share of each left geometry's area covered by the features of any of the layers (overlaps between layers
+    counted twice, which only matters near the 30% line)."""
+    import shapely
+    trees = [(shapely.STRtree(list(layer.geometry)), layer.geometry) for layer in layers]
+    return [sum(g.intersection(geoms.iloc[j]).area for tree, geoms in trees for j in tree.query(g, "intersects")) / g.area
+            for g in left.geometry]
+
+
+def cells(geom, src):
+    from rasterio.features import geometry_mask
+    from rasterio.windows import from_bounds
+    w = from_bounds(*geom.bounds, transform=src.transform)
+    a = src.read(1, window=w, boundless=True, fill_value=src.nodata if src.nodata is not None else 0)
+    inside = ~geometry_mask([geom], out_shape=a.shape, transform=src.window_transform(w))
+    return a[inside]
+
+
+def roof_share(gdf):
+    import rasterio
+    with rasterio.open(LIB/"roof_height_m.tif") as src:
+        return [float((v != src.nodata).mean()) if v.size else 0.0 for v in (cells(g, src) for g in gdf.geometry)]
+
+
+def detection_stage(gdf):
+    """Why the LiDAR candidates hold no roof here, from the detection's stage raster: "fragmented roof" when at least
+    15% of the outline is roof the detection dropped as too thin or too small (stages 2 and 3)."""
+    import rasterio
+    out = []
+    with rasterio.open(CAND/"stage.tif") as src:
+        for g in gdf.geometry:
+            v = cells(g, src)
+            n = max(v.size, 1)
+            out.append("fragmented roof" if ((v == 2) | (v == 3)).sum() / n >= 0.15 else
+                       "near a county building" if (v == 1).sum() / n >= 0.15 else "little or no roof")
+    return out
+
+
 def compare(out):
     import geopandas as gpd
     import pandas as pd
@@ -156,8 +196,12 @@ def compare(out):
     lidar_flight = "2023-11-30"
     nb = v[v.KIND == "newbuild_hint"]
     cf = v[v.KIND == "county_no_roof"]
-    matched_us = {s for s in all_match if s is not None} | set(c.US_ID.dropna())
-    us_only = us[~us.US_ID.isin(matched_us) & (us.geometry.area >= MIN_M2)]
+    # Counted from the USA side: the share of each structure covered by any county footprint or candidate. (Matching
+    # each county footprint to its single best structure leaves a structure that spans two county footprints, such as
+    # a house and garage drawn as one, looking unmatched: the first version of this count said 549, not 351.)
+    us_only = us[(us.geometry.area >= MIN_M2) & (np.array(covered_share(us, [county, cand])) < OVERLAP)].copy()
+    us_only["ROOF_2023"] = roof_share(us_only)
+    us_only["DETECTION"] = detection_stage(us_only)
     summary = {
         "usa_structures_in_city": len(us), "attribution": ATTRIBUTION,
         "image_dates": us.IMAGE_DATE.value_counts().head(10).to_dict(),
@@ -168,10 +212,14 @@ def compare(out):
         "county_no_roof_imagery_after_lidar": int((cf.US_IMAGE_DATE > lidar_flight).sum()),
         "newbuild_hints": share(nb), "newbuild_hints_imagery_after_lidar": int((nb.US_IMAGE_DATE > lidar_flight).sum()),
         "usa_structures_in_no_county_or_candidate": int(len(us_only)),
+        "of_those_by_2023_roof_share": pd.cut(us_only.ROOF_2023, [-0.01, 0.1, 0.5, 0.8, 1.01],
+                                              labels=["under 10%", "10-50%", "50-80%", "80% or more"]
+                                              ).value_counts(sort=False).to_dict(),
+        "of_those_with_fragmented_roof": us_only.loc[us_only.DETECTION == "fragmented roof", "US_ID"].tolist(),
     }
     (out/"compare.json").write_text(json.dumps(summary, indent=1, default=str), encoding="utf-8")
-    us_only[["US_ID", "OCC_CLS", "PRIM_OCC", "OUTBLDG", "HEIGHT", "SQMETERS", "IMAGE_DATE", "geometry"]].to_file(
-        out/"usa_structures.gpkg", layer="not_in_county_or_candidates", driver="GPKG")
+    us_only[["US_ID", "OCC_CLS", "PRIM_OCC", "OUTBLDG", "HEIGHT", "SQMETERS", "IMAGE_DATE", "ROOF_2023", "DETECTION",
+             "geometry"]].to_file(out/"usa_structures.gpkg", layer="not_in_county_or_candidates", driver="GPKG")
     print(json.dumps(summary, indent=1, default=str))
 
 

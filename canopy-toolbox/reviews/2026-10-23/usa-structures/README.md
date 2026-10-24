@@ -7,7 +7,7 @@ planning estimates.** Nothing was uploaded, and no county or city data was edite
 
 Output: `H:\lidar\2023-salt-lake-valley\runs\usa-structures-20261023`.
 - **usa_structures.gpkg:** layers `usa_structures` (20,615 touching the city, EPSG 6341) and
-  `not_in_county_or_candidates` (549).
+  `not_in_county_or_candidates` (409, with their 2023 roof share and why the detection holds no roof there).
 - **votes.csv:** one vote per review item.
 - **raw/:** the GeoJSON pages as fetched.
 - **fetch.json, compare.json:** the summaries (copies here).
@@ -44,7 +44,7 @@ used for Overture. A new-building hint counts when a structure lies at least hal
 | … against a county building | 16-38% by group | additions newer than 2010, or drawn into the house outline |
 | County footprints with no 2023 roof | 155 of 586; 139 of the 210 of 42 m² or more (66%) | stood in 2010-20, so gone since or hidden by trees |
 | New-building hints | 24 of 208 (12%) | a structure stood there in 2010-20 and the LiDAR saw none in 2023: likely gone, not new |
-| In USA Structures, in no county footprint or candidate | 549 (of 42 m² or more) | 313 have under 10% 2023 roof (gone by 2023, or under trees); 138 have 80% or more |
+| In USA Structures, under 30% covered by any county footprint or candidate | 409 (of 42 m² or more) | no standing building missed: 320 have under 10% 2023 roof, 86 have 10-50%, 3 have 50-80%, none 80% or more |
 
 None of its imagery postdates the LiDAR, so it can't confirm a post-2023 building.
 
@@ -59,10 +59,28 @@ Each pair shows the same for its LiDAR pieces. Applied with `footprint_review.ba
 present). Brian's answers are untouched. The sample protocol notes the added fact; it was added before any sample
 answer.
 
-## Possible next step
-The 138 USA structures with solid 2023 roof that neither the county nor the LiDAR candidates hold are worth a look.
-Most are probably roof inside the 1.5 m band around county footprints, or pieces merged into another candidate, but
-some may be buildings the candidate detection missed. They are in `not_in_county_or_candidates`.
+## Does USA Structures hold buildings the county and the LiDAR both miss?
+No standing ones. Brian asked to look at the structures it has on solid 2023 roof that neither the county nor the
+candidates hold, and to add them to the review if they were real gaps.
+
+The first count, 549 of which 138 sat on solid roof, was wrong. It matched each county footprint to its single best
+structure, so a structure spanning two county footprints (a house and garage drawn as one, a duplex) looked
+unmatched. The 138 were 89% covered by county footprints at the median, and every one was at least 15% under a county
+footprint or candidate.
+
+Counted from the USA side, 409 structures of 42 m² or more are less than 30% covered by any county footprint or
+candidate:
+- **No roof (320, under 10%):** gone by 2023, or hidden by trees. Most come from the 2010 imagery, and the 2019 county
+  layer doesn't have them either.
+- **Some roof (89, 10-80%):** mostly 2010 outlines that sit slightly off, clipping the edge of a county building or
+  falling between buildings (`uncovered-examples.png`).
+- **Solid roof (none, 80% or more).**
+- **Fragmented roof (8):** the only possible misses, structures of 43-480 m² whose roof the detection dropped as too
+  thin or too small: 16101209, 16134057, 16149322, 3669959, 3711950, 3683117, 3718848, 3723640. They are a broken-up
+  low roof, perhaps a carport, trellis or shed partly under trees.
+
+Eight items don't justify a new queue. They are listed here and in the GeoPackage (DETECTION = "fragmented roof")
+for a look in Pro.
 
 ## Rerun
 From `canopy-toolbox`, ArcGIS Pro env `millcreek-py3`, `PYTHONNOUSERSITE=1`:
