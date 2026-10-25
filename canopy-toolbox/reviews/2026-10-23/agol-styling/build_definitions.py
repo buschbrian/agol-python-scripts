@@ -36,8 +36,8 @@ ITEMS = {
                "url": TILES + "Millcreek_tree_crowns_2023_lidar_planning_estimate/VectorTileServer"},
     "hillshade": {"id": "cab8824e44384d479e1f302cdf34daf9",
                   "url": TILES + "Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer"},
-    "buildings3d": {"id": "5082b5bd063a4a03847f2082dc3533d1",
-                    "url": TILES + "Millcreek_3D_buildings_LOD1_2_2023_lidar_planning_estimate/SceneServer"},
+    "buildings3d": {"id": "ce3617ac9b884bbcbee7c47a3e166999",
+                    "url": TILES + "Millcreek_3D_buildings_with_roof_forms_2023_lidar_planning_estimate/SceneServer"},
     "terrain": {"id": "ce1680a5196e458ebfb60ead5150b946",
                 "url": TILES + "Millcreek_bare_earth_terrain_0_5_m_2023_lidar_planning_estimate/ImageServer"},
 }
@@ -291,9 +291,48 @@ def scene_renderer():
             "legendOptions": {"title": "Median roof height above the ground"}}
 
 
+def roof_building_popup():
+    """Hybrid roof attributes are present only on retained roofer models."""
+    popup = building_popup(feet_fields=False)
+    popup["title"] = "Building {FP_ID}"
+    popup["popupElements"].insert(0, {"type": "text", "text":
+        "<p><b>Roof model:</b> {LEVEL}</p>"})
+    fields = [
+        ("FALLBACK_REASON", "Reason for simpler roof"),
+        ("ROOF_AREA_M2", "Modelled roof surface (m²)"),
+        ("ROOF_PLANES", "Roof planes of at least 1 m²"),
+        ("ROOF_SLOPE_MEAN", "Area-weighted roof slope (degrees)"),
+        ("ROOF_SLOPE_MAIN", "Largest plane slope (degrees)"),
+        ("ROOF_AZIMUTH_MAIN", "Largest plane downslope bearing (degrees)"),
+        ("RIDGE_HT_M", "Modelled ridge height above ground (m)"),
+        ("EAVE_HT_M", "Modelled eave height above ground (m)"),
+        ("FLAT_AREA_M2", "Roof surface under 5 degrees (m²)"),
+        ("SOUTH_AREA_M2", "South-facing roof surface (m²)"),
+        ("EAST_AREA_M2", "East-facing roof surface (m²)"),
+        ("WEST_AREA_M2", "West-facing roof surface (m²)"),
+        ("NORTH_AREA_M2", "North-facing roof surface (m²)"),
+    ]
+    popup["fieldInfos"].extend([
+        {"fieldName": "FP_ID", "visible": False, "isEditable": False},
+        {"fieldName": "LEVEL", "visible": False, "isEditable": False},
+    ])
+    popup["fieldInfos"].extend({"fieldName": name, "label": label, "visible": True,
+        "isEditable": False, **({} if name == "FALLBACK_REASON" else {
+            "format": {"places": 0 if name == "ROOF_PLANES" else 1, "digitSeparator": True}})}
+        for name, label in fields)
+    popup["popupElements"].extend([
+        {"type": "text", "text": "<p>Roof measurements below describe retained roofer models. "
+         "They are empty for Esri fallback buildings. Facing areas cover slopes from 5 to 70 degrees; "
+         "they do not estimate solar production.</p>"},
+        {"type": "fields", "fieldInfos": [f for f in popup["fieldInfos"]
+                                            if f["fieldName"] in dict(fields)]},
+    ])
+    return popup
+
+
 def scene_item_data():
     return {"layers": [{"id": 0, "layerDefinition": {"drawingInfo": {"renderer": scene_renderer()}},
-                        "popupInfo": building_popup(feet_fields=False)}]}
+                        "popupInfo": roof_building_popup()}]}
 
 
 # ---------------------------------------------------------------- web maps
@@ -693,7 +732,7 @@ OSM_LABELS = "Place labels are Esri's OpenStreetMap 3D labels (map data © OpenS
 def buildings_scene(data):
     layers = [
         scene_hillshade(0.4),
-        {"id": "buildings3d", "title": "Buildings by median roof height (LOD1.2)", "layerType": "ArcGISSceneServiceLayer",
+        {"id": "buildings3d", "title": "Buildings with roof forms (three-way hybrid)", "layerType": "ArcGISSceneServiceLayer",
          "url": ITEMS["buildings3d"]["url"] + "/layers/0", "itemId": ITEMS["buildings3d"]["id"], "visibility": True,
          "opacity": 1, "layerDefinition": copy.deepcopy(data["layers"][0]["layerDefinition"]),
          "popupInfo": copy.deepcopy(data["layers"][0]["popupInfo"])},
@@ -701,11 +740,13 @@ def buildings_scene(data):
     ]
     item = item_text(
         "Millcreek buildings in 3D", "scene",
-        "Lidar building blocks of Millcreek, Utah, shaded by median roof height, standing on the city's 0.5 m lidar "
+        "Lidar building roof forms of Millcreek, Utah, shaded by median roof height, standing on the city's 0.5 m lidar "
         "terrain.",
-        ["The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), the LOD1.2 building blocks "
+        ["The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), 21,561 building models "
          "shaded light to darker grey by median roof height, with edges (click one for its heights and flags), and "
-         "the lidar hillshade draped on the ground. Slides show four parts of the city.", OSM_LABELS,
+         "the lidar hillshade draped on the ground. Slides show four parts of the city. "
+         "The three-way hybrid uses 20,730 roofer LoD2.2 models, 647 Esri LOD2.0 roofs and 184 Esri LOD1.2 blocks. "
+         "Roof measurements are available only on the retained roofer models.", OSM_LABELS,
          "Trees are not in the scene: the lidar treetops are vector tiles without heights, which can only lie flat on "
          "the ground, and OpenStreetMap maps no trees in Millcreek. 3D trees need the lidar treetops as a hosted point "
          "layer with their heights."],

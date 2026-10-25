@@ -2,7 +2,7 @@
 
 Brian asked on the morning of October 23 for a roll-up of the overnight work (slope, hillshade, COGs, vector tiles), the
 steps left, and a start on getting it all into ArcGIS Online with apps for the public and staff. This note reads the
-records. **Current status, checked October 24:** the original eight hosted layers are published; the three Instant Apps remain private. Azure storage holds 16 masters and 3 display copies. The v2 roof-form building package is local and unpublished. See [the wrap-up](WRAPUP-2026-10-25.md) for fresh checks and remaining decisions.
+records. **Current status, October 25:** the public building scene now uses the three-way v2 roof-form hybrid; the new layer is public and the identical SLPK is downloadable from Azure. The original eight hosted layers and old source packages are retained. The three Instant Apps remain private. Azure storage also retains its 16 raster masters and 3 display copies. See [the completed release](../2026-10-25/buildings-release/README.md) for new IDs, verification and rollback, and [the earlier wrap-up](WRAPUP-2026-10-25.md) for other work.
 
 ## 1. What finished overnight
 Every step of the [hosting plan](../2026-10-22/hosting/PLAN.md) is built and verified locally, and every output is on the

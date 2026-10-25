@@ -8,7 +8,7 @@ ArcGIS Pro Python (PYTHONNOUSERSITE=1), ArcGIS API for Python 2.4. Without --go 
 script signs in (ArcGIS Pro's active portal by default, or --url and --username with a password prompt), refuses if an
 item with the same title is already in your content or the log already records the item as published, adds the file to
 the "Millcreek LiDAR 2023" folder and publishes it. It never shares, never deletes and never overwrites: every new item is
-private to you, and the uploaded package item stays until you delete it by hand once the layer works (see README.md).
+private to you. Retain each source package while its hosted layer depends on it (see README.md).
 Each upload is logged to LOG (item IDs, URLs, file size and SHA-256).
 """
 import argparse

@@ -1,6 +1,6 @@
 # 3D buildings release candidate — October 24, 2026
 
-The **v2 package is built, validated locally, and not uploaded**. The upload dry run now passes. This plan supersedes the earlier draft's stale StoryMap reference, roof-area totals, and claim that the existing scene is private.
+**Released October 25, 2026:** Brian approved the public three-way hybrid and Azure download. The existing public building scene now uses the new layer. See [the completed release, verification and rollback record](../../2026-10-25/buildings-release/README.md). The sequence below is the historical pre-release plan; the audience decision and upload are complete.
 
 ## Candidate and evidence
 

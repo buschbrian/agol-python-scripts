@@ -1,0 +1,37 @@
+{
+  "verified_utc": "2026-10-25T15:25:14.374680+00:00",
+  "items": {
+    "new_layer": {
+      "id": "ce3617ac9b884bbcbee7c47a3e166999",
+      "access": "public",
+      "protected": true,
+      "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_with_roof_forms_2023_lidar_planning_estimate/SceneServer"
+    },
+    "package": {
+      "id": "07919e2df15647ba91ba23a0fd417083",
+      "access": "private",
+      "protected": true,
+      "url": null
+    },
+    "old_layer": {
+      "id": "5082b5bd063a4a03847f2082dc3533d1",
+      "access": "public",
+      "protected": true,
+      "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_LOD1_2_2023_lidar_planning_estimate/SceneServer"
+    },
+    "scene": {
+      "id": "5b5bdf4a63c9466fad5884039aa7357f",
+      "access": "public",
+      "protected": false,
+      "url": null
+    },
+    "app": {
+      "id": "021866adf7ab40fea430d4d10fc3a934",
+      "access": "private",
+      "protected": false,
+      "url": "https://Millcrk.maps.arcgis.com/apps/instant/3dviewer/index.html?appid=021866adf7ab40fea430d4d10fc3a934"
+    }
+  },
+  "anonymous_statistics_match": true,
+  "package_bytes": 21228379
+}

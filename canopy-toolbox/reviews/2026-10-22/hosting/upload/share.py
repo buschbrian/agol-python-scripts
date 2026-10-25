@@ -26,7 +26,7 @@ LAYERS = {
     "features": "d5effaee6c66497eaeb64e4c2e0f496e", "slope": "3b5b1a9110f14e93af68752be89e0df2",
     "contours": "50573eeba93f405a869a1d78a08d68e8", "hillshade": "cab8824e44384d479e1f302cdf34daf9",
     "treetops": "924b993cb23046cb87641253bcf786de", "crowns": "d9388dc83f894edbb63e0510a8c62fa8",
-    "buildings3d": "5082b5bd063a4a03847f2082dc3533d1", "terrain": "ce1680a5196e458ebfb60ead5150b946",
+    "buildings3d": "ce3617ac9b884bbcbee7c47a3e166999", "terrain": "ce1680a5196e458ebfb60ead5150b946",
 }
 MAPS = {
     "map_terrain_slope": "177bfc592415451585ba72ab9207b3c6", "map_tree_canopy": "e5efa719691045849108553394448f35",

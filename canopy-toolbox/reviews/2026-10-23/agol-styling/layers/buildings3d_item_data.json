@@ -195,7 +195,7 @@
     }
    },
    "popupInfo": {
-    "title": "Building {SOURCE_ID}",
+    "title": "Building {FP_ID}",
     "expressionInfos": [
      {
       "name": "h50",
@@ -231,7 +231,146 @@
     "popupElements": [
      {
       "type": "text",
+      "text": "<p><b>Roof model:</b> {LEVEL}</p>"
+     },
+     {
+      "type": "text",
       "text": "<p><b>Roof height above the ground</b><br />Median: {expression/h50}<br />95th percentile: {expression/h95}</p><p><b>Roof support:</b> {expression/support}.</p><p><b>Notes:</b> {expression/flags}</p><p>Footprint {expression/area}. Parcel {PARCEL_ID}. County building ID {SOURCE_ID}.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+     },
+     {
+      "type": "text",
+      "text": "<p>Roof measurements below describe retained roofer models. They are empty for Esri fallback buildings. Facing areas cover slopes from 5 to 70 degrees; they do not estimate solar production.</p>"
+     },
+     {
+      "type": "fields",
+      "fieldInfos": [
+       {
+        "fieldName": "FALLBACK_REASON",
+        "label": "Reason for simpler roof",
+        "visible": true,
+        "isEditable": false
+       },
+       {
+        "fieldName": "ROOF_AREA_M2",
+        "label": "Modelled roof surface (m²)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_PLANES",
+        "label": "Roof planes of at least 1 m²",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_SLOPE_MEAN",
+        "label": "Area-weighted roof slope (degrees)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_SLOPE_MAIN",
+        "label": "Largest plane slope (degrees)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_AZIMUTH_MAIN",
+        "label": "Largest plane downslope bearing (degrees)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "RIDGE_HT_M",
+        "label": "Modelled ridge height above ground (m)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "EAVE_HT_M",
+        "label": "Modelled eave height above ground (m)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "FLAT_AREA_M2",
+        "label": "Roof surface under 5 degrees (m²)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "SOUTH_AREA_M2",
+        "label": "South-facing roof surface (m²)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "EAST_AREA_M2",
+        "label": "East-facing roof surface (m²)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "WEST_AREA_M2",
+        "label": "West-facing roof surface (m²)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "NORTH_AREA_M2",
+        "label": "North-facing roof surface (m²)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       }
+      ]
      }
     ],
     "fieldInfos": [
@@ -269,6 +408,142 @@
       "fieldName": "expression/area",
       "visible": true,
       "isEditable": false
+     },
+     {
+      "fieldName": "FP_ID",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "LEVEL",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "FALLBACK_REASON",
+      "label": "Reason for simpler roof",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "ROOF_AREA_M2",
+      "label": "Modelled roof surface (m²)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_PLANES",
+      "label": "Roof planes of at least 1 m²",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_SLOPE_MEAN",
+      "label": "Area-weighted roof slope (degrees)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_SLOPE_MAIN",
+      "label": "Largest plane slope (degrees)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_AZIMUTH_MAIN",
+      "label": "Largest plane downslope bearing (degrees)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "RIDGE_HT_M",
+      "label": "Modelled ridge height above ground (m)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "EAVE_HT_M",
+      "label": "Modelled eave height above ground (m)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "FLAT_AREA_M2",
+      "label": "Roof surface under 5 degrees (m²)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "SOUTH_AREA_M2",
+      "label": "South-facing roof surface (m²)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "EAST_AREA_M2",
+      "label": "East-facing roof surface (m²)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "WEST_AREA_M2",
+      "label": "West-facing roof surface (m²)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "NORTH_AREA_M2",
+      "label": "North-facing roof surface (m²)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
      }
     ]
    }

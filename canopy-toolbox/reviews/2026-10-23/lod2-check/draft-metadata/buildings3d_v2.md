@@ -1,6 +1,6 @@
 ---
 key: buildings3d_v2
-id: [set when the item is published]
+id: ce3617ac9b884bbcbee7c47a3e166999
 title: Millcreek 3D buildings with roof forms (2023 lidar), planning estimate
 summary: 21,561 Millcreek, Utah, buildings in 3D. Roof forms (gables, hips, dormers, flat roofs) from the 2023 lidar where supported, with simpler Esri roofs or blocks elsewhere. Unvalidated planning estimate; not surveyed or field-verified.
 tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, buildings, 3D buildings, LOD2.2, roof forms, building height, roof area, scene layer
@@ -83,14 +83,14 @@ terrain. Ground estimates and vertical datum labels can still produce offsets; i
 3. **Check and choice.** Each roofer model is compared with the lidar roof on the same 0.5 m cells. A building takes roofer's model when it
    passes (not above the lidar roof by more than 1 m, not short of it over more than 5% of its cells, not at ground level over 10% of its
    footprint, and not clearly worse than a flat block); otherwise it takes Esri's LOD2.0 roof if that passes, otherwise a flat block.
-4. Packaged as a scene layer package in WGS84. This is a local release candidate; it has not been published.
+4. Packaged as a scene layer package in WGS84 and published on October 25, 2026.
 
 ## Accuracy and checks
 - On the cells where the lidar saw roof, the buildings are within 0.5 m of the lidar roof on 96.7% of cells and within 1 m on 98.1%
   (flat blocks alone: 56.9% and 80.4%). The lidar is also what the roofs were built from, so this measures fidelity to the lidar, not an
   independent accuracy.
 - An assistant reviewed 109 imagery crops, including 97 buildings using roofer. These are preliminary visual observations, not City-reviewed accuracy results. The separate blank rating file remains for the City reviewer.
-- The local package has 21,561 buildings. Its FP_ID count and sum match the source; source IDs are unique. Fresh ArcGIS Pro validation passed without warnings. The candidate has not been checked as a hosted layer.
+- The package and hosted layer have 21,561 buildings. Their FP_ID count and sum match the source; source IDs are unique. ArcGIS Pro package validation passed without warnings. Hosted model counts and roof-area totals match the validated package.
 - Roof attributes apply to 20,730 retained roofer buildings: 4,855,408.3 m² of roof surface, including 1,230,559.8 m² under 5 degrees. The 831 Esri fallback buildings have null roof attributes and are excluded from these totals.
 
 ## Limits
@@ -106,6 +106,11 @@ terrain. Ground estimates and vertical datum labels can still produce offsets; i
 ## Coordinates
 Horizontal: WGS84, taken from NAD83(2011) with the transformation `WGS_1984_(ITRF08)_To_NAD_1983_2011`, as every other layer in the set.
 Vertical: heights are NAVD88 (Geoid18) metres; the package's vertical label is EGM96 (see the scene-layers README).
+
+## Download
+The [scene layer package (SLPK, 20.2 MiB)](https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/buildings/20261025/buildings_hybrid_v2.slpk) contains the same three-way hybrid used by this hosted layer. Release: October 25, 2026; 21,228,379 bytes.
+
+SHA-256: `62674f95c4e7a292c4ce66e8c2b55aac9d60c360e2ea50e3e7bde5521495949f`.
 
 
 {{lidar}}

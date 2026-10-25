@@ -50,8 +50,9 @@ APPS = {
         "tags": ["tree canopy", "urban forest", "trees"]},
     "in3d": {
         "template": "3dviewer", "map": "5b5bdf4a63c9466fad5884039aa7357f", "title": "Millcreek Buildings in 3D",
-        "what": "Millcreek's buildings as lidar blocks, shaded by median roof height and standing on the city's 0.5 m "
-                "lidar terrain. Select a building for its heights. Use the slides for a tour, or drag to look around.",
+        "what": "Millcreek's buildings with modelled lidar roof forms, shaded by median roof height on the city's lidar "
+                "terrain. Select a building for its model source, heights and available roof measurements. "
+                "Use the slides for a tour, or drag to look around.",
         "tags": ["buildings", "building height", "3D"], "buildings": True},
 }
 # Retired on October 23 (Brian's call): deleted to the recycle bin, never permanently.

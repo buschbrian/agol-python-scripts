@@ -6,7 +6,7 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 
 ## Routing
 
-- Finishing the October 23–24 roof-form release or reconciling the app/zoom branches: reviews/2026-10-23/WRAPUP-2026-10-25.md. Detailed roofs remain a local candidate; use its release plan before any public swap.
+- October 25 public three-way roof-form release, verification and rollback: reviews/2026-10-25/buildings-release/README.md. Brian approved public ArcGIS and Azure downloads; the existing public scene now uses v2. Earlier branch reconciliation: reviews/2026-10-23/WRAPUP-2026-10-25.md.
 
 - Grid, bands, ownership: canopy/bands.py, canopy/tiling.py and pure tests.
 - LAS inventory/classification: canopy/preparation.py; source files are immutable.
