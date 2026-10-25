@@ -47,7 +47,7 @@ class Package:
             return self.zip.read(name)
 
 
-def handler(root, out, packages):
+def handler(root, out, packages, bookmarks=None):
     class Handler(SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, directory=str(root), **kwargs)
@@ -68,6 +68,8 @@ def handler(root, out, packages):
 
         def do_GET(self):
             path = self.path.split("?")[0]
+            if path == "/bookmarks.json" and bookmarks is not None:
+                return self._send(bookmarks, "application/json")
             m = re.match(r"^/i3s/([\w-]+)/SceneServer(/layers/0)?(/.*)?$", path)
             if not m:
                 return super().do_GET()
@@ -105,13 +107,17 @@ def main(argv=None):
     p.add_argument("out", type=Path)
     p.add_argument("--slpk", action="append", required=True, help="KEY=PATH")
     p.add_argument("--port", type=int, default=8801)
+    p.add_argument("--bookmarks", type=Path, help="comparison results for this package version; defaults to web/bookmarks.json")
     a = p.parse_args(argv)
     a.out.mkdir(parents=True, exist_ok=True)
     packages = {}
     for item in a.slpk:
         key, path = item.split("=", 1)
         packages[key] = Package(path)
-    server = ThreadingHTTPServer(("127.0.0.1", a.port), handler(HERE.parent/"web", a.out.resolve(), packages))
+    bookmarks = a.bookmarks.read_bytes() if a.bookmarks else None
+    if bookmarks is not None:
+        json.loads(bookmarks)  # reject a damaged file before starting the server
+    server = ThreadingHTTPServer(("127.0.0.1", a.port), handler(HERE.parent/"web", a.out.resolve(), packages, bookmarks))
     print(f"http://127.0.0.1:{a.port}/  packages: {', '.join(packages)}  screenshots to {a.out}", flush=True)
     server.serve_forever()
 

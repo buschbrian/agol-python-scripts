@@ -1,7 +1,7 @@
 """Citywide tables for the README (October 23, 2026): verdicts by roof type and lidar roof coverage, ground-level shares,
 the hybrid and failure counts, from lod2_check.py measure's CSV. Plain Python with numpy; AUCs need scipy (run from Pro Python)."""
 import csv, sys, numpy as np, collections
-rows=[r for r in csv.DictReader(open(sys.argv[1]+"\lod2-check.csv",encoding="utf-8"))]
+rows=[r for r in csv.DictReader(open(sys.argv[1]+r"\lod2-check.csv",encoding="utf-8"))]
 f=lambda r,k: float(r[k]) if r[k] not in ("","None") else np.nan
 print(collections.Counter(r["VERDICT"] for r in rows))
 for k in ("LOD20_GROUND_PCT","LOD12_GROUND_PCT"):

@@ -14,6 +14,7 @@ writes OUT\\v2.gdb, OUT\\roof\\ (roof_attributes.py's tables), OUT\\buildings_hy
 import csv
 import importlib.util
 import json
+import math
 from pathlib import Path
 import sys
 
@@ -56,6 +57,18 @@ ALIASES = {"LEVEL": "Model used", "CHECK_VERDICT": "Check against the lidar", "R
            "ESRI_VERDICT": "Esri LOD2.0's check", "FALLBACK_REASON": "Why not roofer", "LOD20_GROUND_PCT": "Share of footprint at ground (%)"}
 
 
+def summarize_packaged_roofs(rows, selected_ids):
+    """Only count the roofer models actually retained in the hybrid package."""
+    selected = [rows[fid] for fid in sorted(selected_ids)]
+    fields = {"roof_area_m2_total": "ROOF_AREA_M2", "flat_area_m2": "FLAT_AREA_M2",
+              "south_area_m2": "SOUTH_AREA_M2", "east_area_m2": "EAST_AREA_M2",
+              "west_area_m2": "WEST_AREA_M2", "north_area_m2": "NORTH_AREA_M2"}
+    return {"buildings": len(selected),
+            "roof_planes": sum(int(r["ROOF_PLANES_ALL"]) for r in selected),
+            **{name: round(math.fsum(float(r[field]) for r in selected), 1)
+               for name, field in fields.items()}}
+
+
 def main(city_dir, out):
     import arcpy
     arcpy.CheckOutExtension("3D")
@@ -77,18 +90,18 @@ def main(city_dir, out):
         if name in have:
             arcpy.management.AlterField(fc, name, new_field_alias=alias)
     names = [f[0] for f in FIELDS]
-    filled = 0
+    selected_ids = set()
     with arcpy.da.UpdateCursor(fc, ["FP_ID", "LEVEL"]+names) as cursor:
         for fid, level, *_ in cursor:
-            r = rows.get(fid) if level == "roofer LoD2.2" else None
-            if r is None:
+            if level != "roofer LoD2.2":
                 continue
+            r = rows[fid]
             values = []
             for name, kind, _, _ in FIELDS:
                 v = r.get(name)
                 values.append(None if v in (None, "", "None") else (int(float(v)) if kind == "LONG" else float(v)))
             cursor.updateRow([fid, level]+values)
-            filled += 1
+            selected_ids.add(fid)
     ids = [r[0] for r in arcpy.da.SearchCursor(fc, ["FP_ID"])]
     slpk = out/"buildings_hybrid_v2.slpk"
     slpk.unlink(missing_ok=True)
@@ -99,9 +112,11 @@ def main(city_dir, out):
     arcpy.management.ValidateSceneLayerPackage(str(slpk), str(report))
     stats = slpk_mod.package_stats(str(slpk))
     record = {"slpk": str(slpk), "mb": round(slpk.stat().st_size/2**20, 1), "features": len(ids), "unique_fp_ids": len(set(ids)),
-              "buildings_with_roof_attributes": filled, "package": stats,
+              "buildings_with_roof_attributes": len(selected_ids), "package": stats,
               "fp_id_stats_equal_source": (stats["fp_id_count"], stats["fp_id_sum"]) == (len(ids), sum(ids)),
-              "fields": [f.name for f in arcpy.ListFields(fc)], "roof_attributes": summary,
+              "fields": [f.name for f in arcpy.ListFields(fc)],
+              "roof_attributes": summarize_packaged_roofs(rows, selected_ids),
+              "all_roofer_roof_attributes": summary,
               "validation_messages": json.loads(report.read_text(encoding="utf-8")).get("Messages")}
     (out/"v2.json").write_text(json.dumps(record, indent=1), encoding="utf-8")
     with open(out/"fields.md", "w", encoding="utf-8") as f:
@@ -109,7 +124,8 @@ def main(city_dir, out):
         for name, kind, alias, desc in FIELDS:
             f.write(f"| {name} | {desc}. Empty where LEVEL is not roofer LoD2.2. |\n")
         for name, alias in ALIASES.items():
-            f.write(f"| {name} | {alias} |\n")
+            if name in have:
+                f.write(f"| {name} | {alias} |\n")
     print(json.dumps({k: record[k] for k in ("mb", "features", "unique_fp_ids", "buildings_with_roof_attributes",
                                               "fp_id_stats_equal_source", "validation_messages")}, indent=1))
 

@@ -5,4 +5,5 @@ set RUNS=H:\lidar\2023-salt-lake-valley\runs
 python "%~dp0serve_scene.py" "%RUNS%\viewer-20261024\screens-v2" ^
   --slpk "esri=%RUNS%\scene-layers-hybrid-20261023\buildings_hybrid.slpk" ^
   --slpk "roofer=%RUNS%\roofer-city-v2-20261024\buildings_roofer_only.slpk" ^
-  --slpk "threeway=%RUNS%\roofer-city-v2-20261024\v2\buildings_hybrid_v2.slpk" --port 8802
+  --slpk "threeway=%RUNS%\roofer-city-v2-20261024\v2\buildings_hybrid_v2.slpk" ^
+  --bookmarks "%~dp0web\bookmarks-v2.json" --port 8802

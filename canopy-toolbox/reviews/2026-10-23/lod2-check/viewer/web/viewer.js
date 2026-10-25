@@ -54,8 +54,9 @@ function renderer(key, tint, edges) {
 
 const PANELS = [{ key: "esri", id: "v0" }, { key: "roofer", id: "v1" }, { key: "threeway", id: "v2" }];
 for (const p of PANELS) {
+  const fields = p.key === "esri" ? ["FP_ID", "LOD"] : p.key === "threeway" ? ["FP_ID", "LEVEL"] : ["FP_ID"];
   p.layer = new SceneLayer({ url: `${location.origin}/i3s/${p.key}/SceneServer/layers/0`, title: p.key,
-    elevationInfo: { mode: "absolute-height", offset: 0 }, outFields: ["FP_ID", "LEVEL", "LOD"] });
+    elevationInfo: { mode: "absolute-height", offset: 0 }, outFields: fields });
   p.layer.renderer = renderer(p.key, true, true);
   p.view = new SceneView({
     container: p.id, viewingMode: "global",

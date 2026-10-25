@@ -104,8 +104,8 @@ ITEMS = {
     "buildings3d_v2": {
         "file": RUNS/"roofer-city-v2-20261024"/"v2"/"buildings_hybrid_v2.slpk", "type": "Scene Package", "expect": "Scene Service",
         "title": "Millcreek 3D buildings with roof forms (2023 lidar), planning estimate",
-        "snippet": "21,561 county footprints as 3D buildings: roof forms (roofer LoD 2.2) where the lidar supports them, "
-                   "otherwise Esri LOD2.0 roofs or flat LOD1.2 blocks. " + WARNING,
+        "snippet": "Unvalidated planning estimate: 21,561 buildings from 2023 lidar, with roofer LoD 2.2 roofs and "
+                   "Esri LOD2.0/LOD1.2 fallbacks. Roof forms and heights are modelled, not surveyed or field-verified.",
         "description": "The LEVEL field says which model each building uses, and the roof attributes (planes, slopes, "
                        "azimuth, ridge and eave height, south-facing area) apply where LEVEL is roofer LoD2.2. Heights NAVD88; "
                        "the package is labelled EGM96 but its heights were left in NAVD88 (see the scene-layers README).",
