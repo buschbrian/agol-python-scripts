@@ -244,8 +244,8 @@ def go(key, args):
     print(json.dumps({k: entry[k] for k in ("package_id", "published_id", "published_type", "item_page")}, indent=1))
     if not entry["type_as_expected"]:
         print(f"NOTE: expected a {ITEMS[key]['expect']}, got {layer.type}. Check the item before using it.")
-    print("Not shared. Next: open the item page, check it draws (README.md lists what to look for), then delete the "
-          f"package item {package.id} by hand if you no longer need it.")
+    print("Not shared. Next: open the item page and check it draws (README.md lists what to look for). "
+          f"Retain source package {package.id} while the hosted layer depends on it.")
 
 
 def show_list():
