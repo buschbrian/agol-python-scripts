@@ -99,6 +99,17 @@ ITEMS = {
         "description": "Flat blocks with the footprints' roof-height statistics for pop-ups. Heights NAVD88; the "
                        "package is labelled EGM96 but its heights were left in NAVD88 (see the scene-layers README).",
         "tags": ["buildings", "3D", "scene"], "readme": "hosting/scene-layers/README.md"},
+    # October 24: the candidate to replace buildings3d (its LOD1.2 blocks include 598 that sit on the ground). A new item, never
+    # an overwrite; the web scene is repointed afterwards. Built by reviews/2026-10-23/lod2-check/build_v2_package.py.
+    "buildings3d_v2": {
+        "file": RUNS/"roofer-city-v2-20261024"/"v2"/"buildings_hybrid_v2.slpk", "type": "Scene Package", "expect": "Scene Service",
+        "title": "Millcreek 3D buildings with roof forms (2023 lidar), planning estimate",
+        "snippet": "21,561 county footprints as 3D buildings: roof forms (roofer LoD 2.2) where the lidar supports them, "
+                   "otherwise Esri LOD2.0 roofs or flat LOD1.2 blocks. " + WARNING,
+        "description": "The LEVEL field says which model each building uses, and the roof attributes (planes, slopes, "
+                       "azimuth, ridge and eave height, south-facing area) apply where LEVEL is roofer LoD2.2. Heights NAVD88; "
+                       "the package is labelled EGM96 but its heights were left in NAVD88 (see the scene-layers README).",
+        "tags": ["buildings", "3D", "scene", "roof forms"], "readme": "../2026-10-23/lod2-check/README.md"},
     "terrain": {
         "file": RUNS/"tiles-20261023"/"millcreek_terrain_20261023.tpkx", "type": "Compact Tile Package",
         "expect": "Image Service",

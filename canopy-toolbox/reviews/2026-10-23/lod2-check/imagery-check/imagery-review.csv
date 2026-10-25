@@ -1,0 +1,110 @@
+FP_ID,SHEET,GROUP,ROOF_TYPE,LEVEL,ROOF_FORM_MATCHES,GABLES_AND_RIDGES,CHIMNEYS_DORMERS,EDGES_CLEAN,NOTE
+15349,sheet_01,fallback,pitched,Esri LOD2.0,U,,,,fallback; trees
+7167,sheet_01,roofer,steep-pitched,roofer LoD2.2,G,,,,"hip roof, 4 planes"
+12205,sheet_01,roofer,other,roofer LoD2.2,G,,,,
+4110,sheet_01,roofer,flat-parapet,roofer LoD2.2,P,,,,pitched section drawn flat
+12412,sheet_01,roofer,steep-pitched,roofer LoD2.2,G,,,,
+5842,sheet_01,fallback,pitched,Esri LOD2.0,G,,,,"fallback, but roofer looks right"
+1879,sheet_01,roofer,pitched,roofer LoD2.2,G,,,,
+20167,sheet_01,roofer,pitched,roofer LoD2.2,P,,,,
+17644,sheet_02,fallback,pitched,Esri LOD2.0,B,,,,fallback right: hip roof drawn as two planes
+4944,sheet_02,roofer,pitched,roofer LoD2.2,G,,,,hip
+10326,sheet_02,roofer,pitched,roofer LoD2.2,G,,,,
+10304,sheet_02,roofer,steep-pitched,roofer LoD2.2,P,,,,
+5013,sheet_02,roofer,pitched,roofer LoD2.2,G,,,,
+15565,sheet_02,roofer,pitched,roofer LoD2.2,U,,,,trees
+20644,sheet_02,roofer,steep-pitched,roofer LoD2.2,G,,,,
+17334,sheet_02,roofer,pitched,roofer LoD2.2,G,,,,hip
+4952,sheet_03,roofer,flat,roofer LoD2.2,G,,,,flat
+12303,sheet_03,roofer,pitched,roofer LoD2.2,G,,,,
+3012,sheet_03,roofer,steep-pitched,roofer LoD2.2,G,,,,hips and small facets captured
+16314,sheet_03,roofer,pitched,roofer LoD2.2,G,,,,hip plus flat section
+13427,sheet_03,roofer,pitched,roofer LoD2.2,G,,,,
+15070,sheet_03,roofer,pitched,roofer LoD2.2,P,,,,model shorter than the roof
+9085,sheet_03,roofer,steep-pitched,roofer LoD2.2,P,,,,complex multi-wing roof
+15866,sheet_03,roofer,pitched,roofer LoD2.2,G,,,,hip
+14688,sheet_04,roofer,steep-pitched,roofer LoD2.2,U,,,,small outbuilding
+2664,sheet_04,roofer,pitched,roofer LoD2.2,G,,,,complex hip roof
+6612,sheet_04,roofer,flat,roofer LoD2.2,G,,,,carport roof
+6177,sheet_04,roofer,steep-pitched,roofer LoD2.2,G,,,,
+19482,sheet_04,roofer,steep-pitched,roofer LoD2.2,P,,,,
+5362,sheet_04,roofer,pitched,roofer LoD2.2,P,,,,ridge position
+11242,sheet_04,roofer,steep-pitched,roofer LoD2.2,G,,,,
+12424,sheet_04,roofer,flat-parapet,roofer LoD2.2,G,,,,flat roof; panels and equipment not modelled
+9395,sheet_05,roofer,flat,roofer LoD2.2,G,,,,
+15139,sheet_05,roofer,multi-level,roofer LoD2.2,G,,,,flat roof; rooftop units cut as small holes
+13978,sheet_05,roofer,steep-pitched,roofer LoD2.2,G,,,,hip
+13765,sheet_05,roofer,multi-level,roofer LoD2.2,P,,,,thin spurious strips along two edges
+2271,sheet_05,roofer,pitched,roofer LoD2.2,G,,,,
+11100,sheet_05,roofer,steep-pitched,roofer LoD2.2,P,,,,fragmented on a complex roof
+41,sheet_05,roofer,flat,roofer LoD2.2,G,,,,
+18459,sheet_05,roofer,flat,roofer LoD2.2,G,,,,
+20245,sheet_06,roofer,pitched,roofer LoD2.2,G,,,,hip
+5448,sheet_06,roofer,steep-pitched,roofer LoD2.2,P,,,,fragmented on a complex roof
+5426,sheet_06,roofer,pitched,roofer LoD2.2,U,,,,small outbuilding
+18536,sheet_06,fallback,flat,Esri LOD2.0,G,,,,"fallback wrong: footprint is a demolished building, roofer modelled only what stands"
+17435,sheet_06,roofer,other,roofer LoD2.2,G,,,,
+5893,sheet_06,roofer,pitched,roofer LoD2.2,P,,,,fragmented (hip with cross gable)
+8241,sheet_06,roofer,pitched,roofer LoD2.2,P,,,,fragmented
+15574,sheet_06,roofer,pitched,roofer LoD2.2,G,,,,
+1774,sheet_07,roofer,steep-pitched,roofer LoD2.2,P,,,,"hip roof, odd facets"
+4761,sheet_07,fallback,pitched,Esri LOD2.0,U,,,,sliver footprint between two houses
+15586,sheet_07,roofer,pitched,roofer LoD2.2,G,,,,
+616,sheet_07,roofer,pitched,roofer LoD2.2,P,,,,townhouse gables simplified
+11316,sheet_07,roofer,pitched,roofer LoD2.2,U,,,,overlay and house do not line up
+18379,sheet_07,roofer,flat,roofer LoD2.2,G,,,,flat roof with solar array
+791,sheet_07,roofer,steep-pitched,roofer LoD2.2,G,,,,
+1552,sheet_07,roofer,flat,roofer LoD2.2,G,,,,
+8368,sheet_08,roofer,steep-pitched,roofer LoD2.2,U,,,,partial footprint of a large roof
+18257,sheet_08,roofer,pitched,roofer LoD2.2,P,,,,flat model on a pitched-looking house
+6143,sheet_08,fallback,pitched,Esri LOD2.0,U,,,,fallback; trees
+5496,sheet_08,roofer,other,roofer LoD2.2,P,,,,
+20434,sheet_08,roofer,multi-level,roofer LoD2.2,G,,,,flat roof and three pitched sections separated
+1253,sheet_08,roofer,steep-pitched,roofer LoD2.2,G,,,,hips
+14025,sheet_08,roofer,flat,roofer LoD2.2,G,,,,pitched part and flat part
+20341,sheet_08,roofer,pitched,roofer LoD2.2,G,,,,
+9461,sheet_09,roofer,pitched,roofer LoD2.2,G,,,,
+2336,sheet_09,roofer,pitched,roofer LoD2.2,U,,,,trees
+18067,sheet_09,roofer,pitched,roofer LoD2.2,G,,,,
+10419,sheet_09,roofer,pitched,roofer LoD2.2,P,,,,fragmented
+15336,sheet_09,fallback,pitched,Esri LOD2.0,B,,,,fallback right: hip drawn as one big plane
+1916,sheet_09,roofer,steep-pitched,roofer LoD2.2,G,,,,"townhouse row, dormers captured"
+1096,sheet_09,roofer,steep-pitched,roofer LoD2.2,P,,,,over-fragmented
+4315,sheet_09,roofer,pitched,roofer LoD2.2,P,,,,tiny edge facets
+19060,sheet_10,roofer,flat,roofer LoD2.2,G,,,,flat
+15061,sheet_10,roofer,steep-pitched,roofer LoD2.2,G,,,,
+18413,sheet_10,roofer,steep-pitched,roofer LoD2.2,P,,,,
+1363,sheet_10,roofer,pitched,roofer LoD2.2,G,,,,
+12961,sheet_10,roofer,steep-pitched,roofer LoD2.2,P,,,,over-fragmented
+8231,sheet_10,roofer,other,roofer LoD2.2,G,,,,
+1635,sheet_10,roofer,multi-level,roofer LoD2.2,U,,,,"thin carport-row footprint, no overlay drawn"
+1566,sheet_10,fallback,pitched,Esri LOD2.0,U,,,,fallback; trees
+2624,sheet_11,roofer,steep-pitched,roofer LoD2.2,G,,,,hip
+20537,sheet_11,roofer,steep-pitched,roofer LoD2.2,P,,,,
+7037,sheet_11,roofer,steep-pitched,roofer LoD2.2,G,,,,
+8777,sheet_11,roofer,pitched,roofer LoD2.2,G,,,,clean 5-plane hip
+4385,sheet_11,roofer,steep-pitched,roofer LoD2.2,G,,,,
+17186,sheet_11,roofer,steep-pitched,roofer LoD2.2,P,,,,
+14661,sheet_11,roofer,pitched,roofer LoD2.2,P,,,,low-slope roof drawn pitched
+1912,sheet_11,roofer,pitched,roofer LoD2.2,G,,,,
+713,sheet_12,roofer,steep-pitched,roofer LoD2.2,G,,,,hip
+8007,sheet_12,fallback,pitched,Esri LOD2.0,P,,,,fallback right: complex roof merged into one big plane
+21746,sheet_12,roofer,flat-parapet,roofer LoD2.2,P,,,,low-slope roof
+12020,sheet_12,roofer,steep-pitched,roofer LoD2.2,G,,,,hip
+12557,sheet_12,roofer,steep-pitched,roofer LoD2.2,U,,,,trees
+7539,sheet_12,roofer,flat-parapet,roofer LoD2.2,G,,,,flat
+10664,sheet_12,roofer,pitched,roofer LoD2.2,P,,,,small fragments
+19400,sheet_12,roofer,other,roofer LoD2.2,G,,,,
+7836,sheet_13,roofer,pitched,roofer LoD2.2,G,,,,
+19007,sheet_13,roofer,pitched,roofer LoD2.2,G,,,,
+9523,sheet_13,roofer,pitched,roofer LoD2.2,G,,,,
+12942,sheet_13,roofer,pitched,roofer LoD2.2,G,,,,"hip, all four planes"
+319,sheet_13,roofer,flat,roofer LoD2.2,P,,,,low-slope hip drawn flat
+13301,sheet_13,roofer,flat,roofer LoD2.2,G,,,,
+21736,sheet_13,roofer,steep-pitched,roofer LoD2.2,P,,,,fragmented
+15792,sheet_13,fallback,pitched,Esri LOD2.0,U,,,,fallback; partial footprint
+17484,sheet_14,roofer,flat-parapet,roofer LoD2.2,G,,,,flat
+19818,sheet_14,roofer,steep-pitched,roofer LoD2.2,G,,,,
+3756,sheet_14,fallback,steep-pitched,Esri LOD2.0,G,,,,"fallback, but roofer looks right"
+2640,sheet_14,fallback,pitched,Esri LOD2.0,U,,,,fallback; trees
+7169,sheet_14,roofer,multi-level,roofer LoD2.2,G,,,,

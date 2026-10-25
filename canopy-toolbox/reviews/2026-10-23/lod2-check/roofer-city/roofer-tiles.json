@@ -1,0 +1,730 @@
+{
+ "12TVL2203": {
+  "box": [
+   421980.0,
+   4502980.0,
+   423019.99,
+   4504019.99
+  ],
+  "own_points": 3804372,
+  "neighbour_points": 140783,
+  "returncode": 0,
+  "buildings_written": 6,
+  "footprints": 6,
+  "seconds": 3
+ },
+ "12TVL2204": {
+  "box": [
+   421980.0,
+   4503978.5592,
+   423019.99,
+   4505019.99
+  ],
+  "own_points": 5485380,
+  "neighbour_points": 118146,
+  "returncode": 0,
+  "buildings_written": 75,
+  "footprints": 75,
+  "seconds": 5
+ },
+ "12TVL2303": {
+  "box": [
+   422980.0,
+   4502980.0,
+   424019.99,
+   4504019.99
+  ],
+  "own_points": 5845858,
+  "neighbour_points": 384392,
+  "returncode": 0,
+  "buildings_written": 2,
+  "footprints": 2,
+  "seconds": 4
+ },
+ "12TVL2304": {
+  "box": [
+   422980.0,
+   4503976.0822,
+   424023.4110000003,
+   4505019.99
+  ],
+  "own_points": 6849575,
+  "neighbour_points": 383759,
+  "returncode": 0,
+  "buildings_written": 62,
+  "footprints": 62,
+  "seconds": 26
+ },
+ "12TVL2403": {
+  "box": [
+   423976.3025000002,
+   4502980.0,
+   425049.54000000004,
+   4504095.801899999
+  ],
+  "own_points": 6535450,
+  "neighbour_points": 1136271,
+  "returncode": 0,
+  "buildings_written": 83,
+  "footprints": 83,
+  "seconds": 30
+ },
+ "12TVL2404": {
+  "box": [
+   423965.8775000004,
+   4503962.4607,
+   425025.4554000003,
+   4505019.99
+  ],
+  "own_points": 6775214,
+  "neighbour_points": 526333,
+  "returncode": 0,
+  "buildings_written": 115,
+  "footprints": 115,
+  "seconds": 34
+ },
+ "12TVL2503": {
+  "box": [
+   424971.1182000004,
+   4502979.2959,
+   426035.8052000003,
+   4504024.959100001
+  ],
+  "own_points": 6122788,
+  "neighbour_points": 486153,
+  "returncode": 0,
+  "buildings_written": 513,
+  "footprints": 513,
+  "seconds": 20
+ },
+ "12TVL2504": {
+  "box": [
+   424949.86730000004,
+   4503965.675799999,
+   426030.23539999966,
+   4505019.99
+  ],
+  "own_points": 5981681,
+  "neighbour_points": 580561,
+  "returncode": 0,
+  "buildings_written": 259,
+  "footprints": 259,
+  "seconds": 13
+ },
+ "12TVL2602": {
+  "box": [
+   425980.0,
+   4501980.0,
+   427027.1913999999,
+   4503028.2874
+  ],
+  "own_points": 5351643,
+  "neighbour_points": 442687,
+  "returncode": 0,
+  "buildings_written": 318,
+  "footprints": 318,
+  "seconds": 11
+ },
+ "12TVL2603": {
+  "box": [
+   425967.9126000004,
+   4502969.317600001,
+   427029.29480000027,
+   4504026.952
+  ],
+  "own_points": 5629028,
+  "neighbour_points": 505336,
+  "returncode": 0,
+  "buildings_written": 774,
+  "footprints": 774,
+  "seconds": 24
+ },
+ "12TVL2604": {
+  "box": [
+   425969.59779999964,
+   4503971.221000001,
+   427041.3077999996,
+   4505025.2815000005
+  ],
+  "own_points": 6060066,
+  "neighbour_points": 668250,
+  "returncode": 0,
+  "buildings_written": 470,
+  "footprints": 469,
+  "seconds": 29
+ },
+ "12TVL2605": {
+  "box": [
+   425980.0,
+   4504957.6032,
+   427023.5884999996,
+   4506024.852299999
+  ],
+  "own_points": 5699311,
+  "neighbour_points": 507962,
+  "returncode": 0,
+  "buildings_written": 522,
+  "footprints": 522,
+  "seconds": 13
+ },
+ "12TVL2606": {
+  "box": [
+   425980.0,
+   4505974.263699999,
+   427019.99,
+   4507020.666999999
+  ],
+  "own_points": 5076475,
+  "neighbour_points": 291611,
+  "returncode": 0,
+  "buildings_written": 624,
+  "footprints": 624,
+  "seconds": 9
+ },
+ "12TVL2607": {
+  "box": [
+   425980.0,
+   4506977.0035,
+   427019.99,
+   4507520.0
+  ],
+  "own_points": 2526473,
+  "neighbour_points": 108149,
+  "returncode": 0,
+  "buildings_written": 61,
+  "footprints": 61,
+  "seconds": 2
+ },
+ "12TVL2701": {
+  "box": [
+   426980.0,
+   4501080.0,
+   428019.99,
+   4502019.99
+  ],
+  "own_points": 6014830,
+  "neighbour_points": 172523,
+  "returncode": 0,
+  "buildings_written": 72,
+  "footprints": 72,
+  "seconds": 5
+ },
+ "12TVL2702": {
+  "box": [
+   426948.82129999995,
+   4501980.0,
+   428037.84800000023,
+   4503030.6723
+  ],
+  "own_points": 7120998,
+  "neighbour_points": 990518,
+  "returncode": 0,
+  "buildings_written": 681,
+  "footprints": 681,
+  "seconds": 32
+ },
+ "12TVL2703": {
+  "box": [
+   426978.00090000033,
+   4502958.3002,
+   428038.1732000001,
+   4504029.0492
+  ],
+  "own_points": 6203049,
+  "neighbour_points": 1013435,
+  "returncode": 0,
+  "buildings_written": 619,
+  "footprints": 619,
+  "seconds": 20
+ },
+ "12TVL2704": {
+  "box": [
+   426969.5674999999,
+   4503971.034499999,
+   428028.6662999997,
+   4505023.157500001
+  ],
+  "own_points": 6678105,
+  "neighbour_points": 821702,
+  "returncode": 0,
+  "buildings_written": 875,
+  "footprints": 875,
+  "seconds": 37
+ },
+ "12TVL2705": {
+  "box": [
+   426973.5876000002,
+   4504974.8342,
+   428028.8103,
+   4506030.5284
+  ],
+  "own_points": 6451130,
+  "neighbour_points": 694117,
+  "returncode": 0,
+  "buildings_written": 940,
+  "footprints": 939,
+  "seconds": 25
+ },
+ "12TVL2706": {
+  "box": [
+   426980.0,
+   4505971.902899999,
+   428022.5581,
+   4507019.99
+  ],
+  "own_points": 6991852,
+  "neighbour_points": 452868,
+  "returncode": 0,
+  "buildings_written": 265,
+  "footprints": 265,
+  "seconds": 12
+ },
+ "12TVL2802": {
+  "box": [
+   427972.7857999997,
+   4501980.0,
+   429047.19969999976,
+   4503028.271299999
+  ],
+  "own_points": 5371444,
+  "neighbour_points": 692222,
+  "returncode": 0,
+  "buildings_written": 220,
+  "footprints": 220,
+  "seconds": 31
+ },
+ "12TVL2803": {
+  "box": [
+   427970.2112999996,
+   4502972.3445999995,
+   429019.99,
+   4504028.190099999
+  ],
+  "own_points": 6457965,
+  "neighbour_points": 752129,
+  "returncode": 0,
+  "buildings_written": 660,
+  "footprints": 660,
+  "seconds": 44
+ },
+ "12TVL2804": {
+  "box": [
+   427950.7851999998,
+   4503974.6337,
+   429026.68759999983,
+   4505029.381899999
+  ],
+  "own_points": 6374598,
+  "neighbour_points": 943172,
+  "returncode": 0,
+  "buildings_written": 617,
+  "footprints": 617,
+  "seconds": 43
+ },
+ "12TVL2805": {
+  "box": [
+   427973.0855999999,
+   4504967.492000001,
+   429019.99,
+   4506029.2267
+  ],
+  "own_points": 5522464,
+  "neighbour_points": 678719,
+  "returncode": 0,
+  "buildings_written": 649,
+  "footprints": 649,
+  "seconds": 30
+ },
+ "12TVL2806": {
+  "box": [
+   427970.0482999999,
+   4505970.3566,
+   429023.22559999954,
+   4507019.99
+  ],
+  "own_points": 6349889,
+  "neighbour_points": 656663,
+  "returncode": 0,
+  "buildings_written": 1032,
+  "footprints": 1032,
+  "seconds": 17
+ },
+ "12TVL2902": {
+  "box": [
+   428966.8912000004,
+   4501980.0,
+   430019.99,
+   4503019.99
+  ],
+  "own_points": 5392729,
+  "neighbour_points": 150857,
+  "returncode": 0,
+  "buildings_written": 4,
+  "footprints": 4,
+  "seconds": 2
+ },
+ "12TVL2904": {
+  "box": [
+   428969.33019999973,
+   4503980.0,
+   430029.85699999984,
+   4505027.6086
+  ],
+  "own_points": 5801531,
+  "neighbour_points": 480281,
+  "returncode": 0,
+  "buildings_written": 519,
+  "footprints": 519,
+  "seconds": 14
+ },
+ "12TVL2905": {
+  "box": [
+   428968.8457000004,
+   4504971.1131,
+   430028.9890999999,
+   4506024.5133
+  ],
+  "own_points": 5718409,
+  "neighbour_points": 568978,
+  "returncode": 0,
+  "buildings_written": 799,
+  "footprints": 799,
+  "seconds": 28
+ },
+ "12TVL2906": {
+  "box": [
+   428974.86679999996,
+   4505970.4375,
+   430031.68900000025,
+   4507026.715600001
+  ],
+  "own_points": 5631093,
+  "neighbour_points": 552861,
+  "returncode": 0,
+  "buildings_written": 811,
+  "footprints": 811,
+  "seconds": 18
+ },
+ "12TVL2907": {
+  "box": [
+   428980.0,
+   4506979.446900001,
+   430020.1512000002,
+   4507520.0
+  ],
+  "own_points": 2803505,
+  "neighbour_points": 185756,
+  "returncode": 0,
+  "buildings_written": 68,
+  "footprints": 68,
+  "seconds": 2
+ },
+ "12TVL3004": {
+  "box": [
+   429979.0395999998,
+   4503980.0,
+   431026.4539000001,
+   4505029.6183
+  ],
+  "own_points": 6515215,
+  "neighbour_points": 519645,
+  "returncode": 0,
+  "buildings_written": 546,
+  "footprints": 546,
+  "seconds": 16
+ },
+ "12TVL3005": {
+  "box": [
+   429975.7684000004,
+   4504968.3312,
+   431027.5860000001,
+   4506028.33
+  ],
+  "own_points": 6821128,
+  "neighbour_points": 774325,
+  "returncode": 0,
+  "buildings_written": 848,
+  "footprints": 847,
+  "seconds": 30
+ },
+ "12TVL3006": {
+  "box": [
+   429974.1122000003,
+   4505973.1428,
+   431027.9155000001,
+   4507031.944800001
+  ],
+  "own_points": 6364311,
+  "neighbour_points": 722742,
+  "returncode": 0,
+  "buildings_written": 1084,
+  "footprints": 1084,
+  "seconds": 25
+ },
+ "12TVL3007": {
+  "box": [
+   429973.4868000001,
+   4506976.5448,
+   431019.99,
+   4507520.0
+  ],
+  "own_points": 2727696,
+  "neighbour_points": 231214,
+  "returncode": 0,
+  "buildings_written": 96,
+  "footprints": 96,
+  "seconds": 4
+ },
+ "12TVL3101": {
+  "box": [
+   430980.0,
+   4501080.0,
+   432026.31659999955,
+   4502019.99
+  ],
+  "own_points": 5789785,
+  "neighbour_points": 234810,
+  "returncode": 0,
+  "buildings_written": 2,
+  "footprints": 2,
+  "seconds": 2
+ },
+ "12TVL3104": {
+  "box": [
+   430969.64829999954,
+   4503980.0,
+   432030.55200000014,
+   4505028.422900001
+  ],
+  "own_points": 6793536,
+  "neighbour_points": 588392,
+  "returncode": 0,
+  "buildings_written": 485,
+  "footprints": 485,
+  "seconds": 24
+ },
+ "12TVL3105": {
+  "box": [
+   430970.4064999996,
+   4504972.048699999,
+   432030.0537999999,
+   4506026.877
+  ],
+  "own_points": 6096788,
+  "neighbour_points": 738049,
+  "returncode": 0,
+  "buildings_written": 805,
+  "footprints": 805,
+  "seconds": 24
+ },
+ "12TVL3106": {
+  "box": [
+   430972.87200000044,
+   4505974.7015,
+   432031.1752000004,
+   4507019.99
+  ],
+  "own_points": 5873593,
+  "neighbour_points": 600166,
+  "returncode": 0,
+  "buildings_written": 871,
+  "footprints": 871,
+  "seconds": 31
+ },
+ "12TVL3107": {
+  "box": [
+   430978.2187999999,
+   4506974.2425999995,
+   432019.99,
+   4507520.0
+  ],
+  "own_points": 2153004,
+  "neighbour_points": 223368,
+  "returncode": 0,
+  "buildings_written": 17,
+  "footprints": 17,
+  "seconds": 2
+ },
+ "12TVL3201": {
+  "box": [
+   431970.40380000044,
+   4501080.0,
+   433019.99,
+   4502021.290999999
+  ],
+  "own_points": 3016408,
+  "neighbour_points": 278523,
+  "returncode": 0,
+  "buildings_written": 102,
+  "footprints": 101,
+  "seconds": 6
+ },
+ "12TVL3202": {
+  "box": [
+   431980.0,
+   4501974.6216,
+   433029.2945999997,
+   4503030.8780000005
+  ],
+  "own_points": 5502906,
+  "neighbour_points": 613667,
+  "returncode": 0,
+  "buildings_written": 491,
+  "footprints": 490,
+  "seconds": 18
+ },
+ "12TVL3203": {
+  "box": [
+   431980.0,
+   4502972.5940000005,
+   433030.20749999955,
+   4504019.99
+  ],
+  "own_points": 5740778,
+  "neighbour_points": 525618,
+  "returncode": 0,
+  "buildings_written": 343,
+  "footprints": 343,
+  "seconds": 18
+ },
+ "12TVL3204": {
+  "box": [
+   431970.81620000023,
+   4503957.757200001,
+   433035.0963000003,
+   4505033.3882
+  ],
+  "own_points": 6428767,
+  "neighbour_points": 792308,
+  "returncode": 0,
+  "buildings_written": 362,
+  "footprints": 361,
+  "seconds": 150
+ },
+ "12TVL3205": {
+  "box": [
+   431980.0,
+   4504979.2062,
+   433022.8103,
+   4506022.316400001
+  ],
+  "own_points": 5540701,
+  "neighbour_points": 394190,
+  "returncode": 0,
+  "buildings_written": 645,
+  "footprints": 645,
+  "seconds": 57
+ },
+ "12TVL3206": {
+  "box": [
+   431975.94269999955,
+   4505973.070800001,
+   433026.70419999957,
+   4507019.99
+  ],
+  "own_points": 4981671,
+  "neighbour_points": 510276,
+  "returncode": 0,
+  "buildings_written": 567,
+  "footprints": 567,
+  "seconds": 13
+ },
+ "12TVL3302": {
+  "box": [
+   432968.88489999995,
+   4501980.0,
+   434031.90199999977,
+   4503031.0945999995
+  ],
+  "own_points": 4375720,
+  "neighbour_points": 567757,
+  "returncode": 0,
+  "buildings_written": 256,
+  "footprints": 255,
+  "seconds": 13
+ },
+ "12TVL3303": {
+  "box": [
+   432972.0787000004,
+   4502967.9694,
+   434026.24789999984,
+   4504032.0013
+  ],
+  "own_points": 5967747,
+  "neighbour_points": 687558,
+  "returncode": 0,
+  "buildings_written": 451,
+  "footprints": 451,
+  "seconds": 21
+ },
+ "12TVL3304": {
+  "box": [
+   432967.3836000003,
+   4503964.7695,
+   434019.99,
+   4505019.99
+  ],
+  "own_points": 5578432,
+  "neighbour_points": 779529,
+  "returncode": 0,
+  "buildings_written": 322,
+  "footprints": 322,
+  "seconds": 15
+ },
+ "12TVL3305": {
+  "box": [
+   432972.89180000033,
+   4504973.304300001,
+   434019.99,
+   4506028.268100001
+  ],
+  "own_points": 5022262,
+  "neighbour_points": 630490,
+  "returncode": 0,
+  "buildings_written": 338,
+  "footprints": 338,
+  "seconds": 12
+ },
+ "12TVL3306": {
+  "box": [
+   432974.4656999996,
+   4505973.0375,
+   434019.99,
+   4507019.99
+  ],
+  "own_points": 5123090,
+  "neighbour_points": 422120,
+  "returncode": 0,
+  "buildings_written": 85,
+  "footprints": 85,
+  "seconds": 5
+ },
+ "12TVL3402": {
+  "box": [
+   433970.74650000036,
+   4501980.0,
+   434520.0,
+   4503029.4882
+  ],
+  "own_points": 1153266,
+  "neighbour_points": 118069,
+  "returncode": 0,
+  "buildings_written": 56,
+  "footprints": 56,
+  "seconds": 3
+ },
+ "12TVL3403": {
+  "box": [
+   433972.6984000001,
+   4502980.0,
+   434520.0,
+   4504019.99
+  ],
+  "own_points": 1391220,
+  "neighbour_points": 129785,
+  "returncode": 0,
+  "buildings_written": 82,
+  "footprints": 82,
+  "seconds": 4
+ }
+}
