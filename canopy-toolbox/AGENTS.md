@@ -34,7 +34,8 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Whether the COGs line up with the hosted layers in a Web Mercator web map (they do: the ArcGIS Maps SDK applies the ITRF08 transformation itself; within about 5 cm of the hosted contours): reviews/2026-10-23/cog-alignment.
 - ArcGIS Online cartography of the eight hosted layers (vector tile styles as item resources, feature/scene renderers
   and pop-ups in item data, the three web maps and the web scene; legend key layers for the vector tiles, the scene's grey
-  buildings, 3D labels and slide pictures; apply_styling.py, dry run by default): reviews/2026-10-23/agol-styling.
+  buildings, 3D labels and slide pictures; the terrain-and-slope 3D scene with scene-legend keys; apply_styling.py, dry run by
+  default): reviews/2026-10-23/agol-styling. Instant Apps (create, update in place, retire to the recycle bin): reviews/2026-10-23/agol-apps.
 - How the SDK draws the COGs (drawn colour against identify over COGs, zooms, tile edges and interpolation; one fault: a float COG with a class breaks renderer on its first draw, straight at a large scale, draws coarse tiles in a repeating grid; workaround and app advice): reviews/2026-10-23/cog-drawing.
 - RFP bidder questions on the tree estimate (treetops by ownership scope, height and crown facts, size-based heritage/specimen screening; drafts only, nothing sent): reviews/2026-10-23/rfp-tree-questions.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.

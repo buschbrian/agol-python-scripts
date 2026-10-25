@@ -164,6 +164,18 @@ a 3D Viewer Instant App on the scene (Millcreek in 3D `021866ad…`), and an Arc
 (Millcreek LiDAR 2023 `8d43f724…`). Each app opens on a splash screen with the planning-estimate warning. Made and
 checked with `reviews/2026-10-23/agol-apps/make_apps.py` (IDs and URLs in its `created.json`).
 
+**Apps rebuilt, October 23 late evening** (Brian: 3D for terrain and slope and for buildings, a clean-up, the StoryMap
+removed; [agol-styling](agol-styling/README.md#terrain-and-slope-in-3d-apps-and-clean-up-october-23-evening)):
+- New web scene "Millcreek terrain and slope in 3D" `71b680b486b245fd8ec17eb80387be94`, **private**: slope classes and
+  contours draped on the city terrain with the hillshade, a legend for both, five slides on the east bench.
+- Millcreek Terrain and Slope in 3D `66693381…`: the terrain app, now a 3D Viewer app on that scene (same item).
+- Millcreek Buildings in 3D `021866ad…`: the former "Millcreek in 3D" app, on the scene now titled "Millcreek buildings in
+  3D" `5b5bdf4a…`.
+- Millcreek Tree Canopy `9d701107…`: unchanged in kind (Sidebar on the tree canopy map).
+- Deleted to the recycle bin: the Sidebar buildings app `370a1f38…` and the StoryMap `8d43f724…`.
+- Maps, scenes and apps carry the house-style item text (`agol-metadata`) and thumbnails. All three apps stay private;
+  **share the new scene together with the terrain app**, or the public sees an empty app.
+
 **All eight items are published** (private until the share above). Next, in ArcGIS Online: look at each in Map Viewer or Scene Viewer, delete
 the eight package items, then share by audience (decision 3). The 3D check is a web scene with `terrain` in the Ground
 above World Elevation and `buildings3d` on it.
@@ -175,8 +187,8 @@ terrain and slope" `177bfc592415451585ba72ab9207b3c6`, "Millcreek tree canopy" `
 "Millcreek buildings" `504554bd5a9545559db06aa6098e8e49`, and web scene "Millcreek in 3D"
 `5b5bdf4a63c9466fad5884039aa7357f`. Limits: the map legend cannot list vector tile layers (since the evening of October
 23 each map carries key layers that list their classes; [agol-styling](agol-styling/README.md#legend-keys-for-the-vector-tile-layers-october-23-evening));
-the vector tile layers stop drawing past 1:2,257 in the web viewers; 3D trees need a hosted
-treetop point layer.
+the vector tile layers stopped drawing past 1:2,257 in the web viewers until each service's `maxScale` was cleared
+(October 23, branch `claude/silly-shaw-01edf4`); 3D trees need a hosted treetop point layer.
 
 Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
 layer only once its audience is decided.
