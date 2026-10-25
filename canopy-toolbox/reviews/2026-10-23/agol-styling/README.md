@@ -136,7 +136,7 @@ scene, 3D buildings and terrain thumbnails were rendered again after the scene r
   still show "No legend". The map descriptions keep their coloured swatch keys.
 - **Vector tile layers stopped drawing past 1:2,257** in the SDK. The cause was each service's `maxScale` (2,257), not
   its levels; a separate session cleared it on all four services on October 23 (`set_max_scale.py`, branch
-  `claude/silly-shaw-01edf4`), and they now draw closer in, with no new tiles.
+  `claude/silly-shaw-01edf4`), and they now draw closer in, with no new tiles. See [the fix and checks](../vt-overzoom/README.md).
 - **3D trees are not possible from the treetops**: they are vector tiles, which drape flat. 3D tree symbols need the
   treetops as a hosted point layer with heights (feature storage cost; see `hosting/PLAN.md`).
 - The web maps were first checked with the SDK only; since the items went public, Map Viewer and Scene Viewer have been
