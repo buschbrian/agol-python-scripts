@@ -2,7 +2,7 @@
 
 Brian asked on the morning of October 23 for a roll-up of the overnight work (slope, hillshade, COGs, vector tiles), the
 steps left, and a start on getting it all into ArcGIS Online with apps for the public and staff. This note reads the
-records; it reruns nothing. **Nothing has been uploaded, published or shared.**
+records. **Current status, checked October 24:** the original eight hosted layers are published; the three Instant Apps remain private. Azure storage holds 16 masters and 3 display copies. The v2 roof-form building package is local and unpublished. See [the wrap-up](WRAPUP-2026-10-25.md) for fresh checks and remaining decisions.
 
 ## 1. What finished overnight
 Every step of the [hosting plan](../2026-10-22/hosting/PLAN.md) is built and verified locally, and every output is on the
@@ -176,8 +176,7 @@ removed; [agol-styling](agol-styling/README.md#terrain-and-slope-in-3d-apps-and-
 - Maps, scenes and apps carry the house-style item text (`agol-metadata`) and thumbnails. All three apps stay private;
   **share the new scene together with the terrain app**, or the public sees an empty app.
 
-**All eight items are published** (private until the share above). Next, in ArcGIS Online: look at each in Map Viewer or Scene Viewer, delete
-the eight package items, then share by audience (decision 3). The 3D check is a web scene with `terrain` in the Ground
+**All eight original items are published and were shared as recorded above.** Keep their eight dependent source package items; they are delete-protected. The earlier proposal to delete them is withdrawn. The 3D check is a web scene with `terrain` in the Ground
 above World Elevation and `buildings3d` on it.
 
 **Styled, October 23** ([agol-styling](agol-styling/README.md), from the repo with `apply_styling.py`): every layer has
@@ -190,10 +189,11 @@ terrain and slope" `177bfc592415451585ba72ab9207b3c6`, "Millcreek tree canopy" `
 the vector tile layers stopped drawing past 1:2,257 in the web viewers until each service's `maxScale` was cleared
 (October 23, branch `claude/silly-shaw-01edf4`); 3D trees need a hosted treetop point layer.
 
-Delete each package item once its layer works, so storage is not counted twice. Publishing does not share; share each
-layer only once its audience is decided.
+Retain the source package items while their hosted layers depend on them. Publishing does not share; audience changes remain a separate step.
 
-### The COGs on the city's Azure (proposal; nothing created)
+### The COGs on the city's Azure (original proposal; implemented October 23)
+
+The account `stmillcreeklidar` and public `cogs` container are live. The implementation record is `millcreek-azure/docs/lidar-cogs.md` on `claude/lidar-cog-storage-40c499`. October 24 read-only range checks of the slope master and display copy returned HTTP 206 and the allowed ArcGIS origin. The following is the original design, retained as history.
 The city's estate ([millcreek-azure](https://github.com/buschbrian/millcreek-azure)) is one subscription, *Azure Cloud –
 Brian (Application Development)*, with Brian as its only Owner. Its one storage account, `stmillcreekpipeline`, holds the
 minutes pipeline's file share and has public blob access off, so the COGs get their own account rather than loosening that one:
@@ -216,11 +216,9 @@ minutes pipeline's file share and has public blob access off, so the COGs get th
   there. The new account and its settings should go into `millcreek-azure`'s inventory and runbooks like the rest of the
   estate.
 
-Creating the account, opening public read and uploading are each Brian's go-ahead.
+Brian approved these three Azure steps on October 23, and they were completed. Do not provision another account or duplicate the uploads.
 
-The uploads can also be scripted with the ArcGIS API for Python (`gis.content.add` then `publish`), in the same way
-`add_badelf_fields_to_agol.py` connects (`GIS(url, username, password)`), so each one is a single command run on Brian's
-go-ahead. Not written yet.
+ArcGIS uploads are implemented in `../2026-10-22/hosting/upload/upload.py`; its default is a dry run. The v2 building entry passed a fresh dry run on October 24.
 
 ## 4. Applications, a first sketch
 | App | Audience | Built from | ArcGIS Online app |

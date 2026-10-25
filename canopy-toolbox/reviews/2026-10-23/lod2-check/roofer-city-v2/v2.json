@@ -69,6 +69,19 @@
   "STEEP_FACES"
  ],
  "roof_attributes": {
+  "buildings": 20730,
+  "roof_planes": 94219,
+  "roof_area_m2_total": 4855408.3,
+  "flat_area_m2": 1230559.8,
+  "south_area_m2": 937230.2,
+  "east_area_m2": 888218.7,
+  "west_area_m2": 863216.1,
+  "north_area_m2": 935627.7
+ },
+ "validation_messages": [
+  "Information : Resources 1,163,161,0,7245,0,45,0 were successfully loaded"
+ ],
+ "all_roofer_roof_attributes": {
   "roof_planes": 96187,
   "buildings": 21407,
   "planes_per_building_median": 4.0,
@@ -92,7 +105,5 @@
    "azimuth": "compass bearing of the downslope direction, 0 north, clockwise"
   }
  },
- "validation_messages": [
-  "Information : Resources 1,163,161,0,7245,0,45,0 were successfully loaded"
- ]
+ "reconciliation": "October 25 wrap-up: summary filtered to retained roofer buildings; package geometry/attributes unchanged. Historical build record remains on H:."
 }

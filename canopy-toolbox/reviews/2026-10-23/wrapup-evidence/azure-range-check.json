@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/20261022/slope_percent.tif",
+    "status": 206,
+    "range": "bytes 0-15/550143658",
+    "cors_origin": "https://millcrk.maps.arcgis.com",
+    "bytes_read": 16
+  },
+  {
+    "url": "https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/display-20261023/slope_percent.lerc-0.01.tif",
+    "status": 206,
+    "range": "bytes 0-15/219208429",
+    "cors_origin": "https://millcrk.maps.arcgis.com",
+    "bytes_read": 16
+  }
+]

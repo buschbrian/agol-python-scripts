@@ -1,0 +1,12 @@
+[
+  {
+    "test": "tests.test_roof_release_summary",
+    "mutation_caught": true,
+    "exit_code": 1
+  },
+  {
+    "test": "tests.test_scene_viewer_bookmarks",
+    "mutation_caught": true,
+    "exit_code": 1
+  }
+]

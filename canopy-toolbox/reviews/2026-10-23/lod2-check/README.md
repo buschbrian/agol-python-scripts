@@ -577,12 +577,11 @@ geometry, **not a solar production estimate**: no shading, panels or weather.
 source's, drawn correctly by the ArcGIS Maps SDK 5.1 (`viewer\start_viewer_v2.bat`). The live public LOD1.2 layer has **598 blocks on the ground**
 ([ground-slab-fp-ids.csv](ground-slab-fp-ids.csv)); the plan swaps it for v2 by a new item and a repointed scene, each step on Brian's go-ahead, with the decisions that are
 his (roof forms were staff-only on October 23; the wording; a licence line for roofer) and an interim fix. An `upload.py` entry `buildings3d_v2` was added; its dry run was
-refused by the permission system in this session, so run it yourself first. Draft item text: [draft-metadata/buildings3d_v2.md](draft-metadata/buildings3d_v2.md).
+refused in the Claude session; it passed in the October 24 wrap-up (no upload). Draft item text: [draft-metadata/buildings3d_v2.md](draft-metadata/buildings3d_v2.md).
 
 ## What was not checked
 - No independent roof truth: the lidar is the surface the massing was fitted to, and no surveyed roof was used.
-- Nothing was viewed in a 3D scene or against imagery. Footprint edges, eaves and wall placement were not judged, and
-  parapets are not modelled by either level.
+- The original Esri-only check did not include a visual review. Later sections record the 3D comparison viewer and assistant imagery checks. No City-rated or surveyed roof validation is complete.
 - Roof types and use hints are inferred, and the parapet rule misses some parapets.
 - The tool's roof fit is not stable: 31 buildings changed from better to broken when its input changed. A published version should be rechecked as published.
 - The 109 fallback buildings use LOD1.2 as it is; those blocks were measured, not inspected.
@@ -622,3 +621,14 @@ python reviews/2026-10-23/lod2-check/fill_trial.py H:\lidar\2023-salt-lake-valle
 python reviews/2026-10-23/lod2-check/lod2_check.py rasterize H:\lidar\2023-salt-lake-valley\runs\lod2-check-filled-20261023 --massing H:\lidar\2023-salt-lake-valley\runs\massing-filled-20261023\massing.gdb
 ```
 (`measure` and `figures` take the same `--massing`.)
+
+
+## October 24 wrap-up corrections
+
+The local v2 package was freshly checked with ArcGIS Pro: 21,561 unique source FP_IDs, matching package ID count and sum; 20,730 roofer, 647 Esri LOD2.0 and 184 Esri LOD1.2 buildings. All 831 fallback buildings have null roof attributes. Package validation has no warnings.
+
+The 4.95 km² roof / 1.25 km² flat totals above describe all 21,407 roofer reconstructions before fallback selection. **The retained 20,730 in the package contain 4.8554083 km² of roof, including 1.2305598 km² flat.** `build_v2_package.py` now records the selected subset separately from the all-roofer summary. The existing SLPK geometry and values are unchanged.
+
+The v2 launcher formerly used v1 bookmark captions; seven of those p95 errors had changed. `viewer/web/bookmarks-v2.json` is generated from the v2 scoring and selection, and `start_viewer_v2.bat` explicitly selects it. The v1 launcher retains its original bookmarks.
+
+Release checks, current online status and remaining decisions: [October 24 wrap-up](../WRAPUP-2026-10-25.md). The draft field dictionary lists all 45 actual packaged fields, excludes the absent LOD20_GROUND_PCT field, and describes roof shapes as modelled rather than verified real shapes.

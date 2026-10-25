@@ -1,0 +1,5 @@
+signed in as GISMillcreek on https://www.arcgis.com/
+{"item": "slope", "id": "3b5b1a9110f14e93af68752be89e0df2", "title": "Millcreek slope classes 0.5 m (2023 lidar), planning estimate", "service maxScale": 0.0, "admin maxScale": 0.0, "minScale": 295828763.7957775, "levels": "0-17", "maxLOD": 16, "styles/root.json": true}
+{"item": "contours", "id": "50573eeba93f405a869a1d78a08d68e8", "title": "Millcreek 2 m contours (2023 lidar), planning estimate", "service maxScale": 0.0, "admin maxScale": 0.0, "minScale": 288895.2771445, "levels": "0-17", "maxLOD": 16, "styles/root.json": true}
+{"item": "treetops", "id": "924b993cb23046cb87641253bcf786de", "title": "Millcreek treetops (2023 lidar), planning estimate", "service maxScale": 0.0, "admin maxScale": 0.0, "minScale": 18055.9548215, "levels": "0-17", "maxLOD": 16, "styles/root.json": true}
+{"item": "crowns", "id": "d9388dc83f894edbb63e0510a8c62fa8", "title": "Millcreek tree crowns (2023 lidar), planning estimate", "service maxScale": 0.0, "admin maxScale": 0.0, "minScale": 18055.9548215, "levels": "0-17", "maxLOD": 16, "styles/root.json": true}

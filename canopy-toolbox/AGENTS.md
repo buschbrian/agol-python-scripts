@@ -6,6 +6,8 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 
 ## Routing
 
+- Finishing the October 23–24 roof-form release or reconciling the app/zoom branches: reviews/2026-10-23/WRAPUP-2026-10-25.md. Detailed roofs remain a local candidate; use its release plan before any public swap.
+
 - Grid, bands, ownership: canopy/bands.py, canopy/tiling.py and pure tests.
 - LAS inventory/classification: canopy/preparation.py; source files are immutable.
 - Binary LAS layouts/masks: canopy/las_records.py; physical roof bands: canopy/roof_context.py (both ArcPy-free).
