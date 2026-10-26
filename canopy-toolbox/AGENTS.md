@@ -44,6 +44,11 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - Hosted vector tiles drawing past 1:2,257 (service maxScale=0), read-back checks and restore commands: reviews/2026-10-23/vt-overzoom.
 - How the SDK draws the COGs (drawn colour against identify over COGs, zooms, tile edges and interpolation; one fault: a float COG with a class breaks renderer on its first draw, straight at a large scale, draws coarse tiles in a repeating grid; workaround and app advice): reviews/2026-10-23/cog-drawing.
 - RFP bidder questions on the tree estimate (treetops by ownership scope, height and crown facts, size-based heritage/specimen screening; drafts only, nothing sent): reviews/2026-10-23/rfp-tree-questions.
+- Candidate footprints detected from the LiDAR (roof clusters outside county footprints, regularized; building_heights statistics by the October 19 code, method-checked; Web Mercator copy with Field Maps review fields; LOD1.2 blocks; Overture only as a separate witness, so the layer isn't ODbL-derived; the earlier Overture-outline version is comparison only): reviews/2026-10-23/footprint-candidates.
+- Footprint review page (local, keyboard-driven, Esri World Imagery beside a LiDAR view; queues: LiDAR candidates, county footprints with no 2023 roof, possible new buildings from internal Overture hints; answers backed up to the repo, never overwritten across reviewers): reviews/2026-10-23/footprint-review (footprint_review.bat serve).
+- County footprint layer against the 2023 LiDAR (per-footprint best shift, local shift field, classes ALIGNED / SYSTEMATIC / REAL_OFFSET / REBUILT_OR_GONE / UNCERTAIN, derived realigned outlines; no systematic shift found): reviews/2026-10-23/county-alignment.
+- Making the footprint review smaller (four ideas sized; pre-registered sample of the attached candidates and its rule; evaluate after Brian answers): reviews/2026-10-23/review-reduction.
+- FEMA/ORNL USA Structures (CC BY 4.0; in Millcreek mostly 2010 imagery, structures over 42 m2) as a third vote on the review items: reviews/2026-10-23/usa-structures.
 - Height above ground (ground surface, Z-replaced and Extra Bytes LAS copies): canopy/hag.py (ArcPy only in raster_builder); reviews/2026-09-29/HAG.md.
 - Detection and crowns: canopy/treetops.py, canopy/crowns.py.
 - Resume, raster cores, whole-AOI analysis: canopy/pipeline.py.

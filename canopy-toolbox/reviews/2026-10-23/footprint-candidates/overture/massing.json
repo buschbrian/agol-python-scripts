@@ -1,0 +1,235 @@
+{
+ "schema": "massing/1",
+ "method": "reviews/2026-10-22/massing/run_massing.py (LOD1.2 only)",
+ "pilot": false,
+ "footprints": 1264,
+ "fp_ids": null,
+ "window": [
+  422382.23790000007,
+  4501472.9133,
+  434352.49849999975,
+  4507131.5945
+ ],
+ "height_source": {
+  "roof": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_elevation_m.tif",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_context.tif",
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-candidates-20261023\\massing\\height_source.tif"
+ },
+ "tool": "arcpy.ddd.ExtractLOD2Buildings(height_source, footprints, out, 'LOD1.2'), defaults otherwise",
+ "seconds": 5,
+ "features_from_tool": 1265,
+ "removed_empty": [],
+ "blocks": 1265,
+ "footprints_with_a_block": 1264,
+ "footprints_with_two_blocks": 1,
+ "fp_ids_with_two_blocks": [
+  564
+ ],
+ "footprints_without_a_block": [],
+ "base_over_2m_above_terrain_min": [],
+ "top_over_1m_from_roof50": [
+  {
+   "FP_ID": 333,
+   "top_minus_roof50": -1.76,
+   "roof_cov_pct": 69.6
+  },
+  {
+   "FP_ID": 566,
+   "top_minus_roof50": -2.03,
+   "roof_cov_pct": 57.8
+  },
+  {
+   "FP_ID": 383,
+   "top_minus_roof50": -2.38,
+   "roof_cov_pct": 98.1
+  },
+  {
+   "FP_ID": 594,
+   "top_minus_roof50": -2.23,
+   "roof_cov_pct": 52.4
+  }
+ ],
+ "summary": {
+  "blocks": 1265,
+  "empty_geometry": 0,
+  "top_minus_roof50": {
+   "n": 1265,
+   "p05": -0.25,
+   "p50": -0.01,
+   "p95": 0.0,
+   "min": -2.38,
+   "max": 0.07,
+   "beyond_0.25m": 65,
+   "beyond_1m": 4
+  },
+  "base_minus_terrain_min": {
+   "n": 1265,
+   "p05": -0.6,
+   "p50": -0.086,
+   "p95": 0.017,
+   "min": -2.697,
+   "max": 0.274,
+   "beyond_0.25m": 249,
+   "beyond_1m": 24
+  },
+  "by_roof_coverage": {
+   "under 80%": {
+    "top": {
+     "n": 155,
+     "p05": -0.569,
+     "p50": -0.12,
+     "p95": -0.01,
+     "min": -2.232,
+     "max": -0.01,
+     "beyond_0.25m": 53,
+     "beyond_1m": 3
+    },
+    "base": {
+     "n": 155,
+     "p05": -0.655,
+     "p50": -0.091,
+     "p95": 0.013,
+     "min": -1.637,
+     "max": 0.079,
+     "beyond_0.25m": 34,
+     "beyond_1m": 4
+    }
+   },
+   "80-95%": {
+    "top": {
+     "n": 349,
+     "p05": -0.225,
+     "p50": -0.03,
+     "p95": 0.0,
+     "min": -0.805,
+     "max": 0.04,
+     "beyond_0.25m": 11,
+     "beyond_1m": 0
+    },
+    "base": {
+     "n": 349,
+     "p05": -0.624,
+     "p50": -0.077,
+     "p95": 0.017,
+     "min": -2.033,
+     "max": 0.176,
+     "beyond_0.25m": 68,
+     "beyond_1m": 9
+    }
+   },
+   "95% and over": {
+    "top": {
+     "n": 761,
+     "p05": -0.09,
+     "p50": -0.005,
+     "p95": 0.0,
+     "min": -2.38,
+     "max": 0.07,
+     "beyond_0.25m": 1,
+     "beyond_1m": 1
+    },
+    "base": {
+     "n": 761,
+     "p05": -0.541,
+     "p50": -0.087,
+     "p95": 0.015,
+     "min": -2.697,
+     "max": 0.274,
+     "beyond_0.25m": 147,
+     "beyond_1m": 11
+    }
+   }
+  },
+  "by_status": {
+   "UNVALIDATED": {
+    "top": {
+     "n": 1109,
+     "p05": -0.153,
+     "p50": -0.01,
+     "p95": 0.0,
+     "min": -2.38,
+     "max": 0.07,
+     "beyond_0.25m": 12,
+     "beyond_1m": 1
+    },
+    "base": {
+     "n": 1109,
+     "p05": -0.587,
+     "p50": -0.085,
+     "p95": 0.017,
+     "min": -2.697,
+     "max": 0.274,
+     "beyond_0.25m": 215,
+     "beyond_1m": 20
+    }
+   },
+   "UNVALIDATED;LOW_ROOF_SUPPORT": {
+    "top": {
+     "n": 154,
+     "p05": -0.571,
+     "p50": -0.115,
+     "p95": -0.01,
+     "min": -2.232,
+     "max": -0.01,
+     "beyond_0.25m": 52,
+     "beyond_1m": 3
+    },
+    "base": {
+     "n": 154,
+     "p05": -0.655,
+     "p50": -0.091,
+     "p95": 0.014,
+     "min": -1.637,
+     "max": 0.079,
+     "beyond_0.25m": 33,
+     "beyond_1m": 4
+    }
+   },
+   "UNVALIDATED;LOW_ROOF_SUPPORT;PARTIAL_AOI": {
+    "top": {
+     "n": 1,
+     "p05": -0.41,
+     "p50": -0.41,
+     "p95": -0.41,
+     "min": -0.41,
+     "max": -0.41,
+     "beyond_0.25m": 1,
+     "beyond_1m": 0
+    },
+    "base": {
+     "n": 1,
+     "p05": -0.334,
+     "p50": -0.334,
+     "p95": -0.334,
+     "min": -0.334,
+     "max": -0.334,
+     "beyond_0.25m": 1,
+     "beyond_1m": 0
+    }
+   },
+   "UNVALIDATED;NEGATIVE_HEIGHT": {
+    "top": {
+     "n": 1,
+     "p05": -0.08,
+     "p50": -0.08,
+     "p95": -0.08,
+     "min": -0.08,
+     "max": -0.08,
+     "beyond_0.25m": 0,
+     "beyond_1m": 0
+    },
+    "base": {
+     "n": 1,
+     "p05": -0.107,
+     "p50": -0.107,
+     "p95": -0.107,
+     "min": -0.107,
+     "max": -0.107,
+     "beyond_0.25m": 0,
+     "beyond_1m": 0
+    }
+   }
+  }
+ },
+ "warning": "Unvalidated LiDAR planning estimates. Building heights are roof-minus-terrain statistics, not code-defined heights. Drainage is terrain-only screening; storm drains, culverts, rainfall, and downstream controls are not modeled."
+}

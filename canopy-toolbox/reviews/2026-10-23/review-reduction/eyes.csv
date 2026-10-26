@@ -1,0 +1,444 @@
+CAND_ID,GROUP,FOOTPRINT_M2,REASON
+LC00021,attached,20.601404507471287,risky county building
+LC00036,attached,21.937279223835603,risky county building
+LC00091,attached,28.125162373146953,risky county building
+LC00093,attached_lower,48.7969284203888,risky county building
+LC00104,attached,144.9141420500775,80 m2 or more
+LC00108,attached_lower,13.499856764612302,risky county building
+LC00114,attached_lower,81.98448841583489,80 m2 or more
+LC00125,attached,49.078598927480904,risky county building
+LC00134,attached_lower,10.12508004264469,risky county building
+LC00144,attached,15.74962312086842,risky county building
+LC00147,attached,141.74942154722513,80 m2 or more
+LC00149,attached,117.70351317451025,80 m2 or more
+LC00198,attached,51.96078584297337,risky county building
+LC00203,attached,36.562384350028445,risky county building
+LC00205,attached_same_roof,11.24994978299723,risky county building
+LC00213,attached,15.75001658192249,risky county building
+LC00228,attached_lower,47.81244320052923,risky county building
+LC00240,attached,103.28922871906761,80 m2 or more
+LC00250,attached_lower,96.39760437039133,80 m2 or more
+LC00277,attached,13.500119799316566,risky county building
+LC00296,attached,117.84321509736456,80 m2 or more
+LC00316,attached,18.56270948688685,risky county building
+LC00321,attached,185.62565923939312,80 m2 or more
+LC00343,attached,12.796995000024438,risky county building
+LC00358,attached,114.8199358522744,80 m2 or more
+LC00375,attached,136.89799055225387,80 m2 or more
+LC00377,attached,16.45320323878158,risky county building
+LC00378,attached,90.77329405336175,80 m2 or more
+LC00398,attached,133.8755452368783,80 m2 or more
+LC00400,attached_lower,17.01573126429969,risky county building
+LC00404,attached,21.09406255964879,risky county building
+LC00441,attached_lower,42.18765478299434,risky county building
+LC00471,attached,86.76571416449869,80 m2 or more
+LC00509,attached,14.062314146233433,risky county building
+LC00511,attached,59.062528620765775,risky county building
+LC00522,attached,10.757966820705933,risky county building
+LC00558,attached,116.43795537357288,80 m2 or more
+LC00592,attached,25.312528961530028,risky county building
+LC00620,attached,54.3517999151413,risky county building
+LC00654,attached,81.70280918851878,80 m2 or more
+LC00669,attached,104.20299663381005,80 m2 or more
+LC00677,attached,15.469056801403172,risky county building
+LC00678,attached,83.24982347382948,80 m2 or more
+LC00694,attached,23.62509939821362,risky county building
+LC00707,attached,10.968672188712198,risky county building
+LC00708,attached,9.562520907828267,risky county building
+LC00714,attached,16.875418796004457,risky county building
+LC00719,attached,85.50011382426663,80 m2 or more
+LC00729,attached,59.62530539541213,risky county building
+LC00740,attached,20.250148057520427,risky county building
+LC00764,attached,22.78119060037969,risky county building
+LC00779,attached,13.499953198637593,risky county building
+LC00788,attached,106.31284740361305,80 m2 or more
+LC00793,attached,24.749803814984237,risky county building
+LC00803,attached_same_roof,10.757712609704024,risky county building
+LC00810,attached,27.843587469815514,risky county building
+LC00812,attached_same_roof,10.125442193722192,risky county building
+LC00853,attached,13.49994800427933,risky county building
+LC00867,attached,10.828134331088544,risky county building
+LC00898,attached,15.187496080860868,risky county building
+LC00927,attached,91.96831788103138,80 m2 or more
+LC00944,attached,22.781299279323093,risky county building
+LC00971,attached,106.87501604952342,80 m2 or more
+LC00976,attached_lower,197.33260574559023,80 m2 or more
+LC00977,attached_same_roof,12.796995000024438,risky county building
+LC00986,attached_lower,21.9377146206505,risky county building
+LC00988,attached,106.30707078600297,80 m2 or more
+LC01002,attached,33.74951829942756,risky county building
+LC01008,attached,49.71075775238886,risky county building
+LC01058,attached,84.93796389330574,80 m2 or more
+LC01066,attached,153.28166480019283,80 m2 or more
+LC01073,attached,47.531443689137106,risky county building
+LC01082,attached,19.12509169150978,risky county building
+LC01114,attached,112.64030798251578,80 m2 or more
+LC01137,attached_same_roof,13.359534800825514,risky county building
+LC01151,attached_same_roof,10.05468591785215,risky county building
+LC01175,attached,22.781266326231485,risky county building
+LC01176,attached,108.91410282279305,80 m2 or more
+LC01191,attached,17.578257584219998,risky county building
+LC01195,attached,20.67188755142466,risky county building
+LC01203,attached,93.93765658392226,80 m2 or more
+LC01223,attached,11.60145575770018,risky county building
+LC01247,attached_lower,96.46900273447561,80 m2 or more
+LC01253,attached,29.53139440337989,risky county building
+LC01265,attached,86.76529101082718,80 m2 or more
+LC01296,attached_lower,21.374855373316766,risky county building
+LC01319,attached_lower,94.42950272706986,80 m2 or more
+LC01327,attached_lower,179.29630300418663,80 m2 or more
+LC01329,attached,13.710817239743252,risky county building
+LC01334,attached,26.29683123132902,risky county building
+LC01342,attached,80.99947794489668,80 m2 or more
+LC01346,attached,35.015944770672306,risky county building
+LC01348,attached,345.58570655722286,80 m2 or more
+LC01388,attached,83.67116361449581,80 m2 or more
+LC01400,attached_lower,81.56263266060873,80 m2 or more
+LC01407,attached,91.05473657529339,80 m2 or more
+LC01426,attached_lower,26.367492910331332,risky county building
+LC01440,attached,240.7505291897199,80 m2 or more
+LC01458,attached_lower,15.750546446938527,risky county building
+LC01482,attached,170.86001943493775,80 m2 or more
+LC01486,attached,127.8288685326693,80 m2 or more
+LC01489,attached,140.41486020146573,80 m2 or more
+LC01504,attached,127.54539985923037,80 m2 or more
+LC01509,attached,19.828126413098747,risky county building
+LC01510,attached_lower,90.35204308428521,80 m2 or more
+LC01516,attached_same_roof,9.843739878561449,risky county building
+LC01518,attached,72.21153653694742,risky county building
+LC01559,attached,89.92961452226601,80 m2 or more
+LC01560,attached,164.4606060615834,80 m2 or more
+LC01567,attached_lower,165.44517874394245,80 m2 or more
+LC01575,attached,87.74891506325699,80 m2 or more
+LC01576,attached,100.4060404232031,80 m2 or more
+LC01582,attached,154.40494059227905,80 m2 or more
+LC01585,attached_lower,138.93724471523723,80 m2 or more
+LC01590,attached,44.29675199890818,risky county building
+LC01591,attached,33.4687930309266,risky county building
+LC01594,attached,377.1556420855816,80 m2 or more
+LC01604,attached,120.93727343958885,80 m2 or more
+LC01605,attached,145.3365280824308,80 m2 or more
+LC01648,attached_lower,310.7809366041848,80 m2 or more
+LC01658,attached,110.88301258042199,80 m2 or more
+LC01662,attached,11.953197183268745,risky county building
+LC01670,attached,43.031423726672195,risky county building
+LC01674,attached,186.75056447588642,80 m2 or more
+LC01729,attached_lower,134.5771244690904,80 m2 or more
+LC01755,attached_lower,39.09358456965927,risky county building
+LC01759,attached_lower,193.14741408227457,80 m2 or more
+LC01772,attached,217.5478356139717,80 m2 or more
+LC01773,attached,133.45358099079445,80 m2 or more
+LC01787,attached,28.828675318212106,risky county building
+LC01802,attached,129.30456293262168,80 m2 or more
+LC01818,attached_same_roof,11.390483428542579,risky county building
+LC01844,attached_same_roof,10.125149388373842,risky county building
+LC01855,attached,61.17206445286151,risky county building
+LC01878,attached,85.4998014349437,80 m2 or more
+LC01887,attached,95.48397229008623,80 m2 or more
+LC01891,attached,36.91409667538093,risky county building
+LC01908,attached,222.75110540312576,80 m2 or more
+LC01913,attached,82.68755441178781,80 m2 or more
+LC01922,attached_lower,80.85932643939057,80 m2 or more
+LC01926,attached,96.82003821837242,80 m2 or more
+LC01949,attached,18.702938636075647,risky county building
+LC01968,attached,95.6248797033418,80 m2 or more
+LC01976,attached,25.312643028462038,risky county building
+LC01986,attached_lower,15.18756293705059,risky county building
+LC01992,attached,17.999943561190225,risky county building
+LC02003,attached,19.406044641747396,risky county building
+LC02008,attached,15.257852557655228,risky county building
+LC02014,attached,86.83598915185411,80 m2 or more
+LC02019,attached,17.718837268277184,risky county building
+LC02031,attached_same_roof,9.562451566643169,risky county building
+LC02034,attached,91.05355757387308,80 m2 or more
+LC02044,attached,182.811294691448,80 m2 or more
+LC02056,attached_same_roof,14.695437204774365,risky county building
+LC02088,attached,23.202859668263066,risky county building
+LC02089,attached_lower,40.21873717909864,risky county building
+LC02099,attached_same_roof,11.250161865532778,risky county building
+LC02103,attached,91.40468244594749,80 m2 or more
+LC02126,attached,29.530887137709062,risky county building
+LC02136,attached_lower,92.81210962224745,80 m2 or more
+LC02139,attached,34.17205825124536,risky county building
+LC02140,attached,45.422114130944784,risky county building
+LC02149,attached,15.468690511872907,risky county building
+LC02166,attached,13.500145264114389,risky county building
+LC02170,attached,26.578205685312238,risky county building
+LC02180,attached,40.851580580414165,risky county building
+LC02185,attached,139.21902888507844,80 m2 or more
+LC02187,attached,69.89002720649907,risky county building
+LC02210,attached,79.59302579832212,risky county building
+LC02220,attached,23.202952413871692,risky county building
+LC02223,attached,214.66270855894874,80 m2 or more
+LC02228,attached_same_roof,11.249904511378261,risky county building
+LC02233,attached,99.56242371132076,80 m2 or more
+LC02261,attached_lower,43.875068905979326,risky county building
+LC02273,attached_lower,12.93739295989237,risky county building
+LC02276,attached,98.99908646100202,80 m2 or more
+LC02280,attached,80.29740415002158,80 m2 or more
+LC02304,attached,10.1248862802231,risky county building
+LC02313,attached,192.58614851200966,80 m2 or more
+LC02325,attached,50.20335271719745,risky county building
+LC02347,attached,27.843848325160245,risky county building
+LC02355,attached,314.9302610155542,80 m2 or more
+LC02356,attached,92.60239072795595,80 m2 or more
+LC02368,attached,15.187615888581766,risky county building
+LC02374,attached,71.29650389949734,risky county building
+LC02388,attached,170.8591770414103,80 m2 or more
+LC02400,attached,15.468373760921379,risky county building
+LC02408,attached_same_roof,10.125095219991374,risky county building
+LC02422,attached_lower,22.14827118515304,risky county building
+LC02448,attached_lower,11.250161002691721,risky county building
+LC02462,attached,130.14814873007796,80 m2 or more
+LC02467,attached,91.12439908951018,80 m2 or more
+LC02471,attached_lower,15.46862781342656,risky county building
+LC02478,attached,16.87477404983708,risky county building
+LC02481,attached,17.718861502906368,risky county building
+LC02482,attached,15.257752953439821,risky county building
+LC02512,attached,137.9521081075687,80 m2 or more
+LC02525,attached,123.53920582967363,80 m2 or more
+LC02532,attached,83.3197629827036,80 m2 or more
+LC02542,attached,131.062310462866,80 m2 or more
+LC02554,attached,295.31208085372816,80 m2 or more
+LC02564,attached,130.07794936638592,80 m2 or more
+LC02584,attached,40.6409898594222,risky county building
+LC02586,attached,311.4851291741411,80 m2 or more
+LC02597,attached,1308.6191535262863,80 m2 or more
+LC02612,attached,120.09388638550683,80 m2 or more
+LC02649,attached_lower,27.42171502321726,risky county building
+LC02658,attached,198.56373271014357,80 m2 or more
+LC02661,attached,476.43767464698516,80 m2 or more
+LC02666,attached,26.366782187859105,risky county building
+LC02668,attached,57.16439903421765,risky county building
+LC02672,attached,14.765671922466305,risky county building
+LC02690,attached,19.125062892004415,risky county building
+LC02704,attached,141.75051084639318,80 m2 or more
+LC02714,attached,112.49935416118956,80 m2 or more
+LC02729,attached_lower,20.812236794499434,risky county building
+LC02739,attached,20.249541431395787,risky county building
+LC02752,attached,83.60141954947804,80 m2 or more
+LC02763,attached_lower,12.656368225301623,risky county building
+LC02769,attached,86.83609521932622,80 m2 or more
+LC02797,attached,13.921871229304072,risky county building
+LC02812,attached_lower,118.05447817488795,80 m2 or more
+LC02816,attached_lower,147.23427925704303,80 m2 or more
+LC02830,attached,62.43786047971852,risky county building
+LC02835,attached,42.609785263679576,risky county building
+LC02857,attached,102.79684837906129,80 m2 or more
+LC02859,attached_lower,18.56255746189114,risky county building
+LC02862,attached_lower,106.31210493598392,80 m2 or more
+LC02870,attached,125.5082402256596,80 m2 or more
+LC02911,attached,133.24172599612942,80 m2 or more
+LC02926,attached,128.1093852157379,80 m2 or more
+LC02938,attached,83.8127718726716,80 m2 or more
+LC02966,attached_same_roof,11.249549178238487,risky county building
+LC02967,attached,58.007412234430745,risky county building
+LC02978,attached,182.4614815486876,80 m2 or more
+LC02982,attached,106.87507333598894,80 m2 or more
+LC03002,attached_lower,108.42215598079521,80 m2 or more
+LC03003,attached,137.81154013413078,80 m2 or more
+LC03024,attached,20.882551192986526,risky county building
+LC03036,attached_same_roof,11.250002393839072,risky county building
+LC03038,attached,33.75004202446569,risky county building
+LC03042,attached,15.187685982503682,risky county building
+LC03044,attached_lower,83.42577885063307,80 m2 or more
+LC03065,attached_same_roof,13.921727084840466,risky county building
+LC03071,attached_lower,129.9376640330716,80 m2 or more
+LC03097,attached_lower,97.4533102347458,80 m2 or more
+LC03103,attached_lower,130.78108860077612,80 m2 or more
+LC03114,attached_lower,688.9197789224609,80 m2 or more
+LC03117,attached,107.15602740638532,80 m2 or more
+LC03129,attached_lower,472.4963033128034,80 m2 or more
+LC03143,attached,21.656463577458158,risky county building
+LC03174,attached,102.3750026005081,80 m2 or more
+LC03175,attached,94.07806569126214,80 m2 or more
+LC03186,attached_lower,194.90665156624053,80 m2 or more
+LC03199,attached,80.57758530634403,80 m2 or more
+LC03209,attached_lower,203.7644904241724,80 m2 or more
+LC03213,attached_lower,622.3320359435816,80 m2 or more
+LC03214,attached,118.26661713004253,80 m2 or more
+LC03227,attached_lower,47.88351512610192,risky county building
+LC03233,attached_lower,98.36685281357725,80 m2 or more
+LC03272,attached_lower,355.8504157681523,80 m2 or more
+LC03296,attached,45.56260459815432,risky county building
+LC03300,attached_same_roof,10.968672201553646,risky county building
+LC03309,attached,81.98408374081684,80 m2 or more
+LC03327,attached,93.33975246561153,80 m2 or more
+LC03337,attached_same_roof,11.812537466480363,risky county building
+LC03355,attached,54.21029171582549,risky county building
+LC03359,attached,86.13362169165224,80 m2 or more
+LC03383,attached,130.78089385276525,80 m2 or more
+LC03421,attached,109.68811357560915,80 m2 or more
+LC03440,attached_lower,212.0618499114569,80 m2 or more
+LC03443,attached,203.76587524064337,80 m2 or more
+LC03448,attached,64.82865450706907,risky county building
+LC03467,attached,221.90649196325478,80 m2 or more
+LC03529,attached,9.703029168899072,risky county building
+LC03551,attached,60.750135877210234,risky county building
+LC03553,attached_lower,32.90621326953922,risky county building
+LC03562,attached,20.250001079024543,risky county building
+LC03568,attached_lower,354.3754363874649,80 m2 or more
+LC03578,attached_lower,266.7676243192072,80 m2 or more
+LC03605,attached,188.86004904387005,80 m2 or more
+LC03609,attached,18.703211881295566,risky county building
+LC03612,attached,202.4996294224801,80 m2 or more
+LC03619,attached,16.874834735752074,risky county building
+LC03620,attached_lower,92.81194742045166,80 m2 or more
+LC03624,attached_lower,124.17185517311847,80 m2 or more
+LC03635,attached_lower,130.0781378847444,80 m2 or more
+LC03645,attached,109.05479761220916,80 m2 or more
+LC03647,attached,55.05451417112672,risky county building
+LC03663,attached,12.79665934869763,risky county building
+LC03674,attached,111.37543988235925,80 m2 or more
+LC03675,attached,121.85249543758592,80 m2 or more
+LC03689,attached,102.79690050437421,80 m2 or more
+LC03703,attached_lower,264.51494499999194,80 m2 or more
+LC03706,attached,15.609261123825766,risky county building
+LC03723,attached,107.57740774001124,80 m2 or more
+LC03734,attached_lower,182.4600880434299,80 m2 or more
+LC03736,attached,80.43767693038768,80 m2 or more
+LC03757,attached,117.07028724247547,80 m2 or more
+LC03759,attached,21.09394245046244,risky county building
+LC03764,attached,270.42139225048453,80 m2 or more
+LC03786,attached,91.54572813437478,80 m2 or more
+LC03793,attached,94.35909015132128,80 m2 or more
+LC03803,attached_lower,317.77699722440695,80 m2 or more
+LC03817,attached,262.8271401668622,80 m2 or more
+LC03819,attached,97.38262760288012,80 m2 or more
+LC03824,attached,87.8908601282745,80 m2 or more
+LC03828,attached,93.23426639971649,80 m2 or more
+LC03832,attached_lower,202.50074241041642,80 m2 or more
+LC03841,attached,16.875104396734546,risky county building
+LC03879,attached,19.40613028986795,risky county building
+LC03885,attached_lower,153.77245958747497,80 m2 or more
+LC03889,attached,183.23508215346993,80 m2 or more
+LC03896,attached_lower,27.843484773631374,risky county building
+LC03953,attached,47.812647555107304,risky county building
+LC03972,attached_lower,21.937482641524507,risky county building
+LC03983,attached_lower,221.69521505589256,80 m2 or more
+LC03995,attached_lower,93.09418219781358,80 m2 or more
+LC03999,attached_lower,179.0155751920858,80 m2 or more
+LC04005,attached_lower,289.1956283426783,80 m2 or more
+LC04016,attached_lower,86.484152417819,80 m2 or more
+LC04027,attached,626.5,80 m2 or more
+LC04080,attached_lower,83.53068159303305,80 m2 or more
+LC04125,attached_lower,159.8207854032977,80 m2 or more
+LC04189,attached,92.03887258232932,80 m2 or more
+LC04196,attached_same_roof,13.921780363966025,risky county building
+LC04202,attached_lower,19.687640936022554,risky county building
+LC04204,attached,197.08544988788032,80 m2 or more
+LC04207,attached,139.499838603017,80 m2 or more
+LC04214,attached_lower,87.18736267384284,80 m2 or more
+LC04225,attached,79.38315230454015,risky county building
+LC04232,attached_lower,196.3112952425112,80 m2 or more
+LC04272,attached_lower,89.0159142627937,80 m2 or more
+LC04287,attached,17.71882484950216,risky county building
+LC04301,attached_lower,120.93820473726815,80 m2 or more
+LC04317,attached_lower,103.35950330441692,80 m2 or more
+LC04326,attached,24.749919471734003,risky county building
+LC04370,attached,19.335872019745302,risky county building
+LC04386,attached,88.1363449195557,80 m2 or more
+LC04390,attached_lower,92.39050527968425,80 m2 or more
+LC04400,attached,185.1335844427674,80 m2 or more
+LC04401,attached,191.24946114802677,80 m2 or more
+LC04415,attached_lower,11.812610219228322,risky county building
+LC04417,attached,124.45317348416371,80 m2 or more
+LC04431,attached_lower,103.92191248472405,80 m2 or more
+LC04440,attached,135.9141754238415,80 m2 or more
+LC04459,attached,130.92096405126009,80 m2 or more
+LC04465,attached_lower,82.68715319693415,80 m2 or more
+LC04466,attached,141.0473989460799,80 m2 or more
+LC04467,attached_lower,11.249813087973122,risky county building
+LC04477,attached_lower,303.85544232941083,80 m2 or more
+LC04481,attached,20.249752901270437,risky county building
+LC04485,attached_lower,85.21905120137578,80 m2 or more
+LC04491,attached_lower,51.890852899002375,risky county building
+LC04510,attached,14.765575633837928,risky county building
+LC04514,attached,43.59379769367669,risky county building
+LC04517,attached,76.35930348249013,risky county building
+LC04534,attached_lower,115.73411458825305,80 m2 or more
+LC04535,attached_lower,201.97325945429395,80 m2 or more
+LC04561,attached,112.78069315312906,80 m2 or more
+LC04563,attached_lower,91.33633787249069,80 m2 or more
+LC04564,attached,244.19519921583492,80 m2 or more
+LC04565,attached,335.4602901832295,80 m2 or more
+LC04569,attached,17.437463958939432,risky county building
+LC04591,attached_lower,43.31283813883299,risky county building
+LC04592,attached_lower,242.29709092437503,80 m2 or more
+LC04607,attached,52.73427359694379,risky county building
+LC04616,attached_lower,291.30488440721047,80 m2 or more
+LC04681,attached,47.95306265181899,risky county building
+LC04688,attached,23.624800202592393,risky county building
+LC04696,attached_lower,205.10084306905068,80 m2 or more
+LC04728,attached,20.25029038142855,risky county building
+LC04729,attached,13.500003192152857,risky county building
+LC04765,attached,11.249878008929137,risky county building
+LC04774,attached,93.30474092055174,80 m2 or more
+LC04776,attached_lower,99.56205493403144,80 m2 or more
+LC04786,attached,21.93751964735119,risky county building
+LC04790,attached_lower,28.2660058485547,risky county building
+LC04866,attached,19.687648730589835,risky county building
+LC04878,attached_lower,114.8216963952032,80 m2 or more
+LC04902,attached,126.91426991094524,80 m2 or more
+LC04924,attached_lower,1836.80817489523,80 m2 or more
+LC04930,attached,36.28129393580101,risky county building
+LC04978,attached_lower,89.15662985471411,80 m2 or more
+LC04980,attached,44.01553027096915,risky county building
+LC05006,attached_same_roof,10.687544589079701,risky county building
+LC05020,attached,24.468699858461054,risky county building
+LC05030,attached,137.10880639944943,80 m2 or more
+LC05051,attached,11.812442321969948,risky county building
+LC05064,attached,109.96936036739781,80 m2 or more
+LC05067,attached,85.99216984097589,80 m2 or more
+LC05076,attached_lower,129.93812769082967,80 m2 or more
+LC05079,attached,47.249771591525544,risky county building
+LC05115,attached,113.0628273633842,80 m2 or more
+LC05131,attached,35.99930951205961,risky county building
+LC05142,attached,113.62452452425856,80 m2 or more
+LC05144,attached,88.172106788849,80 m2 or more
+LC05151,attached,93.16358903358751,80 m2 or more
+LC05169,attached,20.250884387444383,risky county building
+LC05198,attached_lower,115.59372466088223,80 m2 or more
+LC05242,attached_lower,20.250233112908248,risky county building
+LC05244,attached,40.2888486164633,risky county building
+LC05265,attached_same_roof,13.500238865061618,risky county building
+LC05291,attached,202.5,80 m2 or more
+LC05294,attached_lower,117.4215054646672,80 m2 or more
+LC05335,attached,22.64061049079579,risky county building
+LC05406,attached_lower,212.69615339698052,80 m2 or more
+LC05419,attached,90.6332306571074,80 m2 or more
+LC05463,attached_lower,26.578132712056938,risky county building
+LC05471,attached,101.2503879788915,80 m2 or more
+LC05474,attached_lower,16.875418801931392,risky county building
+LC05480,attached_lower,85.64059208240886,80 m2 or more
+LC05486,attached,101.2499663292175,80 m2 or more
+LC05498,attached_same_roof,12.375399042116246,risky county building
+LC05575,attached,87.60862606607303,80 m2 or more
+LC05586,attached,145.12378855819767,80 m2 or more
+LC05590,attached_lower,14.343703437814046,risky county building
+LC05595,attached_lower,228.79709333997548,80 m2 or more
+LC05599,attached,99.28039010100989,80 m2 or more
+LC05634,attached,24.398289093277743,risky county building
+LC05637,attached,194.8346731982044,80 m2 or more
+LC05643,attached,92.39045406209351,80 m2 or more
+LC05658,attached,12.656240018544956,risky county building
+LC05710,attached_lower,97.4528466598677,80 m2 or more
+LC05712,attached_lower,172.6176792024204,80 m2 or more
+LC05719,attached,102.79765733138949,80 m2 or more
+LC05770,attached,133.31167540977194,80 m2 or more
+LC05780,attached,91.8288940343486,80 m2 or more
+LC05792,attached_lower,91.82808004410275,80 m2 or more
+LC05793,attached,94.57064446848597,80 m2 or more
+LC05840,attached_lower,154.44124852675859,80 m2 or more
+LC05880,attached_lower,97.45416354248455,80 m2 or more
+LC05901,attached_lower,15.18748420230003,risky county building
+LC05913,attached,88.804801344665,80 m2 or more
+LC05989,attached_lower,97.20689479300677,80 m2 or more
+LC06039,attached_lower,167.62520052647315,80 m2 or more
+LC06066,attached_lower,201.58834815785573,80 m2 or more
+LC06083,attached_lower,137.39084873465853,80 m2 or more
+LC06088,attached_lower,196.87413475031747,80 m2 or more
+LC06112,attached_lower,485.8594783751249,80 m2 or more
+LC06195,attached,307.68683011578645,80 m2 or more
+LC06198,attached,101.60168019921409,80 m2 or more
+LC06205,attached,41.062846250511875,risky county building

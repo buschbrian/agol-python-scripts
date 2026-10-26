@@ -1,0 +1,352 @@
+{
+ "schema": "footprint-candidates-lidar/1",
+ "created": "2026-10-23T12:19:04",
+ "pilot_window": null,
+ "inputs": {
+  "roof_height": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_height_m.tif",
+  "observed": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\observed.tif",
+  "county": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\buildings.gdb\\building_heights",
+  "parcels": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\parcels",
+  "roof_elevation": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_elevation_m.tif",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\terrain_m.tif",
+  "boundary": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb\\municipal_boundary",
+  "overture_read": false
+ },
+ "rules": {
+  "exclude_within_m_of_county": 1.5,
+  "opening": "3 x 3",
+  "connectivity": 8,
+  "min_cells": 40,
+  "min_cluster_median_height_m": 2.0,
+  "regularize": {
+   "method": "RIGHT_ANGLES_AND_DIAGONALS",
+   "tolerance": 0.75,
+   "densification": 0.75,
+   "precision": 0.25
+  }
+ },
+ "stages": {
+  "1": "roof on or within 1.5 m of a county footprint",
+  "2": "removed by the opening",
+  "3": "cluster under 10 m2",
+  "4": "cluster median height under 2.0 m",
+  "5": "candidate"
+ },
+ "counts": {
+  "roof_cells_in_city": 22249847,
+  "stage_cells": {
+   "roof on or within 1.5 m of a county footprint": 20406205,
+   "removed by the opening": 207241,
+   "cluster under 10 m2": 68768,
+   "cluster median height under 2.0 m": 2709,
+   "candidate": 1564924
+  },
+  "clusters_after_opening": 9644,
+  "clusters_under_10m2": 3404,
+  "clusters_median_under_2m": 27,
+  "candidates": 6213
+ },
+ "outlines": {
+  "regularized": 6201,
+  "cell_edges": 12,
+  "status_field": "STATUS"
+ },
+ "method_check": {
+  "sample": 2000,
+  "exact": true,
+  "field_differences": {}
+ },
+ "rasterization_pilot": [
+  {
+   "source_id": "LC05620",
+   "cells": 37,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC02800",
+   "cells": 48,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC04570",
+   "cells": 57,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC01006",
+   "cells": 65,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC05250",
+   "cells": 77,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC01056",
+   "cells": 94,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC02138",
+   "cells": 109,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC02583",
+   "cells": 140,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC04591",
+   "cells": 171,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC02072",
+   "cells": 281,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC03881",
+   "cells": 626,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00919",
+   "cells": 28900,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC00001",
+   "cells": 126,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  },
+  {
+   "source_id": "LC04409",
+   "cells": 66,
+   "arcgis_exact_match": true,
+   "cached_values_match_raster": false,
+   "boundary_fallback": false
+  }
+ ],
+ "boundary_fallbacks": 0,
+ "output": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-candidates-lidar-20261023\\candidates.gdb\\candidates",
+ "count": 6213,
+ "county_overlap": {
+  "outlines": 6213,
+  "touching_county": 0,
+  "over_1pct": 0,
+  "over_10pct": 0,
+  "max_pct": 0.0
+ },
+ "summary": {
+  "headline": {
+   "candidates": 6213,
+   "with_height": 6213,
+   "outline_area_m2": {
+    "n": 6213,
+    "p05": 11.25,
+    "p25": 16.03,
+    "p50": 24.05,
+    "p75": 48.09,
+    "p95": 253.86,
+    "max": 7220.11
+   },
+   "cluster_area_m2": {
+    "n": 6213,
+    "p05": 11.0,
+    "p25": 16.0,
+    "p50": 24.25,
+    "p75": 48.5,
+    "p95": 253.3,
+    "max": 7220.25
+   },
+   "outline_over_cluster": {
+    "n": 6213,
+    "p05": 0.93,
+    "p25": 0.97,
+    "p50": 1.0,
+    "p75": 1.02,
+    "p95": 1.07,
+    "max": 1.17
+   },
+   "height_p95_m": {
+    "n": 6213,
+    "p05": 2.45,
+    "p25": 2.75,
+    "p50": 3.13,
+    "p75": 3.88,
+    "p95": 7.79,
+    "max": 30.09
+   },
+   "roof_cov_pct": {
+    "n": 6213,
+    "p05": 90.91,
+    "p25": 95.0,
+    "p50": 97.17,
+    "p75": 98.64,
+    "p95": 100.0,
+    "max": 100.0
+   },
+   "near_county_footprint_m": {
+    "n": 6213,
+    "p05": 0.79,
+    "p25": 1.24,
+    "p50": 1.5,
+    "p75": 4.91,
+    "p95": 17.13,
+    "max": 320.75
+   },
+   "no_parcel": 35,
+   "same_parcel_as_nearest_county_building": {
+    "YES": 4150,
+    "NO": 2002,
+    "(unknown)": 61
+   },
+   "outline": {
+    "REGULARIZED": 6201,
+    "CELL_EDGES": 12
+   }
+  },
+  "size_by_height": {
+   "under 20 m2": {
+    "under 3 m": 1161,
+    "3-4.5 m": 997,
+    "4.5-6 m": 139,
+    "6-9 m": 48,
+    "9 m and over": 12,
+    "all": 2357
+   },
+   "20-40 m2": {
+    "under 3 m": 760,
+    "3-4.5 m": 1070,
+    "4.5-6 m": 114,
+    "6-9 m": 59,
+    "9 m and over": 16,
+    "all": 2019
+   },
+   "40-80 m2": {
+    "under 3 m": 278,
+    "3-4.5 m": 369,
+    "4.5-6 m": 85,
+    "6-9 m": 64,
+    "9 m and over": 11,
+    "all": 807
+   },
+   "80-150 m2": {
+    "under 3 m": 194,
+    "3-4.5 m": 97,
+    "4.5-6 m": 73,
+    "6-9 m": 51,
+    "9 m and over": 16,
+    "all": 431
+   },
+   "150-300 m2": {
+    "under 3 m": 169,
+    "3-4.5 m": 52,
+    "4.5-6 m": 27,
+    "6-9 m": 78,
+    "9 m and over": 33,
+    "all": 359
+   },
+   "300 m2 and over": {
+    "under 3 m": 48,
+    "3-4.5 m": 30,
+    "4.5-6 m": 21,
+    "6-9 m": 61,
+    "9 m and over": 80,
+    "all": 240
+   }
+  },
+  "same_parcel_by_size": {
+   "under 20 m2": {
+    "YES": 1746,
+    "NO": 591,
+    "(unknown)": 20
+   },
+   "20-40 m2": {
+    "YES": 1394,
+    "NO": 601,
+    "(unknown)": 24
+   },
+   "40-80 m2": {
+    "YES": 520,
+    "NO": 277,
+    "(unknown)": 10
+   },
+   "80-150 m2": {
+    "YES": 257,
+    "NO": 172,
+    "(unknown)": 2
+   },
+   "150-300 m2": {
+    "NO": 196,
+    "YES": 161,
+    "(unknown)": 2
+   },
+   "300 m2 and over": {
+    "NO": 165,
+    "YES": 72,
+    "(unknown)": 3
+   }
+  },
+  "height_status_flags": {
+   "UNVALIDATED": 6213,
+   "PARTIAL_AOI": 2,
+   "NEGATIVE_HEIGHT": 9,
+   "LOW_ROOF_SUPPORT": 1
+  }
+ },
+ "web": {
+  "output": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-candidates-lidar-20261023\\web.gdb\\candidates",
+  "coordinate_system": "WGS 1984 Web Mercator (auxiliary sphere), EPSG 3857",
+  "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+  "check": {
+   "features": 6213,
+   "projected": 6213,
+   "attribute_rows_differing": 0,
+   "wkid": 3857,
+   "max_vertex_distance_m_vs_transformed": 7.1e-05,
+   "min_vertex_distance_m_vs_untransformed": 1.5781,
+   "vertex_count_mismatches": 0,
+   "metadata_warning": true,
+   "domains": {
+    "REVIEW_STATUS": {
+     "ACCEPT": "Accept: a building the county layer lacks",
+     "REJECT": "Reject: not a building",
+     "UNSURE": "Unsure"
+    }
+   },
+   "fields_with_domain": {
+    "REVIEW_STATUS": "REVIEW_STATUS"
+   }
+  }
+ }
+}
