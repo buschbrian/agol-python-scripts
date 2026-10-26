@@ -38,6 +38,8 @@ ANSWERS = {
               "SHED", "UNSURE"),
     # LIDAR_RIGHT (October 26, after Brian typed "lidar is right, redo the footprint" as notes): appended after UNSURE,
     # which he had used in these queues
+    # Later on October 26: REDO (trees, key 0; seams) for unstable models that pull in ground, shrubs or neighbours, and
+    # OTHER_MERGED (seams) for a magenta model holding several trees beside a single red one; appended, keys unchanged
     # October 26 (reviews/2026-10-26/model-review): footprints the 3D buildings modelled without a roofer LoD2.2 roof,
     # and the CFTree tree models
     "models": ("SIMPLE_OK", "NEEDS_ROOF", "GONE", "OUTLINE_WRONG", "UNDER_TREES", "CONSTRUCTION", "NEEDS_EDIT", "UNSURE",
@@ -45,8 +47,9 @@ ANSWERS = {
     # October 26, after Brian's first answers: shrubs, brush and roofs taken in with a tree (UNSURE moved from 6 to 9;
     # he had not used it)
     "trees": ("ONE_TREE", "MERGED", "PART_OF_TREE", "NOT_A_TREE", "SHAPE_WRONG", "SHRUBS", "BRUSH", "TREE_WITH_ROOF",
-              "UNSURE"),
-    "tree_seams": ("SAME_TREE", "SPLIT_TREE", "SEPARATE_TREES", "NOT_A_TREE", "SHRUBS", "BRUSH", "UNSURE"),
+              "UNSURE", "REDO"),
+    "tree_seams": ("SAME_TREE", "SPLIT_TREE", "SEPARATE_TREES", "NOT_A_TREE", "SHRUBS", "BRUSH", "UNSURE",
+                   "OTHER_MERGED", "REDO"),
     "tree_rejects": ("MISSED_TREE", "NOT_A_TREE", "UNSURE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")

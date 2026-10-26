@@ -73,6 +73,7 @@ const QUEUES = {
       ["BRUSH", "Brush or a scrub thicket taken as one tree"],
       ["TREE_WITH_ROOF", "A tree, but the model takes in part of a building roof"],
       ["UNSURE", "Unsure"],
+      ["REDO", "Needs rebuilding: unstable, pulls in ground, shrubs or neighbours"],
     ],
   },
   tree_seams: {
@@ -86,6 +87,8 @@ const QUEUES = {
       ["SHRUBS", "Low shrubs or a hedge, not trees"],
       ["BRUSH", "A patch of brush or scrub, not separate trees"],
       ["UNSURE", "Unsure"],
+      ["OTHER_MERGED", "Red is one tree; magenta merges several trees: redo magenta"],
+      ["REDO", "Both need rebuilding: they pull in ground, shrubs or neighbours"],
     ],
   },
   tree_rejects: {
@@ -243,7 +246,7 @@ function drawSide(d) {
   const earlier = (d.related || []).filter((id) => done(id)).map((id) => [`Your answer on ${id}`, answers[id].ANSWER]);
   $("facts").innerHTML = Object.entries(rest).concat(earlier).map(([k, v]) => `<dt>${k}</dt><dd>${v ?? "—"}</dd>`).join("");
   $("answers").innerHTML = q.answers.map(([code, text], i) =>
-    `<button data-code="${code}" class="${a && a.ANSWER === code ? "chosen" : ""}"><kbd>${i + 1}</kbd> ${text}</button>`).join("");
+    `<button data-code="${code}" class="${a && a.ANSWER === code ? "chosen" : ""}"><kbd>${(i + 1) % 10}</kbd> ${text}</button>`).join("");
   for (const b of $("answers").querySelectorAll("button")) b.onclick = () => save(b.dataset.code);
   const draft = drafts[d.id];
   $("note").value = draft !== undefined ? draft : (a ? a.NOTE || "" : "");
@@ -336,7 +339,8 @@ function keys(e) {
   if (e.target === $("reviewer") || e.target.tagName === "SELECT") { if (e.key === "Enter") e.target.blur(); return; }
   if (!current && !["ArrowLeft", "ArrowRight"].includes(e.key)) return;
   const q = current ? QUEUES[current.queue] : null;
-  if (/^[1-9]$/.test(e.key) && q && q.answers[+e.key - 1]) { save(q.answers[+e.key - 1][0]); e.preventDefault(); }
+  const k = e.key === "0" ? 9 : +e.key - 1;          // keys 1-9, then 0 for a tenth answer
+  if (/^[0-9]$/.test(e.key) && q && q.answers[k]) { save(q.answers[k][0]); e.preventDefault(); }
   else if (e.key === "ArrowRight" || e.key === "Enter") { show(pos + 1); e.preventDefault(); }
   else if (e.key === "ArrowLeft") { show(pos - 1); e.preventDefault(); }
   else if (e.key === "Backspace") { save(""); e.preventDefault(); }
