@@ -26,7 +26,7 @@ Sizes from `queues.py` (all 22,042 County footprints, all 119,410 CFTree models,
 |---|---:|---|---|
 | **3D buildings without a detailed roof** | 726 | The three-way hybrid used a fallback here. What is there? | SIMPLE_OK, NEEDS_ROOF, GONE, OUTLINE_WRONG, UNDER_TREES, UNSURE |
 | **Tree models (CFTree)** | 900 | Is the red model one tree? | ONE_TREE, MERGED, PART_OF_TREE, NOT_A_TREE, SHAPE_WRONG, UNSURE |
-| **Tree models at tile seams** | 237 | Red and magenta come from neighbouring tiles and overlap. What are they? | SAME_TREE, SPLIT_TREE, SEPARATE_TREES, NOT_A_TREE, UNSURE |
+| **Tree models at tile seams** | 235 | Red and magenta come from neighbouring tiles and overlap. What are they? | SAME_TREE, SPLIT_TREE, SEPARATE_TREES, NOT_A_TREE, UNSURE |
 | **Trees CFTree could not model** | 75 | Is there a tree here? | MISSED_TREE, NOT_A_TREE, UNSURE |
 
 **3D buildings.** Of the 22,042 footprints, 20,730 have a roofer LoD 2.2 roof. The other 1,312 are 481 with no model,
@@ -49,10 +49,27 @@ crown mesh silhouette (black), the inferred trunk (brown box) and the trunk base
 
 **Seams.** CFTree ran each 1 km tile with a 100 m halo. Each segment belongs to the tile holding its highest point, but
 crowns can still be cut or doubled at tile edges. 237 pairs (404 models) are from different tiles, both near an edge, and
-share at least 70% of the smaller outline. Every pair is in the queue.
+share at least 70% of the smaller outline. A model overlapping two others is paired with the one it shares most with,
+so the queue has 235 items covering all 404 models.
 
 **Rejects.** These are all 75 exclusions: 38 with no terrain beneath and 37 with no valid trunk. The dot is the segment's
 highest return, and the side view shows its points.
+
+## How long it should take
+
+At the pace the October 23 page assumed (about 10 seconds an item where two views have to be compared):
+
+| Queue / group | Items | Time |
+|---|---:|---:|
+| Tree sample (answer first) | 300 | about 50 min |
+| Merged? and trunk in a footprint | 600 | about 1 h 40 min |
+| Tile seams | 235 | about 40 min |
+| Trees CFTree could not model | 75 | about 10 min |
+| 3D buildings without a detailed roof | 726 | about 2 h |
+| **All** | **1,936** | **about 5 h 20 min** |
+
+The tree sample alone decides most of what happens next: whether the CFTree models are good enough to publish, and
+whether merging needs a second segmentation pass.
 
 ## What the counts already say
 
