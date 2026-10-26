@@ -130,6 +130,7 @@ Codex's draft review layer (`gis-review/review_rules.py`) had longer decision co
 | [queues.py](queues.py) | sizes every queue (ArcPy-free); writes `roof-queue.csv`, `tree-cues.csv`, `tree-outlines.parquet`, `summary.json` to `runs\model-review-20261026` |
 | [add_model_queues.py](add_model_queues.py) | appends the four queues to the page data (bundles `m0001...`); `--pilot` writes 5 items per queue to a separate folder |
 | [summary.json](summary.json) | the counts above, copied from the run |
+| [cues.py](cues.py) | measures Brian's reported problems on every tree and candidate; [cues-summary.json](cues-summary.json), [redeveloped-sites.csv](redeveloped-sites.csv) (per-model flags in `runs\model-review-20261026	ree-flags.csv`) |
 
 ```
 footprint_review.bat model-queues     (about 10 minutes)

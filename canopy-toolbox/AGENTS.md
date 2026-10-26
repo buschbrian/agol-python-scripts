@@ -6,6 +6,9 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 
 ## Routing
 
+- Where the whole LiDAR project stands, what Brian's first review answers say, and what is next: reviews/2026-10-26/STATUS.md.
+  Measured cues for his reported tree and footprint problems (shrubs, brush, roofs and sheds, merges, slopes,
+  redeveloped sites): reviews/2026-10-26/model-review/cues.py.
 - October 26 roof and tree model review, as four queues on the footprint review page (3D buildings without a detailed
   roof, CFTree samples, tile seams, CFTree rejects; side views of each tree's points): reviews/2026-10-26/model-review.
   It replaces the hosted review layer drafted in reviews/2026-10-26/gis-review, whose upload scripts were never run.
