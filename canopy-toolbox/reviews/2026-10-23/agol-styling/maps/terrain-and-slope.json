@@ -2,7 +2,7 @@
  "item": {
   "title": "Millcreek terrain and slope",
   "snippet": "Slope classes, 2 m contours and hillshade from the 0.5 m lidar bare-earth terrain of Millcreek, Utah. Unvalidated planning estimates; not surveyed or field-verified.",
-  "description": "<p><b>Planning estimates.</b> The layers in this map are unvalidated estimates derived from lidar by City of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, screening and display, not for legal, engineering, property-boundary, permitting or code-compliance decisions.</p><p>Slope in six classes from the 0.5 m bare-earth terrain (3 m neighbourhood, 4 m² minimum mapping unit), shaded by the lidar hillshade blended over it (multiply), with 2 m contours: the 10 m index lines from 1:288,000 inward and the 2 m lines from 1:18,000.</p><p><b>Slope classes:</b> <span style='color:#FFFFCC'>■</span> Under 10% &nbsp; <span style='color:#FED976'>■</span> 10% to 15% &nbsp; <span style='color:#FEB24C'>■</span> 15% to 20% &nbsp; <span style='color:#FD8D3C'>■</span> 20% to 25% &nbsp; <span style='color:#F03B20'>■</span> 25% to 30% &nbsp; <span style='color:#BD0026'>■</span> 30% and over</p><p><b>Contours:</b> <span style='color:#3D2610'>▬</span> 10 m index (heavy) &nbsp; <span style='color:#5A3A1A'>─</span> 2 m (thin), elevations in metres (NAVD88); the tiles carry no elevation values, so the lines are unlabelled</p><p>Slope and contours are vector tiles: they draw but have no pop-ups. A legend cannot read a vector tile style, so each is grouped with a small key layer that carries its classes into the legend.</p><p><b>Lidar source.</b> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program), flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open, non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been reviewed for these products. For these products the building and vegetation classes of the points were refined; the ground class was not changed. All products are gridded at 0.5 m.</p><p><b>Coordinates and heights.</b> Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator for ArcGIS Online with the transformation WGS_1984_(ITRF08)_To_NAD_1983_2011. Every layer in the Millcreek LiDAR 2023 set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres; without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in <b>metres</b>; heights are metres above the lidar bare-earth terrain.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City of Millcreek GIS.</p>",
+  "description": "<p><b>Planning estimates.</b> The layers in this map are unvalidated estimates derived from lidar by City of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, screening and display, not for legal, engineering, property-boundary, permitting or code-compliance decisions.</p><p>Slope in six classes from the 0.5 m bare-earth terrain (3 m neighbourhood, 4 m² minimum mapping unit), shaded by the lidar hillshade blended over it (multiply), with 2 m contours: the 10 m index lines from 1:288,000 inward and the 2 m lines from 1:18,000.</p><p><b>Slope classes:</b> <span style='color:#FFFFCC'>■</span> Under 10% &nbsp; <span style='color:#FED976'>■</span> 10% to 15% &nbsp; <span style='color:#FEB24C'>■</span> 15% to 20% &nbsp; <span style='color:#FD8D3C'>■</span> 20% to 25% &nbsp; <span style='color:#F03B20'>■</span> 25% to 30% &nbsp; <span style='color:#BD0026'>■</span> 30% and over</p><p><b>Contours:</b> <span style='color:#3D2610'>▬</span> 32.81 ft index (heavy; 10 m) &nbsp; <span style='color:#5A3A1A'>─</span> 6.56 ft (thin; 2 m). These are the original metric-spaced contours expressed in feet, not new 5 ft or 10 ft contours. The lines have no elevation pop-ups.</p><p>Slope and contours are vector tiles: they draw but have no pop-ups. A legend cannot read a vector tile style, so each is grouped with a small key layer that carries its classes into the legend.</p><p><b>Lidar source.</b> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program), flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open, non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been reviewed for these products. For these products the building and vegetation classes of the points were refined; the ground class was not changed. All products are gridded at 0.5 m.</p><p><b>Coordinates and heights.</b> Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator for ArcGIS Online with the transformation WGS_1984_(ITRF08)_To_NAD_1983_2011. Every layer in the Millcreek LiDAR 2023 set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres; without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in <b>metres</b>; heights are metres above the lidar bare-earth terrain.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City of Millcreek GIS.</p><h3>Explore terrain</h3><p>Use the slides to visit the east bench, canyon mouth and foothills. Rotate the scene to see relief, and use the layer list to compare slope colors, contours and hillshade. The elevation profile tool reports a drawn transect in feet; choose the ground profile when comparing bare-earth terrain.</p><h3>Read the legend</h3><p>Slope is percent rise: 20% means 20 ft of vertical rise over 100 ft of horizontal distance, not a 20-degree angle. The six color classes run from under 10% to 30% and over. They summarize the ground surface and do not establish a regulatory slope finding.</p><p>Thin contours are 6.56 ft apart vertically and heavy index contours are 32.81 ft apart. These are the original 2 m and 10 m intervals converted to feet, not newly generated 5 ft or 10 ft contours. The vector tiles have no elevation pop-ups or line labels.</p><h3>Resolution and limits</h3><p>The bare-earth terrain has an approximately 1.64 ft grid (0.5 m), with slope computed over a roughly 9.84 ft neighborhood. Small slope patches below about 43 sq ft were removed in the display polygons. Grid spacing is not an accuracy claim. Hillshade and scene lighting help reveal landforms; they do not show a measured surface color.</p><p>Bare-earth processing removes buildings and vegetation where classification permits. Walls, bridges, steep banks, water and gaps in ground returns can still create artifacts. Outside the city terrain coverage, the scene can use Esri World Elevation, which has a different source and resolution. These layers support reconnaissance, not grading design, drainage engineering or surveyed elevations.</p><h3>Data and methods</h3><p><a href='https://www.arcgis.com/home/item.html?id=ce1680a5196e458ebfb60ead5150b946' rel='nofollow ugc'>Terrain elevation</a> · <a href='https://www.arcgis.com/home/item.html?id=3b5b1a9110f14e93af68752be89e0df2' rel='nofollow ugc'>Slope methods</a> · <a href='https://www.arcgis.com/home/item.html?id=50573eeba93f405a869a1d78a08d68e8' rel='nofollow ugc'>Contour methods</a></p><h3>Dates and units</h3><p>The source is the 2023 Salt Lake Valley QL1 lidar, flown in October and November 2023. These maps describe that survey, not present-day conditions. Buildings removed, trees planted or construction completed since then may differ. Basemap imagery can be from a different date.</p><p>Height legends and building heights use feet; building areas use square feet. Canopy-zone summaries use acres and percentages. One international foot is exactly 0.3048 meter. The original coordinate system, elevation reference and metric analysis files remain intact so all layers stay aligned. Rounded display values do not imply survey precision.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. Include the map location and building ID when available.</p>",
   "tags": [
    "Millcreek",
    "Utah",
@@ -271,7 +271,7 @@
    },
    {
     "id": "hillshade",
-    "title": "Hillshade (0.5 m lidar terrain)",
+    "title": "Hillshade (1.64 ft terrain grid)",
     "layerType": "ArcGISTiledMapServiceLayer",
     "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
     "itemId": "cab8824e44384d479e1f302cdf34daf9",
@@ -290,7 +290,7 @@
    },
    {
     "id": "contours-group",
-    "title": "Contours (2 m, 10 m index)",
+    "title": "Contours (6.56 ft, 32.81 ft index)",
     "layerType": "GroupLayer",
     "visibility": true,
     "opacity": 1,
@@ -298,7 +298,7 @@
     "layers": [
      {
       "id": "contours",
-      "title": "Contours (2 m, 10 m index)",
+      "title": "Contours (6.56 ft, 32.81 ft index)",
       "layerType": "VectorTileLayer",
       "itemId": "50573eeba93f405a869a1d78a08d68e8",
       "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/50573eeba93f405a869a1d78a08d68e8/resources/styles/root.json",
@@ -343,8 +343,8 @@
             "field1": "CLASS",
             "uniqueValueInfos": [
              {
-              "value": "10 m index contour",
-              "label": "10 m index contour",
+              "value": "32.81 ft index contour (10 m)",
+              "label": "32.81 ft index contour (10 m)",
               "symbol": {
                "type": "esriSLS",
                "style": "esriSLSSolid",
@@ -358,8 +358,8 @@
               }
              },
              {
-              "value": "2 m contour",
-              "label": "2 m contour",
+              "value": "6.56 ft contour (2 m)",
+              "label": "6.56 ft contour (2 m)",
               "symbol": {
                "type": "esriSLS",
                "style": "esriSLSSolid",

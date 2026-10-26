@@ -1,0 +1,8 @@
+{
+  "tests": 512,
+  "passed": 424,
+  "skipped": 88,
+  "skips": "ArcPy fixtures in plain Python",
+  "result": "OK",
+  "source": "work/app-context/tests-verified.txt"
+}

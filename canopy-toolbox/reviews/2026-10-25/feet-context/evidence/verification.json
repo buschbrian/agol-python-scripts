@@ -1,0 +1,85 @@
+{
+  "verified_utc": "2026-10-26T01:27:03.463508+00:00",
+  "items": {
+    "buildings_app": {
+      "id": "021866adf7ab40fea430d4d10fc3a934",
+      "access": "private",
+      "modified": 1792959384000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": "https://Millcrk.maps.arcgis.com/apps/instant/3dviewer/index.html?appid=021866adf7ab40fea430d4d10fc3a934"
+    },
+    "buildings_layer": {
+      "id": "ce3617ac9b884bbcbee7c47a3e166999",
+      "access": "public",
+      "modified": 1792959385000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_with_roof_forms_2023_lidar_planning_estimate/SceneServer"
+    },
+    "buildings_map": {
+      "id": "504554bd5a9545559db06aa6098e8e49",
+      "access": "public",
+      "modified": 1792959387000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": null
+    },
+    "buildings_scene": {
+      "id": "5b5bdf4a63c9466fad5884039aa7357f",
+      "access": "public",
+      "modified": 1792959389000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": null
+    },
+    "canopy_app": {
+      "id": "9d70110793004a0ca24b88ea6f008cf5",
+      "access": "private",
+      "modified": 1792978017000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": "https://Millcrk.maps.arcgis.com/apps/instant/sidebar/index.html?appid=9d70110793004a0ca24b88ea6f008cf5"
+    },
+    "canopy_map": {
+      "id": "e5efa719691045849108553394448f35",
+      "access": "public",
+      "modified": 1792978019000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": null
+    },
+    "features": {
+      "id": "d5effaee6c66497eaeb64e4c2e0f496e",
+      "access": "public",
+      "modified": 1792959395000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer"
+    },
+    "terrain_app": {
+      "id": "66693381d9e94d10b79a28a6059d463a",
+      "access": "private",
+      "modified": 1792959397000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": "https://Millcrk.maps.arcgis.com/apps/instant/3dviewer/index.html?appid=66693381d9e94d10b79a28a6059d463a"
+    },
+    "terrain_map": {
+      "id": "177bfc592415451585ba72ab9207b3c6",
+      "access": "public",
+      "modified": 1792959399000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": null
+    },
+    "terrain_scene": {
+      "id": "71b680b486b245fd8ec17eb80387be94",
+      "access": "private",
+      "modified": 1792959401000,
+      "data_verified": true,
+      "context_verified": true,
+      "url": null
+    }
+  }
+}

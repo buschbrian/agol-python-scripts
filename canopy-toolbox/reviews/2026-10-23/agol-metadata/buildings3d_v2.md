@@ -21,6 +21,12 @@ roof is simpler (Esri's LOD2.0 roof forms for 647, flat LOD1.2 blocks at the med
 not support a roof form or the roof form failed a check. The **LEVEL** field says which model a building has.
 
 ## Fields
+The scene and building app display heights in **international feet** and roof/footprint areas in **square feet**.
+The original stored fields and geometry retain their documented metric units. One foot is exactly 0.3048 meter.
+A [companion CSV in feet and square feet](https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/buildings/20261025/buildings_hybrid_v2_feet.csv)
+contains all 21,561 building records; join it to this layer using **FP_ID**. Blank measurements mean unavailable,
+not zero. Z50 fields are elevations; other height fields are above local ground. Roof angles remain in degrees.
+
 Each building carries its footprint's County attributes and lidar roof-height statistics (see the data dictionary), so a pop-up
 can show its height. Buildings whose LEVEL is **roofer LoD2.2** also carry roof attributes; for the others they are empty.
 

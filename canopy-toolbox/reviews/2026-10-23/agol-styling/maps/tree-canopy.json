@@ -2,7 +2,7 @@
  "item": {
   "title": "Millcreek tree canopy",
   "snippet": "Tree canopy cover by ownership zone, with lidar tree crowns and treetops by height, over imagery of Millcreek, Utah. Unvalidated planning estimates; not surveyed or field-verified.",
-  "description": "<p><b>Planning estimates.</b> The layers in this map are unvalidated estimates derived from lidar by City of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, screening and display, not for legal, engineering, property-boundary, permitting or code-compliance decisions.</p><p>At city scale: canopy cover (vegetation at least 2 m tall, as a share of the area the lidar observed) for each ownership zone; click a zone for its figure, bounds and the October 19 comparison. Zoom in past 1:20,000 for the tree crowns and, from 1:10,000, the treetops, coloured and sized by treetop height. The lidar hillshade is blended over the imagery (soft light).</p><p>Treetops and crowns are unvalidated automatic detections; about 6% of treetops carry an unreviewed SUSPECT flag.</p><p><b>Treetop height (crowns and treetops):</b> <span style='color:#D9F0A3'>■</span> 2 to 5 m &nbsp; <span style='color:#ADDD8E'>■</span> 5 to 10 m &nbsp; <span style='color:#78C679'>■</span> 10 to 15 m &nbsp; <span style='color:#31A354'>■</span> 15 to 20 m &nbsp; <span style='color:#006837'>■</span> 20 m and over; larger treetop dots are taller trees.</p><p>Crowns and treetops are vector tiles: they draw but have no pop-ups. A legend cannot read a vector tile style, so each is grouped with a small key layer that carries its classes into the legend.</p><p><b>Lidar source.</b> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program), flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open, non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been reviewed for these products. For these products the building and vegetation classes of the points were refined; the ground class was not changed. All products are gridded at 0.5 m.</p><p><b>Coordinates and heights.</b> Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator for ArcGIS Online with the transformation WGS_1984_(ITRF08)_To_NAD_1983_2011. Every layer in the Millcreek LiDAR 2023 set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres; without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in <b>metres</b>; heights are metres above the lidar bare-earth terrain.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City of Millcreek GIS.</p>",
+  "description": "<p><b>Planning estimates.</b> The layers in this map are unvalidated estimates derived from lidar by City of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, screening and display, not for legal, engineering, property-boundary, permitting or code-compliance decisions.</p><p>At city scale: canopy cover (vegetation at least 2 m tall, as a share of the area the lidar observed) for each ownership zone; click a zone for its figure, bounds and the October 19 comparison. Zoom in past 1:20,000 for the tree crowns and, from 1:10,000, the treetops, coloured and sized by treetop height. The lidar hillshade is blended over the imagery (soft light).</p><p>Treetops and crowns are unvalidated automatic detections; about 6% of treetops carry an unreviewed SUSPECT flag.</p><p><b>Treetop height (feet):</b> <span style='color:#D9F0A3'>■</span> 6.6 to 16.4 ft &nbsp; <span style='color:#ADDD8E'>■</span> 16.4 to 32.8 ft &nbsp; <span style='color:#78C679'>■</span> 32.8 to 49.2 ft &nbsp; <span style='color:#31A354'>■</span> 49.2 to 65.6 ft &nbsp; <span style='color:#006837'>■</span> 65.6 ft and over; larger treetop dots are taller trees.</p><p>Crowns and treetops are vector tiles: they draw but have no pop-ups. A legend cannot read a vector tile style, so each is grouped with a small key layer that carries its classes into the legend.</p><p><b>Lidar source.</b> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program), flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open, non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been reviewed for these products. For these products the building and vegetation classes of the points were refined; the ground class was not changed. All products are gridded at 0.5 m.</p><p><b>Coordinates and heights.</b> Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator for ArcGIS Online with the transformation WGS_1984_(ITRF08)_To_NAD_1983_2011. Every layer in the Millcreek LiDAR 2023 set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres; without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in <b>metres</b>; heights are metres above the lidar bare-earth terrain.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City of Millcreek GIS.</p><h3>Explore canopy cover</h3><p>Select an ownership zone for its canopy percentage, then zoom in to see tree crowns and treetop markers. Use the legend to compare heights in feet. The crown and treetop tiles are display layers and have no individual-tree pop-ups.</p><h3>Three measures with different meanings</h3><p>Citywide canopy cover is 25.59% of the area observed by lidar. It measures classified vegetation at least 6.56 ft above the local ground, independently of how many treetops or crowns the algorithms find. Missing coverage is not silently counted as bare ground.</p><p>The 527,140 treetop detections are local peaks in the canopy surface. The 400,063 crown regions are segmented portions of that surface. Neither count is a field census: a large tree can produce multiple peaks, adjacent trees can merge, and small or shaded trees can be missed. The two counts should not be expected to match.</p><h3>Interpret carefully</h3><p>Heights are above local ground, not elevations above sea level. Crown boundaries estimate the overhead canopy extent; they do not identify trunks or ownership of individual trees. Zone summaries group canopy by the analysis ownership categories and are not parcel-boundary determinations. Roof edges, wires and other objects can cause false detections. Automated suspect flags are review evidence, not confirmed errors or field checks.</p><p>These layers do not establish species, trunk diameter, condition, hazard, heritage status or the number of trees that should be removed or planted. They support screening and prioritizing field work.</p><h3>Citywide 3D trees in development</h3><p>The citywide 3D workflow uses <a href='https://github.com/NoahAlting/CFTree' rel='nofollow ugc'>CFTree</a> to reconstruct crown surfaces from airborne lidar. Trunk positions and diameters are inferred from crown dimensions and terrain; they are not field measurements. That 3D work is being tested separately and is not yet included in this map. The existing canopy percentages and detection counts remain the October 22 analysis of the 2023 survey.</p><h3>Data and methods</h3><p><a href='https://www.arcgis.com/home/item.html?id=924b993cb23046cb87641253bcf786de' rel='nofollow ugc'>Treetop methods</a> · <a href='https://www.arcgis.com/home/item.html?id=d9388dc83f894edbb63e0510a8c62fa8' rel='nofollow ugc'>Crown methods</a> · <a href='https://www.arcgis.com/home/item.html?id=d5effaee6c66497eaeb64e4c2e0f496e' rel='nofollow ugc'>Canopy zones and building footprints</a></p><h3>Dates and units</h3><p>The source is the 2023 Salt Lake Valley QL1 lidar, flown in October and November 2023. These maps describe that survey, not present-day conditions. Buildings removed, trees planted or construction completed since then may differ. Basemap imagery can be from a different date.</p><p>Height legends and building heights use feet; building areas use square feet. Canopy-zone summaries use acres and percentages. One international foot is exactly 0.3048 meter. The original coordinate system, elevation reference and metric analysis files remain intact so all layers stay aligned. Rounded display values do not imply survey precision.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. Include the map location and building ID when available.</p>",
   "tags": [
    "Millcreek",
    "Utah",
@@ -43,7 +43,7 @@
   "operationalLayers": [
    {
     "id": "hillshade",
-    "title": "Hillshade (0.5 m lidar terrain)",
+    "title": "Hillshade (1.64 ft terrain grid)",
     "layerType": "ArcGISTiledMapServiceLayer",
     "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
     "itemId": "cab8824e44384d479e1f302cdf34daf9",
@@ -297,7 +297,7 @@
      },
      {
       "id": "crowns-key",
-      "title": "Treetop height",
+      "title": "Treetop height (feet)",
       "layerType": "ArcGISFeatureLayer",
       "visibility": true,
       "opacity": 1,
@@ -307,7 +307,7 @@
        "layers": [
         {
          "layerDefinition": {
-          "name": "Treetop height",
+          "name": "Treetop height (feet)",
           "type": "Feature Layer",
           "geometryType": "esriGeometryPolygon",
           "objectIdField": "OBJECTID",
@@ -330,8 +330,8 @@
             "field1": "CLASS",
             "uniqueValueInfos": [
              {
-              "value": "2 to 5 m",
-              "label": "2 to 5 m",
+              "value": "6.6 to 16.4 ft",
+              "label": "6.6 to 16.4 ft",
               "symbol": {
                "type": "esriSFS",
                "style": "esriSFSSolid",
@@ -355,8 +355,8 @@
               }
              },
              {
-              "value": "5 to 10 m",
-              "label": "5 to 10 m",
+              "value": "16.4 to 32.8 ft",
+              "label": "16.4 to 32.8 ft",
               "symbol": {
                "type": "esriSFS",
                "style": "esriSFSSolid",
@@ -380,8 +380,8 @@
               }
              },
              {
-              "value": "10 to 15 m",
-              "label": "10 to 15 m",
+              "value": "32.8 to 49.2 ft",
+              "label": "32.8 to 49.2 ft",
               "symbol": {
                "type": "esriSFS",
                "style": "esriSFSSolid",
@@ -405,8 +405,8 @@
               }
              },
              {
-              "value": "15 to 20 m",
-              "label": "15 to 20 m",
+              "value": "49.2 to 65.6 ft",
+              "label": "49.2 to 65.6 ft",
               "symbol": {
                "type": "esriSFS",
                "style": "esriSFSSolid",
@@ -430,8 +430,8 @@
               }
              },
              {
-              "value": "20 m and over",
-              "label": "20 m and over",
+              "value": "65.6 ft and over",
+              "label": "65.6 ft and over",
               "symbol": {
                "type": "esriSFS",
                "style": "esriSFSSolid",
@@ -501,7 +501,7 @@
      },
      {
       "id": "treetops-key",
-      "title": "Treetop height",
+      "title": "Treetop height (feet)",
       "layerType": "ArcGISFeatureLayer",
       "visibility": true,
       "opacity": 1,
@@ -511,7 +511,7 @@
        "layers": [
         {
          "layerDefinition": {
-          "name": "Treetop height",
+          "name": "Treetop height (feet)",
           "type": "Feature Layer",
           "geometryType": "esriGeometryPoint",
           "objectIdField": "OBJECTID",
@@ -534,8 +534,8 @@
             "field1": "CLASS",
             "uniqueValueInfos": [
              {
-              "value": "2 to 5 m",
-              "label": "2 to 5 m",
+              "value": "6.6 to 16.4 ft",
+              "label": "6.6 to 16.4 ft",
               "symbol": {
                "type": "esriSMS",
                "style": "esriSMSCircle",
@@ -560,8 +560,8 @@
               }
              },
              {
-              "value": "5 to 10 m",
-              "label": "5 to 10 m",
+              "value": "16.4 to 32.8 ft",
+              "label": "16.4 to 32.8 ft",
               "symbol": {
                "type": "esriSMS",
                "style": "esriSMSCircle",
@@ -586,8 +586,8 @@
               }
              },
              {
-              "value": "10 to 15 m",
-              "label": "10 to 15 m",
+              "value": "32.8 to 49.2 ft",
+              "label": "32.8 to 49.2 ft",
               "symbol": {
                "type": "esriSMS",
                "style": "esriSMSCircle",
@@ -612,8 +612,8 @@
               }
              },
              {
-              "value": "15 to 20 m",
-              "label": "15 to 20 m",
+              "value": "49.2 to 65.6 ft",
+              "label": "49.2 to 65.6 ft",
               "symbol": {
                "type": "esriSMS",
                "style": "esriSMSCircle",
@@ -638,8 +638,8 @@
               }
              },
              {
-              "value": "20 m and over",
-              "label": "20 m and over",
+              "value": "65.6 ft and over",
+              "label": "65.6 ft and over",
               "symbol": {
                "type": "esriSMS",
                "style": "esriSMSCircle",

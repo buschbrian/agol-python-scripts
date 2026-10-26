@@ -15,6 +15,7 @@ import copy
 import json
 import math
 from pathlib import Path
+from reader_context import context
 
 HERE = Path(__file__).resolve().parent
 ORIGINALS, STYLES, LAYERS, MAPS = (HERE/n for n in ("originals", "styles", "layers", "maps"))
@@ -93,6 +94,9 @@ SLOPE = [("Under 10%", "#FFFFCC", 0.15), ("10% to 15%", "#FED976", 0.45), ("15% 
 # shows on imagery. Treetop radius (px at level 17) grows with the class.
 HEIGHTS = [("2 to 5 m", "#D9F0A3", 2.0), ("5 to 10 m", "#ADDD8E", 2.8), ("10 to 15 m", "#78C679", 3.6),
            ("15 to 20 m", "#31A354", 4.4), ("20 m and over", "#006837", 5.2)]
+# Keep the source tile style IDs unchanged; only the displayed legend uses feet.
+HEIGHT_LABELS_FT = dict(zip((row[0] for row in HEIGHTS),
+    ("6.6 to 16.4 ft", "16.4 to 32.8 ft", "32.8 to 49.2 ft", "49.2 to 65.6 ft", "65.6 ft and over")))
 
 
 def styles():
@@ -129,14 +133,15 @@ def fill(rgb, alpha=255, outline=(70, 70, 70, 140), width=0.4):
 
 
 # Building median roof height classes (m, ft); breaks at roughly one, two and three storeys.
-BUILDING_CLASSES = [(4, "Under 4 m (13 ft)", (242, 240, 247)), (6, "4 to 6 m (13 to 20 ft)", (203, 201, 226)),
-                    (9, "6 to 9 m (20 to 30 ft)", (158, 154, 200)), (12, "9 to 12 m (30 to 39 ft)", (117, 107, 177)),
-                    (60, "12 m (39 ft) and over", (84, 39, 143))]
+BUILDING_CLASSES = [(4, "Up to 13.1 ft", (242, 240, 247)), (6, "13.1 to 19.7 ft", (203, 201, 226)),
+                    (9, "19.7 to 29.5 ft", (158, 154, 200)), (12, "29.5 to 39.4 ft", (117, 107, 177)),
+                    (60, "Over 39.4 ft", (84, 39, 143))]
 NO_HEIGHT = "No lidar height (no roof points)"
 
 
 def building_renderer():
     return {"type": "classBreaks", "field": "HEIGHT_P50_M", "classificationMethod": "esriClassifyManual",
+            "legendOptions": {"title": "Median roof height above ground (feet)"},
             "minValue": 0,
             "classBreakInfos": [{"classMaxValue": top, "label": label, "symbol": fill(rgb, 255, (60, 60, 90, 70), 0.3)}
                                 for top, label, rgb in BUILDING_CLASSES],
@@ -164,15 +169,14 @@ def flags_expression():
 
 
 def height_expression(metres, feet=None):
-    ft = f"$feature.{feet}" if feet else f"$feature.{metres} * 3.28084"
     return (f"var m = $feature.{metres};\n"
             "if (IsEmpty(m)) { return 'no estimate'; }\n"
-            f"return Text(m, '#,##0.0') + ' m (' + Text({ft}, '#,##0') + ' ft)';")
+            "return Text(m / 0.3048, '#,##0.0') + ' ft';")
 
 
 SUPPORT = ("var c = $feature.ROOF_COV_PCT;\n"
            "if (IsEmpty(c)) { return 'none'; }\n"
-           "return Text(c, '#,##0') + '% of the footprint\\'s 0.5 m cells have lidar roof points';")
+           "return Text(c, '#,##0') + '% of the footprint\\'s roughly 1.6 ft grid cells have lidar roof points';")
 
 
 def building_popup(feet_fields=True):
@@ -187,7 +191,7 @@ def building_popup(feet_fields=True):
         {"name": "flags", "title": "Notes", "expression": flags_expression(), "returnType": "string"},
         {"name": "area", "title": "Footprint",
          "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\n"
-                       "return Text(a, '#,##0') + ' m² (' + Text(a * 10.7639, '#,##0') + ' ft²)';",
+                       "return Text(a / (0.3048 * 0.3048), '#,##0') + ' sq ft';",
          "returnType": "string"},
     ]
     text = ("<p><b>Roof height above the ground</b><br />Median: {expression/h50}<br />"
@@ -288,7 +292,7 @@ def scene_renderer():
             "classBreakInfos": [{"classMaxValue": top, "label": label, "symbol": mesh(grey)}
                                 for (top, label, _), grey in zip(BUILDING_CLASSES, SCENE_GREYS)],
             "defaultLabel": NO_HEIGHT, "defaultSymbol": mesh(SCENE_NO_HEIGHT),
-            "legendOptions": {"title": "Median roof height above the ground"}}
+              "legendOptions": {"title": "Median roof height above ground (feet)"}}
 
 
 def roof_building_popup():
@@ -299,33 +303,43 @@ def roof_building_popup():
         "<p><b>Roof model:</b> {LEVEL}</p>"})
     fields = [
         ("FALLBACK_REASON", "Reason for simpler roof"),
-        ("ROOF_AREA_M2", "Modelled roof surface (m²)"),
-        ("ROOF_PLANES", "Roof planes of at least 1 m²"),
+        ("ROOF_AREA_M2", "Modelled roof surface (sq ft)"),
+        ("ROOF_PLANES", "Roof planes of at least 10.8 sq ft"),
         ("ROOF_SLOPE_MEAN", "Area-weighted roof slope (degrees)"),
         ("ROOF_SLOPE_MAIN", "Largest plane slope (degrees)"),
         ("ROOF_AZIMUTH_MAIN", "Largest plane downslope bearing (degrees)"),
-        ("RIDGE_HT_M", "Modelled ridge height above ground (m)"),
-        ("EAVE_HT_M", "Modelled eave height above ground (m)"),
-        ("FLAT_AREA_M2", "Roof surface under 5 degrees (m²)"),
-        ("SOUTH_AREA_M2", "South-facing roof surface (m²)"),
-        ("EAST_AREA_M2", "East-facing roof surface (m²)"),
-        ("WEST_AREA_M2", "West-facing roof surface (m²)"),
-        ("NORTH_AREA_M2", "North-facing roof surface (m²)"),
+        ("RIDGE_HT_M", "Modelled ridge height above ground (ft)"),
+        ("EAVE_HT_M", "Modelled eave height above ground (ft)"),
+        ("FLAT_AREA_M2", "Roof surface under 5 degrees (sq ft)"),
+        ("SOUTH_AREA_M2", "South-facing roof surface (sq ft)"),
+        ("EAST_AREA_M2", "East-facing roof surface (sq ft)"),
+        ("WEST_AREA_M2", "West-facing roof surface (sq ft)"),
+        ("NORTH_AREA_M2", "North-facing roof surface (sq ft)"),
     ]
     popup["fieldInfos"].extend([
         {"fieldName": "FP_ID", "visible": False, "isEditable": False},
         {"fieldName": "LEVEL", "visible": False, "isEditable": False},
     ])
-    popup["fieldInfos"].extend({"fieldName": name, "label": label, "visible": True,
-        "isEditable": False, **({} if name == "FALLBACK_REASON" else {
-            "format": {"places": 0 if name == "ROOF_PLANES" else 1, "digitSeparator": True}})}
-        for name, label in fields)
+    roof_infos = []
+    for name, label in fields:
+        display_name = name
+        if name.endswith(('_M2', '_M')):
+            expression_name = name.lower() + '_feet'
+            divisor = '0.3048 * 0.3048' if name.endswith('_M2') else '0.3048'
+            popup['expressionInfos'].append({'name': expression_name, 'title': label, 'returnType': 'number',
+                'expression': f'var v = $feature.{name};\nif (IsEmpty(v)) {{ return null; }}\nreturn v / ({divisor});'})
+            display_name = 'expression/' + expression_name
+        info = {'fieldName': display_name, 'label': label, 'visible': True, 'isEditable': False}
+        if name != 'FALLBACK_REASON':
+            info['format'] = {'places': 0 if name.endswith('_M2') or name == 'ROOF_PLANES' else 1,
+                              'digitSeparator': True}
+        roof_infos.append(info)
+    popup['fieldInfos'].extend(roof_infos)
     popup["popupElements"].extend([
         {"type": "text", "text": "<p>Roof measurements below describe retained roofer models. "
          "They are empty for Esri fallback buildings. Facing areas cover slopes from 5 to 70 degrees; "
          "they do not estimate solar production.</p>"},
-        {"type": "fields", "fieldInfos": [f for f in popup["fieldInfos"]
-                                            if f["fieldName"] in dict(fields)]},
+        {"type": "fields", "fieldInfos": roof_infos},
     ])
     return popup
 
@@ -415,13 +429,13 @@ def contour_key(min_scale):
     def line(colour, alpha, px):
         return {"type": "esriSLS", "style": "esriSLSSolid", "color": colour_list(colour, alpha), "width": round(px*0.75, 2)}
     return key_layer("contours", CONTOUR_KEY_TITLE, "esriGeometryPolyline",
-                     [("10 m index contour", line("#3D2610", 0.85, 1.6)),
-                      ("2 m contour", line("#5A3A1A", 0.5, 0.7))], min_scale)
+                     [("32.81 ft index contour (10 m)", line("#3D2610", 0.85, 1.6)),
+                      ("6.56 ft contour (2 m)", line("#5A3A1A", 0.5, 0.7))], min_scale)
 
 
 def treetop_key(min_scale):
     return key_layer("treetops", HEIGHT_KEY_TITLE, "esriGeometryPoint",
-                     [(label, {"type": "esriSMS", "style": "esriSMSCircle", "color": colour_list(colour),
+                     [(HEIGHT_LABELS_FT[label], {"type": "esriSMS", "style": "esriSMSCircle", "color": colour_list(colour),
                                "size": round(2*r*0.75, 2),
                                "outline": {"type": "esriSLS", "style": "esriSLSSolid", "color": [20, 45, 25, 204],
                                            "width": 0.45}}) for label, colour, r in HEIGHTS], min_scale)
@@ -429,7 +443,7 @@ def treetop_key(min_scale):
 
 def crown_key(min_scale):
     return key_layer("crowns", HEIGHT_KEY_TITLE, "esriGeometryPolygon",
-                     [(label, {"type": "esriSFS", "style": "esriSFSSolid", "color": colour_list(colour, 0.5),
+                     [(HEIGHT_LABELS_FT[label], {"type": "esriSFS", "style": "esriSFSSolid", "color": colour_list(colour, 0.5),
                                "outline": {"type": "esriSLS", "style": "esriSLSSolid", "color": [0, 68, 27, 217],
                                            "width": 0.75}}) for label, colour, _ in HEIGHTS], min_scale)
 
@@ -437,7 +451,7 @@ def crown_key(min_scale):
 def hillshade_layer(opacity, blend=None, brightness=None):
     """The hillshade blended over what lies below it. Brightness lifts flat ground (about 180 of 255) towards white, so a
     multiply blend shades slopes without greying the whole city."""
-    layer = {"id": "hillshade", "title": "Hillshade (0.5 m lidar terrain)", "layerType": "ArcGISTiledMapServiceLayer",
+    layer = {"id": "hillshade", "title": "Hillshade (1.64 ft terrain grid)", "layerType": "ArcGISTiledMapServiceLayer",
              "url": ITEMS["hillshade"]["url"], "itemId": ITEMS["hillshade"]["id"], "visibility": True,
              "opacity": opacity, "showLegend": False, "minScale": 300000, "maxScale": 0}
     if blend:
@@ -535,7 +549,8 @@ def item_text(title, kind, what, lines, tags, buildings=False, credits_extra="")
     snippet = f"{what} {SNIPPET_END}"
     if len(snippet) > 250:
         raise ValueError(f"{title}: summary is {len(snippet)} characters, over 250")
-    return {"title": title, "snippet": snippet, "description": description(lines, kind), "tags": TAGS + tags,
+    topic = ('buildings2d' if kind == 'map' else 'in3d') if buildings else 'canopy' if 'tree canopy' in tags else 'terrain'
+    return {"title": title, "snippet": snippet, "description": description(lines, kind) + context(topic), "tags": TAGS + tags,
             "licenseInfo": terms(buildings),
             "accessInformation": (CREDITS_BUILDINGS if buildings else CREDITS) + credits_extra}
 
@@ -547,16 +562,16 @@ def key(title, rows):
 
 
 SLOPE_KEY = key("Slope classes", [(label, colour) for label, colour, _ in SLOPE])
-CONTOUR_KEY = ("<b>Contours:</b> <span style='color:#3D2610'>▬</span> 10 m index (heavy) &nbsp; "
-               "<span style='color:#5A3A1A'>─</span> 2 m (thin), elevations in metres (NAVD88); the tiles "
-               "carry no elevation values, so the lines are unlabelled")
-HEIGHT_KEY = key("Treetop height (crowns and treetops)", [(label, colour) for label, colour, _ in HEIGHTS])
+CONTOUR_KEY = ("<b>Contours:</b> <span style='color:#3D2610'>▬</span> 32.81 ft index (heavy; 10 m) &nbsp; "
+               "<span style='color:#5A3A1A'>─</span> 6.56 ft (thin; 2 m). These are the original metric-spaced "
+               "contours expressed in feet, not new 5 ft or 10 ft contours. The lines have no elevation pop-ups.")
+HEIGHT_KEY = key("Treetop height (feet)", [(HEIGHT_LABELS_FT[label], colour) for label, colour, _ in HEIGHTS])
 VECTOR_NOTE = ("{} vector tiles: they draw but have no pop-ups. A legend cannot read a vector tile style, so each is "
                "grouped with a small key layer that carries its classes into the legend.")
-SLOPE_TITLE, CONTOUR_TITLE = "Slope classes", "Contours (2 m, 10 m index)"
+SLOPE_TITLE, CONTOUR_TITLE = "Slope classes", "Contours (6.56 ft, 32.81 ft index)"
 CROWN_TITLE, TREETOP_TITLE = "Tree crowns by treetop height", "Treetops by height"
 # The legend shows a group's title, then its key's title as the heading of the classes: say what is classed.
-SLOPE_KEY_TITLE, CONTOUR_KEY_TITLE, HEIGHT_KEY_TITLE = "Slope (percent rise)", "Contour interval", "Treetop height"
+SLOPE_KEY_TITLE, CONTOUR_KEY_TITLE, HEIGHT_KEY_TITLE = "Slope (percent rise)", "Contour interval", "Treetop height (feet)"
 
 
 def web_map(item, base, layers):
@@ -759,7 +774,8 @@ def terrain_scene():
     normally in 3D), so the hillshade lies under the slope classes, whose own fill opacities (0.15 to 0.62) let it through,
     and the terrain's sun lighting adds the larger relief."""
     slope_rows = [(label, fill_3d(colour, alpha)) for label, colour, alpha in SLOPE]
-    contour_rows = [("10 m index contour", line_3d("#3D2610", 0.85, 1.6)), ("2 m contour", line_3d("#5A3A1A", 0.5, 0.7))]
+    contour_rows = [("32.81 ft index contour (10 m)", line_3d("#3D2610", 0.85, 1.6)),
+                    ("6.56 ft contour (2 m)", line_3d("#5A3A1A", 0.5, 0.7))]
     layers = [
         scene_hillshade(0.65),
         keyed(vector_layer("slope", SLOPE_TITLE, 0), key_layer_3d("slope", SLOPE_KEY_TITLE, slope_rows)),

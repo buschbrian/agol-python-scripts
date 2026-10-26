@@ -8,11 +8,14 @@
       "type": "classBreaks",
       "field": "HEIGHT_P50_M",
       "classificationMethod": "esriClassifyManual",
+      "legendOptions": {
+       "title": "Median roof height above ground (feet)"
+      },
       "minValue": 0,
       "classBreakInfos": [
        {
         "classMaxValue": 4,
-        "label": "Under 4 m (13 ft)",
+        "label": "Up to 13.1 ft",
         "symbol": {
          "type": "esriSFS",
          "style": "esriSFSSolid",
@@ -37,7 +40,7 @@
        },
        {
         "classMaxValue": 6,
-        "label": "4 to 6 m (13 to 20 ft)",
+        "label": "13.1 to 19.7 ft",
         "symbol": {
          "type": "esriSFS",
          "style": "esriSFSSolid",
@@ -62,7 +65,7 @@
        },
        {
         "classMaxValue": 9,
-        "label": "6 to 9 m (20 to 30 ft)",
+        "label": "19.7 to 29.5 ft",
         "symbol": {
          "type": "esriSFS",
          "style": "esriSFSSolid",
@@ -87,7 +90,7 @@
        },
        {
         "classMaxValue": 12,
-        "label": "9 to 12 m (30 to 39 ft)",
+        "label": "29.5 to 39.4 ft",
         "symbol": {
          "type": "esriSFS",
          "style": "esriSFSSolid",
@@ -112,7 +115,7 @@
        },
        {
         "classMaxValue": 60,
-        "label": "12 m (39 ft) and over",
+        "label": "Over 39.4 ft",
         "symbol": {
          "type": "esriSFS",
          "style": "esriSFSSolid",
@@ -171,19 +174,19 @@
      {
       "name": "h50",
       "title": "Median roof height",
-      "expression": "var m = $feature.HEIGHT_P50_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text($feature.HEIGHT_P50_FT, '#,##0') + ' ft)';",
+      "expression": "var m = $feature.HEIGHT_P50_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
       "returnType": "string"
      },
      {
       "name": "h95",
       "title": "95th percentile roof height",
-      "expression": "var m = $feature.HEIGHT_P95_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text($feature.HEIGHT_P95_FT, '#,##0') + ' ft)';",
+      "expression": "var m = $feature.HEIGHT_P95_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
       "returnType": "string"
      },
      {
       "name": "support",
       "title": "Roof support",
-      "expression": "var c = $feature.ROOF_COV_PCT;\nif (IsEmpty(c)) { return 'none'; }\nreturn Text(c, '#,##0') + '% of the footprint\\'s 0.5 m cells have lidar roof points';",
+      "expression": "var c = $feature.ROOF_COV_PCT;\nif (IsEmpty(c)) { return 'none'; }\nreturn Text(c, '#,##0') + '% of the footprint\\'s roughly 1.6 ft grid cells have lidar roof points';",
       "returnType": "string"
      },
      {
@@ -195,7 +198,7 @@
      {
       "name": "area",
       "title": "Footprint",
-      "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\nreturn Text(a, '#,##0') + ' m² (' + Text(a * 10.7639, '#,##0') + ' ft²)';",
+      "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\nreturn Text(a / (0.3048 * 0.3048), '#,##0') + ' sq ft';",
       "returnType": "string"
      }
     ],

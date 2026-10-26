@@ -27,6 +27,7 @@ HERE = Path(__file__).resolve()
 CREATED = HERE.parent/"created.json"
 sys.path.insert(0, str(HERE.parents[1]/"agol-styling"))
 from build_definitions import CREDITS, CREDITS_BUILDINGS, SNIPPET_END, TAGS as HOUSE_TAGS, terms  # noqa: E402
+from reader_context import context
 PORTAL = "https://www.arcgis.com/sharing/rest"
 FOLDER = "Millcreek LiDAR 2023"
 TAGS = HOUSE_TAGS + ["app"]
@@ -39,18 +40,21 @@ WARNING = ("<p><strong>Planning estimates.</strong> Everything here comes from t
 
 APPS = {
     "terrain": {
+        "context": "terrain",
         "template": "3dviewer", "map": "71b680b486b245fd8ec17eb80387be94", "title": "Millcreek Terrain and Slope in 3D",
-        "what": "Slope in six classes and 2 m contours draped on Millcreek's 0.5 m lidar terrain, from the valley floor to "
+        "what": "Slope classes and contours at 6.56 ft intervals on Millcreek's lidar terrain, from the valley floor to "
                 "the east bench. Use the slides for the hillside neighbourhoods, or drag to look around.",
         "tags": ["slope", "terrain", "contours", "hillshade", "3D"]},
     "canopy": {
+        "context": "canopy",
         "template": "sidebar", "map": "e5efa719691045849108553394448f35", "title": "Millcreek Tree Canopy",
         "what": "Tree canopy cover by ownership zone (25.59% of the city), estimated tree crowns and lidar treetops by "
                 "height. Crowns and treetops appear as you zoom in. Treetops are lidar detections, not a tree census.",
         "tags": ["tree canopy", "urban forest", "trees"]},
     "in3d": {
+        "context": "in3d",
         "template": "3dviewer", "map": "5b5bdf4a63c9466fad5884039aa7357f", "title": "Millcreek Buildings in 3D",
-        "what": "Millcreek's buildings with modelled lidar roof forms, shaded by median roof height on the city's lidar "
+        "what": "Millcreek's buildings with modelled lidar roof forms and measurements in feet, on the city's lidar "
                 "terrain. Select a building for its model source, heights and available roof measurements. "
                 "Use the slides for a tour, or drag to look around.",
         "tags": ["buildings", "building height", "3D"], "buildings": True},
@@ -61,13 +65,15 @@ RETIRED = {"buildings": "370a1f38728545e4a0c57d29386143f4", "landing": "8d43f724
 
 def splash(spec):
     return (f"<p>{spec['what']}</p>" + WARNING +
-            "<p>More about the data, how it was made and its limits is in each layer's description.</p>")
+            context(spec['context']))
 
 
 def values(spec):
     common = {"splash": True, "splashTitle": spec["title"], "splashContent": splash(spec), "splashButtonText": "Open",
               "theme": "light", "home": True, "fullScreen": True, "share": True, "measure": True, "legend": True,
-              "search": True, "popupHover": False}
+              "search": True, "popupHover": False, "units": "imperial", "info": True,
+              "measureLinearUnit": "feet", "measureAreaUnit": "square-feet",
+              "detailsOpenAtStart": False, "detailsContent": splash(spec)}
     if spec["template"] == "sidebar":
         return {**common, "webmap": spec["map"], "title": spec["title"], "header": True, "titleLink": "",
                 "splashOnStart": True, "legendOpenAtStart": True, "searchOpenAtStart": False, "mapZoom": True,
@@ -75,14 +81,16 @@ def values(spec):
                 "keyboardShortcuts": True, "applyCustomTheme": False, "fullAppSettings": False,
                 "mapA11yDesc": f"{spec['title']}: {spec['what']}"}
     return {**common, "type": "webscene", "webscene": spec["map"], "slides": True, "layerList": True,
-            "layerListOpenAtStart": False, "daylight": True, "daylightOpenAtStart": False, "elevationProfile": False,
-            "lineOfSight": False, "slice": False, "info": False, "customHeader": False, "applySharedTheme": False,
+            "layerListOpenAtStart": False, "daylight": True, "daylightOpenAtStart": False,
+            "elevationProfile": spec['context'] == 'terrain', "elevationProfileUnits": "imperial",
+            "elevationProfileOpenAtStart": False,
+            "lineOfSight": False, "slice": False, "customHeader": False, "applySharedTheme": False,
             "exportToPDF": False, "fullAppSettings": False}
 
 
 def description(spec):
     kind = "web map" if spec["template"] == "sidebar" else "web scene"
-    return (WARNING + f"<p>{spec['what']}</p>" +
+    return (WARNING + f"<p>{spec['what']}</p>" + context(spec['context']) +
             # rel as ArcGIS Online stores it, so the read-back compares equal
             f"<p>Built on the {kind} <a href='https://www.arcgis.com/home/item.html?id={spec['map']}' "
             f"rel='nofollow ugc'>{spec['map']}</a>; "

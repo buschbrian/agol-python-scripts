@@ -3,11 +3,14 @@
   "type": "classBreaks",
   "field": "HEIGHT_P50_M",
   "classificationMethod": "esriClassifyManual",
+  "legendOptions": {
+   "title": "Median roof height above ground (feet)"
+  },
   "minValue": 0,
   "classBreakInfos": [
    {
     "classMaxValue": 4,
-    "label": "Under 4 m (13 ft)",
+    "label": "Up to 13.1 ft",
     "symbol": {
      "type": "esriSFS",
      "style": "esriSFSSolid",
@@ -32,7 +35,7 @@
    },
    {
     "classMaxValue": 6,
-    "label": "4 to 6 m (13 to 20 ft)",
+    "label": "13.1 to 19.7 ft",
     "symbol": {
      "type": "esriSFS",
      "style": "esriSFSSolid",
@@ -57,7 +60,7 @@
    },
    {
     "classMaxValue": 9,
-    "label": "6 to 9 m (20 to 30 ft)",
+    "label": "19.7 to 29.5 ft",
     "symbol": {
      "type": "esriSFS",
      "style": "esriSFSSolid",
@@ -82,7 +85,7 @@
    },
    {
     "classMaxValue": 12,
-    "label": "9 to 12 m (30 to 39 ft)",
+    "label": "29.5 to 39.4 ft",
     "symbol": {
      "type": "esriSFS",
      "style": "esriSFSSolid",
@@ -107,7 +110,7 @@
    },
    {
     "classMaxValue": 60,
-    "label": "12 m (39 ft) and over",
+    "label": "Over 39.4 ft",
     "symbol": {
      "type": "esriSFS",
      "style": "esriSFSSolid",
