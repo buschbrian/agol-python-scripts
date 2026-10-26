@@ -56,6 +56,10 @@ def model_id(point):
     return str(uuid.uuid5(uuid.NAMESPACE_URL,'millcreek-cftree-v1:6341:'+':'.join(f'{float(v):.3f}' for v in point)))
 
 
+def can_start(active,workers,available,free_disk,min_available,min_disk):
+    return active<workers and available>=min_available and free_disk>=min_disk
+
+
 def prepare(a):
     sys.path.insert(0,a.python_deps)
     import laspy
@@ -265,7 +269,8 @@ def progress(c,phase):
                completed=sum(v['state'] in ('complete','complete_with_rejections') for v in statuses.values()),
                failed=sum(v['state']=='failed' for v in statuses.values()),models=sum(v.get('models',0) for v in statuses.values()),
                rejected=sum(v.get('rejected',0) for v in statuses.values()),tile_status=statuses,run_dir=str(run),
-               metrics_mode='geometry',halo_m=c['halo_m'],publication='local draft; seam reconciliation and review pending')
+               metrics_mode='geometry',halo_m=c['halo_m'],execution=c.get('execution'),
+               publication='local draft; seam reconciliation and review pending')
     atomic(run/'job.json',value); atomic(Path(c['outputs'])/'cftree-city-progress.json',value)
 
 
@@ -279,6 +284,16 @@ def run(a):
         if psutil.pid_exists(old['pid']): raise RuntimeError('Run is already active')
         lock.unlink()
     with lock.open('x') as stream: json.dump(dict(pid=os.getpid(),started_utc=now()),stream)
+    awake=False
+    if a.keep_awake:
+        import ctypes
+        awake=bool(ctypes.windll.kernel32.SetThreadExecutionState(0x80000001))
+        if not awake:
+            lock.unlink()
+            raise OSError('Could not keep the system awake for the overnight run')
+    c['execution']=dict(workers=a.workers,keep_awake=awake,pid=os.getpid(),started_utc=now(),
+        config_hash=c['config_hash'],driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+    atomic(a.run_dir/'execution.json',c['execution'])
     tiles=c['tiles']; byid={t['id']:t for t in tiles}
     for t in tiles: t['neighbors']=tile_neighbors(t,tiles,c['halo_m'])
     # Pilot neighborhood and neighbors first; then every remaining LAS tile exactly once.
@@ -294,8 +309,9 @@ def run(a):
             del futures[fut]
     def schedule(pool):
         reap()
-        if futures: return
-        if psutil.virtual_memory().available<c['minimum_available_gb']*1e9: return
+        if not can_start(len(futures),a.workers,psutil.virtual_memory().available,
+                         shutil.disk_usage(a.run_dir).free,c['minimum_available_gb']*1e9,
+                         c['minimum_disk_gb']*1e9): return
         for t in ordered:
             if t['id'] in submitted: continue
             status=a.run_dir/'tiles'/t['id']/'status.json'
@@ -304,10 +320,13 @@ def run(a):
             if all((a.run_dir/'staged'/(n+'.json')).exists() for n in t['neighbors']):
                 futures[pool.submit(process_tile,c,t)]=t; submitted.add(t['id']); break
     try:
-        with ProcessPoolExecutor(max_workers=1) as pool:
+        with ProcessPoolExecutor(max_workers=a.workers) as pool:
             for t in ordered:
+                stage_done=a.run_dir/'staged'/(t['id']+'.json')
+                if stage_done.exists():
+                    stage(c,t); schedule(pool); continue
                 while psutil.virtual_memory().available<4e9 or shutil.disk_usage(a.run_dir).free<c['minimum_disk_gb']*1e9:
-                    progress(c,'waiting_for_resources'); time.sleep(15)
+                    reap(); progress(c,'waiting_for_resources'); time.sleep(15)
                 progress(c,'staging '+t['id']); stage(c,t); schedule(pool)
             while len(submitted)<61 or futures:
                 schedule(pool); progress(c,'processing'); time.sleep(10)
@@ -318,6 +337,9 @@ def run(a):
         atomic(a.run_dir/'job.json',record); atomic(Path(c['outputs'])/'cftree-city-progress.json',record)
         raise
     finally:
+        if awake:
+            import ctypes
+            ctypes.windll.kernel32.SetThreadExecutionState(0x80000000)
         lock.unlink(missing_ok=True)
 
 
@@ -330,5 +352,8 @@ if __name__=='__main__':
     p.add_argument('--points')
     p.add_argument('--terrain')
     p.add_argument('--outputs')
+    p.add_argument('--workers',type=int,choices=range(1,5),default=1,
+                   help='Concurrent tiles; input/method configuration and checkpoints remain unchanged')
+    p.add_argument('--keep-awake',action='store_true',help='Keep Windows awake for this process lifetime')
     a=p.parse_args()
     prepare(a) if a.step=='prepare' else run(a)

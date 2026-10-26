@@ -22,6 +22,15 @@ class Ownership(unittest.TestCase):
         self.assertEqual(city.tile_neighbors(a,[a,b,d],100),['a','b'])
 
 
+class Scheduling(unittest.TestCase):
+    def test_additional_worker_requires_slot_ram_and_disk(self):
+        self.assertTrue(city.can_start(1,2,8,20,7,15))
+        self.assertFalse(city.can_start(2,2,8,20,7,15))
+        self.assertFalse(city.can_start(1,2,6,20,7,15))
+        self.assertFalse(city.can_start(1,2,8,14,7,15))
+        self.assertTrue(city.can_start(0,1,7,15,7,15))
+
+
 class Staging(unittest.TestCase):
     def test_class_flags_ground_support_and_immutable_source(self):
         import laspy

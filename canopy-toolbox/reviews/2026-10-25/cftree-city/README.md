@@ -23,6 +23,16 @@ to metric crown width and inferred trunk diameter within 1e-8 m. This is a struc
 solid topology, seam, schema or field validation. The pilot separately passed the official CityJSON schema.
 The remaining tiles continue automatically; the evidence snapshot is historical, not a completion claim.
 
+At Brian's request to use the machine overnight, the job resumed at 21:42 MDT with **two concurrent
+CPU tile workers** and a process-scoped Windows keep-awake request. The frozen source/method
+configuration and all checkpoints were preserved, including 1,165 completed models in the in-progress
+tile. `execution.json` and `launch-overnight.json` record the current runtime; `handoff-complete.json`
+proves no committed rows were lost. The initial serial PID in `launch.json` is historical.
+This adaptation runs CFTree's CPU TreeSeparation/CGAL tools; it does not use CUDA. The available GPU
+does not accelerate these stages. A new worker starts only with a free worker slot, at least 7 GB
+available RAM and 15 GB free disk. The keep-awake request is released when the coordinator exits;
+it does not change Windows' saved power settings or prevent display sleep.
+
 ## Inputs and method
 
 - Immutable refined LAS: `H:\lidar\2023-salt-lake-valley\runs\refined-fractal-20261020\points`.
@@ -37,7 +47,8 @@ The remaining tiles continue automatically; the evidence snapshot is historical,
 - Highest-return core ownership is half-open at borders, with deterministic XY tie-breaking. UUID5 IDs
   derive from the highest source XYZ. This prevents duplicate ownership of an identical highest point;
   a finite margin does **not** prove identical segmentation or exact seams between tiles.
-- One heavy worker runs at a time. Scheduling requires 7 GB available RAM; staging waits for 4 GB RAM
+- The overnight run has two heavy worker slots. Scheduling requires 7 GB available RAM and 15 GB
+  free disk before each launch; staging waits for 4 GB RAM
   and 15 GB free disk. A completed tree is committed to SQLite before the next starts. Rejections retain
   the exception reason. CityJSON exports in batches of at most 250 models per compressed shard.
 
@@ -57,7 +68,8 @@ Segmentation and AlphaWrap outputs matched the pilot **byte for byte**; checksum
 hashes are retained in `evidence/`. No segmentation or reconstruction algorithm was changed. Both
 adapters are in use for subsequent tiles.
 
-Three actual Pro-runtime tests pass: border ownership/stable IDs, neighbor selection, and synthetic
+Four actual Pro-runtime tests pass: border ownership/stable IDs, neighbor selection, concurrent-worker
+RAM/disk/slot guards, and synthetic
 LAS/terrain class/flag/ground filtering with unchanged source bytes and resumable staging. Changing the
 east ownership test from `<` to `<=` in an isolated source copy caused the border test to fail as expected;
 the live worker's source was unchanged. Export verification also passed on the completed full tile.
@@ -69,7 +81,8 @@ Use Pro Python with `PYTHONNOUSERSITE=1` and `PYTHONDONTWRITEBYTECODE=1`. Resume
 ```powershell
 & 'C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe' `
   'C:\Users\Brian\Documents\Codex\2026-10-24\go-x20\work\lidar-wrapup\canopy-toolbox\reviews\2026-10-25\cftree-city\run_city.py' `
-  run --run-dir 'C:\Users\Brian\Documents\Codex\2026-10-24\go-x20\work\cftree-city-20261025'
+  run --run-dir 'C:\Users\Brian\Documents\Codex\2026-10-24\go-x20\work\cftree-city-20261025' `
+  --workers 2 --keep-awake
 ```
 
 The coordinator skips completed tiles, reuses segmentation, and skips already checkpointed models.
