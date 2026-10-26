@@ -6,6 +6,7 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 
 ## Routing
 
+- October 25 feet/square-feet pop-ups, CSV and app context: reviews/2026-10-25/feet-context/README.md. CFTree is Brian's selected citywide workflow: reviews/2026-10-25/cftree-pilot/README.md and the active all-61-tile run in reviews/2026-10-25/cftree-city/README.md. Remaining examples have separate assistant assessments in reviews/2026-10-25/assistant-review/README.md; these are not human labels or training imports.
 - October 25 public three-way roof-form release, verification and rollback: reviews/2026-10-25/buildings-release/README.md. Brian approved public ArcGIS and Azure downloads; the existing public scene now uses v2. Earlier branch reconciliation: reviews/2026-10-23/WRAPUP-2026-10-25.md.
 
 - Grid, bands, ownership: canopy/bands.py, canopy/tiling.py and pure tests.
