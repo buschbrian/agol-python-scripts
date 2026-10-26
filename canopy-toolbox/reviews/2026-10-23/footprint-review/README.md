@@ -51,7 +51,7 @@ back over answers.
 | **Possible new buildings** | 208 | by hint number | 1 NEW_BUILDING (in the imagery, not in the 2023 LiDAR), 2 NO_BUILDING, 3 UNSURE |
 | **Offset or rebuilt (county + LiDAR)** | 458 | county roof under 10% (60), 10-50% (94), 50-80% (304); weakest roof first | What the red LiDAR piece is: 1 OFFSET (the same building; the county outline is off or the wrong shape), 2 PART_OF_EXISTING (an addition, porch or carport of it), 3 BOTH_REAL (a separate building), 4 REBUILT (its replacement; the county building is gone), 5 NOT_A_BUILDING (RV, trailer, vehicle or tree), 6 UNSURE |
 | **3D buildings without a detailed roof** (October 26) | 726 | LOD2.0 roof (633), LOD1.2 block (92), no model (1) | 1 SIMPLE_OK, 2 NEEDS_ROOF, 3 GONE, 4 OUTLINE_WRONG, 5 UNDER_TREES, 6 UNSURE |
-| **Tree models (CFTree)** (October 26) | 900 | sample (300), many treetops inside (300), trunk inside a county footprint (300) | 1 ONE_TREE, 2 MERGED, 3 PART_OF_TREE, 4 NOT_A_TREE, 5 SHAPE_WRONG, 6 UNSURE |
+| **Tree models (CFTree)** (October 26) | 900 | sample (300), many treetops inside (300), trunk inside a county footprint (300) | 1 ONE_TREE, 2 MERGED, 3 PART_OF_TREE, 4 NOT_A_TREE, 5 SHAPE_WRONG, 6 SHRUBS, 7 BRUSH, 8 TREE_WITH_ROOF, 9 UNSURE |
 | **Tree models at tile seams** (October 26) | 235 | one item per overlapping pair | 1 SAME_TREE, 2 SPLIT_TREE, 3 SEPARATE_TREES, 4 NOT_A_TREE, 5 UNSURE |
 | **Trees CFTree could not model** (October 26) | 75 | no terrain beneath (38), no valid trunk (37) | 1 MISSED_TREE, 2 NOT_A_TREE, 3 UNSURE |
 

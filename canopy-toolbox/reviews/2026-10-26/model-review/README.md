@@ -25,7 +25,7 @@ Sizes from `queues.py` (all 22,042 County footprints, all 119,410 CFTree models,
 | Queue | Items | What it asks | Answers (key order) |
 |---|---:|---|---|
 | **3D buildings without a detailed roof** | 726 | The three-way hybrid used a fallback here. What is there? | SIMPLE_OK, NEEDS_ROOF, GONE, OUTLINE_WRONG, UNDER_TREES, UNSURE |
-| **Tree models (CFTree)** | 900 | Is the red model one tree? | ONE_TREE, MERGED, PART_OF_TREE, NOT_A_TREE, SHAPE_WRONG, UNSURE |
+| **Tree models (CFTree)** | 900 | Is the red model one tree? | ONE_TREE, MERGED, PART_OF_TREE, NOT_A_TREE, SHAPE_WRONG, SHRUBS, BRUSH, TREE_WITH_ROOF, UNSURE |
 | **Tree models at tile seams** | 235 | Red and magenta come from neighbouring tiles and overlap. What are they? | SAME_TREE, SPLIT_TREE, SEPARATE_TREES, NOT_A_TREE, UNSURE |
 | **Trees CFTree could not model** | 75 | Is there a tree here? | MISSED_TREE, NOT_A_TREE, UNSURE |
 
@@ -54,6 +54,12 @@ so the queue has 235 items covering all 404 models.
 
 **Rejects.** These are all 75 exclusions: 38 with no terrain beneath and 37 with no valid trunk. The dot is the segment's
 highest return, and the side view shows its points.
+
+**Answers added after the first sitting** (October 26). Brian found models built from several shrubs, low or dead
+trees mixed in beside live ones, and trees that take in part of a roof. Three answers were added: 6 SHRUBS (low shrubs
+or a hedge), 7 BRUSH (brush or a scrub thicket taken as one tree) and 8 TREE_WITH_ROOF. UNSURE moved from 6 to 9; he
+had not used it. Low or dead trees beside live ones count as MERGED. His two earlier NOT_A_TREE answers predate the
+new options and may be worth a second look.
 
 ## How long it should take
 
@@ -102,6 +108,8 @@ Codex's draft review layer (`gis-review/review_rules.py`) had longer decision co
 | PART_OF_TREE, SAME_TREE, SPLIT_TREE | split_duplicate |
 | NOT_A_TREE | not_tree |
 | SHAPE_WRONG | geometry_issue |
+| SHRUBS, BRUSH | not_tree (a shrub or brush class would need adding) |
+| TREE_WITH_ROOF | geometry_issue, with a note |
 | MISSED_TREE | tree_reprocess |
 
 ## Files and reproduction
