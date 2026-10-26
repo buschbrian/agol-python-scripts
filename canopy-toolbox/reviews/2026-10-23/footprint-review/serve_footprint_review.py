@@ -34,6 +34,12 @@ ANSWERS = {
     "newbuild": ("NEW_BUILDING", "NO_BUILDING", "UNSURE"),
     # October 23: what the red LiDAR piece is, beside the magenta county outline (codes of the first version kept)
     "pairs": ("OFFSET", "PART_OF_EXISTING", "BOTH_REAL", "REBUILT", "NOT_A_BUILDING", "UNSURE"),
+    # October 26 (reviews/2026-10-26/model-review): footprints the 3D buildings modelled without a roofer LoD2.2 roof,
+    # and the CFTree tree models
+    "models": ("SIMPLE_OK", "NEEDS_ROOF", "GONE", "OUTLINE_WRONG", "UNDER_TREES", "UNSURE"),
+    "trees": ("ONE_TREE", "MERGED", "PART_OF_TREE", "NOT_A_TREE", "SHAPE_WRONG", "UNSURE"),
+    "tree_seams": ("SAME_TREE", "SPLIT_TREE", "SEPARATE_TREES", "NOT_A_TREE", "UNSURE"),
+    "tree_rejects": ("MISSED_TREE", "NOT_A_TREE", "UNSURE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")
 REPO_BACKUP = HERE/"answers"/"footprint-review-answers.csv"

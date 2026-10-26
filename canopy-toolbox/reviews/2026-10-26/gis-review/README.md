@@ -1,5 +1,9 @@
 # Roof and tree review — October 26, 2026
 
+**Superseded later on October 26:** Brian chose to review these in the local footprint review page instead of a hosted
+layer: [model-review](../model-review/README.md). The upload and configuration scripts below were never run. Keep them
+only if a hosted review layer is wanted later.
+
 Brian requested reviewable GIS layers after observing that some old County footprints and fallback blocks may represent buildings absent from the LiDAR survey. A missing Roofer reconstruction is an evidence gap, never an automatic demolition finding. He did not recall a specific address, so the queue starts with citywide mismatches.
 
 ## Stopped for drive transfer

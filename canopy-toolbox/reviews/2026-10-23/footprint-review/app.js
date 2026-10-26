@@ -40,13 +40,60 @@ const QUEUES = {
       ["UNSURE", "Unsure"],
     ],
   },
+  models: {
+    question: "The 3D buildings modelled this county footprint without a detailed (roofer LoD 2.2) roof. What is there?",
+    answers: [
+      ["SIMPLE_OK", "Building there; the simple block or roof is good enough"],
+      ["NEEDS_ROOF", "Building there; its roof deserves a better model"],
+      ["GONE", "Gone: no building in the 2023 LiDAR (demolished or never built)"],
+      ["OUTLINE_WRONG", "Building there, but the county outline is off or the wrong shape"],
+      ["UNDER_TREES", "Building there, hidden under trees"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
+  trees: {
+    question: "Red is one CFTree tree model (crown outline; the dot is its inferred trunk). Is it one tree?",
+    others: "other tree models",
+    answers: [
+      ["ONE_TREE", "One tree, and the model fits it"],
+      ["MERGED", "Several trees merged into one model"],
+      ["PART_OF_TREE", "Only part of a tree (the rest is another model)"],
+      ["NOT_A_TREE", "Not a tree: roof, wire, pole or other"],
+      ["SHAPE_WRONG", "A tree, but the crown or trunk is badly off"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
+  tree_seams: {
+    question: "Red and magenta are models from two neighbouring processing tiles that overlap. What are they?",
+    others: "other tree models", focus: "the other tile's model",
+    answers: [
+      ["SAME_TREE", "The same whole tree twice: keep one"],
+      ["SPLIT_TREE", "One tree cut in two at the tile edge"],
+      ["SEPARATE_TREES", "Two separate trees"],
+      ["NOT_A_TREE", "Not a tree (either one)"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
+  tree_rejects: {
+    question: "CFTree could not build a model here (the dot is the segment's highest return). Is there a tree?",
+    others: "tree models",
+    answers: [
+      ["MISSED_TREE", "A tree the models are missing"],
+      ["NOT_A_TREE", "Not a tree, or already covered by a neighbouring model"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
 };
 const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attached: "Against a county building (other)",
                       attached_sample: "Sample: answer these first", attached_eyes: "Needs eyes (80 m² or more, or doubtful county building)",
                       attached_lower: "Lower roof against a county building", attached_same_roof: "Corner or edge of a county roof",
                       explained_by_alignment: "Explained by realigning the county outline",
                       low_roof: "No 2023 roof", hint: "Hint", under_10: "County roof under 10%",
-                      "10_50": "County roof 10-50%", "50_80": "County roof 50-80%" };
+                      "10_50": "County roof 10-50%", "50_80": "County roof 50-80%",
+                      no_model: "No 3D model at all", lod12: "LOD1.2 block fallback", lod20: "LOD2.0 roof fallback",
+                      sample: "Sample: answer these first", merged: "Many treetops inside (merged?)",
+                      over_roof: "Trunk inside a county footprint", seam: "Tile seam", no_terrain: "No terrain beneath",
+                      no_trunk: "No valid trunk" };
 
 const $ = (id) => document.getElementById(id);
 let index = null, byId = {}, answers = {}, list = [], pos = 0, current = null, map = null, layers = null, homeView = null;
@@ -138,6 +185,10 @@ function drawChip(d) {
     svgPoly(d.county_px, "county") + svgPoly(d.cand_px, "cand") + svgPoly(d.hint_px || [], "hint") +
     svgPoly(d.focus_px || [], "focus") + svgPoly(d.outline_px, "item");
   $("chip-metres").textContent = `${Math.round(d.chip.metres)} m across`;
+  $("legend-others").textContent = QUEUES[d.queue].others || "other candidates";
+  $("legend-focus").textContent = QUEUES[d.queue].focus || "county outline in question";
+  $("profile-wrap").hidden = !d.profile;
+  if (d.profile) $("profile").src = d.profile; else $("profile").removeAttribute("src");
 }
 
 function drawSide(d) {

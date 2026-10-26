@@ -16,6 +16,10 @@
       <option value="county">County footprints with no 2023 roof</option>
       <option value="newbuild">Possible new buildings</option>
       <option value="pairs">Offset or rebuilt (county + LiDAR)</option>
+      <option value="models">3D buildings without a detailed roof</option>
+      <option value="trees">Tree models (CFTree)</option>
+      <option value="tree_seams">Tree models at tile seams</option>
+      <option value="tree_rejects">Trees CFTree could not model</option>
     </select></label>
     <label>Group <select id="group"><option value="">All</option></select></label>
     <label>Show <select id="show">
@@ -39,8 +43,14 @@
       <figcaption>2023 LiDAR (Oct–Nov): roof by height, trees green, ground grey · <span id="chip-metres"></span></figcaption>
       <div class="chip-wrap"><img id="chip" alt="LiDAR view of the same area"><svg id="chip-svg"></svg></div>
       <div class="legend"><span class="sw roof-lo"></span>roof 0 m <span class="sw roof-mid"></span>6 m <span class="sw roof-hi"></span>12 m+
-        <span class="sw tree"></span>tree ≥ 2 m <span class="sw line-item"></span>this item <span class="sw line-focus"></span>county outline in question <span class="sw line-county"></span>county
-        <span class="sw line-cand"></span>other candidates <span class="sw outside"></span>outside the city</div>
+        <span class="sw tree"></span>tree ≥ 2 m <span class="sw line-item"></span>this item <span class="sw line-focus"></span><span id="legend-focus">county outline in question</span> <span class="sw line-county"></span>county
+        <span class="sw line-cand"></span><span id="legend-others">other candidates</span> <span class="sw outside"></span>outside the city</div>
+      <div id="profile-wrap" hidden>
+        <img id="profile" alt="Side views of the tree's LiDAR points">
+        <div class="legend">Side views, looking north (left) and looking west (right): <span class="sw line-item"></span>this model's
+          points <span class="sw line-focus"></span>the other model <span class="sw context"></span>other vegetation · outline is the
+          model's crown silhouette · ground line from the terrain</div>
+      </div>
     </figure>
   </section>
   <aside>
