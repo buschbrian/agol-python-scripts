@@ -29,6 +29,8 @@ const QUEUES = {
       ["BOTH_REAL", "A separate building: both are real"],
       ["REBUILT", "Its replacement: the county building is gone"],
       ["NOT_A_BUILDING", "Not a building: RV, trailer, vehicle or tree"],
+      ["REBUILT_MERGE", "Its replacement, and the red pieces are one building: merge them"],
+      ["NEEDS_EDIT", "Several problems at once: needs hand editing (say what in a note)"],
       ["UNSURE", "Unsure"],
     ],
   },
@@ -103,6 +105,15 @@ let index = null, byId = {}, answers = {}, list = [], pos = 0, current = null, m
 const cache = new Map();   // bundle file -> promise of {item id: detail}
 
 function store(key, value) { try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); } catch (e) { return null; } }
+
+// Notes typed but not yet saved with an answer, by item id. Kept when the page moves on or reloads (October 26: notes
+// typed before answering, or before moving to another item, used to be wiped when the next item was drawn).
+let drafts = {};
+try { drafts = JSON.parse(store("footprint-review-drafts") || "{}") || {}; } catch (e) { drafts = {}; }
+function keepDraft(id, text) {
+  if (text && text.trim()) drafts[id] = text; else delete drafts[id];
+  store("footprint-review-drafts", JSON.stringify(drafts));
+}
 
 function status(text, error) { const s = $("status"); s.textContent = text || ""; s.className = error ? "error" : ""; }
 
@@ -207,8 +218,10 @@ function drawSide(d) {
   $("answers").innerHTML = q.answers.map(([code, text], i) =>
     `<button data-code="${code}" class="${a && a.ANSWER === code ? "chosen" : ""}"><kbd>${i + 1}</kbd> ${text}</button>`).join("");
   for (const b of $("answers").querySelectorAll("button")) b.onclick = () => save(b.dataset.code);
-  $("note").value = a ? a.NOTE || "" : "";
-  status(a ? `Answered ${a.ANSWER} by ${a.REVIEWER} on ${a.REVIEW_DATE}` : "");
+  const draft = drafts[d.id];
+  $("note").value = draft !== undefined ? draft : (a ? a.NOTE || "" : "");
+  status(draft !== undefined ? `Unsaved note on ${d.id}: ${a ? "press Enter in the note, or an answer key," : "press an answer key"} to save it.`
+    : a ? `Answered ${a.ANSWER} by ${a.REVIEWER} on ${a.REVIEW_DATE}` : "");
 }
 
 async function show(i) {
@@ -242,6 +255,7 @@ async function save(code) {
     if (!r.ok) { status(out.error || `Error ${r.status}`, true); return; }
     if (out.saved) answers[current.id] = out.saved; else delete answers[current.id];
     const id = current.id;
+    keepDraft(id, "");
     if (code && $("auto-advance").checked) {
       const was = pos;
       buildList();
@@ -286,7 +300,7 @@ function keys(e) {
       e.preventDefault();
       const a = current && answers[current.id];
       if (a) { $("auto-advance").checked = false; save(a.ANSWER).then(() => { $("auto-advance").checked = true; }); }
-      else status("Choose an answer with a number key; the note is saved with it.", true);
+      else { $("note").blur(); status("Note kept. Now press an answer key; the note is saved with the answer."); }
     }
     return;
   }
@@ -323,6 +337,7 @@ async function start() {
   $("prev").onclick = () => show(pos - 1); $("next").onclick = () => show(pos + 1);
   $("clear").onclick = () => save(""); $("reset").onclick = () => homeView && map.setView(homeView[0], homeView[1]);
   document.addEventListener("keydown", keys);
+  $("note").addEventListener("input", () => { if (current) keepDraft(current.id, $("note").value); });
   reload();
 }
 

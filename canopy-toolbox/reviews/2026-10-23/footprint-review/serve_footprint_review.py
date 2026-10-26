@@ -33,7 +33,9 @@ ANSWERS = {
     "county": ("DEMOLISHED", "STILL_THERE", "MISPLACED", "UNSURE"),
     "newbuild": ("NEW_BUILDING", "NO_BUILDING", "UNSURE"),
     # October 23: what the red LiDAR piece is, beside the magenta county outline (codes of the first version kept)
-    "pairs": ("OFFSET", "PART_OF_EXISTING", "BOTH_REAL", "REBUILT", "NOT_A_BUILDING", "UNSURE"),
+    # October 26: two answers for the compound cases Brian met (UNSURE moved from 6 to 8; he had not used it here)
+    "pairs": ("OFFSET", "PART_OF_EXISTING", "BOTH_REAL", "REBUILT", "NOT_A_BUILDING", "REBUILT_MERGE", "NEEDS_EDIT",
+              "UNSURE"),
     # October 26 (reviews/2026-10-26/model-review): footprints the 3D buildings modelled without a roofer LoD2.2 roof,
     # and the CFTree tree models
     "models": ("SIMPLE_OK", "NEEDS_ROOF", "GONE", "OUTLINE_WRONG", "UNDER_TREES", "UNSURE"),

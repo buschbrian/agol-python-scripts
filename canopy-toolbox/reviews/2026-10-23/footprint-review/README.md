@@ -49,7 +49,7 @@ back over answers.
 | **LiDAR candidates** ([footprint-candidates](../footprint-candidates/README.md)) | 6,213 | large and tall (252), detached (2,286), against a county building (other, 1,883), lower roof against a county building (1,386), corner or edge of a county roof (406); north to south within each | 1 ACCEPT (a separate building), 2 PART_OF_EXISTING (an addition, porch or eave strip of the neighbouring county footprint), 3 VEHICLE (not a building: RV, trailer or vehicle), 4 REJECT (not a building: tree or other), 5 UNSURE |
 | **County footprints with no 2023 roof** | 586 | by county ID | 1 DEMOLISHED, 2 STILL_THERE (under trees or too small to see), 3 MISPLACED, 4 UNSURE |
 | **Possible new buildings** | 208 | by hint number | 1 NEW_BUILDING (in the imagery, not in the 2023 LiDAR), 2 NO_BUILDING, 3 UNSURE |
-| **Offset or rebuilt (county + LiDAR)** | 458 | county roof under 10% (60), 10-50% (94), 50-80% (304); weakest roof first | What the red LiDAR piece is: 1 OFFSET (the same building; the county outline is off or the wrong shape), 2 PART_OF_EXISTING (an addition, porch or carport of it), 3 BOTH_REAL (a separate building), 4 REBUILT (its replacement; the county building is gone), 5 NOT_A_BUILDING (RV, trailer, vehicle or tree), 6 UNSURE |
+| **Offset or rebuilt (county + LiDAR)** | 458 | county roof under 10% (60), 10-50% (94), 50-80% (304); weakest roof first | What the red LiDAR piece is: 1 OFFSET (the same building; the county outline is off or the wrong shape), 2 PART_OF_EXISTING (an addition, porch or carport of it), 3 BOTH_REAL (a separate building), 4 REBUILT (its replacement; the county building is gone), 5 NOT_A_BUILDING (RV, trailer, vehicle or tree), 6 REBUILT_MERGE (its replacement, and the red pieces are one building), 7 NEEDS_EDIT (several problems; say what in a note), 8 UNSURE |
 | **3D buildings without a detailed roof** (October 26) | 726 | LOD2.0 roof (633), LOD1.2 block (92), no model (1) | 1 SIMPLE_OK, 2 NEEDS_ROOF, 3 GONE, 4 OUTLINE_WRONG, 5 UNDER_TREES, 6 UNSURE |
 | **Tree models (CFTree)** (October 26) | 900 | sample (300), many treetops inside (300), trunk inside a county footprint (300) | 1 ONE_TREE, 2 MERGED, 3 PART_OF_TREE, 4 NOT_A_TREE, 5 SHAPE_WRONG, 6 SHRUBS, 7 BRUSH, 8 TREE_WITH_ROOF, 9 UNSURE |
 | **Tree models at tile seams** (October 26) | 235 | one item per overlapping pair | 1 SAME_TREE, 2 SPLIT_TREE, 3 SEPARATE_TREES, 4 NOT_A_TREE, 5 UNSURE |
@@ -154,6 +154,14 @@ The four October 26 queues, their side views of each tree and how they were chos
   Among Brian's first 23 answers, LC00292 (PART_OF_EXISTING) is one: a 197 m² LiDAR building wrapped around a 65 m²
   county outline with 25% roof. Added with `footprint_review.bat add-pairs`, which writes new bundle files (p0001…) and
   appends to the index without touching other items or answers; restart `serve` afterwards.
+
+- **Compound pairs and lost notes** (October 26). Brian met pairs with several problems at once: the county building
+  gone and the red pieces really one building, or more needing hand edits. Two answers were added: 6 REBUILT_MERGE
+  (its replacement, and the red pieces are one building) and 7 NEEDS_EDIT (several problems; say what in a note).
+  UNSURE moved from 6 to 8; he had not used it in this queue. His first notes of the day never reached the server: the
+  note box was wiped whenever the page moved to another item, so a note typed before answering, or before moving on,
+  was lost. A typed note is now kept per item (in the browser) until it is saved with an answer, and Enter in the note
+  on an unanswered item keeps it and asks for the answer key.
 
 ## How long it should take
 From Brian's own pace on the label page (968 answers: median 4 s per answer, about 6 s on average including short pauses),
