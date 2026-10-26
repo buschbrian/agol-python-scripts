@@ -10,6 +10,7 @@ const QUEUES = {
       ["VEHICLE", "Not a building: RV, trailer or vehicle"],
       ["REJECT", "Not a building: tree or other"],
       ["UNSURE", "Unsure"],
+      ["LIDAR_RIGHT", "The LiDAR is right: redraw the county footprint(s) from the LiDAR outline"],
     ],
   },
   county: {
@@ -19,6 +20,7 @@ const QUEUES = {
       ["STILL_THERE", "Still there: under trees or too small for the LiDAR"],
       ["MISPLACED", "Misplaced: the building is there, the outline is off"],
       ["UNSURE", "Unsure"],
+      ["LIDAR_RIGHT", "The LiDAR is right: drop or redraw this county footprint from the LiDAR"],
     ],
   },
   pairs: {
@@ -41,6 +43,7 @@ const QUEUES = {
       ["NEW_BUILDING", "New building: in the imagery, not in the 2023 LiDAR"],
       ["NO_BUILDING", "No building here"],
       ["UNSURE", "Unsure"],
+      ["LIDAR_RIGHT", "The LiDAR is right: the hint is wrong, nothing to add"],
     ],
   },
   models: {
@@ -54,6 +57,7 @@ const QUEUES = {
       ["CONSTRUCTION", "Under construction in 2023, or rebuilt since: the footprint is out of date"],
       ["NEEDS_EDIT", "Several problems: e.g. old footprints demolished and the new one wrong (say what in a note)"],
       ["UNSURE", "Unsure"],
+      ["LIDAR_RIGHT", "The LiDAR is right: redraw the county footprint(s) from the LiDAR outline"],
     ],
   },
   trees: {
@@ -119,6 +123,24 @@ function keepDraft(id, text) {
   if (text && text.trim()) drafts[id] = text; else delete drafts[id];
   store("footprint-review-drafts", JSON.stringify(drafts));
 }
+// An item counts as answered only with an ANSWER; a note-only row (an empty ANSWER) is still open.
+const done = (id) => !!(answers[id] && answers[id].ANSWER);
+
+// Send an unsent note when the page leaves its item, keeping the item's answer (or none: a note-only row).
+async function flushNote(d) {
+  if (!d || drafts[d.id] === undefined) return;
+  const reviewer = $("reviewer").value.trim().toUpperCase();
+  if (!reviewer) return;
+  const a = answers[d.id];
+  try {
+    const r = await fetch("/api/answer", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ITEM_ID: d.id, ANSWER: a ? a.ANSWER : "", NOTE: drafts[d.id], REVIEWER: reviewer }) });
+    const out = await r.json();
+    if (!r.ok) { status(out.error || `Error ${r.status}`, true); return; }
+    if (out.saved) answers[d.id] = out.saved; else delete answers[d.id];
+    keepDraft(d.id, "");
+  } catch (e) { /* kept in the browser; sent next time */ }
+}
 
 function status(text, error) { const s = $("status"); s.textContent = text || ""; s.className = error ? "error" : ""; }
 
@@ -143,7 +165,7 @@ function detail(id) {
 function buildList() {
   const q = $("queue").value, g = $("group").value, show = $("show").value;
   list = index.items.filter((it) => it.queue === q && (!g || it.group === g) &&
-    (show === "all" || (show === "open" ? !answers[it.id] : !!answers[it.id])));
+    (show === "all" || (show === "open" ? !done(it.id) : done(it.id))));
 }
 
 function refreshGroups() {
@@ -156,9 +178,9 @@ function refreshGroups() {
 }
 
 function progress() {
-  const q = $("queue").value, all = index.items.filter((it) => it.queue === q), done = all.filter((it) => answers[it.id]).length;
-  $("progress-bar").style.width = all.length ? `${(100 * done) / all.length}%` : "0";
-  $("progress-text").textContent = `${done} of ${all.length} answered in this queue`;
+  const q = $("queue").value, all = index.items.filter((it) => it.queue === q), n = all.filter((it) => done(it.id)).length;
+  $("progress-bar").style.width = all.length ? `${(100 * n) / all.length}%` : "0";
+  $("progress-text").textContent = `${n} of ${all.length} answered in this queue`;
   $("position").textContent = list.length ? `${pos + 1} / ${list.length}` : "0 / 0";
 }
 
@@ -218,15 +240,16 @@ function drawSide(d) {
   const { "Likely type (a guess)": guess, ...rest } = d.facts;
   $("guess").hidden = !guess;
   $("guess").innerHTML = guess ? `<span class="small">Likely type (a guess from size, height, roof and parcel):</span><br>${guess}` : "";
-  const earlier = (d.related || []).filter((id) => answers[id]).map((id) => [`Your answer on ${id}`, answers[id].ANSWER]);
+  const earlier = (d.related || []).filter((id) => done(id)).map((id) => [`Your answer on ${id}`, answers[id].ANSWER]);
   $("facts").innerHTML = Object.entries(rest).concat(earlier).map(([k, v]) => `<dt>${k}</dt><dd>${v ?? "—"}</dd>`).join("");
   $("answers").innerHTML = q.answers.map(([code, text], i) =>
     `<button data-code="${code}" class="${a && a.ANSWER === code ? "chosen" : ""}"><kbd>${i + 1}</kbd> ${text}</button>`).join("");
   for (const b of $("answers").querySelectorAll("button")) b.onclick = () => save(b.dataset.code);
   const draft = drafts[d.id];
   $("note").value = draft !== undefined ? draft : (a ? a.NOTE || "" : "");
-  status(draft !== undefined ? `Unsaved note on ${d.id}: ${a ? "press Enter in the note, or an answer key," : "press an answer key"} to save it.`
-    : a ? `Answered ${a.ANSWER} by ${a.REVIEWER} on ${a.REVIEW_DATE}` : "");
+  status(draft !== undefined ? `Unsent note on ${d.id}: it is sent when you answer, press Enter in the note, or move on.`
+    : a && a.ANSWER ? `Answered ${a.ANSWER} by ${a.REVIEWER} on ${a.REVIEW_DATE}`
+    : a ? `Note saved by ${a.REVIEWER} on ${a.REVIEW_DATE}, no answer yet` : "");
 }
 
 async function show(i) {
@@ -240,6 +263,7 @@ async function show(i) {
   pos = Math.max(0, Math.min(i, list.length - 1));
   progress();
   const id = list[pos].id;
+  if (current && current.id !== id) await flushNote(current);
   try {
     const d = await detail(id);
     if (list[pos] && list[pos].id !== id) return;
@@ -303,9 +327,9 @@ function keys(e) {
     if (e.key === "Escape") { $("note").blur(); e.preventDefault(); }
     else if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      const a = current && answers[current.id];
+      const a = current && done(current.id) && answers[current.id];
       if (a) { $("auto-advance").checked = false; save(a.ANSWER).then(() => { $("auto-advance").checked = true; }); }
-      else { $("note").blur(); status("Note kept. Now press an answer key; the note is saved with the answer."); }
+      else { $("note").blur(); flushNote(current).then(() => status("Note saved without an answer. Press an answer key to answer as well.")); }
     }
     return;
   }
@@ -332,6 +356,9 @@ async function start() {
   for (const it of index.items) byId[it.id] = it;
   const st = await getJSON("/api/state");
   answers = st.answers; $("csv-path").textContent = st.csv;
+  const left = Object.keys(drafts).filter((id) => byId[id]);
+  for (const id of left) await flushNote({ id });
+  if (left.length) status(`Sent ${left.length - Object.keys(drafts).filter((id) => byId[id]).length} notes left from earlier.`);
   for (const q of Object.keys(QUEUES)) if (!index.items.some((it) => it.queue === q)) $("queue").querySelector(`[value=${q}]`).disabled = true;
   const savedQueue = store("footprint-review-queue");
   if (savedQueue && index.items.some((it) => it.queue === savedQueue)) $("queue").value = savedQueue;

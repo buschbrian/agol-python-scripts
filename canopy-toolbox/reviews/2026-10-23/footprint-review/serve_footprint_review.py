@@ -29,16 +29,19 @@ import urllib.parse
 HERE = Path(__file__).resolve().parent
 STATIC = {"/": "index.html", "/index.html": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
 ANSWERS = {
-    "candidates": ("ACCEPT", "PART_OF_EXISTING", "VEHICLE", "REJECT", "UNSURE"),
-    "county": ("DEMOLISHED", "STILL_THERE", "MISPLACED", "UNSURE"),
-    "newbuild": ("NEW_BUILDING", "NO_BUILDING", "UNSURE"),
+    "candidates": ("ACCEPT", "PART_OF_EXISTING", "VEHICLE", "REJECT", "UNSURE", "LIDAR_RIGHT"),
+    "county": ("DEMOLISHED", "STILL_THERE", "MISPLACED", "UNSURE", "LIDAR_RIGHT"),
+    "newbuild": ("NEW_BUILDING", "NO_BUILDING", "UNSURE", "LIDAR_RIGHT"),
     # October 23: what the red LiDAR piece is, beside the magenta county outline (codes of the first version kept)
     # October 26: two answers for the compound cases Brian met (UNSURE moved from 6 to 8; he had not used it here)
     "pairs": ("OFFSET", "PART_OF_EXISTING", "BOTH_REAL", "REBUILT", "NOT_A_BUILDING", "REBUILT_MERGE", "NEEDS_EDIT",
               "SHED", "UNSURE"),
+    # LIDAR_RIGHT (October 26, after Brian typed "lidar is right, redo the footprint" as notes): appended after UNSURE,
+    # which he had used in these queues
     # October 26 (reviews/2026-10-26/model-review): footprints the 3D buildings modelled without a roofer LoD2.2 roof,
     # and the CFTree tree models
-    "models": ("SIMPLE_OK", "NEEDS_ROOF", "GONE", "OUTLINE_WRONG", "UNDER_TREES", "CONSTRUCTION", "NEEDS_EDIT", "UNSURE"),
+    "models": ("SIMPLE_OK", "NEEDS_ROOF", "GONE", "OUTLINE_WRONG", "UNDER_TREES", "CONSTRUCTION", "NEEDS_EDIT", "UNSURE",
+               "LIDAR_RIGHT"),
     # October 26, after Brian's first answers: shrubs, brush and roofs taken in with a tree (UNSURE moved from 6 to 9;
     # he had not used it)
     "trees": ("ONE_TREE", "MERGED", "PART_OF_TREE", "NOT_A_TREE", "SHAPE_WRONG", "SHRUBS", "BRUSH", "TREE_WITH_ROOF",
@@ -98,9 +101,9 @@ class Store:
             old = self.rows.get(item_id)
             if old and old["REVIEWER"] != reviewer:
                 raise ValueError(f"{item_id} was answered by {old['REVIEWER']}; another reviewer's answer is never changed here")
-            if not answer:
+            if not answer and not note:
                 self.rows.pop(item_id, None)
-            else:
+            else:                     # an empty ANSWER with a NOTE is a note-only row (October 26): still unanswered
                 now = datetime.datetime.now()
                 self.rows[item_id] = {"ITEM_ID": item_id, "QUEUE": item["queue"], "GROUP": item["group"], "ANSWER": answer,
                                       "NOTE": note, "REVIEWER": reviewer, "REVIEW_DATE": now.date().isoformat(),
