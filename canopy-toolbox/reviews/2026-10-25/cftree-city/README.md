@@ -4,7 +4,27 @@ Brian requested CFTree on all 61 tiles and clarified that the other unfinished w
 examples. The separate [assistant review](../assistant-review/README.md) does not modify training or
 calibration answers. The earlier [12-model pilot](../cftree-pilot/README.md) established the runtime.
 
-## Running job
+## Completed processing — October 26
+
+All **61 tiles are complete**, with **119,410 draft models**, **75 rejected candidates**, zero failed
+tiles and 506 compressed CityJSON shards (742,768,876 bytes). The overnight coordinator ended at
+03:33 MDT. One tile, 12TVL3101, had already saved all 162 models and its export but failed when Windows
+temporarily denied replacement of its completion-marker file. At 08:12 MDT a checkpoint resume repaired
+that marker. Its model-ID digest and decompressed CityJSON checksum are unchanged; all completed
+tiles were skipped. All 61 status counts now match their SQLite checkpoints and shard counts.
+
+The writer now retries short sharing violations up to eight times with bounded delays and a unique
+temporary file. A persistent failure preserves the previous status and raises an error. Two regression
+tests failed before the fix; all seven CFTree tests now pass, including a real Windows reader handle
+that temporarily blocks renaming. The recovered export passed finite-coordinate, index, closed-edge
+and feet-conversion checks with zero degenerate triangles. Evidence retains the original error and
+before-recovery status. The coordinator has exited and its temporary wake request is released.
+
+The 75 exceptions comprise 38 candidates without terrain support and 37 without a valid inferred trunk.
+They remain excluded models for review. Completion means processing finished; seam, visual, field and
+publication checks remain outstanding. Final summary and exception CSV are in the chat's outputs.
+
+## Run history
 
 The coordinator started at 19:59 MDT October 25, 2026 in a hidden background Pro Python process.
 All 61 refined LAS inputs have been staged. Their headers total **1,344,971,548 source points**.

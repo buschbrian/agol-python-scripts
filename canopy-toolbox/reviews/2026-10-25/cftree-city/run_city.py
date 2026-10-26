@@ -31,9 +31,19 @@ def read(p):
 
 def atomic(p,value):
     p=Path(p); p.parent.mkdir(parents=True,exist_ok=True)
-    tmp=p.with_name(p.name+'.tmp')
-    tmp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
-    os.replace(tmp,p)
+    tmp=p.with_name(p.name+'.'+uuid.uuid4().hex+'.tmp')
+    try:
+        tmp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+        # A short-lived Windows reader can deny rename while the coordinator reads this status.
+        for attempt in range(8):
+            try:
+                os.replace(tmp,p)
+                return
+            except PermissionError:
+                if attempt==7: raise
+                time.sleep(.05*(attempt+1))
+    finally:
+        tmp.unlink(missing_ok=True)
 
 
 def setup(c):

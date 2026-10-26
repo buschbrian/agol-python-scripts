@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 module_path=Path(__file__).resolve().parents[1]/'run_city.py'
 spec=importlib.util.spec_from_file_location('cityrun',module_path)
@@ -29,6 +30,57 @@ class Scheduling(unittest.TestCase):
         self.assertFalse(city.can_start(1,2,6,20,7,15))
         self.assertFalse(city.can_start(1,2,8,14,7,15))
         self.assertTrue(city.can_start(0,1,7,15,7,15))
+
+
+class AtomicStatus(unittest.TestCase):
+    @unittest.skipUnless(__import__('os').name=='nt','Windows sharing semantics')
+    def test_real_windows_reader_releases_rename_lock(self):
+        import ctypes
+        from ctypes import wintypes
+        import threading
+        import time
+        kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+        kernel.CreateFileW.argtypes=[wintypes.LPCWSTR,wintypes.DWORD,wintypes.DWORD,
+            ctypes.c_void_p,wintypes.DWORD,wintypes.DWORD,wintypes.HANDLE]
+        kernel.CreateFileW.restype=wintypes.HANDLE
+        kernel.CloseHandle.argtypes=[wintypes.HANDLE]
+        with tempfile.TemporaryDirectory() as name:
+            target=Path(name)/'status.json'; target.write_text('{"state":"old"}')
+            handle=kernel.CreateFileW(str(target),0x80000000,3,None,3,128,None)
+            self.assertNotEqual(handle,ctypes.c_void_p(-1).value)
+            def release():
+                time.sleep(.15); kernel.CloseHandle(handle)
+            closer=threading.Thread(target=release); closer.start()
+            try: city.atomic(target,{'state':'complete'})
+            finally: closer.join()
+            self.assertEqual(json.loads(target.read_text()),{'state':'complete'})
+
+    def test_short_sharing_violation_preserves_old_status_then_retries(self):
+        with tempfile.TemporaryDirectory() as name:
+            target=Path(name)/'status.json'
+            target.write_text('{"state":"old"}')
+            replace=city.os.replace; attempts=[]
+            def transient(source,destination):
+                attempts.append(source)
+                if len(attempts)==1:
+                    self.assertEqual(json.loads(target.read_text()),{'state':'old'})
+                    raise PermissionError('Windows sharing violation')
+                return replace(source,destination)
+            with patch.object(city.os,'replace',side_effect=transient),patch.object(city.time,'sleep'):
+                city.atomic(target,{'state':'complete','models':162})
+            self.assertEqual(len(attempts),2)
+            self.assertEqual(json.loads(target.read_text()),{'state':'complete','models':162})
+
+    def test_persistent_lock_fails_without_overwriting_previous_status(self):
+        with tempfile.TemporaryDirectory() as name:
+            target=Path(name)/'status.json'
+            target.write_text('{"state":"old"}')
+            with patch.object(city.os,'replace',side_effect=PermissionError('Still locked')) as replace,\
+                 patch.object(city.time,'sleep'):
+                with self.assertRaises(PermissionError): city.atomic(target,{'state':'complete'})
+            self.assertGreater(replace.call_count,1)
+            self.assertLessEqual(replace.call_count,8)
+            self.assertEqual(json.loads(target.read_text()),{'state':'old'})
 
 
 class Staging(unittest.TestCase):
