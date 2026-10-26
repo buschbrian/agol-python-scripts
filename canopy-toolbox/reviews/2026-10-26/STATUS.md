@@ -59,7 +59,8 @@ From [model-review/cues.py](model-review/cues.py), on every tree model and candi
   - 1,162 low, wide masses: under 6 m, at least 40 m² of crown, less than half as tall as wide (brush, scrub oak).
   - 5,267 over roofs or sheds: a quarter of the outline over a county footprint or a LiDAR candidate building, or the
     trunk inside a footprint.
-  - 22,134 on ground that rises 3 m or more under the crown (the east bench and the canyons).
+  - 22,134 on ground that rises 3 m or more under the crown (the east bench and the canyons). This is not a model error:
+    it is what made the side views hard to read, and they now draw the ground.
 - **Redeveloped sites like LC01389:** 12 LiDAR buildings of 100 m² or more sit within 3 m of two or more county
   outlines under 80% roof support (`runs\model-review-20261026\redeveloped-sites.csv`). They touch 25 county footprints:
   12 in the roof queue and 7 in the county no-roof queue. The Chambers Avenue site holds LC01389, LC01423 and MD733329.
