@@ -70,7 +70,8 @@ python reviews/2026-10-26/urban-utm/urban_utm.py verify    OUT
   - The copy is packaged by the shared [make_slpk.py](../../2026-10-22/hosting/scene-layers/make_slpk.py), which now takes a feature
     class and `--wkid` / `--vcs` / `--transformation`. The WGS84 + ITRF08 default and its other callers are unchanged. This package is
     6341 + NAVD88 height (5703) with no transformation.
-  - The copy keeps the 27 source attributes plus FLOORS. It does not carry the October 24 roof-plane attributes of the public
+  - The copy keeps OBJECTID, the 26 source attributes and FLOORS (28 fields on the hosted layer).
+    It does not carry the October 24 roof-plane attributes of the public
     `buildings_hybrid_v2` package, because the task named `buildings_three_way` as the source.
   - It keeps `PARCEL_ID`, `SOURCE_ID` and `CITY` (identifiers, not owner or address).
 - **Footprints.** Multipatch Footprint of the same copy, grouped by FP_ID, gives one polygon per building and none empty. Only
