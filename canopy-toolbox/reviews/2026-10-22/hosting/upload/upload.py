@@ -110,6 +110,22 @@ ITEMS = {
                        "azimuth, ridge and eave height, south-facing area) apply where LEVEL is roofer LoD2.2. Heights NAVD88; "
                        "the package is labelled EGM96 but its heights were left in NAVD88 (see the scene-layers README).",
         "tags": ["buildings", "3D", "scene", "roof forms"], "readme": "../2026-10-23/lod2-check/README.md"},
+    # October 26: the LiDAR-first rebuild (Brian: the LiDAR is the truth for whole buildings). Roofer LoD2.2 on 23,327
+    # building outlines drawn from the 2023 LiDAR alone, plus the v2 model where trees hide a county building. Metres kept
+    # and feet added beside them in the same layer. A new item; repointing the public scene is a separate, approved step.
+    # Built by reviews/2026-10-26/lidar-footprints/lidar_first_city.py.
+    "buildings3d_lidar_first": {
+        "file": RUNS/"lidar-footprints-20261026"/"roofer-city"/"buildings_lidar_first.slpk", "type": "Scene Package",
+        "expect": "Scene Service",
+        "title": "Millcreek 3D buildings from LiDAR outlines (2023 lidar), planning estimate",
+        "snippet": "Unvalidated planning estimate: buildings outlined and modelled from the 2023 lidar alone (roofer LoD 2.2), "
+                   "with county footprints only where trees hide a roof. Heights and areas in metres and feet.",
+        "description": "OUTLINE_SOURCE says whether a building's outline comes from the LiDAR or, under trees, from the county "
+                       "footprint; COMPARE_CLASS and COUNTY_IDS say how the LiDAR outline compares with the county layer. "
+                       "Every metric field has a feet twin (_FT, _SQFT, _CUFT). LiDAR outlines follow the roof edge (eaves), "
+                       "a median 0.39 m outside the county wall lines. Heights NAVD88 (see the scene-layers README).",
+        "tags": ["buildings", "3D", "scene", "roof forms", "lidar outlines"],
+        "readme": "../2026-10-26/lidar-footprints/README.md"},
     "terrain": {
         "file": RUNS/"tiles-20261023"/"millcreek_terrain_20261023.tpkx", "type": "Compact Tile Package",
         "expect": "Image Service",

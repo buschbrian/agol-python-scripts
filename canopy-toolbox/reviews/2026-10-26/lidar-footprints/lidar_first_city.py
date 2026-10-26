@@ -122,6 +122,42 @@ def convert(out):
 
 
 HIDDEN_CANOPY_PCT = 30
+FT = 0.3048                      # international foot
+# Metric fields that are not named by their unit: elevations and the fit error, all metres
+METRES = ("RF_H_GROUND", "RF_H_ROOF_MAX", "RF_RMSE_LOD22")
+
+
+def add_feet(fc):
+    """Brian, October 26: keep the metres and add feet beside them in the same layer (not a feet-only version). Every
+    *_M field gets *_FT, *_M2 gets *_SQFT, *_M3 gets *_CUFT, and the unit-less metre fields get a _FT twin. Nulls stay null;
+    each conversion is checked by converting back."""
+    import arcpy
+    pairs = []
+    for f in arcpy.ListFields(fc):
+        n = f.name
+        if f.type not in ("Double", "Single", "Integer", "SmallInteger"):
+            continue
+        if n.endswith("_M2"):
+            pairs.append((n, n[:-3] + "_SQFT", FT ** 2))
+        elif n.endswith("_M3"):
+            pairs.append((n, n[:-3] + "_CUFT", FT ** 3))
+        elif n.endswith("_M"):
+            pairs.append((n, n[:-2] + "_FT", FT))
+        elif n in METRES:
+            pairs.append((n, n + "_FT", FT))
+    for _, ft_name, _ in pairs:
+        arcpy.management.AddField(fc, ft_name, "DOUBLE")
+    worst = 0.0
+    with arcpy.da.UpdateCursor(fc, [p[0] for p in pairs] + [p[1] for p in pairs]) as cursor:
+        for row in cursor:
+            k = len(pairs)
+            for i, (_, _, unit) in enumerate(pairs):
+                v = row[i]
+                row[k + i] = None if v is None else v / unit
+                if v is not None:
+                    worst = max(worst, abs(row[k + i] * unit - v))
+            cursor.updateRow(row)
+    return {"pairs": [[m, f] for m, f, _ in pairs], "worst_round_trip": worst}
 
 
 def compose(out):
@@ -150,13 +186,33 @@ def compose(out):
     if arcpy.Exists(target):
         arcpy.management.Delete(target)
     arcpy.management.Merge([lidar_fc, county_layer], target)
-    arcpy.management.AddField(target, "OUTLINE_SOURCE", "TEXT", field_length=60)
-    with arcpy.da.UpdateCursor(target, ["LB_ID", "LEVEL", "OUTLINE_SOURCE"]) as cursor:
-        for lb, level, _ in cursor:
+    # LiDAR rows: roof measurements (roof_attributes.py on this run's CityJSON, the same fields the v2 rows carry) and the
+    # county link from compare.csv; county rows keep their own.
+    with open(out/"roof-attributes"/"building_roofs.csv", encoding="utf-8") as f:
+        roofs = {int(r["FP_ID"]): r for r in csv.DictReader(f)}
+    groups = {}
+    with open(rc.RUNS/"lidar-footprints-20261026"/"city"/"compare.csv", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            for lb in r["LIDAR_IDS"].split(";"):
+                if lb:
+                    groups[lb] = r
+    names = {f.name for f in arcpy.ListFields(target)}
+    for name, kind, length in (("OUTLINE_SOURCE", "TEXT", 60), ("COMPARE_CLASS", "TEXT", 20), ("COUNTY_IDS", "TEXT", 200)):
+        arcpy.management.AddField(target, name, kind, field_length=length)
+    roof_fields = [k for k in next(iter(roofs.values())) if k not in ("FP_ID", "RF_ROOF_TYPE") and k in names]
+    cols = ["LB_ID", "FP_ID", "SOURCE_ID", "LEVEL", "OUTLINE_SOURCE", "COMPARE_CLASS", "COUNTY_IDS"] + roof_fields
+    with arcpy.da.UpdateCursor(target, cols) as cursor:
+        for row in cursor:
+            lb, fid, sid = row[0], row[1], row[2]
             if lb:
-                cursor.updateRow([lb, "roofer LoD2.2", "LiDAR-first outline (2023)"])
+                g = groups.get(lb, {})
+                r = roofs.get(fid, {})
+                row[3:7] = ["roofer LoD2.2", "LiDAR-first outline (2023)", g.get("CLASS"), g.get("COUNTY_IDS")]
+                row[7:] = [float(r[k]) if r.get(k) not in (None, "") else None for k in roof_fields]
             else:
-                cursor.updateRow([lb, level, "County footprint, roof hidden by trees"])
+                row[4:7] = ["County footprint, roof hidden by trees", "COUNTY_ONLY", sid]
+            cursor.updateRow(row)
+    record_units = add_feet(target)
     slpk = str(out/"buildings_lidar_first.slpk")
     Path(slpk).unlink(missing_ok=True)
     with arcpy.EnvManager(scratchWorkspace=str(out)):
@@ -170,6 +226,7 @@ def compose(out):
               "lidar_parts_without_a_model": prep_info["parts"] - lidar_models,
               "county_footprints_hidden_by_trees": len(hidden), "of_them_with_a_v2_model": kept_county,
               "features": int(arcpy.management.GetCount(target)[0]), "feature_class": target,
+              "units": {"rule": "metres kept; feet added beside them in the same layer", **record_units},
               "slpk": {"path": slpk, "mb": round(Path(slpk).stat().st_size / 2**20, 1),
                        "validation_messages": json.loads(Path(report).read_text(encoding="utf-8")).get("Messages")}}
     (out/"candidate.json").write_text(json.dumps(record, indent=1), encoding="utf-8")

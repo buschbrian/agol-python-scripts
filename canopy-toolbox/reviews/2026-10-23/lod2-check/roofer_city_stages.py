@@ -120,6 +120,9 @@ def _subset(cj, ids):
     return {**cj, "CityObjects": objs}
 
 
+EXPORT_TIMEOUT_S = (30, 0.2)   # seconds: base plus per building; a normal tile of 565 buildings exports in about 4 s
+
+
 def _export(cjio, cj, ids, work, tag, env, stats):
     """OBJ files for these buildings. cjio's default triangulator (`triangle`) can crash the process on one bad face; then the
     buildings are halved until the one that crashes is alone, and only that building is triangulated by earcut (--sloppy)."""
@@ -128,12 +131,16 @@ def _export(cjio, cj, ids, work, tag, env, stats):
     sub, obj = work/f"{tag}.city.json", work/f"{tag}.obj"
     sub.write_text(json.dumps(_subset(cj, ids)), encoding="utf-8")
     obj.unlink(missing_ok=True)
-    p = subprocess.run([str(cjio), str(sub), "lod_filter", "2.2", "export", "obj", str(obj)], capture_output=True, text=True,
-                       env=env, cwd=str(work))
-    if p.returncode == 0 and obj.exists():
+    try:
+        p = subprocess.run([str(cjio), str(sub), "lod_filter", "2.2", "export", "obj", str(obj)], capture_output=True,
+                           text=True, env=env, cwd=str(work), timeout=EXPORT_TIMEOUT_S[0] + EXPORT_TIMEOUT_S[1] * len(ids))
+        code = p.returncode
+    except subprocess.TimeoutExpired:   # October 26: triangle can also hang on a bad face; treat it as a crash
+        code = "timeout"
+    if code == 0 and obj.exists():
         stats["triangle"] += len(ids)
         return [obj]
-    stats["crashed_calls"].append({"tag": tag, "buildings": len(ids), "returncode": p.returncode})
+    stats["crashed_calls"].append({"tag": tag, "buildings": len(ids), "returncode": code})
     if len(ids) == 1:
         obj.unlink(missing_ok=True)
         subprocess.run([str(cjio), str(sub), "lod_filter", "2.2", "export", "--sloppy", "obj", str(obj)], capture_output=True,

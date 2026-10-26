@@ -117,11 +117,42 @@ python reviews/2026-10-23/lod2-check/viewer/serve_scene.py OUT\viewer-shots --sl
 `runs\lidar-footprints-20261026\roofer-pilot-chambers`. The first attempt, which stopped on the two-part outline,
 is kept as `roofer-pilot-chambers.failed-duplicate-id`.
 
+## Citywide rebuild and private upload (October 26)
+
+[lidar_first_city.py](lidar_first_city.py) ran the pilot's setup on all 23,490 outline parts (52 tiles). Roofer
+modelled 23,420 of them in 11 minutes of roofer time, and 23,373 have LoD 2.2 solids. On one tile cjio's triangulator hung
+(no crash, no exit) on a batch of 615 buildings. The export now times out (30 s plus 0.2 s per building) and halves the
+batch, as it already did for crashes ([roofer_city_stages.py](../../2026-10-23/lod2-check/roofer_city_stages.py)). The
+smaller batches exported normally, so the hang was intermittent.
+
+The candidate holds the 23,373 LiDAR-outline buildings and the v2 model of 220 county footprints whose roof the LiDAR
+cannot see (no 2023 roof, 30% or more canopy). The other 260 such footprints have no v2 model either. Total 23,593:
+23,420 roofer LoD2.2, 50 Esri LOD2.0, 123 Esri LOD1.2. LiDAR rows carry roof_attributes.py's roof measurements, the same
+fields as v2, and the compare class and county IDs of their group.
+
+**Units, as Brian asked on October 26: metres kept, feet added beside them in the same layer.** This is one change, not a
+feet-only version. Every `_M` field has an `_FT` twin, every `_M2` a `_SQFT` and `_M3` a `_CUFT`, and the elevations and
+the fit error a `_FT` twin: 19 pairs. Each value was converted back and matched within 4e-12.
+
+**Uploaded privately** through `upload.py buildings3d_lidar_first --go`:
+- scene layer `de1adcb1da154620a1949181ab324747`;
+- source package `e1df868f92034a409fb2d60123eec04d`;
+- 34,469,880 bytes, SHA-256 8c6cf6f8...b572.
+
+The hosted layer has 68 fields. Its statistics match the package: 23,593 buildings, the FP_ID sum, the model and
+outline-source counts, and the height sums in metres and feet. Not shared. The public buildings scene still points at
+the v2 layer, and its pop-ups still show feet only. Repointing the scene and giving its pop-ups both units is the next,
+separate step, on Brian's approval.
+
+FP_ID is not unique across the two sources: the 220 county rows keep the v2 massing numbering, which can collide with the
+LiDAR numbering (LB number x 10 + part). Use LB_ID for LiDAR rows and SOURCE_ID for county rows.
+
 ## Files
 
 | File | Meaning |
 |---|---|
 | [lidar_footprints.py](lidar_footprints.py) | `detect` (ArcGIS Pro Python; `--window` for a pilot) and `compare` (ArcPy-free, with the answers cross-tab) |
+| [lidar_first_city.py](lidar_first_city.py) | the citywide rebuild: prep, run, convert, compose (candidate package with feet beside metres) |
 | [roofer_pilot.py](roofer_pilot.py), [viewer/](viewer) | the Chambers Avenue roofer pilot and its two-panel viewer; [roofer-pilot-comparison.png](roofer-pilot-comparison.png) |
 | [pilot-examples.png](pilot-examples.png) | the five examples above, drawn on the review page's LiDAR view |
 | `runs\lidar-footprints-20261026\pilot`, `...\city` | `lidar.gdb\buildings`, `clusters.tif`, `stage.tif`, `detect.json`, `compare.csv` (one row per group), `compare.json` |
