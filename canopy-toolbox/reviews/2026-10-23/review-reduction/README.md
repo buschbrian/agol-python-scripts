@@ -1,5 +1,12 @@
 # Making the footprint review queue smaller (October 23, 2026)
 
+**Direction changed on October 26.** After answering 25 of the attached sample (13 part of the existing building, 8
+separate) and leaving notes such as "redo all - lidar has correct shape", Brian decided the LiDAR outline is the truth
+for whole buildings and the county footprints should be redrawn from it, not kept and patched. Everything below
+assumes the county footprints as the frame and the attached pieces as things to merge into them. The LiDAR-first
+outlines and their comparison with the county layer, [lidar-footprints](../../2026-10-26/lidar-footprints), replace
+that frame. The pre-registered rule here has not been applied and should not be.
+
 Brian asked to "go ahead and look through all of those four ideas as to making the review queue smaller". All four
 were sized on the real data with [reduce_queue.py](reduce_queue.py) (`size.json`). The scope is the part of the review
 that is mostly noise: the 3,671 LiDAR candidates within 2 m of a county building, and the 456 offset or rebuilt pairs.

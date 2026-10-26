@@ -1,0 +1,98 @@
+{
+ "lidar_outlines": 8593,
+ "county_footprints": 8612,
+ "groups": {
+  "MATCH": 6240,
+  "RESHAPED": 844,
+  "LIDAR_JOINS": 482,
+  "COUNTY_ONLY": 406,
+  "LIDAR_SPLITS": 49,
+  "TANGLE": 4,
+  "LIDAR_ONLY": 903
+ },
+ "county_footprints_by_class": {
+  "MATCH": 6240,
+  "RESHAPED": 844,
+  "LIDAR_JOINS": 1064,
+  "COUNTY_ONLY": 406,
+  "LIDAR_SPLITS": 49,
+  "TANGLE": 9,
+  "LIDAR_ONLY": 0
+ },
+ "county_only_under_30pct_canopy_or_more": 289,
+ "match_edge_offset_m": {
+  "median": 0.39,
+  "p25": 0.15,
+  "p75": 0.58,
+  "note": "LiDAR minus county area over the county perimeter: the LiDAR edge sits this far outside the county wall line on average (eaves)"
+ },
+ "against_answers": {
+  "candidates:ACCEPT": {
+   "LIDAR_ONLY": 23,
+   "outside the window": 7,
+   "RESHAPED": 2,
+   "LIDAR_JOINS": 1,
+   "MATCH": 1
+  },
+  "candidates:PART_OF_EXISTING": {
+   "outside the window": 9,
+   "RESHAPED": 1,
+   "LIDAR_JOINS": 1,
+   "MATCH": 5
+  },
+  "candidates:REJECT": {
+   "LIDAR_JOINS": 1
+  },
+  "candidates:UNSURE": {
+   "RESHAPED": 1,
+   "outside the window": 2,
+   "LIDAR_JOINS": 1
+  },
+  "candidates:VEHICLE": {
+   "LIDAR_ONLY": 1
+  },
+  "models:CONSTRUCTION": {
+   "RESHAPED": 1
+  },
+  "models:GONE": {
+   "outside the window": 1,
+   "COUNTY_ONLY": 2
+  },
+  "models:NEEDS_EDIT": {
+   "LIDAR_JOINS": 1,
+   "RESHAPED": 1
+  },
+  "models:NEEDS_ROOF": {
+   "COUNTY_ONLY": 3,
+   "LIDAR_JOINS": 1,
+   "outside the window": 1
+  },
+  "models:SIMPLE_OK": {
+   "COUNTY_ONLY": 5,
+   "outside the window": 3
+  },
+  "models:UNDER_TREES": {
+   "outside the window": 1,
+   "COUNTY_ONLY": 2
+  },
+  "models:UNSURE": {
+   "outside the window": 2,
+   "COUNTY_ONLY": 3
+  },
+  "pairs:BOTH_REAL": {
+   "outside the window": 3,
+   "LIDAR_SPLITS": 2
+  },
+  "pairs:NOT_A_BUILDING": {
+   "outside the window": 2
+  },
+  "pairs:OFFSET": {
+   "outside the window": 1,
+   "RESHAPED": 1
+  },
+  "pairs:REBUILT": {
+   "COUNTY_ONLY": 1,
+   "outside the window": 4
+  }
+ }
+}

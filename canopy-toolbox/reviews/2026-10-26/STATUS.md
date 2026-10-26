@@ -66,6 +66,20 @@ From [model-review/cues.py](model-review/cues.py), on every tree model and candi
   12 in the roof queue and 7 in the county no-roof queue. The Chambers Avenue site holds LC01389, LC01423 and MD733329.
   Under 50% roof support found only 5 and missed LC01389, because the new building roofs part of the old outlines.
 
+## Later on October 26: the LiDAR is the truth for buildings
+
+After more answers and notes, Brian decided the county footprints should be redrawn from the LiDAR rather than kept and
+patched ([lidar-footprints](lidar-footprints/README.md)). Built without the county layer, the LiDAR gives 23,327 building
+outlines. Against the 22,042 county footprints:
+- 17,245 match one to one;
+- 1,636 are reshaped;
+- 2,260 sit under 1,023 LiDAR buildings that each cover several;
+- 733 have no 2023 roof, 480 of them under trees;
+- 3,080 LiDAR buildings have no county footprint.
+
+His REBUILT, OFFSET and ACCEPT answers fall in the classes they should. The review page also gained a LIDAR_RIGHT answer,
+and notes now save without an answer. His 12 notes typed without one are recovered.
+
 ## Next, in order
 
 1. **Answer the 300-tree sample** with the new answers (about 50 minutes). It sets the error rates and calibrates the

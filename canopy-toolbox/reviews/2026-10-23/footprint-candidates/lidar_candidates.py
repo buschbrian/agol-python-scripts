@@ -57,8 +57,9 @@ fc.ALIASES.update({"CAND_ID": "Candidate ID", "CLUSTER_CELLS": "Roof cells in th
                    "OUTLINE": "Outline method"})
 
 
-def clusters(out, window=None):
-    """The cluster raster (candidate number per cell) and a stage raster explaining every roof cell."""
+def clusters(out, window=None, exclude_m=EXCLUDE_M):
+    """The cluster raster (candidate number per cell) and a stage raster explaining every roof cell. exclude_m=None keeps
+    roof cells on and near county footprints too: whole buildings from the LiDAR alone (reviews/2026-10-26/lidar-footprints)."""
     import geopandas as gpd
     import rasterio
     from rasterio.features import rasterize
@@ -68,11 +69,14 @@ def clusters(out, window=None):
         profile, transform, shape = h.profile, h.transform, h.shape
         height = h.read(1)
         roof = (height != h.nodata) & np.isfinite(height) & (o.read(1) != 3)
-    county = gpd.read_file(fc.BUILDINGS.parent, layer=fc.BUILDINGS.name)
-    cm = rasterize(((g, 1) for g in county.geometry), out_shape=shape, transform=transform, fill=0, dtype="uint8",
-                   all_touched=False).astype(bool)
-    near = ndimage.distance_transform_edt(~cm) * transform.a <= EXCLUDE_M
-    del cm
+    if exclude_m is None:
+        near = np.zeros(shape, bool)
+    else:
+        county = gpd.read_file(fc.BUILDINGS.parent, layer=fc.BUILDINGS.name)
+        cm = rasterize(((g, 1) for g in county.geometry), out_shape=shape, transform=transform, fill=0, dtype="uint8",
+                       all_touched=False).astype(bool)
+        near = ndimage.distance_transform_edt(~cm) * transform.a <= exclude_m
+        del cm
     stage = np.zeros(shape, np.uint8)
     stage[roof & near] = 1
     free = roof & ~near
