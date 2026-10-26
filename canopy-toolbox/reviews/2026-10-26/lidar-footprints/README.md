@@ -110,7 +110,7 @@ LiDAR-first run is about an hour with conversion.
 View it (ArcGIS Pro Python; port 8812 may be held by an older viewer):
 
 ```
-python reviews/2026-10-23/lod2-check/viewer/serve_scene.py OUTiewer-shots --slpk now=<v2>uildings_hybrid_v2.slpk --slpk lidar=<pilot>\lidar_first_pilot.slpk --web reviews/2026-10-26/lidar-footprints/viewer --port 8813
+python reviews/2026-10-23/lod2-check/viewer/serve_scene.py OUT\viewer-shots --slpk now=<v2>\buildings_hybrid_v2.slpk --slpk lidar=<pilot>\lidar_first_pilot.slpk --web reviews/2026-10-26/lidar-footprints/viewer --port 8813
 ```
 
 `state.shoot(i)` in the page saves both panels of bookmark i to OUT. The pilot outputs are in
