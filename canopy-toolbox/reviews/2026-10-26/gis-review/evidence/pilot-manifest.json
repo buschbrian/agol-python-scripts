@@ -1,0 +1,140 @@
+{
+  "generated_utc": "2026-10-26T14:29:58.938402+00:00",
+  "pilot": true,
+  "source_paths": {
+    "footprints": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\buildings.gdb\\building_heights",
+    "massing": "H:\\lidar\\2023-salt-lake-valley\\runs\\massing-20261022\\massing.gdb\\footprints",
+    "hybrid": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-v2-20261024\\v2\\v2.gdb\\buildings",
+    "cftree": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\cftree-city-20261025"
+  },
+  "config_sha256": "d0fbc6d5d7d6dbecb069f01e156b05072324992a117761ef32704e7e6e0ccb8f",
+  "roofs": {
+    "count": 22042,
+    "missing_hybrid": 481,
+    "priority_counts": {
+      "4": 18982,
+      "2": 2579,
+      "1": 481
+    },
+    "source_fingerprint": "c06354a2507253a14cbbd3e67e881ddb558eda4b691fd629e51b7720114502fc",
+    "hybrid_attributes_fingerprint": "3033c85c8bb71c325632983ffe37abe64bf4855d96989e8811e10bf25b1f91f3",
+    "examples": [
+      {
+        "source_id": "719851",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 432205.6081203083,
+        "y": 4506373.873581715
+      },
+      {
+        "source_id": "719923",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 424255.32497691637,
+        "y": 4503963.524798683
+      },
+      {
+        "source_id": "719991",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 428265.8351010571,
+        "y": 4506366.740880153
+      },
+      {
+        "source_id": "720003",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 432157.55928510876,
+        "y": 4505559.334658363
+      },
+      {
+        "source_id": "720029",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 427173.7315063308,
+        "y": 4503797.759474562
+      },
+      {
+        "source_id": "720049",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 426691.14509158407,
+        "y": 4504773.853124794
+      },
+      {
+        "source_id": "720176",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 427081.4542753014,
+        "y": 4505991.435294652
+      },
+      {
+        "source_id": "720185",
+        "fp_id": null,
+        "flags": "NO_HYBRID_MODEL;NO_ROOF_SUPPORT",
+        "x": 426661.98789467104,
+        "y": 4503850.945275934
+      }
+    ]
+  },
+  "trees": {
+    "count": 77,
+    "priority_counts": {
+      "3": 76,
+      "4": 1
+    },
+    "flag_counts": {
+      "TILE_EDGE": 76,
+      "ROOF_OVERLAP": 1,
+      "ROUTINE_REVIEW": 1
+    },
+    "cross_tile_overlap_pairs": 0,
+    "examples": []
+  },
+  "exceptions": {
+    "count": 1,
+    "reasons": {
+      "ValueError: No terrain support beneath the crown": 1
+    }
+  },
+  "layers": {
+    "roofs_review": {
+      "count": 22042,
+      "empty_geometries": 0,
+      "spatial_reference": 3857,
+      "datum_transform": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+      "domains": true,
+      "attachments": true,
+      "editor_tracking": true,
+      "sample_projection_error_ft": "<0.033"
+    },
+    "trees_review": {
+      "count": 77,
+      "empty_geometries": 0,
+      "spatial_reference": 3857,
+      "datum_transform": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+      "domains": true,
+      "attachments": true,
+      "editor_tracking": true,
+      "sample_projection_error_ft": "<0.033"
+    },
+    "tree_exceptions_review": {
+      "count": 1,
+      "empty_geometries": 0,
+      "spatial_reference": 3857,
+      "datum_transform": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+      "domains": true,
+      "attachments": true,
+      "editor_tracking": true,
+      "sample_projection_error_ft": "<0.033"
+    }
+  },
+  "elapsed_seconds": 37.7,
+  "limitations": [
+    "Automated cues are not findings or human labels.",
+    "No roof model does not establish demolition. Check coverage, classification, dates and alignment.",
+    "Tree outlines are convex XY hulls of draft meshes, not full 3D meshes or surveyed crown extents.",
+    "Roof overlap can be real overhang; cross-tile overlap can be separate trees.",
+    "All trunk positions and diameters are inferred; not an inventory or measured DBH."
+  ]
+}
