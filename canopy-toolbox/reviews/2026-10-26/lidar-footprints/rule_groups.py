@@ -12,7 +12,8 @@ the earlier queues plus the new one):
   rest wait on it.
 - LIDAR_SPLITS: his pair answers were BOTH_REAL, separate buildings. Rule: the LiDAR buildings replace the outline.
 - LIDAR_ONLY: 29 of 33 accepted, 4 vehicles. Vehicle-shaped outlines (12-45 m2, at most 3.3 m wide, 2.5 times as long
-  as wide, 2.3-4.5 m high, the October 23 rule) go to him. A sample of 40 under 20 m2 checks the sheds. The rest are
+  as wide, 2.3-4.5 m high, the October 23 rule) are not buildings: he called 14 of the first 16 vehicles (one shed,
+  one unsure), so the group became a rule. A sample of 40 under 20 m2 checks the sheds. The rest are
   added as buildings.
 - LIDAR_JOINS: keep the county unit lines or not is a judgment the cues cannot make, so a sample of 40 decides the
   class. The other 983 wait for that decision.
@@ -40,10 +41,9 @@ SEED = 20261026
 GROUPS = {   # group -> (page label, rule decision or None when Brian decides), in page order
     "decide_joins": ("1 Decide: one LiDAR building over several county outlines (sample)", None),
     "decide_reshaped": ("2 Decide: reshaped, partly under trees (10-30% canopy, sample)", None),
-    "decide_vehicles": ("3 Decide: LiDAR-only, vehicle-shaped", None),
-    "decide_small": ("4 Decide: LiDAR-only under 20 m² (sample)", None),
-    "decide_tangle": ("5 Decide: tangles", None),
-    "check_county_kept": ("6 Check: county outline kept under trees (sample)", "KEEP_COUNTY"),
+    "decide_small": ("3 Decide: LiDAR-only under 20 m² (sample)", None),
+    "decide_tangle": ("4 Decide: tangles", None),
+    "check_county_kept": ("5 Check: county outline kept under trees (sample)", "KEEP_COUNTY"),
     "joins_wait": ("Waits on 1: one LiDAR building over several county outlines", None),
     "reshaped_wait": ("Waits on 2: reshaped, partly under trees", None),
     "auto_reshaped_lidar": ("Rule: reshaped, open ground, LiDAR replaces", "LIDAR_RIGHT"),
@@ -52,6 +52,7 @@ GROUPS = {   # group -> (page label, rule decision or None when Brian decides), 
     "auto_county_gone": ("Rule: county footprint, no roof, open ground: gone", "GONE"),
     "auto_county_kept": ("Rule: county footprint, no roof, under trees: keep", "KEEP_COUNTY"),
     "auto_lidar_only": ("Rule: LiDAR-only building, added", "LIDAR_RIGHT"),
+    "auto_vehicles": ("Rule: LiDAR-only, vehicle-shaped: not a building", "NOT_A_BUILDING"),
     "small_rest": ("Rule after 4: LiDAR-only under 20 m²", None),
 }
 
@@ -93,7 +94,7 @@ def assign():
         elif c == "LIDAR_ONLY":
             b = lidar.loc[r["LIDAR_IDS"]]
             if vehicle_like(b.geometry, b.ROOF_H50_M):
-                group[r["GROUP"]] = "decide_vehicles"
+                group[r["GROUP"]] = "auto_vehicles"
             elif b.geometry.area < 20:
                 small.append(r["GROUP"])
                 group[r["GROUP"]] = "small_rest"

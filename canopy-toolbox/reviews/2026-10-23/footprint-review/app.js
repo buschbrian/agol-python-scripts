@@ -135,9 +135,9 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       decide_joins: "1 Decide: one LiDAR building over several county outlines (sample)",
                       decide_reshaped: "2 Decide: reshaped, partly under trees (10-30% canopy, sample)",
                       decide_vehicles: "3 Decide: LiDAR-only, vehicle-shaped",
-                      decide_small: "4 Decide: LiDAR-only under 20 m² (sample)",
-                      decide_tangle: "5 Decide: tangles",
-                      check_county_kept: "6 Check: county outline kept under trees (sample)",
+                      decide_small: "3 Decide: LiDAR-only under 20 m² (sample)",
+                      decide_tangle: "4 Decide: tangles",
+                      check_county_kept: "5 Check: county outline kept under trees (sample)",
                       joins_wait: "Waits on 1: one LiDAR building over several county outlines",
                       reshaped_wait: "Waits on 2: reshaped, partly under trees",
                       auto_reshaped_lidar: "Rule: reshaped, open ground, LiDAR replaces",
@@ -146,7 +146,8 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       auto_county_gone: "Rule: county footprint, no roof, open ground: gone",
                       auto_county_kept: "Rule: county footprint, no roof, under trees: keep",
                       auto_lidar_only: "Rule: LiDAR-only building, added",
-                      small_rest: "Rule after 4: LiDAR-only under 20 m²" };
+                      small_rest: "Rule after 4: LiDAR-only under 20 m²",
+                      auto_vehicles: "Rule: LiDAR-only, vehicle-shaped: not a building" };
 
 const $ = (id) => document.getElementById(id);
 let index = null, byId = {}, answers = {}, list = [], pos = 0, current = null, map = null, layers = null, homeView = null;
