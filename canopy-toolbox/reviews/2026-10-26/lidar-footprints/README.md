@@ -114,7 +114,7 @@ python reviews/2026-10-23/lod2-check/viewer/serve_scene.py OUT\viewer-shots --sl
 ```
 
 `state.shoot(i)` in the page saves both panels of bookmark i to OUT. The pilot outputs are in
-`runs\lidar-footprints-20261026oofer-pilot-chambers`. The first attempt, which stopped on the two-part outline,
+`runs\lidar-footprints-20261026\roofer-pilot-chambers`. The first attempt, which stopped on the two-part outline,
 is kept as `roofer-pilot-chambers.failed-duplicate-id`.
 
 ## Files
