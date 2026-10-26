@@ -108,6 +108,7 @@ def main(argv=None):
     p.add_argument("--slpk", action="append", required=True, help="KEY=PATH")
     p.add_argument("--port", type=int, default=8801)
     p.add_argument("--bookmarks", type=Path, help="comparison results for this package version; defaults to web/bookmarks.json")
+    p.add_argument("--web", type=Path, default=HERE.parent/"web", help="the page folder (another viewer page, e.g. reviews/2026-10-26/lidar-footprints/viewer)")
     a = p.parse_args(argv)
     a.out.mkdir(parents=True, exist_ok=True)
     packages = {}
@@ -117,7 +118,7 @@ def main(argv=None):
     bookmarks = a.bookmarks.read_bytes() if a.bookmarks else None
     if bookmarks is not None:
         json.loads(bookmarks)  # reject a damaged file before starting the server
-    server = ThreadingHTTPServer(("127.0.0.1", a.port), handler(HERE.parent/"web", a.out.resolve(), packages, bookmarks))
+    server = ThreadingHTTPServer(("127.0.0.1", a.port), handler(a.web.resolve(), a.out.resolve(), packages, bookmarks))
     print(f"http://127.0.0.1:{a.port}/  packages: {', '.join(packages)}  screenshots to {a.out}", flush=True)
     server.serve_forever()
 

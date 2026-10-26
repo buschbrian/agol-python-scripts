@@ -83,10 +83,45 @@ it, totalling 481 m², and more around it for buildings that are gone. County 73
   would be carried across.
 - **Date:** the LiDAR is October-November 2023. Buildings since then are the new-building hints' job, from imagery.
 
+## Roofer on the LiDAR outlines: Chambers Avenue pilot
+
+Brian asked to see roofer LoD2.2 on the LiDAR-first outlines next to the current hybrid. [roofer_pilot.py](roofer_pilot.py)
+takes a 500 m square around the Chambers Avenue site and runs roofer exactly as the October 24 citywide v2 run did. It
+uses the same consensus roof and ground points, roofer 1.0.0, `--lod22 --plane-detect-min-points 30` and the same
+conversion to a scene layer package. Only the footprints change: the 62 LiDAR outlines lying wholly inside the square
+(one outline in two parts became two footprints). Roofer modelled 62 of the 63 parts. The package validates; its one
+warning, about vertex normals, is the same as the earlier packages'.
+
+![The current three-way hybrid on county footprints (left) against roofer on the LiDAR-first outlines (right)](roofer-pilot-comparison.png)
+
+- **Chambers Avenue:** the hybrid has a large blue Esri LOD2.0 block standing on the empty lot. It was built from
+  county 738630, a 3,274 m² outline with no 2023 roof, so the building is gone. The new tower appears only as a thin grey sliver
+  modelled on a county outline. On the LiDAR outline roofer models the whole tower (1,418 m²), and the lot is empty,
+  as in the imagery.
+- **LB005398:** the county has an 83 m² outline, so the hybrid models a small box beside an unmodelled flat roof. The LiDAR
+  outline (382 m²) gives the whole building, including its taller part.
+- **LB005619**, one LiDAR building over several county outlines: nearly the same either way.
+- In the block view the right panel has only the pilot square; outside it the roofs are imagery.
+
+Of the 62 buildings in the square, 29 match a county footprint, 16 have none, 11 are reshaped, 4 sit over several
+county outlines and 2 are split. The October 24 citywide roofer step took about 15 minutes for 52 tiles, so a citywide
+LiDAR-first run is about an hour with conversion.
+
+View it (ArcGIS Pro Python; port 8812 may be held by an older viewer):
+
+```
+python reviews/2026-10-23/lod2-check/viewer/serve_scene.py OUTiewer-shots --slpk now=<v2>uildings_hybrid_v2.slpk --slpk lidar=<pilot>\lidar_first_pilot.slpk --web reviews/2026-10-26/lidar-footprints/viewer --port 8813
+```
+
+`state.shoot(i)` in the page saves both panels of bookmark i to OUT. The pilot outputs are in
+`runs\lidar-footprints-20261026oofer-pilot-chambers`. The first attempt, which stopped on the two-part outline,
+is kept as `roofer-pilot-chambers.failed-duplicate-id`.
+
 ## Files
 
 | File | Meaning |
 |---|---|
 | [lidar_footprints.py](lidar_footprints.py) | `detect` (ArcGIS Pro Python; `--window` for a pilot) and `compare` (ArcPy-free, with the answers cross-tab) |
+| [roofer_pilot.py](roofer_pilot.py), [viewer/](viewer) | the Chambers Avenue roofer pilot and its two-panel viewer; [roofer-pilot-comparison.png](roofer-pilot-comparison.png) |
 | [pilot-examples.png](pilot-examples.png) | the five examples above, drawn on the review page's LiDAR view |
 | `runs\lidar-footprints-20261026\pilot`, `...\city` | `lidar.gdb\buildings`, `clusters.tif`, `stage.tif`, `detect.json`, `compare.csv` (one row per group), `compare.json` |
