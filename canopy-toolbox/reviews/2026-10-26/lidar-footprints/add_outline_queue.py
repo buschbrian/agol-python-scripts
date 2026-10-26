@@ -34,8 +34,8 @@ SAMPLE = 40
 SEED = 20261026
 
 
-def select(pilot):
-    with (CITY/"compare.csv").open(encoding="utf-8") as f:
+def select(pilot, city=CITY):
+    with (city/"compare.csv").open(encoding="utf-8") as f:
         rows = [r for r in csv.DictReader(f) if r["CLASS"] in CLASSES]
     rng = random.Random(SEED)
     by_class = collections.defaultdict(list)
@@ -51,6 +51,13 @@ def select(pilot):
             first, rest = first[:3], []
         out += [(f"sample_{c.lower()}", r) for r in first] + [(c.lower(), r) for r in rest]
     return out
+
+
+def polygons(g):
+    """The polygon parts of a repaired outline (make_valid can leave a stray line beside the polygon)."""
+    import shapely
+    parts = [p for p in shapely.get_parts(g) if p.geom_type in ("Polygon", "MultiPolygon")]
+    return parts[0] if len(parts) == 1 else shapely.union_all(parts)
 
 
 def facts(r, county_by_id, lidar_by_id, parcels):
@@ -79,9 +86,14 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("data", type=Path)
     p.add_argument("--pilot", action="store_true")
+    p.add_argument("--city", type=Path, default=CITY, help="the lidar-footprints run (city2: parcel cut + tree fill)")
+    p.add_argument("--layer", default="buildings", help="the outline layer in CITY/lidar.gdb")
+    p.add_argument("--queue", default="outlines")
+    p.add_argument("--prefix", default="O", help="item id prefix (one per queue)")
     a = p.parse_args(argv)
+    city, queue = a.city.resolve(), a.queue
     data = a.data.resolve()
-    items = select(a.pilot)
+    items = select(a.pilot, city)
     print("selected:", json.dumps(collections.Counter(g for g, _ in items)), flush=True)
     if a.pilot:
         (data/"bundles").mkdir(parents=True, exist_ok=False)
@@ -89,13 +101,14 @@ def main(argv=None):
         built, index = {"schema": "footprint-review/1", "pilot": True, "groups": dict(brd.GROUPS), "items": []}, []
     else:
         built = json.loads((data/"index.json").read_text(encoding="utf-8"))
-        if any(it["queue"] == "outlines" for it in built["items"]):
-            raise ValueError("The outlines queue is already in this data")
+        if any(it["queue"] == queue for it in built["items"]):
+            raise ValueError(f"The {queue} queue is already in this data")
         index = list(built["items"])
     start = len(index)
     county = gpd.read_file(brd.LIB/"buildings.gdb", layer="building_heights")
     county_web = gpd.read_file(brd.COUNTY_WEB, layer="buildings").set_index("SOURCE_ID")
-    lidar = gpd.read_file(CITY/"lidar.gdb", layer="buildings")
+    lidar = gpd.read_file(city/"lidar.gdb", layer=a.layer)
+    lidar["geometry"] = [polygons(g) for g in shapely.make_valid(lidar.geometry.values)]
     web = amq.Web(county, county_web)
     print("ITRF08:", web.check, flush=True)
     chips = brd.Chips()
@@ -129,8 +142,8 @@ def main(argv=None):
             ctx["cand_px"] += brd.Chips.px(rings, chip)
             ctx["cand_ll"] += web.ll(rings)
         mag_ll = [ring for s in cs if s in county_web.index for ring in brd.merc_to_ll(brd.rings_of(county_web.loc[s].geometry))]
-        item_id = "O" + r["GROUP"]
-        details[item_id] = {"id": item_id, "queue": "outlines", "group": group,
+        item_id = a.prefix + r["GROUP"]
+        details[item_id] = {"id": item_id, "queue": queue, "group": group,
                             "facts": facts(r, county_by_id, lidar_by_id, parcels),
                             "outline_ll": web.ll(red) if red else [], "outline_px": brd.Chips.px(red, chip) if red else [],
                             "hint_ll": None, "hint_px": None, "focus_ll": mag_ll or None,
@@ -142,22 +155,24 @@ def main(argv=None):
             print(f"  {n} items", flush=True)
     for k in range(0, len(order), brd.BUNDLE):
         ids = order[k:k + brd.BUNDLE]
-        name = f"o{k // brd.BUNDLE + 1:04d}.json"
+        name = f"{a.prefix.lower()}{k // brd.BUNDLE + 1:04d}.json"
         path = data/"bundles"/name
         assert not path.exists(), path
         path.write_text(json.dumps({i: details[i] for i in ids}, separators=(",", ":"), allow_nan=False), encoding="utf-8")
         for i in ids:
-            index.append({"id": i, "queue": "outlines", "group": details[i]["group"], "order": len(index) + 1, "bundle": name})
+            index.append({"id": i, "queue": queue, "group": details[i]["group"], "order": len(index) + 1, "bundle": name})
     counts = {}
     for it in index:
         counts.setdefault(it["queue"], {}).setdefault(it["group"], 0)
         counts[it["queue"]][it["group"]] += 1
-    built.update(counts=counts, items=index, outlines_added=datetime.datetime.now().isoformat(timespec="seconds"),
-                 outlines_sources={"compare": str(CITY/"compare.csv"), "lidar": str(CITY/"lidar.gdb"), "seed": SEED, "sample": SAMPLE})
+    built.update(counts=counts, items=index)
+    built[f"{queue}_added"] = datetime.datetime.now().isoformat(timespec="seconds")
+    built[f"{queue}_sources"] = {"compare": str(city/"compare.csv"), "lidar": str(city/"lidar.gdb"), "layer": a.layer,
+                                 "seed": SEED, "sample": SAMPLE}
     partial = data/"index.partial"
     partial.write_text(json.dumps(built, separators=(",", ":")), encoding="utf-8")
     os.replace(partial, data/"index.json")
-    print(f"added {len(index) - start} items:", json.dumps(counts["outlines"]))
+    print(f"added {len(index) - start} items:", json.dumps(counts[queue]))
 
 
 if __name__ == "__main__":

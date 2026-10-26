@@ -54,6 +54,9 @@ ANSWERS = {
     # October 26, after the LiDAR-first rebuild: where the LiDAR outlines and the county footprints disagree
     "outlines": ("LIDAR_RIGHT", "KEEP_UNITS", "COUNTY_RIGHT", "GONE", "UNDER_TREES", "NOT_A_BUILDING", "NEEDS_EDIT",
                  "SHED", "UNSURE"),
+    # the same question on the outlines cut at residential parcel lines and filled under trees (October 26, city2)
+    "outlines2": ("LIDAR_RIGHT", "KEEP_UNITS", "COUNTY_RIGHT", "GONE", "UNDER_TREES", "NOT_A_BUILDING", "NEEDS_EDIT",
+                  "SHED", "UNSURE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")
 REPO_BACKUP = HERE/"answers"/"footprint-review-answers.csv"

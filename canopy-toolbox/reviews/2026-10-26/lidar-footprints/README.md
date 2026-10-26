@@ -183,6 +183,40 @@ a random sample of 40 (seed 20261026), so its default in [DECISIONS.md](DECISION
 Red is the LiDAR outline and magenta the county one. Answers: LIDAR_RIGHT, KEEP_UNITS, COUNTY_RIGHT, GONE, UNDER_TREES,
 NOT_A_BUILDING, NEEDS_EDIT, SHED, UNSURE. The earlier items and Brian's answers were checked unchanged.
 
+## Lot lines and trees: the second outlines (October 26, `city2`)
+
+Brian, from the first Decide answers: many joined outlines were sheds on two lots meeting at a corner, an addition, or a
+neighbour's house, and trees cut LiDAR outlines short. Two fixes, both in the outline step:
+
+- **Lot lines** (`detect --cut-parcels`, `lidar_candidates.clusters(cut_parcels=...)`). Roof cells are grouped
+  separately on each residential (lot_use R) parcel. Multi-housing, commercial, industrial and road parcels are not cut.
+  Pieces are put back together (`rejoin_solid_contacts`) when they share at least 3 m of roof edge across the line,
+  unless the county footprints say they are separate: each side mostly over a different county footprint, or one side
+  under 60 m² with no county footprint (a shed). A first version that cut every line split 1,040 county buildings,
+  because parcel lines run a metre or two through houses. A version with only the 3 m test barely cut anything. The
+  county test separates the two.
+- **Trees** (`treefill`). For a county footprint with at least 10% canopy over it, each piece the LiDAR outlines miss
+  (at least 2 m², at least half under 2 m+ canopy) is added to the LiDAR outline that overlaps that footprint most. That
+  gives the LiDAR where it sees roof and the county where trees hide it. Citywide 5,223 outlines gained 167,433 m².
+
+Citywide, 24,459 outlines:
+
+| Class | Before | After |
+|---|---:|---:|
+| MATCH | 17,245 | 18,865 |
+| RESHAPED | 1,636 | 624 |
+| LIDAR_JOINS (county outlines) | 1,023 (2,260) | 590 (1,229) |
+| LIDAR_SPLITS | 137 | 168 |
+| TANGLE (county outlines) | 13 (31) | 182 (412) |
+| COUNTY_ONLY | 733 | 744 |
+| LIDAR_ONLY | 3,080 | 3,618 |
+
+The review page's **outlines2** queue (items `Q...`, bundles `q...`) was built from them. The same rules leave 200 to
+answer: 40 each of joins, partly-under-trees, small LiDAR-only, tangles, and a check of county-kept-under-trees. The
+first outlines queue stays, marked replaced. Its answers are kept but belong to the first outlines.
+[cut-fill-examples.png](cut-fill-examples.png) shows Brian's group-1 items and three new tangles before and after.
+The public layer is still the first rebuild; the 3D models move to these outlines after the regrade.
+
 ## Files
 
 | File | Meaning |

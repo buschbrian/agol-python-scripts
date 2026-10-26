@@ -1,0 +1,112 @@
+{
+ "lidar_outlines": 24459,
+ "county_footprints": 22042,
+ "groups": {
+  "MATCH": 18865,
+  "COUNTY_ONLY": 744,
+  "LIDAR_JOINS": 590,
+  "LIDAR_SPLITS": 168,
+  "TANGLE": 182,
+  "RESHAPED": 624,
+  "LIDAR_ONLY": 3618
+ },
+ "county_footprints_by_class": {
+  "MATCH": 18865,
+  "COUNTY_ONLY": 744,
+  "LIDAR_JOINS": 1229,
+  "LIDAR_SPLITS": 168,
+  "TANGLE": 412,
+  "RESHAPED": 624,
+  "LIDAR_ONLY": 0
+ },
+ "county_only_under_30pct_canopy_or_more": 489,
+ "match_edge_offset_m": {
+  "median": 0.41,
+  "p25": 0.26,
+  "p75": 0.59,
+  "note": "LiDAR minus county area over the county perimeter: the LiDAR edge sits this far outside the county wall line on average (eaves)"
+ },
+ "against_answers": {
+  "candidates:ACCEPT": {
+   "LIDAR_ONLY": 31,
+   "RESHAPED": 4,
+   "outside the window": 1,
+   "LIDAR_JOINS": 1,
+   "MATCH": 1,
+   "TANGLE": 1
+  },
+  "candidates:LIDAR_RIGHT": {
+   "RESHAPED": 2,
+   "MATCH": 1
+  },
+  "candidates:PART_OF_EXISTING": {
+   "TANGLE": 1,
+   "RESHAPED": 8,
+   "LIDAR_JOINS": 3,
+   "MATCH": 30,
+   "LIDAR_ONLY": 1
+  },
+  "candidates:REJECT": {
+   "LIDAR_JOINS": 1,
+   "MATCH": 3
+  },
+  "candidates:UNSURE": {
+   "RESHAPED": 3,
+   "LIDAR_ONLY": 3,
+   "LIDAR_JOINS": 1,
+   "MATCH": 3
+  },
+  "candidates:VEHICLE": {
+   "LIDAR_ONLY": 4,
+   "MATCH": 5,
+   "TANGLE": 1
+  },
+  "county:DEMOLISHED": {
+   "COUNTY_ONLY": 1
+  },
+  "county:UNSURE": {
+   "COUNTY_ONLY": 1
+  },
+  "models:CONSTRUCTION": {
+   "RESHAPED": 1
+  },
+  "models:GONE": {
+   "TANGLE": 1,
+   "COUNTY_ONLY": 2
+  },
+  "models:NEEDS_EDIT": {
+   "LIDAR_JOINS": 1,
+   "RESHAPED": 1
+  },
+  "models:NEEDS_ROOF": {
+   "COUNTY_ONLY": 4,
+   "LIDAR_JOINS": 1
+  },
+  "models:SIMPLE_OK": {
+   "COUNTY_ONLY": 8
+  },
+  "models:UNDER_TREES": {
+   "MATCH": 1,
+   "COUNTY_ONLY": 2
+  },
+  "models:UNSURE": {
+   "LIDAR_JOINS": 1,
+   "COUNTY_ONLY": 4
+  },
+  "pairs:BOTH_REAL": {
+   "COUNTY_ONLY": 1,
+   "LIDAR_SPLITS": 2,
+   "MATCH": 1,
+   "LIDAR_JOINS": 1
+  },
+  "pairs:NOT_A_BUILDING": {
+   "COUNTY_ONLY": 2
+  },
+  "pairs:OFFSET": {
+   "MATCH": 2
+  },
+  "pairs:REBUILT": {
+   "COUNTY_ONLY": 5
+  }
+ }
+}

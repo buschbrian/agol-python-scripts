@@ -46,11 +46,12 @@ MATCH_IOU = 0.6
 CANOPY_M = 2.0
 
 
-def detect(out, window):
+def detect(out, window, cut_parcels=False):
     import arcpy
     import lidar_candidates as lc
     out.mkdir(parents=True, exist_ok=True)
-    stats, counts = lc.clusters(out, window, exclude_m=None)
+    cuts = residential_parcels() if cut_parcels else None
+    stats, counts = lc.clusters(out, window, exclude_m=None, cut_parcels=cuts)
     print(json.dumps(counts), flush=True)
     gdb = out/"lidar.gdb"
     if not arcpy.Exists(str(gdb)):
@@ -71,11 +72,86 @@ def detect(out, window):
     arcpy.management.Delete(str(gdb/"cluster_cells"))
     record = {"schema": "lidar-footprints/1", "created": datetime.datetime.now().isoformat(timespec="seconds"),
               "window": window, "rules": {"county_used": False, "opening": "3 x 3", "connectivity": 8,
+                                          "cut_at_parcel_lines": f"{len(cuts)} residential (lot_use R) parcels" if cuts else False,
                                           "min_cells": lc.MIN_CELLS, "min_cluster_median_height_m": lc.MIN_H50_M,
                                           "regularize": lc.REGULARIZE},
               "counts": counts, "outlines": outline_counts, "count": len(shapes), "output": target}
     (out/"detect.json").write_text(json.dumps(record, indent=1), encoding="utf-8")
     print(json.dumps({k: record[k] for k in ("counts", "outlines", "count")}, indent=1))
+
+
+def residential_parcels():
+    """Residential lots (lot_use R in the 2025-tax-year snapshot): single houses, duplexes and townhouse units. Multi-housing,
+    commercial, industrial and road parcels are not cut, so a building over several of them stays whole."""
+    import geopandas as gpd
+    p = gpd.read_file(fc.INPUTS, layer="parcels", columns=["lot_use"])
+    assert p.crs.to_epsg() == fc.CRS
+    return [g for g, u in zip(p.geometry, p.lot_use) if isinstance(u, str) and u.strip() == "R" and g is not None]
+
+
+FILL_PIECE_CANOPY = 0.5     # a hidden piece of a county outline is added when at least half of it is under 2 m+ canopy
+FILL_COUNTY_CANOPY = 10.0   # ... of a county footprint with at least 10% canopy over it (Brian's partly-under-trees answers)
+FILL_MIN_M2 = 2.0
+
+
+def treefill(out):
+    """Where trees hide part of a building, add that part of the county outline to the LiDAR outline: the LiDAR where it
+    sees roof, the county where canopy covers it. Each county footprint with at least 10% canopy over it is cut by the
+    LiDAR outlines; a leftover piece of at least 2 m2 that is at least half under canopy joins the LiDAR outline that
+    overlaps that county footprint most. County footprints with no LiDAR outline are not touched (COUNTY_ONLY keeps
+    them by rule). Writes OUT/lidar.gdb/buildings_filled (ArcGIS Pro Python) and treefill.json."""
+    import arcpy
+    import geopandas as gpd
+    import rasterio
+    import shapely
+    from rasterio.features import geometry_mask
+    from rasterio.windows import from_bounds
+    lidar = gpd.read_file(out/"lidar.gdb", layer="buildings")
+    county = gpd.read_file(fc.BUILDINGS.parent, layer=fc.BUILDINGS.name)
+    lg = list(lidar.geometry)
+    tree = shapely.STRtree(lg)
+    added = {}
+    stats = {"county_with_canopy": 0, "pieces_added": 0, "m2_added": 0.0}
+    with rasterio.open(fc.LIB/"chm_m.tif") as chm:
+        def under_canopy(g):
+            w = from_bounds(*g.bounds, transform=chm.transform).round_offsets().round_lengths()
+            a = chm.read(1, window=w, boundless=True, fill_value=chm.nodata).astype(float)
+            if a.size == 0:
+                return 0.0
+            inside = ~geometry_mask([g], out_shape=a.shape, transform=chm.window_transform(w))
+            v = a[inside & (a != chm.nodata)]
+            return float((v >= 2).mean()) if v.size else 0.0
+        for c in county.geometry:
+            hits = [j for j in tree.query(c, predicate="intersects") if c.intersection(lg[j]).area > 1.0]
+            if not hits or under_canopy(c) * 100 < FILL_COUNTY_CANOPY:
+                continue
+            stats["county_with_canopy"] += 1
+            target = max(hits, key=lambda j: c.intersection(lg[j]).area)
+            rest = c.difference(shapely.union_all([lg[j] for j in hits]))
+            for piece in getattr(rest, "geoms", [rest]):
+                if piece.geom_type == "Polygon" and piece.area >= FILL_MIN_M2 and under_canopy(piece) >= FILL_PIECE_CANOPY:
+                    added.setdefault(target, []).append(piece)
+                    stats["pieces_added"] += 1
+                    stats["m2_added"] += piece.area
+    filled = lidar.copy()
+    filled["TREE_FILL_M2"] = 0.0
+    for j, pieces in added.items():
+        g = shapely.make_valid(shapely.union_all([lg[j]] + pieces))
+        filled.loc[filled.index[j], "geometry"] = g
+        filled.loc[filled.index[j], "TREE_FILL_M2"] = round(sum(p.area for p in pieces), 2)
+    filled["AREA_M2"] = filled.geometry.area.round(2)
+    filled["OUTLINE"] = [("TREE_FILLED" if j in added else o) for j, o in enumerate(filled.OUTLINE)]
+    tmp = out/"buildings_filled.gpkg"
+    filled.to_file(tmp, layer="buildings_filled", driver="GPKG")
+    target = str(out/"lidar.gdb"/"buildings_filled")
+    if arcpy.Exists(target):
+        arcpy.management.Delete(target)
+    arcpy.conversion.ExportFeatures(str(tmp/"main.buildings_filled"), target)
+    stats.update(buildings_filled=len(added), m2_added=round(stats["m2_added"], 1),
+                 rules={"county_canopy_pct_at_least": FILL_COUNTY_CANOPY, "piece_canopy_share_at_least": FILL_PIECE_CANOPY,
+                        "piece_m2_at_least": FILL_MIN_M2})
+    (out/"treefill.json").write_text(json.dumps(stats, indent=1), encoding="utf-8")
+    print(json.dumps(stats, indent=1))
 
 
 def canopy_share(geoms):
@@ -97,17 +173,18 @@ def canopy_share(geoms):
     return out
 
 
-def compare(out, answers_path):
+def compare(out, answers_path, layer="buildings"):
     import geopandas as gpd
     import shapely
-    lidar = gpd.read_file(out/"lidar.gdb", layer="buildings")
+    lidar = gpd.read_file(out/"lidar.gdb", layer=layer)
     county = gpd.read_file(fc.BUILDINGS.parent, layer=fc.BUILDINGS.name)
     detect_rec = json.loads((out/"detect.json").read_text(encoding="utf-8"))
     if detect_rec["window"]:
         x0, y0, x1, y1 = detect_rec["window"]
         county = county[county.geometry.within(shapely.box(x0, y0, x1, y1))]
     county = county.reset_index(drop=True)
-    cg, lg = list(county.geometry), list(lidar.geometry)
+    # make_valid: unions in treefill and a few county outlines are self-touching
+    cg, lg = list(shapely.make_valid(county.geometry.values)), list(shapely.make_valid(lidar.geometry.values))
     tree = shapely.STRtree(lg)
     ci, li = tree.query(cg, predicate="intersects")
     edges = []
@@ -204,15 +281,19 @@ def against_answers(out, answers_path, rows, county, lidar):
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("step", choices=("detect", "compare"))
+    p.add_argument("step", choices=("detect", "treefill", "compare"))
     p.add_argument("out", type=Path)
     p.add_argument("answers", type=Path, nargs="?")
     p.add_argument("--window", type=float, nargs=4, metavar=("X0", "Y0", "X1", "Y1"))
+    p.add_argument("--cut-parcels", action="store_true", help="detect: never join roof across a residential parcel line")
+    p.add_argument("--layer", default="buildings", help="compare: the outline layer (buildings_filled after treefill)")
     a = p.parse_args(argv)
     if a.step == "detect":
-        detect(a.out, tuple(a.window) if a.window else None)
+        detect(a.out, tuple(a.window) if a.window else None, a.cut_parcels)
+    elif a.step == "treefill":
+        treefill(a.out)
     else:
-        compare(a.out, a.answers)
+        compare(a.out, a.answers, a.layer)
 
 
 if __name__ == "__main__":

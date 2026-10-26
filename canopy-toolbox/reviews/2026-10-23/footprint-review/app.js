@@ -106,6 +106,7 @@ const QUEUES = {
       ["UNSURE", "Unsure"],
     ],
   },
+  outlines2: null,
   tree_rejects: {
     question: "CFTree could not build a model here (the dot is the segment's highest return). Is there a tree?",
     others: "tree models",
@@ -116,6 +117,7 @@ const QUEUES = {
     ],
   },
 };
+QUEUES.outlines2 = { ...QUEUES.outlines, question: "Red is the LiDAR outline (cut at lot lines, filled under trees), magenta the county footprint. Which is right?" };
 const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attached: "Against a county building (other)",
                       attached_sample: "Sample: answer these first", attached_eyes: "Needs eyes (80 m² or more, or doubtful county building)",
                       attached_lower: "Lower roof against a county building", attached_same_roof: "Corner or edge of a county roof",
@@ -136,7 +138,7 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       decide_reshaped: "2 Decide: reshaped, partly under trees (10-30% canopy, sample)",
                       decide_vehicles: "3 Decide: LiDAR-only, vehicle-shaped",
                       decide_small: "3 Decide: LiDAR-only under 20 m² (sample)",
-                      decide_tangle: "4 Decide: tangles",
+                      decide_tangle: "4 Decide: tangles (sample)",
                       check_county_kept: "5 Check: county outline kept under trees (sample)",
                       joins_wait: "Waits on 1: one LiDAR building over several county outlines",
                       reshaped_wait: "Waits on 2: reshaped, partly under trees",
@@ -147,7 +149,8 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       auto_county_kept: "Rule: county footprint, no roof, under trees: keep",
                       auto_lidar_only: "Rule: LiDAR-only building, added",
                       small_rest: "Rule after 4: LiDAR-only under 20 m²",
-                      auto_vehicles: "Rule: LiDAR-only, vehicle-shaped: not a building" };
+                      auto_vehicles: "Rule: LiDAR-only, vehicle-shaped: not a building",
+                      tangle_wait: "Waits on 4: tangles" };
 
 const $ = (id) => document.getElementById(id);
 let index = null, byId = {}, answers = {}, list = [], pos = 0, current = null, map = null, layers = null, homeView = null;

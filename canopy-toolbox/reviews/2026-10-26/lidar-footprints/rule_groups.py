@@ -42,10 +42,11 @@ GROUPS = {   # group -> (page label, rule decision or None when Brian decides), 
     "decide_joins": ("1 Decide: one LiDAR building over several county outlines (sample)", None),
     "decide_reshaped": ("2 Decide: reshaped, partly under trees (10-30% canopy, sample)", None),
     "decide_small": ("3 Decide: LiDAR-only under 20 m² (sample)", None),
-    "decide_tangle": ("4 Decide: tangles", None),
+    "decide_tangle": ("4 Decide: tangles (sample)", None),
     "check_county_kept": ("5 Check: county outline kept under trees (sample)", "KEEP_COUNTY"),
     "joins_wait": ("Waits on 1: one LiDAR building over several county outlines", None),
     "reshaped_wait": ("Waits on 2: reshaped, partly under trees", None),
+    "tangle_wait": ("Waits on 4: tangles", None),
     "auto_reshaped_lidar": ("Rule: reshaped, open ground, LiDAR replaces", "LIDAR_RIGHT"),
     "auto_reshaped_trees": ("Rule: reshaped under trees, keep the county outline", "KEEP_COUNTY"),
     "auto_splits": ("Rule: county outline over several LiDAR buildings, LiDAR replaces", "LIDAR_RIGHT"),
@@ -68,10 +69,10 @@ def vehicle_like(g, h):
     return 12 <= g.area <= 45 and width <= 3.3 and length >= 2.5 * width and 2.3 <= h <= 4.5
 
 
-def assign():
+def assign(city=CITY, layer="buildings"):
     import geopandas as gpd
-    lidar = gpd.read_file(CITY/"lidar.gdb", layer="buildings").set_index("LB_ID")
-    with (CITY/"compare.csv").open(encoding="utf-8") as fh:
+    lidar = gpd.read_file(city/"lidar.gdb", layer=layer).set_index("LB_ID")
+    with (city/"compare.csv").open(encoding="utf-8") as fh:
         rows = [r for r in csv.DictReader(fh) if r["CLASS"] != "MATCH"]
     rng = random.Random(SEED)
     group = {}
@@ -102,6 +103,11 @@ def assign():
                 group[r["GROUP"]] = "auto_lidar_only"
     for g in rng.sample(sorted(small), 40):
         group[g] = "decide_small"
+    tangles = sorted(g for g, v in group.items() if v == "decide_tangle")
+    keep_t = set(rng.sample(tangles, min(40, len(tangles))))
+    for g in tangles:
+        if g not in keep_t:
+            group[g] = "tangle_wait"
     middle = sorted(g for g, v in group.items() if v == "decide_reshaped")
     keep = set(rng.sample(middle, 40))
     for g in middle:
@@ -114,9 +120,17 @@ def assign():
 
 
 def main():
-    data = Path(sys.argv[1]).resolve()
-    rows, group = assign()
-    out = CITY/"proposed-decisions.csv"
+    import argparse
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("data", type=Path)
+    p.add_argument("--city", type=Path, default=CITY)
+    p.add_argument("--layer", default="buildings")
+    p.add_argument("--queue", default="outlines")
+    p.add_argument("--prefix", default="O")
+    a = p.parse_args()
+    data, city, queue = a.data.resolve(), a.city.resolve(), a.queue
+    rows, group = assign(city, a.layer)
+    out = city/"proposed-decisions.csv"
     with out.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, ["GROUP", "CLASS", "COUNTY_IDS", "LIDAR_IDS", "REVIEW_GROUP", "PROPOSED", "BY"])
         w.writeheader()
@@ -126,8 +140,8 @@ def main():
                         "REVIEW_GROUP": g, "PROPOSED": GROUPS[g][1] or "", "BY": "rule" if GROUPS[g][1] else "Brian"})
     # Regroup the page items: bundles first (a partial file, then a rename), then the index in page order.
     built = json.loads((data/"index.json").read_text(encoding="utf-8"))
-    new_group = {"O" + g: v for g, v in group.items()}
-    for name in sorted({it["bundle"] for it in built["items"] if it["queue"] == "outlines"}):
+    new_group = {a.prefix + g: v for g, v in group.items()}
+    for name in sorted({it["bundle"] for it in built["items"] if it["queue"] == queue}):
         path = data/"bundles"/name
         bundle = json.loads(path.read_text(encoding="utf-8"))
         for i, d in bundle.items():
@@ -136,8 +150,8 @@ def main():
         partial.write_text(json.dumps(bundle, separators=(",", ":"), allow_nan=False), encoding="utf-8")
         os.replace(partial, path)
     rank = {g: k for k, g in enumerate(GROUPS)}
-    others = [it for it in built["items"] if it["queue"] != "outlines"]
-    mine = sorted((dict(it, group=new_group[it["id"]]) for it in built["items"] if it["queue"] == "outlines"),
+    others = [it for it in built["items"] if it["queue"] != queue]
+    mine = sorted((dict(it, group=new_group[it["id"]]) for it in built["items"] if it["queue"] == queue),
                   key=lambda it: (rank[it["group"]], it["order"]))
     items = others + mine
     for k, it in enumerate(items, 1):
@@ -150,7 +164,7 @@ def main():
     partial = data/"index.partial"
     partial.write_text(json.dumps(built, separators=(",", ":")), encoding="utf-8")
     os.replace(partial, data/"index.json")
-    c = counts["outlines"]
+    c = counts[queue]
     print(json.dumps({g: c.get(g, 0) for g in GROUPS}, indent=1))
     print("to answer now:", sum(c.get(g, 0) for g in GROUPS if g.startswith(("decide", "check"))))
 

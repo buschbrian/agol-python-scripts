@@ -57,9 +57,63 @@ fc.ALIASES.update({"CAND_ID": "Candidate ID", "CLUSTER_CELLS": "Roof cells in th
                    "OUTLINE": "Outline method"})
 
 
-def clusters(out, window=None, exclude_m=EXCLUDE_M):
+NECK_CELLS = 6      # 3 m of shared roof edge across a parcel line
+SHED_CELLS = 240    # 60 m2: a piece this small with no county footprint is a shed or garage
+
+
+def dominant(labels, ids):
+    """For each label, the id covering most of its cells (0 when none)."""
+    m = (labels > 0) & (ids > 0)
+    pairs, n = np.unique(np.stack([labels[m], ids[m]]), axis=1, return_counts=True)
+    best = {}
+    for (lab, cid), k in zip(pairs.T, n):
+        if k > best.get(int(lab), (0, 0))[1]:
+            best[int(lab)] = (int(cid), int(k))
+    return {lab: cid for lab, (cid, _) in best.items()}
+
+
+def rejoin_solid_contacts(labels, county_ids=None):
+    """After a parcel cut, put back together the pieces that are one building. Two pieces sharing at least NECK_CELLS
+    cell edges across the line are rejoined unless the county footprints say they are separate: each mostly over a
+    different county footprint, or one of them is under SHED_CELLS with no county footprint (a shed). So a twin home or
+    a house over a parcel line a metre off (one county footprint on both sides) is one building again, while a shed or a
+    neighbour's house against the line stays apart. Pieces that only touch stay apart. Returns the relabelled raster
+    (1..n) and n."""
+    counts = collections.Counter()
+    for a, b in ((labels[:, :-1], labels[:, 1:]), (labels[:-1, :], labels[1:, :])):
+        m = (a > 0) & (b > 0) & (a != b)
+        lo, hi = np.minimum(a[m], b[m]), np.maximum(a[m], b[m])
+        pairs, n = np.unique(np.stack([lo, hi]), axis=1, return_counts=True)
+        for (x, y), k in zip(pairs.T, n):
+            counts[(int(x), int(y))] += int(k)
+    size = np.bincount(labels.ravel())
+    owner = dominant(labels, county_ids) if county_ids is not None else {}
+
+    def separate(x, y):
+        cx, cy = owner.get(x, 0), owner.get(y, 0)
+        return ((cx and cy and cx != cy) or (not cx and size[x] < SHED_CELLS) or (not cy and size[y] < SHED_CELLS))
+    parent = np.arange(int(labels.max()) + 1)
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+    for (x, y), k in counts.items():
+        if k >= NECK_CELLS and not (county_ids is not None and separate(x, y)):
+            parent[find(x)] = find(y)
+    roots = np.array([find(x) for x in range(len(parent))])
+    roots[0] = 0
+    _, dense = np.unique(roots, return_inverse=True)      # 0 stays 0 (the smallest root is 0)
+    labels = dense[labels].astype(np.int32)
+    return labels, int(labels.max())
+
+
+def clusters(out, window=None, exclude_m=EXCLUDE_M, cut_parcels=None):
     """The cluster raster (candidate number per cell) and a stage raster explaining every roof cell. exclude_m=None keeps
-    roof cells on and near county footprints too: whole buildings from the LiDAR alone (reviews/2026-10-26/lidar-footprints)."""
+    roof cells on and near county footprints too: whole buildings from the LiDAR alone (reviews/2026-10-26/lidar-footprints).
+    cut_parcels, a list of parcel polygons: a cluster never crosses the boundary of one of them (sheds on neighbouring
+    lots, a house and its neighbour's addition); cells outside them connect across lines as before."""
     import geopandas as gpd
     import rasterio
     from rasterio.features import rasterize
@@ -84,7 +138,21 @@ def clusters(out, window=None, exclude_m=EXCLUDE_M):
     opened = ndimage.binary_opening(free, structure=np.ones((3, 3), bool))
     stage[free & ~opened] = 2
     del free
-    labels, n = ndimage.label(opened, structure=np.ones((3, 3), int))
+    if cut_parcels is None:
+        labels, n = ndimage.label(opened, structure=np.ones((3, 3), int))
+    else:
+        # Each cut parcel gets its own value (2, 3, ...), everything else 1; skimage labels connected runs of equal value,
+        # so a cluster splits where it crosses a cut parcel's boundary, and loses no cells doing so.
+        from skimage.measure import label as label_values
+        pid = rasterize(((g, k + 2) for k, g in enumerate(cut_parcels)), out_shape=shape, transform=transform, fill=1,
+                        dtype="int32")
+        labels = label_values(np.where(opened, pid, 0), background=0, connectivity=2).astype(np.int32)
+        del pid
+        county = gpd.read_file(fc.BUILDINGS.parent, layer=fc.BUILDINGS.name)
+        cid = rasterize(((g, k + 1) for k, g in enumerate(county.geometry)), out_shape=shape, transform=transform, fill=0,
+                        dtype="int32")
+        labels, n = rejoin_solid_contacts(labels, cid)
+        del cid
     cells = np.bincount(labels.ravel(), minlength=n + 1)
     idx = np.arange(1, n + 1)
     h50 = np.zeros(n + 1)
