@@ -1,0 +1,12 @@
+{
+  "trees": 12,
+  "core_metrics_match_full_cfd": true,
+  "absolute_tolerance_m": 1e-08,
+  "geometry_metrics_seconds": 1.229,
+  "comparison": "Recalculation on finished crowns; excludes segmentation and alpha wrapping",
+  "omitted_fields": [
+    "crown_porosity",
+    "crown_r50_m"
+  ],
+  "trimesh_version": "5.2.0"
+}

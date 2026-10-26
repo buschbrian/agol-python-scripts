@@ -1,0 +1,238 @@
+{
+  "upstream_repository": "https://github.com/NoahAlting/CFTree",
+  "upstream_commit": "13be34b412a2f83f3ec1c89487665120348bb9d9",
+  "source_las": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2804.las",
+  "source_terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\terrain_m.tif",
+  "core_bounds_m": [
+    428100.0,
+    4504100.0,
+    428300.0,
+    4504300.0
+  ],
+  "halo_m": 20.0,
+  "input_points": 237494,
+  "cropped_terrain_edge_points_excluded": 6,
+  "segmented_points": 237281,
+  "segments": 294,
+  "eligible_core_segments": 123,
+  "reconstructed": 12,
+  "trees": [
+    {
+      "segment_id": 0,
+      "gtid": 280400000,
+      "source_points": 1251,
+      "height_ft": 88.15083341022829,
+      "crown_width_ft": 34.07581250561823,
+      "crown_faces": 396,
+      "crown_vertices": 198,
+      "watertight": true,
+      "origin_m": [
+        428148.2405195843,
+        4504262.605163867,
+        1340.6406394884082
+      ],
+      "seconds": 23.42
+    },
+    {
+      "segment_id": 1,
+      "gtid": 280400001,
+      "source_points": 7476,
+      "height_ft": 90.29617910310057,
+      "crown_width_ft": 81.78982550966103,
+      "crown_faces": 686,
+      "crown_vertices": 345,
+      "watertight": true,
+      "origin_m": [
+        428147.09585072164,
+        4504269.3965864,
+        1342.2996535580487
+      ],
+      "seconds": 83.36
+    },
+    {
+      "segment_id": 3,
+      "gtid": 280400003,
+      "source_points": 7800,
+      "height_ft": 79.48637233944399,
+      "crown_width_ft": 86.63560602985083,
+      "crown_faces": 658,
+      "crown_vertices": 331,
+      "watertight": true,
+      "origin_m": [
+        428268.3753538462,
+        4504172.063633339,
+        1341.5899487179483
+      ],
+      "seconds": 62.1
+    },
+    {
+      "segment_id": 4,
+      "gtid": 280400004,
+      "source_points": 1580,
+      "height_ft": 76.60600957595115,
+      "crown_width_ft": 39.73675340459657,
+      "crown_faces": 612,
+      "crown_vertices": 304,
+      "watertight": true,
+      "origin_m": [
+        428273.3015632907,
+        4504177.918348107,
+        1341.773234177216
+      ],
+      "seconds": 21.61
+    },
+    {
+      "segment_id": 5,
+      "gtid": 280400005,
+      "source_points": 5059,
+      "height_ft": 65.09093437294983,
+      "crown_width_ft": 80.03108681158996,
+      "crown_faces": 630,
+      "crown_vertices": 317,
+      "watertight": true,
+      "origin_m": [
+        428263.89133425517,
+        4504263.467313683,
+        1333.3783633129094
+      ],
+      "seconds": 32.75
+    },
+    {
+      "segment_id": 9,
+      "gtid": 280400009,
+      "source_points": 8049,
+      "height_ft": 69.22336688504768,
+      "crown_width_ft": 76.69167036119782,
+      "crown_faces": 650,
+      "crown_vertices": 327,
+      "watertight": true,
+      "origin_m": [
+        428119.9303838971,
+        4504162.439073163,
+        1335.3053360665965
+      ],
+      "seconds": 48.16
+    },
+    {
+      "segment_id": 10,
+      "gtid": 280400010,
+      "source_points": 3411,
+      "height_ft": 66.47755380064805,
+      "crown_width_ft": 50.90561933554763,
+      "crown_faces": 614,
+      "crown_vertices": 309,
+      "watertight": true,
+      "origin_m": [
+        428208.70958663145,
+        4504145.865825274,
+        1334.4640340076198
+      ],
+      "seconds": 29.43
+    },
+    {
+      "segment_id": 11,
+      "gtid": 280400011,
+      "source_points": 1705,
+      "height_ft": 66.09163860010686,
+      "crown_width_ft": 37.754115106188124,
+      "crown_faces": 562,
+      "crown_vertices": 283,
+      "watertight": true,
+      "origin_m": [
+        428198.35666275676,
+        4504146.519002935,
+        1333.8950322580645
+      ],
+      "seconds": 20.48
+    },
+    {
+      "segment_id": 12,
+      "gtid": 280400012,
+      "source_points": 4889,
+      "height_ft": 66.98760585835004,
+      "crown_width_ft": 63.19071905895051,
+      "crown_faces": 518,
+      "crown_vertices": 261,
+      "watertight": true,
+      "origin_m": [
+        428189.4470873392,
+        4504148.253796279,
+        1334.7019656371463
+      ],
+      "seconds": 35.1
+    },
+    {
+      "segment_id": 13,
+      "gtid": 280400013,
+      "source_points": 1978,
+      "height_ft": 66.04314688935388,
+      "crown_width_ft": 40.94077120126426,
+      "crown_faces": 638,
+      "crown_vertices": 317,
+      "watertight": true,
+      "origin_m": [
+        428197.34868048545,
+        4504154.662042473,
+        1335.3157280080907
+      ],
+      "seconds": 21.73
+    },
+    {
+      "segment_id": 14,
+      "gtid": 280400014,
+      "source_points": 2503,
+      "height_ft": 61.228145889723095,
+      "crown_width_ft": 47.92788629848144,
+      "crown_faces": 610,
+      "crown_vertices": 307,
+      "watertight": true,
+      "origin_m": [
+        428275.77354774263,
+        4504160.37578906,
+        1334.2983300039946
+      ],
+      "seconds": 28.85
+    },
+    {
+      "segment_id": 15,
+      "gtid": 280400015,
+      "source_points": 1958,
+      "height_ft": 61.49740544516866,
+      "crown_width_ft": 42.6329091689836,
+      "crown_faces": 542,
+      "crown_vertices": 273,
+      "watertight": true,
+      "origin_m": [
+        428241.47670071427,
+        4504119.820168541,
+        1333.0268437180794
+      ],
+      "seconds": 19.47
+    }
+  ],
+  "seconds": 459.95,
+  "segmentation_parameters": {
+    "radius_m": 2.5,
+    "vertical_resolution_m": 1.5,
+    "min_points_per_cluster": 3
+  },
+  "wrapping_parameters": {
+    "ralpha": 15,
+    "roffset": 50
+  },
+  "adaptation": "Existing refined classes 3/4/5 and HAG >=2 m replace AHN acquisition and HOMED. CFTree segmentation, wrapping, metrics and geometry retained.",
+  "limitations": [
+    "Bounded pilot, not a full city run or tree census",
+    "20 m halo is not seam validation",
+    "Trunk locations and diameters are inferred",
+    "No field accuracy assessment"
+  ],
+  "cityjson_sha256": "e145d4ecbf2159f5c01c9c1c35032a2d147e4647802f1618633be89521bbe765",
+  "cityjson_schema_validation": {
+    "version": "2.0.2",
+    "schema_commit": "877ee49e16c82a4bc7ab598926efcb9ba1075374",
+    "errors": 0
+  },
+  "metrics_mode": "cfd",
+  "trimesh_version": "5.2.0"
+}
