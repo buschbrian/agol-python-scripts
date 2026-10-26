@@ -24,9 +24,9 @@ Sizes from `queues.py` (all 22,042 County footprints, all 119,410 CFTree models,
 
 | Queue | Items | What it asks | Answers (key order) |
 |---|---:|---|---|
-| **3D buildings without a detailed roof** | 726 | The three-way hybrid used a fallback here. What is there? | SIMPLE_OK, NEEDS_ROOF, GONE, OUTLINE_WRONG, UNDER_TREES, UNSURE |
+| **3D buildings without a detailed roof** | 726 | The three-way hybrid used a fallback here. What is there? | SIMPLE_OK, NEEDS_ROOF, GONE, OUTLINE_WRONG, UNDER_TREES, CONSTRUCTION, NEEDS_EDIT, UNSURE |
 | **Tree models (CFTree)** | 900 | Is the red model one tree? | ONE_TREE, MERGED, PART_OF_TREE, NOT_A_TREE, SHAPE_WRONG, SHRUBS, BRUSH, TREE_WITH_ROOF, UNSURE |
-| **Tree models at tile seams** | 235 | Red and magenta come from neighbouring tiles and overlap. What are they? | SAME_TREE, SPLIT_TREE, SEPARATE_TREES, NOT_A_TREE, UNSURE |
+| **Tree models at tile seams** | 235 | Red and magenta come from neighbouring tiles and overlap. What are they? | SAME_TREE, SPLIT_TREE, SEPARATE_TREES, NOT_A_TREE, SHRUBS, BRUSH, UNSURE |
 | **Trees CFTree could not model** | 75 | Is there a tree here? | MISSED_TREE, NOT_A_TREE, UNSURE |
 
 **3D buildings.** Of the 22,042 footprints, 20,730 have a roofer LoD 2.2 roof. The other 1,312 are 481 with no model,
@@ -60,6 +60,17 @@ trees mixed in beside live ones, and trees that take in part of a roof. Three an
 or a hedge), 7 BRUSH (brush or a scrub thicket taken as one tree) and 8 TREE_WITH_ROOF. UNSURE moved from 6 to 9; he
 had not used it. Low or dead trees beside live ones count as MERGED. His two earlier NOT_A_TREE answers predate the
 new options and may be worth a second look.
+
+**After the second sitting** (October 26). In the roof queue Brian found sites rebuilt or under construction, such as
+MD733329: a new building where two county footprints are demolished buildings and the third is drawn wrong. That
+footprint has 21% roof support, an 87 ft median height (a crane or a frame) and no assessor building on its parcel. Two
+answers were added: 6 CONSTRUCTION (under construction in 2023, or rebuilt since) and 7 NEEDS_EDIT (several problems;
+say what in a note). The seam queue gained 5 SHRUBS and 6 BRUSH. Neither queue had answers yet, so UNSURE moved to the end.
+
+He also found the side views hard to read on slopes and in big shrub patches. They now colour each point by its height
+above the October 22 terrain at that point: points under 2 m (the threshold CFTree and the canopy products use) are
+pale, orange for this model and pink for the other. They also draw the terrain under the view's centre line and a dashed line 2 m
+above it. The views were redrawn in place with `add_model_queues.py --refresh-profiles`, which changes only the images.
 
 ## How long it should take
 

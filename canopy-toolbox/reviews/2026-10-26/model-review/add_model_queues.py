@@ -134,8 +134,29 @@ def load_segmentation(path):
     return t["seg"].to_numpy(), t[["x", "y", "z"]].to_numpy()
 
 
-def profile_png(own, other, context, crown, trunk, base_z):
-    """Two side views (looking north: x-z; looking west: y-z), equal scales, as a PNG data URI."""
+class Ground:
+    """The October 22 terrain (0.5 m) at any points, so the side views show height above the real ground."""
+
+    def __init__(self, chips):
+        self.ds, self.t = chips.ds["dtm"], chips.t
+
+    def __call__(self, x, y):
+        from rasterio.windows import Window
+        c = np.floor((np.asarray(x, float) - self.t.c) / brd.CELL).astype(int)
+        r = np.floor((self.t.f - np.asarray(y, float)) / brd.CELL).astype(int)
+        c0, r0 = int(c.min()), int(r.min())
+        a = self.ds.read(1, window=Window(c0, r0, int(c.max()) - c0 + 1, int(r.max()) - r0 + 1), boundless=True,
+                         fill_value=self.ds.nodata).astype(np.float64)
+        a[(a == self.ds.nodata) | ~np.isfinite(a)] = np.nan
+        return a[r - r0, c - c0]
+
+
+SHRUB_M = 2.0           # the tree threshold drawn in the side views (CFTree and the canopy products use 2 m)
+
+
+def profile_png(own, other, context, crown, trunk, base_z, ground=None):
+    """Two side views (looking north: x-z; looking west: y-z), equal scales, as a PNG data URI. With ground, points
+    under 2 m above the terrain are drawn in a lighter colour, and the terrain and the 2 m line are drawn."""
     import base64
     import io
     from PIL import Image, ImageDraw
@@ -143,9 +164,24 @@ def profile_png(own, other, context, crown, trunk, base_z):
     pts = [p for p in (own, other) if p is not None and len(p)]
     allp = np.vstack(pts + ([crown] if crown is not None else []))
     cx, cy = (allp[:, 0].min() + allp[:, 0].max()) / 2, (allp[:, 1].min() + allp[:, 1].max()) / 2
-    zlo = min(base_z if base_z is not None else allp[:, 2].min(), allp[:, 2].min()) - 1
     zhi = allp[:, 2].max() + 1.5
-    half = max(8.0, 0.6 * max(np.ptp(allp[:, 0]), np.ptp(allp[:, 1])) + 2, 0.5 * (zhi - zlo))
+    half = max(8.0, 0.6 * max(np.ptp(allp[:, 0]), np.ptp(allp[:, 1])) + 2)
+    along = np.arange(-half, half + 0.25, 0.5)
+    lines = {}
+    if ground is not None:
+        lines = {0: ground(cx + along, np.full_like(along, cy)), 1: ground(np.full_like(along, cx), cy + along)}
+    lows = [allp[:, 2].min()] + ([base_z] if base_z is not None else []) + \
+        [float(np.nanmin(v)) for v in lines.values() if np.isfinite(v).any()]
+    zlo = min(lows) - 1
+    half = max(half, 0.5 * (zhi - zlo))
+    along = np.arange(-half, half + 0.25, 0.5)
+    if ground is not None:
+        lines = {0: ground(cx + along, np.full_like(along, cy)), 1: ground(np.full_like(along, cx), cy + along)}
+
+    def low(arr):
+        if ground is None or arr is None or not len(arr):
+            return np.zeros(0 if arr is None else len(arr), bool)
+        return (arr[:, 2] - ground(arr[:, 0], arr[:, 1])) < SHRUB_M
     W = H = 330
     s = W / (2 * half)                           # the view stands on the ground: zlo at the bottom, 2 * half tall
     img = Image.new("RGB", (2 * W + 10, H), "white")
@@ -165,12 +201,23 @@ def profile_png(own, other, context, crown, trunk, base_z):
             for p in context[keep][::max(1, int(keep.sum() // 6000) or 1)]:
                 x, y = xy(p)
                 d.point((x, y), fill=(184, 184, 176))
-        for arr, col in ((other, (255, 61, 245)), (own, (255, 42, 42))):
+        if axis in lines:
+            g = lines[axis]
+            for k in range(len(along) - 1):
+                if np.isfinite(g[k]) and np.isfinite(g[k + 1]):
+                    a0, a1 = c + along[k], c + along[k + 1]
+                    d.line([(u(a0), H - (g[k] - zlo) * s), (u(a1), H - (g[k + 1] - zlo) * s)], fill=(140, 110, 70), width=2)
+                    if k % 2 == 0:                             # dashed: the 2 m tree line
+                        d.line([(u(a0), H - (g[k] + SHRUB_M - zlo) * s), (u(a1), H - (g[k + 1] + SHRUB_M - zlo) * s)],
+                               fill=(40, 140, 60), width=1)
+        for arr, col, pale in ((other, (255, 61, 245), (245, 175, 240)), (own, (255, 42, 42), (235, 160, 40))):
             if arr is None:
                 continue
-            for p in arr[::max(1, len(arr) // 5000)]:
+            step = max(1, len(arr) // 5000)
+            under = low(arr)
+            for p, is_low in zip(arr[::step], under[::step] if len(under) else [False] * len(arr[::step])):
                 x, y = xy(p)
-                d.rectangle((x - 0.6, y - 0.6, x + 0.6, y + 0.6), fill=col)
+                d.rectangle((x - 0.6, y - 0.6, x + 0.6, y + 0.6), fill=pale if is_low else col)
         if crown is not None and len(crown) >= 3:
             hull = MultiPoint([(p[axis], p[2]) for p in crown]).convex_hull
             if hull.geom_type == "Polygon":
@@ -179,7 +226,7 @@ def profile_png(own, other, context, crown, trunk, base_z):
             a, b = sorted((u(trunk[:, axis].min()), u(trunk[:, axis].max())))
             d.rectangle((a, H - (trunk[:, 2].max() - zlo) * s, b, H - (trunk[:, 2].min() - zlo) * s),
                         outline=(120, 70, 20), width=2)
-        if base_z is not None:
+        if base_z is not None and axis not in lines:
             d.line([(ox, H - (base_z - zlo) * s), (ox + W, H - (base_z - zlo) * s)], fill=(140, 110, 70), width=1)
         for m in range(0, int(2 * half) + 1, 5):              # 5 m ticks along the bottom
             d.line([(ox + m * s, H - 1), (ox + m * s, H - 6)], fill=(90, 90, 90))
@@ -187,6 +234,8 @@ def profile_png(own, other, context, crown, trunk, base_z):
     view(0, 0)
     view(1, W + 10)
     d.text((W - 60, H - 18), f"ticks 5 m ({5 * FEET:.0f} ft)", fill=(90, 90, 90))
+    if lines:
+        d.text((W + 14, H - 18), f"dashed green: {SHRUB_M:.0f} m ({SHRUB_M * FEET:.1f} ft) above ground", fill=(40, 140, 60))
     buf = io.BytesIO()
     img.save(buf, "PNG", optimize=True)
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
@@ -261,12 +310,18 @@ def main(argv=None):
     p.add_argument("--pilot", action="store_true")
     p.add_argument("--sample", type=int, default=300)
     p.add_argument("--seed", type=int, default=20261026)
+    p.add_argument("--refresh-profiles", action="store_true",
+                   help="redraw only the side views of the tree items already in DATA (atomically, bundle by bundle)")
     a = p.parse_args(argv)
     data, run = a.data.resolve(), a.cftree.resolve()
     roofs, tree_items, seams, rejects, sizes = select(a.queues, a.sample, a.seed, a.pilot)
     print("selected:", json.dumps(sizes), flush=True)
+    refresh = {} if a.refresh_profiles else None   # item id -> new side view
 
-    if a.pilot:
+    if refresh is not None:
+        built = json.loads((data/"index.json").read_text(encoding="utf-8"))
+        index, roofs = list(built["items"]), []
+    elif a.pilot:
         (data/"bundles").mkdir(parents=True, exist_ok=False)
         (data/"answers").mkdir()
         built, index = {"schema": "footprint-review/1", "built": datetime.datetime.now().isoformat(timespec="seconds"),
@@ -283,6 +338,7 @@ def main(argv=None):
     web = Web(county, county_web)
     print("ITRF08:", web.check, flush=True)
     chips = brd.Chips()
+    ground = Ground(chips)
     _, parcels = brd.load_parcels()
     brd.load_alignment()
     county_tree = shapely.STRtree(list(county.geometry))
@@ -317,6 +373,9 @@ def main(argv=None):
 
     def item(item_id, queue, group, facts, rings, rings_ll, bounds, focus=None, related=None, profile=None,
              exclude_county=(), exclude_trees=(), trees=False, min_half=25.0):
+        if refresh is not None:
+            refresh[item_id] = profile
+            return
         chip, uri = chips.render(bounds, min_half)
         details[item_id] = {"id": item_id, "queue": queue, "group": group, "facts": facts,
                             "outline_ll": rings_ll, "outline_px": brd.Chips.px(rings, chip),
@@ -373,7 +432,7 @@ def main(argv=None):
                 x0, y0 = own[:, 0].min(), own[:, 1].min()
                 x1, y1 = own[:, 0].max(), own[:, 1].max()
                 near = xyz[(np.abs(xyz[:, 0] - top[0]) < 15) & (np.abs(xyz[:, 1] - top[1]) < 15) & (seg != s)]
-                prof = profile_png(own, None, near, None, None, None)
+                prof = profile_png(own, None, near, None, None, None, ground)
                 rings = dot(top[0], top[1], 0.8)
                 facts = {"Candidate": t["model_id"], "Tile": tile, "Why CFTree stopped": t["reason"].split(": ", 1)[-1],
                          "LiDAR points in the segment": f"{len(own):,}",
@@ -399,7 +458,7 @@ def main(argv=None):
             box = (x0 - CONTEXT_M, y0 - CONTEXT_M, x1 + CONTEXT_M, y1 + CONTEXT_M)
             sel = ((xyz[:, 0] > box[0]) & (xyz[:, 0] < box[2]) & (xyz[:, 1] > box[1]) & (xyz[:, 1] < box[3])
                    & (seg != segment_of[t["MODEL_ID"]][1]))
-            prof = profile_png(own, other, xyz[sel], crown, trunk, attrs.get("trunk_base_height_m"))
+            prof = profile_png(own, other, xyz[sel], crown, trunk, attrs.get("trunk_base_height_m"), ground)
             facts = {"Model": t["MODEL_ID"], "Tile": tile,
                      "Height": feet(float(t["HEIGHT_FT"]) / FEET), "Crown width": feet(float(t["CROWN_WIDTH_FT"]) / FEET),
                      "Crown outline area": f"{float(t['CROWN_AREA_SQFT']):,.0f} ft²",
@@ -418,6 +477,22 @@ def main(argv=None):
         print(f"  tile {tile} ({n}/{len(jobs)}): {len(details)} items", flush=True)
         del seg, xyz
 
+    if refresh is not None:
+        # Replace each tree item's side view in place, one bundle at a time (a partial file, then a rename); every
+        # other field, the index and the answers stay as they are. A running page picks the new views up on reload.
+        live = {it["id"]: it["bundle"] for it in index if it["queue"] in ("trees", "tree_seams", "tree_rejects")}
+        assert set(refresh) == set(live), (len(refresh), len(live), sorted(set(refresh) ^ set(live))[:5])
+        for name in sorted(set(live.values())):
+            path = data/"bundles"/name
+            bundle = json.loads(path.read_text(encoding="utf-8"))
+            for i in bundle:
+                if i in refresh:
+                    bundle[i]["profile"] = refresh[i]
+            partial = path.with_suffix(".partial")
+            partial.write_text(json.dumps(bundle, separators=(",", ":"), allow_nan=False), encoding="utf-8")
+            os.replace(partial, path)
+        print(f"side views redrawn on {len(refresh)} items in {len(set(live.values()))} bundles")
+        return
     order = ([f"MD{r['SOURCE_ID']}" for r in roofs] + [f"TR{t['MODEL_ID'][:8]}" for _, t in tree_items]
              + [f"TS{t['MODEL_ID'][:8]}" for _, t, _ in seams] + [f"TX{r['model_id'][:8]}" for _, r in rejects])
     assert len(order) == len(set(order)) == len(details), (len(order), len(set(order)), len(details))

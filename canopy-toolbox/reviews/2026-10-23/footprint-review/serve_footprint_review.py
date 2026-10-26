@@ -35,15 +35,15 @@ ANSWERS = {
     # October 23: what the red LiDAR piece is, beside the magenta county outline (codes of the first version kept)
     # October 26: two answers for the compound cases Brian met (UNSURE moved from 6 to 8; he had not used it here)
     "pairs": ("OFFSET", "PART_OF_EXISTING", "BOTH_REAL", "REBUILT", "NOT_A_BUILDING", "REBUILT_MERGE", "NEEDS_EDIT",
-              "UNSURE"),
+              "SHED", "UNSURE"),
     # October 26 (reviews/2026-10-26/model-review): footprints the 3D buildings modelled without a roofer LoD2.2 roof,
     # and the CFTree tree models
-    "models": ("SIMPLE_OK", "NEEDS_ROOF", "GONE", "OUTLINE_WRONG", "UNDER_TREES", "UNSURE"),
+    "models": ("SIMPLE_OK", "NEEDS_ROOF", "GONE", "OUTLINE_WRONG", "UNDER_TREES", "CONSTRUCTION", "NEEDS_EDIT", "UNSURE"),
     # October 26, after Brian's first answers: shrubs, brush and roofs taken in with a tree (UNSURE moved from 6 to 9;
     # he had not used it)
     "trees": ("ONE_TREE", "MERGED", "PART_OF_TREE", "NOT_A_TREE", "SHAPE_WRONG", "SHRUBS", "BRUSH", "TREE_WITH_ROOF",
               "UNSURE"),
-    "tree_seams": ("SAME_TREE", "SPLIT_TREE", "SEPARATE_TREES", "NOT_A_TREE", "UNSURE"),
+    "tree_seams": ("SAME_TREE", "SPLIT_TREE", "SEPARATE_TREES", "NOT_A_TREE", "SHRUBS", "BRUSH", "UNSURE"),
     "tree_rejects": ("MISSED_TREE", "NOT_A_TREE", "UNSURE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")

@@ -20,7 +20,7 @@ main { display: flex; gap: 12px; padding: 12px; align-items: flex-start; }
 .legend { font-size: 11px; color: var(--muted); margin-top: 4px; }
 .sw { display: inline-block; width: 12px; height: 10px; margin: 0 2px 0 8px; vertical-align: -1px; border: 1px solid #999; }
 .roof-lo { background: rgb(255,230,60); } .roof-mid { background: rgb(235,130,120); } .roof-hi { background: rgb(215,30,180); }
-.tree { background: rgb(60,170,60); } .outside { background: #fff; } .context { background: #b8b8b0; }
+.tree { background: rgb(60,170,60); } .outside { background: #fff; } .context { background: #b8b8b0; } .low-own { background: rgb(235,160,40); }
 #profile-wrap { margin-top: 8px; } #profile { width: 100%; display: block; border: 1px solid var(--line); background: #fff; }
 .line-item { border: 2px solid #ff2a2a; } .line-focus { border: 2px solid #ff3df5; } .line-county { border: 2px solid #fff; background: #555; } .line-cand { border: 2px dashed #00d5ff; }
 aside { flex: 0 0 340px; display: flex; flex-direction: column; gap: 8px; }
