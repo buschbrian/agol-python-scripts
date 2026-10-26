@@ -1,0 +1,310 @@
+<!doctype html><meta charset='utf-8'><body style='font-family:sans-serif;max-width:60rem;margin:auto'><h1>Millcreek 3D buildings for ArcGIS Urban, UTM 12N (2023 lidar), planning estimate</h1><p><i>21,561 Millcreek, Utah, buildings in 3D, with roof forms from the 2023 lidar and an estimated floor count, in UTM 12N for a local ArcGIS Urban model. Unvalidated planning estimate; not surveyed or field-verified.</i></p><p><strong>Planning estimate.</strong> This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
+surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
+property-boundary, permitting or code-compliance decisions.</p>
+<h2>What it shows</h2>
+<p>The same 21,561 Millcreek, Utah, buildings as the public <strong>Millcreek 3D buildings with roof forms</strong> layer, in <strong>NAD83(2011) UTM
+zone 12N</strong> instead of WGS84, for the existing buildings of a <strong>local ArcGIS Urban model</strong> in that coordinate system. For 20,730 the roof
+has a modelled shape from the 2023 lidar (roofer LoD 2.2); 647 use Esri's LOD2.0 roof forms and 184 are flat LOD1.2 blocks. The
+<strong>LEVEL</strong> field says which.</p>
+<h2>Floors for ArcGIS Urban</h2>
+<p><strong>FLOORS</strong> is an estimated floor count for Urban's <strong>Convert existing buildings</strong> (attribute-driven mode): the 95th percentile lidar
+roof height above ground (HEIGHT_P95_M) divided by 3.5 m, rounded to the nearest whole number (halves up), and never less than 1.
+No building lacks a height, so none is empty. It is <strong>a planning estimate from roof height, not a count of storeys</strong>: a tall
+single-storey building, a pitched roof or a split-level house can be given the wrong number.</p>
+<table style="border-collapse:collapse;font-size:90%">
+<thead>
+<tr>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">FLOORS</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Buildings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">1</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">11,894</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">2</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">8,271</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">3</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">1,294</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">4</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">52</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">5 to 9</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">49</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">12</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">1</td>
+</tr>
+</tbody>
+</table>
+<p>The footprints, with the same FP_ID and FLOORS, are the companion feature layer <strong>Millcreek building footprints for ArcGIS Urban,
+UTM 12N</strong>.</p>
+<h2>Fields</h2>
+<p>Every building carries its County footprint attributes, the lidar roof-height statistics and the model it uses. Unlike the public
+layer, this copy does not carry the roof-plane attributes (areas, slopes, azimuth) added on October 24; use the public layer for those.
+Heights and elevations are metres; Z50 fields are elevations, other height fields are above local ground.</p>
+<table style="border-collapse:collapse;font-size:90%">
+<thead>
+<tr>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Field</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Alias</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Type</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Units</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>OBJECTID</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">OBJECTID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">OID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Package row identifier; use FP_ID to identify a building.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>Name</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Name</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Model object name.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>FP_ID</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">FP_ID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Integer</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Footprint identifier, unique per building; the key to the footprint layer and the public 3D buildings.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>PARTS</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">PARTS</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Integer</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Number of converted model parts.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_ROOF_TYPE</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_ROOF_TYPE</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Roof type inferred by roofer.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_ROOF_PLANES</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_ROOF_PLANES</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Integer</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Roof plane count reported by roofer.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_RIDGELINES</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_RIDGELINES</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Integer</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Ridgeline count reported by roofer.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_RMSE_LOD22</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_RMSE_LOD22</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Roofer model fit RMSE; not independent accuracy.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_H_GROUND</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_H_GROUND</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Roofer ground elevation, NAVD88.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_H_ROOF_MAX</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_H_ROOF_MAX</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Maximum roof elevation reported by roofer, NAVD88.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_PT_DENSITY</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_PT_DENSITY</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">points per m2</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Point density reported by roofer.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>RF_EXTRUSION</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">RF_EXTRUSION</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Roofer extrusion status.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>SOURCE_ID</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">SOURCE_ID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">County source footprint identifier, as text.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>PARCEL_ID</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">PARCEL_ID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">County parcel identifier carried with the footprint.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>CITY</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">CITY</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">County city attribute.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>FOOTPRINT_M2</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">FOOTPRINT_M2</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">square metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">County footprint area.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>ROOF_COV_PCT</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">ROOF_COV_PCT</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">percent</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Share of footprint cells with classified lidar roof support.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>ROOF_Z50_M</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">ROOF_Z50_M</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Median classified lidar roof elevation, NAVD88.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>GROUND_Z50_M</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">GROUND_Z50_M</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Median ground elevation under the footprint, NAVD88.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>HEIGHT_P50_M</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">HEIGHT_P50_M</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Median lidar roof height above ground; not code-defined height.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>HEIGHT_P95_M</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">HEIGHT_P95_M</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">95th percentile lidar roof height above ground (0.80 to 42.22); FLOORS is computed from it.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>HEIGHT_STATUS</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">HEIGHT_STATUS</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Processing and support flags, including UNVALIDATED.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>LEVEL</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">LEVEL</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Model used: roofer LoD2.2, Esri LOD2.0 or Esri LOD1.2.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>CHECK_VERDICT</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">CHECK_VERDICT</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Check result recorded when the hybrid was assembled.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>ROOFER_VERDICT</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">ROOFER_VERDICT</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Roofer comparison verdict against the source lidar.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>ESRI_VERDICT</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">ESRI_VERDICT</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Esri LOD2.0 comparison verdict against the source lidar.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>FALLBACK_REASON</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">FALLBACK_REASON</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Reason the model falls back from roofer to Esri.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>FLOORS</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Estimated floors</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Integer</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">floors</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">HEIGHT_P95_M / 3.5 m, rounded (halves up), at least 1. A planning estimate for ArcGIS Urban, not a count of storeys.</td>
+</tr>
+</tbody>
+</table>
+<h2>How it was made</h2>
+<ol>
+<li>The three-way hybrid buildings of October 25, 2026 (see the public layer for how roofer and the Esri fallbacks were chosen).</li>
+<li>Field types a scene layer package cannot carry were to be dropped first (big integer, date only, time only, timestamp offset); the
+   source has none. FLOORS was added.</li>
+<li>Packaged as a scene layer package in UTM 12N (EPSG 6341) with NAVD88 height (EPSG 5703), no transformation, and published on
+   October 26, 2026. A 20-building test package was built and checked first.</li>
+</ol>
+<h2>Accuracy and checks</h2>
+<ul>
+<li>The package and the hosted layer hold 21,561 buildings; their FP_ID count and sum (21,561 and 237,493,394) equal the source's, and
+  the model counts per LEVEL match. FLOORS on the hosted layer sums to 32,836, from 1 to 12.</li>
+<li>ArcGIS Pro's package validation reports one warning: "vertex normals may be required by Esri products". Pro writes no vertex
+  normals for a package in a projected coordinate system (the same source packaged in WGS84 has them and no warning); viewers then
+  compute shading themselves.</li>
+<li>On the cells where the lidar saw roof, the buildings are within 0.5 m of the lidar roof on 96.7% of cells and within 1 m on 98.1%.
+  The lidar is also what the roofs were built from, so this is fidelity to the lidar, not independent accuracy.</li>
+<li><strong>Not yet seen in a local scene or in ArcGIS Urban.</strong> The checks are on the package and the service, not on drawing.</li>
+</ul>
+<h2>Limits</h2>
+<ul>
+<li><strong>Planning estimates, not surveyed buildings.</strong> Heights are roof minus ground from lidar, not code-defined building heights.</li>
+<li><strong>Footprints are the County's</strong>, as of October 19, 2026; buildings built or removed since are not reflected.</li>
+<li>Complex roofs can come out fragmented; under trees, glass and dark roofs the lidar sees less.</li>
+</ul>
+<p><strong>Coordinates and heights.</strong> NAD83(2011) / UTM zone 12N (EPSG 6341), metres: the lidar's own coordinate system, with no
+datum transformation. This copy is for a <strong>local</strong> scene or a local ArcGIS Urban model in 6341. The other layers in the
+Millcreek LiDAR 2023 set are WGS84 / Web Mercator copies for global scenes; they hold the same data. Elevations are NAVD88
+(Geoid18) in <strong>metres</strong>; heights are metres above the lidar bare-earth terrain.</p>
+<p><strong>Lidar source.</strong> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
+flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
+non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.</p>
+<p><strong>The Millcreek ArcGIS Urban layers.</strong> Three organization-only layers in UTM 12N for a local ArcGIS Urban model: 3D buildings
+(scene layer), building footprints (feature layer) and bare-earth terrain (elevation layer). They come from the same lidar,
+the same buildings and the same terrain as the public Millcreek LiDAR 2023 set.</p>
+<p><strong>Questions or corrections:</strong> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
+of Millcreek GIS.</p><h2>Terms of use</h2><p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
+engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
+design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
+determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
+conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
+3DEP)" when you use or show them.</p>
+<p><strong>Salt Lake County data.</strong> The building footprints and their County attributes come from Salt Lake County (Assessor and
+Surveyor). The County's own terms apply to them: the County states that its footprints are not field verified, are for
+general reference only, and are not intended to determine property ownership, final building and site design or
+jurisdictional boundaries, or to replace a certified topographical or boundary survey or any other legal document.</p><h2>Credits</h2><p>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026). Roof reconstruction: roofer, 3DBAG and TU Delft (https://github.com/3DBAG/roofer).</p><p>Tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, buildings, 3D buildings, LOD2.2, roof forms, building height, floors, scene layer, ArcGIS Urban, UTM</p></body>

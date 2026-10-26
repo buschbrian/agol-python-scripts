@@ -1,0 +1,121 @@
+<!doctype html><meta charset='utf-8'><body style='font-family:sans-serif;max-width:60rem;margin:auto'><h1>Millcreek building footprints for ArcGIS Urban, UTM 12N (2023 lidar), planning estimate</h1><p><i>Footprints of the 21,561 Millcreek, Utah, 3D buildings with lidar roof height, model level and an estimated floor count, in UTM 12N for a local ArcGIS Urban model. Unvalidated planning estimate; not surveyed or field-verified.</i></p><p><strong>Planning estimate.</strong> This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
+surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
+property-boundary, permitting or code-compliance decisions.</p>
+<h2>What it shows</h2>
+<p>One polygon for each of the 21,561 buildings in the scene layer <strong>Millcreek 3D buildings for ArcGIS Urban, UTM 12N</strong>, with the same
+<strong>FP_ID</strong>, so the two can be joined or used together as the existing buildings of a local ArcGIS Urban model. Each footprint is the
+outline of its 3D model seen from above. It carries the roof height, the model level and an <strong>estimated floor count, FLOORS</strong>, for
+Urban's <strong>Convert existing buildings</strong> in attribute-driven mode. There are no owner or address fields.</p>
+<h2>Floors</h2>
+<p>FLOORS is the 95th percentile lidar roof height above ground (HEIGHT_P95_M) divided by 3.5 m, rounded to the nearest whole number
+(halves up), and never less than 1; it would be empty for a building with no height, and there are none. It is <strong>a planning
+estimate from roof height, not a count of storeys</strong>. 11,894 buildings get 1, 8,271 get 2, 1,294 get 3, 101 get 4 to 9 and one
+gets 12; the sum is 32,836.</p>
+<h2>Data dictionary</h2>
+<table style="border-collapse:collapse;font-size:90%">
+<thead>
+<tr>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Field</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Alias</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Type</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Units</th>
+<th style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>OBJECTID</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">OBJECTID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">OID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Row number assigned by ArcGIS Online; use FP_ID as the key.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>FP_ID</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Footprint ID</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Integer</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Building identifier, unique; the same FP_ID as the 3D buildings for ArcGIS Urban and the public 3D buildings.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>HEIGHT_P95_M</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Roof height, 95th percentile (m)</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">95th percentile of lidar roof minus terrain over the footprint (0.80 to 42.22 m); not a code-defined building height.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>LEVEL_</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Model used</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">String</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Model of the 3D building: roofer LoD2.2, Esri LOD2.0 or Esri LOD1.2. Named LEVEL in the scene layer.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>FLOORS</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Estimated floors</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Integer</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">floors</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">HEIGHT_P95_M / 3.5 m, rounded (halves up), at least 1 (1 to 12). A planning estimate for ArcGIS Urban, not a count of storeys.</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>Shape__Area</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Shape__Area</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">square metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Footprint area computed by ArcGIS Online in UTM 12N (grid area, about 0.07% under the ground area at Millcreek).</td>
+</tr>
+<tr>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left"><code>Shape__Length</code></td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Shape__Length</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Double</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">metres</td>
+<td style="border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left">Footprint perimeter computed by ArcGIS Online in UTM 12N.</td>
+</tr>
+</tbody>
+</table>
+<h2>How it was made</h2>
+<ol>
+<li>The 21,561 buildings of the October 25, 2026 three-way hybrid (roofer LoD 2.2 roofs, Esri LOD2.0 and LOD1.2 fallbacks).</li>
+<li>ArcGIS Pro's Multipatch Footprint, grouped by FP_ID: one polygon per building, none empty.</li>
+<li>HEIGHT_P95_M and LEVEL copied from the building; FLOORS computed; stored in UTM 12N and published on October 26, 2026.</li>
+</ol>
+<h2>Accuracy and checks</h2>
+<ul>
+<li>The hosted layer holds 21,561 footprints. FP_ID count and sum (21,561 and 237,493,394) equal the scene layer's and the source's;
+  FP_IDs are unique. LEVEL counts are 20,730 roofer LoD2.2, 647 Esri LOD2.0 and 184 Esri LOD1.2. No FLOORS value is empty.</li>
+<li>Shape__Area totals 4,710,583 m2 on the hosted layer, within 0.001 m2 of the area computed in UTM before upload. In UTM,
+  Shape__Area and Shape__Length are grid measures: the UTM scale factor is about 0.9997 at Millcreek, so areas read about 0.07%
+  under the ground area and lengths about 0.03% under.</li>
+<li>The outlines follow the 3D models, which follow the County footprints; they are not redrawn from the lidar.</li>
+</ul>
+<h2>Limits</h2>
+<ul>
+<li><strong>Planning estimates.</strong> Heights are roof minus ground from lidar, not code-defined building heights; FLOORS is an estimate.</li>
+<li><strong>Footprints are the County's</strong>, as of October 19, 2026; buildings built or removed since are not reflected.</li>
+<li>The field LEVEL is named <strong>LEVEL_</strong> here: ArcGIS Online renames LEVEL, a reserved word, when it publishes. The scene layer keeps
+  LEVEL.</li>
+</ul>
+<p><strong>Coordinates and heights.</strong> NAD83(2011) / UTM zone 12N (EPSG 6341), metres: the lidar's own coordinate system, with no
+datum transformation. This copy is for a <strong>local</strong> scene or a local ArcGIS Urban model in 6341. The other layers in the
+Millcreek LiDAR 2023 set are WGS84 / Web Mercator copies for global scenes; they hold the same data. Elevations are NAVD88
+(Geoid18) in <strong>metres</strong>; heights are metres above the lidar bare-earth terrain.</p>
+<p><strong>Lidar source.</strong> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
+flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
+non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.</p>
+<p><strong>The Millcreek ArcGIS Urban layers.</strong> Three organization-only layers in UTM 12N for a local ArcGIS Urban model: 3D buildings
+(scene layer), building footprints (feature layer) and bare-earth terrain (elevation layer). They come from the same lidar,
+the same buildings and the same terrain as the public Millcreek LiDAR 2023 set.</p>
+<p><strong>Questions or corrections:</strong> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
+of Millcreek GIS.</p><h2>Terms of use</h2><p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
+engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
+design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
+determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
+conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
+3DEP)" when you use or show them.</p>
+<p><strong>Salt Lake County data.</strong> The building footprints and their County attributes come from Salt Lake County (Assessor and
+Surveyor). The County's own terms apply to them: the County states that its footprints are not field verified, are for
+general reference only, and are not intended to determine property ownership, final building and site design or
+jurisdictional boundaries, or to replace a certified topographical or boundary survey or any other legal document.</p><h2>Credits</h2><p>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026).</p><p>Tags: Millcreek, Utah, Salt Lake County, lidar, 2023 lidar, 3DEP, planning estimate, buildings, building footprints, building height, floors, ArcGIS Urban, UTM</p></body>

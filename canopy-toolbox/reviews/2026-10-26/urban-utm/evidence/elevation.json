@@ -1,0 +1,165 @@
+{
+ "created": "2026-10-26T13:57:36",
+ "pilot": false,
+ "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_context.tif",
+ "scheme": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\elevation\\scheme.xml",
+ "levels": [
+  0,
+  14
+ ],
+ "aoi": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\elevation\\full\\aoi.shp",
+ "seconds": {
+  "cache": 57.3,
+  "package": 1.7
+ },
+ "conf_properties": {
+  "MinScale": "30961827.84",
+  "MaxScale": "1889.76",
+  "CacheTileContentType": "Elevation",
+  "PixelType": "32_BIT_FLOAT"
+ },
+ "conf": {
+  "format": "LERC",
+  "lerc_error": 0.01,
+  "tile_size": 256
+ },
+ "tpkx": {
+  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\millcreek_terrain_utm_20261026.tpkx",
+  "bytes": 190386849
+ },
+ "levels_in_package": {
+  "0": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 100
+  },
+  "1": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 140
+  },
+  "2": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 190
+  },
+  "3": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 339
+  },
+  "4": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 800
+  },
+  "5": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 2164
+  },
+  "6": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 6354
+  },
+  "7": {
+   "tiles": 2,
+   "with_data": 2,
+   "bytes": 22039
+  },
+  "8": {
+   "tiles": 6,
+   "with_data": 5,
+   "bytes": 74722
+  },
+  "9": {
+   "tiles": 12,
+   "with_data": 10,
+   "bytes": 259054
+  },
+  "10": {
+   "tiles": 28,
+   "with_data": 23,
+   "bytes": 910810
+  },
+  "11": {
+   "tiles": 88,
+   "with_data": 74,
+   "bytes": 3216810
+  },
+  "12": {
+   "tiles": 295,
+   "with_data": 248,
+   "bytes": 11419252
+  },
+  "13": {
+   "tiles": 1109,
+   "with_data": 862,
+   "bytes": 39144745
+  },
+  "14": {
+   "tiles": 4040,
+   "with_data": 3222,
+   "bytes": 133199665
+  }
+ },
+ "root": {
+  "wkid": 6341,
+  "tile_size": [
+   256,
+   256
+  ],
+  "lods_in_scheme": 15,
+  "minLOD": 0,
+  "maxLOD": 14,
+  "minScale": 30961827.84,
+  "maxScale": 1889.76,
+  "tileImageInfo": {
+   "format": "LERC",
+   "compressionQuality": 0,
+   "bandCount": 1,
+   "lercError": 0.01
+  },
+  "storageFormat": "esriMapCacheStorageModeCompactV2",
+  "fullExtent": {
+   "xmin": 422149,
+   "ymin": 4501259.5,
+   "xmax": 434399.5,
+   "ymax": 4507383,
+   "spatialReference": {
+    "wkid": 102059,
+    "latestWkid": 6341
+   }
+  }
+ },
+ "iteminfo": {
+  "creator": "ExportTileCache",
+  "name": "millcreek_terrain_utm_20261026",
+  "guid": "D12EE4C3-F623-4FC7-BEFA-4956A3A233D7",
+  "version": 1.0,
+  "created": 0,
+  "snippet": "",
+  "description": "",
+  "summary": "",
+  "title": "millcreek_terrain_utm_20261026",
+  "tags": "",
+  "type": "Compact Tile Package",
+  "typeKeywords": [
+   "Compact Tile Package",
+   "Tile Package",
+   "tpkx"
+  ],
+  "thumbnail": "./thumbnail.png",
+  "extent": {
+   "xmin": -111.9216958475471,
+   "ymin": 40.658530465362304,
+   "xmax": -111.77603309140083,
+   "ymax": 40.71475516649377,
+   "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+   }
+  }
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "created": "2026-10-26T14:00:09",
+ "feature_class": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\footprints\\urban_footprints.gdb\\building_footprints",
+ "count": 21561,
+ "fp_id_sum": 237493394,
+ "unique": 21561,
+ "fields": [
+  [
+   "OBJECTID",
+   "OID"
+  ],
+  [
+   "Shape",
+   "Geometry"
+  ],
+  [
+   "FP_ID",
+   "Integer"
+  ],
+  [
+   "HEIGHT_P95_M",
+   "Double"
+  ],
+  [
+   "LEVEL",
+   "String"
+  ],
+  [
+   "FLOORS",
+   "Integer"
+  ],
+  [
+   "Shape_Length",
+   "Double"
+  ],
+  [
+   "Shape_Area",
+   "Double"
+  ]
+ ],
+ "wkid": 6341,
+ "floors_sum": 32836,
+ "height_p95_sum": 117846.28582274914,
+ "area_m2": 4710583.490945993
+}

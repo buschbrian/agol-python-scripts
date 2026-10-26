@@ -6,6 +6,9 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 
 ## Routing
 
+- ArcGIS Urban local model in NAD83(2011) UTM 12N (Brian, October 26): org-only UTM copies of the three-way hybrid buildings
+  (scene layer with FLOORS), their footprints (feature layer) and the 0.5 m terrain (elevation layer on a UTM tiling scheme a
+  basemap must share), IDs, verification, sharing: reviews/2026-10-26/urban-utm. make_slpk.py now takes --wkid/--vcs.
 - Public buildings scene on the LiDAR-first layer (metres and feet; release, verification, rollback) and the decisions
   still open: reviews/2026-10-26/lidar-footprints (release/, DECISIONS.md).
 - LiDAR-first building outlines (Brian, October 26: the LiDAR is the truth for whole buildings, redraw the county

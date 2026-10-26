@@ -166,5 +166,30 @@
   "when": "2026-10-23T14:45:38",
   "item_update": true,
   "layers": {}
+ },
+ {
+  "key": "urban_buildings",
+  "id": "b8e8ddaceac54876bd4c0cf3f31d92fd",
+  "when": "2026-10-26T14:10:22",
+  "item_update": true,
+  "layers": {}
+ },
+ {
+  "key": "urban_footprints",
+  "id": "e74c2216aca54d7f8be2432768b64520",
+  "when": "2026-10-26T14:10:25",
+  "item_update": true,
+  "layers": {
+   "0": {
+    "success": true
+   }
+  }
+ },
+ {
+  "key": "urban_terrain",
+  "id": "83d1a892fd67408b9f8f9fcb754cd479",
+  "when": "2026-10-26T14:10:29",
+  "item_update": true,
+  "layers": {}
  }
 ]

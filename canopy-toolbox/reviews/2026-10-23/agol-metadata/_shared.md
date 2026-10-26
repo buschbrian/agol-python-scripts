@@ -51,3 +51,14 @@ jurisdictional boundaries, or to replace a certified topographical or boundary s
 **Parcels.** Ownership groups come from the City of Millcreek parcel layer (2025 tax-year snapshot, read October 8,
 2026). A tax year is not an ownership effective date, and the grouping of owners into private, public and uncertain is
 the City's own rule set for this analysis, not a legal finding of ownership.
+
+## coordinates_utm
+**Coordinates and heights.** NAD83(2011) / UTM zone 12N (EPSG 6341), metres: the lidar's own coordinate system, with no
+datum transformation. This copy is for a **local** scene or a local ArcGIS Urban model in 6341. The other layers in the
+Millcreek LiDAR 2023 set are WGS84 / Web Mercator copies for global scenes; they hold the same data. Elevations are NAVD88
+(Geoid18) in **metres**; heights are metres above the lidar bare-earth terrain.
+
+## set_urban
+**The Millcreek ArcGIS Urban layers.** Three organization-only layers in UTM 12N for a local ArcGIS Urban model: 3D buildings
+(scene layer), building footprints (feature layer) and bare-earth terrain (elevation layer). They come from the same lidar,
+the same buildings and the same terrain as the public Millcreek LiDAR 2023 set.

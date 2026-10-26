@@ -1,0 +1,370 @@
+{
+ "verified_utc": "2026-10-26T20:11:11+00:00",
+ "items": {
+  "urban_buildings": {
+   "layer": {
+    "id": "b8e8ddaceac54876bd4c0cf3f31d92fd",
+    "type": "Scene Service",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_for_ArcGIS_Urban_UTM_12N_2023_lidar_planning_estimate/SceneServer",
+    "access": "org",
+    "everyone": false,
+    "org": true,
+    "groups": [],
+    "protected": true
+   },
+   "package": {
+    "id": "c7702ec26f7843ad9572b797888557d6",
+    "type": "Scene Package",
+    "size": 15907332,
+    "access": "private",
+    "everyone": false,
+    "org": false,
+    "groups": [],
+    "protected": true
+   },
+   "service": {
+    "layerType": "3DObject",
+    "spatialReference": {
+     "wkid": 6341,
+     "latestWkid": 6341,
+     "vcsWkid": 5703,
+     "latestVcsWkid": 5703
+    },
+    "heightModelInfo": {
+     "heightModel": "gravity_related_height",
+     "vertCRS": "NAVD_1988",
+     "heightUnit": "meter"
+    },
+    "fields": [
+     "OBJECTID",
+     "Name",
+     "FP_ID",
+     "PARTS",
+     "RF_ROOF_TYPE",
+     "RF_ROOF_PLANES",
+     "RF_RIDGELINES",
+     "RF_RMSE_LOD22",
+     "RF_H_GROUND",
+     "RF_H_ROOF_MAX",
+     "RF_PT_DENSITY",
+     "RF_EXTRUSION",
+     "SOURCE_ID",
+     "PARCEL_ID",
+     "CITY",
+     "FOOTPRINT_M2",
+     "ROOF_COV_PCT",
+     "ROOF_Z50_M",
+     "GROUND_Z50_M",
+     "HEIGHT_P50_M",
+     "HEIGHT_P95_M",
+     "HEIGHT_STATUS",
+     "LEVEL",
+     "CHECK_VERDICT",
+     "ROOFER_VERDICT",
+     "ESRI_VERDICT",
+     "FALLBACK_REASON",
+     "FLOORS"
+    ],
+    "fp_id": [
+     21561,
+     237493394
+    ],
+    "floors": [
+     32836,
+     1,
+     12
+    ],
+    "levels": {
+     "roofer LoD2.2": 20730,
+     "Esri LOD2.0": 647,
+     "Esri LOD1.2": 184
+    },
+    "ok": true
+   }
+  },
+  "urban_footprints": {
+   "layer": {
+    "id": "e74c2216aca54d7f8be2432768b64520",
+    "type": "Feature Service",
+    "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_building_footprints_Urban_UTM12N/FeatureServer",
+    "access": "org",
+    "everyone": false,
+    "org": true,
+    "groups": [],
+    "protected": true
+   },
+   "package": {
+    "id": "32ba9a96f01d43b690f8faa4ce4c6a15",
+    "type": "File Geodatabase",
+    "size": 2672019,
+    "access": "private",
+    "everyone": false,
+    "org": false,
+    "groups": [],
+    "protected": true
+   },
+   "service": {
+    "geometryType": "esriGeometryPolygon",
+    "spatialReference": {
+     "wkid": 102059,
+     "latestWkid": 6341
+    },
+    "fields": [
+     [
+      "OBJECTID",
+      "esriFieldTypeOID"
+     ],
+     [
+      "FP_ID",
+      "esriFieldTypeInteger"
+     ],
+     [
+      "HEIGHT_P95_M",
+      "esriFieldTypeDouble"
+     ],
+     [
+      "LEVEL_",
+      "esriFieldTypeString"
+     ],
+     [
+      "FLOORS",
+      "esriFieldTypeInteger"
+     ],
+     [
+      "Shape__Area",
+      "esriFieldTypeDouble"
+     ],
+     [
+      "Shape__Length",
+      "esriFieldTypeDouble"
+     ]
+    ],
+    "fp_id": [
+     21561,
+     237493394
+    ],
+    "floors": [
+     32836,
+     1,
+     12
+    ],
+    "floors_null": 0,
+    "levels": {
+     "Esri LOD1.2": 184,
+     "Esri LOD2.0": 647,
+     "roofer LoD2.2": 20730
+    },
+    "area_m2": 4710583.491943359,
+    "local_area_m2": 4710583.490945993,
+    "ok": true
+   }
+  },
+  "urban_terrain": {
+   "layer": {
+    "id": "83d1a892fd67408b9f8f9fcb754cd479",
+    "type": "Image Service",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_bare_earth_terrain_for_ArcGIS_Urban_UTM_12N_0_5_m_2023_lidar_planning_/ImageServer",
+    "access": "org",
+    "everyone": false,
+    "org": true,
+    "groups": [],
+    "protected": true
+   },
+   "package": {
+    "id": "33b6ae61d34e4cd682c45fa42b229095",
+    "type": "Compact Tile Package",
+    "size": 190386849,
+    "access": "private",
+    "everyone": false,
+    "org": false,
+    "groups": [],
+    "protected": true
+   },
+   "service": {
+    "serviceDataType": "esriImageServiceDataTypeElevation",
+    "spatialReference": {
+     "wkid": 102059,
+     "latestWkid": 6341
+    },
+    "tile_format": "LERC",
+    "tile_size": [
+     256,
+     256
+    ],
+    "origin": {
+     "x": -5120900.0,
+     "y": 9998100.0
+    },
+    "lods": [
+     [
+      0,
+      8192.0
+     ],
+     [
+      1,
+      4096.0
+     ],
+     [
+      2,
+      2048.0
+     ],
+     [
+      3,
+      1024.0
+     ],
+     [
+      4,
+      512.0
+     ],
+     [
+      5,
+      256.0
+     ],
+     [
+      6,
+      128.0
+     ],
+     [
+      7,
+      64.0
+     ],
+     [
+      8,
+      32.0
+     ],
+     [
+      9,
+      16.0
+     ],
+     [
+      10,
+      8.0
+     ],
+     [
+      11,
+      4.0
+     ],
+     [
+      12,
+      2.0
+     ],
+     [
+      13,
+      1.0
+     ],
+     [
+      14,
+      0.5
+     ]
+    ],
+    "cacheType": "Elevation",
+    "scheme_origin": [
+     -5120900.0,
+     9998100.0
+    ],
+    "tiles": [
+     {
+      "tile": [
+       14,
+       "42897",
+       "43336"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     },
+     {
+      "tile": [
+       14,
+       "42904",
+       "43357"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     },
+     {
+      "tile": [
+       14,
+       "42910",
+       "43373"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     },
+     {
+      "tile": [
+       14,
+       "42916",
+       "43329"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     },
+     {
+      "tile": [
+       14,
+       "42920",
+       "43353"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     },
+     {
+      "tile": [
+       14,
+       "42925",
+       "43399"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     },
+     {
+      "tile": [
+       14,
+       "42932",
+       "43386"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     },
+     {
+      "tile": [
+       14,
+       "42941",
+       "43393"
+      ],
+      "status": 200,
+      "bytes_equal": true,
+      "max_abs_diff_m": null
+     }
+    ],
+    "ok": true
+   }
+  }
+ },
+ "public_items_untouched": {
+  "scene_layer": {
+   "id": "ce3617ac9b884bbcbee7c47a3e166999",
+   "access": "public",
+   "modified": 1792959385000
+  },
+  "web_scene": {
+   "id": "5b5bdf4a63c9466fad5884039aa7357f",
+   "access": "public",
+   "modified": 1793042115000
+  },
+  "lod12_layer": {
+   "id": "5082b5bd063a4a03847f2082dc3533d1",
+   "access": "public",
+   "modified": 1792797853000
+  }
+ },
+ "sharing_ok": true,
+ "services_ok": true
+}

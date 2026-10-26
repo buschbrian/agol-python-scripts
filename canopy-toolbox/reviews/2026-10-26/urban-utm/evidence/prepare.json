@@ -1,0 +1,105 @@
+{
+ "created": "2026-10-26T13:51:44",
+ "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-v2-20261024\\hybrid.gdb\\buildings_three_way",
+ "source_stats": {
+  "count": 21561,
+  "fp_id_sum": 237493394,
+  "unique": 21561
+ },
+ "source_fields": {
+  "OBJECTID": "OID",
+  "Shape": "Geometry",
+  "Name": "String",
+  "FP_ID": "Integer",
+  "PARTS": "Integer",
+  "RF_ROOF_TYPE": "String",
+  "RF_ROOF_PLANES": "Integer",
+  "RF_RIDGELINES": "Integer",
+  "RF_RMSE_LOD22": "Double",
+  "RF_H_GROUND": "Double",
+  "RF_H_ROOF_MAX": "Double",
+  "RF_PT_DENSITY": "Double",
+  "RF_EXTRUSION": "String",
+  "SOURCE_ID": "String",
+  "PARCEL_ID": "String",
+  "CITY": "String",
+  "FOOTPRINT_M2": "Double",
+  "ROOF_COV_PCT": "Double",
+  "ROOF_Z50_M": "Double",
+  "GROUND_Z50_M": "Double",
+  "HEIGHT_P50_M": "Double",
+  "HEIGHT_P95_M": "Double",
+  "HEIGHT_STATUS": "String",
+  "LEVEL": "String",
+  "CHECK_VERDICT": "String",
+  "ROOFER_VERDICT": "String",
+  "ESRI_VERDICT": "String",
+  "FALLBACK_REASON": "String"
+ },
+ "dropped_unsupported_fields": [],
+ "buildings": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\urban.gdb\\buildings",
+ "buildings_stats": {
+  "count": 21561,
+  "fp_id_sum": 237493394,
+  "unique": 21561
+ },
+ "footprints": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\urban.gdb\\footprints",
+ "footprints_stats": {
+  "count": 21561,
+  "fp_id_sum": 237493394,
+  "unique": 21561
+ },
+ "empty_footprints": [],
+ "footprint_sr": 6341,
+ "footprint_area_m2": 4710583.490945993,
+ "floors": {
+  "null": 0,
+  "min": 1,
+  "max": 12,
+  "histogram": {
+   "1": 11894,
+   "2": 8271,
+   "3": 1294,
+   "4": 52,
+   "5": 25,
+   "6": 9,
+   "7": 6,
+   "8": 4,
+   "9": 5,
+   "12": 1
+  }
+ },
+ "test": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\urban.gdb\\buildings_test20",
+ "test_stats": {
+  "count": 20,
+  "fp_id_sum": 3401,
+  "unique": 20
+ },
+ "test_ids": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  54,
+  60,
+  68,
+  82,
+  154,
+  252,
+  268,
+  284,
+  291,
+  304,
+  305,
+  576,
+  675
+ ],
+ "test_levels": {
+  "Esri LOD1.2": 7,
+  "Esri LOD2.0": 7,
+  "roofer LoD2.2": 6
+ }
+}

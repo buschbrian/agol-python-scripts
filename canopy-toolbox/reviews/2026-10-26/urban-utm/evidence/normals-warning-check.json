@@ -1,0 +1,31 @@
+{
+ "warning-check-source-wgs84": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-v2-20261024\\hybrid.gdb\\buildings_three_way",
+  "coordinate_system": "GCS_WGS_1984 (4326)",
+  "validation_messages": [
+   [
+    "Information : Resources 1,163,161,0,4347,0,27,0 were successfully loaded"
+   ]
+  ]
+ },
+ "warning-check-source-utm": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-v2-20261024\\hybrid.gdb\\buildings_three_way",
+  "coordinate_system": "NAD_1983_2011_UTM_Zone_12N (6341) + NAVD_1988 (5703)",
+  "validation_messages": [
+   [
+    "Warning : [geometries/0] : vertex normals may be required by Esri products",
+    "Information : Resources 1,164,163,0,4401,0,27,0 were successfully loaded"
+   ]
+  ]
+ },
+ "test-wgs84-compare": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\urban.gdb\\buildings_test20",
+  "coordinate_system": "GCS_WGS_1984 (4326)",
+  "validation_messages": [
+   [
+    "Warning : [geometries/0] : vertex normals may be required by Esri products",
+    "Information : Resources 1,2,1,0,28,0,28,0 were successfully loaded"
+   ]
+  ]
+ }
+}

@@ -35,7 +35,12 @@ WARNING = ("Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley Q
 DATUM = ("Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as "
          "every layer in this set. Elevations NAVD88 (Geoid18) metres.")
 TAGS = ["Millcreek", "lidar", "2023", "planning estimate"]
+# Items with "datum": "utm" are not projected: their description says so instead of DATUM, and RECORDS_UTM names their records.
+DATUM_UTM = ("Coordinates: NAD83(2011) / UTM zone 12N (EPSG 6341), metres, the lidar's own coordinate system; no datum "
+             "transformation. For local scenes and a local ArcGIS Urban model in 6341. Elevations NAVD88 (Geoid18) metres.")
 RECORDS = "Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement)."
+RECORDS_UTM = ("Records: canopy-toolbox/reviews/2026-10-26/urban-utm in buschbrian/agol-python-scripts "
+               "(branch claude/urban-utm-5e2a91).")
 
 # In the upload order of reviews/2026-10-23/PUBLISHING.md. Each publishes as `expect` (the new service item's type).
 ITEMS = {
@@ -126,6 +131,44 @@ ITEMS = {
                        "a median 0.39 m outside the county wall lines. Heights NAVD88 (see the scene-layers README).",
         "tags": ["buildings", "3D", "scene", "roof forms", "lidar outlines"],
         "readme": "../2026-10-26/lidar-footprints/README.md"},
+    # October 26: copies in NAD83(2011) UTM 12N (6341) for a local ArcGIS Urban model, which needs its existing buildings and
+    # elevation in the model's own coordinate system (the items above are WGS84 / Web Mercator for global scenes). Brian
+    # approved them org-only; sharing and delete protection are reviews/2026-10-26/urban-utm/share_org.py's. Built by
+    # reviews/2026-10-26/urban-utm/urban_utm.py.
+    "urban_buildings": {
+        "file": RUNS/"urban-utm-20261026"/"scene"/"buildings_three_way_utm.slpk", "type": "Scene Package",
+        "expect": "Scene Service",
+        "title": "Millcreek 3D buildings for ArcGIS Urban, UTM 12N (2023 lidar), planning estimate",
+        "snippet": "Unvalidated planning estimate: the 21,561 three-way hybrid buildings (roofer LoD 2.2, Esri fallbacks) in "
+                   "NAD83(2011) UTM 12N for a local ArcGIS Urban model, with an estimated floor count.",
+        "description": "The same buildings as the public 3D buildings layer, packaged in UTM 12N instead of WGS84. FLOORS is "
+                       "HEIGHT_P95_M divided by 3.5 m, rounded, at least 1: an estimate for Urban's Convert existing "
+                       "buildings, not a count of storeys.",
+        "tags": ["buildings", "3D", "scene", "ArcGIS Urban", "UTM"], "datum": "utm",
+        "readme": "../2026-10-26/urban-utm/README.md"},
+    "urban_footprints": {
+        "file": RUNS/"urban-utm-20261026"/"footprints"/"urban_footprints.gdb", "type": "File Geodatabase",
+        "expect": "Feature Service",
+        "title": "Millcreek building footprints for ArcGIS Urban, UTM 12N (2023 lidar), planning estimate",
+        "snippet": "Unvalidated planning estimate: one footprint per 3D building (21,561), with roof height, model level and "
+                   "an estimated floor count, in NAD83(2011) UTM 12N for a local ArcGIS Urban model.",
+        "description": "Footprints of the 3D buildings for ArcGIS Urban (Multipatch Footprint of each building, keyed by "
+                       "FP_ID). FLOORS is HEIGHT_P95_M divided by 3.5 m, rounded, at least 1: an estimate, not a count of "
+                       "storeys. No owner or address fields.",
+        "tags": ["buildings", "building footprints", "ArcGIS Urban", "UTM"], "datum": "utm",
+        "publish_parameters": {"name": "Millcreek_building_footprints_Urban_UTM12N", "targetSR": {"wkid": 6341},
+                               "maxRecordCount": 2000},
+        "readme": "../2026-10-26/urban-utm/README.md"},
+    "urban_terrain": {
+        "file": RUNS/"urban-utm-20261026"/"millcreek_terrain_utm_20261026.tpkx", "type": "Compact Tile Package",
+        "expect": "Image Service",
+        "title": "Millcreek bare-earth terrain for ArcGIS Urban, UTM 12N 0.5 m (2023 lidar), planning estimate",
+        "snippet": "Unvalidated LiDAR planning estimate. Bare-earth elevation in metres, NAVD88, at 0.5 m on a NAD83(2011) UTM "
+                   "12N tiling scheme, as the elevation layer of a local ArcGIS Urban model. Not a surveyed surface.",
+        "description": "Elevation tiles (LERC 0.01 m), levels 0-14 halving from 8,192 m to 0.5 m pixels, on the UTM 12N "
+                       "tiling scheme in the records. Urban needs its basemap on the same tiling scheme.",
+        "tags": ["elevation", "ground", "terrain", "DEM", "ArcGIS Urban", "UTM"], "datum": "utm",
+        "readme": "../2026-10-26/urban-utm/README.md"},
     "terrain": {
         "file": RUNS/"tiles-20261023"/"millcreek_terrain_20261023.tpkx", "type": "Compact Tile Package",
         "expect": "Image Service",
@@ -169,15 +212,18 @@ def describe(key):
         raise SystemExit(f"{key}: {path} has lock files; close ArcGIS Pro's hold on it first")
     return {"item": key, "file": str(path), "bytes": size(path), "sha256": sha256(path), "item_type": spec["type"],
             "expect": spec["expect"], "title": spec["title"], "folder": FOLDER, "tags": TAGS + spec["tags"],
-            "snippet": spec["snippet"], "sharing": "private (not shared)"}
+            "snippet": spec["snippet"], "coordinates": DATUM_UTM if spec.get("datum") == "utm" else DATUM,
+            "publish_parameters": spec.get("publish_parameters"), "sharing": "private (not shared)"}
 
 
 def properties(key):
     from arcgis.gis import ItemProperties
     spec = ITEMS[key]
+    utm = spec.get("datum") == "utm"
     return ItemProperties(title=spec["title"], item_type=spec["type"], tags=TAGS + spec["tags"], snippet=spec["snippet"],
-                          description="<p>" + spec["description"] + "</p><p>" + WARNING + "</p><p>" + DATUM + "</p><p>"
-                                      + RECORDS + " See " + spec["readme"] + ".</p>",
+                          description="<p>" + spec["description"] + "</p><p>" + WARNING + "</p><p>"
+                                      + (DATUM_UTM if utm else DATUM) + "</p><p>"
+                                      + (RECORDS_UTM if utm else RECORDS) + " See " + spec["readme"] + ".</p>",
                           access_information="Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
                           license_info=WARNING)
 
@@ -248,6 +294,8 @@ def go(key, args):
     name = re.sub(r"[\W_]+", "_", title).strip("_")[:80]
     if ITEMS[key]["type"] == "Compact Tile Package":
         layer = package.publish(publish_parameters={"name": name, "maxRecordCount": 2000}, build_initial_cache=True)
+    elif "publish_parameters" in ITEMS[key]:
+        layer = package.publish(publish_parameters=ITEMS[key]["publish_parameters"])
     else:
         layer = package.publish()
     entry = dict(record, uploaded=datetime.datetime.now().isoformat(timespec="seconds"), portal=gis.url,

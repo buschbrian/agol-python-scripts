@@ -1,0 +1,121 @@
+{
+ "verified": "2026-10-26T13:58:43",
+ "tpkx": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\millcreek_terrain_utm_20261026.tpkx",
+ "bytes": 190386849,
+ "sha256": "acf2c7bd1b1bad5f09d0ef95eff930aa2a7980f366f380ad470c538abd7d19a4",
+ "levels": {
+  "0": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 100
+  },
+  "1": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 140
+  },
+  "2": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 190
+  },
+  "3": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 339
+  },
+  "4": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 800
+  },
+  "5": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 2164
+  },
+  "6": {
+   "tiles": 1,
+   "with_data": 1,
+   "bytes": 6354
+  },
+  "7": {
+   "tiles": 2,
+   "with_data": 2,
+   "bytes": 22039
+  },
+  "8": {
+   "tiles": 6,
+   "with_data": 5,
+   "bytes": 74722
+  },
+  "9": {
+   "tiles": 12,
+   "with_data": 10,
+   "bytes": 259054
+  },
+  "10": {
+   "tiles": 28,
+   "with_data": 23,
+   "bytes": 910810
+  },
+  "11": {
+   "tiles": 88,
+   "with_data": 74,
+   "bytes": 3216810
+  },
+  "12": {
+   "tiles": 295,
+   "with_data": 248,
+   "bytes": 11419252
+  },
+  "13": {
+   "tiles": 1109,
+   "with_data": 862,
+   "bytes": 39144745
+  },
+  "14": {
+   "tiles": 4040,
+   "with_data": 3222,
+   "bytes": 133199665
+  }
+ },
+ "lerc_headers": {
+  "tiles_read": 81,
+  "max_z_error_in_blobs": [
+   0.01
+  ]
+ },
+ "samples": {
+  "points": 300,
+  "lerc_error_m": 0.01,
+  "level": 14,
+  "resolution_m": 0.5,
+  "all": {
+   "points": 300,
+   "compared": 300,
+   "max_abs_vs_bilinear_m": 0.0101,
+   "median_abs_vs_bilinear_m": 0.0047,
+   "max_abs_vs_containing_cell_m": 0.683,
+   "median_abs_vs_containing_cell_m": 0.022
+  },
+  "flat": {
+   "points": 150,
+   "compared": 150,
+   "max_abs_vs_bilinear_m": 0.0101,
+   "median_abs_vs_bilinear_m": 0.0045,
+   "max_abs_vs_containing_cell_m": 0.025,
+   "median_abs_vs_containing_cell_m": 0.008
+  },
+  "steep": {
+   "points": 150,
+   "compared": 150,
+   "max_abs_vs_bilinear_m": 0.0098,
+   "median_abs_vs_bilinear_m": 0.0049,
+   "max_abs_vs_containing_cell_m": 0.683,
+   "median_abs_vs_containing_cell_m": 0.155
+  },
+  "missing_from_package": 0
+ },
+ "source_crs": "EPSG:6341"
+}

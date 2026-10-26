@@ -1,0 +1,8 @@
+{
+"Tool" : "ValidateSceneLayerPackage",
+"File" : "buildings_three_way_utm.slpk",
+"Location" : "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\scene",
+"Date" : "Mon Oct 26 13:53:01 2026",
+"Layer type" : "3DObject",
+"Messages" : ["Warning : [geometries/0] : vertex normals may be required by Esri products", "Information : Resources 1,164,163,0,4564,0,28,0 were successfully loaded"]
+}

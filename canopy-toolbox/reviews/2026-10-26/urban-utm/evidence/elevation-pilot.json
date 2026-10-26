@@ -1,0 +1,105 @@
+{
+ "created": "2026-10-26T13:56:42",
+ "pilot": true,
+ "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_context.tif",
+ "scheme": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\elevation\\scheme.xml",
+ "levels": [
+  12,
+  14
+ ],
+ "aoi": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\elevation\\pilot\\window.shp",
+ "seconds": {
+  "cache": 30.4,
+  "package": 1.1
+ },
+ "conf_properties": {
+  "MinScale": "7559.04",
+  "MaxScale": "1889.76",
+  "CacheTileContentType": "Elevation",
+  "PixelType": "32_BIT_FLOAT"
+ },
+ "conf": {
+  "format": "LERC",
+  "lerc_error": 0.01,
+  "tile_size": 256
+ },
+ "tpkx": {
+  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\elevation\\pilot\\millcreek_terrain_utm_20261026_pilot.tpkx",
+  "bytes": 11468859
+ },
+ "levels_in_package": {
+  "12": {
+   "tiles": 12,
+   "with_data": 12,
+   "bytes": 645836
+  },
+  "13": {
+   "tiles": 40,
+   "with_data": 37,
+   "bytes": 2298448
+  },
+  "14": {
+   "tiles": 144,
+   "with_data": 126,
+   "bytes": 8126583
+  }
+ },
+ "root": {
+  "wkid": 6341,
+  "tile_size": [
+   256,
+   256
+  ],
+  "lods_in_scheme": 15,
+  "minLOD": 12,
+  "maxLOD": 14,
+  "minScale": 7559.04,
+  "maxScale": 1889.76,
+  "tileImageInfo": {
+   "format": "LERC",
+   "compressionQuality": 0,
+   "bandCount": 1,
+   "lercError": 0.01
+  },
+  "storageFormat": "esriMapCacheStorageModeCompactV2",
+  "fullExtent": {
+   "xmin": 422149,
+   "ymin": 4501259.5,
+   "xmax": 434399.5,
+   "ymax": 4507383,
+   "spatialReference": {
+    "wkid": 102059,
+    "latestWkid": 6341
+   }
+  }
+ },
+ "iteminfo": {
+  "creator": "ExportTileCache",
+  "name": "millcreek_terrain_utm_20261026_pilot",
+  "guid": "9D2EC218-9CDB-48E6-B2FB-996CE2FE31E9",
+  "version": 1.0,
+  "created": 0,
+  "snippet": "",
+  "description": "",
+  "summary": "",
+  "title": "millcreek_terrain_utm_20261026_pilot",
+  "tags": "",
+  "type": "Compact Tile Package",
+  "typeKeywords": [
+   "Compact Tile Package",
+   "Tile Package",
+   "tpkx"
+  ],
+  "thumbnail": "./thumbnail.png",
+  "extent": {
+   "xmin": -111.9216958475471,
+   "ymin": 40.658530465362304,
+   "xmax": -111.77603309140083,
+   "ymax": 40.71475516649377,
+   "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+   }
+  }
+ }
+}

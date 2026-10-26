@@ -30,7 +30,8 @@ import re
 import sys
 
 HERE = Path(__file__).resolve().parent
-KEYS = ("features", "slope", "contours", "treetops", "crowns", "hillshade", "buildings3d", "terrain", "buildings3d_v2")
+KEYS = ("features", "slope", "contours", "treetops", "crowns", "hillshade", "buildings3d", "terrain", "buildings3d_v2",
+        "urban_buildings", "urban_footprints", "urban_terrain")
 SUMMARY_MAX = 250            # ArcGIS Online shows up to 250 characters of a summary in search results
 FIELD_DESCRIPTION_MAX = 500  # ArcGIS Online's limit for a field description
 VALUE_TYPES = {"nameOrTitle", "description", "typeOrCategory", "countOrAmount", "percentageOrRatio", "measurement",
