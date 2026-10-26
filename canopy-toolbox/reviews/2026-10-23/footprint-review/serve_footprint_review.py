@@ -55,8 +55,10 @@ ANSWERS = {
     "outlines": ("LIDAR_RIGHT", "KEEP_UNITS", "COUNTY_RIGHT", "GONE", "UNDER_TREES", "NOT_A_BUILDING", "NEEDS_EDIT",
                  "SHED", "UNSURE"),
     # the same question on the outlines cut at residential parcel lines and filled under trees (October 26, city2)
+    # groups 2-5 have their own lists in the page (October 26); this is their union
     "outlines2": ("LIDAR_RIGHT", "KEEP_UNITS", "COUNTY_RIGHT", "GONE", "UNDER_TREES", "NOT_A_BUILDING", "NEEDS_EDIT",
-                  "SHED", "UNSURE"),
+                  "SHED", "UNSURE", "SHIFT_COUNTY", "ADD_TO_COUNTY", "SPLIT_BUILDINGS", "PART_OF_BUILDING",
+                  "OFFSET_SHED", "VEHICLE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")
 REPO_BACKUP = HERE/"answers"/"footprint-review-answers.csv"

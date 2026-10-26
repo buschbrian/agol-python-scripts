@@ -118,6 +118,45 @@ const QUEUES = {
   },
 };
 QUEUES.outlines2 = { ...QUEUES.outlines, question: "Red is the LiDAR outline (cut at lot lines, filled under trees), magenta the county footprint. Which is right?" };
+// October 26: groups 2-5 of outlines2 get answers for what Brian saw in them (what to do with the geometry); group 1 keeps
+// the queue's list, which he had finished. The server accepts the union.
+{
+  const reshaped = [
+    ["UNDER_TREES", "LiDAR covered by trees: keep the county outline"],
+    ["LIDAR_RIGHT", "Redraw it from the LiDAR outline"],
+    ["SHIFT_COUNTY", "County shape is right but offset: shift it onto the LiDAR"],
+    ["ADD_TO_COUNTY", "County is right for part: add the extra roof (addition, garage, porch) from the LiDAR"],
+    ["SPLIT_BUILDINGS", "Several buildings inside one outline: split them"],
+    ["COUNTY_RIGHT", "The county outline is right as it is"],
+    ["NEEDS_EDIT", "Needs redrawing by hand (say what in a note)"],
+    ["NOT_A_BUILDING", "Not a building"],
+    ["UNSURE", "Unsure"],
+  ];
+  const small = [
+    ["SHED", "A shed or outbuilding"],
+    ["PART_OF_BUILDING", "Part of a house or garage (addition, porch, attached garage): join it"],
+    ["OFFSET_SHED", "A shed whose county outline sits offset nearby"],
+    ["VEHICLE", "A vehicle, trailer or RV"],
+    ["NOT_A_BUILDING", "Not a building (tree or other)"],
+    ["LIDAR_RIGHT", "A separate building to add"],
+    ["NEEDS_EDIT", "Needs editing (say what in a note)"],
+    ["UNSURE", "Unsure"],
+  ];
+  const kept = [
+    ["UNDER_TREES", "Still there, hidden by trees: keep the county outline"],
+    ["GONE", "Gone"],
+    ["SHIFT_COUNTY", "There, but the county outline is offset"],
+    ["SHED", "A small shed or outbuilding the LiDAR missed"],
+    ["NOT_A_BUILDING", "Not a building"],
+    ["UNSURE", "Unsure"],
+  ];
+  QUEUES.outlines2.byGroup = { decide_reshaped: reshaped, reshaped_wait: reshaped, decide_tangle: [...reshaped, ["KEEP_UNITS", "Units: keep the county lines inside the LiDAR shape"]],
+    tangle_wait: [...reshaped, ["KEEP_UNITS", "Units: keep the county lines inside the LiDAR shape"]], decide_small: small, small_rest: small,
+    check_county_kept: kept, auto_county_kept: kept, auto_county_gone: kept,
+    decide_joins: [...QUEUES.outlines.answers, ["SPLIT_BUILDINGS", "Separate buildings: split the LiDAR outline"]],
+    joins_wait: [...QUEUES.outlines.answers, ["SPLIT_BUILDINGS", "Separate buildings: split the LiDAR outline"]] };
+}
+const answersFor = (d) => { const q = QUEUES[d.queue]; return (q.byGroup && q.byGroup[d.group]) || q.answers; };
 const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attached: "Against a county building (other)",
                       attached_sample: "Sample: answer these first", attached_eyes: "Needs eyes (80 m² or more, or doubtful county building)",
                       attached_lower: "Lower roof against a county building", attached_same_roof: "Corner or edge of a county roof",
@@ -285,7 +324,7 @@ function drawSide(d) {
   $("guess").innerHTML = guess ? `<span class="small">Likely type (a guess from size, height, roof and parcel):</span><br>${guess}` : "";
   const earlier = (d.related || []).filter((id) => done(id)).map((id) => [`Your answer on ${id}`, answers[id].ANSWER]);
   $("facts").innerHTML = Object.entries(rest).concat(earlier).map(([k, v]) => `<dt>${k}</dt><dd>${v ?? "—"}</dd>`).join("");
-  $("answers").innerHTML = q.answers.map(([code, text], i) =>
+  $("answers").innerHTML = answersFor(d).map(([code, text], i) =>
     `<button data-code="${code}" class="${a && a.ANSWER === code ? "chosen" : ""}"><kbd>${(i + 1) % 10}</kbd> ${text}</button>`).join("");
   for (const b of $("answers").querySelectorAll("button")) b.onclick = () => save(b.dataset.code);
   const draft = drafts[d.id];
@@ -380,7 +419,8 @@ function keys(e) {
   if (!current && !["ArrowLeft", "ArrowRight"].includes(e.key)) return;
   const q = current ? QUEUES[current.queue] : null;
   const k = e.key === "0" ? 9 : +e.key - 1;          // keys 1-9, then 0 for a tenth answer
-  if (/^[0-9]$/.test(e.key) && q && q.answers[k]) { save(q.answers[k][0]); e.preventDefault(); }
+  const list = current ? answersFor(current) : null;
+  if (/^[0-9]$/.test(e.key) && list && list[k]) { save(list[k][0]); e.preventDefault(); }
   else if (e.key === "ArrowRight" || e.key === "Enter") { show(pos + 1); e.preventDefault(); }
   else if (e.key === "ArrowLeft") { show(pos - 1); e.preventDefault(); }
   else if (e.key === "Backspace") { save(""); e.preventDefault(); }
