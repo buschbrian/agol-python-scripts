@@ -101,6 +101,7 @@ python reviews/2026-10-26/urban-utm/urban_utm.py verify    OUT
 | Elevation values (300 city points, 150 flat / 150 steep) | Against the terrain bilinear at the pixel: max **0.0101 m**, median 0.0047 m; none missing. Against the containing cell: steep max 0.683 m (median 0.155), flat max 0.025 m |
 | Hosted elevation | `esriImageServiceDataTypeElevation`, cacheType Elevation, 6341, LERC 256 px; origin and 15 LOD resolutions equal the scheme; 8 sampled level-14 tiles byte-identical to the package |
 | Sharing | The three layers are `org`, not everyone and in no groups; the three packages are private; all six are protected. Anonymous item requests return 403 |
+| Repository suite (ArcGIS Pro Python) | 512 run, 1 skipped, 5 errors, all in `test_fractal_las_writer` and `test_fractal_repeat`: `LasHeader` has no `copy` in Pro's laspy. None of those touch the changed files. `test_roof_release_summary`, which loads upload.py, passes |
 | Item text | Applied from `reviews/2026-10-23/agol-metadata/urban_*.md`. A diff afterwards shows no difference on any property or field description |
 
 Evidence, all copied from the run folder or written by `share_org.py`:
