@@ -72,6 +72,27 @@ above the October 22 terrain at that point: points under 2 m (the threshold CFTr
 pale, orange for this model and pink for the other. They also draw the terrain under the view's centre line and a dashed line 2 m
 above it. The views were redrawn in place with `add_model_queues.py --refresh-profiles`, which changes only the images.
 
+## How to improve the trees (plan, October 26)
+
+From Brian's reports and the measured cues ([cues.py](cues.py)). Each step is a change to a second CFTree run (CPU, about
+one night with two workers), not an edit of the 119,410 models. The 300-tree sample decides which steps are worth it and
+calibrates their thresholds.
+
+1. **Mask buildings with the LiDAR-first outlines before segmentation.** Drop vegetation points inside the
+   [LiDAR-first building outlines](../lidar-footprints/README.md) before CFTree segments them. These outlines are a
+   better mask than the county footprints, which include demolished buildings and miss new ones. 3,816 models have
+   their trunk inside a LiDAR building or a quarter of their crown over one. The county-and-candidate flag counted 5,267,
+   and only 1,729 are in both. This addresses TREE_WITH_ROOF and sheds under crowns.
+2. **Shrubs:** 3,470 models are under 3 m. Either raise CFTree's floor from 2 m to 3 m, or keep them as a separate shrub
+   layer rather than trees.
+3. **Brush and hedges:** 1,162 low, wide masses (under 6 m, at least 40 m², less than half as tall as wide). Label them
+   as brush, not trees.
+4. **Merged crowns:** 29,622 models hold six or more October 22 treetops or are wider than 15 m. Split them by seeding
+   the segmentation from the treetops, or with a tighter segmentation radius, but only if the sample's MERGED answers
+   are common.
+5. **Seams:** keep one model of each SAME_TREE pair; rejoin SPLIT_TREE pairs.
+6. **Rejects:** leave the 75 excluded. Brian called 36 of the 43 he answered "not a tree" and none a missed tree.
+
 ## How long it should take
 
 At the pace the October 23 page assumed (about 10 seconds an item where two views have to be compared):
