@@ -147,6 +147,42 @@ separate step, on Brian's approval.
 FP_ID is not unique across the two sources: the 220 county rows keep the v2 massing numbering, which can collide with the
 LiDAR numbering (LB number x 10 + part). Use LB_ID for LiDAR rows and SOURCE_ID for county rows.
 
+## Public release (October 26)
+
+Brian approved repointing the public buildings scene to the LiDAR-first layer, with pop-ups in metres and feet, as one
+change, keeping the old layer for rollback. [release/release_lidar_first.py](release/release_lidar_first.py) did it in
+the October 25 order:
+1. snapshots in `release/evidence/before-*.json`;
+2. a plan prepared offline and checked against the layer's 68 fields;
+3. the new layer and its package delete-protected, the layer's text, pop-up and renderer written, and the layer shared
+   publicly and checked anonymously;
+4. only then the scene's building node repointed. Its node id, camera, slides, terrain and other layers are kept.
+
+- **Pop-up:** reads the stored metres and feet fields, for example "Building height (ridge) 31.1 m (102.2 ft)" and
+  "Roof plan area 1,395 m² (15,014 sq ft)". It also gives the outline source and the comparison with the county
+  footprints, with their IDs.
+- **Renderer and legend:** the live breaks and colours, now on building height above ground (ridge; the county median
+  for kept county footprints). Labelled in both units, "Up to 4 m (13.1 ft)" to "Over 12 m (39.4 ft)". The old ramp used a
+  county-only field, so the LiDAR buildings would have had no colour.
+- **Revision:** one revision dropped a duplicate ridge row. The first applied plan is kept as
+  `release-plan-applied-1.json`.
+- **Verified signed out:** the scene matches the plan, and so does the layer's item data. The new layer is public and
+  protected, the v2 layer stays public, and the package stays private. The hosted FP_ID sum and outline counts match.
+  [viewer/public-check.html](viewer/public-check.html) loaded the scene anonymously and opened the pop-ups of the
+  Chambers tower, LB005619 and LB005398.
+- **Rollback:** `release_lidar_first.py rollback --go` puts the scene back on the v2 layer.
+
+Not changed: the Azure download (still the v2 package and feet CSV), the private Buildings in 3D app's text, and the
+hosted 2D building-heights layer. These are in [DECISIONS.md](DECISIONS.md).
+
+## Review queue: LiDAR outlines vs county
+
+[add_outline_queue.py](add_outline_queue.py) added 6,622 items to the review page, one per compare group that is not a
+MATCH: 1,636 reshaped, 1,023 joined, 137 split, 13 tangles, 733 county-only and 3,080 LiDAR-only. Each class starts with
+a random sample of 40 (seed 20261026), so its default in [DECISIONS.md](DECISIONS.md) can be settled from the sample.
+Red is the LiDAR outline and magenta the county one. Answers: LIDAR_RIGHT, KEEP_UNITS, COUNTY_RIGHT, GONE, UNDER_TREES,
+NOT_A_BUILDING, NEEDS_EDIT, SHED, UNSURE. The earlier items and Brian's answers were checked unchanged.
+
 ## Files
 
 | File | Meaning |

@@ -6,6 +6,8 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 
 ## Routing
 
+- Public buildings scene on the LiDAR-first layer (metres and feet; release, verification, rollback) and the decisions
+  still open: reviews/2026-10-26/lidar-footprints (release/, DECISIONS.md).
 - LiDAR-first building outlines (Brian, October 26: the LiDAR is the truth for whole buildings, redraw the county
   footprints from it) and the county-vs-LiDAR classes, citywide: reviews/2026-10-26/lidar-footprints. It supersedes the
   attached-candidate reduction in reviews/2026-10-23/review-reduction.

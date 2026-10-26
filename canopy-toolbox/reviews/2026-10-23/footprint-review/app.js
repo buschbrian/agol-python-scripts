@@ -91,6 +91,21 @@ const QUEUES = {
       ["REDO", "Both need rebuilding: they pull in ground, shrubs or neighbours"],
     ],
   },
+  outlines: {
+    question: "Red is the LiDAR outline (2023), magenta the county footprint. Which is right?",
+    others: "other LiDAR outlines", focus: "county outline(s) in question",
+    answers: [
+      ["LIDAR_RIGHT", "The LiDAR outline is right: replace the county outline(s)"],
+      ["KEEP_UNITS", "LiDAR outer shape is right; keep the county lines inside it (townhouses, units)"],
+      ["COUNTY_RIGHT", "The county outline is right"],
+      ["GONE", "The county building is gone; nothing replaces it"],
+      ["UNDER_TREES", "Hidden under trees: keep the county outline"],
+      ["NOT_A_BUILDING", "The red outline is not a building (vehicle, tree, other)"],
+      ["NEEDS_EDIT", "Several problems: needs hand editing (say what in a note)"],
+      ["SHED", "A shed or small outbuilding"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
   tree_rejects: {
     question: "CFTree could not build a model here (the dot is the segment's highest return). Is there a tree?",
     others: "tree models",
@@ -110,7 +125,13 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       no_model: "No 3D model at all", lod12: "LOD1.2 block fallback", lod20: "LOD2.0 roof fallback",
                       sample: "Sample: answer these first", merged: "Many treetops inside (merged?)",
                       over_roof: "Trunk inside a county footprint", seam: "Tile seam", no_terrain: "No terrain beneath",
-                      no_trunk: "No valid trunk" };
+                      no_trunk: "No valid trunk",
+                      sample_reshaped: "Sample: reshaped (decide the class)", reshaped: "Reshaped: county outline off or drawn differently",
+                      sample_lidar_joins: "Sample: one LiDAR building, several county outlines", lidar_joins: "One LiDAR building, several county outlines",
+                      sample_lidar_splits: "Sample: one county outline, several LiDAR buildings", lidar_splits: "One county outline, several LiDAR buildings",
+                      sample_tangle: "Sample: tangles", tangle: "Tangles (several of each)",
+                      sample_county_only: "Sample: county footprint, no 2023 roof", county_only: "County footprint, no 2023 roof",
+                      sample_lidar_only: "Sample: LiDAR building, no county footprint", lidar_only: "LiDAR building, no county footprint" };
 
 const $ = (id) => document.getElementById(id);
 let index = null, byId = {}, answers = {}, list = [], pos = 0, current = null, map = null, layers = null, homeView = null;

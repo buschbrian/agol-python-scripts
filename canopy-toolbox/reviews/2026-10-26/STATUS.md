@@ -80,6 +80,11 @@ outlines. Against the 22,042 county footprints:
 His REBUILT, OFFSET and ACCEPT answers fall in the classes they should. The review page also gained a LIDAR_RIGHT answer,
 and notes now save without an answer. His 12 notes typed without one are recovered.
 
+**Released on October 26:** the public buildings scene now shows the LiDAR-first layer, 23,593 buildings, with metres
+and feet in the layer and its pop-ups. The v2 layer is kept public for rollback. The decisions still open are in
+[lidar-footprints/DECISIONS.md](lidar-footprints/DECISIONS.md). The review page has a "LiDAR outlines vs county"
+queue that settles them class by class.
+
 ## Next, in order
 
 1. **Answer the 300-tree sample** with the new answers (about 50 minutes). It sets the error rates and calibrates the

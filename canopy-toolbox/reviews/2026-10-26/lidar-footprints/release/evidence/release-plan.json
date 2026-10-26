@@ -1,0 +1,1480 @@
+{
+  "created": "2026-10-26T13:14:51",
+  "new_layer": {
+    "props": {
+      "title": "Millcreek 3D buildings from LiDAR outlines (2023 lidar), planning estimate",
+      "snippet": "Unvalidated planning estimate: 3D buildings outlined and modelled from the 2023 lidar (roofer LoD 2.2), county footprints only where trees hide a roof. Heights and areas in metres and feet.",
+      "description": "<p>23,593 buildings: 23,373 outlined from the 2023 lidar itself and modelled with roofer LoD 2.2, and 220 county footprints whose roofs the lidar cannot see under trees (their October 25 models). OUTLINE_SOURCE says which; COMPARE_CLASS and COUNTY_IDS say how each lidar outline compares with the county footprints.</p><p>Every metric field has a feet twin beside it in the same layer: _FT for lengths and heights, _SQFT for areas, _CUFT for volume (international foot). Lidar outlines follow the roof edge, a median 0.39 m (1.3 ft) outside the county wall lines. Heights NAVD88.</p><p>Replaces the three-way hybrid on county footprints (ce3617ac9b884bbcbee7c47a3e166999), which is kept for rollback.</p>",
+      "tags": [
+        "Millcreek",
+        "lidar",
+        "2023",
+        "planning estimate",
+        "buildings",
+        "3D",
+        "scene",
+        "roof forms",
+        "lidar outlines"
+      ],
+      "accessInformation": "City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building outlines: from the lidar; county footprints (Salt Lake County Assessor and Surveyor, downloaded October 19, 2026) only where trees hide a roof. Roof models: roofer 1.0.0 (3DGI / TU Delft).",
+      "licenseInfo": "<p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,\nengineered or field-verified, and must not be used to determine property boundaries or ownership, building or site\ndesign, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory\ndetermination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check\nconditions on the ground before relying on them. Credit \"City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS\n3DEP)\" when you use or show them.</p>\n<p><strong>Salt Lake County data.</strong> The building footprints and their County attributes come from Salt Lake County (Assessor and\nSurveyor). The County's own terms apply to them: the County states that its footprints are not field verified, are for\ngeneral reference only, and are not intended to determine property ownership, final building and site design or\njurisdictional boundaries, or to replace a certified topographical or boundary survey or any other legal document.</p>"
+    },
+    "data": {
+      "layers": [
+        {
+          "id": 0,
+          "popupInfo": {
+            "title": "{expression/title}",
+            "expressionInfos": [
+              {
+                "name": "title",
+                "returnType": "string",
+                "title": "Title",
+                "expression": "IIf(IsEmpty($feature.LB_ID), 'County building ' + $feature.SOURCE_ID, 'Building ' + $feature.LB_ID)"
+              },
+              {
+                "name": "compare",
+                "returnType": "string",
+                "title": "Against the county footprints",
+                "expression": "var c = $feature.COMPARE_CLASS; var ids = DefaultValue($feature.COUNTY_IDS, '');\nvar words = Dictionary('MATCH', 'matches one county footprint', 'RESHAPED', 'the county outline is offset or drawn differently', 'LIDAR_JOINS', 'one building where the county has several outlines', 'LIDAR_SPLITS', 'part of what the county draws as one outline', 'TANGLE', 'overlaps several county outlines in a mixed way', 'LIDAR_ONLY', 'not in the county footprints', 'COUNTY_ONLY', 'county footprint kept: its roof is hidden from the lidar by trees');\nvar t = IIf(HasKey(words, c), words[c], 'not compared');\nreturn IIf(ids == '', t, t + ' (county building ' + Replace(ids, ';', ', ') + ')');"
+              },
+              {
+                "name": "bldg",
+                "title": "Building height (ridge above ground)",
+                "returnType": "string",
+                "expression": "var m = $feature.BLDG_HT_M; var f = $feature.BLDG_HT_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text(f, '#,##0.0') + ' ft)';"
+              },
+              {
+                "name": "eave",
+                "title": "Eave height above ground",
+                "returnType": "string",
+                "expression": "var m = $feature.EAVE_HT_M; var f = $feature.EAVE_HT_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text(f, '#,##0.0') + ' ft)';"
+              },
+              {
+                "name": "h50",
+                "title": "Median roof height (county footprint)",
+                "returnType": "string",
+                "expression": "var m = $feature.HEIGHT_P50_M; var f = $feature.HEIGHT_P50_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return '—'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text(f, '#,##0.0') + ' ft)';"
+              },
+              {
+                "name": "plan",
+                "title": "Roof plan area",
+                "returnType": "string",
+                "expression": "var m = $feature.ROOF_PLAN_M2; var f = $feature.ROOF_PLAN_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "roof",
+                "title": "Roof surface (sloped)",
+                "returnType": "string",
+                "expression": "var m = $feature.ROOF_AREA_M2; var f = $feature.ROOF_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "flat",
+                "title": "Roof surface under 5 degrees",
+                "returnType": "string",
+                "expression": "var m = $feature.FLAT_AREA_M2; var f = $feature.FLAT_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "south",
+                "title": "South-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.SOUTH_AREA_M2; var f = $feature.SOUTH_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "east",
+                "title": "East-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.EAST_AREA_M2; var f = $feature.EAST_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "west",
+                "title": "West-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.WEST_AREA_M2; var f = $feature.WEST_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "north",
+                "title": "North-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.NORTH_AREA_M2; var f = $feature.NORTH_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "volume",
+                "title": "Modelled volume",
+                "returnType": "string",
+                "expression": "var m = $feature.RF_VOLUME_M3; var f = $feature.RF_VOLUME_CUFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m³ (' + Text(f, '#,##0') + ' cu ft)';"
+              },
+              {
+                "name": "fit",
+                "title": "Roof fit to the lidar (RMSE)",
+                "returnType": "string",
+                "expression": "var m = $feature.RF_RMSE_LOD22; var f = $feature.RF_RMSE_LOD22_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return '—'; }\nreturn Text(m, '#,##0.00') + ' m (' + Text(f, '#,##0.00') + ' ft)';"
+              }
+            ],
+            "popupElements": [
+              {
+                "type": "text",
+                "text": "<p><b>Roof model:</b> {LEVEL}<br /><b>Outline:</b> {OUTLINE_SOURCE}<br /><b>Against the county footprints:</b> {expression/compare}</p>"
+              },
+              {
+                "type": "fields",
+                "fieldInfos": [
+                  {
+                    "fieldName": "expression/bldg",
+                    "label": "Building height (ridge)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/eave",
+                    "label": "Eave height",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/h50",
+                    "label": "Median roof height (county)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/plan",
+                    "label": "Roof plan area",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/roof",
+                    "label": "Roof surface",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/flat",
+                    "label": "Flat roof (under 5°)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/south",
+                    "label": "Facing south",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/east",
+                    "label": "Facing east",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/west",
+                    "label": "Facing west",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/north",
+                    "label": "Facing north",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/volume",
+                    "label": "Volume",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/fit",
+                    "label": "Roof fit (RMSE)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "ROOF_PLANES",
+                    "label": "Roof planes (1 m² / 10.8 sq ft or more)",
+                    "visible": true,
+                    "isEditable": false,
+                    "format": {
+                      "places": 0,
+                      "digitSeparator": true
+                    }
+                  },
+                  {
+                    "fieldName": "ROOF_SLOPE_MEAN",
+                    "label": "Roof slope, area-weighted (degrees)",
+                    "visible": true,
+                    "isEditable": false,
+                    "format": {
+                      "places": 1,
+                      "digitSeparator": true
+                    }
+                  },
+                  {
+                    "fieldName": "ROOF_AZIMUTH_MAIN",
+                    "label": "Largest plane faces (bearing, degrees)",
+                    "visible": true,
+                    "isEditable": false,
+                    "format": {
+                      "places": 0,
+                      "digitSeparator": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "<p style='font-size:11px;color:#6b6b6b'>Heights and areas in metres with feet (international foot). Lidar outlines follow the roof edge, so they sit a little outside the walls. Facing areas cover slopes of 5 to 70 degrees; they are not a solar estimate. Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+              }
+            ],
+            "fieldInfos": [
+              {
+                "fieldName": "LB_ID",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "SOURCE_ID",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "LEVEL",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "OUTLINE_SOURCE",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "COMPARE_CLASS",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "COUNTY_IDS",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/bldg",
+                "label": "Building height (ridge)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/eave",
+                "label": "Eave height",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/h50",
+                "label": "Median roof height (county)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/plan",
+                "label": "Roof plan area",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/roof",
+                "label": "Roof surface",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/flat",
+                "label": "Flat roof (under 5°)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/south",
+                "label": "Facing south",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/east",
+                "label": "Facing east",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/west",
+                "label": "Facing west",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/north",
+                "label": "Facing north",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/volume",
+                "label": "Volume",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/fit",
+                "label": "Roof fit (RMSE)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "ROOF_PLANES",
+                "label": "Roof planes (1 m² / 10.8 sq ft or more)",
+                "visible": true,
+                "isEditable": false,
+                "format": {
+                  "places": 0,
+                  "digitSeparator": true
+                }
+              },
+              {
+                "fieldName": "ROOF_SLOPE_MEAN",
+                "label": "Roof slope, area-weighted (degrees)",
+                "visible": true,
+                "isEditable": false,
+                "format": {
+                  "places": 1,
+                  "digitSeparator": true
+                }
+              },
+              {
+                "fieldName": "ROOF_AZIMUTH_MAIN",
+                "label": "Largest plane faces (bearing, degrees)",
+                "visible": true,
+                "isEditable": false,
+                "format": {
+                  "places": 0,
+                  "digitSeparator": true
+                }
+              }
+            ]
+          },
+          "layerDefinition": {
+            "drawingInfo": {
+              "renderer": {
+                "type": "classBreaks",
+                "classificationMethod": "esriClassifyManual",
+                "minValue": 0,
+                "classBreakInfos": [
+                  {
+                    "classMaxValue": 4,
+                    "label": "Up to 4 m (13.1 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              247,
+                              246,
+                              242
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 6,
+                    "label": "4 to 6 m (13.1 to 19.7 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              233,
+                              231,
+                              226
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 9,
+                    "label": "6 to 9 m (19.7 to 29.5 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              216,
+                              214,
+                              209
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 12,
+                    "label": "9 to 12 m (29.5 to 39.4 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              196,
+                              194,
+                              190
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 60,
+                    "label": "Over 12 m (39.4 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              172,
+                              170,
+                              167
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "defaultLabel": "No modelled height",
+                "defaultSymbol": {
+                  "type": "MeshSymbol3D",
+                  "symbolLayers": [
+                    {
+                      "type": "Fill",
+                      "material": {
+                        "color": [
+                          232,
+                          220,
+                          200
+                        ],
+                        "colorMixMode": "replace"
+                      },
+                      "edges": {
+                        "type": "solid",
+                        "color": [
+                          70,
+                          70,
+                          70
+                        ],
+                        "size": 0.5,
+                        "transparency": 35
+                      }
+                    }
+                  ]
+                },
+                "legendOptions": {
+                  "title": "Median roof height above ground (feet)"
+                },
+                "valueExpression": "IIf(IsEmpty($feature.BLDG_HT_M), $feature.HEIGHT_P50_M, $feature.BLDG_HT_M)",
+                "valueExpressionTitle": "Building height above ground"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scene": {
+    "data": {
+      "operationalLayers": [
+        {
+          "id": "hillshade",
+          "title": "Hillshade (0.5 m lidar terrain)",
+          "layerType": "ArcGISTiledMapServiceLayer",
+          "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+          "itemId": "cab8824e44384d479e1f302cdf34daf9",
+          "visibility": true,
+          "opacity": 0.4,
+          "showLegend": false
+        },
+        {
+          "id": "buildings3d",
+          "title": "Buildings from LiDAR outlines (2023)",
+          "layerType": "ArcGISSceneServiceLayer",
+          "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_from_LiDAR_outlines_2023_lidar_planning_estimate/SceneServer/layers/0",
+          "itemId": "de1adcb1da154620a1949181ab324747",
+          "visibility": true,
+          "opacity": 1,
+          "layerDefinition": {
+            "drawingInfo": {
+              "renderer": {
+                "type": "classBreaks",
+                "classificationMethod": "esriClassifyManual",
+                "minValue": 0,
+                "classBreakInfos": [
+                  {
+                    "classMaxValue": 4,
+                    "label": "Up to 4 m (13.1 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              247,
+                              246,
+                              242
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 6,
+                    "label": "4 to 6 m (13.1 to 19.7 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              233,
+                              231,
+                              226
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 9,
+                    "label": "6 to 9 m (19.7 to 29.5 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              216,
+                              214,
+                              209
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 12,
+                    "label": "9 to 12 m (29.5 to 39.4 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              196,
+                              194,
+                              190
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "classMaxValue": 60,
+                    "label": "Over 12 m (39.4 ft)",
+                    "symbol": {
+                      "type": "MeshSymbol3D",
+                      "symbolLayers": [
+                        {
+                          "type": "Fill",
+                          "material": {
+                            "color": [
+                              172,
+                              170,
+                              167
+                            ],
+                            "colorMixMode": "replace"
+                          },
+                          "edges": {
+                            "type": "solid",
+                            "color": [
+                              70,
+                              70,
+                              70
+                            ],
+                            "size": 0.5,
+                            "transparency": 35
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "defaultLabel": "No modelled height",
+                "defaultSymbol": {
+                  "type": "MeshSymbol3D",
+                  "symbolLayers": [
+                    {
+                      "type": "Fill",
+                      "material": {
+                        "color": [
+                          232,
+                          220,
+                          200
+                        ],
+                        "colorMixMode": "replace"
+                      },
+                      "edges": {
+                        "type": "solid",
+                        "color": [
+                          70,
+                          70,
+                          70
+                        ],
+                        "size": 0.5,
+                        "transparency": 35
+                      }
+                    }
+                  ]
+                },
+                "legendOptions": {
+                  "title": "Median roof height above ground (feet)"
+                },
+                "valueExpression": "IIf(IsEmpty($feature.BLDG_HT_M), $feature.HEIGHT_P50_M, $feature.BLDG_HT_M)",
+                "valueExpressionTitle": "Building height above ground"
+              }
+            }
+          },
+          "popupInfo": {
+            "title": "{expression/title}",
+            "expressionInfos": [
+              {
+                "name": "title",
+                "returnType": "string",
+                "title": "Title",
+                "expression": "IIf(IsEmpty($feature.LB_ID), 'County building ' + $feature.SOURCE_ID, 'Building ' + $feature.LB_ID)"
+              },
+              {
+                "name": "compare",
+                "returnType": "string",
+                "title": "Against the county footprints",
+                "expression": "var c = $feature.COMPARE_CLASS; var ids = DefaultValue($feature.COUNTY_IDS, '');\nvar words = Dictionary('MATCH', 'matches one county footprint', 'RESHAPED', 'the county outline is offset or drawn differently', 'LIDAR_JOINS', 'one building where the county has several outlines', 'LIDAR_SPLITS', 'part of what the county draws as one outline', 'TANGLE', 'overlaps several county outlines in a mixed way', 'LIDAR_ONLY', 'not in the county footprints', 'COUNTY_ONLY', 'county footprint kept: its roof is hidden from the lidar by trees');\nvar t = IIf(HasKey(words, c), words[c], 'not compared');\nreturn IIf(ids == '', t, t + ' (county building ' + Replace(ids, ';', ', ') + ')');"
+              },
+              {
+                "name": "bldg",
+                "title": "Building height (ridge above ground)",
+                "returnType": "string",
+                "expression": "var m = $feature.BLDG_HT_M; var f = $feature.BLDG_HT_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text(f, '#,##0.0') + ' ft)';"
+              },
+              {
+                "name": "eave",
+                "title": "Eave height above ground",
+                "returnType": "string",
+                "expression": "var m = $feature.EAVE_HT_M; var f = $feature.EAVE_HT_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text(f, '#,##0.0') + ' ft)';"
+              },
+              {
+                "name": "h50",
+                "title": "Median roof height (county footprint)",
+                "returnType": "string",
+                "expression": "var m = $feature.HEIGHT_P50_M; var f = $feature.HEIGHT_P50_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return '—'; }\nreturn Text(m, '#,##0.0') + ' m (' + Text(f, '#,##0.0') + ' ft)';"
+              },
+              {
+                "name": "plan",
+                "title": "Roof plan area",
+                "returnType": "string",
+                "expression": "var m = $feature.ROOF_PLAN_M2; var f = $feature.ROOF_PLAN_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "roof",
+                "title": "Roof surface (sloped)",
+                "returnType": "string",
+                "expression": "var m = $feature.ROOF_AREA_M2; var f = $feature.ROOF_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "flat",
+                "title": "Roof surface under 5 degrees",
+                "returnType": "string",
+                "expression": "var m = $feature.FLAT_AREA_M2; var f = $feature.FLAT_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "south",
+                "title": "South-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.SOUTH_AREA_M2; var f = $feature.SOUTH_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "east",
+                "title": "East-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.EAST_AREA_M2; var f = $feature.EAST_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "west",
+                "title": "West-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.WEST_AREA_M2; var f = $feature.WEST_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "north",
+                "title": "North-facing roof surface",
+                "returnType": "string",
+                "expression": "var m = $feature.NORTH_AREA_M2; var f = $feature.NORTH_AREA_SQFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m² (' + Text(f, '#,##0') + ' sq ft)';"
+              },
+              {
+                "name": "volume",
+                "title": "Modelled volume",
+                "returnType": "string",
+                "expression": "var m = $feature.RF_VOLUME_M3; var f = $feature.RF_VOLUME_CUFT;\nif (IsEmpty(m) || IsEmpty(f)) { return 'not modelled'; }\nreturn Text(m, '#,##0') + ' m³ (' + Text(f, '#,##0') + ' cu ft)';"
+              },
+              {
+                "name": "fit",
+                "title": "Roof fit to the lidar (RMSE)",
+                "returnType": "string",
+                "expression": "var m = $feature.RF_RMSE_LOD22; var f = $feature.RF_RMSE_LOD22_FT;\nif (IsEmpty(m) || IsEmpty(f)) { return '—'; }\nreturn Text(m, '#,##0.00') + ' m (' + Text(f, '#,##0.00') + ' ft)';"
+              }
+            ],
+            "popupElements": [
+              {
+                "type": "text",
+                "text": "<p><b>Roof model:</b> {LEVEL}<br /><b>Outline:</b> {OUTLINE_SOURCE}<br /><b>Against the county footprints:</b> {expression/compare}</p>"
+              },
+              {
+                "type": "fields",
+                "fieldInfos": [
+                  {
+                    "fieldName": "expression/bldg",
+                    "label": "Building height (ridge)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/eave",
+                    "label": "Eave height",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/h50",
+                    "label": "Median roof height (county)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/plan",
+                    "label": "Roof plan area",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/roof",
+                    "label": "Roof surface",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/flat",
+                    "label": "Flat roof (under 5°)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/south",
+                    "label": "Facing south",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/east",
+                    "label": "Facing east",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/west",
+                    "label": "Facing west",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/north",
+                    "label": "Facing north",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/volume",
+                    "label": "Volume",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "expression/fit",
+                    "label": "Roof fit (RMSE)",
+                    "visible": true,
+                    "isEditable": false
+                  },
+                  {
+                    "fieldName": "ROOF_PLANES",
+                    "label": "Roof planes (1 m² / 10.8 sq ft or more)",
+                    "visible": true,
+                    "isEditable": false,
+                    "format": {
+                      "places": 0,
+                      "digitSeparator": true
+                    }
+                  },
+                  {
+                    "fieldName": "ROOF_SLOPE_MEAN",
+                    "label": "Roof slope, area-weighted (degrees)",
+                    "visible": true,
+                    "isEditable": false,
+                    "format": {
+                      "places": 1,
+                      "digitSeparator": true
+                    }
+                  },
+                  {
+                    "fieldName": "ROOF_AZIMUTH_MAIN",
+                    "label": "Largest plane faces (bearing, degrees)",
+                    "visible": true,
+                    "isEditable": false,
+                    "format": {
+                      "places": 0,
+                      "digitSeparator": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "<p style='font-size:11px;color:#6b6b6b'>Heights and areas in metres with feet (international foot). Lidar outlines follow the roof edge, so they sit a little outside the walls. Facing areas cover slopes of 5 to 70 degrees; they are not a solar estimate. Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+              }
+            ],
+            "fieldInfos": [
+              {
+                "fieldName": "LB_ID",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "SOURCE_ID",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "LEVEL",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "OUTLINE_SOURCE",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "COMPARE_CLASS",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "COUNTY_IDS",
+                "visible": false,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/bldg",
+                "label": "Building height (ridge)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/eave",
+                "label": "Eave height",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/h50",
+                "label": "Median roof height (county)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/plan",
+                "label": "Roof plan area",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/roof",
+                "label": "Roof surface",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/flat",
+                "label": "Flat roof (under 5°)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/south",
+                "label": "Facing south",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/east",
+                "label": "Facing east",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/west",
+                "label": "Facing west",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/north",
+                "label": "Facing north",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/volume",
+                "label": "Volume",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "expression/fit",
+                "label": "Roof fit (RMSE)",
+                "visible": true,
+                "isEditable": false
+              },
+              {
+                "fieldName": "ROOF_PLANES",
+                "label": "Roof planes (1 m² / 10.8 sq ft or more)",
+                "visible": true,
+                "isEditable": false,
+                "format": {
+                  "places": 0,
+                  "digitSeparator": true
+                }
+              },
+              {
+                "fieldName": "ROOF_SLOPE_MEAN",
+                "label": "Roof slope, area-weighted (degrees)",
+                "visible": true,
+                "isEditable": false,
+                "format": {
+                  "places": 1,
+                  "digitSeparator": true
+                }
+              },
+              {
+                "fieldName": "ROOF_AZIMUTH_MAIN",
+                "label": "Largest plane faces (bearing, degrees)",
+                "visible": true,
+                "isEditable": false,
+                "format": {
+                  "places": 0,
+                  "digitSeparator": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "osm-labels",
+          "title": "Place labels (OpenStreetMap)",
+          "layerType": "ArcGISSceneServiceLayer",
+          "url": "https://basemaps3d.arcgis.com/arcgis/rest/services/OpenStreetMap3D_DarkLabels_v1/SceneServer/layers/0",
+          "visibility": true,
+          "opacity": 1,
+          "showLegend": false
+        }
+      ],
+      "baseMap": {
+        "title": "Light Gray Canvas",
+        "baseMapLayers": [
+          {
+            "id": "light-gray-base",
+            "title": "Light Gray Base",
+            "layerType": "VectorTileLayer",
+            "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+            "visibility": true,
+            "opacity": 1
+          }
+        ]
+      },
+      "ground": {
+        "layers": [
+          {
+            "id": "world-elevation",
+            "title": "Terrain3D",
+            "listMode": "hide",
+            "layerType": "ArcGISTiledElevationServiceLayer",
+            "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+            "itemId": "7029fb60158543ad845c7e1527af11e4",
+            "visibility": true
+          },
+          {
+            "id": "millcreek-terrain",
+            "title": "Millcreek bare-earth terrain (0.5 m lidar)",
+            "layerType": "ArcGISTiledElevationServiceLayer",
+            "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_bare_earth_terrain_0_5_m_2023_lidar_planning_estimate/ImageServer",
+            "itemId": "ce1680a5196e458ebfb60ead5150b946",
+            "visibility": true
+          }
+        ],
+        "transparency": 0,
+        "navigationConstraint": {
+          "type": "stayAbove"
+        }
+      },
+      "heightModelInfo": {
+        "heightModel": "gravity_related_height",
+        "heightUnit": "meter"
+      },
+      "initialState": {
+        "environment": {
+          "lighting": {
+            "type": "sun",
+            "datetime": 1697389200000,
+            "directShadows": true,
+            "displayUTCOffset": -6
+          },
+          "atmosphereEnabled": true,
+          "starsEnabled": false
+        },
+        "viewpoint": {
+          "camera": {
+            "position": {
+              "x": -12459283.52,
+              "y": 4965169.66,
+              "z": 4637.8,
+              "spatialReference": {
+                "wkid": 102100,
+                "latestWkid": 3857
+              }
+            },
+            "heading": 80,
+            "tilt": 64
+          }
+        }
+      },
+      "presentation": {
+        "slides": [
+          {
+            "id": "slide_1",
+            "title": {
+              "text": "Millcreek and the Wasatch"
+            },
+            "thumbnail": {
+              "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_1.jpg"
+            },
+            "viewpoint": {
+              "camera": {
+                "position": {
+                  "x": -12459283.52,
+                  "y": 4965169.66,
+                  "z": 4637.8,
+                  "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                  }
+                },
+                "heading": 80,
+                "tilt": 64
+              }
+            },
+            "baseMap": {
+              "title": "Light Gray Canvas",
+              "baseMapLayers": [
+                {
+                  "id": "light-gray-base",
+                  "title": "Light Gray Base",
+                  "layerType": "VectorTileLayer",
+                  "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                  "visibility": true,
+                  "opacity": 1
+                }
+              ]
+            },
+            "ground": {
+              "transparency": 0
+            },
+            "environment": {
+              "lighting": {
+                "type": "sun",
+                "datetime": 1697389200000,
+                "directShadows": true,
+                "displayUTCOffset": -6
+              },
+              "atmosphereEnabled": true,
+              "starsEnabled": false
+            },
+            "visibleLayers": [
+              {
+                "id": "hillshade"
+              },
+              {
+                "id": "buildings3d"
+              },
+              {
+                "id": "osm-labels"
+              },
+              {
+                "id": "world-elevation"
+              },
+              {
+                "id": "millcreek-terrain"
+              }
+            ]
+          },
+          {
+            "id": "slide_2",
+            "title": {
+              "text": "Millcreek Common"
+            },
+            "thumbnail": {
+              "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_2.jpg"
+            },
+            "viewpoint": {
+              "camera": {
+                "position": {
+                  "x": -12452255.51,
+                  "y": 4967828.77,
+                  "z": 1757.5,
+                  "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                  }
+                },
+                "heading": 60,
+                "tilt": 62
+              }
+            },
+            "baseMap": {
+              "title": "Light Gray Canvas",
+              "baseMapLayers": [
+                {
+                  "id": "light-gray-base",
+                  "title": "Light Gray Base",
+                  "layerType": "VectorTileLayer",
+                  "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                  "visibility": true,
+                  "opacity": 1
+                }
+              ]
+            },
+            "ground": {
+              "transparency": 0
+            },
+            "environment": {
+              "lighting": {
+                "type": "sun",
+                "datetime": 1697389200000,
+                "directShadows": true,
+                "displayUTCOffset": -6
+              },
+              "atmosphereEnabled": true,
+              "starsEnabled": false
+            },
+            "visibleLayers": [
+              {
+                "id": "hillshade"
+              },
+              {
+                "id": "buildings3d"
+              },
+              {
+                "id": "osm-labels"
+              },
+              {
+                "id": "world-elevation"
+              },
+              {
+                "id": "millcreek-terrain"
+              }
+            ]
+          },
+          {
+            "id": "slide_3",
+            "title": {
+              "text": "Canyon Rim"
+            },
+            "thumbnail": {
+              "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_3.jpg"
+            },
+            "viewpoint": {
+              "camera": {
+                "position": {
+                  "x": -12447366.82,
+                  "y": 4968974.8,
+                  "z": 1838.4,
+                  "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                  }
+                },
+                "heading": 100,
+                "tilt": 64
+              }
+            },
+            "baseMap": {
+              "title": "Light Gray Canvas",
+              "baseMapLayers": [
+                {
+                  "id": "light-gray-base",
+                  "title": "Light Gray Base",
+                  "layerType": "VectorTileLayer",
+                  "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                  "visibility": true,
+                  "opacity": 1
+                }
+              ]
+            },
+            "ground": {
+              "transparency": 0
+            },
+            "environment": {
+              "lighting": {
+                "type": "sun",
+                "datetime": 1697389200000,
+                "directShadows": true,
+                "displayUTCOffset": -6
+              },
+              "atmosphereEnabled": true,
+              "starsEnabled": false
+            },
+            "visibleLayers": [
+              {
+                "id": "hillshade"
+              },
+              {
+                "id": "buildings3d"
+              },
+              {
+                "id": "osm-labels"
+              },
+              {
+                "id": "world-elevation"
+              },
+              {
+                "id": "millcreek-terrain"
+              }
+            ]
+          },
+          {
+            "id": "slide_4",
+            "title": {
+              "text": "Olympus Cove foothills"
+            },
+            "thumbnail": {
+              "url": "https://www.arcgis.com/sharing/rest/content/items/5b5bdf4a63c9466fad5884039aa7357f/resources/slides/slide_4.jpg"
+            },
+            "viewpoint": {
+              "camera": {
+                "position": {
+                  "x": -12445545.46,
+                  "y": 4966423.63,
+                  "z": 2069.4,
+                  "spatialReference": {
+                    "wkid": 102100,
+                    "latestWkid": 3857
+                  }
+                },
+                "heading": 110,
+                "tilt": 66
+              }
+            },
+            "baseMap": {
+              "title": "Light Gray Canvas",
+              "baseMapLayers": [
+                {
+                  "id": "light-gray-base",
+                  "title": "Light Gray Base",
+                  "layerType": "VectorTileLayer",
+                  "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                  "visibility": true,
+                  "opacity": 1
+                }
+              ]
+            },
+            "ground": {
+              "transparency": 0
+            },
+            "environment": {
+              "lighting": {
+                "type": "sun",
+                "datetime": 1697389200000,
+                "directShadows": true,
+                "displayUTCOffset": -6
+              },
+              "atmosphereEnabled": true,
+              "starsEnabled": false
+            },
+            "visibleLayers": [
+              {
+                "id": "hillshade"
+              },
+              {
+                "id": "buildings3d"
+              },
+              {
+                "id": "osm-labels"
+              },
+              {
+                "id": "world-elevation"
+              },
+              {
+                "id": "millcreek-terrain"
+              }
+            ]
+          }
+        ]
+      },
+      "spatialReference": {
+        "wkid": 102100,
+        "latestWkid": 3857
+      },
+      "viewingMode": "global",
+      "version": "1.29",
+      "authoringApp": "apply_styling.py (ArcGIS API for Python)",
+      "authoringAppVersion": "2.4.3"
+    }
+  },
+  "layer_fields": 68
+}

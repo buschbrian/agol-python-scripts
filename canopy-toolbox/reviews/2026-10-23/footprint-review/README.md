@@ -54,6 +54,7 @@ back over answers.
 | **Tree models (CFTree)** (October 26) | 900 | sample (300), many treetops inside (300), trunk inside a county footprint (300) | 1 ONE_TREE, 2 MERGED, 3 PART_OF_TREE, 4 NOT_A_TREE, 5 SHAPE_WRONG, 6 SHRUBS, 7 BRUSH, 8 TREE_WITH_ROOF, 9 UNSURE |
 | **Tree models at tile seams** (October 26) | 235 | one item per overlapping pair | 1 SAME_TREE, 2 SPLIT_TREE, 3 SEPARATE_TREES, 4 NOT_A_TREE, 5 SHRUBS, 6 BRUSH, 7 UNSURE |
 | **Trees CFTree could not model** (October 26) | 75 | no terrain beneath (38), no valid trunk (37) | 1 MISSED_TREE, 2 NOT_A_TREE, 3 UNSURE |
+| **LiDAR outlines vs county** (October 26, after the rebuild) | 6,622 | a sample of 40 per class first: reshaped, LiDAR joins, LiDAR splits, tangles, county only, LiDAR only | 1 LIDAR_RIGHT, 2 KEEP_UNITS, 3 COUNTY_RIGHT, 4 GONE, 5 UNDER_TREES, 6 NOT_A_BUILDING, 7 NEEDS_EDIT, 8 SHED, 9 UNSURE |
 
 The four October 26 queues, their side views of each tree and how they were chosen: [model-review](../../2026-10-26/model-review/README.md).
 

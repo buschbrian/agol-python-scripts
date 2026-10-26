@@ -51,6 +51,9 @@ ANSWERS = {
     "tree_seams": ("SAME_TREE", "SPLIT_TREE", "SEPARATE_TREES", "NOT_A_TREE", "SHRUBS", "BRUSH", "UNSURE",
                    "OTHER_MERGED", "REDO"),
     "tree_rejects": ("MISSED_TREE", "NOT_A_TREE", "UNSURE"),
+    # October 26, after the LiDAR-first rebuild: where the LiDAR outlines and the county footprints disagree
+    "outlines": ("LIDAR_RIGHT", "KEEP_UNITS", "COUNTY_RIGHT", "GONE", "UNDER_TREES", "NOT_A_BUILDING", "NEEDS_EDIT",
+                 "SHED", "UNSURE"),
 }
 COLUMNS = ("ITEM_ID", "QUEUE", "GROUP", "ANSWER", "NOTE", "REVIEWER", "REVIEW_DATE", "REVIEW_TIME")
 REPO_BACKUP = HERE/"answers"/"footprint-review-answers.csv"
