@@ -335,7 +335,8 @@ def webmap(out, layer_id, go=False):
         snippet="Basemap for a local ArcGIS Urban model in NAD83(2011) UTM 12N: the Millcreek light UTM tile layer.",
         description=f"<p>Web map wrapper so ArcGIS Urban can list the tile layer {layer.id} as a basemap. Its tiling "
                     "scheme equals the Millcreek bare-earth terrain for ArcGIS Urban.</p>",
-        access_information=layer.accessInformation, text=json.dumps(data))
+        access_information=layer.accessInformation, text=json.dumps(data),
+        extent=layer.extent)   # Urban's picker lists only items whose item extent meets the model's
     item = gis.content.folders.get(folder_name).add(item_properties=props).result()
     item.sharing.sharing_level = "ORGANIZATION"
     item.protect(enable=True)

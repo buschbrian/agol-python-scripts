@@ -199,6 +199,9 @@ unspecified). Two things remain:
 - That web map must be shared to the gallery group, where every org user's Map Viewer basemap gallery would also list it. This is
   Brian's call and has not been done.
 
+**Known leftover.** 900 E is CARTOCODE 10 for most of its length (5 for a short stretch), so the study corridor draws at
+local-street width. Widening `MAJOR` to 9-10 means a re-cache and a republish, and new item IDs. The basemap is left as published.
+
 ## Rollback
 
 Nothing public changed. To withdraw an item, unshare it (`item.sharing.sharing_level = "PRIVATE"`). Deleting it needs delete
