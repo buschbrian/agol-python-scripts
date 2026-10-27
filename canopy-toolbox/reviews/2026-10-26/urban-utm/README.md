@@ -4,7 +4,7 @@ On October 26 Brian approved publishing the roofer LoD2.2 three-way hybrid as th
 He chose **NAD83(2011) UTM 12N, metres** for the Urban model, because every LiDAR 3D product is native UTM. A local Urban model gets no
 default buildings or elevation: both must be custom layers in the model's own coordinate system. The public October 25 hybrid is WGS84
 for global scenes, so these items are separate UTM copies. Brian created the local Urban model on October 27; on the same day he asked for
-a global (Web Mercator) model beside it, with WGS84 buildings carrying FLOORS ([The Urban models](#the-urban-models-october-27)).
+a global (Web Mercator) model beside it, then kept the UTM model only once it worked ([The Urban models](#the-urban-models-october-27)).
 
 ## Items
 
@@ -262,7 +262,20 @@ python reviews/2026-10-23/agol-metadata/apply_metadata.py apply urban_buildings_
 not. So the warning is not tied to the projected coordinate system alone, and the earlier explanation is incomplete. It is still
 recorded, not fixed.
 
-**Global model: not yet created.** Urban's "Create copy" (data manager, Admin) copies a model to the coordinate system of a chosen
+**Decision (October 27): continue with the UTM model only.** Once the local model drew, Brian asked to keep it if it was the
+better of the two. It is:
+- It works now, on the LiDAR terrain and buildings.
+- Distances and areas are in a projected CRS with no Mercator scale.
+- There is one model to maintain, with one set of parcels, zoning and plans.
+
+In a global model the Google mesh would draw its own buildings under ours. Hiding them distorts the terrain on the east bench and
+isn't supported in existing scenarios. The mesh isn't exported to Urban's web scenes, and it is a beta with a 20,000-session preview
+cap. For Google context, view the layers in Scene Viewer or Pro 3.6+.
+
+The WGS84 buildings layer `d4b852fd…` stays published, org-only, for global scenes that need FLOORS. The notes below on a global
+model are kept in case it is wanted later.
+
+**Global model: not created.** Urban's "Create copy" (data manager, Admin) copies a model to the coordinate system of a chosen
 basemap, along with its settings, parcels, type tables and metrics, so a Web Mercator copy keeps the imported parcels. The copy is
 owned by whoever runs it, and the Urban API has no copy mutation. For the copy:
 - Schematic: Custom, with existing buildings `d4b852fd…` and a Web Mercator basemap.
