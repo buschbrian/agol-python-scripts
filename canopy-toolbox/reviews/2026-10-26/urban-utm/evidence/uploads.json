@@ -109,5 +109,39 @@
   "published_url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_bare_earth_terrain_for_ArcGIS_Urban_UTM_12N_0_5_m_2023_lidar_planning_/ImageServer",
   "item_page": "https://www.arcgis.com//home/item.html?id=83d1a892fd67408b9f8f9fcb754cd479",
   "type_as_expected": true
+ },
+ "urban_basemap": {
+  "item": "urban_basemap",
+  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\basemap\\millcreek_basemap_utm_20261027.tpkx",
+  "bytes": 120744632,
+  "sha256": "d80cbd151ce744777ebf7bbcf9859ff9fe3c1649f9df6be7c9997e8ddacaf326",
+  "item_type": "Compact Tile Package",
+  "expect": "Map Service",
+  "title": "Millcreek light basemap for ArcGIS Urban, UTM 12N (2023 lidar hillshade)",
+  "folder": "Millcreek LiDAR 2023",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "basemap",
+   "hillshade",
+   "ArcGIS Urban",
+   "UTM"
+  ],
+  "snippet": "Light reference basemap in NAD83(2011) UTM 12N on the Millcreek Urban terrain's tiling scheme, so a local ArcGIS Urban model can be created: lidar hillshade, parcel lines, street names, city boundary.",
+  "coordinates": "Coordinates: NAD83(2011) / UTM zone 12N (EPSG 6341), metres, the lidar's own coordinate system; no datum transformation. For local scenes and a local ArcGIS Urban model in 6341. Elevations NAVD88 (Geoid18) metres.",
+  "publish_parameters": null,
+  "sharing": "private (not shared)",
+  "uploaded": "2026-10-27T08:56:06",
+  "portal": "https://www.arcgis.com/",
+  "owner": "GISMillcreek",
+  "sent_file": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\basemap\\millcreek_basemap_utm_20261027.tpkx",
+  "package_id": "de73e628097f4de8ae742808c3b61edd",
+  "published_id": "97b68288dbf14897bcad0c1646467b89",
+  "published_type": "Map Service",
+  "published_url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_light_basemap_for_ArcGIS_Urban_UTM_12N_2023_lidar_hillshade/MapServer",
+  "item_page": "https://www.arcgis.com//home/item.html?id=97b68288dbf14897bcad0c1646467b89",
+  "type_as_expected": true
  }
 }

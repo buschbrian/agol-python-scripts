@@ -1,0 +1,86 @@
+{
+ "created": "2026-10-27T08:52:22",
+ "pilot": false,
+ "map": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\basemap\\basemap.aprx",
+ "scheme": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\basemap\\scheme.xml",
+ "levels": [
+  0,
+  14
+ ],
+ "aoi": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\elevation\\full\\aoi.shp",
+ "seconds": {
+  "cache": 94.1,
+  "package": 1.8
+ },
+ "conf": {
+  "format": "PNG",
+  "lerc_error": 0.01,
+  "tile_size": 256
+ },
+ "tpkx": {
+  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\basemap\\millcreek_basemap_utm_20261027.tpkx",
+  "bytes": 120744632
+ },
+ "levels_in_package": {
+  "0": {
+   "tiles": 1,
+   "bytes": 1110
+  },
+  "1": {
+   "tiles": 1,
+   "bytes": 1156
+  },
+  "2": {
+   "tiles": 1,
+   "bytes": 1229
+  },
+  "3": {
+   "tiles": 1,
+   "bytes": 1468
+  },
+  "4": {
+   "tiles": 1,
+   "bytes": 1988
+  },
+  "5": {
+   "tiles": 1,
+   "bytes": 3234
+  },
+  "6": {
+   "tiles": 1,
+   "bytes": 6774
+  },
+  "7": {
+   "tiles": 2,
+   "bytes": 19742
+  },
+  "8": {
+   "tiles": 6,
+   "bytes": 64360
+  },
+  "9": {
+   "tiles": 12,
+   "bytes": 240887
+  },
+  "10": {
+   "tiles": 28,
+   "bytes": 801604
+  },
+  "11": {
+   "tiles": 88,
+   "bytes": 2441179
+  },
+  "12": {
+   "tiles": 295,
+   "bytes": 9406642
+  },
+  "13": {
+   "tiles": 1109,
+   "bytes": 27323532
+  },
+  "14": {
+   "tiles": 4064,
+   "bytes": 78270645
+  }
+ }
+}

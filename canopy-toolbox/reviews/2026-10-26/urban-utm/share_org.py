@@ -1,4 +1,5 @@
-r"""Share the three Urban UTM layers with the organization only, delete-protect them and their packages, and read them back.
+r"""Share the Urban UTM layers with the organization only, delete-protect them and their packages, and read them back.
+The basemap (October 27) joins the three October 26 layers; its check compares its tiling scheme with the terrain's.
 
     python reviews/2026-10-26/urban-utm/share_org.py verify          read-only: sharing, protection, services against the sources
     python reviews/2026-10-26/urban-utm/share_org.py apply --go      layers to the organization, packages private, all six protected
@@ -20,9 +21,9 @@ from canopy.lidar_root import lidar_root  # noqa: E402
 
 RUN = lidar_root()/"2023-salt-lake-valley"/"runs"/"urban-utm-20261026"
 LAYERS = {"urban_buildings": "b8e8ddaceac54876bd4c0cf3f31d92fd", "urban_footprints": "e74c2216aca54d7f8be2432768b64520",
-          "urban_terrain": "83d1a892fd67408b9f8f9fcb754cd479"}
+          "urban_terrain": "83d1a892fd67408b9f8f9fcb754cd479", "urban_basemap": "97b68288dbf14897bcad0c1646467b89"}
 PACKAGES = {"urban_buildings": "c7702ec26f7843ad9572b797888557d6", "urban_footprints": "32ba9a96f01d43b690f8faa4ce4c6a15",
-            "urban_terrain": "33b6ae61d34e4cd682c45fa42b229095"}
+            "urban_terrain": "33b6ae61d34e4cd682c45fa42b229095", "urban_basemap": "de73e628097f4de8ae742808c3b61edd"}
 # Public items this work must not touch.
 PUBLIC = {"scene_layer": "ce3617ac9b884bbcbee7c47a3e166999", "web_scene": "5b5bdf4a63c9466fad5884039aa7357f",
           "lod12_layer": "5082b5bd063a4a03847f2082dc3533d1"}
@@ -128,6 +129,33 @@ def check_terrain(gis, url):
     return out
 
 
+def check_basemap(gis, url, terrain_url):
+    """The basemap service's tileInfo equal to the terrain service's field by field (Urban's requirement), and sampled
+    level 14 tiles equal to the package's bytes."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("urban_utm", HERE.parent/"urban_utm.py")
+    uu = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(uu)
+    pt = uu._load("package_tiles", uu.REVIEWS/"2026-10-22"/"hosting"/"tiles"/"package_tiles.py")
+    service, terrain = get(gis, url), get(gis, terrain_url)
+    a, b = service.get("tileInfo", {}), terrain["tileInfo"]
+    lods = lambda ti: [(lod["level"], round(lod["scale"], 4), round(lod["resolution"], 9)) for lod in ti.get("lods", [])]
+    wkid = lambda ti: ti.get("spatialReference", {}).get("latestWkid")
+    same = {"wkid": wkid(a) == wkid(b) == WKID, "origin": a.get("origin", {}).get("x") == b["origin"]["x"]
+            and a.get("origin", {}).get("y") == b["origin"]["y"], "size": [a.get("rows"), a.get("cols")] == [b["rows"], b["cols"]],
+            "dpi": a.get("dpi") == b["dpi"], "lods": lods(a) == lods(b)}
+    local = {(r, c): d for r, c, d in pt.package_tiles(RUN/"basemap"/"millcreek_basemap_utm_20261027.tpkx", 14)}
+    tiles = []
+    for r, c in sorted(local)[::500]:
+        response = gis.session.get(f"{url}/tile/14/{r}/{c}")
+        tiles.append({"tile": [14, r, c], "status": response.status_code,
+                      "bytes_equal": response.status_code == 200 and response.content == local[(r, c)]})
+    out = {"spatialReference": service.get("spatialReference"), "tile_format": a.get("format"),
+           "singleFusedMapCache": service.get("singleFusedMapCache"), "same_as_terrain": same, "tiles": tiles}
+    out["ok"] = all(same.values()) and service.get("singleFusedMapCache") is True and all(t["bytes_equal"] for t in tiles)
+    return out
+
+
 def verify(gis):
     record = {"verified_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"), "items": {}}
     for key, item_id in LAYERS.items():
@@ -137,6 +165,9 @@ def verify(gis):
     record["items"]["urban_buildings"]["service"] = check_scene(gis, record["items"]["urban_buildings"]["layer"]["url"])
     record["items"]["urban_footprints"]["service"] = check_features(gis, record["items"]["urban_footprints"]["layer"]["url"])
     record["items"]["urban_terrain"]["service"] = check_terrain(gis, record["items"]["urban_terrain"]["layer"]["url"])
+    if "urban_basemap" in LAYERS:
+        record["items"]["urban_basemap"]["service"] = check_basemap(
+            gis, record["items"]["urban_basemap"]["layer"]["url"], record["items"]["urban_terrain"]["layer"]["url"])
     record["public_items_untouched"] = {k: {"id": v, "access": gis.content.get(v).access,
                                             "modified": gis.content.get(v).modified} for k, v in PUBLIC.items()}
     sharing_ok = all(i["layer"]["access"] == "org" and not i["layer"]["everyone"] and not i["layer"]["groups"]

@@ -169,6 +169,23 @@ ITEMS = {
                        "tiling scheme in the records. Urban needs its basemap on the same tiling scheme.",
         "tags": ["elevation", "ground", "terrain", "DEM", "ArcGIS Urban", "UTM"], "datum": "utm",
         "readme": "../2026-10-26/urban-utm/README.md"},
+    # October 27: the basemap a local Urban model is created from, on the terrain's tiling scheme (Brian approved org-only).
+    # Built by reviews/2026-10-26/urban-utm/basemap.py.
+    "urban_basemap": {
+        "file": RUNS/"urban-utm-20261026"/"basemap"/"millcreek_basemap_utm_20261027.tpkx", "type": "Compact Tile Package",
+        "expect": "Map Service",
+        "title": "Millcreek light basemap for ArcGIS Urban, UTM 12N (2023 lidar hillshade)",
+        "snippet": "Light reference basemap in NAD83(2011) UTM 12N on the Millcreek Urban terrain's tiling scheme, so a local "
+                   "ArcGIS Urban model can be created: lidar hillshade, parcel lines, street names, city boundary.",
+        "description": "PNG tiles, levels 0-14 halving from 8,192 m to 0.5 m pixels, on exactly the tiling scheme of the "
+                       "Millcreek bare-earth terrain for ArcGIS Urban (Urban requires the basemap and elevation to share "
+                       "it). Hillshade of the unmasked 2023 lidar terrain; parcels, road centerlines and the municipal "
+                       "boundary from Millcreek's hosted layers, projected from State Plane with no datum transformation. "
+                       "For orientation only: not a survey or a parcel record.",
+        "tags": ["basemap", "hillshade", "ArcGIS Urban", "UTM"], "datum": "utm",
+        "credits": "Millcreek GIS; parcels, road centerlines and boundary: Millcreek; hillshade: 2023 Salt Lake Valley "
+                   "QL1 lidar (USGS 3DEP).",
+        "readme": "../2026-10-26/urban-utm/README.md"},
     "terrain": {
         "file": RUNS/"tiles-20261023"/"millcreek_terrain_20261023.tpkx", "type": "Compact Tile Package",
         "expect": "Image Service",
@@ -224,7 +241,8 @@ def properties(key):
                           description="<p>" + spec["description"] + "</p><p>" + WARNING + "</p><p>"
                                       + (DATUM_UTM if utm else DATUM) + "</p><p>"
                                       + (RECORDS_UTM if utm else RECORDS) + " See " + spec["readme"] + ".</p>",
-                          access_information="Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+                          access_information=spec.get("credits",
+                                                      "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP)."),
                           license_info=WARNING)
 
 

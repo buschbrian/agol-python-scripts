@@ -1,0 +1,37 @@
+{
+ "created": "2026-10-27T08:48:43",
+ "hillshade": {
+  "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\basemap\\hillshade_context.tif",
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_context.tif",
+  "azimuth": 315,
+  "altitude": 45,
+  "shadows": false,
+  "z_factor": 1,
+  "extent": [
+   422149.0,
+   4501259.5,
+   434399.5,
+   4507383.0
+  ]
+ },
+ "layers": {
+  "parcels": {
+   "source": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_Parcels/FeatureServer/0",
+   "where": null,
+   "count": 21744,
+   "transformation": null
+  },
+  "streets": {
+   "source": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Centerlines_Millcreek/FeatureServer/0",
+   "where": null,
+   "count": 2995,
+   "transformation": null
+  },
+  "boundary": {
+   "source": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Municipal_Boundary/FeatureServer/0",
+   "where": "NAME = 'Millcreek'",
+   "count": 1,
+   "transformation": null
+  }
+ }
+}

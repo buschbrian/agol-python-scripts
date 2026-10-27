@@ -1,4 +1,4 @@
-# Existing buildings and elevation in UTM 12N for a local ArcGIS Urban model (October 26, 2026)
+# Existing buildings, elevation and basemap in UTM 12N for a local ArcGIS Urban model (October 26-27, 2026)
 
 On October 26 Brian approved publishing the roofer LoD2.2 three-way hybrid as the ArcGIS Urban existing buildings, **organization-only**.
 He chose **NAD83(2011) UTM 12N, metres** for the Urban model, because every LiDAR 3D product is native UTM. A local Urban model gets no
@@ -12,6 +12,7 @@ for global scenes, so these items are separate UTM copies. **The Urban model its
 | 3D buildings for ArcGIS Urban, UTM 12N | `b8e8ddaceac54876bd4c0cf3f31d92fd` | `c7702ec26f7843ad9572b797888557d6` | Scene Service (3DObject) | Layer: organization; package: private; both delete-protected |
 | Building footprints for ArcGIS Urban, UTM 12N | `e74c2216aca54d7f8be2432768b64520` | `32ba9a96f01d43b690f8faa4ce4c6a15` | Feature Service, layer 0 `building_footprints` | Layer: organization; package: private; both delete-protected |
 | Bare-earth terrain for ArcGIS Urban, UTM 12N 0.5 m | `83d1a892fd67408b9f8f9fcb754cd479` | `33b6ae61d34e4cd682c45fa42b229095` | Image Service (elevation) | Layer: organization; package: private; both delete-protected |
+| Light basemap for ArcGIS Urban, UTM 12N (October 27) | `97b68288dbf14897bcad0c1646467b89` | `de73e628097f4de8ae742808c3b61edd` | Map Service (tile layer, PNG) | Layer: organization; package: private; both delete-protected |
 
 All six are in the GISMillcreek folder **Millcreek LiDAR 2023**. No layer is shared with everyone or with a group, and anonymous
 requests for the three layers return 403. The public items were not changed: scene layer `ce3617ac9b884bbcbee7c47a3e166999`, web scene
@@ -31,7 +32,8 @@ The public terrain is Web Mercator on the ArcGIS Online elevation scheme.
 **Before the model works, Urban needs a basemap.** It must be a UTM 12N tiled layer on the tiling scheme in
 [elevation_scheme_utm12n.xml](elevation_scheme_utm12n.xml), and it must be in the organization's basemap gallery (Urban accepts only
 gallery or ArcGIS Online basemaps). A tile package of the hillshade or imagery built with Manage Tile Cache on that XML (its format
-changed from LERC to an image format) would meet the requirement. No basemap was made here.
+changed from LERC to an image format) would meet the requirement. The basemap was built on October 27; see
+[The basemap](#the-basemap-october-27-basemappy).
 
 | Scheme property | Value |
 |---|---|
@@ -117,7 +119,8 @@ Evidence, all copied from the run folder or written by `share_org.py`:
 - This is recorded, not fixed.
 
 **Not verified.**
-- None of the three layers has been drawn in a local scene or in ArcGIS Urban. Urban needs the UTM basemap above first.
+- None of the three layers has been drawn in ArcGIS Urban. They were drawn together with the basemap in a Pro local scene on
+  October 27 (below).
 - Whether Convert existing buildings reads `FLOORS` from the scene layer or from a feature layer is not documented. It is on both.
 - Whether Urban treats this footprint layer as the scene layer's "accompanying feature layer" is also undocumented. ArcGIS Online
   links a scene layer to a feature layer only when the scene layer is published from it, and this one was published from an SLPK.
@@ -142,6 +145,59 @@ Evidence, all copied from the run folder or written by `share_org.py`:
   (`{{coordinates_utm}}`) and the planning-estimate terms. To change it, edit `urban_*.md`, then run `apply_metadata.py diff <key>`
   and `apply <key> --go`. Do not run `readback`: it rewrites the October 23 record. The ISO `metadata` step was not run for these
   items.
+
+## The basemap (October 27, `basemap.py`)
+
+Brian chose the UTM 12N local model over a Web Mercator global one, because the buildings and terrain are already UTM, and approved
+publishing a light basemap **organization-only** as a hosted tile layer. Urban turns a model local when you select a projected basemap,
+and that choice is the only route: the org had no UTM basemap.
+
+```
+python reviews/2026-10-26/urban-utm/basemap.py data   OUT   # hillshade of terrain_context.tif + linework projected to 6341
+python reviews/2026-10-26/urban-utm/basemap.py map    OUT   # OUT\basemap\basemap.aprx, map "Urban UTM basemap"
+python reviews/2026-10-26/urban-utm/basemap.py scheme OUT   # elevation scheme.xml with CacheTileFormat PNG, nothing else changed
+python reviews/2026-10-26/urban-utm/basemap.py cache  OUT --pilot
+python reviews/2026-10-26/urban-utm/basemap.py cache  OUT   # levels 0-14 on the elevation AOI, then .tpkx
+python reviews/2026-10-26/urban-utm/basemap.py verify OUT   # package tileInfo against the hosted terrain's, field by field
+```
+
+- **Content.**
+  - Hillshade: 315°, 45°, no shadows, z 1, the same parameters as terrain-city. It is computed fresh from the unmasked
+    `terrain_context.tif`, because every existing hillshade is masked to the city: 45% of the extent is valid, against 67% for the
+    mosaic.
+  - Parcel lines draw from level 12.
+  - Centerlines_Millcreek streets: CARTOCODE 1-8 are wider. Names show from level 9 (major) and level 11 (local).
+  - The Millcreek boundary is dashed, over a 245/245/242 ground fill of the elevation AOI.
+  - No buildings: Urban draws its own.
+- **Linework.** Parcels (21,744), streets (2,995) and the boundary (1) come from Millcreek's hosted layers in State Plane Utah
+  Central feet. They were projected to 6341 with **no datum transformation**, which leaves sub-metre offsets on a basemap.
+- **Scheme.** It is the elevation scheme with only the tile format changed (LERC to PNG): the same origin, 256 px, 96 dpi and 15
+  LODs. Levels were deliberately not added below 0.5 m, so the scheme stays identical to the terrain's.
+- **Cache.** Mixed-format tiles are not used: PNG keeps the area outside the footprint transparent.
+  - The pilot (1 km window, levels 12-14) took 41 s.
+  - The full cache has 5,600 tiles; level 14 has 4,064.
+  - Package: `millcreek_basemap_utm_20261027.tpkx`, **120,744,632 bytes**, SHA-256
+    `d80cbd151ce744777ebf7bbcf9859ff9fe3c1649f9df6be7c9997e8ddacaf326`.
+- **Upload.** `upload.py urban_basemap --go` published Map Service `97b68288dbf14897bcad0c1646467b89` from package
+  `de73e628097f4de8ae742808c3b61edd`. The item text is upload.py's own, with credits for the Millcreek layers and the lidar; the
+  `urban_*.md` metadata step was not run. The publish logged the same unverified-HTTPS warnings as the October 23 hillshade.
+- **Sharing.** `share_org.py apply --go` shared the layer with the organization and delete-protected the layer and its package. It
+  now includes the basemap and checks it with `check_basemap`.
+
+| Check | Result |
+|---|---|
+| Package scheme against the hosted terrain's tileInfo | wkid 6341, origin, 256 x 256, 96 dpi and all 15 LODs equal ([evidence/basemap-verify.json](evidence/basemap-verify.json)) |
+| Hosted service against the hosted terrain | Same five fields equal; PNG; `singleFusedMapCache` true; 9 sampled level-14 tiles byte-identical to the package ([evidence/verification.json](evidence/verification.json)) |
+| Sharing | Layer `org`, no groups, protected; package private, protected. The October 26 items still pass |
+| Pro local scene (6341) | The hosted basemap as a layer, the hosted terrain as Ground, the buildings scene layer. Buildings sit on the ground, and the draped street names fall on the hillshade's roads ([evidence/local-scene-check-900e-3900s.png](evidence/local-scene-check-900e-3900s.png), 900 E at 3900 S looking north) |
+
+**Not done: the basemap gallery.** Urban lists only basemaps in the organization's basemap gallery or ArcGIS Online basemaps. The
+gallery is the custom group "Basemaps" (`1ae1c70310cf457abe2a3e6dbf5a3243`, owned by GISMillcreek, 37 items, all Web Mercator or
+unspecified). Two things remain:
+- Urban needs a web map whose basemap is this tile layer, in 6341 (`basemap.py webmap OUT --layer 97b68288... [--go]` creates one
+  organization-only).
+- That web map must be shared to the gallery group, where every org user's Map Viewer basemap gallery would also list it. This is
+  Brian's call and has not been done.
 
 ## Rollback
 

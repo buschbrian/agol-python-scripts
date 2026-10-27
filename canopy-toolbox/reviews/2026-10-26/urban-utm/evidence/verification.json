@@ -1,5 +1,5 @@
 {
- "verified_utc": "2026-10-26T20:11:11+00:00",
+ "verified_utc": "2026-10-27T14:56:51+00:00",
  "items": {
   "urban_buildings": {
    "layer": {
@@ -342,6 +342,127 @@
       "status": 200,
       "bytes_equal": true,
       "max_abs_diff_m": null
+     }
+    ],
+    "ok": true
+   }
+  },
+  "urban_basemap": {
+   "layer": {
+    "id": "97b68288dbf14897bcad0c1646467b89",
+    "type": "Map Service",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_light_basemap_for_ArcGIS_Urban_UTM_12N_2023_lidar_hillshade/MapServer",
+    "access": "org",
+    "everyone": false,
+    "org": true,
+    "groups": [],
+    "protected": true
+   },
+   "package": {
+    "id": "de73e628097f4de8ae742808c3b61edd",
+    "type": "Compact Tile Package",
+    "size": 120744632,
+    "access": "private",
+    "everyone": false,
+    "org": false,
+    "groups": [],
+    "protected": true
+   },
+   "service": {
+    "spatialReference": {
+     "wkid": 102059,
+     "latestWkid": 6341
+    },
+    "tile_format": "PNG",
+    "singleFusedMapCache": true,
+    "same_as_terrain": {
+     "wkid": true,
+     "origin": true,
+     "size": true,
+     "dpi": true,
+     "lods": true
+    },
+    "tiles": [
+     {
+      "tile": [
+       14,
+       "42896",
+       "43328"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42902",
+       "43390"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42909",
+       "43379"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42915",
+       "43345"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42920",
+       "43360"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42925",
+       "43375"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42931",
+       "43317"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42936",
+       "43396"
+      ],
+      "status": 200,
+      "bytes_equal": true
+     },
+     {
+      "tile": [
+       14,
+       "42943",
+       "43385"
+      ],
+      "status": 200,
+      "bytes_equal": true
      }
     ],
     "ok": true

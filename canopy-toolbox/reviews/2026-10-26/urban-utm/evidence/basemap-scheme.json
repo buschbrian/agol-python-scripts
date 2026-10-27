@@ -1,0 +1,91 @@
+{
+ "created": "2026-10-27T08:49:44",
+ "file": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\basemap\\scheme.xml",
+ "from": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\elevation\\scheme.xml",
+ "lods": [
+  {
+   "level": 0,
+   "scale": 30961827.84,
+   "resolution": 8192.0
+  },
+  {
+   "level": 1,
+   "scale": 15480913.92,
+   "resolution": 4096.0
+  },
+  {
+   "level": 2,
+   "scale": 7740456.96,
+   "resolution": 2048.0
+  },
+  {
+   "level": 3,
+   "scale": 3870228.48,
+   "resolution": 1024.0
+  },
+  {
+   "level": 4,
+   "scale": 1935114.24,
+   "resolution": 512.0
+  },
+  {
+   "level": 5,
+   "scale": 967557.12,
+   "resolution": 256.0
+  },
+  {
+   "level": 6,
+   "scale": 483778.56,
+   "resolution": 128.0
+  },
+  {
+   "level": 7,
+   "scale": 241889.28,
+   "resolution": 64.0
+  },
+  {
+   "level": 8,
+   "scale": 120944.64,
+   "resolution": 32.0
+  },
+  {
+   "level": 9,
+   "scale": 60472.32,
+   "resolution": 16.0
+  },
+  {
+   "level": 10,
+   "scale": 30236.16,
+   "resolution": 8.0
+  },
+  {
+   "level": 11,
+   "scale": 15118.08,
+   "resolution": 4.0
+  },
+  {
+   "level": 12,
+   "scale": 7559.04,
+   "resolution": 2.0
+  },
+  {
+   "level": 13,
+   "scale": 3779.52,
+   "resolution": 1.0
+  },
+  {
+   "level": 14,
+   "scale": 1889.76,
+   "resolution": 0.5
+  }
+ ],
+ "origin": [
+  -5120900.0,
+  9998100.0
+ ],
+ "wkid": 6341,
+ "format": "PNG",
+ "lerc_error": 0.01,
+ "tile_size": 256,
+ "dpi": 96
+}
