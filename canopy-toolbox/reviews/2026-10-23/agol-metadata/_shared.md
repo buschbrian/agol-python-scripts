@@ -59,6 +59,7 @@ Millcreek LiDAR 2023 set are WGS84 / Web Mercator copies for global scenes; they
 (Geoid18) in **metres**; heights are metres above the lidar bare-earth terrain.
 
 ## set_urban
-**The Millcreek ArcGIS Urban layers.** Three organization-only layers in UTM 12N for a local ArcGIS Urban model: 3D buildings
-(scene layer), building footprints (feature layer) and bare-earth terrain (elevation layer). They come from the same lidar,
-the same buildings and the same terrain as the public Millcreek LiDAR 2023 set.
+**The Millcreek ArcGIS Urban layers.** Organization-only layers for ArcGIS Urban. For a local model in UTM 12N: 3D buildings
+(scene layer), building footprints (feature layer), bare-earth terrain (elevation layer) and a light basemap on the terrain's
+tiling scheme. For a global (Web Mercator) model: the same 3D buildings in WGS84. They come from the same lidar, the same
+buildings and the same terrain as the public Millcreek LiDAR 2023 set.

@@ -1,0 +1,36 @@
+{
+ "created": "2026-10-27T10:57:09",
+ "wkid": 4326,
+ "vcs": null,
+ "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+ "slpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\scene-wgs84\\buildings_three_way_wgs84.slpk",
+ "seconds": 16,
+ "mb": 17.4,
+ "source_features": 21561,
+ "source_fp_id_sum": 237493394,
+ "package": {
+  "fp_id_count": 21561,
+  "fp_id_sum": 237493394,
+  "nodes": 163,
+  "spatial_reference": {
+   "wkid": 4326,
+   "latestWkid": 4326,
+   "vcsWkid": 5773,
+   "latestVcsWkid": 5773
+  },
+  "height_model": {
+   "heightModel": "gravity_related_height",
+   "vertCRS": "EGM96_height",
+   "heightUnit": "meter"
+  },
+  "node_centre_z_range": [
+   1304.4749657762911,
+   1708.3825528145085
+  ]
+ },
+ "validation_report": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\scene-wgs84\\validation.json",
+ "validation_messages": [
+  "Information : Resources 1,163,161,0,4508,0,28,0 were successfully loaded"
+ ],
+ "all_features_in_package": true
+}

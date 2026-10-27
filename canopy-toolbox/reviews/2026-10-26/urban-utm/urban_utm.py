@@ -4,6 +4,7 @@ r"""Existing buildings and elevation in NAD83(2011) UTM 12N for a local ArcGIS U
     python reviews/2026-10-26/urban-utm/urban_utm.py footprints OUT    the footprints alone (OUT\footprints\urban_footprints.gdb)
     python reviews/2026-10-26/urban-utm/urban_utm.py slpk OUT --test   the 20-building test package (OUT\test)
     python reviews/2026-10-26/urban-utm/urban_utm.py slpk OUT          the full package (OUT\scene)
+    python reviews/2026-10-26/urban-utm/urban_utm.py slpk OUT --wgs84 [--test]   the same buildings in WGS84 (OUT\scene-wgs84)
     python reviews/2026-10-26/urban-utm/urban_utm.py scheme OUT        the UTM elevation tiling scheme (OUT\elevation\scheme.xml)
     python reviews/2026-10-26/urban-utm/urban_utm.py elevation OUT [--pilot]   elevation cache and .tpkx
     python reviews/2026-10-26/urban-utm/urban_utm.py verify OUT        read the elevation package back against the terrain
@@ -163,14 +164,20 @@ def footprints_gdb(out):
     write_json(folder/"footprints.json", record)
 
 
-def slpk(out, test=False, vcs=None):
+def slpk(out, test=False, vcs=None, wgs84=False):
+    """--wgs84 (October 27): the same buildings, FLOORS included, for a global Web Mercator Urban model, packaged as the
+    public layer was (WGS84 with make_slpk's named transformation, no vertical CRS: labelled EGM96, heights left NAVD88)."""
     gdb = out/"urban.gdb"
-    folder = out/(("test" + (f"-vcs{vcs}" if vcs else "")) if test else "scene")
+    suffix = "-wgs84" if wgs84 else (f"-vcs{vcs}" if vcs and test else "")
+    folder = out/(("test" if test else "scene") + suffix)
     folder.mkdir(parents=True, exist_ok=False)
     source = gdb/("buildings_test20" if test else "buildings")
-    name = "buildings_utm_test20" if test else "buildings_three_way_utm"
-    entry = slpk_mod.package(source, folder/f"{name}.slpk", folder/"validation.json", WKID, vcs, "")
-    record = {"created": now(), "wkid": WKID, "vcs": vcs, "transformation": "", **entry}
+    crs = "wgs84" if wgs84 else "utm"
+    name = f"buildings_{crs}_test20" if test else f"buildings_three_way_{crs}"
+    wkid = slpk_mod.WGS84 if wgs84 else WKID
+    transformation = slpk_mod.TRANSFORM if wgs84 else ""
+    entry = slpk_mod.package(source, folder/f"{name}.slpk", folder/"validation.json", wkid, vcs, transformation)
+    record = {"created": now(), "wkid": wkid, "vcs": vcs, "transformation": transformation, **entry}
     if not test:
         assert (entry["package"]["fp_id_count"], entry["package"]["fp_id_sum"]) == (EXPECTED["count"], EXPECTED["fp_id_sum"])
     assert entry["all_features_in_package"]
@@ -362,6 +369,7 @@ def main(argv=None):
     p.add_argument("out", type=Path)
     p.add_argument("--test", action="store_true", help="slpk: the 20-building test package")
     p.add_argument("--vcs", type=int, help="slpk: vertical coordinate system for the package (default none)")
+    p.add_argument("--wgs84", action="store_true", help="slpk: package in WGS84 for a global Urban model")
     p.add_argument("--pilot", action="store_true", help="elevation: a 1 km window only")
     a = p.parse_args(argv)
     out = a.out.resolve()
@@ -370,7 +378,7 @@ def main(argv=None):
     elif a.step == "footprints":
         footprints_gdb(out)
     elif a.step == "slpk":
-        slpk(out, a.test, a.vcs)
+        slpk(out, a.test, a.vcs, a.wgs84)
     elif a.step == "scheme":
         scheme(out)
     elif a.step == "elevation":

@@ -1,5 +1,5 @@
 {
- "verified_utc": "2026-10-27T14:56:51+00:00",
+ "verified_utc": "2026-10-27T17:00:27+00:00",
  "items": {
   "urban_buildings": {
    "layer": {
@@ -465,6 +465,87 @@
       "bytes_equal": true
      }
     ],
+    "ok": true
+   }
+  },
+  "urban_buildings_wgs84": {
+   "layer": {
+    "id": "d4b852fd54314b8bb031fd5f5902fa3a",
+    "type": "Scene Service",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_for_ArcGIS_Urban_Web_Mercator_2023_lidar_planning_estimate/SceneServer",
+    "access": "org",
+    "everyone": false,
+    "org": true,
+    "groups": [],
+    "protected": true
+   },
+   "package": {
+    "id": "d07dc602a6714c99a098a0570354d2a3",
+    "type": "Scene Package",
+    "size": 18198551,
+    "access": "private",
+    "everyone": false,
+    "org": false,
+    "groups": [],
+    "protected": true
+   },
+   "service": {
+    "layerType": "3DObject",
+    "spatialReference": {
+     "wkid": 4326,
+     "latestWkid": 4326,
+     "vcsWkid": 5773,
+     "latestVcsWkid": 5773
+    },
+    "heightModelInfo": {
+     "heightModel": "gravity_related_height",
+     "vertCRS": "EGM96_height",
+     "heightUnit": "meter"
+    },
+    "fields": [
+     "OBJECTID",
+     "Name",
+     "FP_ID",
+     "PARTS",
+     "RF_ROOF_TYPE",
+     "RF_ROOF_PLANES",
+     "RF_RIDGELINES",
+     "RF_RMSE_LOD22",
+     "RF_H_GROUND",
+     "RF_H_ROOF_MAX",
+     "RF_PT_DENSITY",
+     "RF_EXTRUSION",
+     "SOURCE_ID",
+     "PARCEL_ID",
+     "CITY",
+     "FOOTPRINT_M2",
+     "ROOF_COV_PCT",
+     "ROOF_Z50_M",
+     "GROUND_Z50_M",
+     "HEIGHT_P50_M",
+     "HEIGHT_P95_M",
+     "HEIGHT_STATUS",
+     "LEVEL",
+     "CHECK_VERDICT",
+     "ROOFER_VERDICT",
+     "ESRI_VERDICT",
+     "FALLBACK_REASON",
+     "FLOORS"
+    ],
+    "fp_id": [
+     21561,
+     237493394
+    ],
+    "floors": [
+     32836,
+     1,
+     12
+    ],
+    "levels": {
+     "roofer LoD2.2": 20730,
+     "Esri LOD2.0": 647,
+     "Esri LOD1.2": 184
+    },
     "ok": true
    }
   }

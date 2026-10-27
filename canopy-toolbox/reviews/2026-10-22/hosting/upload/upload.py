@@ -169,6 +169,21 @@ ITEMS = {
                        "tiling scheme in the records. Urban needs its basemap on the same tiling scheme.",
         "tags": ["elevation", "ground", "terrain", "DEM", "ArcGIS Urban", "UTM"], "datum": "utm",
         "readme": "../2026-10-26/urban-utm/README.md"},
+    # October 27: the same Urban buildings with FLOORS in WGS84, for a global (Web Mercator) Urban model alongside the local
+    # one. Packaged as the public layer was (labelled EGM96, heights NAVD88). Brian approved org-only. Built by
+    # reviews/2026-10-26/urban-utm/urban_utm.py slpk --wgs84.
+    "urban_buildings_wgs84": {
+        "file": RUNS/"urban-utm-20261026"/"scene-wgs84"/"buildings_three_way_wgs84.slpk", "type": "Scene Package",
+        "expect": "Scene Service",
+        "title": "Millcreek 3D buildings for ArcGIS Urban, Web Mercator (2023 lidar), planning estimate",
+        "snippet": "Unvalidated planning estimate: the 21,561 three-way hybrid buildings (roofer LoD 2.2, Esri fallbacks) "
+                   "for a global (Web Mercator) ArcGIS Urban model, with an estimated floor count.",
+        "description": "The same buildings and FLOORS as the UTM 12N Urban layer, packaged in WGS84 for global scenes. "
+                       "FLOORS is HEIGHT_P95_M divided by 3.5 m, rounded, at least 1: an estimate for Urban's Convert "
+                       "existing buildings, not a count of storeys. Heights NAVD88; the package is labelled EGM96 as the "
+                       "public 3D buildings layer is.",
+        "tags": ["buildings", "3D", "scene", "ArcGIS Urban"], "records": RECORDS_UTM,
+        "readme": "../2026-10-26/urban-utm/README.md"},
     # October 27: the basemap a local Urban model is created from, on the terrain's tiling scheme (Brian approved org-only).
     # Built by reviews/2026-10-26/urban-utm/basemap.py.
     "urban_basemap": {
@@ -240,7 +255,8 @@ def properties(key):
     return ItemProperties(title=spec["title"], item_type=spec["type"], tags=TAGS + spec["tags"], snippet=spec["snippet"],
                           description="<p>" + spec["description"] + "</p><p>" + WARNING + "</p><p>"
                                       + (DATUM_UTM if utm else DATUM) + "</p><p>"
-                                      + (RECORDS_UTM if utm else RECORDS) + " See " + spec["readme"] + ".</p>",
+                                      + spec.get("records", RECORDS_UTM if utm else RECORDS) + " See " + spec["readme"]
+                                      + ".</p>",
                           access_information=spec.get("credits",
                                                       "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP)."),
                           license_info=WARNING)

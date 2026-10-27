@@ -60,7 +60,7 @@ Heights and elevations are metres; Z50 fields are elevations, other height field
   compute shading themselves.
 - On the cells where the lidar saw roof, the buildings are within 0.5 m of the lidar roof on 96.7% of cells and within 1 m on 98.1%.
   The lidar is also what the roofs were built from, so this is fidelity to the lidar, not independent accuracy.
-- **Not yet seen in a local scene or in ArcGIS Urban.** The checks are on the package and the service, not on drawing.
+- Seen drawing in the local ArcGIS Urban model on October 27, 2026, on the UTM basemap and terrain (seen from above only).
 
 ## Limits
 - **Planning estimates, not surveyed buildings.** Heights are roof minus ground from lidar, not code-defined building heights.

@@ -3,7 +3,8 @@
 On October 26 Brian approved publishing the roofer LoD2.2 three-way hybrid as the ArcGIS Urban existing buildings, **organization-only**.
 He chose **NAD83(2011) UTM 12N, metres** for the Urban model, because every LiDAR 3D product is native UTM. A local Urban model gets no
 default buildings or elevation: both must be custom layers in the model's own coordinate system. The public October 25 hybrid is WGS84
-for global scenes, so these items are separate UTM copies. **The Urban model itself was not created**; Brian does that after his tutorial.
+for global scenes, so these items are separate UTM copies. Brian created the local Urban model on October 27; on the same day he asked for
+a global (Web Mercator) model beside it, with WGS84 buildings carrying FLOORS ([The Urban models](#the-urban-models-october-27)).
 
 ## Items
 
@@ -13,8 +14,9 @@ for global scenes, so these items are separate UTM copies. **The Urban model its
 | Building footprints for ArcGIS Urban, UTM 12N | `e74c2216aca54d7f8be2432768b64520` | `32ba9a96f01d43b690f8faa4ce4c6a15` | Feature Service, layer 0 `building_footprints` | Layer: organization; package: private; both delete-protected |
 | Bare-earth terrain for ArcGIS Urban, UTM 12N 0.5 m | `83d1a892fd67408b9f8f9fcb754cd479` | `33b6ae61d34e4cd682c45fa42b229095` | Image Service (elevation) | Layer: organization; package: private; both delete-protected |
 | Light basemap for ArcGIS Urban, UTM 12N (October 27) | `97b68288dbf14897bcad0c1646467b89` | `de73e628097f4de8ae742808c3b61edd` | Map Service (tile layer, PNG) | Layer: organization; package: private; both delete-protected |
+| 3D buildings for ArcGIS Urban, Web Mercator (October 27) | `d4b852fd54314b8bb031fd5f5902fa3a` | `d07dc602a6714c99a098a0570354d2a3` | Scene Service (3DObject), WGS84 | Layer: organization; package: private; both delete-protected |
 
-All six are in the GISMillcreek folder **Millcreek LiDAR 2023**. No layer is shared with everyone or with a group, and anonymous
+All of them are in the GISMillcreek folder **Millcreek LiDAR 2023**. No layer is shared with everyone or with a group, and anonymous
 requests for the three layers return 403. The public items were not changed: scene layer `ce3617ac9b884bbcbee7c47a3e166999`, web scene
 `5b5bdf4a63c9466fad5884039aa7357f` and the LOD1.2 layer `5082b5bd063a4a03847f2082dc3533d1` are still public, and their modified times
 are recorded in [evidence/verification.json](evidence/verification.json). Do not delete a source package while its layer depends on it.
@@ -119,9 +121,11 @@ Evidence, all copied from the run folder or written by `share_org.py`:
 - This is recorded, not fixed.
 
 **Not verified.**
-- None of the three layers has been drawn in ArcGIS Urban. They were drawn together with the basemap in a Pro local scene on
-  October 27 (below).
-- Whether Convert existing buildings reads `FLOORS` from the scene layer or from a feature layer is not documented. It is on both.
+- The terrain, basemap and buildings draw in the local Urban model (October 27, below), seen from above only. The footprint layer
+  is not used by the model.
+- Convert existing buildings' attribute-driven mode reads "a numeric field in your existing buildings layer"
+  ([July 2026 release notes](https://doc.esri.com/en/arcgis-urban/latest/get-started/get-started-release-notes.html)), which is the
+  scene layer; FLOORS is on it. Not yet run.
 - Whether Urban treats this footprint layer as the scene layer's "accompanying feature layer" is also undocumented. ArcGIS Online
   links a scene layer to a feature layer only when the scene layer is published from it, and this one was published from an SLPK.
 - ArcGIS Online renamed `LEVEL` to **`LEVEL_`** in the footprint layer, because LEVEL is a reserved word. The scene layer keeps `LEVEL`.
@@ -204,6 +208,67 @@ Online basemaps. The gallery is the custom group "Basemaps" (`1ae1c70310cf457abe
 
 **Known leftover.** 900 E is CARTOCODE 10 for most of its length (5 for a short stretch), so the study corridor draws at
 local-street width. Widening `MAJOR` to 9-10 means a re-cache and a republish, and new item IDs. The basemap is left as published.
+
+## The Urban models (October 27)
+
+**Local model `2dc81c6f3a4b47efba2849dbfff9bf0f`** ("Millcreek, UT, USA", 6341, owner GISMillcreek). Brian created it with the
+custom terrain and imported 21,744 parcels. It opened as terrain only, with "Light Gray Canvas cannot be added: Layer needs to be in
+NAD 1983 (2011) UTM Zone 12N".
+- **Cause: the model's config, not the items.** The model was saved with `schematicVisualization` and `satelliteVisualization`
+  `Default` and no `customBasemapItemId`, so Urban loaded its Web Mercator defaults (Open 3D Buildings, Open 3D Trees, Light Gray
+  Canvas, the Google mesh), and the 6341 view refused each with `spatial-reference-incompatible`. The UTM items needed no reprojection:
+  the terrain drew. In Urban's own create code, Custom and the basemap ID are set only when a basemap is passed to the create.
+- Urban's data manager has no Default/Custom switch for a local model
+  ([data manager, General](https://doc.esri.com/en/arcgis-urban/latest/data/data-manager-general.html)), so the config was set with
+  the app's own mutation, `updateUrbanModelConfig`:
+
+  ```
+  python reviews/2026-10-26/urban-utm/urban_model.py show 2dc81c6f3a4b47efba2849dbfff9bf0f        # read-only
+  python reviews/2026-10-26/urban-utm/urban_model.py utm  2dc81c6f3a4b47efba2849dbfff9bf0f --go   # what was set
+  ```
+
+  Both visualizations are Custom, with basemap web map `8289e4be…` and existing buildings `b8e8ddac…`. Trees are left empty. Before:
+  both Default, only `customElevationLayerItemId` set. To undo, set the two visualizations back to `Default` and the four IDs to null.
+- After reload there was no "cannot be added" alert. The basemap draws on the terrain, and the buildings draw at street level
+  ([evidence/urban-model-utm-config.json](evidence/urban-model-utm-config.json),
+  [evidence/urban-model-utm-buildings-3780s.jpg](evidence/urban-model-utm-buildings-3780s.jpg), near 3780 S, from above). The
+  oblique view was not checked.
+
+**WGS84 buildings for a global model.** Brian asked to create both a local and a global model. The global model's existing
+buildings must be in its coordinate system, and the public `ce3617ac…` layer has no FLOORS (and is not to be changed), so the same
+prepared copy was packaged again in WGS84:
+
+```
+python reviews/2026-10-26/urban-utm/urban_utm.py slpk OUT --wgs84 --test
+python reviews/2026-10-26/urban-utm/urban_utm.py slpk OUT --wgs84
+python reviews/2026-10-22/hosting/upload/upload.py urban_buildings_wgs84 --go
+python reviews/2026-10-26/urban-utm/share_org.py apply --go
+python reviews/2026-10-23/agol-metadata/apply_metadata.py apply urban_buildings_wgs84 --go
+```
+
+- It is packaged as the public layer was: WGS84 with `WGS_1984_(ITRF08)_To_NAD_1983_2011` and no vertical CRS, so it is labelled
+  EGM96 while the heights stay NAVD88.
+- FLOORS is unchanged (P95 / 3.5 m), so both models get the same floors.
+
+| Check | Result |
+|---|---|
+| 20-building test | FP_ID 20 / 3,401 equal to source; 4326, EGM96 label; validation warns "vertex normals may be required" |
+| Full SLPK | **18,198,551 bytes**, SHA-256 `fe55e9ac15485c37661250bf76ea25331ed688987eea4bdc787eac432fe60289`; FP_ID **21,561 / 237,493,394**; 163 nodes; validation: no warnings |
+| Hosted scene layer | 3DObject, 4326 + EGM96, 28 fields incl. FLOORS; FP_ID **21,561 / 237,493,394**; LEVEL 20,730 / 647 / 184; FLOORS sum 32,836 (1-12) |
+| Sharing | Layer `org`, no groups, protected; package private, protected; every earlier item still passes; public items unchanged ([evidence/verification.json](evidence/verification.json)) |
+| Item text | `urban_buildings_wgs84.md` applied; the shared `set_urban` block now names the basemap and the WGS84 layer, and was re-applied to the three UTM layers; the diff afterwards is empty |
+
+**Normals warning, corrected.** The 20-building WGS84 test package also warns about vertex normals, but the full WGS84 package does
+not. So the warning is not tied to the projected coordinate system alone, and the earlier explanation is incomplete. It is still
+recorded, not fixed.
+
+**Global model: not yet created.** Urban's "Create copy" (data manager, Admin) copies a model to the coordinate system of a chosen
+basemap, along with its settings, parcels, type tables and metrics, so a Web Mercator copy keeps the imported parcels. The copy is
+owned by whoever runs it, and the Urban API has no copy mutation. For the copy:
+- Schematic: Custom, with existing buildings `d4b852fd…` and a Web Mercator basemap.
+- Realistic: Default, which is the Google Photorealistic 3D basemap (beta).
+- Elevation: the public terrain `ce1680a5…` is on the standard Web Mercator scheme (256 px, origin -20037508.34, 24 LODs), so it
+  matches Esri's basemaps; not yet tried in Urban. Without it, Urban uses World Elevation.
 
 ## Rollback
 

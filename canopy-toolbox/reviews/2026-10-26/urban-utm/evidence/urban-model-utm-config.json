@@ -1,0 +1,21 @@
+{
+ "id": "2dc81c6f3a4b47efba2849dbfff9bf0f",
+ "title": "Millcreek, UT, USA",
+ "owner": "GISMillcreek",
+ "spatialReference": {
+  "wkid": 6341
+ },
+ "config": {
+  "customElevationLayerItemId": "83d1a892fd67408b9f8f9fcb754cd479",
+  "initialVisualizationStyle": "Schematic",
+  "schematicVisualization": "Custom",
+  "satelliteVisualization": "Custom",
+  "customBasemapItemId": "8289e4be22534a9f99a7514c795a477b",
+  "customSatelliteBasemapItemId": "8289e4be22534a9f99a7514c795a477b",
+  "existingBuildingsLayerItemId": "b8e8ddaceac54876bd4c0cf3f31d92fd",
+  "existingSatelliteBuildingsLayerItemId": "b8e8ddaceac54876bd4c0cf3f31d92fd",
+  "existingTreesLayerItemId": null,
+  "existingSatelliteTreesLayerItemId": null,
+  "customBaselayersItemId": null
+ }
+}

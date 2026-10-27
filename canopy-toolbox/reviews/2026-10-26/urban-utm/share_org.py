@@ -1,5 +1,6 @@
 r"""Share the Urban UTM layers with the organization only, delete-protect them and their packages, and read them back.
-The basemap (October 27) joins the three October 26 layers; its check compares its tiling scheme with the terrain's.
+The basemap (October 27) joins the three October 26 layers; its check compares its tiling scheme with the terrain's. The WGS84
+buildings (October 27, for a global Urban model) are checked as the UTM buildings are, in 4326.
 
     python reviews/2026-10-26/urban-utm/share_org.py verify          read-only: sharing, protection, services against the sources
     python reviews/2026-10-26/urban-utm/share_org.py apply --go      layers to the organization, packages private, all six protected
@@ -21,9 +22,11 @@ from canopy.lidar_root import lidar_root  # noqa: E402
 
 RUN = lidar_root()/"2023-salt-lake-valley"/"runs"/"urban-utm-20261026"
 LAYERS = {"urban_buildings": "b8e8ddaceac54876bd4c0cf3f31d92fd", "urban_footprints": "e74c2216aca54d7f8be2432768b64520",
-          "urban_terrain": "83d1a892fd67408b9f8f9fcb754cd479", "urban_basemap": "97b68288dbf14897bcad0c1646467b89"}
+          "urban_terrain": "83d1a892fd67408b9f8f9fcb754cd479", "urban_basemap": "97b68288dbf14897bcad0c1646467b89",
+          "urban_buildings_wgs84": "d4b852fd54314b8bb031fd5f5902fa3a"}
 PACKAGES = {"urban_buildings": "c7702ec26f7843ad9572b797888557d6", "urban_footprints": "32ba9a96f01d43b690f8faa4ce4c6a15",
-            "urban_terrain": "33b6ae61d34e4cd682c45fa42b229095", "urban_basemap": "de73e628097f4de8ae742808c3b61edd"}
+            "urban_terrain": "33b6ae61d34e4cd682c45fa42b229095", "urban_basemap": "de73e628097f4de8ae742808c3b61edd",
+            "urban_buildings_wgs84": "d07dc602a6714c99a098a0570354d2a3"}
 # Public items this work must not touch.
 PUBLIC = {"scene_layer": "ce3617ac9b884bbcbee7c47a3e166999", "web_scene": "5b5bdf4a63c9466fad5884039aa7357f",
           "lod12_layer": "5082b5bd063a4a03847f2082dc3533d1"}
@@ -57,7 +60,7 @@ def sharing(item):
             "groups": [g.id for g in shared.get("groups", [])], "protected": item.protected}
 
 
-def check_scene(gis, url):
+def check_scene(gis, url, wkid=WKID):
     layer = get(gis, url + "/layers/0")
     stats = {s["name"]: get(gis, url + "/layers/0/" + s["href"].removeprefix("./"))["stats"]
              for s in layer["statisticsInfo"] if s["name"] in ("FP_ID", "FLOORS", "LEVEL")}
@@ -66,7 +69,7 @@ def check_scene(gis, url):
            "heightModelInfo": layer.get("heightModelInfo"), "fields": [f["name"] for f in layer["fields"]],
            "fp_id": [stats["FP_ID"]["count"], stats["FP_ID"]["sum"]],
            "floors": [stats["FLOORS"]["sum"], stats["FLOORS"]["min"], stats["FLOORS"]["max"]], "levels": levels}
-    out["ok"] = (layer["layerType"] == "3DObject" and layer["spatialReference"]["latestWkid"] == WKID
+    out["ok"] = (layer["layerType"] == "3DObject" and layer["spatialReference"]["latestWkid"] == wkid
                  and out["fp_id"] == [EXPECTED["count"], EXPECTED["fp_id_sum"]]
                  and out["floors"] == [EXPECTED["floors_sum"], EXPECTED["floors_min"], EXPECTED["floors_max"]]
                  and levels == EXPECTED["levels"] and "FLOORS" in out["fields"])
@@ -163,6 +166,8 @@ def verify(gis):
         record["items"][key] = {"layer": {"id": item_id, "type": layer.type, "url": layer.url, **sharing(layer)},
                                 "package": {"id": package.id, "type": package.type, "size": package.size, **sharing(package)}}
     record["items"]["urban_buildings"]["service"] = check_scene(gis, record["items"]["urban_buildings"]["layer"]["url"])
+    record["items"]["urban_buildings_wgs84"]["service"] = check_scene(
+        gis, record["items"]["urban_buildings_wgs84"]["layer"]["url"], 4326)
     record["items"]["urban_footprints"]["service"] = check_features(gis, record["items"]["urban_footprints"]["layer"]["url"])
     record["items"]["urban_terrain"]["service"] = check_terrain(gis, record["items"]["urban_terrain"]["layer"]["url"])
     if "urban_basemap" in LAYERS:

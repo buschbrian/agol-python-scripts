@@ -1,0 +1,37 @@
+{
+ "created": "2026-10-27T10:56:41",
+ "wkid": 4326,
+ "vcs": null,
+ "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+ "slpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\test-wgs84\\buildings_wgs84_test20.slpk",
+ "seconds": 2,
+ "mb": 0.0,
+ "source_features": 20,
+ "source_fp_id_sum": 3401,
+ "package": {
+  "fp_id_count": 20,
+  "fp_id_sum": 3401,
+  "nodes": 2,
+  "spatial_reference": {
+   "wkid": 4326,
+   "latestWkid": 4326,
+   "vcsWkid": 5773,
+   "latestVcsWkid": 5773
+  },
+  "height_model": {
+   "heightModel": "gravity_related_height",
+   "vertCRS": "EGM96_height",
+   "heightUnit": "meter"
+  },
+  "node_centre_z_range": [
+   1466.56393581296,
+   1486.603750000002
+  ]
+ },
+ "validation_report": "H:\\lidar\\2023-salt-lake-valley\\runs\\urban-utm-20261026\\test-wgs84\\validation.json",
+ "validation_messages": [
+  "Warning : [geometries/0] : vertex normals may be required by Esri products",
+  "Information : Resources 1,2,1,0,28,0,28,0 were successfully loaded"
+ ],
+ "all_features_in_package": true
+}

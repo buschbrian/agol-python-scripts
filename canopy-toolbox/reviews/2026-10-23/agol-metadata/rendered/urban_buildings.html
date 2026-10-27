@@ -277,7 +277,7 @@ Heights and elevations are metres; Z50 fields are elevations, other height field
   compute shading themselves.</li>
 <li>On the cells where the lidar saw roof, the buildings are within 0.5 m of the lidar roof on 96.7% of cells and within 1 m on 98.1%.
   The lidar is also what the roofs were built from, so this is fidelity to the lidar, not independent accuracy.</li>
-<li><strong>Not yet seen in a local scene or in ArcGIS Urban.</strong> The checks are on the package and the service, not on drawing.</li>
+<li>Seen drawing in the local ArcGIS Urban model on October 27, 2026, on the UTM basemap and terrain (seen from above only).</li>
 </ul>
 <h2>Limits</h2>
 <ul>
@@ -294,9 +294,10 @@ flown on October 7, November 2 and November 4, 2023. Quality level 1 means at le
 non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
 reviewed for these products. For these products the building and vegetation classes of the points were refined; the
 ground class was not changed. All products are gridded at 0.5 m.</p>
-<p><strong>The Millcreek ArcGIS Urban layers.</strong> Three organization-only layers in UTM 12N for a local ArcGIS Urban model: 3D buildings
-(scene layer), building footprints (feature layer) and bare-earth terrain (elevation layer). They come from the same lidar,
-the same buildings and the same terrain as the public Millcreek LiDAR 2023 set.</p>
+<p><strong>The Millcreek ArcGIS Urban layers.</strong> Organization-only layers for ArcGIS Urban. For a local model in UTM 12N: 3D buildings
+(scene layer), building footprints (feature layer), bare-earth terrain (elevation layer) and a light basemap on the terrain's
+tiling scheme. For a global (Web Mercator) model: the same 3D buildings in WGS84. They come from the same lidar, the same
+buildings and the same terrain as the public Millcreek LiDAR 2023 set.</p>
 <p><strong>Questions or corrections:</strong> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
 of Millcreek GIS.</p><h2>Terms of use</h2><p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
 engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
