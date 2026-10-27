@@ -191,13 +191,16 @@ python reviews/2026-10-26/urban-utm/basemap.py verify OUT   # package tileInfo a
 | Sharing | Layer `org`, no groups, protected; package private, protected. The October 26 items still pass |
 | Pro local scene (6341) | The hosted basemap as a layer, the hosted terrain as Ground, the buildings scene layer. Buildings sit on the ground, and the draped street names fall on the hillshade's roads ([evidence/local-scene-check-900e-3900s.png](evidence/local-scene-check-900e-3900s.png), 900 E at 3900 S looking north) |
 
-**Not done: the basemap gallery.** Urban lists only basemaps in the organization's basemap gallery or ArcGIS Online basemaps. The
-gallery is the custom group "Basemaps" (`1ae1c70310cf457abe2a3e6dbf5a3243`, owned by GISMillcreek, 37 items, all Web Mercator or
-unspecified). Two things remain:
-- Urban needs a web map whose basemap is this tile layer, in 6341 (`basemap.py webmap OUT --layer 97b68288... [--go]` creates one
-  organization-only).
-- That web map must be shared to the gallery group, where every org user's Map Viewer basemap gallery would also list it. This is
-  Brian's call and has not been done.
+**The basemap gallery (October 27, Brian approved).** Urban lists only basemaps in the organization's basemap gallery or ArcGIS
+Online basemaps. The gallery is the custom group "Basemaps" (`1ae1c70310cf457abe2a3e6dbf5a3243`, owned by GISMillcreek; the org's
+`basemapGalleryGroupQuery`), which had 37 items, all Web Mercator or unspecified.
+- `basemap.py webmap OUT --layer 97b68288dbf14897bcad0c1646467b89 --go` created web map **`8289e4be22534a9f99a7514c795a477b`**,
+  "Millcreek light UTM 12N (ArcGIS Urban)". It is in 6341, its only layer is the tile layer as basemap, and its item extent is the tile
+  layer's (Urban filters basemaps by item extent). It is organization-only and delete-protected.
+- It was then shared to the Basemaps group, which now has 38 items. The web map's access stays `org`, so the public group does not
+  expose it outside the organization. Every org user's Map Viewer basemap gallery now lists it.
+- The tile layer itself stays in no group. Read back in [evidence/basemap-gallery.json](evidence/basemap-gallery.json).
+- To withdraw it from the gallery, unshare the web map from the group; nothing else depends on the group membership.
 
 **Known leftover.** 900 E is CARTOCODE 10 for most of its length (5 for a short stretch), so the study corridor draws at
 local-street width. Widening `MAJOR` to 9-10 means a re-cache and a republish, and new item IDs. The basemap is left as published.

@@ -1,0 +1,43 @@
+{
+ "webmap_created": {
+  "created": "2026-10-27T09:07:28",
+  "webmap": "8289e4be22534a9f99a7514c795a477b",
+  "layer": "97b68288dbf14897bcad0c1646467b89",
+  "folder": "Millcreek LiDAR 2023",
+  "access": "org",
+  "protected": true,
+  "groups": []
+ },
+ "gallery_share": {
+  "shared_local": "2026-10-27T09:08",
+  "group": "1ae1c70310cf457abe2a3e6dbf5a3243 (Basemaps, the org basemapGalleryGroupQuery)",
+  "webmap_access": "org",
+  "groups": [
+   "1ae1c70310cf457abe2a3e6dbf5a3243"
+  ],
+  "protected": true,
+  "item_extent_wgs84": [
+   [
+    -111.9291881651417,
+    40.655502836208704
+   ],
+   [
+    -111.76844051374367,
+    40.71771535959541
+   ]
+  ],
+  "webmap_sr": {
+   "wkid": 102059,
+   "latestWkid": 6341
+  },
+  "basemap_layer_url_matches_tile_layer": true,
+  "group_items_before": 37,
+  "group_items_after": 38,
+  "tile_layer_97b68288": {
+   "access": "org",
+   "groups": [],
+   "protected": true
+  }
+ },
+ "approved_by": "Brian, 2026-10-27, in chat"
+}
