@@ -1,0 +1,512 @@
+{
+ "item": {
+  "title": "Millcreek buildings",
+  "snippet": "Salt Lake County building footprints in Millcreek, Utah, coloured by median roof height from the 2023 lidar, over the lidar hillshade. Unvalidated planning estimates; not surveyed or field-verified.",
+  "description": "<p><b>Planning estimates.</b> The layers in this map are unvalidated estimates derived from lidar by City of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, screening and display, not for legal, engineering, property-boundary, permitting or code-compliance decisions.</p><p>22,042 county footprints coloured by median roof height above the ground (October 22 consensus roofs); grey where the lidar saw no roof. Click a building for its median and 95th percentile heights in metres and feet, the share of the footprint with lidar roof points, and any flags in plain words. Buildings draw from 1:150,000 inward.</p><p><b>Lidar source.</b> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program), flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open, non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been reviewed for these products. For these products the building and vegetation classes of the points were refined; the ground class was not changed. All products are gridded at 0.5 m.</p><p><b>Coordinates and heights.</b> Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator for ArcGIS Online with the transformation WGS_1984_(ITRF08)_To_NAD_1983_2011. Every layer in the Millcreek LiDAR 2023 set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres; without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in <b>metres</b>; heights are metres above the lidar bare-earth terrain.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City of Millcreek GIS.</p><h3>Explore building footprints</h3><p>Select a footprint for its median and upper roof heights in feet, footprint area in square feet, parcel identifier and lidar support notes. Colors group buildings by median roof height above local ground. Gray buildings without roof support have no estimated height. Height is not the same as elevation above sea level.</p><p>This 2D layer contains 22,042 county footprints, including footprints without usable roof height estimates. It differs from the 21,561 reconstructed buildings in the 3D hybrid. Roof surface, ridge, eave and roof-facing measurements belong to the 3D model product.</p><h3>Related data</h3><p><a href='https://www.arcgis.com/home/item.html?id=5b5bdf4a63c9466fad5884039aa7357f' rel='nofollow ugc'>Buildings in 3D</a> · <a href='https://www.arcgis.com/home/item.html?id=d5effaee6c66497eaeb64e4c2e0f496e' rel='nofollow ugc'>Footprint methods and source fields</a></p><p>The support percentage describes how much of a footprint has roof returns. It is not a confidence score. Footprints and roof heights are planning estimates and are not parcel boundaries, surveyed roof elevations or code-compliance measurements.</p><h3>Dates and units</h3><p>The source is the 2023 Salt Lake Valley QL1 lidar, flown in October and November 2023. These maps describe that survey, not present-day conditions. Buildings removed, trees planted or construction completed since then may differ. Basemap imagery can be from a different date.</p><p>Height legends and building heights use feet; building areas use square feet. Canopy-zone summaries use acres and percentages. One international foot is exactly 0.3048 meter. The original coordinate system, elevation reference and metric analysis files remain intact so all layers stay aligned. Rounded display values do not imply survey precision.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. Include the map location and building ID when available.</p>",
+  "tags": [
+   "Millcreek",
+   "Utah",
+   "Salt Lake County",
+   "lidar",
+   "2023 lidar",
+   "3DEP",
+   "planning estimate",
+   "buildings",
+   "building height",
+   "web map"
+  ],
+  "licenseInfo": "<p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed, engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check conditions on the ground before relying on them. Credit \"City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)\" when you use or show them.</p><p><b>Salt Lake County data.</b> The building footprints and their County attributes come from Salt Lake County (Assessor and Surveyor). The County's own terms apply to them: the County states that its footprints are not field verified, are for general reference only, and are not intended to determine property ownership, final building and site design or jurisdictional boundaries, or to replace a certified topographical or boundary survey or any other legal document.</p>",
+  "accessInformation": "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP); building footprints: Salt Lake County (Assessor and Surveyor)",
+  "type": "Web Map",
+  "typeKeywords": [
+   "ArcGIS Online",
+   "Explorer Web Map",
+   "Map",
+   "Online Map",
+   "Web Map"
+  ],
+  "extent": [
+   [
+    -111.92171,
+    40.65854
+   ],
+   [
+    -111.77604,
+    40.71476
+   ]
+  ]
+ },
+ "data": {
+  "operationalLayers": [
+   {
+    "id": "hillshade",
+    "title": "Hillshade (1.64 ft terrain grid)",
+    "layerType": "ArcGISTiledMapServiceLayer",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+    "itemId": "cab8824e44384d479e1f302cdf34daf9",
+    "visibility": true,
+    "opacity": 0.9,
+    "showLegend": false,
+    "minScale": 300000,
+    "maxScale": 0,
+    "blendMode": "multiply",
+    "effect": [
+     {
+      "type": "brightness",
+      "amount": 1.4
+     }
+    ]
+   },
+   {
+    "id": "buildings",
+    "title": "Building height (median roof)",
+    "layerType": "ArcGISFeatureLayer",
+    "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer/0",
+    "itemId": "d5effaee6c66497eaeb64e4c2e0f496e",
+    "visibility": true,
+    "opacity": 1,
+    "minScale": 150000,
+    "maxScale": 0,
+    "layerDefinition": {
+     "drawingInfo": {
+      "renderer": {
+       "type": "classBreaks",
+       "field": "HEIGHT_P50_M",
+       "classificationMethod": "esriClassifyManual",
+       "legendOptions": {
+        "title": "Median roof height above ground (feet)"
+       },
+       "minValue": 0,
+       "classBreakInfos": [
+        {
+         "classMaxValue": 4,
+         "label": "Up to 13.1 ft",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           242,
+           240,
+           247,
+           255
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            60,
+            60,
+            90,
+            70
+           ],
+           "width": 0.3
+          }
+         }
+        },
+        {
+         "classMaxValue": 6,
+         "label": "13.1 to 19.7 ft",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           203,
+           201,
+           226,
+           255
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            60,
+            60,
+            90,
+            70
+           ],
+           "width": 0.3
+          }
+         }
+        },
+        {
+         "classMaxValue": 9,
+         "label": "19.7 to 29.5 ft",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           158,
+           154,
+           200,
+           255
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            60,
+            60,
+            90,
+            70
+           ],
+           "width": 0.3
+          }
+         }
+        },
+        {
+         "classMaxValue": 12,
+         "label": "29.5 to 39.4 ft",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           117,
+           107,
+           177,
+           255
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            60,
+            60,
+            90,
+            70
+           ],
+           "width": 0.3
+          }
+         }
+        },
+        {
+         "classMaxValue": 60,
+         "label": "Over 39.4 ft",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           84,
+           39,
+           143,
+           255
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            60,
+            60,
+            90,
+            70
+           ],
+           "width": 0.3
+          }
+         }
+        }
+       ],
+       "defaultLabel": "No lidar height (no roof points)",
+       "defaultSymbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+         215,
+         215,
+         215,
+         200
+        ],
+        "outline": {
+         "type": "esriSLS",
+         "style": "esriSLSSolid",
+         "color": [
+          120,
+          120,
+          120,
+          200
+         ],
+         "width": 0.6
+        }
+       }
+      },
+      "transparency": 0,
+      "labelingInfo": null
+     },
+     "minScale": 150000,
+     "maxScale": 0
+    },
+    "popupInfo": {
+     "title": "Building {SOURCE_ID}",
+     "expressionInfos": [
+      {
+       "name": "h50",
+       "title": "Median roof height",
+       "expression": "var m = $feature.HEIGHT_P50_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+       "returnType": "string"
+      },
+      {
+       "name": "h95",
+       "title": "95th percentile roof height",
+       "expression": "var m = $feature.HEIGHT_P95_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+       "returnType": "string"
+      },
+      {
+       "name": "support",
+       "title": "Roof support",
+       "expression": "var c = $feature.ROOF_COV_PCT;\nif (IsEmpty(c)) { return 'none'; }\nreturn Text(c, '#,##0') + '% of the footprint\\'s roughly 1.6 ft grid cells have lidar roof points';",
+       "returnType": "string"
+      },
+      {
+       "name": "flags",
+       "title": "Notes",
+       "expression": "var words = Dictionary(\"LOW_ROOF_SUPPORT\", \"Lidar roof points cover less than 80% of the footprint, so the height is less certain.\", \"NO_ROOF_SUPPORT\", \"No lidar roof points fall inside the footprint, so no height was estimated.\", \"NO_CELL_CENTERS\", \"The footprint is too small to hold a 0.5 m cell centre, so no height was estimated.\", \"NEGATIVE_HEIGHT\", \"Some roof cells sit below the ground surface; the footprint may not match the building.\", \"PARTIAL_AOI\", \"Part of the footprint lies outside the lidar coverage.\", \"GEOMETRY_REPAIRED\", \"The county footprint's shape was repaired before measuring.\");\nvar parts = Split(DefaultValue($feature.HEIGHT_STATUS, ''), ';');\nvar out = [];\nfor (var i in parts) { if (HasKey(words, parts[i])) { Push(out, words[parts[i]]); } }\nreturn IIf(Count(out) == 0, 'None beyond the estimate warning.', Concatenate(out, ' '));",
+       "returnType": "string"
+      },
+      {
+       "name": "area",
+       "title": "Footprint",
+       "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\nreturn Text(a / (0.3048 * 0.3048), '#,##0') + ' sq ft';",
+       "returnType": "string"
+      }
+     ],
+     "popupElements": [
+      {
+       "type": "text",
+       "text": "<p><b>Roof height above the ground</b><br />Median: {expression/h50}<br />95th percentile: {expression/h95}</p><p><b>Roof support:</b> {expression/support}.</p><p><b>Notes:</b> {expression/flags}</p><p>Footprint {expression/area}. Parcel {PARCEL_ID}. County building ID {SOURCE_ID}.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+      }
+     ],
+     "fieldInfos": [
+      {
+       "fieldName": "PARCEL_ID",
+       "visible": false,
+       "isEditable": false
+      },
+      {
+       "fieldName": "SOURCE_ID",
+       "visible": false,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/h50",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/h95",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/support",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/flags",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/area",
+       "visible": true,
+       "isEditable": false
+      }
+     ]
+    }
+   }
+  ],
+  "baseMap": {
+   "title": "Light Gray Canvas",
+   "baseMapLayers": [
+    {
+     "id": "light-gray-base",
+     "title": "Light Gray Base",
+     "layerType": "VectorTileLayer",
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    },
+    {
+     "id": "light-gray-reference",
+     "title": "Light Gray Reference",
+     "layerType": "VectorTileLayer",
+     "isReference": true,
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    }
+   ]
+  },
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  },
+  "initialState": {
+   "viewpoint": {
+    "targetGeometry": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    }
+   }
+  },
+  "bookmarks": [
+   {
+    "name": "Whole city",
+    "extent": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12459067.21,
+      "ymin": 4962105.56,
+      "xmax": -12442851.81,
+      "ymax": 4970359.57,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Millcreek Common (city centre)",
+    "extent": {
+     "xmin": -12452534.9,
+     "ymin": 4967644.1,
+     "xmax": -12450160.6,
+     "ymax": 4969068.7,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12452534.9,
+      "ymin": 4967644.1,
+      "xmax": -12450160.6,
+      "ymax": 4969068.7,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Canyon Rim",
+    "extent": {
+     "xmin": -12447386.4,
+     "ymin": 4968055.2,
+     "xmax": -12445012.0,
+     "ymax": 4969479.9,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12447386.4,
+      "ymin": 4968055.2,
+      "xmax": -12445012.0,
+      "ymax": 4969479.9,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Evergreen and East Millcreek",
+    "extent": {
+     "xmin": -12449709.5,
+     "ymin": 4966888.0,
+     "xmax": -12447335.4,
+     "ymax": 4968312.4,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12449709.5,
+      "ymin": 4966888.0,
+      "xmax": -12447335.4,
+      "ymax": 4968312.4,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Olympus Cove foothills",
+    "extent": {
+     "xmin": -12445147.4,
+     "ymin": 4965130.8,
+     "xmax": -12442773.8,
+     "ymax": 4966555.0,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12445147.4,
+      "ymin": 4965130.8,
+      "xmax": -12442773.8,
+      "ymax": 4966555.0,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Scott Avenue (west Millcreek)",
+    "extent": {
+     "xmin": -12454150.1,
+     "ymin": 4966835.1,
+     "xmax": -12451776.0,
+     "ymax": 4968259.6,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12454150.1,
+      "ymin": 4966835.1,
+      "xmax": -12451776.0,
+      "ymax": 4968259.6,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   }
+  ],
+  "authoringApp": "apply_styling.py (ArcGIS API for Python)",
+  "authoringAppVersion": "2.4.3",
+  "version": "2.31"
+ }
+}

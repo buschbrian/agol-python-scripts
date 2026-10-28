@@ -1,0 +1,13 @@
+ITEM_ID,QUEUE,GROUP,NOTE,REVIEWER,SOURCE
+NB0014,newbuild,hint,lidar is right - yellow dash is wrong,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+NB0015,newbuild,hint,building in imagery but much smaller actually 3 buildings in the square,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+NB0016,newbuild,hint,same as before,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+NB0018,newbuild,hint,Mix and then the blue is a vehicle it seems,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+NB0020,newbuild,hint,one building is gone the lidar is correct,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+NB0027,newbuild,hint,lidar is correct no extra building ,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+MD733889,models,lod12,shed,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+MD735236,models,lod12,shed,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+MD733380,models,lod12,covered with trees and not the full roof of the building,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+LC00109,candidates,attached_sample,sep building - wrong footprint - tree issues ,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+LC00421,candidates,attached_sample,redo all - lidar has correct shape,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"
+LC00618,candidates,attached_sample,these are also incorrect as we need to redo the whole footprint,BB,"typed without an answer; recovered from the page's unsent notes, 2026-10-26"

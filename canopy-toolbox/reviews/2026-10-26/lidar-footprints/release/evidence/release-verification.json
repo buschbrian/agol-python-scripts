@@ -1,0 +1,11 @@
+{
+  "verified_utc": "2026-10-26T19:15:14.477673+00:00",
+  "new_layer_public": true,
+  "old_layer_public": true,
+  "package_private": true,
+  "delete_protected": true,
+  "scene_matches_plan": true,
+  "layer_data_matches_plan": true,
+  "anonymous_statistics_match": true,
+  "layer_url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_from_LiDAR_outlines_2023_lidar_planning_estimate/SceneServer/layers/0"
+}

@@ -1,0 +1,49 @@
+{
+  "row": "12TVL2203-external-transfer-tree",
+  "job": "tree",
+  "label": "external transfer -- outside Millcreek estimate",
+  "boundary": null,
+  "started": "2026-09-29T23:27:50.4724182-06:00",
+  "files": [
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2203.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2203.las",
+      "source_md5_before": "3056d908f5284daab3ba776f3e599874",
+      "copy_md5": "3056d908f5284daab3ba776f3e599874",
+      "source_md5_after": "3056d908f5284daab3ba776f3e599874"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2204.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2204.las",
+      "source_md5_before": "362cd45ba7402b91c771fb0e649a65b3",
+      "copy_md5": "362cd45ba7402b91c771fb0e649a65b3",
+      "source_md5_after": "362cd45ba7402b91c771fb0e649a65b3"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2303.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2303.las",
+      "source_md5_before": "b1402a9671fa8bf7cf73de32e1b692a9",
+      "copy_md5": "b1402a9671fa8bf7cf73de32e1b692a9",
+      "source_md5_after": "b1402a9671fa8bf7cf73de32e1b692a9"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2304.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2304.las",
+      "source_md5_before": "e83c765ea5656590ca15803d950920ec",
+      "copy_md5": "e83c765ea5656590ca15803d950920ec",
+      "source_md5_after": "e83c765ea5656590ca15803d950920ec"
+    }
+  ],
+  "watch": [
+    {
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+      "md5_before": "82787095336690d2909344206f9a80fc",
+      "md5_after": "82787095336690d2909344206f9a80fc"
+    }
+  ],
+  "status": "complete; integrity verified",
+  "dl_run_exit": 0,
+  "dl_run_wall_seconds": 1832.3,
+  "dl_compare_exit": 0,
+  "finished": "2026-09-29T23:58:35.8927118-06:00"
+}

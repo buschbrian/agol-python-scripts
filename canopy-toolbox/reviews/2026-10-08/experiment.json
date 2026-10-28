@@ -1,0 +1,397 @@
+{
+  "status": "complete; paired full-tile inference and training diagnostics verified",
+  "tile": "12TVL2804",
+  "started": 1791472461.503724,
+  "source": "D:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+  "source_sha256_before": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a",
+  "runner_sha256": "d4156fbdf66bccefe831f5bd26e111bd0bfb5cb46a4a77154215a7cc785dea99",
+  "commands": [
+    {
+      "label": "repeat-naip2021",
+      "command": [
+        "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+        "-B",
+        "-X",
+        "faulthandler",
+        "U:\\agol-python-scripts\\canopy-toolbox\\reviews\\2026-09-30\\fractal\\repeat.py",
+        "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000\\naip2021.las",
+        "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000-chunked\\naip2021",
+        "--repeats",
+        "3",
+        "--batch",
+        "10"
+      ],
+      "started": 1791472465.0444508,
+      "exit_code": 0,
+      "seconds": 437.34055399894714
+    },
+    {
+      "label": "repeat-naip2024",
+      "command": [
+        "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+        "-B",
+        "-X",
+        "faulthandler",
+        "U:\\agol-python-scripts\\canopy-toolbox\\reviews\\2026-09-30\\fractal\\repeat.py",
+        "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000\\naip2024.las",
+        "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000-chunked\\naip2024",
+        "--repeats",
+        "3",
+        "--batch",
+        "10"
+      ],
+      "started": 1791472904.8598363,
+      "exit_code": 0,
+      "seconds": 438.9526467323303
+    },
+    {
+      "label": "compare",
+      "command": [
+        "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+        "-B",
+        "U:\\agol-python-scripts\\canopy-toolbox\\reviews\\2026-09-30\\fractal\\compare.py",
+        "--run",
+        "naip2021=D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000-chunked\\naip2021",
+        "--run",
+        "naip2024=D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000-chunked\\naip2024",
+        "--packet",
+        "D:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20260929",
+        "--labels",
+        "C:\\Users\\bbusch\\.codex\\visualizations\\2026\\10\\08\\01a11bed-b411-7420-94f8-4223ffd9367b\\labels-backup\\labels-progress.csv",
+        "--triage",
+        "U:\\agol-python-scripts\\canopy-toolbox\\reviews\\2026-09-30\\triage-2\\triage-proposals.csv",
+        "--out",
+        "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000-chunked\\comparison"
+      ],
+      "started": 1791473343.8204906,
+      "exit_code": 0,
+      "seconds": 58.978028774261475
+    }
+  ],
+  "variants": {
+    "naip2021": {
+      "colorization_check": {
+        "points": 26982464,
+        "status": "all source dimensions and order preserved except intentional classification reset"
+      },
+      "colorized_sha256": "be8501a6b286d96807dd0bb9ce2f0ff862429f560c994814c0e6e09ef2427243",
+      "run": "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000-chunked\\naip2021",
+      "manifest": {
+        "status": "complete; source dimensions and order verified",
+        "source": "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000\\naip2021.las",
+        "source_sha256_before": "be8501a6b286d96807dd0bb9ce2f0ff862429f560c994814c0e6e09ef2427243",
+        "model_sha256": "58baca3fbc00af2fa4af2a26cea345c08decbbba0215d21d6640c412a42e8cd1",
+        "runner_sha256": "9f39920bbf56b7a672bf16f369a042dca6b290eda1d48fab07788f0cad216f47",
+        "python": "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+        "model_code_sha256": {
+          "run.py": "1e8407d8d6eb55e96e0511b3bb03be06c969b7fadeaf7d4a523bf8623d68f7ba",
+          "myria3d\\predict.py": "3bae5036ab0c4ed1b8f9283abe0f9f5b4733092627042c2f1a126ce17cc88468",
+          "myria3d\\pctl\\datamodule\\hdf5.py": "ca1479b26d7861bf61803ca81e11319eb6bfe2c33aeba1ca5d3bdba135489c15",
+          "myria3d\\pctl\\dataset\\utils.py": "f6bcec8f8de998b594d729f9cf57491fd31b17657fb024b4dd089f23baaa707b",
+          "myria3d\\models\\interpolation.py": "3139fd0800d532f12e78d987752b436d77e65ec1b6c2d60ba1625c441912ac95",
+          "myria3d\\models\\las_writer.py": "626913e834b0440ce1e3e931e30f01d379dc500df958d07660b24f4d46aaf6b0",
+          "trained_model_assets\\FRACTAL-LidarHD_7cl_randlanet-inference-Myria3DV3.8.yaml": "19eae6ab1089de9fbe7de63039c3e020bcaa0b08df36a77380331f77cc76025e"
+        },
+        "torch": "2.4.1",
+        "gpu": "NVIDIA RTX A4000",
+        "repeats": 3,
+        "batch": 10,
+        "started": 1791472468.3529952,
+        "rows": [
+          {
+            "repeat": 1,
+            "command": [
+              "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+              "C:\\Users\\bbusch\\tools\\myria3d\\run.py",
+              "task.task_name=predict",
+              "predict.src_las=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000/naip2021.las",
+              "predict.output_dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2021/repeat-1",
+              "predict.gpus=[0]",
+              "datamodule.epsg=6341",
+              "datamodule.batch_size=10",
+              "datamodule.num_workers=0",
+              "datamodule.prefetch_factor=null",
+              "model.num_workers=0",
+              "predict.interpolator.probas_to_save=all",
+              "hydra.run.dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2021/repeat-1/hydra"
+            ],
+            "started": 1791472468.355047,
+            "exit_code": 0,
+            "seconds": 136.435875415802,
+            "source_sha256_after": "be8501a6b286d96807dd0bb9ce2f0ff862429f560c994814c0e6e09ef2427243",
+            "output_sha256": "20152a8030082ff1792b2fed752e7517de952930acdd9a0afbaf2a42f69e5209"
+          },
+          {
+            "repeat": 2,
+            "command": [
+              "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+              "C:\\Users\\bbusch\\tools\\myria3d\\run.py",
+              "task.task_name=predict",
+              "predict.src_las=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000/naip2021.las",
+              "predict.output_dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2021/repeat-2",
+              "predict.gpus=[0]",
+              "datamodule.epsg=6341",
+              "datamodule.batch_size=10",
+              "datamodule.num_workers=0",
+              "datamodule.prefetch_factor=null",
+              "model.num_workers=0",
+              "predict.interpolator.probas_to_save=all",
+              "hydra.run.dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2021/repeat-2/hydra"
+            ],
+            "started": 1791472607.4869132,
+            "exit_code": 0,
+            "seconds": 133.02063632011414,
+            "source_sha256_after": "be8501a6b286d96807dd0bb9ce2f0ff862429f560c994814c0e6e09ef2427243",
+            "output_sha256": "0a96e19861f809c5cf702cbe3e2393a7e5d1ec7f67b943a2d34724ef8226fe3f"
+          },
+          {
+            "repeat": 3,
+            "command": [
+              "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+              "C:\\Users\\bbusch\\tools\\myria3d\\run.py",
+              "task.task_name=predict",
+              "predict.src_las=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000/naip2021.las",
+              "predict.output_dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2021/repeat-3",
+              "predict.gpus=[0]",
+              "datamodule.epsg=6341",
+              "datamodule.batch_size=10",
+              "datamodule.num_workers=0",
+              "datamodule.prefetch_factor=null",
+              "model.num_workers=0",
+              "predict.interpolator.probas_to_save=all",
+              "hydra.run.dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2021/repeat-3/hydra"
+            ],
+            "started": 1791472743.2047632,
+            "exit_code": 0,
+            "seconds": 134.45316004753113,
+            "source_sha256_after": "be8501a6b286d96807dd0bb9ce2f0ff862429f560c994814c0e6e09ef2427243",
+            "output_sha256": "d6009c6ebf001c9b53c1ff9129f38c9d00edae03a640ab3f6e7dd75988e855fa"
+          }
+        ],
+        "interpretation": "Model opinions; repeat agreement is not confidence or accuracy. No labels modified.",
+        "consensus": {
+          "points": 26982464,
+          "unanimous_points": 26306421,
+          "tie_points": 19514,
+          "strict_majority_points": 26962950,
+          "class_counts": {
+            "0": 19514,
+            "1": 222606,
+            "2": 12903045,
+            "5": 9739340,
+            "6": 3970678,
+            "64": 75607,
+            "9": 7891,
+            "17": 43783
+          },
+          "pairwise": [
+            {
+              "runs": [
+                1,
+                2
+              ],
+              "agreement": 0.9833013026534567
+            },
+            {
+              "runs": [
+                1,
+                3
+              ],
+              "agreement": 0.9830767123417639
+            },
+            {
+              "runs": [
+                2,
+                3
+              ],
+              "agreement": 0.9827889699028228
+            }
+          ]
+        },
+        "source_sha256_after": "be8501a6b286d96807dd0bb9ce2f0ff862429f560c994814c0e6e09ef2427243",
+        "consensus_sha256": "bacc2863da8439810af8ab09f1ece716859ccdbfb6d9bd83e3b728dead94d194",
+        "finished": 1791472902.1856964
+      }
+    },
+    "naip2024": {
+      "colorization_check": {
+        "points": 26982464,
+        "status": "all source dimensions and order preserved except intentional classification reset"
+      },
+      "colorized_sha256": "770dd80744633a129a84333c4b35a22a6a7ce3cb3aae1544d8c68a436dc173f5",
+      "run": "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000-chunked\\naip2024",
+      "manifest": {
+        "status": "complete; source dimensions and order verified",
+        "source": "D:\\lidar\\2023-salt-lake-valley\\fractal\\full-tile-20261008-a4000\\naip2024.las",
+        "source_sha256_before": "770dd80744633a129a84333c4b35a22a6a7ce3cb3aae1544d8c68a436dc173f5",
+        "model_sha256": "58baca3fbc00af2fa4af2a26cea345c08decbbba0215d21d6640c412a42e8cd1",
+        "runner_sha256": "9f39920bbf56b7a672bf16f369a042dca6b290eda1d48fab07788f0cad216f47",
+        "python": "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+        "model_code_sha256": {
+          "run.py": "1e8407d8d6eb55e96e0511b3bb03be06c969b7fadeaf7d4a523bf8623d68f7ba",
+          "myria3d\\predict.py": "3bae5036ab0c4ed1b8f9283abe0f9f5b4733092627042c2f1a126ce17cc88468",
+          "myria3d\\pctl\\datamodule\\hdf5.py": "ca1479b26d7861bf61803ca81e11319eb6bfe2c33aeba1ca5d3bdba135489c15",
+          "myria3d\\pctl\\dataset\\utils.py": "f6bcec8f8de998b594d729f9cf57491fd31b17657fb024b4dd089f23baaa707b",
+          "myria3d\\models\\interpolation.py": "3139fd0800d532f12e78d987752b436d77e65ec1b6c2d60ba1625c441912ac95",
+          "myria3d\\models\\las_writer.py": "626913e834b0440ce1e3e931e30f01d379dc500df958d07660b24f4d46aaf6b0",
+          "trained_model_assets\\FRACTAL-LidarHD_7cl_randlanet-inference-Myria3DV3.8.yaml": "19eae6ab1089de9fbe7de63039c3e020bcaa0b08df36a77380331f77cc76025e"
+        },
+        "torch": "2.4.1",
+        "gpu": "NVIDIA RTX A4000",
+        "repeats": 3,
+        "batch": 10,
+        "started": 1791472908.0748851,
+        "rows": [
+          {
+            "repeat": 1,
+            "command": [
+              "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+              "C:\\Users\\bbusch\\tools\\myria3d\\run.py",
+              "task.task_name=predict",
+              "predict.src_las=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000/naip2024.las",
+              "predict.output_dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2024/repeat-1",
+              "predict.gpus=[0]",
+              "datamodule.epsg=6341",
+              "datamodule.batch_size=10",
+              "datamodule.num_workers=0",
+              "datamodule.prefetch_factor=null",
+              "model.num_workers=0",
+              "predict.interpolator.probas_to_save=all",
+              "hydra.run.dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2024/repeat-1/hydra"
+            ],
+            "started": 1791472908.0770223,
+            "exit_code": 0,
+            "seconds": 137.8516924381256,
+            "source_sha256_after": "770dd80744633a129a84333c4b35a22a6a7ce3cb3aae1544d8c68a436dc173f5",
+            "output_sha256": "5df2005fa74f0bdde0c906e141db1d8bdee72e44218a118ba3d919a32c802a50"
+          },
+          {
+            "repeat": 2,
+            "command": [
+              "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+              "C:\\Users\\bbusch\\tools\\myria3d\\run.py",
+              "task.task_name=predict",
+              "predict.src_las=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000/naip2024.las",
+              "predict.output_dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2024/repeat-2",
+              "predict.gpus=[0]",
+              "datamodule.epsg=6341",
+              "datamodule.batch_size=10",
+              "datamodule.num_workers=0",
+              "datamodule.prefetch_factor=null",
+              "model.num_workers=0",
+              "predict.interpolator.probas_to_save=all",
+              "hydra.run.dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2024/repeat-2/hydra"
+            ],
+            "started": 1791473048.622943,
+            "exit_code": 0,
+            "seconds": 134.84880900382996,
+            "source_sha256_after": "770dd80744633a129a84333c4b35a22a6a7ce3cb3aae1544d8c68a436dc173f5",
+            "output_sha256": "5659359c2a2d415ab8d00ed1c71534e6654238b736625e838a2666332dbfc0fd"
+          },
+          {
+            "repeat": 3,
+            "command": [
+              "C:\\Users\\bbusch\\tools\\envs\\myria3d\\python.exe",
+              "C:\\Users\\bbusch\\tools\\myria3d\\run.py",
+              "task.task_name=predict",
+              "predict.src_las=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000/naip2024.las",
+              "predict.output_dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2024/repeat-3",
+              "predict.gpus=[0]",
+              "datamodule.epsg=6341",
+              "datamodule.batch_size=10",
+              "datamodule.num_workers=0",
+              "datamodule.prefetch_factor=null",
+              "model.num_workers=0",
+              "predict.interpolator.probas_to_save=all",
+              "hydra.run.dir=D:/lidar/2023-salt-lake-valley/fractal/full-tile-20261008-a4000-chunked/naip2024/repeat-3/hydra"
+            ],
+            "started": 1791473186.201782,
+            "exit_code": 0,
+            "seconds": 133.44585990905762,
+            "source_sha256_after": "770dd80744633a129a84333c4b35a22a6a7ce3cb3aae1544d8c68a436dc173f5",
+            "output_sha256": "f55b09380ab91a4ff5ae0f6d5021a330f791666bce9659d54b7f7c8b41622cd0"
+          }
+        ],
+        "interpretation": "Model opinions; repeat agreement is not confidence or accuracy. No labels modified.",
+        "consensus": {
+          "points": 26982464,
+          "unanimous_points": 26344075,
+          "tie_points": 17183,
+          "strict_majority_points": 26965281,
+          "class_counts": {
+            "0": 17183,
+            "1": 192991,
+            "2": 12922886,
+            "5": 9772943,
+            "6": 3962782,
+            "64": 70269,
+            "9": 3627,
+            "17": 39783
+          },
+          "pairwise": [
+            {
+              "runs": [
+                1,
+                2
+              ],
+              "agreement": 0.983943497524911
+            },
+            {
+              "runs": [
+                1,
+                3
+              ],
+              "agreement": 0.9839760371773312
+            },
+            {
+              "runs": [
+                2,
+                3
+              ],
+              "agreement": 0.9841248375241045
+            }
+          ]
+        },
+        "source_sha256_after": "770dd80744633a129a84333c4b35a22a6a7ce3cb3aae1544d8c68a436dc173f5",
+        "consensus_sha256": "0a8fae72a65726224c12b7c03cc8e5fd122e03c2183512c9ead50071bb9d5213",
+        "finished": 1791473343.6363
+      }
+    }
+  },
+  "protocol": "fractal-training-comparison/1",
+  "model_mapping": {
+    "1": "OTHER",
+    "2": "GROUND",
+    "5": "VEGETATION",
+    "6": "BUILDING",
+    "9": "WATER",
+    "17": "STRUCTURE",
+    "64": "STRUCTURE"
+  },
+  "label_mapping": {
+    "TREE": "VEGETATION",
+    "SHRUB_LOW_VEG": "VEGETATION",
+    "BUILDING_ROOF": "BUILDING",
+    "GROUND": "GROUND",
+    "WATER": "WATER"
+  },
+  "minimum_patch_points": 12,
+  "repeats": 3,
+  "batch": 10,
+  "inputs": {
+    "D:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a",
+    "C:\\Users\\bbusch\\.codex\\visualizations\\2026\\10\\08\\01a11bed-b411-7420-94f8-4223ffd9367b\\labels-backup\\labels-progress.csv": "72f90367bd2cb27cac3c0872bcb241532f5aa2b3d5731ef5597bd137a6840223",
+    "D:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20260929\\packet.json": "11b02c509f86c76d2783298d2dae4cfd1ff9e5af52b8e4076eb6c0f53567eff0",
+    "U:\\agol-python-scripts\\canopy-toolbox\\reviews\\2026-09-30\\triage-2\\triage-proposals.csv": "20ab687c27a1acce1f4745658f9e59280d3ee8283ea390cc381b9afd853c7f3c",
+    "D:\\lidar\\2023-salt-lake-valley\\naip\\12TVL2804\\naip_12TVL2804.tif": "deebf0d302df279c02d56eee27cf783e076563e890f3ed1f33342523eadecccb",
+    "C:\\Users\\bbusch\\tools\\naip-2024\\tile-12TVL2804\\naip_12TVL2804.tif": "43fd5b22961cf66d89c05ca3172f7744a66ea2063078df78cf5bfcf4f0be7698"
+  },
+  "limitations": [
+    "Imagery-to-lidar alignment remains unmeasured; no correction applied.",
+    "Imagery dates differ from lidar; training-label agreement is not independent accuracy.",
+    "TREE and SHRUB_LOW_VEG share the vegetation family; no automatic label changes."
+  ],
+  "current": null,
+  "source_sha256_after": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a",
+  "finished": 1791473404.3796608
+}

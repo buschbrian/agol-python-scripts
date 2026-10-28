@@ -1,0 +1,7 @@
+{
+  "tests": 3,
+  "passed": 3,
+  "failed": 0,
+  "runtime": "ArcGIS Pro Python, PYTHONNOUSERSITE=1",
+  "mutation": "Isolated ownership <= mutation detected by border test; live source untouched"
+}

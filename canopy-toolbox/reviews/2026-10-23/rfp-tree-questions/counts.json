@@ -1,0 +1,195 @@
+{
+ "library": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022",
+ "large_candidate_rule": "not SUSPECT, crown estimated (at least 3 m2), height at least 20 m and crown diameter at least 12 m",
+ "scopes": {
+  "city": {
+   "treetops": 527140,
+   "suspect": 32986,
+   "not_suspect": 494154,
+   "not_suspect_ge_4m": 357313,
+   "not_suspect_ge_6m": 240353,
+   "not_suspect_crown_ge_3m2": 387894,
+   "median_height_m": 5.88,
+   "median_crown_diam_m": 4.03,
+   "large_candidates": 1033
+  },
+  "no_parcel": {
+   "treetops": 48697,
+   "suspect": 1162,
+   "not_suspect": 47535,
+   "not_suspect_ge_4m": 37784,
+   "not_suspect_ge_6m": 26339,
+   "not_suspect_crown_ge_3m2": 33774,
+   "median_height_m": 6.54,
+   "median_crown_diam_m": 4.03,
+   "large_candidates": 53
+  },
+  "millcreek_owned": {
+   "treetops": 1593,
+   "suspect": 76,
+   "not_suspect": 1517,
+   "not_suspect_ge_4m": 1296,
+   "not_suspect_ge_6m": 1040,
+   "not_suspect_crown_ge_3m2": 1301,
+   "median_height_m": 8.6,
+   "median_crown_diam_m": 4.65,
+   "large_candidates": 2
+  },
+  "no_parcel_and_millcreek_owned": {
+   "treetops": 50290,
+   "suspect": 1238,
+   "not_suspect": 49052,
+   "not_suspect_ge_4m": 39080,
+   "not_suspect_ge_6m": 27379,
+   "not_suspect_crown_ge_3m2": 35075,
+   "median_height_m": 6.59,
+   "median_crown_diam_m": 4.03,
+   "large_candidates": 55
+  },
+  "public_other_than_county": {
+   "treetops": 11533,
+   "suspect": 641,
+   "not_suspect": 10892,
+   "not_suspect_ge_4m": 8883,
+   "not_suspect_ge_6m": 6552,
+   "not_suspect_crown_ge_3m2": 8923,
+   "median_height_m": 7.29,
+   "median_crown_diam_m": 4.33,
+   "large_candidates": 68
+  },
+  "public_all": {
+   "treetops": 72828,
+   "suspect": 725,
+   "not_suspect": 72103,
+   "not_suspect_ge_4m": 39252,
+   "not_suspect_ge_6m": 19454,
+   "not_suspect_crown_ge_3m2": 52647,
+   "median_height_m": 4.26,
+   "median_crown_diam_m": 3.48,
+   "large_candidates": 80
+  }
+ },
+ "groups": {
+  "NO_PARCEL": {
+   "treetops": 48697,
+   "suspect": 1162,
+   "not_suspect": 47535,
+   "not_suspect_ge_4m": 37784,
+   "not_suspect_ge_6m": 26339,
+   "not_suspect_crown_ge_3m2": 33774,
+   "median_height_m": 6.54,
+   "median_crown_diam_m": 4.03,
+   "large_candidates": 53
+  },
+  "PRIVATE": {
+   "treetops": 387414,
+   "suspect": 30823,
+   "not_suspect": 356591,
+   "not_suspect_ge_4m": 273272,
+   "not_suspect_ge_6m": 191390,
+   "not_suspect_crown_ge_3m2": 289966,
+   "median_height_m": 6.39,
+   "median_crown_diam_m": 4.18,
+   "large_candidates": 895
+  },
+  "PUBLIC:FEDERAL": {
+   "treetops": 153,
+   "suspect": 36,
+   "not_suspect": 117,
+   "not_suspect_ge_4m": 94,
+   "not_suspect_ge_6m": 66,
+   "not_suspect_crown_ge_3m2": 69,
+   "median_height_m": 6.83,
+   "median_crown_diam_m": 3.7,
+   "large_candidates": 0
+  },
+  "PUBLIC:MILLCREEK": {
+   "treetops": 1593,
+   "suspect": 76,
+   "not_suspect": 1517,
+   "not_suspect_ge_4m": 1296,
+   "not_suspect_ge_6m": 1040,
+   "not_suspect_crown_ge_3m2": 1301,
+   "median_height_m": 8.6,
+   "median_crown_diam_m": 4.65,
+   "large_candidates": 2
+  },
+  "PUBLIC:PUBLIC_DISTRICT": {
+   "treetops": 591,
+   "suspect": 33,
+   "not_suspect": 558,
+   "not_suspect_ge_4m": 379,
+   "not_suspect_ge_6m": 240,
+   "not_suspect_crown_ge_3m2": 416,
+   "median_height_m": 5.39,
+   "median_crown_diam_m": 3.85,
+   "large_candidates": 0
+  },
+  "PUBLIC:PUBLIC_HOUSING": {
+   "treetops": 189,
+   "suspect": 37,
+   "not_suspect": 152,
+   "not_suspect_ge_4m": 100,
+   "not_suspect_ge_6m": 56,
+   "not_suspect_crown_ge_3m2": 118,
+   "median_height_m": 5.17,
+   "median_crown_diam_m": 3.78,
+   "large_candidates": 0
+  },
+  "PUBLIC:PUBLIC_SCHOOL": {
+   "treetops": 3688,
+   "suspect": 390,
+   "not_suspect": 3298,
+   "not_suspect_ge_4m": 2475,
+   "not_suspect_ge_6m": 1612,
+   "not_suspect_crown_ge_3m2": 2520,
+   "median_height_m": 5.92,
+   "median_crown_diam_m": 3.95,
+   "large_candidates": 4
+  },
+  "PUBLIC:SALT_LAKE_CITY": {
+   "treetops": 4805,
+   "suspect": 24,
+   "not_suspect": 4781,
+   "not_suspect_ge_4m": 4193,
+   "not_suspect_ge_6m": 3270,
+   "not_suspect_crown_ge_3m2": 4170,
+   "median_height_m": 8.83,
+   "median_crown_diam_m": 4.58,
+   "large_candidates": 61
+  },
+  "PUBLIC:SALT_LAKE_COUNTY": {
+   "treetops": 61295,
+   "suspect": 84,
+   "not_suspect": 61211,
+   "not_suspect_ge_4m": 30369,
+   "not_suspect_ge_6m": 12902,
+   "not_suspect_crown_ge_3m2": 43724,
+   "median_height_m": 3.98,
+   "median_crown_diam_m": 3.34,
+   "large_candidates": 12
+  },
+  "PUBLIC:STATE_OF_UTAH": {
+   "treetops": 514,
+   "suspect": 45,
+   "not_suspect": 469,
+   "not_suspect_ge_4m": 346,
+   "not_suspect_ge_6m": 268,
+   "not_suspect_crown_ge_3m2": 329,
+   "median_height_m": 7.25,
+   "median_crown_diam_m": 3.7,
+   "large_candidates": 1
+  },
+  "UNKNOWN_OWNER": {
+   "treetops": 18201,
+   "suspect": 276,
+   "not_suspect": 17925,
+   "not_suspect_ge_4m": 7005,
+   "not_suspect_ge_6m": 3170,
+   "not_suspect_crown_ge_3m2": 11507,
+   "median_height_m": 3.42,
+   "median_crown_diam_m": 3.09,
+   "large_candidates": 5
+  }
+ }
+}

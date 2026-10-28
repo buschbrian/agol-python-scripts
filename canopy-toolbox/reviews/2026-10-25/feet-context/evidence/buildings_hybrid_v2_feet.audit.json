@@ -1,0 +1,33 @@
+{
+  "rows": 21561,
+  "unique_fp_ids": 21561,
+  "fp_id_sum": 237493394,
+  "model_counts": {
+    "roofer LoD2.2": 20730,
+    "Esri LOD1.2": 184,
+    "Esri LOD2.0": 647
+  },
+  "blank_roof_measurements": 831,
+  "converted_columns": {
+    "HEIGHT_P50_M": "HEIGHT_P50_FT",
+    "HEIGHT_P95_M": "HEIGHT_P95_FT",
+    "RIDGE_HT_M": "RIDGE_HT_FT",
+    "EAVE_HT_M": "EAVE_HT_FT",
+    "BLDG_HT_M": "BLDG_HT_FT",
+    "ROOF_Z50_M": "ROOF_Z50_FT",
+    "GROUND_Z50_M": "GROUND_Z50_FT",
+    "FOOTPRINT_M2": "FOOTPRINT_SQFT",
+    "ROOF_PLAN_M2": "ROOF_PLAN_SQFT",
+    "ROOF_AREA_M2": "ROOF_AREA_SQFT",
+    "FLAT_AREA_M2": "FLAT_AREA_SQFT",
+    "SOUTH_AREA_M2": "SOUTH_AREA_SQFT",
+    "EAST_AREA_M2": "EAST_AREA_SQFT",
+    "WEST_AREA_M2": "WEST_AREA_SQFT",
+    "NORTH_AREA_M2": "NORTH_AREA_SQFT"
+  },
+  "meters_per_international_foot": 0.3048,
+  "every_value_roundtrip_checked": true,
+  "sha256": "93ac857718db1c019780a6f0716c01b380990a8298fa8b191ae0bc2c6a05d625",
+  "bytes": 5067386,
+  "units_note": "FT is international feet; SQFT is square feet. Blank is unavailable, not zero. Z50 fields are elevations; other height fields are above ground. Angles remain degrees. Source metric coordinate geometry is unchanged; this file has no geometry."
+}

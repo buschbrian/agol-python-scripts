@@ -1,0 +1,418 @@
+{
+ "features": {
+  "title": "Millcreek buildings and canopy cover zones (2023 lidar), planning estimate",
+  "type": "Feature Service",
+  "snippet": "County building footprints with lidar roof heights, and canopy cover by ownership zone. Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p>Two layers. buildings: 22,042 county footprints with roof-height statistics from the October 22 consensus roofs (HEIGHT_P50_M, HEIGHT_P95_M and in feet; HEIGHT_STATUS flags low support). canopy_cover_zones: 13 ownership zones with canopy cover (canopy at least 2 m as a share of observed cells; city 25.59%).</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See hosting/feature-layers/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "buildings",
+   "building height",
+   "canopy",
+   "tree canopy"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 21504000,
+  "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer",
+  "typeKeywords": [
+   "ArcGIS Server",
+   "Data",
+   "Feature Access",
+   "Feature Service",
+   "Multilayer",
+   "Service",
+   "Hosted Service"
+  ],
+  "thumbnail": null,
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.92109033841207,
+    40.65923007027499
+   ],
+   [
+    -111.77654549109613,
+    40.71437969044501
+   ]
+  ],
+  "spatialReference": "102100",
+  "modified": 1792776249000,
+  "related_from": [
+   [
+    "ee182c9a7eec4994b7e19d2be8dd27b5",
+    "File Geodatabase",
+    "Millcreek buildings and canopy cover zones (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ },
+ "slope": {
+  "title": "Millcreek slope classes 0.5 m (2023 lidar), planning estimate",
+  "type": "Vector Tile Service",
+  "snippet": "Slope in six classes (under 10%, 10-15, 15-20, 20-25, 25-30, 30% and over) from the 0.5 m lidar terrain, 4 m2 minimum mapping unit. Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p>129,352 polygons from slope_percent (3 m neighbourhood). Patches under 4 m2 joined their largest neighbour; the areas steeper than each threshold hold within 0.54 points of the raw raster. No attributes in the tiles (legend from the style).</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See slope-tiles/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "slope",
+   "terrain",
+   "hillside"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 22623985,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_slope_classes_0_5_m_2023_lidar_planning_estimate/VectorTileServer",
+  "typeKeywords": [
+   "Data",
+   "Service",
+   "Vector Tile Service",
+   "ArcGIS Server",
+   "Hosted Service"
+  ],
+  "thumbnail": "thumbnail/thumbnail.png",
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.92146228561036,
+    40.65872312908196
+   ],
+   [
+    -111.77628348880846,
+    40.714570499631236
+   ]
+  ],
+  "spatialReference": "102100",
+  "modified": 1792777439000,
+  "related_from": [
+   [
+    "bec13573a71c4df2b4642fda4a559021",
+    "Vector Tile Package",
+    "Millcreek slope classes 0.5 m (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ },
+ "contours": {
+  "title": "Millcreek 2 m contours (2023 lidar), planning estimate",
+  "type": "Vector Tile Service",
+  "snippet": "2 m contours of the 0.5 m lidar bare-earth terrain, 10 m index lines heavier. Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p>15,149 lines, 3,260 index contours. Index lines from 1:288,895 inward, 2 m lines from 1:18,056. At 0.5 m the 2 m lines follow curbs and berms.</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See hosting/vector-tiles/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "contours",
+   "terrain",
+   "elevation"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 6579987,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_2_m_contours_2023_lidar_planning_estimate/VectorTileServer",
+  "typeKeywords": [
+   "Data",
+   "Service",
+   "Vector Tile Service",
+   "ArcGIS Server",
+   "Hosted Service"
+  ],
+  "thumbnail": "thumbnail/thumbnail.png",
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.92134915686677,
+    40.65886067468761
+   ],
+   [
+    -111.77628803022557,
+    40.71451418060284
+   ]
+  ],
+  "spatialReference": "102100",
+  "modified": 1792778021000,
+  "related_from": [
+   [
+    "377dd1de82204e63addb6905a9322bb3",
+    "Vector Tile Package",
+    "Millcreek 2 m contours (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ },
+ "treetops": {
+  "title": "Millcreek treetops (2023 lidar), planning estimate",
+  "type": "Vector Tile Service",
+  "snippet": "527,140 lidar treetops at least 2 m tall, by height class. Detections, not a tree census. Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p>From 1:18,056 inward. 32,986 treetops are flagged SUSPECT by geometric checks and not yet reviewed. No attributes in the tiles.</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See hosting/vector-tiles/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "trees",
+   "treetops",
+   "urban forest",
+   "canopy"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 7612921,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_treetops_2023_lidar_planning_estimate/VectorTileServer",
+  "typeKeywords": [
+   "Data",
+   "Service",
+   "Vector Tile Service",
+   "ArcGIS Server",
+   "Hosted Service"
+  ],
+  "thumbnail": "thumbnail/thumbnail.png",
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.9213985743515,
+    40.6589194925761
+   ],
+   [
+    -111.77629463167256,
+    40.714027716441215
+   ]
+  ],
+  "spatialReference": "102100",
+  "modified": 1792778448000,
+  "related_from": [
+   [
+    "2dcae544e70c47589f8226dc0ad74351",
+    "Vector Tile Package",
+    "Millcreek treetops (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ },
+ "crowns": {
+  "title": "Millcreek tree crowns (2023 lidar), planning estimate",
+  "type": "Vector Tile Service",
+  "snippet": "400,063 estimated tree crowns, by treetop height class. Estimated canopy regions, not surveyed crowns. Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p>From 1:18,056 inward. A broad tree can hold several crowns and a clump of small trees can form one. No attributes in the tiles.</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See hosting/vector-tiles/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "trees",
+   "crowns",
+   "urban forest",
+   "canopy"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 33801469,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_tree_crowns_2023_lidar_planning_estimate/VectorTileServer",
+  "typeKeywords": [
+   "Data",
+   "Service",
+   "Vector Tile Service",
+   "ArcGIS Server",
+   "Hosted Service"
+  ],
+  "thumbnail": "thumbnail/thumbnail.png",
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.92128923133478,
+    40.65917933367661
+   ],
+   [
+    -111.77626510496339,
+    40.71403919537392
+   ]
+  ],
+  "spatialReference": "102100",
+  "modified": 1792778606000,
+  "related_from": [
+   [
+    "d3ca707cda6544dd9962390c1e7e00db",
+    "Vector Tile Package",
+    "Millcreek tree crowns (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ },
+ "hillshade": {
+  "title": "Millcreek hillshade 0.5 m (2023 lidar), planning estimate",
+  "type": "Map Service",
+  "snippet": "Unvalidated LiDAR planning estimate. Hillshade (sun 315/45) of the 0.5 m bare-earth terrain from the 2023 Salt Lake Valley QL1 lidar, for display only; not a surveyed surface.",
+  "description": "<p>PNG32 tiles, levels 0-18 on the ArcGIS Online scheme, transparent outside the city.</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See hosting/tiles/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "hillshade",
+   "terrain"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 133962865,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+  "typeKeywords": [
+   "Data",
+   "Service",
+   "Map Service",
+   "ArcGIS Server",
+   "WMTS",
+   "Hosted Service"
+  ],
+  "thumbnail": "thumbnail/thumbnail.png",
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.92170502836196,
+    40.65853630413139
+   ],
+   [
+    -111.77603962122573,
+    40.71476094006181
+   ]
+  ],
+  "spatialReference": "4326",
+  "modified": 1792778302000,
+  "related_from": [
+   [
+    "2d4f5092edfd4c54a9898a1a7dda5dd1",
+    "Compact Tile Package",
+    "Millcreek hillshade 0.5 m (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ },
+ "buildings3d": {
+  "title": "Millcreek 3D buildings LOD1.2 (2023 lidar), planning estimate",
+  "type": "Scene Service",
+  "snippet": "21,561 county footprints extruded from the lowest ground to the median lidar roof. Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "description": "<p>Flat blocks with the footprints' roof-height statistics for pop-ups. Heights NAVD88; the package is labelled EGM96 but its heights were left in NAVD88 (see the scene-layers README).</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See hosting/scene-layers/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "buildings",
+   "3D",
+   "scene"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 9302089,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_LOD1_2_2023_lidar_planning_estimate/SceneServer",
+  "typeKeywords": [
+   "Data",
+   "Service",
+   "Scene Service",
+   "ArcGIS Server",
+   "3DObject",
+   "Hosted Service"
+  ],
+  "thumbnail": null,
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.91823533357409,
+    40.65989163876071
+   ],
+   [
+    -111.77680544621157,
+    40.713067398690626
+   ]
+  ],
+  "spatialReference": "4326",
+  "modified": 1792778792000,
+  "related_from": [
+   [
+    "eb613927529347989755b0fcf9e9c8fa",
+    "Scene Package",
+    "Millcreek 3D buildings LOD1.2 (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ },
+ "terrain": {
+  "title": "Millcreek bare-earth terrain 0.5 m (2023 lidar), planning estimate",
+  "type": "Image Service",
+  "snippet": "Unvalidated LiDAR planning estimate. Bare-earth elevation in metres, NAVD88 (Geoid18), interpolated at 0.5 m from class-2 ground returns of the 2023 Salt Lake Valley QL1 lidar; LERC error 0.01 m. For 3D ground; not a surveyed surface.",
+  "description": "<p>Elevation tiles (LERC 0.01 m), levels 0-18 on the ArcGIS Online elevation scheme, covering the whole lidar mosaic. Add to a web scene's Ground above World Elevation.</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See hosting/tiles/README.md.</p>",
+  "tags": [
+   "Millcreek",
+   "lidar",
+   "2023",
+   "planning estimate",
+   "elevation",
+   "ground",
+   "terrain",
+   "DEM"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "access": "private",
+  "size": 228100110,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_bare_earth_terrain_0_5_m_2023_lidar_planning_estimate/ImageServer",
+  "typeKeywords": [
+   "Data",
+   "Service",
+   "Image Service",
+   "ArcGIS Server",
+   "Elevation 3D Layer",
+   "Hosted Service"
+  ],
+  "thumbnail": "thumbnail/thumbnail.png",
+  "ownerFolder": "a9667e5253d044fc8fe0fdc79085c693",
+  "protected": false,
+  "categories": [],
+  "extent": [
+   [
+    -111.92170501328035,
+    40.658536281372406
+   ],
+   [
+    -111.77603960611187,
+    40.714760917334466
+   ]
+  ],
+  "spatialReference": "102100",
+  "modified": 1792779032000,
+  "related_from": [
+   [
+    "7a520038be1b4e55accdfe6bed3a0a71",
+    "Compact Tile Package",
+    "Millcreek bare-earth terrain 0.5 m (2023 lidar), planning estimate"
+   ]
+  ],
+  "related_to": []
+ }
+}

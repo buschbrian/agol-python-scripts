@@ -1,0 +1,798 @@
+{
+  "id": "71b680b486b245fd8ec17eb80387be94",
+  "modified": 1792806159000,
+  "access": "private",
+  "url": null,
+  "props": {
+    "title": "Millcreek terrain and slope in 3D",
+    "snippet": "Slope classes and 2 m contours draped on the 0.5 m lidar terrain of Millcreek, Utah, with the lidar hillshade, from the valley to the east bench. Unvalidated planning estimates; not surveyed or field-verified.",
+    "description": "<p><b>Planning estimates.</b> The layers in this scene are unvalidated estimates derived from lidar by City of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, screening and display, not for legal, engineering, property-boundary, permitting or code-compliance decisions.</p><p>The 0.5 m lidar bare-earth terrain in the ground (above Esri's World Elevation), with the slope classes, the 2 m contours (10 m index lines heavier; the 2 m lines from 1:18,000 inward) and the lidar hillshade draped on it. Scenes have no blend modes, so the hillshade lies under the half-transparent slope classes instead of being multiplied over them as in the 2D map. Slides visit the east bench and its hillside neighbourhoods.</p><p><b>Slope classes:</b> <span style='color:#FFFFCC'>\u25a0</span> Under 10% &nbsp; <span style='color:#FED976'>\u25a0</span> 10% to 15% &nbsp; <span style='color:#FEB24C'>\u25a0</span> 15% to 20% &nbsp; <span style='color:#FD8D3C'>\u25a0</span> 20% to 25% &nbsp; <span style='color:#F03B20'>\u25a0</span> 25% to 30% &nbsp; <span style='color:#BD0026'>\u25a0</span> 30% and over</p><p><b>Contours:</b> <span style='color:#3D2610'>\u25ac</span> 10 m index (heavy) &nbsp; <span style='color:#5A3A1A'>\u2500</span> 2 m (thin), elevations in metres (NAVD88); the tiles carry no elevation values, so the lines are unlabelled</p><p>Slope and contours are vector tiles: they draw but have no pop-ups. Each is grouped with a key layer that draws nothing and carries its classes into the legend.</p><p>Place labels are Esri's OpenStreetMap 3D labels (map data \u00a9 OpenStreetMap contributors).</p><p><b>Lidar source.</b> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program), flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open, non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been reviewed for these products. For these products the building and vegetation classes of the points were refined; the ground class was not changed. All products are gridded at 0.5 m.</p><p><b>Coordinates and heights.</b> Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator for ArcGIS Online with the transformation WGS_1984_(ITRF08)_To_NAD_1983_2011. Every layer in the Millcreek LiDAR 2023 set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres; without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in <b>metres</b>; heights are metres above the lidar bare-earth terrain.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City of Millcreek GIS.</p>",
+    "tags": [
+      "Millcreek",
+      "Utah",
+      "Salt Lake County",
+      "lidar",
+      "2023 lidar",
+      "3DEP",
+      "planning estimate",
+      "3D",
+      "slope",
+      "terrain",
+      "contours",
+      "hillshade",
+      "web scene"
+    ],
+    "accessInformation": "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP); 3D place labels: Esri, map data \u00a9 OpenStreetMap contributors",
+    "licenseInfo": "<p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed, engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check conditions on the ground before relying on them. Credit \"City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)\" when you use or show them.</p>"
+  },
+  "data": {
+    "operationalLayers": [
+      {
+        "id": "hillshade",
+        "title": "Hillshade (0.5 m lidar terrain)",
+        "layerType": "ArcGISTiledMapServiceLayer",
+        "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+        "itemId": "cab8824e44384d479e1f302cdf34daf9",
+        "visibility": true,
+        "opacity": 0.65,
+        "showLegend": false
+      },
+      {
+        "id": "slope-group",
+        "title": "Slope classes",
+        "layerType": "GroupLayer",
+        "visibility": true,
+        "opacity": 1,
+        "listMode": "hide-children",
+        "layers": [
+          {
+            "id": "slope",
+            "title": "Slope classes",
+            "layerType": "VectorTileLayer",
+            "itemId": "3b5b1a9110f14e93af68752be89e0df2",
+            "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/3b5b1a9110f14e93af68752be89e0df2/resources/styles/root.json",
+            "visibility": true,
+            "opacity": 1,
+            "minScale": 0,
+            "maxScale": 0,
+            "showLegend": false
+          },
+          {
+            "id": "slope-key",
+            "title": "Slope (percent rise)",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer/1",
+            "itemId": "d5effaee6c66497eaeb64e4c2e0f496e",
+            "visibility": true,
+            "opacity": 1,
+            "disablePopup": true,
+            "minScale": 0,
+            "maxScale": 0,
+            "layerDefinition": {
+              "definitionExpression": "1=0",
+              "minScale": 0,
+              "maxScale": 0,
+              "drawingInfo": {
+                "renderer": {
+                  "type": "uniqueValue",
+                  "field1": "ZONE_ID",
+                  "uniqueValueInfos": [
+                    {
+                      "value": "Under 10%",
+                      "label": "Under 10%",
+                      "symbol": {
+                        "type": "PolygonSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Fill",
+                            "material": {
+                              "color": [
+                                255,
+                                255,
+                                204
+                              ],
+                              "transparency": 85
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "10% to 15%",
+                      "label": "10% to 15%",
+                      "symbol": {
+                        "type": "PolygonSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Fill",
+                            "material": {
+                              "color": [
+                                254,
+                                217,
+                                118
+                              ],
+                              "transparency": 55
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "15% to 20%",
+                      "label": "15% to 20%",
+                      "symbol": {
+                        "type": "PolygonSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Fill",
+                            "material": {
+                              "color": [
+                                254,
+                                178,
+                                76
+                              ],
+                              "transparency": 50
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "20% to 25%",
+                      "label": "20% to 25%",
+                      "symbol": {
+                        "type": "PolygonSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Fill",
+                            "material": {
+                              "color": [
+                                253,
+                                141,
+                                60
+                              ],
+                              "transparency": 45
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "25% to 30%",
+                      "label": "25% to 30%",
+                      "symbol": {
+                        "type": "PolygonSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Fill",
+                            "material": {
+                              "color": [
+                                240,
+                                59,
+                                32
+                              ],
+                              "transparency": 40
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "30% and over",
+                      "label": "30% and over",
+                      "symbol": {
+                        "type": "PolygonSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Fill",
+                            "material": {
+                              "color": [
+                                189,
+                                0,
+                                38
+                              ],
+                              "transparency": 38
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "contours-group",
+        "title": "Contours (2 m, 10 m index)",
+        "layerType": "GroupLayer",
+        "visibility": true,
+        "opacity": 1,
+        "listMode": "hide-children",
+        "layers": [
+          {
+            "id": "contours",
+            "title": "Contours (2 m, 10 m index)",
+            "layerType": "VectorTileLayer",
+            "itemId": "50573eeba93f405a869a1d78a08d68e8",
+            "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/50573eeba93f405a869a1d78a08d68e8/resources/styles/root.json",
+            "visibility": true,
+            "opacity": 1,
+            "minScale": 288895,
+            "maxScale": 0,
+            "showLegend": false
+          },
+          {
+            "id": "contours-key",
+            "title": "Contour interval",
+            "layerType": "ArcGISFeatureLayer",
+            "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer/1",
+            "itemId": "d5effaee6c66497eaeb64e4c2e0f496e",
+            "visibility": true,
+            "opacity": 1,
+            "disablePopup": true,
+            "minScale": 288895,
+            "maxScale": 0,
+            "layerDefinition": {
+              "definitionExpression": "1=0",
+              "minScale": 288895,
+              "maxScale": 0,
+              "drawingInfo": {
+                "renderer": {
+                  "type": "uniqueValue",
+                  "field1": "ZONE_ID",
+                  "uniqueValueInfos": [
+                    {
+                      "value": "10 m index contour",
+                      "label": "10 m index contour",
+                      "symbol": {
+                        "type": "LineSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Line",
+                            "size": 1.2,
+                            "material": {
+                              "color": [
+                                61,
+                                38,
+                                16
+                              ],
+                              "transparency": 15
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "2 m contour",
+                      "label": "2 m contour",
+                      "symbol": {
+                        "type": "LineSymbol3D",
+                        "symbolLayers": [
+                          {
+                            "type": "Line",
+                            "size": 0.52,
+                            "material": {
+                              "color": [
+                                90,
+                                58,
+                                26
+                              ],
+                              "transparency": 50
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "osm-labels",
+        "title": "Place labels (OpenStreetMap)",
+        "layerType": "ArcGISSceneServiceLayer",
+        "url": "https://basemaps3d.arcgis.com/arcgis/rest/services/OpenStreetMap3D_DarkLabels_v1/SceneServer/layers/0",
+        "visibility": true,
+        "opacity": 1,
+        "showLegend": false
+      }
+    ],
+    "baseMap": {
+      "title": "Light Gray Canvas",
+      "baseMapLayers": [
+        {
+          "id": "light-gray-base",
+          "title": "Light Gray Base",
+          "layerType": "VectorTileLayer",
+          "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+          "visibility": true,
+          "opacity": 1
+        }
+      ]
+    },
+    "ground": {
+      "layers": [
+        {
+          "id": "world-elevation",
+          "title": "Terrain3D",
+          "listMode": "hide",
+          "layerType": "ArcGISTiledElevationServiceLayer",
+          "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+          "itemId": "7029fb60158543ad845c7e1527af11e4",
+          "visibility": true
+        },
+        {
+          "id": "millcreek-terrain",
+          "title": "Millcreek bare-earth terrain (0.5 m lidar)",
+          "layerType": "ArcGISTiledElevationServiceLayer",
+          "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_bare_earth_terrain_0_5_m_2023_lidar_planning_estimate/ImageServer",
+          "itemId": "ce1680a5196e458ebfb60ead5150b946",
+          "visibility": true
+        }
+      ],
+      "transparency": 0,
+      "navigationConstraint": {
+        "type": "stayAbove"
+      }
+    },
+    "heightModelInfo": {
+      "heightModel": "gravity_related_height",
+      "heightUnit": "meter"
+    },
+    "initialState": {
+      "environment": {
+        "lighting": {
+          "type": "sun",
+          "datetime": 1697389200000,
+          "directShadows": true,
+          "displayUTCOffset": -6
+        },
+        "atmosphereEnabled": true,
+        "starsEnabled": false
+      },
+      "viewpoint": {
+        "camera": {
+          "position": {
+            "x": -12451203.62,
+            "y": 4966174.01,
+            "z": 3616,
+            "spatialReference": {
+              "wkid": 102100,
+              "latestWkid": 3857
+            }
+          },
+          "heading": 85,
+          "tilt": 66
+        }
+      }
+    },
+    "presentation": {
+      "slides": [
+        {
+          "id": "slide_1",
+          "title": {
+            "text": "The east bench"
+          },
+          "thumbnail": {
+            "url": "https://www.arcgis.com/sharing/rest/content/items/71b680b486b245fd8ec17eb80387be94/resources/slides/slide_1.jpg"
+          },
+          "viewpoint": {
+            "camera": {
+              "position": {
+                "x": -12451203.62,
+                "y": 4966174.01,
+                "z": 3616,
+                "spatialReference": {
+                  "wkid": 102100,
+                  "latestWkid": 3857
+                }
+              },
+              "heading": 85,
+              "tilt": 66
+            }
+          },
+          "baseMap": {
+            "title": "Light Gray Canvas",
+            "baseMapLayers": [
+              {
+                "id": "light-gray-base",
+                "title": "Light Gray Base",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                "visibility": true,
+                "opacity": 1
+              }
+            ]
+          },
+          "ground": {
+            "transparency": 0
+          },
+          "environment": {
+            "lighting": {
+              "type": "sun",
+              "datetime": 1697389200000,
+              "directShadows": true,
+              "displayUTCOffset": -6
+            },
+            "atmosphereEnabled": true,
+            "starsEnabled": false
+          },
+          "visibleLayers": [
+            {
+              "id": "hillshade"
+            },
+            {
+              "id": "slope-group"
+            },
+            {
+              "id": "slope"
+            },
+            {
+              "id": "slope-key"
+            },
+            {
+              "id": "contours-group"
+            },
+            {
+              "id": "contours"
+            },
+            {
+              "id": "contours-key"
+            },
+            {
+              "id": "osm-labels"
+            },
+            {
+              "id": "world-elevation"
+            },
+            {
+              "id": "millcreek-terrain"
+            }
+          ]
+        },
+        {
+          "id": "slide_2",
+          "title": {
+            "text": "Olympus Cove"
+          },
+          "thumbnail": {
+            "url": "https://www.arcgis.com/sharing/rest/content/items/71b680b486b245fd8ec17eb80387be94/resources/slides/slide_2.jpg"
+          },
+          "viewpoint": {
+            "camera": {
+              "position": {
+                "x": -12445711.45,
+                "y": 4966153.69,
+                "z": 2233.6,
+                "spatialReference": {
+                  "wkid": 102100,
+                  "latestWkid": 3857
+                }
+              },
+              "heading": 100,
+              "tilt": 64
+            }
+          },
+          "baseMap": {
+            "title": "Light Gray Canvas",
+            "baseMapLayers": [
+              {
+                "id": "light-gray-base",
+                "title": "Light Gray Base",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                "visibility": true,
+                "opacity": 1
+              }
+            ]
+          },
+          "ground": {
+            "transparency": 0
+          },
+          "environment": {
+            "lighting": {
+              "type": "sun",
+              "datetime": 1697389200000,
+              "directShadows": true,
+              "displayUTCOffset": -6
+            },
+            "atmosphereEnabled": true,
+            "starsEnabled": false
+          },
+          "visibleLayers": [
+            {
+              "id": "hillshade"
+            },
+            {
+              "id": "slope-group"
+            },
+            {
+              "id": "slope"
+            },
+            {
+              "id": "slope-key"
+            },
+            {
+              "id": "contours-group"
+            },
+            {
+              "id": "contours"
+            },
+            {
+              "id": "contours-key"
+            },
+            {
+              "id": "osm-labels"
+            },
+            {
+              "id": "world-elevation"
+            },
+            {
+              "id": "millcreek-terrain"
+            }
+          ]
+        },
+        {
+          "id": "slide_3",
+          "title": {
+            "text": "Mount Olympus foothills"
+          },
+          "thumbnail": {
+            "url": "https://www.arcgis.com/sharing/rest/content/items/71b680b486b245fd8ec17eb80387be94/resources/slides/slide_3.jpg"
+          },
+          "viewpoint": {
+            "camera": {
+              "position": {
+                "x": -12444885.52,
+                "y": 4965991.04,
+                "z": 2244.7,
+                "spatialReference": {
+                  "wkid": 102100,
+                  "latestWkid": 3857
+                }
+              },
+              "heading": 115,
+              "tilt": 64
+            }
+          },
+          "baseMap": {
+            "title": "Light Gray Canvas",
+            "baseMapLayers": [
+              {
+                "id": "light-gray-base",
+                "title": "Light Gray Base",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                "visibility": true,
+                "opacity": 1
+              }
+            ]
+          },
+          "ground": {
+            "transparency": 0
+          },
+          "environment": {
+            "lighting": {
+              "type": "sun",
+              "datetime": 1697389200000,
+              "directShadows": true,
+              "displayUTCOffset": -6
+            },
+            "atmosphereEnabled": true,
+            "starsEnabled": false
+          },
+          "visibleLayers": [
+            {
+              "id": "hillshade"
+            },
+            {
+              "id": "slope-group"
+            },
+            {
+              "id": "slope"
+            },
+            {
+              "id": "slope-key"
+            },
+            {
+              "id": "contours-group"
+            },
+            {
+              "id": "contours"
+            },
+            {
+              "id": "contours-key"
+            },
+            {
+              "id": "osm-labels"
+            },
+            {
+              "id": "world-elevation"
+            },
+            {
+              "id": "millcreek-terrain"
+            }
+          ]
+        },
+        {
+          "id": "slide_4",
+          "title": {
+            "text": "Millcreek Canyon mouth"
+          },
+          "thumbnail": {
+            "url": "https://www.arcgis.com/sharing/rest/content/items/71b680b486b245fd8ec17eb80387be94/resources/slides/slide_4.jpg"
+          },
+          "viewpoint": {
+            "camera": {
+              "position": {
+                "x": -12445562.72,
+                "y": 4966532.47,
+                "z": 2181.3,
+                "spatialReference": {
+                  "wkid": 102100,
+                  "latestWkid": 3857
+                }
+              },
+              "heading": 80,
+              "tilt": 62
+            }
+          },
+          "baseMap": {
+            "title": "Light Gray Canvas",
+            "baseMapLayers": [
+              {
+                "id": "light-gray-base",
+                "title": "Light Gray Base",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                "visibility": true,
+                "opacity": 1
+              }
+            ]
+          },
+          "ground": {
+            "transparency": 0
+          },
+          "environment": {
+            "lighting": {
+              "type": "sun",
+              "datetime": 1697389200000,
+              "directShadows": true,
+              "displayUTCOffset": -6
+            },
+            "atmosphereEnabled": true,
+            "starsEnabled": false
+          },
+          "visibleLayers": [
+            {
+              "id": "hillshade"
+            },
+            {
+              "id": "slope-group"
+            },
+            {
+              "id": "slope"
+            },
+            {
+              "id": "slope-key"
+            },
+            {
+              "id": "contours-group"
+            },
+            {
+              "id": "contours"
+            },
+            {
+              "id": "contours-key"
+            },
+            {
+              "id": "osm-labels"
+            },
+            {
+              "id": "world-elevation"
+            },
+            {
+              "id": "millcreek-terrain"
+            }
+          ]
+        },
+        {
+          "id": "slide_5",
+          "title": {
+            "text": "Canyon Rim bench"
+          },
+          "thumbnail": {
+            "url": "https://www.arcgis.com/sharing/rest/content/items/71b680b486b245fd8ec17eb80387be94/resources/slides/slide_5.jpg"
+          },
+          "viewpoint": {
+            "camera": {
+              "position": {
+                "x": -12447722.4,
+                "y": 4968914.52,
+                "z": 2038.9,
+                "spatialReference": {
+                  "wkid": 102100,
+                  "latestWkid": 3857
+                }
+              },
+              "heading": 95,
+              "tilt": 64
+            }
+          },
+          "baseMap": {
+            "title": "Light Gray Canvas",
+            "baseMapLayers": [
+              {
+                "id": "light-gray-base",
+                "title": "Light Gray Base",
+                "layerType": "VectorTileLayer",
+                "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json",
+                "visibility": true,
+                "opacity": 1
+              }
+            ]
+          },
+          "ground": {
+            "transparency": 0
+          },
+          "environment": {
+            "lighting": {
+              "type": "sun",
+              "datetime": 1697389200000,
+              "directShadows": true,
+              "displayUTCOffset": -6
+            },
+            "atmosphereEnabled": true,
+            "starsEnabled": false
+          },
+          "visibleLayers": [
+            {
+              "id": "hillshade"
+            },
+            {
+              "id": "slope-group"
+            },
+            {
+              "id": "slope"
+            },
+            {
+              "id": "slope-key"
+            },
+            {
+              "id": "contours-group"
+            },
+            {
+              "id": "contours"
+            },
+            {
+              "id": "contours-key"
+            },
+            {
+              "id": "osm-labels"
+            },
+            {
+              "id": "world-elevation"
+            },
+            {
+              "id": "millcreek-terrain"
+            }
+          ]
+        }
+      ]
+    },
+    "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+    },
+    "viewingMode": "global",
+    "version": "1.29",
+    "authoringApp": "apply_styling.py (ArcGIS API for Python)",
+    "authoringAppVersion": "2.4.3"
+  }
+}

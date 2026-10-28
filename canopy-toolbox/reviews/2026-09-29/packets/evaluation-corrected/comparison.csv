@@ -1,0 +1,145 @@
+run,scope,metric,key,status,value
+baseline,12TVL2203,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+baseline,12TVL2203,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+baseline,12TVL2203,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+baseline,12TVL2203,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+baseline,12TVL2203,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+baseline,12TVL2203,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+baseline,12TVL2203,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+baseline,12TVL2203,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+baseline,12TVL2203,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+baseline,12TVL2203,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+baseline,12TVL2203,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+baseline,12TVL2203,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+baseline,12TVL2203,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+baseline,12TVL2203,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+baseline,12TVL2203,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+baseline,12TVL2203,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+baseline,12TVL2203,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+baseline,12TVL2203,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet
+baseline,12TVL2804,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+baseline,12TVL2804,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+baseline,12TVL2804,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+baseline,12TVL2804,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+baseline,12TVL2804,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+baseline,12TVL2804,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+baseline,12TVL2804,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+baseline,12TVL2804,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+baseline,12TVL2804,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+baseline,12TVL2804,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+baseline,12TVL2804,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+baseline,12TVL2804,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+baseline,12TVL2804,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+baseline,12TVL2804,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+baseline,12TVL2804,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+baseline,12TVL2804,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+baseline,12TVL2804,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+baseline,12TVL2804,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet
+baseline,12TVL3302,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+baseline,12TVL3302,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+baseline,12TVL3302,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+baseline,12TVL3302,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+baseline,12TVL3302,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+baseline,12TVL3302,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+baseline,12TVL3302,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+baseline,12TVL3302,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+baseline,12TVL3302,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+baseline,12TVL3302,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+baseline,12TVL3302,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+baseline,12TVL3302,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+baseline,12TVL3302,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+baseline,12TVL3302,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+baseline,12TVL3302,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+baseline,12TVL3302,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+baseline,12TVL3302,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+baseline,12TVL3302,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet
+baseline,ALL,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+baseline,ALL,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+baseline,ALL,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+baseline,ALL,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+baseline,ALL,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+baseline,ALL,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+baseline,ALL,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+baseline,ALL,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+baseline,ALL,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+baseline,ALL,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+baseline,ALL,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+baseline,ALL,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+baseline,ALL,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+baseline,ALL,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+baseline,ALL,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+baseline,ALL,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+baseline,ALL,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+baseline,ALL,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet
+roof-local,12TVL2203,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+roof-local,12TVL2203,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+roof-local,12TVL2203,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+roof-local,12TVL2203,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+roof-local,12TVL2203,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+roof-local,12TVL2203,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+roof-local,12TVL2203,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+roof-local,12TVL2203,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+roof-local,12TVL2203,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+roof-local,12TVL2203,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+roof-local,12TVL2203,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+roof-local,12TVL2203,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+roof-local,12TVL2203,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+roof-local,12TVL2203,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+roof-local,12TVL2203,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+roof-local,12TVL2203,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+roof-local,12TVL2203,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+roof-local,12TVL2203,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet
+roof-local,12TVL2804,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+roof-local,12TVL2804,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+roof-local,12TVL2804,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+roof-local,12TVL2804,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+roof-local,12TVL2804,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+roof-local,12TVL2804,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+roof-local,12TVL2804,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+roof-local,12TVL2804,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+roof-local,12TVL2804,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+roof-local,12TVL2804,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+roof-local,12TVL2804,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+roof-local,12TVL2804,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+roof-local,12TVL2804,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+roof-local,12TVL2804,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+roof-local,12TVL2804,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+roof-local,12TVL2804,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+roof-local,12TVL2804,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+roof-local,12TVL2804,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet
+roof-local,12TVL3302,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+roof-local,12TVL3302,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+roof-local,12TVL3302,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+roof-local,12TVL3302,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+roof-local,12TVL3302,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+roof-local,12TVL3302,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+roof-local,12TVL3302,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+roof-local,12TVL3302,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+roof-local,12TVL3302,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+roof-local,12TVL3302,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+roof-local,12TVL3302,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+roof-local,12TVL3302,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+roof-local,12TVL3302,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+roof-local,12TVL3302,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+roof-local,12TVL3302,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+roof-local,12TVL3302,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+roof-local,12TVL3302,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+roof-local,12TVL3302,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet
+roof-local,ALL,Treetop precision among matched baseline candidates,treetops.precision,NO_LABELS,no labels yet
+roof-local,ALL,Precision sensitivity: all new candidates false,treetops.precision_if_new_false,NO_LABELS,no labels yet
+roof-local,ALL,Precision sensitivity: all new candidates true,treetops.precision_if_new_true,NO_LABELS,no labels yet
+roof-local,ALL,False candidates removed vs baseline (est.),treetops.false_removed,NO_LABELS,no labels yet
+roof-local,ALL,True trees removed vs baseline (est.),treetops.true_removed,NO_LABELS,no labels yet
+roof-local,ALL,False candidates remaining (est.),treetops.false_kept,NO_LABELS,no labels yet
+roof-local,ALL,CHM canopy-cell commission,cells.commission,NO_LABELS,no labels yet
+roof-local,ALL,CHM canopy-cell omission,cells.omission,NO_LABELS,no labels yet
+roof-local,ALL,"Canopy-area bias, m² (mapped - true)",cells.area_bias_m2,NO_LABELS,no labels yet
+roof-local,ALL,"Canopy-area bias, relative",cells.relative_bias,NO_LABELS,no labels yet
+roof-local,ALL,Omission search: tree share of non-canopy (baseline),omission.tree_share_of_noncanopy,NO_LABELS,no labels yet
+roof-local,ALL,"Omission search: tree canopy still missed, m²",omission.missed_m2,NO_LABELS,no labels yet
+roof-local,ALL,Canopy omission rate (cell + omission samples),combined.omission_rate,NO_LABELS,no labels yet
+roof-local,ALL,Crowns correct (unchanged matched baseline crowns only),crowns.share_correct,NO_LABELS,no labels yet
+roof-local,ALL,Crowns merged (unchanged matched baseline crowns only),crowns.share_merged,NO_LABELS,no labels yet
+roof-local,ALL,Crowns split (unchanged matched baseline crowns only),crowns.share_split,NO_LABELS,no labels yet
+roof-local,ALL,Crowns not a tree (unchanged matched baseline crowns only),crowns.share_not_a_tree,NO_LABELS,no labels yet
+roof-local,ALL,Crowns including roof (unchanged matched baseline crowns only),crowns.share_includes_roof,NO_LABELS,no labels yet

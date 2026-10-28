@@ -1,0 +1,70 @@
+{
+  "row": "12TVL2804-halo-building",
+  "job": "building",
+  "label": "12TVL2804 halo files only; core inferred separately on 2026-09-29",
+  "boundary": null,
+  "started": "2026-09-29T21:47:10.3570925-06:00",
+  "files": [
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2703.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2703.las",
+      "source_md5_before": "a7d8e4a5a121500b3e8055fdd95a7759",
+      "copy_md5": "a7d8e4a5a121500b3e8055fdd95a7759",
+      "source_md5_after": "a7d8e4a5a121500b3e8055fdd95a7759"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2704.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2704.las",
+      "source_md5_before": "87cafa7672deb0ec4344f1d2128fb557",
+      "copy_md5": "87cafa7672deb0ec4344f1d2128fb557",
+      "source_md5_after": "87cafa7672deb0ec4344f1d2128fb557"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2705.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2705.las",
+      "source_md5_before": "8610f76b14fb0cc9ad97e8c635c26a38",
+      "copy_md5": "8610f76b14fb0cc9ad97e8c635c26a38",
+      "source_md5_after": "8610f76b14fb0cc9ad97e8c635c26a38"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2803.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2803.las",
+      "source_md5_before": "d8d8d61e17f11c7a836eb1272e694717",
+      "copy_md5": "d8d8d61e17f11c7a836eb1272e694717",
+      "source_md5_after": "d8d8d61e17f11c7a836eb1272e694717"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2805.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2805.las",
+      "source_md5_before": "d6f6796e49ef29b99d60ff4342ba6420",
+      "copy_md5": "d6f6796e49ef29b99d60ff4342ba6420",
+      "source_md5_after": "d6f6796e49ef29b99d60ff4342ba6420"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2904.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2904.las",
+      "source_md5_before": "b055d675a7d743cd6cbf548a3400b63b",
+      "copy_md5": "b055d675a7d743cd6cbf548a3400b63b",
+      "source_md5_after": "b055d675a7d743cd6cbf548a3400b63b"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2905.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2804-halo-building\\building\\12TVL2905.las",
+      "source_md5_before": "e96621c5e8b179a84a289f981a01f258",
+      "copy_md5": "e96621c5e8b179a84a289f981a01f258",
+      "source_md5_after": "e96621c5e8b179a84a289f981a01f258"
+    }
+  ],
+  "watch": [
+    {
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+      "md5_before": "82787095336690d2909344206f9a80fc",
+      "md5_after": "82787095336690d2909344206f9a80fc"
+    }
+  ],
+  "status": "complete; integrity verified",
+  "dl_run_exit": 0,
+  "dl_run_wall_seconds": 285.6,
+  "dl_compare_exit": 0,
+  "finished": "2026-09-29T21:52:03.8506246-06:00"
+}

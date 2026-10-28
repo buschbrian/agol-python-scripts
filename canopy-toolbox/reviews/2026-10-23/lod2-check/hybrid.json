@@ -1,0 +1,40 @@
+{
+ "schema": "hybrid-slpk/1",
+ "created": "2026-10-23T21:15:40",
+ "massing": "H:\\lidar\\2023-salt-lake-valley\\runs\\massing-filled-20261023",
+ "check": "H:\\lidar\\2023-salt-lake-valley\\runs\\lod2-check-filled-20261023",
+ "rule": "LOD2.0 where VERDICT is better or same and LOD20_GROUND_PCT < 10; LOD1.2 otherwise",
+ "buildings": 21561,
+ "lod12_blocks_appended": 268,
+ "by_level_and_reason": {
+  "LOD1.2 ground-level": 10,
+  "LOD1.2 too-few": 159,
+  "LOD1.2 worse-or-broken": 99,
+  "LOD2.0": 21293
+ },
+ "slpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\scene-layers-hybrid-20261023\\buildings_hybrid.slpk",
+ "seconds": 14,
+ "mb": 13.9,
+ "source_fp_id_sum": 237493394,
+ "package": {
+  "fp_id_count": 21561,
+  "fp_id_sum": 237493394,
+  "nodes": 104,
+  "spatial_reference": {
+   "wkid": 4326,
+   "latestWkid": 4326,
+   "vcsWkid": 5773,
+   "latestVcsWkid": 5773
+  },
+  "node_centre_z_range": [
+   1304.9641161246598,
+   1692.0894134874138
+  ]
+ },
+ "all_features_in_package": true,
+ "validation_report": "H:\\lidar\\2023-salt-lake-valley\\runs\\scene-layers-hybrid-20261023\\hybrid-validation.json",
+ "validation_messages": [
+  "Warning : [geometries/0] : vertex normals may be required by Esri products",
+  "Information : Resources 1,104,102,0,4386,0,43,0 were successfully loaded"
+ ]
+}

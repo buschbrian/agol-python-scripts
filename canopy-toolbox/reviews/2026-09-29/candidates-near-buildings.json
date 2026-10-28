@@ -1,0 +1,42 @@
+{
+  "12TVL2804/run": {
+    "candidates": 17389,
+    "small_crown": 5728,
+    "within_1.0m": 4428,
+    "within_1.0m_small_crown": 2951,
+    "within_1.5m": 4939,
+    "within_1.5m_small_crown": 3053,
+    "within_3.0m": 6534,
+    "within_3.0m_small_crown": 3348
+  },
+  "12TVL2804/run-refined": {
+    "candidates": 17285,
+    "small_crown": 5638,
+    "within_1.0m": 4352,
+    "within_1.0m_small_crown": 2866,
+    "within_1.5m": 4854,
+    "within_1.5m_small_crown": 2965,
+    "within_3.0m": 6456,
+    "within_3.0m_small_crown": 3260
+  },
+  "12TVL3302/run": {
+    "candidates": 44285,
+    "small_crown": 8551,
+    "within_1.0m": 2363,
+    "within_1.0m_small_crown": 1491,
+    "within_1.5m": 2702,
+    "within_1.5m_small_crown": 1538,
+    "within_3.0m": 3786,
+    "within_3.0m_small_crown": 1673
+  },
+  "12TVL2203/run": {
+    "candidates": 11610,
+    "small_crown": 3697,
+    "within_1.0m": 1093,
+    "within_1.0m_small_crown": 852,
+    "within_1.5m": 1159,
+    "within_1.5m_small_crown": 861,
+    "within_3.0m": 1429,
+    "within_3.0m_small_crown": 896
+  }
+}

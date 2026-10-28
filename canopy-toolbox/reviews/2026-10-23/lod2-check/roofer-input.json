@@ -1,0 +1,18 @@
+{
+ "tile": "12TVL2804",
+ "points": {
+  "points_in_tile": 26982464,
+  "roof_points": 3717764,
+  "ground_points": 2656834,
+  "written": 6374598,
+  "las": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\input\\12TVL2804.las",
+  "point_format": 6,
+  "version": "1.4"
+ },
+ "footprints": {
+  "footprints": 591,
+  "shp": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\input\\footprints.shp",
+  "srs": "NAD_1983_2011_UTM_Zone_12N",
+  "wkid": 6341
+ }
+}

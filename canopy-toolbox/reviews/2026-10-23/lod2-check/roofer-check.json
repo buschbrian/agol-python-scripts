@@ -1,0 +1,200 @@
+{
+ "buildings": 591,
+ "judged": 587,
+ "pooled": {
+  "E12": {
+   "within_05_pct": 54.7,
+   "within_1_pct": 76.97,
+   "cells": 589546,
+   "buildings_with_model": 587
+  },
+  "E20": {
+   "within_05_pct": 93.36,
+   "within_1_pct": 97.35,
+   "cells": 588726,
+   "buildings_with_model": 587
+  },
+  "R12": {
+   "within_05_pct": 51.78,
+   "within_1_pct": 74.58,
+   "cells": 581900,
+   "buildings_with_model": 586
+  },
+  "R22": {
+   "within_05_pct": 96.75,
+   "within_1_pct": 98.1,
+   "cells": 587449,
+   "buildings_with_model": 586
+  }
+ },
+ "median": {
+  "E12": {
+   "ABS_P50_M": 0.39,
+   "ABS_P95_M": 1.02,
+   "WITHIN_05_PCT": 62.842,
+   "WITHIN_1_PCT": 94.628
+  },
+  "E20": {
+   "ABS_P50_M": 0.071,
+   "ABS_P95_M": 0.415,
+   "WITHIN_05_PCT": 96.346,
+   "WITHIN_1_PCT": 98.908
+  },
+  "R12": {
+   "ABS_P50_M": 0.419,
+   "ABS_P95_M": 1.134,
+   "WITHIN_05_PCT": 58.82,
+   "WITHIN_1_PCT": 90.939
+  },
+  "R22": {
+   "ABS_P50_M": 0.072,
+   "ABS_P95_M": 0.251,
+   "WITHIN_05_PCT": 97.609,
+   "WITHIN_1_PCT": 98.901
+  }
+ },
+ "verdicts": {
+  "VERDICT_E20": {
+   "better": 358,
+   "same": 228,
+   "worse": 0,
+   "broken": 1,
+   "too-few": 4,
+   "no-model": 0
+  },
+  "VERDICT_R22": {
+   "better": 387,
+   "same": 181,
+   "worse": 1,
+   "broken": 17,
+   "too-few": 4,
+   "no-model": 1
+  },
+  "VERDICT_R22_VS_R12": {
+   "better": 425,
+   "same": 143,
+   "worse": 1,
+   "broken": 17,
+   "too-few": 0,
+   "no-model": 1
+  }
+ },
+ "by_type": {
+  "flat": {
+   "buildings": 83,
+   "E20": {
+    "better": 3,
+    "same": 79,
+    "worse": 0,
+    "broken": 1
+   },
+   "R22": {
+    "better": 7,
+    "same": 75,
+    "worse": 0,
+    "broken": 1
+   }
+  },
+  "flat-parapet": {
+   "buildings": 5,
+   "E20": {
+    "better": 0,
+    "same": 5,
+    "worse": 0,
+    "broken": 0
+   },
+   "R22": {
+    "better": 2,
+    "same": 3,
+    "worse": 0,
+    "broken": 0
+   }
+  },
+  "multi-level": {
+   "buildings": 5,
+   "E20": {
+    "better": 5,
+    "same": 0,
+    "worse": 0,
+    "broken": 0
+   },
+   "R22": {
+    "better": 5,
+    "same": 0,
+    "worse": 0,
+    "broken": 0
+   }
+  },
+  "other": {
+   "buildings": 16,
+   "E20": {
+    "better": 15,
+    "same": 1,
+    "worse": 0,
+    "broken": 0
+   },
+   "R22": {
+    "better": 14,
+    "same": 1,
+    "worse": 0,
+    "broken": 1
+   }
+  },
+  "pitched": {
+   "buildings": 342,
+   "E20": {
+    "better": 204,
+    "same": 138,
+    "worse": 0,
+    "broken": 0
+   },
+   "R22": {
+    "better": 231,
+    "same": 99,
+    "worse": 1,
+    "broken": 11
+   }
+  },
+  "steep-pitched": {
+   "buildings": 135,
+   "E20": {
+    "better": 131,
+    "same": 4,
+    "worse": 0,
+    "broken": 0
+   },
+   "R22": {
+    "better": 128,
+    "same": 3,
+    "worse": 0,
+    "broken": 4
+   }
+  }
+ },
+ "by_type_note": "buildings roofer built nothing for are left out of by_type",
+ "roofer_extrusion": {
+  "skip": 3,
+  "standard": 588
+ },
+ "agree_better_or_same": 567,
+ "input": {
+  "tile": "12TVL2804",
+  "points": {
+   "points_in_tile": 26982464,
+   "roof_points": 3717764,
+   "ground_points": 2656834,
+   "written": 6374598,
+   "las": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\input\\12TVL2804.las",
+   "point_format": 6,
+   "version": "1.4"
+  },
+  "footprints": {
+   "footprints": 591,
+   "shp": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\input\\footprints.shp",
+   "srs": "NAD_1983_2011_UTM_Zone_12N",
+   "wkid": 6341
+  },
+  "check": "H:\\lidar\\2023-salt-lake-valley\\runs\\lod2-check-filled-20261023"
+ },
+ "fp_raster": "H:\\lidar\\2023-salt-lake-valley\\runs\\lod2-check-filled-20261023\\fp_id.tif"
+}

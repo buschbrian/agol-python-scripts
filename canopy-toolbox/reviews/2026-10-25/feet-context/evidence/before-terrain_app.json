@@ -1,0 +1,61 @@
+{
+  "id": "66693381d9e94d10b79a28a6059d463a",
+  "modified": 1792806035000,
+  "access": "private",
+  "url": "https://Millcrk.maps.arcgis.com/apps/instant/3dviewer/index.html?appid=66693381d9e94d10b79a28a6059d463a",
+  "props": {
+    "title": "Millcreek Terrain and Slope in 3D",
+    "snippet": "Slope in six classes and 2 m contours draped on Millcreek's 0.5 m lidar terrain, from the valley floor to the east bench. Unvalidated planning estimates; not surveyed or field-verified.",
+    "description": "<p><strong>Planning estimates.</strong> Everything here comes from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023) and the City of Millcreek's processing of it. These are unvalidated planning estimates, not surveyed or field-verified data. Do not use them for engineering, legal or property decisions.</p><p>Slope in six classes and 2 m contours draped on Millcreek's 0.5 m lidar terrain, from the valley floor to the east bench. Use the slides for the hillside neighbourhoods, or drag to look around.</p><p>Built on the web scene <a href='https://www.arcgis.com/home/item.html?id=71b680b486b245fd8ec17eb80387be94' rel='nofollow ugc'>71b680b486b245fd8ec17eb80387be94</a>; each layer's own page describes how it was made, its fields and its limits.</p><p><b>Questions or corrections:</b> City of Millcreek GIS.</p>",
+    "tags": [
+      "Millcreek",
+      "Utah",
+      "Salt Lake County",
+      "lidar",
+      "2023 lidar",
+      "3DEP",
+      "planning estimate",
+      "app",
+      "slope",
+      "terrain",
+      "contours",
+      "hillshade",
+      "3D"
+    ],
+    "accessInformation": "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)",
+    "licenseInfo": "<p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed, engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check conditions on the ground before relying on them. Credit \"City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)\" when you use or show them.</p>"
+  },
+  "data": {
+    "source": "888910da7fdc4b11ac32825ad2d87816",
+    "folderId": "a9667e5253d044fc8fe0fdc79085c693",
+    "values": {
+      "splash": true,
+      "splashTitle": "Millcreek Terrain and Slope in 3D",
+      "splashContent": "<p>Slope in six classes and 2 m contours draped on Millcreek's 0.5 m lidar terrain, from the valley floor to the east bench. Use the slides for the hillside neighbourhoods, or drag to look around.</p><p><strong>Planning estimates.</strong> Everything here comes from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023) and the City of Millcreek's processing of it. These are unvalidated planning estimates, not surveyed or field-verified data. Do not use them for engineering, legal or property decisions.</p><p>More about the data, how it was made and its limits is in each layer's description.</p>",
+      "splashButtonText": "Open",
+      "theme": "light",
+      "home": true,
+      "fullScreen": true,
+      "share": true,
+      "measure": true,
+      "legend": true,
+      "search": true,
+      "popupHover": false,
+      "type": "webscene",
+      "webscene": "71b680b486b245fd8ec17eb80387be94",
+      "slides": true,
+      "layerList": true,
+      "layerListOpenAtStart": false,
+      "daylight": true,
+      "daylightOpenAtStart": false,
+      "elevationProfile": false,
+      "lineOfSight": false,
+      "slice": false,
+      "info": false,
+      "customHeader": false,
+      "applySharedTheme": false,
+      "exportToPDF": false,
+      "fullAppSettings": false
+    }
+  }
+}

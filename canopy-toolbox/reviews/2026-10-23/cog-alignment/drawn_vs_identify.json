@@ -1,0 +1,47 @@
+[
+ {
+  "layer": "terrain_m",
+  "step": 10,
+  "scale": 2257,
+  "zoom": 17,
+  "sampled": 300,
+  "mismatched": 40,
+  "skipped": 27
+ },
+ {
+  "layer": "slope_percent",
+  "step": 10,
+  "scale": 2257,
+  "zoom": 17,
+  "sampled": 300,
+  "mismatched": 0,
+  "skipped": 84
+ },
+ {
+  "layer": "terrain_m",
+  "step": 0.5,
+  "scale": 70,
+  "zoom": 22,
+  "sampled": 300,
+  "mismatched": 0,
+  "skipped": 15
+ },
+ {
+  "layer": "slope_percent",
+  "step": 2,
+  "scale": 70,
+  "zoom": 22,
+  "sampled": 300,
+  "mismatched": 0,
+  "skipped": 23
+ },
+ {
+  "layer": "terrain_m",
+  "step": 2,
+  "scale": 564,
+  "zoom": 19,
+  "sampled": 300,
+  "mismatched": 0,
+  "skipped": 45
+ }
+]

@@ -1,0 +1,103 @@
+{
+ "schema": "roofer-city-convert/1",
+ "started": "2026-10-24T12:52:42",
+ "obj": {
+  "buildings": 21436,
+  "triangle": 21436,
+  "earcut": [],
+  "crashed_calls": [
+   {
+    "tag": "12TVL2204_t",
+    "buildings": 73,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2504_t",
+    "buildings": 258,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_t",
+    "buildings": 483,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_ta",
+    "buildings": 241,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_taa",
+    "buildings": 120,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_taaa",
+    "buildings": 60,
+    "returncode": 3221225477
+   }
+  ]
+ },
+ "obj_triangulation": {
+  "buildings": 21436,
+  "triangle": 21436,
+  "earcut": [],
+  "crashed_calls": [
+   {
+    "tag": "12TVL2204_t",
+    "buildings": 73,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2504_t",
+    "buildings": 258,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_t",
+    "buildings": 483,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_ta",
+    "buildings": 241,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_taa",
+    "buildings": 120,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL3104_taaa",
+    "buildings": 60,
+    "returncode": 3221225477
+   }
+  ]
+ },
+ "features": 21436,
+ "unique_fp_ids": 21436,
+ "multi_part_buildings": 26,
+ "checks": {
+  "extent_vs_cityjson": {
+   "checked": 21436,
+   "worst_extent_difference_m": 0.0009,
+   "over_2mm": 0,
+   "examples": []
+  },
+  "closed_solids_in_obj": {
+   "buildings": 21436,
+   "with_open_or_nonmanifold_edges": 180,
+   "examples": [
+    "10021",
+    "10050",
+    "10067",
+    "10224",
+    "10419"
+   ]
+  }
+ },
+ "raster": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-20261024\\convert\\roofer_lod22_z.tif",
+ "feature_class": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-20261024\\convert\\roofer.gdb\\roofer_lod22",
+ "finished": "2026-10-24T13:06:06"
+}

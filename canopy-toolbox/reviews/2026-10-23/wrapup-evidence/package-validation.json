@@ -1,0 +1,8 @@
+{
+"Tool" : "ValidateSceneLayerPackage",
+"File" : "buildings_hybrid_v2.slpk",
+"Location" : "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-v2-20261024\\v2",
+"Date" : "Sat Oct 24 21:23:37 2026",
+"Layer type" : "3DObject",
+"Messages" : ["Information : Resources 1,163,161,0,7245,0,45,0 were successfully loaded"]
+}

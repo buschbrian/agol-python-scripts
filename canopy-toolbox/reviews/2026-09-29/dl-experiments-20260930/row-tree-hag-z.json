@@ -1,0 +1,29 @@
+{
+  "row": "tree-hag-z",
+  "job": "tree",
+  "label": "HAG z-mode baseline (hag-20260929); compare by index with the HAG baseline only",
+  "boundary": null,
+  "started": "2026-09-30T00:46:41.1785478-06:00",
+  "files": [
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\hag-20260929\\12TVL2804\\points\\12TVL2804.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\tree-hag-z\\tree\\12TVL2804.las",
+      "source_md5_before": "ee8ad65ec93942740b823f3097c8d288",
+      "copy_md5": "ee8ad65ec93942740b823f3097c8d288",
+      "copy_read_only_attribute_cleared": true,
+      "source_md5_after": "ee8ad65ec93942740b823f3097c8d288"
+    }
+  ],
+  "watch": [
+    {
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+      "md5_before": "82787095336690d2909344206f9a80fc",
+      "md5_after": "82787095336690d2909344206f9a80fc"
+    }
+  ],
+  "status": "complete; integrity verified",
+  "dl_run_exit": 0,
+  "dl_run_wall_seconds": 1941.5,
+  "dl_compare_exit": 0,
+  "finished": "2026-09-30T01:19:16.7302937-06:00"
+}

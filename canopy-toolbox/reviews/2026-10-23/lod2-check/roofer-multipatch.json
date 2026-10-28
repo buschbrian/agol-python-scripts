@@ -1,0 +1,75 @@
+{
+ "schema": "roofer-multipatch/1",
+ "roofer_output": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\output",
+ "collect": {
+  "files": 1,
+  "city_objects": 1178,
+  "vertices": 37385
+ },
+ "cjio": {
+  "version": "cjio v0.10.1; supports CityJSON v2.0",
+  "log": [
+   "Parsing H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\multipatch\\roofer.city.json",
+   "Filter LoD: \"2.2\"",
+   "Exporting CityJSON to OBJ (H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\multipatch\\roofer_lod22.obj)"
+  ]
+ },
+ "obj": {
+  "objects": 587,
+  "vertices": 30513,
+  "faces": 58738
+ },
+ "features": 587,
+ "unique_fp_ids": 587,
+ "feature_class": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\multipatch\\roofer.gdb\\roofer_lod22",
+ "checks": {
+  "extent_vs_cityjson": {
+   "checked": 587,
+   "worst_extent_difference_m": 0.0003
+  },
+  "closed_solids_in_obj": {
+   "objects": 587,
+   "with_open_or_nonmanifold_edges": 7,
+   "examples": {
+    "4709-0": 3,
+    "9244-0": 3,
+    "11428-0": 3,
+    "11755-0": 1,
+    "11793-0": 1
+   }
+  },
+  "raster_vs_cityjson_roof": {
+   "cells_both": 614862,
+   "only_multipatch": 6841,
+   "only_cityjson": 38621,
+   "abs_diff_median_m": 0.0001220703125,
+   "abs_diff_p99_m": 0.7458343505859375,
+   "share_within_5cm": 0.9568634913200035,
+   "share_within_25cm": 0.9751911811105581,
+   "raster": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\multipatch\\roofer_lod22_z.tif"
+  }
+ },
+ "slpk": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-20261024\\multipatch\\buildings_roofer_lod22.slpk",
+  "mb": 0.44,
+  "package": {
+   "fp_id_count": 587,
+   "fp_id_sum": 6521683,
+   "nodes": 6,
+   "spatial_reference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "vcsWkid": 5773,
+    "latestVcsWkid": 5773
+   },
+   "node_centre_z_range": [
+    1328.1219280677124,
+    1360.1755457191318
+   ]
+  },
+  "fp_id_stats_equal_source": true,
+  "validation_messages": [
+   "Information : Resources 1,6,5,0,110,0,22,0 were successfully loaded"
+  ]
+ }
+}

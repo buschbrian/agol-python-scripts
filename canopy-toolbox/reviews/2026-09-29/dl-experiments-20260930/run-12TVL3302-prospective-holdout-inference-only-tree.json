@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "job": "tree",
+  "started_utc": "2026-09-30T03:52:14Z",
+  "class_mode": "EDIT_ALL",
+  "output_classes": [
+    0,
+    5
+  ],
+  "excluded_class_codes": [
+    7,
+    18
+  ],
+  "boundary": null,
+  "boundary_inclusion": "inclusive rectangle",
+  "epsg": 6341,
+  "batch_size": 1,
+  "python": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\python.exe",
+  "runtime_isolation": {
+    "PYTHONNOUSERSITE": "1",
+    "site_ENABLE_USER_SITE": false,
+    "user_site": null,
+    "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+    "allow_user_site_override": false,
+    "scope": "calling interpreter; the tool's own worker processes are not inspected"
+  },
+  "data_use_label": "prospective holdout -- inference only, never training",
+  "model": {
+    "path": "H:\\lidar\\models\\Tree_point_classification.dlpk",
+    "bytes": 14517540,
+    "sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e"
+  },
+  "files": [
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3302.las",
+        "bytes": 1039360886,
+        "sha256": "ff80816f5810cb5f16fa0ed3c172947a49a1952d1f5f16e15d495c04699cdf5c"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3302.las",
+        "bytes": 1039360886,
+        "sha256": "ff80816f5810cb5f16fa0ed3c172947a49a1952d1f5f16e15d495c04699cdf5c"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3302.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3302.las",
+        "bytes": 1039360886,
+        "sha256": "a880c7a50421a7cf1bac0b45b91619d2beb73c44990ec444f09f1fa5efef00e6"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3201.las",
+        "bytes": 2561548,
+        "sha256": "c3cb4c851239d4fb3947437537e2dd57fc984a8eb38f3591977b27afd8bdcd07"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3201.las",
+        "bytes": 2561548,
+        "sha256": "c3cb4c851239d4fb3947437537e2dd57fc984a8eb38f3591977b27afd8bdcd07"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3201.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3201.las",
+        "bytes": 2561548,
+        "sha256": "84d02c5b70a320dbf6a7b5c0d2ed604ec8cd7083311a47f7451129a2746bca31"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3202.las",
+        "bytes": 49841938,
+        "sha256": "1109d6f289d8904ef0fda6188fc7e2fb092a29f28720fab03ff4954f98c42109"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3202.las",
+        "bytes": 49841938,
+        "sha256": "1109d6f289d8904ef0fda6188fc7e2fb092a29f28720fab03ff4954f98c42109"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3202.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3202.las",
+        "bytes": 49841938,
+        "sha256": "0e6e2a3c495d47a3587e6711c2c02242419397900d61a697b9f378763c84e89b"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3203.las",
+        "bytes": 2186248,
+        "sha256": "af95029b6dee2f3f23f55bc1c9ede4e868ba0ae0bb5e2864a4cda438b29b1538"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3203.las",
+        "bytes": 2186248,
+        "sha256": "af95029b6dee2f3f23f55bc1c9ede4e868ba0ae0bb5e2864a4cda438b29b1538"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3203.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3203.las",
+        "bytes": 2186248,
+        "sha256": "109c24a7c61b434f6fd57b46697ac10e9db5c21dda724fdc2cb82afa3eb69f20"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3301.las",
+        "bytes": 51986728,
+        "sha256": "0aa958a435efec8734f355ac64a5a4fc2a6bf17151f6f02a8ce2bb82416758c4"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3301.las",
+        "bytes": 51986728,
+        "sha256": "0aa958a435efec8734f355ac64a5a4fc2a6bf17151f6f02a8ce2bb82416758c4"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3301.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3301.las",
+        "bytes": 51986728,
+        "sha256": "06098a1a2fc6e74ed099d67f76ba0166626e7942ea2050a1ad6adfd3eb7c633a"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3303.las",
+        "bytes": 42462598,
+        "sha256": "c2de209edfe9785c95dfb02dee1bb06a35efcbd7dd59956af8eb034569de4c29"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3303.las",
+        "bytes": 42462598,
+        "sha256": "c2de209edfe9785c95dfb02dee1bb06a35efcbd7dd59956af8eb034569de4c29"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3303.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3303.las",
+        "bytes": 42462598,
+        "sha256": "51d2bdfc1bd4cd0bf9cbc119a5707a1fe2812b90fa72e8f68470986e1820f055"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3402.las",
+        "bytes": 20708938,
+        "sha256": "31fbc2a29d5bbeb18f634c3462f02f1cb7735e852c37a82979500ff4ed6b2a8c"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3402.las",
+        "bytes": 20708938,
+        "sha256": "31fbc2a29d5bbeb18f634c3462f02f1cb7735e852c37a82979500ff4ed6b2a8c"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3402.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3402.las",
+        "bytes": 20708938,
+        "sha256": "e115ad6c81ae9a0a752aac3651fdc0c130650052f801f20423aa5d400c845977"
+      }
+    },
+    {
+      "source": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3403.las",
+        "bytes": 812998,
+        "sha256": "f645ea678f6912b0ab8074c323cac3aa21c1e197b459af036bf709ff21bc19f4"
+      },
+      "input": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3403.las",
+        "bytes": 812998,
+        "sha256": "f645ea678f6912b0ab8074c323cac3aa21c1e197b459af036bf709ff21bc19f4"
+      },
+      "manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\work\\run-tree-12TVL3403.json",
+      "output": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\12TVL3403.las",
+        "bytes": 812998,
+        "sha256": "201858cb5001ac2885c65b5b65177d87f86666428454d1a997e371b2074def38"
+      }
+    }
+  ],
+  "arcgis": {
+    "LicenseLevel": "Advanced",
+    "InstallDir": "c:\\program files\\arcgis\\pro\\",
+    "Installer": "Brian",
+    "ProductName": "ArcGISPro",
+    "Version": "3.7.2",
+    "SourceDir": "C:\\Users\\Brian\\AppData\\Local\\Microsoft\\Windows\\INetCache\\ArcGISUpdate\\ArcGISPro\\esrisoftware.esri.com\\",
+    "InstallType": "N/A",
+    "BuildNumber": "1901",
+    "InstallDate": "9/25/2026",
+    "InstallTime": "7:45:33",
+    "SPNumber": "N/A",
+    "SPBuild": "N/A",
+    "LicenseType": "Named User"
+  },
+  "package_provenance": {
+    "torch": {
+      "version": "2.9.1",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\torch\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "arcgis": {
+      "version": "2.4.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\arcgis\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "numpy": {
+      "version": "2.3.5",
+      "module_version": "2.3.5",
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\numpy\\__init__.py",
+      "loaded": true,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "scipy": {
+      "version": "1.16.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\scipy\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    }
+  },
+  "packages": {
+    "torch": "2.9.1",
+    "arcgis": "2.4.3",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3"
+  },
+  "lasd": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-tree\\tree\\tree.lasd",
+  "package_provenance_after": {
+    "torch": {
+      "version": "2.9.1",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\torch\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "arcgis": {
+      "version": "2.4.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\arcgis\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "numpy": {
+      "version": "2.3.5",
+      "module_version": "2.3.5",
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\numpy\\__init__.py",
+      "loaded": true,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    },
+    "scipy": {
+      "version": "1.16.3",
+      "module_version": null,
+      "file": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages\\scipy\\__init__.py",
+      "loaded": false,
+      "distribution_location": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl\\Lib\\site-packages",
+      "under_sys_prefix": true
+    }
+  },
+  "elapsed_seconds": 4114.9,
+  "gpu_used_mib_first_sample": 1384,
+  "gpu_used_mib_peak": 2629,
+  "messages": "Start Time: Tuesday, September 29, 2026 9:52:27 PM\nGPU 0 - NVIDIA GeForce RTX 3060 Laptop GPU is being used for this operation.\nBatch size 1 was used for model \"H:\\lidar\\models\\Tree_point_classification.dlpk\".\nSucceeded at Tuesday, September 29, 2026 11:00:47 PM (Elapsed Time: 1 hours 8 minutes 19 seconds)"
+}

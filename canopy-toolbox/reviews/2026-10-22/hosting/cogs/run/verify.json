@@ -1,0 +1,2842 @@
+{
+ "schema": "cog-masters-verify/1",
+ "started": "2026-10-22T22:19:40",
+ "strip_rows": 512,
+ "products": {
+  "chm_m": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1728,
+      "overview_1": 1938,
+      "overview_2": 2148,
+      "overview_3": 2358,
+      "overview_4": 2568,
+      "overview_5": 2778
+     },
+     "data_offsets": {
+      "main": 99372526,
+      "overview_0": 31863571,
+      "overview_1": 9603389,
+      "overview_2": 2555474,
+      "overview_3": 638543,
+      "overview_4": 143230,
+      "overview_5": 15296
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133058292,
+    "min": 0.0,
+    "max": 43.283447265625,
+    "mean": 2.080131,
+    "std": 4.082904
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980401,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 5562,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "MEANING": "Canopy height (m); NoData = unknown or outside the city",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/chm_m.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "terrain_m": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1930,
+      "overview_1": 2140,
+      "overview_2": 2350,
+      "overview_3": 2560,
+      "overview_4": 2770,
+      "overview_5": 2980
+     },
+     "data_offsets": {
+      "main": 72028324,
+      "overview_0": 19836310,
+      "overview_1": 5388653,
+      "overview_2": 1457646,
+      "overview_3": 391104,
+      "overview_4": 98250,
+      "overview_5": 15498
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 1289.9415283203125,
+    "max": 2081.76513671875,
+    "mean": 1437.14234,
+    "std": 145.56818
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980432,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 470,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "MEANING": "Bare-earth elevation (m, NAVD88 Geoid18)",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/terrain_m.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "roof_elevation_m": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1878,
+      "overview_1": 2088,
+      "overview_2": 2298,
+      "overview_3": 2508,
+      "overview_4": 2718,
+      "overview_5": 2928
+     },
+     "data_offsets": {
+      "main": 28768727,
+      "overview_0": 10259437,
+      "overview_1": 3674521,
+      "overview_2": 1198576,
+      "overview_3": 360771,
+      "overview_4": 89770,
+      "overview_5": 15446
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 22249847,
+    "min": 1294.9200439453125,
+    "max": 1769.469970703125,
+    "mean": 1397.364595,
+    "std": 95.410851
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 260243,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 39615,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "MEANING": "Consensus roof elevation (m), 2 of 3 sources",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/roof_elevation_m.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "roof_height_m": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1876,
+      "overview_1": 2086,
+      "overview_2": 2296,
+      "overview_3": 2506,
+      "overview_4": 2716,
+      "overview_5": 2926
+     },
+     "data_offsets": {
+      "main": 39822494,
+      "overview_0": 13697045,
+      "overview_1": 4803936,
+      "overview_2": 1535063,
+      "overview_3": 465114,
+      "overview_4": 112277,
+      "overview_5": 15444
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 22249847,
+    "min": -5.4503173828125,
+    "max": 43.323486328125,
+    "mean": 5.131963,
+    "std": 2.741246
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 260243,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 39615,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "MEANING": "Consensus roof height above terrain (m); negatives kept",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/roof_height_m.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "observed": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1702,
+      "overview_1": 1888,
+      "overview_2": 2074,
+      "overview_3": 2260,
+      "overview_4": 2446,
+      "overview_5": 2632
+     },
+     "data_offsets": {
+      "main": 701600,
+      "overview_0": 222214,
+      "overview_1": 81345,
+      "overview_2": 37871,
+      "overview_3": 23398,
+      "overview_4": 17448,
+      "overview_5": 15126
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Byte",
+   "nodata": 3.0,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.994356,
+    "std": 0.074912,
+    "values": {
+     "0": 755196,
+     "1": 133058292,
+     "3": 166250259
+    }
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980058,
+    "every_value_from_its_footprint": true,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     1
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     1
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     1
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     1
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "NEAREST"
+   },
+   "metadata": {
+    "MEANING": "1 observed, 0 unknown; 3 (NoData) outside the city",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/observed.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "vegetation_support": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1708,
+      "overview_1": 1894,
+      "overview_2": 2080,
+      "overview_3": 2266,
+      "overview_4": 2452,
+      "overview_5": 2638
+     },
+     "data_offsets": {
+      "main": 4280696,
+      "overview_0": 1361638,
+      "overview_1": 422823,
+      "overview_2": 133356,
+      "overview_3": 48535,
+      "overview_4": 22729,
+      "overview_5": 15132
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Byte",
+   "nodata": 3.0,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.328463,
+    "std": 0.469654,
+    "values": {
+     "0": 89860716,
+     "1": 43952772,
+     "3": 166250259
+    }
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980058,
+    "every_value_from_its_footprint": true,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     1
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     1
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     1
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     1
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "NEAREST"
+   },
+   "metadata": {
+    "MEANING": "1 where a vegetation return supports the cell",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/vegetation_support.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "building_occlusion": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1712,
+      "overview_1": 1898,
+      "overview_2": 2084,
+      "overview_3": 2270,
+      "overview_4": 2456,
+      "overview_5": 2642
+     },
+     "data_offsets": {
+      "main": 484679,
+      "overview_0": 165603,
+      "overview_1": 67017,
+      "overview_2": 34576,
+      "overview_3": 22462,
+      "overview_4": 17235,
+      "overview_5": 15136
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Byte",
+   "nodata": 3.0,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002355,
+    "std": 0.048467,
+    "values": {
+     "0": 133498415,
+     "1": 315073,
+     "3": 166250259
+    }
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980058,
+    "every_value_from_its_footprint": true,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     1
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     1
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     1
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     1
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "NEAREST"
+   },
+   "metadata": {
+    "MEANING": "1 where a consensus roof occludes lower vegetation",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/building_occlusion.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "building_sources": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 1866,
+      "overview_1": 2052,
+      "overview_2": 2238,
+      "overview_3": 2424,
+      "overview_4": 2610,
+      "overview_5": 2796
+     },
+     "data_offsets": {
+      "main": 2868193,
+      "overview_0": 1024611,
+      "overview_1": 365234,
+      "overview_2": 129875,
+      "overview_3": 49113,
+      "overview_4": 23127,
+      "overview_5": 15290
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Byte",
+   "nodata": 255.0,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 0.0,
+    "max": 7.0,
+    "mean": 1.153952,
+    "std": 2.538039,
+    "values": {
+     "0": 109200633,
+     "1": 1365974,
+     "2": 654398,
+     "3": 694766,
+     "4": 301398,
+     "5": 1153128,
+     "6": 418327,
+     "7": 20024864,
+     "255": 166250259
+    }
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980058,
+    "every_value_from_its_footprint": true,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     1
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     1
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     1
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     1
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "NEAREST"
+   },
+   "metadata": {
+    "MEANING": "Sources that saw roof in the cell: 1 native + 2 FRACTAL + 4 Esri",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/millcreek-products-20261022/building_sources.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "slope_degrees": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2658,
+      "overview_1": 2868,
+      "overview_2": 3078,
+      "overview_3": 3288,
+      "overview_4": 3498,
+      "overview_5": 3708
+     },
+     "data_offsets": {
+      "main": 142940956,
+      "overview_0": 36700538,
+      "overview_1": 9353896,
+      "overview_2": 2384052,
+      "overview_3": 599782,
+      "overview_4": 137495,
+      "overview_5": 16226
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 9.41447215154767e-05,
+    "max": 83.22209930419922,
+    "mean": 7.161485,
+    "std": 10.2661
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980432,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 470,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Slope (degrees) over a 3 m neighbourhood",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/slope_degrees.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "slope_percent": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2658,
+      "overview_1": 2868,
+      "overview_2": 3078,
+      "overview_3": 3288,
+      "overview_4": 3498,
+      "overview_5": 3708
+     },
+     "data_offsets": {
+      "main": 142938260,
+      "overview_0": 36662824,
+      "overview_1": 9338243,
+      "overview_2": 2375428,
+      "overview_3": 594720,
+      "overview_4": 135848,
+      "overview_5": 16226
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 0.00016431353287771344,
+    "max": 841.3851928710938,
+    "mean": 13.570568,
+    "std": 21.482634
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980432,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 470,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Slope (percent) over a 3 m neighbourhood",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/slope_percent.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "aspect_degrees": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2644,
+      "overview_1": 2854,
+      "overview_2": 3064,
+      "overview_3": 3274,
+      "overview_4": 3484,
+      "overview_5": 3694
+     },
+     "data_offsets": {
+      "main": 134868826,
+      "overview_0": 35193090,
+      "overview_1": 9041397,
+      "overview_2": 2302725,
+      "overview_3": 577446,
+      "overview_4": 131707,
+      "overview_5": 16212
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": -1.0,
+    "max": 360.0,
+    "mean": 230.895275,
+    "std": 90.1361
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980058,
+    "every_value_from_its_footprint": true,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "NEAREST",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Downslope direction from north (degrees); flat cells -1",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/aspect_degrees.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "profile_curvature": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2652,
+      "overview_1": 2862,
+      "overview_2": 3072,
+      "overview_3": 3282,
+      "overview_4": 3492,
+      "overview_5": 3702
+     },
+     "data_offsets": {
+      "main": 159438354,
+      "overview_0": 41182348,
+      "overview_1": 10498677,
+      "overview_2": 2667277,
+      "overview_3": 672870,
+      "overview_4": 152429,
+      "overview_5": 16220
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": -0.7921393513679504,
+    "max": 1.2935891151428223,
+    "mean": -0.000223,
+    "std": 0.031144
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980432,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 470,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Curvature along the slope",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/profile_curvature.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "tangential_curvature": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2656,
+      "overview_1": 2866,
+      "overview_2": 3076,
+      "overview_3": 3286,
+      "overview_4": 3496,
+      "overview_5": 3706
+     },
+     "data_offsets": {
+      "main": 159883573,
+      "overview_0": 41231462,
+      "overview_1": 10506439,
+      "overview_2": 2671011,
+      "overview_3": 673427,
+      "overview_4": 152451,
+      "overview_5": 16224
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": -0.944241464138031,
+    "max": 1.7839796543121338,
+    "mean": 0.000182,
+    "std": 0.021661
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980432,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 470,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Curvature across the slope",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/tangential_curvature.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "terrain_position_m": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 2672,
+      "overview_1": 2882,
+      "overview_2": 3092,
+      "overview_3": 3302,
+      "overview_4": 3512,
+      "overview_5": 3722
+     },
+     "data_offsets": {
+      "main": 154016438,
+      "overview_0": 39884350,
+      "overview_1": 10314580,
+      "overview_2": 2651788,
+      "overview_3": 670822,
+      "overview_4": 152239,
+      "overview_5": 16240
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": -11.740234375,
+    "max": 15.5550537109375,
+    "mean": -0.000603,
+    "std": 0.286722
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980432,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 470,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     3
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     3
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     3
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     3
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     3
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     3
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     3
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "3"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Elevation minus the mean terrain within 10 m (m)",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/terrain_position_m.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "hillshade": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 22638,
+      "overview_1": 22824,
+      "overview_2": 23010,
+      "overview_3": 23196,
+      "overview_4": 23382,
+      "overview_5": 23568
+     },
+     "data_offsets": {
+      "main": 25567096,
+      "overview_0": 6898398,
+      "overview_1": 1796245,
+      "overview_2": 490253,
+      "overview_3": 146499,
+      "overview_4": 59227,
+      "overview_5": 36062
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Byte",
+   "nodata": 255.0,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 0.0,
+    "max": 254.0,
+    "mean": 184.069524,
+    "std": 24.291305,
+    "values": {
+     "0": 74417,
+     "1": 1929,
+     "2": 2045,
+     "3": 2109,
+     "4": 2228,
+     "5": 2259,
+     "6": 2368,
+     "7": 2490,
+     "8": 2688,
+     "9": 2773,
+     "10": 2815,
+     "11": 2878,
+     "12": 3111,
+     "13": 3261,
+     "14": 3409,
+     "15": 3542,
+     "16": 3801,
+     "17": 3878,
+     "18": 4177,
+     "19": 4320,
+     "20": 4692,
+     "21": 4740,
+     "22": 4988,
+     "23": 5307,
+     "24": 5655,
+     "25": 5950,
+     "26": 6304,
+     "27": 6805,
+     "28": 7075,
+     "29": 7436,
+     "30": 7965,
+     "31": 8410,
+     "32": 8989,
+     "33": 9608,
+     "34": 10198,
+     "35": 10622,
+     "36": 11353,
+     "37": 11752,
+     "38": 12757,
+     "39": 13520,
+     "40": 14179,
+     "41": 15209,
+     "42": 15900,
+     "43": 16835,
+     "44": 17412,
+     "45": 18357,
+     "46": 19313,
+     "47": 20248,
+     "48": 20885,
+     "49": 21820,
+     "50": 22708,
+     "51": 22871,
+     "52": 23748,
+     "53": 24814,
+     "54": 24711,
+     "55": 25691,
+     "56": 26012,
+     "57": 26468,
+     "58": 26667,
+     "59": 26656,
+     "60": 26430,
+     "61": 27011,
+     "62": 27179,
+     "63": 27381,
+     "64": 27194,
+     "65": 27516,
+     "66": 27969,
+     "67": 27740,
+     "68": 27796,
+     "69": 28106,
+     "70": 28253,
+     "71": 28453,
+     "72": 28663,
+     "73": 28527,
+     "74": 28779,
+     "75": 29202,
+     "76": 29208,
+     "77": 29755,
+     "78": 30172,
+     "79": 30768,
+     "80": 30732,
+     "81": 31538,
+     "82": 31654,
+     "83": 32316,
+     "84": 32936,
+     "85": 34008,
+     "86": 34217,
+     "87": 34946,
+     "88": 35696,
+     "89": 36656,
+     "90": 37458,
+     "91": 37568,
+     "92": 38208,
+     "93": 39093,
+     "94": 39586,
+     "95": 39624,
+     "96": 40070,
+     "97": 40892,
+     "98": 41422,
+     "99": 42263,
+     "100": 42520,
+     "101": 42807,
+     "102": 43681,
+     "103": 44393,
+     "104": 44401,
+     "105": 45273,
+     "106": 46314,
+     "107": 46493,
+     "108": 47535,
+     "109": 48316,
+     "110": 49344,
+     "111": 50104,
+     "112": 51297,
+     "113": 52332,
+     "114": 53193,
+     "115": 54363,
+     "116": 55344,
+     "117": 56409,
+     "118": 57453,
+     "119": 58877,
+     "120": 59886,
+     "121": 60561,
+     "122": 62098,
+     "123": 63153,
+     "124": 64360,
+     "125": 65495,
+     "126": 66620,
+     "127": 67302,
+     "128": 67658,
+     "129": 69841,
+     "130": 71118,
+     "131": 72416,
+     "132": 73986,
+     "133": 75271,
+     "134": 77276,
+     "135": 78647,
+     "136": 81032,
+     "137": 82217,
+     "138": 84902,
+     "139": 85871,
+     "140": 88316,
+     "141": 90926,
+     "142": 93190,
+     "143": 96013,
+     "144": 99010,
+     "145": 101603,
+     "146": 105500,
+     "147": 108838,
+     "148": 112463,
+     "149": 117310,
+     "150": 123564,
+     "151": 128038,
+     "152": 135368,
+     "153": 142747,
+     "154": 151606,
+     "155": 159998,
+     "156": 170383,
+     "157": 182801,
+     "158": 197489,
+     "159": 215021,
+     "160": 233623,
+     "161": 255466,
+     "162": 285023,
+     "163": 317787,
+     "164": 359000,
+     "165": 408916,
+     "166": 472309,
+     "167": 552069,
+     "168": 651080,
+     "169": 777472,
+     "170": 940827,
+     "171": 1147689,
+     "172": 1414695,
+     "173": 1759623,
+     "174": 2211881,
+     "175": 2794637,
+     "176": 3546396,
+     "177": 4529584,
+     "178": 5791906,
+     "179": 7348648,
+     "180": 8802693,
+     "181": 8707963,
+     "182": 8011837,
+     "183": 7062295,
+     "184": 6068244,
+     "185": 5184064,
+     "186": 4404114,
+     "187": 3745972,
+     "188": 3191400,
+     "189": 2732065,
+     "190": 2361949,
+     "191": 2044162,
+     "192": 1784118,
+     "193": 1568904,
+     "194": 1381165,
+     "195": 1232633,
+     "196": 1110948,
+     "197": 1010664,
+     "198": 929607,
+     "199": 853472,
+     "200": 789356,
+     "201": 734880,
+     "202": 686033,
+     "203": 642643,
+     "204": 604623,
+     "205": 569014,
+     "206": 538240,
+     "207": 511348,
+     "208": 486190,
+     "209": 462213,
+     "210": 443233,
+     "211": 422727,
+     "212": 405555,
+     "213": 390088,
+     "214": 376097,
+     "215": 359865,
+     "216": 347440,
+     "217": 336460,
+     "218": 324856,
+     "219": 314942,
+     "220": 305626,
+     "221": 298281,
+     "222": 290378,
+     "223": 282644,
+     "224": 277580,
+     "225": 271818,
+     "226": 267627,
+     "227": 264003,
+     "228": 260894,
+     "229": 257747,
+     "230": 254656,
+     "231": 254454,
+     "232": 252412,
+     "233": 252927,
+     "234": 252024,
+     "235": 251207,
+     "236": 252835,
+     "237": 254631,
+     "238": 255943,
+     "239": 258131,
+     "240": 261170,
+     "241": 265105,
+     "242": 269262,
+     "243": 274777,
+     "244": 278642,
+     "245": 281719,
+     "246": 283830,
+     "247": 285405,
+     "248": 288105,
+     "249": 283067,
+     "250": 266518,
+     "251": 233894,
+     "252": 189284,
+     "253": 142129,
+     "254": 99604,
+     "255": 166250259
+    }
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980432,
+    "values_within_footprint_range": true,
+    "nodata_only_where_core_empty": true,
+    "core_empty_but_value": 470,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     2
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     2
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     2
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     2
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     2
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     2
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     2
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "AVERAGE",
+    "PREDICTOR": "2"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "Hillshade, sun 315 degrees at 45 degrees, no shadows; for display",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/hillshade.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  },
+  "terrain_neighborhood_complete": {
+   "ok": true,
+   "cog_validation": {
+    "errors": [],
+    "warnings": [],
+    "details": {
+     "ifd_offsets": {
+      "main": 192,
+      "overview_0": 3274,
+      "overview_1": 3460,
+      "overview_2": 3646,
+      "overview_3": 3832,
+      "overview_4": 4018,
+      "overview_5": 4204
+     },
+     "data_offsets": {
+      "main": 255707,
+      "overview_0": 103461,
+      "overview_1": 50419,
+      "overview_2": 31028,
+      "overview_3": 22484,
+      "overview_4": 18459,
+      "overview_5": 16698
+     }
+    }
+   },
+   "same_as_source": {
+    "size": true,
+    "geotransform": true,
+    "dtype": true,
+    "nodata": true,
+    "crs": true
+   },
+   "dtype": "Byte",
+   "nodata": 255.0,
+   "cells": {
+    "equal": true,
+    "cells": 300063747,
+    "valid_cells": 133813488,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.999995,
+    "std": 0.002204,
+    "values": {
+     "0": 650,
+     "1": 133812838,
+     "255": 166250259
+    }
+   },
+   "overview_level_1": {
+    "overview_window": [
+     5613,
+     2549,
+     1024,
+     1024
+    ],
+    "source_window": [
+     11226,
+     5098,
+     2049,
+     2049
+    ],
+    "valid_overview_cells": 980058,
+    "every_value_from_its_footprint": true,
+    "ok": true
+   },
+   "size": [
+    24501,
+    12247
+   ],
+   "block": [
+    512,
+    512
+   ],
+   "overviews": [
+    [
+     12250,
+     6123
+    ],
+    [
+     6125,
+     3061
+    ],
+    [
+     3062,
+     1530
+    ],
+    [
+     1531,
+     765
+    ],
+    [
+     765,
+     382
+    ],
+    [
+     382,
+     191
+    ]
+   ],
+   "projected_cs_type_geokey": 6341,
+   "geographic_type_geokey": 6318,
+   "tiff": "classic",
+   "ifd_codecs": [
+    [
+     24501,
+     12247,
+     "DEFLATE",
+     1
+    ],
+    [
+     12250,
+     6123,
+     "DEFLATE",
+     1
+    ],
+    [
+     6125,
+     3061,
+     "DEFLATE",
+     1
+    ],
+    [
+     3062,
+     1530,
+     "DEFLATE",
+     1
+    ],
+    [
+     1531,
+     765,
+     "DEFLATE",
+     1
+    ],
+    [
+     765,
+     382,
+     "DEFLATE",
+     1
+    ],
+    [
+     382,
+     191,
+     "DEFLATE",
+     1
+    ]
+   ],
+   "structure": {
+    "LAYOUT": "COG",
+    "COMPRESSION": "DEFLATE",
+    "INTERLEAVE": "BAND",
+    "OVERVIEW_RESAMPLING": "NEAREST"
+   },
+   "metadata": {
+    "TIFFTAG_SOFTWARE": "GDAL 3.12.2e (3120211) (4.7.1;1745;3.0.3;2.2.4;0.11.1;0x10600;;4.2.0;), PROJ 9.8.1 (EPSG.VERSION=v12.029;EPSG.DATE=2025-10-02;ESRI.VERSION=ArcGIS Pro 3.6;ESRI.DATE=2025-12-01;PROJ_DATA.VERSION=1.24;)",
+    "DataType": "Generic",
+    "MEANING": "1 where the whole 10 m neighbourhood is terrain",
+    "SOURCE": "H:/lidar/2023-salt-lake-valley/runs/terrain-city-20261022/terrain_neighborhood_complete.tif",
+    "WARNING": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+    "AREA_OR_POINT": "Area"
+   },
+   "every_ifd_deflate_with_predictor": true
+  }
+ },
+ "all_ok": true,
+ "finished": "2026-10-22T22:23:49"
+}

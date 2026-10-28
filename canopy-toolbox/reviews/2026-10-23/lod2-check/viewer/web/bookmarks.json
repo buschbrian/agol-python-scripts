@@ -1,0 +1,469 @@
+{
+ "bookmarks": [
+  {
+   "id": "b01",
+   "fp_id": 7226,
+   "category": "win-esri-defect",
+   "title": "Win: Esri LOD2.0 has a defect, roofer does not (FP 7226)",
+   "type": "pitched",
+   "footprint_m2": 284,
+   "roof_cover_pct": 99,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 1.1,
+    "within_1_pct": 94.0,
+    "top_minus_lidar_m": -0.3
+   },
+   "esri_lod20": {
+    "verdict": "broken",
+    "note": "DROPPED",
+    "p95_m": 9.63,
+    "within_1_pct": 67.0
+   },
+   "esri_lod12": {
+    "p95_m": 3.57,
+    "within_1_pct": 27.5
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.79047754075978,
+   "lat": 40.68201516463001,
+   "ground_z": 1557.2830810546875,
+   "size_m": 35.733278757610066
+  },
+  {
+   "id": "b02",
+   "fp_id": 4533,
+   "category": "win-esri-defect",
+   "title": "Win: Esri LOD2.0 has a defect, roofer does not (FP 4533)",
+   "type": "pitched",
+   "footprint_m2": 388,
+   "roof_cover_pct": 100,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.2,
+    "within_1_pct": 98.6,
+    "top_minus_lidar_m": -1.1
+   },
+   "esri_lod20": {
+    "verdict": "broken",
+    "note": "DROPPED",
+    "p95_m": 7.6,
+    "within_1_pct": 77.8
+   },
+   "esri_lod12": {
+    "p95_m": 3.13,
+    "within_1_pct": 69.5
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.8335773264598,
+   "lat": 40.700699053411924,
+   "ground_z": 1382.29052734375,
+   "size_m": 47.038569634361146
+  },
+  {
+   "id": "b03",
+   "fp_id": 14920,
+   "category": "win-esri-defect",
+   "title": "Win: Esri LOD2.0 has a defect, roofer does not (FP 14920)",
+   "type": "pitched",
+   "footprint_m2": 199,
+   "roof_cover_pct": 91,
+   "roofer": {
+    "verdict": "same",
+    "note": "",
+    "p95_m": 0.4,
+    "within_1_pct": 98.5,
+    "top_minus_lidar_m": -1.1
+   },
+   "esri_lod20": {
+    "verdict": "broken",
+    "note": "DROPPED",
+    "p95_m": 7.04,
+    "within_1_pct": 78.9
+   },
+   "esri_lod12": {
+    "p95_m": 0.89,
+    "within_1_pct": 98.9
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.81016606745973,
+   "lat": 40.68755055964266,
+   "ground_z": 1452.6953125,
+   "size_m": 25.349594417992492
+  },
+  {
+   "id": "b04",
+   "fp_id": 15339,
+   "category": "win-gable",
+   "title": "Win: steep gable (FP 15339)",
+   "type": "steep-pitched",
+   "footprint_m2": 371,
+   "roof_cover_pct": 98,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 1.16,
+    "within_1_pct": 94.2,
+    "top_minus_lidar_m": 0.3
+   },
+   "esri_lod20": {
+    "verdict": "same",
+    "note": "MIXED",
+    "p95_m": 9.94,
+    "within_1_pct": 89.3
+   },
+   "esri_lod12": {
+    "p95_m": 3.6,
+    "within_1_pct": 33.2
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.78233066090552,
+   "lat": 40.67207660582953,
+   "ground_z": 1725.4765625,
+   "size_m": 37.70078542705164
+  },
+  {
+   "id": "b05",
+   "fp_id": 22001,
+   "category": "win-gable",
+   "title": "Win: steep gable (FP 22001)",
+   "type": "steep-pitched",
+   "footprint_m2": 253,
+   "roof_cover_pct": 100,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.41,
+    "within_1_pct": 95.8,
+    "top_minus_lidar_m": 0.1
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 1.96,
+    "within_1_pct": 91.5
+   },
+   "esri_lod12": {
+    "p95_m": 3.51,
+    "within_1_pct": 62.7
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.85480506263914,
+   "lat": 40.66465794920308,
+   "ground_z": 1317.3974609375,
+   "size_m": 35.971461716948625
+  },
+  {
+   "id": "b06",
+   "fp_id": 12234,
+   "category": "win-commercial",
+   "title": "Win: large or multi-level roof (FP 12234)",
+   "type": "steep-pitched",
+   "footprint_m2": 823,
+   "roof_cover_pct": 93,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.53,
+    "within_1_pct": 95.7,
+    "top_minus_lidar_m": -0.9
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 2.04,
+    "within_1_pct": 88.7
+   },
+   "esri_lod12": {
+    "p95_m": 2.48,
+    "within_1_pct": 56.1
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.87537758800846,
+   "lat": 40.68084314399943,
+   "ground_z": 1305.52734375,
+   "size_m": 59.5637904507142
+  },
+  {
+   "id": "b07",
+   "fp_id": 20802,
+   "category": "win-commercial",
+   "title": "Win: large or multi-level roof (FP 20802)",
+   "type": "steep-pitched",
+   "footprint_m2": 656,
+   "roof_cover_pct": 97,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.73,
+    "within_1_pct": 95.6,
+    "top_minus_lidar_m": -0.2
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 2.13,
+    "within_1_pct": 86.2
+   },
+   "esri_lod12": {
+    "p95_m": 4.4,
+    "within_1_pct": 32.3
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.79314898217874,
+   "lat": 40.66956012164939,
+   "ground_z": 1656.9189453125,
+   "size_m": 55.83161557068905
+  },
+  {
+   "id": "b08",
+   "fp_id": 16729,
+   "category": "fail-invented",
+   "title": "Failure: roofer invents roof (FP 16729)",
+   "type": "steep-pitched",
+   "footprint_m2": 105,
+   "roof_cover_pct": 17,
+   "roofer": {
+    "verdict": "broken",
+    "note": "TOP_ABOVE_LIDAR",
+    "p95_m": 2.34,
+    "within_1_pct": 91.9,
+    "top_minus_lidar_m": 6.1
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.23,
+    "within_1_pct": 100.0
+   },
+   "esri_lod12": {
+    "p95_m": 0.92,
+    "within_1_pct": 95.9
+   },
+   "three_way_level": "Esri LOD2.0",
+   "lon": -111.8556160740782,
+   "lat": 40.704684787231336,
+   "ground_z": 1341.621826171875,
+   "size_m": 18.195101166613004
+  },
+  {
+   "id": "b09",
+   "fp_id": 3587,
+   "category": "fail-invented",
+   "title": "Failure: roofer invents roof (FP 3587)",
+   "type": "steep-pitched",
+   "footprint_m2": 134,
+   "roof_cover_pct": 67,
+   "roofer": {
+    "verdict": "broken",
+    "note": "TOP_ABOVE_LIDAR",
+    "p95_m": 0.33,
+    "within_1_pct": 98.1,
+    "top_minus_lidar_m": 5.0
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.89,
+    "within_1_pct": 96.7
+   },
+   "esri_lod12": {
+    "p95_m": 1.79,
+    "within_1_pct": 61.6
+   },
+   "three_way_level": "Esri LOD2.0",
+   "lon": -111.81396457665072,
+   "lat": 40.69532060651655,
+   "ground_z": 1433.73095703125,
+   "size_m": 23.162902083145525
+  },
+  {
+   "id": "b10",
+   "fp_id": 16382,
+   "category": "fail-invented",
+   "title": "Failure: roofer invents roof (FP 16382)",
+   "type": "pitched",
+   "footprint_m2": 281,
+   "roof_cover_pct": 80,
+   "roofer": {
+    "verdict": "broken",
+    "note": "TOP_ABOVE_LIDAR",
+    "p95_m": 0.49,
+    "within_1_pct": 95.8,
+    "top_minus_lidar_m": 4.6
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.25,
+    "within_1_pct": 99.5
+   },
+   "esri_lod12": {
+    "p95_m": 0.95,
+    "within_1_pct": 98.0
+   },
+   "three_way_level": "Esri LOD2.0",
+   "lon": -111.8473711262164,
+   "lat": 40.67986742336965,
+   "ground_z": 1323.975341796875,
+   "size_m": 25.108754988258294
+  },
+  {
+   "id": "b11",
+   "fp_id": 9661,
+   "category": "fail-missing",
+   "title": "Failure: roofer misses roof (FP 9661)",
+   "type": "steep-pitched",
+   "footprint_m2": 3441,
+   "roof_cover_pct": 65,
+   "roofer": {
+    "verdict": "broken",
+    "note": "MISSING",
+    "p95_m": 1.04,
+    "within_1_pct": 94.6,
+    "top_minus_lidar_m": -1.4
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.95,
+    "within_1_pct": 95.3
+   },
+   "esri_lod12": {
+    "p95_m": 3.59,
+    "within_1_pct": 48.0
+   },
+   "three_way_level": "Esri LOD2.0",
+   "lon": -111.86324836877301,
+   "lat": 40.69054519328159,
+   "ground_z": 1311.3282470703125,
+   "size_m": 100.0891913510011
+  },
+  {
+   "id": "b12",
+   "fp_id": 18825,
+   "category": "fail-missing",
+   "title": "Failure: roofer misses roof (FP 18825)",
+   "type": "other",
+   "footprint_m2": 3274,
+   "roof_cover_pct": 2,
+   "roofer": {
+    "verdict": "broken",
+    "note": "MISSING",
+    "p95_m": 0.24,
+    "within_1_pct": 100.0,
+    "top_minus_lidar_m": -0.1
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.67,
+    "within_1_pct": 96.9
+   },
+   "esri_lod12": {
+    "p95_m": 21.99,
+    "within_1_pct": 88.7
+   },
+   "three_way_level": "Esri LOD2.0",
+   "lon": -111.85317808196434,
+   "lat": 40.7003518206581,
+   "ground_z": 1342.066162109375,
+   "size_m": 97.40578950126252
+  },
+  {
+   "id": "b13",
+   "fp_id": 19047,
+   "category": "fail-worse",
+   "title": "Failure: roofer worse than the flat block (FP 19047)",
+   "type": "flat",
+   "footprint_m2": 106,
+   "roof_cover_pct": 85,
+   "roofer": {
+    "verdict": "worse",
+    "note": "",
+    "p95_m": 6.01,
+    "within_1_pct": 94.5,
+    "top_minus_lidar_m": -0.4
+   },
+   "esri_lod20": {
+    "verdict": "same",
+    "note": "",
+    "p95_m": 0.27,
+    "within_1_pct": 99.5
+   },
+   "esri_lod12": {
+    "p95_m": 0.41,
+    "within_1_pct": 95.4
+   },
+   "three_way_level": "Esri LOD2.0",
+   "lon": -111.8543336748111,
+   "lat": 40.705706055371905,
+   "ground_z": 1342.905517578125,
+   "size_m": 16.306724279368613
+  },
+  {
+   "id": "b14",
+   "fp_id": 405,
+   "category": "typical",
+   "title": "Typical (FP 405)",
+   "type": "pitched",
+   "footprint_m2": 220,
+   "roof_cover_pct": 92,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.24,
+    "within_1_pct": 99.8,
+    "top_minus_lidar_m": -0.0
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.3,
+    "within_1_pct": 99.8
+   },
+   "esri_lod12": {
+    "p95_m": 1.26,
+    "within_1_pct": 86.6
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.82877235933442,
+   "lat": 40.69363627903533,
+   "ground_z": 1394.5189208984375,
+   "size_m": 26.003533747293357
+  },
+  {
+   "id": "b15",
+   "fp_id": 1902,
+   "category": "typical",
+   "title": "Typical (FP 1902)",
+   "type": "pitched",
+   "footprint_m2": 178,
+   "roof_cover_pct": 98,
+   "roofer": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.24,
+    "within_1_pct": 98.6,
+    "top_minus_lidar_m": -0.5
+   },
+   "esri_lod20": {
+    "verdict": "better",
+    "note": "",
+    "p95_m": 0.21,
+    "within_1_pct": 98.9
+   },
+   "esri_lod12": {
+    "p95_m": 1.07,
+    "within_1_pct": 93.4
+   },
+   "three_way_level": "roofer LoD2.2",
+   "lon": -111.8426914189488,
+   "lat": 40.706820593270194,
+   "ground_z": 1366.66796875,
+   "size_m": 19.836065241210843
+  }
+ ]
+}

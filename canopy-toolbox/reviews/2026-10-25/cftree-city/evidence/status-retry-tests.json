@@ -1,0 +1,8 @@
+{
+  "tests": 7,
+  "passed": 7,
+  "failed": 0,
+  "regression_failed_before_fix": true,
+  "real_windows_reader_lock_test_passed": true,
+  "old_status_preserved_on_permanent_failure": true
+}

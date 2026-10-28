@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "variants": {
+    "local_roofs": {
+      "records": 26982464,
+      "classification_bytes_changed": 97724,
+      "audit_exact_match": true,
+      "all_excluded_flags_protected": true
+    },
+    "fractal_unanimous": {
+      "records": 26982464,
+      "classification_bytes_changed": 477895,
+      "audit_exact_match": true,
+      "all_excluded_flags_protected": true
+    }
+  },
+  "site_raster_pairs": 9,
+  "all_site_grids_match": true,
+  "same_ground_all_variants": true,
+  "reference_unchanged": true,
+  "raw_consensus_unchanged": true,
+  "blind_worksheet_unchanged": true,
+  "blind_reference_geometry_labels_match": true,
+  "evaluation_status": "NO_LABELS",
+  "figure": "D:\\lidar\\2023-salt-lake-valley\\runs\\classification-pilot-20261019\\comparison.png",
+  "development_comparison": [
+    {
+      "site": "large_roofs",
+      "variant": "baseline",
+      "coverage_pct": 99.69885187276492,
+      "canopy_lower_bound_pct": 17.327780914737435,
+      "canopy_upper_bound_pct": 17.62892904197252,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 0.0
+    },
+    {
+      "site": "large_roofs",
+      "variant": "local_roofs",
+      "coverage_pct": 99.69885187276492,
+      "canopy_lower_bound_pct": 16.82900432900433,
+      "canopy_upper_bound_pct": 17.13015245623941,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 53.0
+    },
+    {
+      "site": "large_roofs",
+      "variant": "fractal_unanimous",
+      "coverage_pct": 99.20007528703181,
+      "canopy_lower_bound_pct": 16.713721061547147,
+      "canopy_upper_bound_pct": 17.51364577451534,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 88.75
+    },
+    {
+      "site": "small_roofs",
+      "variant": "baseline",
+      "coverage_pct": 98.96761969538709,
+      "canopy_lower_bound_pct": 23.96822697791921,
+      "canopy_upper_bound_pct": 25.000607282532126,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 0.0
+    },
+    {
+      "site": "small_roofs",
+      "variant": "local_roofs",
+      "coverage_pct": 98.96761969538709,
+      "canopy_lower_bound_pct": 22.811961036752738,
+      "canopy_upper_bound_pct": 23.844341341365656,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 119.0
+    },
+    {
+      "site": "small_roofs",
+      "variant": "fractal_unanimous",
+      "coverage_pct": 98.92389535307406,
+      "canopy_lower_bound_pct": 22.513178030947117,
+      "canopy_upper_bound_pct": 23.589282677873054,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 174.25
+    },
+    {
+      "site": "canopy_open",
+      "variant": "baseline",
+      "coverage_pct": 98.91553487735624,
+      "canopy_lower_bound_pct": 44.14149361978721,
+      "canopy_upper_bound_pct": 45.22595874243098,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 0.0
+    },
+    {
+      "site": "canopy_open",
+      "variant": "local_roofs",
+      "coverage_pct": 98.91553487735624,
+      "canopy_lower_bound_pct": 43.67281310937019,
+      "canopy_upper_bound_pct": 44.75727823201396,
+      "baseline_canopy_now_unknown_m2": 0.0,
+      "baseline_canopy_now_observed_below_2m_m2": 34.25
+    },
+    {
+      "site": "canopy_open",
+      "variant": "fractal_unanimous",
+      "coverage_pct": 98.88816667236837,
+      "canopy_lower_bound_pct": 44.00123156922445,
+      "canopy_upper_bound_pct": 45.11306489685608,
+      "baseline_canopy_now_unknown_m2": 1.0,
+      "baseline_canopy_now_observed_below_2m_m2": 27.5
+    }
+  ]
+}

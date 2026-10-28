@@ -1,0 +1,8 @@
+{
+  "native_sha256": "9dd9fa03374c9ac4d656afa1ad59e0d4c3e81dbfce2dc755af1f3c6032aeec5a",
+  "wrapper_sha256": "000d07207ae36e5d505b6ccccfec95a688de7f95a75339a881fb2a48486f0b72",
+  "native_binary": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\tree-research\\CFTree\\src\\segmentation\\TreeSeparation\\build\\segmentation.native",
+  "wrapper": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\tree-research\\CFTree\\src\\segmentation\\TreeSeparation\\build\\segmentation",
+  "algorithm_changed": false,
+  "operation": "Same input and parameters; bulk copy into Linux scratch, run, bulk copy output back"
+}

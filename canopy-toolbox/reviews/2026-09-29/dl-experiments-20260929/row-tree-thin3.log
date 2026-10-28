@@ -1,0 +1,11 @@
+2026-09-29T19:20:25.7749029-06:00 row tree-thin3 start
+2026-09-29T19:20:27.7385672-06:00 full baseline MD5 before: 82787095336690D2909344206F9A80FC
+2026-09-29T19:20:27.9551938-06:00 row baseline H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-thin3\baseline\12TVL2804-thin3.las MD5 before: D68FE84595029A9EB0B5AB4D42748E81
+2026-09-29T19:20:28.2538651-06:00 fresh copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-thin3\tree\12TVL2804-thin3.las MD5: D68FE84595029A9EB0B5AB4D42748E81
+2026-09-29T19:20:28.3197469-06:00 GPU before: 2528 MiB, 11 %
+2026-09-29T19:20:28.3303997-06:00 dl_run: C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe -B V:\Developer\agol-python-scripts\.claude\worktrees\agent-a3b10aa15ccee097a\canopy-toolbox\reviews\2026-09-29\dl_run.py tree --source H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-thin3\baseline\12TVL2804-thin3.las --copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-thin3\tree\12TVL2804-thin3.las --output-root H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-thin3 --boundary 428000 4504000 429000 4505000 --batch 1
+2026-09-29T20:05:31.8580979-06:00 dl_run exit 0 after 2703.5 s
+2026-09-29T20:05:34.4052567-06:00 full baseline MD5 after: 82787095336690D2909344206F9A80FC
+2026-09-29T20:05:34.7340314-06:00 row baseline MD5 after: D68FE84595029A9EB0B5AB4D42748E81
+2026-09-29T20:05:35.9243810-06:00 dl_compare exit 0
+2026-09-29T20:05:35.9266672-06:00 row tree-thin3 done

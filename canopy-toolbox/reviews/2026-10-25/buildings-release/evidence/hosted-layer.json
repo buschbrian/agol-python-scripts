@@ -1,0 +1,2101 @@
+{
+  "id": 0,
+  "version": "buildings",
+  "name": "buildings",
+  "layerType": "3DObject",
+  "fullExtent": {
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326,
+      "vcsWkid": 5773,
+      "latestVcsWkid": 5773
+    },
+    "xmin": -111.91823532879472,
+    "xmax": -111.77680545578134,
+    "ymin": 40.65990482604348,
+    "ymax": 40.71306739868962,
+    "zmin": 1294.1699999999983,
+    "zmax": 1769.2424000000028
+  },
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "vcsWkid": 5773,
+    "latestVcsWkid": 5773
+  },
+  "alias": "buildings",
+  "serviceUpdateTimeStamp": {
+    "lastUpdate": 1792873380000
+  },
+  "capabilities": [
+    "View",
+    "Query"
+  ],
+  "store": {
+    "profile": "meshpyramids",
+    "version": "1.10",
+    "resourcePattern": [
+      "Geometry",
+      "Texture",
+      "Attributes"
+    ],
+    "rootNode": "./nodes/root",
+    "extent": [
+      -111.91823532879472,
+      40.65990482604348,
+      -111.77680545578134,
+      40.71306739868962
+    ],
+    "indexCRS": "http://www.opengis.net/def/crs/EPSG/0/4326",
+    "vertexCRS": "http://www.opengis.net/def/crs/EPSG/0/4326",
+    "normalReferenceFrame": "east-north-up",
+    "lodType": "MeshPyramid",
+    "lodModel": "node-switching",
+    "defaultGeometrySchema": {
+      "header": [
+        {
+          "property": "vertexCount",
+          "type": "UInt32"
+        },
+        {
+          "property": "featureCount",
+          "type": "UInt32"
+        }
+      ],
+      "topology": "PerAttributeArray",
+      "ordering": [
+        "position",
+        "normal",
+        "uv0",
+        "color"
+      ],
+      "vertexAttributes": {
+        "position": {
+          "valueType": "Float32",
+          "valuesPerElement": 3
+        },
+        "normal": {
+          "valueType": "Float32",
+          "valuesPerElement": 3
+        },
+        "uv0": {
+          "valueType": "Float32",
+          "valuesPerElement": 2
+        },
+        "color": {
+          "valueType": "UInt8",
+          "valuesPerElement": 4
+        }
+      },
+      "featureAttributeOrder": [
+        "id",
+        "faceRange"
+      ],
+      "featureAttributes": {
+        "id": {
+          "valueType": "UInt64",
+          "valuesPerElement": 1
+        },
+        "faceRange": {
+          "valueType": "UInt32",
+          "valuesPerElement": 2
+        }
+      }
+    }
+  },
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID"
+    },
+    {
+      "name": "Name",
+      "type": "esriFieldTypeString",
+      "alias": "Name"
+    },
+    {
+      "name": "FP_ID",
+      "type": "esriFieldTypeInteger",
+      "alias": "FP_ID"
+    },
+    {
+      "name": "PARTS",
+      "type": "esriFieldTypeInteger",
+      "alias": "PARTS"
+    },
+    {
+      "name": "RF_ROOF_TYPE",
+      "type": "esriFieldTypeString",
+      "alias": "RF_ROOF_TYPE"
+    },
+    {
+      "name": "RF_ROOF_PLANES",
+      "type": "esriFieldTypeInteger",
+      "alias": "RF_ROOF_PLANES"
+    },
+    {
+      "name": "RF_RIDGELINES",
+      "type": "esriFieldTypeInteger",
+      "alias": "RF_RIDGELINES"
+    },
+    {
+      "name": "RF_RMSE_LOD22",
+      "type": "esriFieldTypeDouble",
+      "alias": "RF_RMSE_LOD22"
+    },
+    {
+      "name": "RF_H_GROUND",
+      "type": "esriFieldTypeDouble",
+      "alias": "RF_H_GROUND"
+    },
+    {
+      "name": "RF_H_ROOF_MAX",
+      "type": "esriFieldTypeDouble",
+      "alias": "RF_H_ROOF_MAX"
+    },
+    {
+      "name": "RF_PT_DENSITY",
+      "type": "esriFieldTypeDouble",
+      "alias": "RF_PT_DENSITY"
+    },
+    {
+      "name": "RF_EXTRUSION",
+      "type": "esriFieldTypeString",
+      "alias": "RF_EXTRUSION"
+    },
+    {
+      "name": "SOURCE_ID",
+      "type": "esriFieldTypeString",
+      "alias": "SOURCE_ID"
+    },
+    {
+      "name": "PARCEL_ID",
+      "type": "esriFieldTypeString",
+      "alias": "PARCEL_ID"
+    },
+    {
+      "name": "CITY",
+      "type": "esriFieldTypeString",
+      "alias": "CITY"
+    },
+    {
+      "name": "FOOTPRINT_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "FOOTPRINT_M2"
+    },
+    {
+      "name": "ROOF_COV_PCT",
+      "type": "esriFieldTypeDouble",
+      "alias": "ROOF_COV_PCT"
+    },
+    {
+      "name": "ROOF_Z50_M",
+      "type": "esriFieldTypeDouble",
+      "alias": "ROOF_Z50_M"
+    },
+    {
+      "name": "GROUND_Z50_M",
+      "type": "esriFieldTypeDouble",
+      "alias": "GROUND_Z50_M"
+    },
+    {
+      "name": "HEIGHT_P50_M",
+      "type": "esriFieldTypeDouble",
+      "alias": "HEIGHT_P50_M"
+    },
+    {
+      "name": "HEIGHT_P95_M",
+      "type": "esriFieldTypeDouble",
+      "alias": "HEIGHT_P95_M"
+    },
+    {
+      "name": "HEIGHT_STATUS",
+      "type": "esriFieldTypeString",
+      "alias": "HEIGHT_STATUS"
+    },
+    {
+      "name": "LEVEL",
+      "type": "esriFieldTypeString",
+      "alias": "LEVEL"
+    },
+    {
+      "name": "CHECK_VERDICT",
+      "type": "esriFieldTypeString",
+      "alias": "CHECK_VERDICT"
+    },
+    {
+      "name": "ROOFER_VERDICT",
+      "type": "esriFieldTypeString",
+      "alias": "ROOFER_VERDICT"
+    },
+    {
+      "name": "ESRI_VERDICT",
+      "type": "esriFieldTypeString",
+      "alias": "ESRI_VERDICT"
+    },
+    {
+      "name": "FALLBACK_REASON",
+      "type": "esriFieldTypeString",
+      "alias": "FALLBACK_REASON"
+    },
+    {
+      "name": "ROOF_PLANES",
+      "type": "esriFieldTypeInteger",
+      "alias": "ROOF_PLANES"
+    },
+    {
+      "name": "ROOF_PLAN_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "ROOF_PLAN_M2"
+    },
+    {
+      "name": "ROOF_AREA_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "ROOF_AREA_M2"
+    },
+    {
+      "name": "ROOF_SLOPE_MEAN",
+      "type": "esriFieldTypeDouble",
+      "alias": "ROOF_SLOPE_MEAN"
+    },
+    {
+      "name": "ROOF_SLOPE_MAIN",
+      "type": "esriFieldTypeDouble",
+      "alias": "ROOF_SLOPE_MAIN"
+    },
+    {
+      "name": "ROOF_AZIMUTH_MAIN",
+      "type": "esriFieldTypeDouble",
+      "alias": "ROOF_AZIMUTH_MAIN"
+    },
+    {
+      "name": "RIDGE_HT_M",
+      "type": "esriFieldTypeDouble",
+      "alias": "RIDGE_HT_M"
+    },
+    {
+      "name": "EAVE_HT_M",
+      "type": "esriFieldTypeDouble",
+      "alias": "EAVE_HT_M"
+    },
+    {
+      "name": "BLDG_HT_M",
+      "type": "esriFieldTypeDouble",
+      "alias": "BLDG_HT_M"
+    },
+    {
+      "name": "FLAT_AREA_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "FLAT_AREA_M2"
+    },
+    {
+      "name": "SOUTH_AREA_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "SOUTH_AREA_M2"
+    },
+    {
+      "name": "EAST_AREA_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "EAST_AREA_M2"
+    },
+    {
+      "name": "WEST_AREA_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "WEST_AREA_M2"
+    },
+    {
+      "name": "NORTH_AREA_M2",
+      "type": "esriFieldTypeDouble",
+      "alias": "NORTH_AREA_M2"
+    },
+    {
+      "name": "RF_VOLUME_M3",
+      "type": "esriFieldTypeDouble",
+      "alias": "RF_VOLUME_M3"
+    },
+    {
+      "name": "TINY_FACES",
+      "type": "esriFieldTypeInteger",
+      "alias": "TINY_FACES"
+    },
+    {
+      "name": "SLIVER_FACES",
+      "type": "esriFieldTypeInteger",
+      "alias": "SLIVER_FACES"
+    },
+    {
+      "name": "STEEP_FACES",
+      "type": "esriFieldTypeInteger",
+      "alias": "STEEP_FACES"
+    }
+  ],
+  "attributeStorageInfo": [
+    {
+      "key": "f_0",
+      "name": "OBJECTID",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Oid32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_1",
+      "name": "Name",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_2",
+      "name": "FP_ID",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_3",
+      "name": "PARTS",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_4",
+      "name": "RF_ROOF_TYPE",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_5",
+      "name": "RF_ROOF_PLANES",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_6",
+      "name": "RF_RIDGELINES",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_7",
+      "name": "RF_RMSE_LOD22",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_8",
+      "name": "RF_H_GROUND",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_9",
+      "name": "RF_H_ROOF_MAX",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_10",
+      "name": "RF_PT_DENSITY",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_11",
+      "name": "RF_EXTRUSION",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_12",
+      "name": "SOURCE_ID",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_13",
+      "name": "PARCEL_ID",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_14",
+      "name": "CITY",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_15",
+      "name": "FOOTPRINT_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_16",
+      "name": "ROOF_COV_PCT",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_17",
+      "name": "ROOF_Z50_M",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_18",
+      "name": "GROUND_Z50_M",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_19",
+      "name": "HEIGHT_P50_M",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_20",
+      "name": "HEIGHT_P95_M",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_21",
+      "name": "HEIGHT_STATUS",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_22",
+      "name": "LEVEL",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_23",
+      "name": "CHECK_VERDICT",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_24",
+      "name": "ROOFER_VERDICT",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_25",
+      "name": "ESRI_VERDICT",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_26",
+      "name": "FALLBACK_REASON",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        },
+        {
+          "property": "attributeValuesByteCount",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeByteCounts",
+        "attributeValues"
+      ],
+      "attributeByteCounts": {
+        "valueType": "UInt32",
+        "valuesPerElement": 1
+      },
+      "attributeValues": {
+        "valueType": "String",
+        "valuesPerElement": 1,
+        "encoding": "UTF-8"
+      }
+    },
+    {
+      "key": "f_27",
+      "name": "ROOF_PLANES",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_28",
+      "name": "ROOF_PLAN_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_29",
+      "name": "ROOF_AREA_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_30",
+      "name": "ROOF_SLOPE_MEAN",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_31",
+      "name": "ROOF_SLOPE_MAIN",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_32",
+      "name": "ROOF_AZIMUTH_MAIN",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_33",
+      "name": "RIDGE_HT_M",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_34",
+      "name": "EAVE_HT_M",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_35",
+      "name": "BLDG_HT_M",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_36",
+      "name": "FLAT_AREA_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_37",
+      "name": "SOUTH_AREA_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_38",
+      "name": "EAST_AREA_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_39",
+      "name": "WEST_AREA_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_40",
+      "name": "NORTH_AREA_M2",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_41",
+      "name": "RF_VOLUME_M3",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Float64",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_42",
+      "name": "TINY_FACES",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_43",
+      "name": "SLIVER_FACES",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    },
+    {
+      "key": "f_44",
+      "name": "STEEP_FACES",
+      "header": [
+        {
+          "property": "count",
+          "valueType": "UInt32"
+        }
+      ],
+      "ordering": [
+        "attributeValues"
+      ],
+      "attributeValues": {
+        "valueType": "Int32",
+        "valuesPerElement": 1
+      }
+    }
+  ],
+  "statisticsInfo": [
+    {
+      "key": "f_1",
+      "name": "Name",
+      "href": "./statistics/f_1/0"
+    },
+    {
+      "key": "f_2",
+      "name": "FP_ID",
+      "href": "./statistics/f_2/0"
+    },
+    {
+      "key": "f_3",
+      "name": "PARTS",
+      "href": "./statistics/f_3/0"
+    },
+    {
+      "key": "f_4",
+      "name": "RF_ROOF_TYPE",
+      "href": "./statistics/f_4/0"
+    },
+    {
+      "key": "f_5",
+      "name": "RF_ROOF_PLANES",
+      "href": "./statistics/f_5/0"
+    },
+    {
+      "key": "f_6",
+      "name": "RF_RIDGELINES",
+      "href": "./statistics/f_6/0"
+    },
+    {
+      "key": "f_7",
+      "name": "RF_RMSE_LOD22",
+      "href": "./statistics/f_7/0"
+    },
+    {
+      "key": "f_8",
+      "name": "RF_H_GROUND",
+      "href": "./statistics/f_8/0"
+    },
+    {
+      "key": "f_9",
+      "name": "RF_H_ROOF_MAX",
+      "href": "./statistics/f_9/0"
+    },
+    {
+      "key": "f_10",
+      "name": "RF_PT_DENSITY",
+      "href": "./statistics/f_10/0"
+    },
+    {
+      "key": "f_11",
+      "name": "RF_EXTRUSION",
+      "href": "./statistics/f_11/0"
+    },
+    {
+      "key": "f_12",
+      "name": "SOURCE_ID",
+      "href": "./statistics/f_12/0"
+    },
+    {
+      "key": "f_13",
+      "name": "PARCEL_ID",
+      "href": "./statistics/f_13/0"
+    },
+    {
+      "key": "f_14",
+      "name": "CITY",
+      "href": "./statistics/f_14/0"
+    },
+    {
+      "key": "f_15",
+      "name": "FOOTPRINT_M2",
+      "href": "./statistics/f_15/0"
+    },
+    {
+      "key": "f_16",
+      "name": "ROOF_COV_PCT",
+      "href": "./statistics/f_16/0"
+    },
+    {
+      "key": "f_17",
+      "name": "ROOF_Z50_M",
+      "href": "./statistics/f_17/0"
+    },
+    {
+      "key": "f_18",
+      "name": "GROUND_Z50_M",
+      "href": "./statistics/f_18/0"
+    },
+    {
+      "key": "f_19",
+      "name": "HEIGHT_P50_M",
+      "href": "./statistics/f_19/0"
+    },
+    {
+      "key": "f_20",
+      "name": "HEIGHT_P95_M",
+      "href": "./statistics/f_20/0"
+    },
+    {
+      "key": "f_21",
+      "name": "HEIGHT_STATUS",
+      "href": "./statistics/f_21/0"
+    },
+    {
+      "key": "f_22",
+      "name": "LEVEL",
+      "href": "./statistics/f_22/0"
+    },
+    {
+      "key": "f_23",
+      "name": "CHECK_VERDICT",
+      "href": "./statistics/f_23/0"
+    },
+    {
+      "key": "f_24",
+      "name": "ROOFER_VERDICT",
+      "href": "./statistics/f_24/0"
+    },
+    {
+      "key": "f_25",
+      "name": "ESRI_VERDICT",
+      "href": "./statistics/f_25/0"
+    },
+    {
+      "key": "f_26",
+      "name": "FALLBACK_REASON",
+      "href": "./statistics/f_26/0"
+    },
+    {
+      "key": "f_27",
+      "name": "ROOF_PLANES",
+      "href": "./statistics/f_27/0"
+    },
+    {
+      "key": "f_28",
+      "name": "ROOF_PLAN_M2",
+      "href": "./statistics/f_28/0"
+    },
+    {
+      "key": "f_29",
+      "name": "ROOF_AREA_M2",
+      "href": "./statistics/f_29/0"
+    },
+    {
+      "key": "f_30",
+      "name": "ROOF_SLOPE_MEAN",
+      "href": "./statistics/f_30/0"
+    },
+    {
+      "key": "f_31",
+      "name": "ROOF_SLOPE_MAIN",
+      "href": "./statistics/f_31/0"
+    },
+    {
+      "key": "f_32",
+      "name": "ROOF_AZIMUTH_MAIN",
+      "href": "./statistics/f_32/0"
+    },
+    {
+      "key": "f_33",
+      "name": "RIDGE_HT_M",
+      "href": "./statistics/f_33/0"
+    },
+    {
+      "key": "f_34",
+      "name": "EAVE_HT_M",
+      "href": "./statistics/f_34/0"
+    },
+    {
+      "key": "f_35",
+      "name": "BLDG_HT_M",
+      "href": "./statistics/f_35/0"
+    },
+    {
+      "key": "f_36",
+      "name": "FLAT_AREA_M2",
+      "href": "./statistics/f_36/0"
+    },
+    {
+      "key": "f_37",
+      "name": "SOUTH_AREA_M2",
+      "href": "./statistics/f_37/0"
+    },
+    {
+      "key": "f_38",
+      "name": "EAST_AREA_M2",
+      "href": "./statistics/f_38/0"
+    },
+    {
+      "key": "f_39",
+      "name": "WEST_AREA_M2",
+      "href": "./statistics/f_39/0"
+    },
+    {
+      "key": "f_40",
+      "name": "NORTH_AREA_M2",
+      "href": "./statistics/f_40/0"
+    },
+    {
+      "key": "f_41",
+      "name": "RF_VOLUME_M3",
+      "href": "./statistics/f_41/0"
+    },
+    {
+      "key": "f_42",
+      "name": "TINY_FACES",
+      "href": "./statistics/f_42/0"
+    },
+    {
+      "key": "f_43",
+      "name": "SLIVER_FACES",
+      "href": "./statistics/f_43/0"
+    },
+    {
+      "key": "f_44",
+      "name": "STEEP_FACES",
+      "href": "./statistics/f_44/0"
+    }
+  ],
+  "heightModelInfo": {
+    "heightModel": "gravity_related_height",
+    "vertCRS": "EGM96_height",
+    "heightUnit": "meter"
+  },
+  "drawingInfo": {
+    "renderer": {
+      "type": "simple",
+      "symbol": {
+        "type": "MeshSymbol3D",
+        "symbolLayers": [
+          {
+            "type": "Fill",
+            "material": {
+              "color": [
+                255,
+                255,
+                255
+              ],
+              "transparency": 0,
+              "colorMixMode": "multiply"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "popupInfo": {
+    "title": "{OBJECTID}",
+    "popupElements": [
+      {
+        "type": "fields",
+        "fieldInfos": [
+          {
+            "fieldName": "OBJECTID",
+            "label": "OBJECTID",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "Name",
+            "label": "Name",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "FP_ID",
+            "label": "FP_ID",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "PARTS",
+            "label": "PARTS",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_ROOF_TYPE",
+            "label": "RF_ROOF_TYPE",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_ROOF_PLANES",
+            "label": "RF_ROOF_PLANES",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_RIDGELINES",
+            "label": "RF_RIDGELINES",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_RMSE_LOD22",
+            "label": "RF_RMSE_LOD22",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_H_GROUND",
+            "label": "RF_H_GROUND",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_H_ROOF_MAX",
+            "label": "RF_H_ROOF_MAX",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_PT_DENSITY",
+            "label": "RF_PT_DENSITY",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_EXTRUSION",
+            "label": "RF_EXTRUSION",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "SOURCE_ID",
+            "label": "SOURCE_ID",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "PARCEL_ID",
+            "label": "PARCEL_ID",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "CITY",
+            "label": "CITY",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "FOOTPRINT_M2",
+            "label": "FOOTPRINT_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_COV_PCT",
+            "label": "ROOF_COV_PCT",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_Z50_M",
+            "label": "ROOF_Z50_M",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "GROUND_Z50_M",
+            "label": "GROUND_Z50_M",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "HEIGHT_P50_M",
+            "label": "HEIGHT_P50_M",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "HEIGHT_P95_M",
+            "label": "HEIGHT_P95_M",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "HEIGHT_STATUS",
+            "label": "HEIGHT_STATUS",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "LEVEL",
+            "label": "LEVEL",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "CHECK_VERDICT",
+            "label": "CHECK_VERDICT",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOFER_VERDICT",
+            "label": "ROOFER_VERDICT",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ESRI_VERDICT",
+            "label": "ESRI_VERDICT",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "FALLBACK_REASON",
+            "label": "FALLBACK_REASON",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_PLANES",
+            "label": "ROOF_PLANES",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_PLAN_M2",
+            "label": "ROOF_PLAN_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_AREA_M2",
+            "label": "ROOF_AREA_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_SLOPE_MEAN",
+            "label": "ROOF_SLOPE_MEAN",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_SLOPE_MAIN",
+            "label": "ROOF_SLOPE_MAIN",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "ROOF_AZIMUTH_MAIN",
+            "label": "ROOF_AZIMUTH_MAIN",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RIDGE_HT_M",
+            "label": "RIDGE_HT_M",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "EAVE_HT_M",
+            "label": "EAVE_HT_M",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "BLDG_HT_M",
+            "label": "BLDG_HT_M",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "FLAT_AREA_M2",
+            "label": "FLAT_AREA_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "SOUTH_AREA_M2",
+            "label": "SOUTH_AREA_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "EAST_AREA_M2",
+            "label": "EAST_AREA_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "WEST_AREA_M2",
+            "label": "WEST_AREA_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "NORTH_AREA_M2",
+            "label": "NORTH_AREA_M2",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "RF_VOLUME_M3",
+            "label": "RF_VOLUME_M3",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "TINY_FACES",
+            "label": "TINY_FACES",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "SLIVER_FACES",
+            "label": "SLIVER_FACES",
+            "visible": true,
+            "isEditable": false
+          },
+          {
+            "fieldName": "STEEP_FACES",
+            "label": "STEEP_FACES",
+            "visible": true,
+            "isEditable": false
+          }
+        ]
+      }
+    ],
+    "fieldInfos": [
+      {
+        "fieldName": "OBJECTID",
+        "label": "OBJECTID",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "Name",
+        "label": "Name",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "FP_ID",
+        "label": "FP_ID",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "PARTS",
+        "label": "PARTS",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_ROOF_TYPE",
+        "label": "RF_ROOF_TYPE",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_ROOF_PLANES",
+        "label": "RF_ROOF_PLANES",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_RIDGELINES",
+        "label": "RF_RIDGELINES",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_RMSE_LOD22",
+        "label": "RF_RMSE_LOD22",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_H_GROUND",
+        "label": "RF_H_GROUND",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_H_ROOF_MAX",
+        "label": "RF_H_ROOF_MAX",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_PT_DENSITY",
+        "label": "RF_PT_DENSITY",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_EXTRUSION",
+        "label": "RF_EXTRUSION",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "SOURCE_ID",
+        "label": "SOURCE_ID",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "PARCEL_ID",
+        "label": "PARCEL_ID",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "CITY",
+        "label": "CITY",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "FOOTPRINT_M2",
+        "label": "FOOTPRINT_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_COV_PCT",
+        "label": "ROOF_COV_PCT",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_Z50_M",
+        "label": "ROOF_Z50_M",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "GROUND_Z50_M",
+        "label": "GROUND_Z50_M",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "HEIGHT_P50_M",
+        "label": "HEIGHT_P50_M",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "HEIGHT_P95_M",
+        "label": "HEIGHT_P95_M",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "HEIGHT_STATUS",
+        "label": "HEIGHT_STATUS",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "LEVEL",
+        "label": "LEVEL",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "CHECK_VERDICT",
+        "label": "CHECK_VERDICT",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOFER_VERDICT",
+        "label": "ROOFER_VERDICT",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ESRI_VERDICT",
+        "label": "ESRI_VERDICT",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "FALLBACK_REASON",
+        "label": "FALLBACK_REASON",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_PLANES",
+        "label": "ROOF_PLANES",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_PLAN_M2",
+        "label": "ROOF_PLAN_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_AREA_M2",
+        "label": "ROOF_AREA_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_SLOPE_MEAN",
+        "label": "ROOF_SLOPE_MEAN",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_SLOPE_MAIN",
+        "label": "ROOF_SLOPE_MAIN",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "ROOF_AZIMUTH_MAIN",
+        "label": "ROOF_AZIMUTH_MAIN",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RIDGE_HT_M",
+        "label": "RIDGE_HT_M",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "EAVE_HT_M",
+        "label": "EAVE_HT_M",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "BLDG_HT_M",
+        "label": "BLDG_HT_M",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "FLAT_AREA_M2",
+        "label": "FLAT_AREA_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "SOUTH_AREA_M2",
+        "label": "SOUTH_AREA_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "EAST_AREA_M2",
+        "label": "EAST_AREA_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "WEST_AREA_M2",
+        "label": "WEST_AREA_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "NORTH_AREA_M2",
+        "label": "NORTH_AREA_M2",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "RF_VOLUME_M3",
+        "label": "RF_VOLUME_M3",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "TINY_FACES",
+        "label": "TINY_FACES",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "SLIVER_FACES",
+        "label": "SLIVER_FACES",
+        "visible": true,
+        "isEditable": false
+      },
+      {
+        "fieldName": "STEEP_FACES",
+        "label": "STEEP_FACES",
+        "visible": true,
+        "isEditable": false
+      }
+    ]
+  },
+  "nodePages": {
+    "nodesPerPage": 64,
+    "lodSelectionMetricType": "maxScreenThresholdSQ"
+  },
+  "materialDefinitions": [
+    {
+      "doubleSided": true
+    }
+  ],
+  "geometryDefinitions": [
+    {
+      "geometryBuffers": [
+        {
+          "offset": 8,
+          "position": {
+            "type": "Float32",
+            "component": 3
+          },
+          "normal": {
+            "type": "Float32",
+            "component": 3
+          },
+          "featureId": {
+            "type": "UInt64",
+            "component": 1,
+            "binding": "per-feature"
+          },
+          "faceRange": {
+            "type": "UInt32",
+            "component": 2,
+            "binding": "per-feature"
+          }
+        },
+        {
+          "compressedAttributes": {
+            "encoding": "draco",
+            "attributes": [
+              "position",
+              "feature-index"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "geometryBuffers": [
+        {
+          "offset": 8,
+          "position": {
+            "type": "Float32",
+            "component": 3
+          },
+          "normal": {
+            "type": "Float32",
+            "component": 3
+          },
+          "featureId": {
+            "type": "UInt64",
+            "component": 1,
+            "binding": "per-feature"
+          },
+          "faceRange": {
+            "type": "UInt32",
+            "component": 2,
+            "binding": "per-feature"
+          }
+        },
+        {
+          "compressedAttributes": {
+            "encoding": "draco",
+            "attributes": [
+              "position",
+              "normal",
+              "feature-index"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

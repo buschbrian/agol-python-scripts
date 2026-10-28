@@ -1,0 +1,598 @@
+{
+ "mode": "multi-file row",
+ "extent": null,
+ "tree": {
+  "status": "verified_inference",
+  "row_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\work\\run-tree.json",
+  "files": {
+   "12TVL2203.las": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2203.las",
+    "status": "verified_inference",
+    "original": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2203.las",
+    "data_use_label": "external transfer -- outside Millcreek estimate",
+    "points": 20543740,
+    "coordinates_identical": true,
+    "nonclassification_bytes_identical": true,
+    "outside_boundary_classes_identical": true,
+    "processed_extent": null,
+    "comparison_extent": null,
+    "inference_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\work\\run-tree-12TVL2203.json",
+    "model": {
+     "path": "H:\\lidar\\models\\Tree_point_classification.dlpk",
+     "bytes": 14517540,
+     "sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e"
+    },
+    "target_class": 5,
+    "crosstab_our_class_by_prediction": {
+     "1": {
+      "0": 485607,
+      "5": 266
+     },
+     "2": {
+      "0": 2942652,
+      "5": 16
+     },
+     "3": {
+      "0": 10809466,
+      "5": 82
+     },
+     "4": {
+      "0": 899300,
+      "5": 29501
+     },
+     "5": {
+      "0": 109930,
+      "5": 4038447
+     },
+     "6": {
+      "0": 1059053,
+      "5": 100376
+     },
+     "7": {
+      "7": 412
+     },
+     "9": {
+      "0": 47683
+     },
+     "17": {
+      "0": 317,
+      "5": 224
+     },
+     "18": {
+      "18": 17651
+     },
+     "20": {
+      "0": 2757
+     }
+    },
+    "by_our_class": {
+     "1": {
+      "points": 485873,
+      "model_target": 266,
+      "model_background_or_other": 485607,
+      "share_model_target": 0.00055
+     },
+     "2": {
+      "points": 2942668,
+      "model_target": 16,
+      "model_background_or_other": 2942652,
+      "share_model_target": 1e-05
+     },
+     "3": {
+      "points": 10809548,
+      "model_target": 82,
+      "model_background_or_other": 10809466,
+      "share_model_target": 1e-05
+     },
+     "4": {
+      "points": 928801,
+      "model_target": 29501,
+      "model_background_or_other": 899300,
+      "share_model_target": 0.03176
+     },
+     "5": {
+      "points": 4148377,
+      "model_target": 4038447,
+      "model_background_or_other": 109930,
+      "share_model_target": 0.9735
+     },
+     "6": {
+      "points": 1159429,
+      "model_target": 100376,
+      "model_background_or_other": 1059053,
+      "share_model_target": 0.08657
+     },
+     "7": {
+      "points": 412,
+      "model_target": 0,
+      "model_background_or_other": 412,
+      "share_model_target": 0.0
+     },
+     "9": {
+      "points": 47683,
+      "model_target": 0,
+      "model_background_or_other": 47683,
+      "share_model_target": 0.0
+     },
+     "17": {
+      "points": 541,
+      "model_target": 224,
+      "model_background_or_other": 317,
+      "share_model_target": 0.41405
+     },
+     "18": {
+      "points": 17651,
+      "model_target": 0,
+      "model_background_or_other": 17651,
+      "share_model_target": 0.0
+     },
+     "20": {
+      "points": 2757,
+      "model_target": 0,
+      "model_background_or_other": 2757,
+      "share_model_target": 0.0
+     }
+    }
+   },
+   "12TVL2204.las": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2204.las",
+    "status": "verified_inference",
+    "original": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2204.las",
+    "data_use_label": "external transfer -- outside Millcreek estimate",
+    "points": 1067404,
+    "coordinates_identical": true,
+    "nonclassification_bytes_identical": true,
+    "outside_boundary_classes_identical": true,
+    "processed_extent": null,
+    "comparison_extent": null,
+    "inference_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\work\\run-tree-12TVL2204.json",
+    "model": {
+     "path": "H:\\lidar\\models\\Tree_point_classification.dlpk",
+     "bytes": 14517540,
+     "sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e"
+    },
+    "target_class": 5,
+    "crosstab_our_class_by_prediction": {
+     "1": {
+      "0": 23353,
+      "5": 21
+     },
+     "2": {
+      "0": 145800,
+      "5": 2
+     },
+     "3": {
+      "0": 429095,
+      "5": 2
+     },
+     "4": {
+      "0": 113070,
+      "5": 3421
+     },
+     "5": {
+      "0": 18452,
+      "5": 314769
+     },
+     "6": {
+      "0": 12635,
+      "5": 921
+     },
+     "7": {
+      "7": 15
+     },
+     "9": {
+      "0": 3183
+     },
+     "18": {
+      "18": 2428
+     },
+     "20": {
+      "0": 237
+     }
+    },
+    "by_our_class": {
+     "1": {
+      "points": 23374,
+      "model_target": 21,
+      "model_background_or_other": 23353,
+      "share_model_target": 0.0009
+     },
+     "2": {
+      "points": 145802,
+      "model_target": 2,
+      "model_background_or_other": 145800,
+      "share_model_target": 1e-05
+     },
+     "3": {
+      "points": 429097,
+      "model_target": 2,
+      "model_background_or_other": 429095,
+      "share_model_target": 0.0
+     },
+     "4": {
+      "points": 116491,
+      "model_target": 3421,
+      "model_background_or_other": 113070,
+      "share_model_target": 0.02937
+     },
+     "5": {
+      "points": 333221,
+      "model_target": 314769,
+      "model_background_or_other": 18452,
+      "share_model_target": 0.94463
+     },
+     "6": {
+      "points": 13556,
+      "model_target": 921,
+      "model_background_or_other": 12635,
+      "share_model_target": 0.06794
+     },
+     "7": {
+      "points": 15,
+      "model_target": 0,
+      "model_background_or_other": 15,
+      "share_model_target": 0.0
+     },
+     "9": {
+      "points": 3183,
+      "model_target": 0,
+      "model_background_or_other": 3183,
+      "share_model_target": 0.0
+     },
+     "18": {
+      "points": 2428,
+      "model_target": 0,
+      "model_background_or_other": 2428,
+      "share_model_target": 0.0
+     },
+     "20": {
+      "points": 237,
+      "model_target": 0,
+      "model_background_or_other": 237,
+      "share_model_target": 0.0
+     }
+    }
+   },
+   "12TVL2303.las": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2303.las",
+    "status": "verified_inference",
+    "original": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2303.las",
+    "data_use_label": "external transfer -- outside Millcreek estimate",
+    "points": 647748,
+    "coordinates_identical": true,
+    "nonclassification_bytes_identical": true,
+    "outside_boundary_classes_identical": true,
+    "processed_extent": null,
+    "comparison_extent": null,
+    "inference_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\work\\run-tree-12TVL2303.json",
+    "model": {
+     "path": "H:\\lidar\\models\\Tree_point_classification.dlpk",
+     "bytes": 14517540,
+     "sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e"
+    },
+    "target_class": 5,
+    "crosstab_our_class_by_prediction": {
+     "1": {
+      "0": 9147,
+      "5": 31
+     },
+     "2": {
+      "0": 118313,
+      "5": 3
+     },
+     "3": {
+      "0": 246754,
+      "5": 2
+     },
+     "4": {
+      "0": 32606,
+      "5": 843
+     },
+     "5": {
+      "0": 3804,
+      "5": 142858
+     },
+     "6": {
+      "0": 84076,
+      "5": 7835
+     },
+     "7": {
+      "7": 14
+     },
+     "9": {
+      "0": 1200
+     },
+     "18": {
+      "18": 99
+     },
+     "20": {
+      "0": 163
+     }
+    },
+    "by_our_class": {
+     "1": {
+      "points": 9178,
+      "model_target": 31,
+      "model_background_or_other": 9147,
+      "share_model_target": 0.00338
+     },
+     "2": {
+      "points": 118316,
+      "model_target": 3,
+      "model_background_or_other": 118313,
+      "share_model_target": 3e-05
+     },
+     "3": {
+      "points": 246756,
+      "model_target": 2,
+      "model_background_or_other": 246754,
+      "share_model_target": 1e-05
+     },
+     "4": {
+      "points": 33449,
+      "model_target": 843,
+      "model_background_or_other": 32606,
+      "share_model_target": 0.0252
+     },
+     "5": {
+      "points": 146662,
+      "model_target": 142858,
+      "model_background_or_other": 3804,
+      "share_model_target": 0.97406
+     },
+     "6": {
+      "points": 91911,
+      "model_target": 7835,
+      "model_background_or_other": 84076,
+      "share_model_target": 0.08525
+     },
+     "7": {
+      "points": 14,
+      "model_target": 0,
+      "model_background_or_other": 14,
+      "share_model_target": 0.0
+     },
+     "9": {
+      "points": 1200,
+      "model_target": 0,
+      "model_background_or_other": 1200,
+      "share_model_target": 0.0
+     },
+     "18": {
+      "points": 99,
+      "model_target": 0,
+      "model_background_or_other": 99,
+      "share_model_target": 0.0
+     },
+     "20": {
+      "points": 163,
+      "model_target": 0,
+      "model_background_or_other": 163,
+      "share_model_target": 0.0
+     }
+    }
+   },
+   "12TVL2304.las": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\tree\\12TVL2304.las",
+    "status": "verified_inference",
+    "original": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2203\\prepared\\points\\12TVL2304.las",
+    "data_use_label": "external transfer -- outside Millcreek estimate",
+    "points": 32215,
+    "coordinates_identical": true,
+    "nonclassification_bytes_identical": true,
+    "outside_boundary_classes_identical": true,
+    "processed_extent": null,
+    "comparison_extent": null,
+    "inference_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL2203-external-transfer-tree\\work\\run-tree-12TVL2304.json",
+    "model": {
+     "path": "H:\\lidar\\models\\Tree_point_classification.dlpk",
+     "bytes": 14517540,
+     "sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e"
+    },
+    "target_class": 5,
+    "crosstab_our_class_by_prediction": {
+     "1": {
+      "0": 720
+     },
+     "2": {
+      "0": 7373
+     },
+     "3": {
+      "0": 11884
+     },
+     "4": {
+      "0": 366,
+      "5": 86
+     },
+     "5": {
+      "0": 114,
+      "5": 7364
+     },
+     "6": {
+      "0": 3442,
+      "5": 779
+     },
+     "18": {
+      "18": 87
+     }
+    },
+    "by_our_class": {
+     "1": {
+      "points": 720,
+      "model_target": 0,
+      "model_background_or_other": 720,
+      "share_model_target": 0.0
+     },
+     "2": {
+      "points": 7373,
+      "model_target": 0,
+      "model_background_or_other": 7373,
+      "share_model_target": 0.0
+     },
+     "3": {
+      "points": 11884,
+      "model_target": 0,
+      "model_background_or_other": 11884,
+      "share_model_target": 0.0
+     },
+     "4": {
+      "points": 452,
+      "model_target": 86,
+      "model_background_or_other": 366,
+      "share_model_target": 0.19027
+     },
+     "5": {
+      "points": 7478,
+      "model_target": 7364,
+      "model_background_or_other": 114,
+      "share_model_target": 0.98476
+     },
+     "6": {
+      "points": 4221,
+      "model_target": 779,
+      "model_background_or_other": 3442,
+      "share_model_target": 0.18455
+     },
+     "18": {
+      "points": 87,
+      "model_target": 0,
+      "model_background_or_other": 87,
+      "share_model_target": 0.0
+     }
+    }
+   }
+  },
+  "data_use_label": "external transfer -- outside Millcreek estimate",
+  "target_class": 5,
+  "points": 22291107,
+  "crosstab_our_class_by_prediction": {
+   "1": {
+    "0": 518827,
+    "5": 318
+   },
+   "2": {
+    "0": 3214138,
+    "5": 21
+   },
+   "3": {
+    "0": 11497199,
+    "5": 86
+   },
+   "4": {
+    "0": 1045342,
+    "5": 33851
+   },
+   "5": {
+    "0": 132300,
+    "5": 4503438
+   },
+   "6": {
+    "0": 1159206,
+    "5": 109911
+   },
+   "7": {
+    "7": 441
+   },
+   "9": {
+    "0": 52066
+   },
+   "17": {
+    "0": 317,
+    "5": 224
+   },
+   "18": {
+    "18": 20265
+   },
+   "20": {
+    "0": 3157
+   }
+  },
+  "by_our_class": {
+   "1": {
+    "points": 519145,
+    "model_target": 318,
+    "model_background_or_other": 518827,
+    "share_model_target": 0.00061
+   },
+   "2": {
+    "points": 3214159,
+    "model_target": 21,
+    "model_background_or_other": 3214138,
+    "share_model_target": 1e-05
+   },
+   "3": {
+    "points": 11497285,
+    "model_target": 86,
+    "model_background_or_other": 11497199,
+    "share_model_target": 1e-05
+   },
+   "4": {
+    "points": 1079193,
+    "model_target": 33851,
+    "model_background_or_other": 1045342,
+    "share_model_target": 0.03137
+   },
+   "5": {
+    "points": 4635738,
+    "model_target": 4503438,
+    "model_background_or_other": 132300,
+    "share_model_target": 0.97146
+   },
+   "6": {
+    "points": 1269117,
+    "model_target": 109911,
+    "model_background_or_other": 1159206,
+    "share_model_target": 0.0866
+   },
+   "7": {
+    "points": 441,
+    "model_target": 0,
+    "model_background_or_other": 441,
+    "share_model_target": 0.0
+   },
+   "9": {
+    "points": 52066,
+    "model_target": 0,
+    "model_background_or_other": 52066,
+    "share_model_target": 0.0
+   },
+   "17": {
+    "points": 541,
+    "model_target": 224,
+    "model_background_or_other": 317,
+    "share_model_target": 0.41405
+   },
+   "18": {
+    "points": 20265,
+    "model_target": 0,
+    "model_background_or_other": 20265,
+    "share_model_target": 0.0
+   },
+   "20": {
+    "points": 3157,
+    "model_target": 0,
+    "model_background_or_other": 3157,
+    "share_model_target": 0.0
+   }
+  },
+  "model": {
+   "path": "H:\\lidar\\models\\Tree_point_classification.dlpk",
+   "bytes": 14517540,
+   "sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e"
+  },
+  "processed_extent": null,
+  "comparison_extent": null
+ },
+ "key_numbers": {
+  "our_5_called_background_by_tree_model": {
+   "background": 132300,
+   "of": 4635738
+  },
+  "our_6_called_tree_by_tree_model": {
+   "tree": 109911,
+   "of": 1269117
+  }
+ },
+ "status": "verified_inference",
+ "interpretation": "Class disagreement with pretrained models; not independently labelled accuracy."
+}

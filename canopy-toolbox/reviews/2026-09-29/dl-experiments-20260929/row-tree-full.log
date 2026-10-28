@@ -1,0 +1,11 @@
+2026-09-29T17:49:31.5434892-06:00 row tree-full start
+2026-09-29T17:49:33.7789546-06:00 full baseline MD5 before: 82787095336690D2909344206F9A80FC
+2026-09-29T17:49:35.8995876-06:00 row baseline H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las MD5 before: 82787095336690D2909344206F9A80FC
+2026-09-29T17:49:38.4019476-06:00 fresh copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-full\tree\12TVL2804.las MD5: 82787095336690D2909344206F9A80FC
+2026-09-29T17:49:38.4714354-06:00 GPU before: 1971 MiB, 0 %
+2026-09-29T17:49:38.4874213-06:00 dl_run: C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe -B V:\Developer\agol-python-scripts\.claude\worktrees\agent-a3b10aa15ccee097a\canopy-toolbox\reviews\2026-09-29\dl_run.py tree --source H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las --copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-full\tree\12TVL2804.las --output-root H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\tree-full --boundary 428000 4504000 429000 4505000 --batch 1
+2026-09-29T19:19:42.8815138-06:00 dl_run exit 0 after 5404.3 s
+2026-09-29T19:19:44.8750849-06:00 full baseline MD5 after: 82787095336690D2909344206F9A80FC
+2026-09-29T19:19:46.9140987-06:00 row baseline MD5 after: 82787095336690D2909344206F9A80FC
+2026-09-29T19:19:51.8703193-06:00 dl_compare exit 0
+2026-09-29T19:19:51.8722651-06:00 row tree-full done

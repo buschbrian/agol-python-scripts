@@ -1,0 +1,474 @@
+{
+  "status": "passed",
+  "source_id": "52b013e830b575984dc10a2e",
+  "working_files": 61,
+  "quality_status": "PRELIMINARY_UNVALIDATED",
+  "classes": {
+    "before": {
+      "1": 1189234812,
+      "2": 152831236,
+      "7": 94507,
+      "9": 98653,
+      "17": 492583,
+      "18": 2207558,
+      "20": 12199
+    },
+    "after": {
+      "1": 27385458,
+      "2": 152831236,
+      "3": 534284734,
+      "4": 86969521,
+      "5": 351648976,
+      "6": 188946123,
+      "7": 94507,
+      "9": 98653,
+      "17": 492583,
+      "18": 2207558,
+      "20": 12199
+    }
+  },
+  "height_thresholds": [
+    [
+      3,
+      0.5
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      5,
+      80
+    ]
+  ],
+  "height_protected_hashes": {
+    "12TVL2303": {
+      "tile": "12TVL2303",
+      "seconds": 10.703330039978027,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "47b604ab830b6df2c7bc8122bfb132bd42f86b8782918af4ff2e4907b4305f40",
+      "protected_sha256_after": "47b604ab830b6df2c7bc8122bfb132bd42f86b8782918af4ff2e4907b4305f40"
+    },
+    "12TVL2203": {
+      "tile": "12TVL2203",
+      "seconds": 9.902371406555176,
+      "provisional_height_labels_reset": 15884063,
+      "protected_sha256_before": "ea4bcf28ad2159174a27334b9a3474101ece49da62761c01b57eb0de7bbb3399",
+      "protected_sha256_after": "ea4bcf28ad2159174a27334b9a3474101ece49da62761c01b57eb0de7bbb3399"
+    },
+    "12TVL2204": {
+      "tile": "12TVL2204",
+      "seconds": 10.449159145355225,
+      "provisional_height_labels_reset": 14019854,
+      "protected_sha256_before": "b6c9ed23025a00aa06028f10d524707036960725a48069e49a57edd51d0f3ed9",
+      "protected_sha256_after": "b6c9ed23025a00aa06028f10d524707036960725a48069e49a57edd51d0f3ed9"
+    },
+    "12TVL2304": {
+      "tile": "12TVL2304",
+      "seconds": 10.644355297088623,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "6c1da397dae4955da9a400ddfeca970f32b271f4e8977373b824ed1b0b3175f6",
+      "protected_sha256_after": "6c1da397dae4955da9a400ddfeca970f32b271f4e8977373b824ed1b0b3175f6"
+    },
+    "12TVL2403": {
+      "tile": "12TVL2403",
+      "seconds": 10.422415018081665,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "ee1afb30d10b8d7c45419250175ac2382647b02ada52ea70210b9ba738319790",
+      "protected_sha256_after": "ee1afb30d10b8d7c45419250175ac2382647b02ada52ea70210b9ba738319790"
+    },
+    "12TVL2404": {
+      "tile": "12TVL2404",
+      "seconds": 10.875941514968872,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "69e5c438037af362fbac8e65204971b38f93e69484db84ddd852b5dfd873162a",
+      "protected_sha256_after": "69e5c438037af362fbac8e65204971b38f93e69484db84ddd852b5dfd873162a"
+    },
+    "12TVL2502": {
+      "tile": "12TVL2502",
+      "seconds": 10.266019821166992,
+      "provisional_height_labels_reset": 2545414,
+      "protected_sha256_before": "5663106c6af8ee0386c683034c7a6f4966ee54979419f75e74776ee436dd92cd",
+      "protected_sha256_after": "5663106c6af8ee0386c683034c7a6f4966ee54979419f75e74776ee436dd92cd"
+    },
+    "12TVL2503": {
+      "tile": "12TVL2503",
+      "seconds": 9.701744556427002,
+      "provisional_height_labels_reset": 14079887,
+      "protected_sha256_before": "06eaf319cbff9f00aa5cedeaef10123cbcd6e704361184b884338ee4a1dae25f",
+      "protected_sha256_after": "06eaf319cbff9f00aa5cedeaef10123cbcd6e704361184b884338ee4a1dae25f"
+    },
+    "12TVL2504": {
+      "tile": "12TVL2504",
+      "seconds": 9.432321548461914,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "fcc000b51c713d9a616ba9cd6389bfa343f383800bb4d995247c8febdf2b3802",
+      "protected_sha256_after": "fcc000b51c713d9a616ba9cd6389bfa343f383800bb4d995247c8febdf2b3802"
+    },
+    "12TVL2601": {
+      "tile": "12TVL2601",
+      "seconds": 9.468205451965332,
+      "provisional_height_labels_reset": 13459045,
+      "protected_sha256_before": "0c985b7680ef383799d9c40adf4180a5e9de2655dea415c8f9a15ff82d038752",
+      "protected_sha256_after": "0c985b7680ef383799d9c40adf4180a5e9de2655dea415c8f9a15ff82d038752"
+    },
+    "12TVL2602": {
+      "tile": "12TVL2602",
+      "seconds": 9.43674612045288,
+      "provisional_height_labels_reset": 2941677,
+      "protected_sha256_before": "fd7c11c0e8c8427d808e8f26508524337083c0a4f7143b63e8a4a35decd47399",
+      "protected_sha256_after": "fd7c11c0e8c8427d808e8f26508524337083c0a4f7143b63e8a4a35decd47399"
+    },
+    "12TVL2603": {
+      "tile": "12TVL2603",
+      "seconds": 9.400367259979248,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "b1d0de4ce9955c2c597c6f0405ecc7594287a08d0b3e9832f952822475495679",
+      "protected_sha256_after": "b1d0de4ce9955c2c597c6f0405ecc7594287a08d0b3e9832f952822475495679"
+    },
+    "12TVL2604": {
+      "tile": "12TVL2604",
+      "seconds": 9.722308158874512,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "2b55be625b8f27d955b68961c4febccef298806119b68f1e12efd9656a58c69d",
+      "protected_sha256_after": "2b55be625b8f27d955b68961c4febccef298806119b68f1e12efd9656a58c69d"
+    },
+    "12TVL2605": {
+      "tile": "12TVL2605",
+      "seconds": 9.224440813064575,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "67bb02831dcd8d84ef8dcb0134eb8e9c3ec43ca86a42d68025e8052d422f6951",
+      "protected_sha256_after": "67bb02831dcd8d84ef8dcb0134eb8e9c3ec43ca86a42d68025e8052d422f6951"
+    },
+    "12TVL2606": {
+      "tile": "12TVL2606",
+      "seconds": 9.086356163024902,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "b079ca68fd1e4771ce41a532f0f0b15e580742806b7915f6c2e7bb3d8e72fe11",
+      "protected_sha256_after": "b079ca68fd1e4771ce41a532f0f0b15e580742806b7915f6c2e7bb3d8e72fe11"
+    },
+    "12TVL2607": {
+      "tile": "12TVL2607",
+      "seconds": 6.455767393112183,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "ac9c182fec8a2d339290e433fda118f4360f5dfc6b0797699cba0b6f5e524965",
+      "protected_sha256_after": "ac9c182fec8a2d339290e433fda118f4360f5dfc6b0797699cba0b6f5e524965"
+    },
+    "12TVL2701": {
+      "tile": "12TVL2701",
+      "seconds": 11.037804365158081,
+      "provisional_height_labels_reset": 17966368,
+      "protected_sha256_before": "e1c7df45f75a0b96f3aa472bc9631b0c2b5173cb14256a3fa11ff3906ecc947f",
+      "protected_sha256_after": "e1c7df45f75a0b96f3aa472bc9631b0c2b5173cb14256a3fa11ff3906ecc947f"
+    },
+    "12TVL2702": {
+      "tile": "12TVL2702",
+      "seconds": 12.402325868606567,
+      "provisional_height_labels_reset": 2569568,
+      "protected_sha256_before": "37c391ea12df317338c118c5cb2764504ff679252e22135a90270b46c52c3180",
+      "protected_sha256_after": "37c391ea12df317338c118c5cb2764504ff679252e22135a90270b46c52c3180"
+    },
+    "12TVL2703": {
+      "tile": "12TVL2703",
+      "seconds": 12.112138748168945,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "8da54dc6f8ea6c92abd3fb0254a50e52165ba8f8d0e082d98016624047fbd632",
+      "protected_sha256_after": "8da54dc6f8ea6c92abd3fb0254a50e52165ba8f8d0e082d98016624047fbd632"
+    },
+    "12TVL2704": {
+      "tile": "12TVL2704",
+      "seconds": 11.707369327545166,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "d9db7bb1840dffb6772b4dc605112ca2bd71eba2ab4af057c5373d27e74ab2d0",
+      "protected_sha256_after": "d9db7bb1840dffb6772b4dc605112ca2bd71eba2ab4af057c5373d27e74ab2d0"
+    },
+    "12TVL2705": {
+      "tile": "12TVL2705",
+      "seconds": 11.997472763061523,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "2d81f563e1d14bf9bd71a9cb40e3e92fa234bb9f3341cf9fbbbfdc8036a02a30",
+      "protected_sha256_after": "2d81f563e1d14bf9bd71a9cb40e3e92fa234bb9f3341cf9fbbbfdc8036a02a30"
+    },
+    "12TVL2706": {
+      "tile": "12TVL2706",
+      "seconds": 11.981859922409058,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "b18d7efd8e7504076d4978c90efb83197b9f3993da607f949ee72ecc105e7453",
+      "protected_sha256_after": "b18d7efd8e7504076d4978c90efb83197b9f3993da607f949ee72ecc105e7453"
+    },
+    "12TVL2802": {
+      "tile": "12TVL2802",
+      "seconds": 12.301464080810547,
+      "provisional_height_labels_reset": 2929064,
+      "protected_sha256_before": "a5b47aaa66fb778ee4fd5a995bac36cb56bf2931976603094d460fc4c662cca1",
+      "protected_sha256_after": "a5b47aaa66fb778ee4fd5a995bac36cb56bf2931976603094d460fc4c662cca1"
+    },
+    "12TVL2803": {
+      "tile": "12TVL2803",
+      "seconds": 12.923081398010254,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "64db50976d3ed19c415b96877ba9262a3839973e3561605f29bfcdc95ae4a3e8",
+      "protected_sha256_after": "64db50976d3ed19c415b96877ba9262a3839973e3561605f29bfcdc95ae4a3e8"
+    },
+    "12TVL2804": {
+      "tile": "12TVL2804",
+      "seconds": 11.980321407318115,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "ac2131b88d1393c8c3a1ad2ba07509e10b385a1acdc2513efebbcec91a4d2dd5",
+      "protected_sha256_after": "ac2131b88d1393c8c3a1ad2ba07509e10b385a1acdc2513efebbcec91a4d2dd5"
+    },
+    "12TVL2805": {
+      "tile": "12TVL2805",
+      "seconds": 12.544185876846313,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "3bb2ae61a5c3e2d74ae4a59bf99913c10ace3676200d0842c9ce4af02731b16d",
+      "protected_sha256_after": "3bb2ae61a5c3e2d74ae4a59bf99913c10ace3676200d0842c9ce4af02731b16d"
+    },
+    "12TVL2806": {
+      "tile": "12TVL2806",
+      "seconds": 12.468203067779541,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "8b03fd7e1f362a4868f0e558a20519093edd6273b76c0812bd09cf416a1749a0",
+      "protected_sha256_after": "8b03fd7e1f362a4868f0e558a20519093edd6273b76c0812bd09cf416a1749a0"
+    },
+    "12TVL2902": {
+      "tile": "12TVL2902",
+      "seconds": 9.749509811401367,
+      "provisional_height_labels_reset": 2501265,
+      "protected_sha256_before": "d4cc8ac97a770795dda8c8fc4f2c1ee9375cdd507826684354902028b1ed408a",
+      "protected_sha256_after": "d4cc8ac97a770795dda8c8fc4f2c1ee9375cdd507826684354902028b1ed408a"
+    },
+    "12TVL2904": {
+      "tile": "12TVL2904",
+      "seconds": 9.662900924682617,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "bbd41da0a1ee3c629390a1f54f84cd18632296352ffb543e58add9a6e828cbdb",
+      "protected_sha256_after": "bbd41da0a1ee3c629390a1f54f84cd18632296352ffb543e58add9a6e828cbdb"
+    },
+    "12TVL2905": {
+      "tile": "12TVL2905",
+      "seconds": 9.61813759803772,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "130f35a91931f55879e51c120b1335fe1bbdc21d7cdbcc130393f6fd00db67f4",
+      "protected_sha256_after": "130f35a91931f55879e51c120b1335fe1bbdc21d7cdbcc130393f6fd00db67f4"
+    },
+    "12TVL2906": {
+      "tile": "12TVL2906",
+      "seconds": 10.185558080673218,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "5d1ae0ca7b5ed003975a5cac0e13ce2382b4c65959c3b0ad1de697d6555bbac6",
+      "protected_sha256_after": "5d1ae0ca7b5ed003975a5cac0e13ce2382b4c65959c3b0ad1de697d6555bbac6"
+    },
+    "12TVL2907": {
+      "tile": "12TVL2907",
+      "seconds": 6.69921088218689,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "b2261fba1f32ddd2a4165c6170fcec32c6876ff462346206b66a2cf8f32ace78",
+      "protected_sha256_after": "b2261fba1f32ddd2a4165c6170fcec32c6876ff462346206b66a2cf8f32ace78"
+    },
+    "12TVL3004": {
+      "tile": "12TVL3004",
+      "seconds": 10.06515121459961,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "64146814757af9e2af48b648ce0275abe1204c20f68e2e4ee30b8b549bdcda1b",
+      "protected_sha256_after": "64146814757af9e2af48b648ce0275abe1204c20f68e2e4ee30b8b549bdcda1b"
+    },
+    "12TVL3005": {
+      "tile": "12TVL3005",
+      "seconds": 11.499624490737915,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "aa37783c031728ced38ca8ad29f7e16916c10d30d4a7509a74e20bbbc4df79c6",
+      "protected_sha256_after": "aa37783c031728ced38ca8ad29f7e16916c10d30d4a7509a74e20bbbc4df79c6"
+    },
+    "12TVL3006": {
+      "tile": "12TVL3006",
+      "seconds": 10.68065619468689,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "6cea1046b0f66edbbc9d11508788d73eb606bb2530958499fb0a99b06c469c43",
+      "protected_sha256_after": "6cea1046b0f66edbbc9d11508788d73eb606bb2530958499fb0a99b06c469c43"
+    },
+    "12TVL3007": {
+      "tile": "12TVL3007",
+      "seconds": 6.258436679840088,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "0115532436bffd91fe2410ccdc9392b5973cf92584e1301a27ecadc7d4a4de83",
+      "protected_sha256_after": "0115532436bffd91fe2410ccdc9392b5973cf92584e1301a27ecadc7d4a4de83"
+    },
+    "12TVL3101": {
+      "tile": "12TVL3101",
+      "seconds": 11.0059494972229,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "6ae89ca892c997a3d090bf709096493b96110d05f1117f4d726d877ca8cd839c",
+      "protected_sha256_after": "6ae89ca892c997a3d090bf709096493b96110d05f1117f4d726d877ca8cd839c"
+    },
+    "12TVL3102": {
+      "tile": "12TVL3102",
+      "seconds": 11.60866904258728,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "1b40d76d24d48dfa044250343c8808e12e3713aa979402d0b1f35c76589e6301",
+      "protected_sha256_after": "1b40d76d24d48dfa044250343c8808e12e3713aa979402d0b1f35c76589e6301"
+    },
+    "12TVL3104": {
+      "tile": "12TVL3104",
+      "seconds": 11.021734714508057,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "1c786ef341f24cbfd5966380db1c17956eb0ae480a9bddb3f3bf6d5efecf5831",
+      "protected_sha256_after": "1c786ef341f24cbfd5966380db1c17956eb0ae480a9bddb3f3bf6d5efecf5831"
+    },
+    "12TVL3105": {
+      "tile": "12TVL3105",
+      "seconds": 11.460901498794556,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "34fed1697d29e9425e862ada3ad9af646e53209f4fdd6dabc95abcf9734d5069",
+      "protected_sha256_after": "34fed1697d29e9425e862ada3ad9af646e53209f4fdd6dabc95abcf9734d5069"
+    },
+    "12TVL3107": {
+      "tile": "12TVL3107",
+      "seconds": 6.897595405578613,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "9a14569d44a388837392e0be13c890d0fc18205fa2f01c7b002ed485fa4adb01",
+      "protected_sha256_after": "9a14569d44a388837392e0be13c890d0fc18205fa2f01c7b002ed485fa4adb01"
+    },
+    "12TVL3106": {
+      "tile": "12TVL3106",
+      "seconds": 11.767223119735718,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "8c276a57f5855411560caf76eac7fc955b17c1d802f929d28d11cbfcd5cb7214",
+      "protected_sha256_after": "8c276a57f5855411560caf76eac7fc955b17c1d802f929d28d11cbfcd5cb7214"
+    },
+    "12TVL3201": {
+      "tile": "12TVL3201",
+      "seconds": 11.53362512588501,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "ce18c36529688896b5ae40ea6e72e61ab576b1d47790d5a91e55c7f4291c1063",
+      "protected_sha256_after": "ce18c36529688896b5ae40ea6e72e61ab576b1d47790d5a91e55c7f4291c1063"
+    },
+    "12TVL3202": {
+      "tile": "12TVL3202",
+      "seconds": 12.180347442626953,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "d95b1ba234bc8eae2435b3e1d4c45dc3cb1501a8c9d9267f9f935e70c474197c",
+      "protected_sha256_after": "d95b1ba234bc8eae2435b3e1d4c45dc3cb1501a8c9d9267f9f935e70c474197c"
+    },
+    "12TVL3203": {
+      "tile": "12TVL3203",
+      "seconds": 11.668287754058838,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "b9a5dd9f14f0aaf3425e86468f477224e8f5daf7e32d9af3a7a78def23da5345",
+      "protected_sha256_after": "b9a5dd9f14f0aaf3425e86468f477224e8f5daf7e32d9af3a7a78def23da5345"
+    },
+    "12TVL3204": {
+      "tile": "12TVL3204",
+      "seconds": 10.847354888916016,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "cf329fd6063267a5e9f126d0289f539d0cbb58e19275a80941f5dfe3afc9b087",
+      "protected_sha256_after": "cf329fd6063267a5e9f126d0289f539d0cbb58e19275a80941f5dfe3afc9b087"
+    },
+    "12TVL3205": {
+      "tile": "12TVL3205",
+      "seconds": 10.621066570281982,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "9c742f00f42b043ab34ffe029479ecfc85d0d3ec0bdc7c54751097cefa62a6a1",
+      "protected_sha256_after": "9c742f00f42b043ab34ffe029479ecfc85d0d3ec0bdc7c54751097cefa62a6a1"
+    },
+    "12TVL3206": {
+      "tile": "12TVL3206",
+      "seconds": 11.200380802154541,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "54f0cf4aad2853d5e88249227b362490887d44c994633b61bde4adea07a40e64",
+      "protected_sha256_after": "54f0cf4aad2853d5e88249227b362490887d44c994633b61bde4adea07a40e64"
+    },
+    "12TVL3207": {
+      "tile": "12TVL3207",
+      "seconds": 5.413785457611084,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "6b433fe27530e2d588e4d4c72c582941e47bd2b6fc59ff901ef29bedfd59125b",
+      "protected_sha256_after": "6b433fe27530e2d588e4d4c72c582941e47bd2b6fc59ff901ef29bedfd59125b"
+    },
+    "12TVL3301": {
+      "tile": "12TVL3301",
+      "seconds": 16.715584993362427,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "70b82a0ec558225f12ad7cb98872588af9ebdedc0f2ccbc2cc9f43f58495d0e4",
+      "protected_sha256_after": "70b82a0ec558225f12ad7cb98872588af9ebdedc0f2ccbc2cc9f43f58495d0e4"
+    },
+    "12TVL3302": {
+      "tile": "12TVL3302",
+      "seconds": 15.023831367492676,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "eb462f3a89f849138abb9bb828bb27fbd7a86293e36926b510448b5a4de4bb83",
+      "protected_sha256_after": "eb462f3a89f849138abb9bb828bb27fbd7a86293e36926b510448b5a4de4bb83"
+    },
+    "12TVL3303": {
+      "tile": "12TVL3303",
+      "seconds": 12.979813575744629,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "ab4b46c88e249fe6d3095e725c250750250bce30984a73809881d68f846d340e",
+      "protected_sha256_after": "ab4b46c88e249fe6d3095e725c250750250bce30984a73809881d68f846d340e"
+    },
+    "12TVL3304": {
+      "tile": "12TVL3304",
+      "seconds": 12.335551023483276,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "1e1e4ab740b6b1214be9ebfce902e57169b72e3413b8f545f7fa5d1f58f7bc1f",
+      "protected_sha256_after": "1e1e4ab740b6b1214be9ebfce902e57169b72e3413b8f545f7fa5d1f58f7bc1f"
+    },
+    "12TVL3305": {
+      "tile": "12TVL3305",
+      "seconds": 12.512678384780884,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "abe19a2f27a64af5c81928ce4c86c3596cffd269d05abeaeadf815f39f604267",
+      "protected_sha256_after": "abe19a2f27a64af5c81928ce4c86c3596cffd269d05abeaeadf815f39f604267"
+    },
+    "12TVL3306": {
+      "tile": "12TVL3306",
+      "seconds": 11.961465835571289,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "800b28b24b35b0716647fd5789238df717939c2d96e1407f469f27c936e5711f",
+      "protected_sha256_after": "800b28b24b35b0716647fd5789238df717939c2d96e1407f469f27c936e5711f"
+    },
+    "12TVL3307": {
+      "tile": "12TVL3307",
+      "seconds": 6.091381549835205,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "748f49446a1b180710a481b73820c5904d739c95affd0029492ac66c29a014a5",
+      "protected_sha256_after": "748f49446a1b180710a481b73820c5904d739c95affd0029492ac66c29a014a5"
+    },
+    "12TVL3402": {
+      "tile": "12TVL3402",
+      "seconds": 6.028430223464966,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "4ee3bb53bdd8b287667a1b69367f1a8fe4ea376c5a589555d663880af77eaa99",
+      "protected_sha256_after": "4ee3bb53bdd8b287667a1b69367f1a8fe4ea376c5a589555d663880af77eaa99"
+    },
+    "12TVL3403": {
+      "tile": "12TVL3403",
+      "seconds": 5.529464483261108,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "564d6484b29c4bc012ec8cea049ac24f525b0bf8d5f4ba9798b661df72caa7bd",
+      "protected_sha256_after": "564d6484b29c4bc012ec8cea049ac24f525b0bf8d5f4ba9798b661df72caa7bd"
+    },
+    "12TVL3404": {
+      "tile": "12TVL3404",
+      "seconds": 6.08086085319519,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "d46e7b911042c1849c80b6cba356eb2e1e9836ca21af3a8cff7af1b8aa7b9502",
+      "protected_sha256_after": "d46e7b911042c1849c80b6cba356eb2e1e9836ca21af3a8cff7af1b8aa7b9502"
+    },
+    "12TVL3405": {
+      "tile": "12TVL3405",
+      "seconds": 5.860482215881348,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "81546cff6083d9b3571adcc95d3d2f327f07e022e545b422dee960d87166b972",
+      "protected_sha256_after": "81546cff6083d9b3571adcc95d3d2f327f07e022e545b422dee960d87166b972"
+    },
+    "12TVL3406": {
+      "tile": "12TVL3406",
+      "seconds": 6.0774195194244385,
+      "provisional_height_labels_reset": 0,
+      "protected_sha256_before": "9ca7a81a20bb66ab3a95a55a7ec04cf0de516601368a13a23b8e257bcd29a11a",
+      "protected_sha256_after": "9ca7a81a20bb66ab3a95a55a7ec04cf0de516601368a13a23b8e257bcd29a11a"
+    }
+  },
+  "ground_retry": "12TVL3204: nine intersecting neighbors, recomputed statistics, same ground method"
+}

@@ -1,0 +1,155 @@
+{
+ "window": [
+  427774.0,
+  4503821.0,
+  428774.0,
+  4504821.0
+ ],
+ "treetops": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\pilot.gdb\\treetops",
+  "features_in": 11216,
+  "levels": [
+   14,
+   17
+  ],
+  "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\treetops.aprx",
+  "vtpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\millcreek_treetops.vtpk",
+  "vtpk_bytes": 3872111,
+  "started": "2026-10-22T22:19:21",
+  "finished": "2026-10-22T22:19:57",
+  "package": {
+   "entries": 284,
+   "bundles": 16,
+   "lods": [
+    0,
+    17
+   ],
+   "min_scale": 18055.9548215,
+   "max_scale": 2256.9943525,
+   "style_layers": [
+    {
+     "id": "Treetops by height/2 to 5 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/5 to 10 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/10 to 15 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/15 to 20 m",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Treetops by height/20 m and over",
+     "type": "circle",
+     "minzoom": 14,
+     "maxzoom": null
+    }
+   ]
+  }
+ },
+ "crowns": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\pilot.gdb\\crowns",
+  "features_in": 8614,
+  "levels": [
+   14,
+   17
+  ],
+  "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\crowns.aprx",
+  "vtpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\millcreek_crowns.vtpk",
+  "vtpk_bytes": 4697293,
+  "started": "2026-10-22T22:20:10",
+  "finished": "2026-10-22T22:20:22",
+  "package": {
+   "entries": 285,
+   "bundles": 17,
+   "lods": [
+    0,
+    17
+   ],
+   "min_scale": 18055.9548215,
+   "max_scale": 2256.9943525,
+   "style_layers": [
+    {
+     "id": "Crowns by treetop height/2 to 5 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/5 to 10 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/10 to 15 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/15 to 20 m",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Crowns by treetop height/20 m and over",
+     "type": "fill",
+     "minzoom": 14,
+     "maxzoom": null
+    }
+   ]
+  }
+ },
+ "contours": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\pilot.gdb\\contours",
+  "features_in": 527,
+  "levels": [
+   10,
+   17
+  ],
+  "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\contours.aprx",
+  "vtpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\pilot\\millcreek_contours.vtpk",
+  "vtpk_bytes": 1873461,
+  "started": "2026-10-22T22:20:25",
+  "finished": "2026-10-22T22:20:44",
+  "package": {
+   "entries": 269,
+   "bundles": 1,
+   "lods": [
+    0,
+    17
+   ],
+   "min_scale": 288895.2771445,
+   "max_scale": 2256.9943525,
+   "style_layers": [
+    {
+     "id": "Contours (2 m)",
+     "type": "line",
+     "minzoom": 14,
+     "maxzoom": null
+    },
+    {
+     "id": "Index contours (10 m)",
+     "type": "line",
+     "minzoom": 10,
+     "maxzoom": null
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,119 @@
+diff --git a/myria3d/pctl/datamodule/hdf5.py b/myria3d/pctl/datamodule/hdf5.py
+index b1dd36e..8da8d94 100644
+--- a/myria3d/pctl/datamodule/hdf5.py
++++ b/myria3d/pctl/datamodule/hdf5.py
+@@ -188,8 +188,10 @@ class HDF5LidarDataModule(LightningDataModule):
+         return GeometricNoneProofDataloader(
+             dataset=self.predict_dataset,
+             batch_size=self.batch_size,
+-            num_workers=1,  # always 1 because this is an iterable dataset
+-            prefetch_factor=self.prefetch_factor,
++            # Windows starts workers by pickling the transforms, and TargetTransform holds a local lambda that cannot
++            # be pickled. An iterable dataset runs fine in the main process, so no worker is used (prefetch must be None).
++            num_workers=0,
++            prefetch_factor=None,
+         )
+ 
+     def _visualize_graph(self, data, color=None):
+diff --git a/myria3d/pctl/dataset/utils.py b/myria3d/pctl/dataset/utils.py
+index 73ede8e..f2dc4af 100644
+--- a/myria3d/pctl/dataset/utils.py
++++ b/myria3d/pctl/dataset/utils.py
+@@ -68,6 +68,6 @@ def get_metadata(las_path: str) -> dict:
+     Returns:
+         dict : the metadata.
+     """
+-    pipeline = pdal.Reader.las(filename=las_path).pipeline()
++    pipeline = pdal.Reader.las(filename=las_path, threads=1).pipeline()
+     pipeline.execute()
+     return pipeline.metadata
+@@ -88,6 +88,7 @@ def get_pdal_reader(las_path: str, epsg: str) -> pdal.Reader.las:
+         # epsg can be added as a number like "2154" or as a string like "EPSG:2154"
+         return pdal.Reader.las(
+             filename=las_path,
++            threads=1,  # Prediction indices require identical order on both LAS reads.
+             nosrs=True,
+             override_srs=f"EPSG:{epsg}" if str(epsg).isdigit() else epsg,
+         )
+@@ -95,6 +96,6 @@ def get_pdal_reader(las_path: str, epsg: str) -> pdal.Reader.las:
+     try :
+         if get_metadata(las_path)['metadata']['readers.las']['srs']['compoundwkt']:
+             # read the lidar file with pdal default
+-            return pdal.Reader.las(filename=las_path)
++            return pdal.Reader.las(filename=las_path, threads=1)
+     except Exception:
+         pass  # we will go to the "raise exception" anyway
+diff --git a/myria3d/models/interpolation.py b/myria3d/models/interpolation.py
+index f7bcd4c..100fbe7 100644
+--- a/myria3d/models/interpolation.py
++++ b/myria3d/models/interpolation.py
+@@ -9,6 +9,7 @@ from torch.distributions import Categorical
+ from torch_scatter import scatter_sum
+
+ from pdaltools import las_info
++from myria3d.models.las_writer import write_prediction_las
+
+ from myria3d.pctl.dataset.utils import get_pdal_info_metadata, get_pdal_reader
+
+@@ -179,8 +180,12 @@ class Interpolator:
+         log.info(f"Updated LAS ({basename}) will be saved to: \n {output_dir}\n")
+         log.info("Saving...")
+         writer_params["extra_dims"] = "all"
+-        pipeline = pdal.Writer.las(filename=out_f, **writer_params).pipeline(las)
+-        pipeline.execute()
++        channels = list(self.probas_to_save)
++        if self.predicted_classification_channel:
++            channels.append(self.predicted_classification_channel)
++        if self.entropy_channel:
++            channels.append(self.entropy_channel)
++        write_prediction_las(raw_path, las, out_f, channels)
+         log.info("Saved.")
+
+         return out_f
+diff --git a/myria3d/models/las_writer.py b/myria3d/models/las_writer.py
+new file mode 100644
+--- /dev/null
++++ b/myria3d/models/las_writer.py
+@@ -0,0 +1,42 @@
++"""Write model channels in chunks, preserving the source LAS and point index."""
++from pathlib import Path
++
++import numpy as np
++
++
++def write_prediction_las(source, values, output, channels, chunk_size=200_000):
++    import laspy
++
++    output = Path(output)
++    partial = output.with_name(output.name + '.partial.las')
++    if output.exists() or partial.exists():
++        raise FileExistsError(output)
++    channels = list(channels)
++    if len(set(channels)) != len(channels) or chunk_size < 1:
++        raise ValueError('Expected unique channels and a positive chunk size')
++    with laspy.open(source) as reader:
++        if len(values) != reader.header.point_count:
++            raise ValueError('Prediction point count differs from source')
++        header = reader.header.copy()
++        source_dims = list(header.point_format.dimension_names)
++        for channel in channels:
++            if channel in source_dims or channel not in values.dtype.names:
++                raise ValueError(f'Invalid model channel {channel}')
++            header.add_extra_dim(laspy.ExtraBytesParams(name=channel, type=values.dtype.fields[channel][0]))
++        index = 0
++        with laspy.open(partial, mode='w', header=header) as writer:
++            for original in reader.chunk_iterator(chunk_size):
++                stop = index + len(original)
++                predicted = values[index:stop]
++                for las_name, pdal_name in (('x', 'X'), ('y', 'Y'), ('z', 'Z'), ('gps_time', 'GpsTime')):
++                    if not np.array_equal(np.asarray(original[las_name]), predicted[pdal_name]):
++                        raise ValueError(f'Prediction point order or source {las_name} differs')
++                result = laspy.ScaleAwarePointRecord.zeros(len(original), header=header)
++                for dimension in source_dims:
++                    result[dimension] = original[dimension]
++                for channel in channels:
++                    result[channel] = predicted[channel]
++                writer.write_points(result)
++                index = stop
++    partial.replace(output)
++    return str(output)

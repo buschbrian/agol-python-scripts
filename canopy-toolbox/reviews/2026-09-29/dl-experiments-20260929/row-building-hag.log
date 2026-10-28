@@ -1,0 +1,12 @@
+2026-09-29T20:26:11.1836007-06:00 row building-hag start
+2026-09-29T20:26:13.2142131-06:00 full baseline MD5 before: 82787095336690D2909344206F9A80FC
+2026-09-29T20:26:15.3683414-06:00 row baseline H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las MD5 before: 82787095336690D2909344206F9A80FC
+2026-09-29T20:26:18.4940712-06:00 fresh copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\building-hag\building\12TVL2804.las MD5: 82787095336690D2909344206F9A80FC
+2026-09-29T20:26:18.5565694-06:00 GPU before: 1420 MiB, 6 %
+2026-09-29T20:26:18.5658250-06:00 dl_run: C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe -B V:\Developer\agol-python-scripts\.claude\worktrees\agent-a3b10aa15ccee097a\canopy-toolbox\reviews\2026-09-29\dl_run.py building --source H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las --copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\building-hag\building\12TVL2804.las --output-root H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\building-hag --boundary 428000 4504000 429000 4505000 --batch 1 --reference-height H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\building-hag\reference\ground.tif
+2026-09-29T20:43:47.9267684-06:00 dl_run exit 0 after 1049.4 s
+2026-09-29T20:43:50.3161924-06:00 full baseline MD5 after: 82787095336690D2909344206F9A80FC
+2026-09-29T20:43:52.3876000-06:00 row baseline MD5 after: 82787095336690D2909344206F9A80FC
+2026-09-29T20:43:52.4217034-06:00 reference raster SHA-256 after: 808B0591FF7E46B5A4B77981F90052F57005FE7689078B2911B88DA2C14A6654
+2026-09-29T20:43:57.4280439-06:00 dl_compare exit 0
+2026-09-29T20:43:57.4350554-06:00 row building-hag done

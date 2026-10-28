@@ -1,0 +1,113 @@
+{
+ "renderer": {
+  "type": "classBreaks",
+  "classificationMethod": "esriClassifyManual",
+  "minValue": 0,
+  "valueExpression": "var z = $feature.ZONE_ID;\nif (z == 'CITY' || z == 'OWNERSHIP:PUBLIC_GOVERNMENT') { return null; }\nreturn $feature.CANOPY_PCT;",
+  "valueExpressionTitle": "Canopy cover (% of the area the lidar observed)",
+  "classBreakInfos": [
+   {
+    "classMaxValue": 10,
+    "label": "Under 10%",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      247,
+      252,
+      185,
+      210
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       255,
+       255,
+       255,
+       160
+      ],
+      "width": 0.5
+     }
+    }
+   },
+   {
+    "classMaxValue": 20,
+    "label": "10% to 20%",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      173,
+      221,
+      142,
+      210
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       255,
+       255,
+       255,
+       160
+      ],
+      "width": 0.5
+     }
+    }
+   },
+   {
+    "classMaxValue": 30,
+    "label": "20% to 30%",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      65,
+      171,
+      93,
+      210
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       255,
+       255,
+       255,
+       160
+      ],
+      "width": 0.5
+     }
+    }
+   },
+   {
+    "classMaxValue": 100,
+    "label": "30% and over",
+    "symbol": {
+     "type": "esriSFS",
+     "style": "esriSFSSolid",
+     "color": [
+      0,
+      90,
+      50,
+      210
+     ],
+     "outline": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       255,
+       255,
+       255,
+       160
+      ],
+      "width": 0.5
+     }
+    }
+   }
+  ]
+ },
+ "transparency": 0,
+ "labelingInfo": null
+}

@@ -1,0 +1,28 @@
+{
+ "lyrx": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\hillshade_identity.lyrx",
+ "display_raster": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\hillshade_display.tif",
+ "terrain_source": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\terrain_shifted.vrt",
+ "source_shift": {
+  "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+  "dx_m": -0.9822994708636902,
+  "dy_m": 0.6847654322254253,
+  "shift_m": 1.1974,
+  "max_departure_mm": 0.8136,
+  "grid": "9 x 9"
+ },
+ "capped_at": 252,
+ "capped_cells": {
+  "cells": 133813488,
+  "changed": 241733
+ },
+ "default_colorizer": {
+  "stretchType": "PercentMinimumMaximum",
+  "standardDeviationParam": 2,
+  "resamplingType": "NearestNeighbor"
+ },
+ "colorizer": "no stretch (eNone), no gamma, bilinear resampling",
+ "aoi": {
+  "hillshade": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\aoi.gdb\\hillshade",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\tiles-20261023\\layer\\aoi.gdb\\terrain"
+ }
+}

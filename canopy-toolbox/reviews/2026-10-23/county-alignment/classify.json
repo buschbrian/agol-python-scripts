@@ -1,0 +1,32 @@
+{
+ "classes": {
+  "ALIGNED": 17928,
+  "UNCERTAIN": 3348,
+  "REAL_OFFSET": 507,
+  "REBUILT_OR_GONE": 254,
+  "SYSTEMATIC": 5
+ },
+ "local_shift": {
+  "candidates_explained": 0,
+  "by_group": {},
+  "pairs_explained": 0,
+  "pairs_explained_ids": []
+ },
+ "best_fit": {
+  "candidates_explained": 4,
+  "by_group": {
+   "attached": 3,
+   "attached_lower": 1
+  },
+  "pairs_explained": 2,
+  "pairs_explained_ids": [
+   "PR725966",
+   "PR733201"
+  ]
+ },
+ "before": {
+  "candidates": 6213,
+  "attached": 3675,
+  "pairs": 458
+ }
+}

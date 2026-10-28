@@ -1,0 +1,45 @@
+{
+ "schema": "terrain-city/1",
+ "started": "2026-10-22T20:10:46",
+ "finished": "2026-10-22T21:06:47",
+ "input_context": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_context.tif",
+ "input_city": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\terrain_m.tif",
+ "cell_size_m": 0.5,
+ "neighborhood_radius_m": 3.0,
+ "tpi_radius_m": 10.0,
+ "contour_interval_m": 2.0,
+ "index_contour_m": 10.0,
+ "hillshade": {
+  "azimuth": 315,
+  "altitude": 45,
+  "shadows": false,
+  "z_factor": 1
+ },
+ "method": "canopy.planning.terrain's calls (drainage left out) on the unmasked mosaic; SetNull outside the city terrain",
+ "context_cells": {
+  "valid": 200540655,
+  "complete": 198724185
+ },
+ "warning": "Unvalidated LiDAR planning estimates. Building heights are roof-minus-terrain statistics, not code-defined heights. Drainage is terrain-only screening; storm drains, culverts, rainfall, and downstream controls are not modeled.",
+ "outputs": {
+  "slope_degrees": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\slope_degrees.tif",
+  "slope_percent": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\slope_percent.tif",
+  "aspect_degrees": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\aspect_degrees.tif",
+  "profile_curvature": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\profile_curvature.tif",
+  "tangential_curvature": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\tangential_curvature.tif",
+  "hillshade": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\hillshade.tif",
+  "terrain_position_m": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\terrain_position_m.tif",
+  "terrain_neighborhood_complete": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\terrain_neighborhood_complete.tif",
+  "contours": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\terrain.gdb\\contours"
+ },
+ "context_outputs": {
+  "slope_degrees": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\slope_degrees.tif",
+  "slope_percent": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\slope_percent.tif",
+  "aspect_degrees": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\aspect_degrees.tif",
+  "profile_curvature": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\profile_curvature.tif",
+  "tangential_curvature": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\tangential_curvature.tif",
+  "hillshade": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\hillshade.tif",
+  "terrain_position_m": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\terrain_position_m.tif",
+  "terrain_neighborhood_complete": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\context\\terrain_neighborhood_complete.tif"
+ }
+}

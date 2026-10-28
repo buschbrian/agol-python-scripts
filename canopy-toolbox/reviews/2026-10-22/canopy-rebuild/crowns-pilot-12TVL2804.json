@@ -1,0 +1,33 @@
+{
+ "tile": "12TVL2804",
+ "runs": {
+  "oct8": {
+   "cells": 4000000,
+   "treetops": 14578,
+   "crowns": 9719,
+   "trees_review": 14578,
+   "crown_status": {
+    "CROWN_TOO_SMALL": 4859,
+    "ESTIMATED": 9719
+   },
+   "crown_area_m2": {
+    "total": 234599.8,
+    "median": 14.0
+   }
+  },
+  "rebuilt": {
+   "cells": 4000000,
+   "treetops": 11701,
+   "crowns": 9083,
+   "trees_review": 11701,
+   "crown_status": {
+    "CROWN_TOO_SMALL": 2618,
+    "ESTIMATED": 9083
+   },
+   "crown_area_m2": {
+    "total": 232180.2,
+    "median": 15.5
+   }
+  }
+ }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "e1df868f92034a409fb2d60123eec04d",
+  "modified": 1793041068000,
+  "access": "private",
+  "protected": false,
+  "url": null,
+  "title": "Millcreek 3D buildings from LiDAR outlines (2023 lidar), planning estimate",
+  "snippet": "Unvalidated planning estimate: buildings outlined and modelled from the 2023 lidar alone (roofer LoD 2.2), with county footprints only where trees hide a roof. Heights and areas in metres and feet.",
+  "description": "<p>OUTLINE_SOURCE says whether a building's outline comes from the LiDAR or, under trees, from the county footprint; COMPARE_CLASS and COUNTY_IDS say how the LiDAR outline compares with the county layer. Every metric field has a feet twin (_FT, _SQFT, _CUFT). LiDAR outlines follow the roof edge (eaves), a median 0.39 m outside the county wall lines. Heights NAVD88 (see the scene-layers README).</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See ../2026-10-26/lidar-footprints/README.md.</p>",
+  "tags": [
+    "Millcreek",
+    "lidar",
+    "2023",
+    "planning estimate",
+    "buildings",
+    "3D",
+    "scene",
+    "roof forms",
+    "lidar outlines"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "data": "C:\\Users\\Brian\\AppData\\Local\\Temp\\buildings_lidar_first.slpk"
+}

@@ -1,0 +1,100 @@
+{
+ "window": [
+  433149.0,
+  4505133.0,
+  434149.0,
+  4506133.0
+ ],
+ "features": 4014,
+ "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\slope-tiles-20261022\\pilot\\slope_classes_pilot.aprx",
+ "vtpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\slope-tiles-20261022\\pilot\\slope_classes_pilot.vtpk",
+ "vtpk_bytes": 4554630,
+ "tiling_started": "2026-10-22T22:12:41",
+ "tiling_finished": "2026-10-22T22:13:43",
+ "package": {
+  "entries": 285,
+  "bundles": 17,
+  "spatial_reference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  },
+  "lods": [
+   0,
+   17
+  ],
+  "min_scale": 295828763.7957775,
+  "max_scale": 2256.9943525,
+  "full_extent": {
+   "xmin": -12444556.770012155,
+   "ymin": 4967368.677845886,
+   "xmax": -12443227.461674467,
+   "ymax": 4968703.13560388,
+   "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+   }
+  },
+  "style_layers": [
+   {
+    "id": "Slope classes/Under 10%/1",
+    "type": "fill",
+    "filter": [
+     "==",
+     "_symbol",
+     0
+    ],
+    "fill": "#FFFFB2"
+   },
+   {
+    "id": "Slope classes/10% to 15%/1",
+    "type": "fill",
+    "filter": [
+     "==",
+     "_symbol",
+     1
+    ],
+    "fill": "#FED976"
+   },
+   {
+    "id": "Slope classes/15% to 20%/1",
+    "type": "fill",
+    "filter": [
+     "==",
+     "_symbol",
+     2
+    ],
+    "fill": "#FEB24C"
+   },
+   {
+    "id": "Slope classes/20% to 25%/1",
+    "type": "fill",
+    "filter": [
+     "==",
+     "_symbol",
+     3
+    ],
+    "fill": "#FD8D3C"
+   },
+   {
+    "id": "Slope classes/25% to 30%/1",
+    "type": "fill",
+    "filter": [
+     "==",
+     "_symbol",
+     4
+    ],
+    "fill": "#F03B20"
+   },
+   {
+    "id": "Slope classes/30% and over/1",
+    "type": "fill",
+    "filter": [
+     "==",
+     "_symbol",
+     5
+    ],
+    "fill": "#BD0026"
+   }
+  ]
+ }
+}

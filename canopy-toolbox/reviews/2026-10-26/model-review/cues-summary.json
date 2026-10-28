@@ -1,0 +1,122 @@
+{
+ "trees": {
+  "models": 119410,
+  "flagged_any": 47755,
+  "flags": {
+   "SHRUB_LIKE": 3499,
+   "BRUSH_LIKE": 1162,
+   "ROOF_OR_SHED": 5267,
+   "MERGED_LIKE": 29622,
+   "STEEP_GROUND": 22134
+  },
+  "thresholds": {
+   "SHRUB_LIKE": "height < 3 m",
+   "BRUSH_LIKE": "height < 6 m, crown >= 40 m2, height < half the crown width",
+   "ROOF_OR_SHED": ">= 25% of outline over a county footprint or a LiDAR candidate, or trunk inside a county footprint",
+   "MERGED_LIKE": ">= 6 October 22 treetops inside, or crown wider than 15 m",
+   "STEEP_GROUND": "terrain relief >= 3 m under the crown's bounding box"
+  },
+  "against_brians_answers": {
+   "none": {
+    "ONE_TREE": 1,
+    "NOT_A_TREE": 2,
+    "PART_OF_TREE": 2
+   }
+  }
+ },
+ "redeveloped_sites": {
+  "sites": 12,
+  "county_footprints_in_them": 25,
+  "rule": "LiDAR candidate >= 100 m2 with >= 2 county footprints within 3 m whose 2023 roof support is under 80%",
+  "largest": [
+   {
+    "CAND_ID": "LC01423",
+    "COUNTY_IDS": "721499;733329;738630",
+    "N_COUNTY": 3,
+    "FOOTPRINT_M2": 353.46122328564974,
+    "HEIGHT_P50_M": 27.5247802734375,
+    "PARCEL_ID": "16283040280000"
+   },
+   {
+    "CAND_ID": "LC03940",
+    "COUNTY_IDS": "722897;732072;738115",
+    "N_COUNTY": 3,
+    "FOOTPRINT_M2": 1306.4728256124638,
+    "HEIGHT_P50_M": 19.6190185546875,
+    "PARCEL_ID": "16313510430000"
+   },
+   {
+    "CAND_ID": "LC01389",
+    "COUNTY_IDS": "721499;737907",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 422.15497172042814,
+    "HEIGHT_P50_M": 27.574951171875,
+    "PARCEL_ID": "16283040280000"
+   },
+   {
+    "CAND_ID": "LC01475",
+    "COUNTY_IDS": "725197;731328",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 164.1800565585971,
+    "HEIGHT_P50_M": 8.99755859375,
+    "PARCEL_ID": "16283300190000"
+   },
+   {
+    "CAND_ID": "LC01583",
+    "COUNTY_IDS": "726398;734168",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 336.0235513929104,
+    "HEIGHT_P50_M": 5.7012939453125,
+    "PARCEL_ID": "16264070080000"
+   },
+   {
+    "CAND_ID": "LC02023",
+    "COUNTY_IDS": "722879;736130",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 369.07079305297,
+    "HEIGHT_P50_M": 7.46533203125,
+    "PARCEL_ID": "16294800250000"
+   },
+   {
+    "CAND_ID": "LC02846",
+    "COUNTY_IDS": "722996;740656",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 562.2889431168275,
+    "HEIGHT_P50_M": 9.9154052734375,
+    "PARCEL_ID": "16321760120000"
+   },
+   {
+    "CAND_ID": "LC03581",
+    "COUNTY_IDS": "727174;735131",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 1072.5,
+    "HEIGHT_P50_M": 6.80096435546875,
+    "PARCEL_ID": "15364770400000"
+   },
+   {
+    "CAND_ID": "LC04902",
+    "COUNTY_IDS": "721376;722106",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 126.91426991094524,
+    "HEIGHT_P50_M": 4.9595947265625,
+    "PARCEL_ID": "22051300200000"
+   },
+   {
+    "CAND_ID": "LC05635",
+    "COUNTY_IDS": "722789;732721",
+    "N_COUNTY": 2,
+    "FOOTPRINT_M2": 296.3666382925222,
+    "HEIGHT_P50_M": 6.5811767578125,
+    "PARCEL_ID": "22054320010000"
+   }
+  ],
+  "lc01389_in_list": true,
+  "md733329_in_a_site": true,
+  "roof_queue_items_in_sites": 12,
+  "county_no_roof_queue_items_in_sites": 7
+ },
+ "answers": {
+  "total": 104,
+  "with_notes": 0
+ }
+}

@@ -1,0 +1,147 @@
+{
+ "schema": "vector-tiles-datum/1",
+ "tiles": "4 nearest the city centre at the deepest level",
+ "transformation_tested": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+ "packages": {
+  "slope_classes": {
+   "tiles": [
+    [
+     16,
+     24646,
+     12406
+    ],
+    [
+     16,
+     24645,
+     12406
+    ],
+    [
+     16,
+     24646,
+     12405
+    ],
+    [
+     16,
+     24646,
+     12407
+    ]
+   ],
+   "tile_vertices": 139373,
+   "source_vertices": 275112,
+   "transformed": {
+    "median_m": 0.06,
+    "p90_m": 0.083
+   },
+   "untransformed": {
+    "median_m": 0.732,
+    "p90_m": 1.548
+   },
+   "carries": "WGS_1984_(ITRF08)_To_NAD_1983_2011"
+  },
+  "treetops": {
+   "tiles": [
+    [
+     16,
+     24645,
+     12406
+    ],
+    [
+     16,
+     24646,
+     12405
+    ],
+    [
+     16,
+     24645,
+     12405
+    ],
+    [
+     16,
+     24645,
+     12407
+    ]
+   ],
+   "tile_vertices": 11551,
+   "source_vertices": 16011,
+   "transformed": {
+    "median_m": 0.059,
+    "p90_m": 0.083
+   },
+   "untransformed": {
+    "median_m": 1.576,
+    "p90_m": 1.636
+   },
+   "carries": "WGS_1984_(ITRF08)_To_NAD_1983_2011"
+  },
+  "crowns": {
+   "tiles": [
+    [
+     16,
+     24646,
+     12406
+    ],
+    [
+     16,
+     24645,
+     12406
+    ],
+    [
+     16,
+     24646,
+     12405
+    ],
+    [
+     16,
+     24646,
+     12407
+    ]
+   ],
+   "tile_vertices": 233264,
+   "source_vertices": 437232,
+   "transformed": {
+    "median_m": 0.061,
+    "p90_m": 0.086
+   },
+   "untransformed": {
+    "median_m": 0.734,
+    "p90_m": 1.524
+   },
+   "carries": "WGS_1984_(ITRF08)_To_NAD_1983_2011"
+  },
+  "contours": {
+   "tiles": [
+    [
+     16,
+     24645,
+     12406
+    ],
+    [
+     16,
+     24645,
+     12407
+    ],
+    [
+     16,
+     24644,
+     12406
+    ],
+    [
+     16,
+     24644,
+     12407
+    ]
+   ],
+   "tile_vertices": 18090,
+   "source_vertices": 261424,
+   "transformed": {
+    "median_m": 0.064,
+    "p90_m": 0.087
+   },
+   "untransformed": {
+    "median_m": 0.946,
+    "p90_m": 1.559
+   },
+   "carries": "WGS_1984_(ITRF08)_To_NAD_1983_2011"
+  }
+ }
+}

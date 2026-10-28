@@ -1,0 +1,143 @@
+{
+ "status": "complete",
+ "method": "class-2 ground of COPIED prepared LAS files, LasDatasetToRaster TRIANGULATION NATURAL_NEIGHBOR WINDOW_SIZE MINIMUM 1",
+ "extent": [
+  428000.0,
+  4504000.0,
+  429000.0,
+  4505000.0
+ ],
+ "context_m": 50,
+ "cell_size": 0.5,
+ "copies": [
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2703.las",
+    "bytes": 2572108,
+    "sha256": "21bd96bb09576b5793b3cab142a0004f2acb226b2cd0c670ad12e84a0e290f5d"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2703.las",
+    "bytes": 2572108,
+    "sha256": "21bd96bb09576b5793b3cab142a0004f2acb226b2cd0c670ad12e84a0e290f5d"
+   }
+  },
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2704.las",
+    "bytes": 53853148,
+    "sha256": "2eb884e7d0936c01f1ff3daec1bdd0f8a8334fa5ddba85e5789d19e3c50835e5"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2704.las",
+    "bytes": 53853148,
+    "sha256": "2eb884e7d0936c01f1ff3daec1bdd0f8a8334fa5ddba85e5789d19e3c50835e5"
+   }
+  },
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2705.las",
+    "bytes": 3379558,
+    "sha256": "ed5d2a68a3e63120c92d719e3230d634682c006e93dbbebd655b9d58820b0abb"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2705.las",
+    "bytes": 3379558,
+    "sha256": "ed5d2a68a3e63120c92d719e3230d634682c006e93dbbebd655b9d58820b0abb"
+   }
+  },
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2803.las",
+    "bytes": 40144858,
+    "sha256": "bcaad567eb1745bbfb65532a24035760d3b88a74d52f82aa6acf54db14d240e2"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2803.las",
+    "bytes": 40144858,
+    "sha256": "bcaad567eb1745bbfb65532a24035760d3b88a74d52f82aa6acf54db14d240e2"
+   }
+  },
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+   }
+  },
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2805.las",
+    "bytes": 44955508,
+    "sha256": "1859349f52a4a1a5a7f3d1018451a3cbbc0e629d80e9a4f3013429b60f51bb59"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2805.las",
+    "bytes": 44955508,
+    "sha256": "1859349f52a4a1a5a7f3d1018451a3cbbc0e629d80e9a4f3013429b60f51bb59"
+   }
+  },
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2904.las",
+    "bytes": 21283618,
+    "sha256": "f123907c821144bd42686efc6452fb14bcb92794622a1059908894a59278aea2"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2904.las",
+    "bytes": 21283618,
+    "sha256": "f123907c821144bd42686efc6452fb14bcb92794622a1059908894a59278aea2"
+   }
+  },
+  {
+   "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2905.las",
+    "bytes": 939838,
+    "sha256": "be6ccff9db3b91f91c5fc8e985d10ce53294e29918fc43a71416a70ab4ad3c2d"
+   },
+   "copy": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\points\\12TVL2905.las",
+    "bytes": 939838,
+    "sha256": "be6ccff9db3b91f91c5fc8e985d10ce53294e29918fc43a71416a70ab4ad3c2d"
+   }
+  }
+ ],
+ "spatial_reference": {
+  "name": "NAD_1983_2011_UTM_Zone_12N",
+  "factory_code": 6341,
+  "linear_unit": "Meter",
+  "vertical": "NAVD88 height - Geoid18 (Meters)",
+  "vertical_unit": "meter"
+ },
+ "raster_extent": [
+  427950.0,
+  4503950.0,
+  429050.0,
+  4505050.0
+ ],
+ "cell": [
+  0.5,
+  0.5
+ ],
+ "shape": [
+  2200,
+  2200
+ ],
+ "nodata_cells_total": 5235,
+ "z_min": 1318.828857421875,
+ "z_max": 1371.6986083984375,
+ "complete_margin_beyond_boundary_m": 24.5,
+ "raster_spatial_reference": 6341,
+ "raster": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-hag\\reference\\ground.tif",
+  "bytes": 13377158,
+  "sha256": "808b0591ff7e46b5a4b77981f90052f57005fe7689078b2911b88da2c14a6654"
+ },
+ "read_only": true,
+ "elapsed_seconds": 71.0
+}

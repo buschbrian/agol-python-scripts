@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Hexagon 15 cm (UGRC Discover)",
+    "date": "2024-07-07",
+    "url": "https://discover.agrc.utah.gov/login/path/YOUR-QUAD-WORD/tiles/LAYER-NAME/{z}/{x}/{y}",
+    "maxNativeZoom": 20,
+    "attribution": "(c) 2024 HxGN Content Program, Hexagon"
+  },
+  {
+    "name": "Nearmap (survey nearest the lidar)",
+    "type": "wms",
+    "date": "YYYY-MM-DD of the survey",
+    "url": "YOUR NEARMAP CUSTOM WMS URL FROM MYACCOUNT (it contains your API key)",
+    "layers": "THE SURVEY LAYER NAME (list them with nearmap_historical_wms.py --url-file FILE list)",
+    "attribution": "(c) Nearmap"
+  }
+]

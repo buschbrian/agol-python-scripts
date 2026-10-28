@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LiDAR-First Roofs Pilot</title>
+  <!-- ArcGIS Maps SDK for JavaScript, the 5.1 line as the October 24 viewer. The packages stay on 127.0.0.1 (serve_scene.py). -->
+  <script type="module" src="https://js.arcgis.com/5.1/"></script>
+  <style>
+    :root { --bg: #fff; --fg: #1f2328; --muted: #59636e; --line: #d1d9e0; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --line: #3d444d; }
+    }
+    :root[data-theme="dark"] { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --line: #3d444d; }
+    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--fg); font: 13px/1.4 system-ui, sans-serif; }
+    header { min-height: 50px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+             padding: 8px 16px; border-bottom: 1px solid var(--line); }
+    header h1 { font-size: 15px; margin: 0; }
+    select, button { font: inherit; padding: 3px 8px; }
+    .legend span { display: inline-flex; align-items: center; gap: 4px; margin-right: 12px; }
+    .legend i { width: 12px; height: 12px; border: 1px solid var(--line); display: inline-block; }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; height: calc(100vh - 124px); }
+    .panel { position: relative; min-height: 0; overflow: hidden; }
+    .panel > div.view { position: absolute; inset: 0; }
+    .label { position: absolute; left: 8px; top: 8px; z-index: 2; padding: 3px 8px; border-radius: 4px;
+             background: rgba(255,255,255,.9); color: #1f2328; font-weight: 600; pointer-events: none; }
+    footer { min-height: 56px; padding: 6px 16px; border-top: 1px solid var(--line); color: var(--muted); }
+    footer b { color: var(--fg); }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; grid-auto-rows: 55vh; height: auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Millcreek 3D roofs: from county footprints vs from the LiDAR</h1>
+    <label>Bookmark <select id="bookmarks"></select></label>
+    <button id="prev" type="button">Previous</button>
+    <button id="next" type="button">Next</button>
+    <label><input id="imagery" type="checkbox" checked> Imagery</label>
+    <span class="legend"><span><i style="background:#cfd5db"></i>roofer LoD2.2</span><span><i style="background:#5b8fd6"></i>Esri LOD2.0</span><span><i style="background:#f0a24b"></i>Esri LOD1.2</span></span>
+  </header>
+  <main>
+    <section class="panel"><div class="label">Now: three-way hybrid on the county footprints (public)</div><div class="view" id="now"></div></section>
+    <section class="panel"><div class="label">Rebuilt citywide: roofer LoD2.2 on the LiDAR-first outlines</div><div class="view" id="lidar"></div></section>
+  </main>
+  <footer id="caption">Loading the scene layers.</footer>
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>

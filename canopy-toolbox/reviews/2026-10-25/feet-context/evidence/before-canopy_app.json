@@ -1,0 +1,61 @@
+{
+  "id": "9d70110793004a0ca24b88ea6f008cf5",
+  "modified": 1792806039000,
+  "access": "private",
+  "url": "https://Millcrk.maps.arcgis.com/apps/instant/sidebar/index.html?appid=9d70110793004a0ca24b88ea6f008cf5",
+  "props": {
+    "title": "Millcreek Tree Canopy",
+    "snippet": "Tree canopy cover by ownership zone (25.59% of the city), estimated tree crowns and lidar treetops by height. Unvalidated planning estimates; not surveyed or field-verified.",
+    "description": "<p><strong>Planning estimates.</strong> Everything here comes from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023) and the City of Millcreek's processing of it. These are unvalidated planning estimates, not surveyed or field-verified data. Do not use them for engineering, legal or property decisions.</p><p>Tree canopy cover by ownership zone (25.59% of the city), estimated tree crowns and lidar treetops by height. Crowns and treetops appear as you zoom in. Treetops are lidar detections, not a tree census.</p><p>Built on the web map <a href='https://www.arcgis.com/home/item.html?id=e5efa719691045849108553394448f35' rel='nofollow ugc'>e5efa719691045849108553394448f35</a>; each layer's own page describes how it was made, its fields and its limits.</p><p><b>Questions or corrections:</b> City of Millcreek GIS.</p>",
+    "tags": [
+      "Millcreek",
+      "Utah",
+      "Salt Lake County",
+      "lidar",
+      "2023 lidar",
+      "3DEP",
+      "planning estimate",
+      "app",
+      "tree canopy",
+      "urban forest",
+      "trees"
+    ],
+    "accessInformation": "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)",
+    "licenseInfo": "<p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed, engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check conditions on the ground before relying on them. Credit \"City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)\" when you use or show them.</p>"
+  },
+  "data": {
+    "source": "f6a143fb90c44d7b860f623f1a23c322",
+    "folderId": "a9667e5253d044fc8fe0fdc79085c693",
+    "values": {
+      "splash": true,
+      "splashTitle": "Millcreek Tree Canopy",
+      "splashContent": "<p>Tree canopy cover by ownership zone (25.59% of the city), estimated tree crowns and lidar treetops by height. Crowns and treetops appear as you zoom in. Treetops are lidar detections, not a tree census.</p><p><strong>Planning estimates.</strong> Everything here comes from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023) and the City of Millcreek's processing of it. These are unvalidated planning estimates, not surveyed or field-verified data. Do not use them for engineering, legal or property decisions.</p><p>More about the data, how it was made and its limits is in each layer's description.</p>",
+      "splashButtonText": "Open",
+      "theme": "light",
+      "home": true,
+      "fullScreen": true,
+      "share": true,
+      "measure": true,
+      "legend": true,
+      "search": true,
+      "popupHover": false,
+      "webmap": "e5efa719691045849108553394448f35",
+      "title": "Millcreek Tree Canopy",
+      "header": true,
+      "titleLink": "",
+      "splashOnStart": true,
+      "legendOpenAtStart": true,
+      "searchOpenAtStart": false,
+      "mapZoom": true,
+      "zoomControls": true,
+      "scalebar": true,
+      "locate": false,
+      "basemapToggle": false,
+      "exportToPDF": false,
+      "keyboardShortcuts": true,
+      "applyCustomTheme": false,
+      "fullAppSettings": false,
+      "mapA11yDesc": "Millcreek Tree Canopy: Tree canopy cover by ownership zone (25.59% of the city), estimated tree crowns and lidar treetops by height. Crowns and treetops appear as you zoom in. Treetops are lidar detections, not a tree census."
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "checks": {
+    "dtm": {
+      "cells": 160000,
+      "exactly_equal": true
+    },
+    "dsm": {
+      "cells": 160000,
+      "exactly_equal": true
+    },
+    "chm": {
+      "cells": 160000,
+      "exactly_equal": true
+    },
+    "support": {
+      "cells": 160000,
+      "exactly_equal": true
+    },
+    "observed": {
+      "cells": 160000,
+      "exactly_equal": true
+    },
+    "building": {
+      "cells": 160000,
+      "exactly_equal": true
+    },
+    "occlusion": {
+      "cells": 160000,
+      "exactly_equal": true
+    }
+  },
+  "working_points_unchanged": true,
+  "extent": [
+    422450,
+    4504400,
+    422650,
+    4504600
+  ],
+  "cell_m": 0.5,
+  "point_file": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2204.las"
+}

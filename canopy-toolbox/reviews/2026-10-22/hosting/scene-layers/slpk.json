@@ -1,0 +1,65 @@
+{
+ "schema": "hosting-slpk/1",
+ "created": "2026-10-22T22:39:01",
+ "massing": "H:\\lidar\\2023-salt-lake-valley\\runs\\massing-20261022",
+ "coordinate_system": "WGS84 (4326)",
+ "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+ "packages": {
+  "lod12": {
+   "slpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\scene-layers-20261022\\buildings_lod12.slpk",
+   "seconds": 11,
+   "mb": 9.2,
+   "source_features": 21561,
+   "source_fp_id_sum": 237493394,
+   "package": {
+    "fp_id_count": 21561,
+    "fp_id_sum": 237493394,
+    "nodes": 51,
+    "spatial_reference": {
+     "wkid": 4326,
+     "latestWkid": 4326,
+     "vcsWkid": 5773,
+     "latestVcsWkid": 5773
+    },
+    "node_centre_z_range": [
+     1307.5051349120954,
+     1679.1007084592752
+    ]
+   },
+   "validation_report": "H:\\lidar\\2023-salt-lake-valley\\runs\\scene-layers-20261022\\lod12-validation.json",
+   "validation_messages": [
+    "Warning : [geometries/0] : vertex normals may be required by Esri products",
+    "Information : Resources 1,51,49,0,2107,0,43,0 were successfully loaded"
+   ],
+   "all_features_in_package": true
+  },
+  "lod20": {
+   "slpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\scene-layers-20261022\\buildings_lod20.slpk",
+   "seconds": 15,
+   "mb": 19.3,
+   "source_features": 21561,
+   "source_fp_id_sum": 237493394,
+   "package": {
+    "fp_id_count": 21561,
+    "fp_id_sum": 237493394,
+    "nodes": 130,
+    "spatial_reference": {
+     "wkid": 4326,
+     "latestWkid": 4326,
+     "vcsWkid": 5773,
+     "latestVcsWkid": 5773
+    },
+    "node_centre_z_range": [
+     1304.2090341929263,
+     1710.5079543053112
+    ]
+   },
+   "validation_report": "H:\\lidar\\2023-salt-lake-valley\\runs\\scene-layers-20261022\\lod20-validation.json",
+   "validation_messages": [
+    "Warning : [geometries/0] : vertex normals may be required by Esri products",
+    "Information : Resources 1,130,129,0,5547,0,43,0 were successfully loaded"
+   ],
+   "all_features_in_package": true
+  }
+ }
+}

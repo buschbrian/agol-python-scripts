@@ -1,0 +1,149 @@
+{
+ "schema": "roofer-city-convert/1",
+ "started": "2026-10-24T14:05:06",
+ "collect": {
+  "files": 52,
+  "city_objects": {
+   "Building": 21562,
+   "BuildingPart": 21448
+  },
+  "vertices": 915763,
+  "worst_vertex_move_m": 0.0005,
+  "duplicate_buildings_dropped": [
+   {
+    "id": "15132",
+    "kept": "standard",
+    "dropped": "skip"
+   },
+   {
+    "id": "10421",
+    "kept": "standard",
+    "dropped": "skip"
+   },
+   {
+    "id": "1970",
+    "kept": "standard",
+    "dropped": "skip"
+   },
+   {
+    "id": "11835",
+    "kept": "standard",
+    "dropped": "skip"
+   },
+   {
+    "id": "5987",
+    "kept": "standard",
+    "dropped": "skip"
+   },
+   {
+    "id": "12681",
+    "kept": "standard",
+    "dropped": "skip"
+   },
+   {
+    "id": "659",
+    "kept": "standard",
+    "dropped": "skip"
+   }
+  ]
+ },
+ "obj": {
+  "buildings": 21407,
+  "triangle": 21407,
+  "earcut": [],
+  "crashed_calls": [
+   {
+    "tag": "12TVL2204_t",
+    "buildings": 73,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2204_ta",
+    "buildings": 36,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2503_t",
+    "buildings": 512,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2503_tb",
+    "buildings": 256,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2503_tbb",
+    "buildings": 128,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2803_t",
+    "buildings": 656,
+    "returncode": 3221225477
+   }
+  ]
+ },
+ "obj_triangulation": {
+  "buildings": 21407,
+  "triangle": 21407,
+  "earcut": [],
+  "crashed_calls": [
+   {
+    "tag": "12TVL2204_t",
+    "buildings": 73,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2204_ta",
+    "buildings": 36,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2503_t",
+    "buildings": 512,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2503_tb",
+    "buildings": 256,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2503_tbb",
+    "buildings": 128,
+    "returncode": 3221225477
+   },
+   {
+    "tag": "12TVL2803_t",
+    "buildings": 656,
+    "returncode": 3221225477
+   }
+  ]
+ },
+ "features": 21407,
+ "unique_fp_ids": 21407,
+ "multi_part_buildings": 29,
+ "checks": {
+  "extent_vs_cityjson": {
+   "checked": 21407,
+   "worst_extent_difference_m": 0.0009,
+   "over_2mm": 0,
+   "examples": []
+  },
+  "closed_solids_in_obj": {
+   "buildings": 21407,
+   "with_open_or_nonmanifold_edges": 174,
+   "examples": [
+    "10021",
+    "10067",
+    "10224",
+    "10353",
+    "10419"
+   ]
+  }
+ },
+ "raster": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-v2-20261024\\convert\\roofer_lod22_z.tif",
+ "feature_class": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-v2-20261024\\convert\\roofer.gdb\\roofer_lod22",
+ "finished": "2026-10-24T14:17:27"
+}

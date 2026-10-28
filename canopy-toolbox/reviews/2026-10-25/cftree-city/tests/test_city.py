@@ -1,0 +1,119 @@
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+
+module_path=Path(__file__).resolve().parents[1]/'run_city.py'
+spec=importlib.util.spec_from_file_location('cityrun',module_path)
+city=importlib.util.module_from_spec(spec);spec.loader.exec_module(city)
+
+
+class Ownership(unittest.TestCase):
+    def test_common_border_has_one_owner_and_stable_id(self):
+        left=[0,0,1000,1000];right=[1000,0,2000,1000];point=[1000.,500.,12.]
+        self.assertFalse(city.owns(left,point));self.assertTrue(city.owns(right,point))
+        self.assertEqual(city.model_id(point),city.model_id(tuple(point)))
+        self.assertNotEqual(city.model_id(point),city.model_id([1000.,500.,12.01]))
+
+    def test_halo_requires_neighbors_without_distant_tiles(self):
+        a=dict(id='a',core=[0,0,1000,1000]);b=dict(id='b',core=[1000,0,2000,1000]);d=dict(id='d',core=[2000,0,3000,1000])
+        self.assertEqual(city.tile_neighbors(a,[a,b,d],100),['a','b'])
+
+
+class Scheduling(unittest.TestCase):
+    def test_additional_worker_requires_slot_ram_and_disk(self):
+        self.assertTrue(city.can_start(1,2,8,20,7,15))
+        self.assertFalse(city.can_start(2,2,8,20,7,15))
+        self.assertFalse(city.can_start(1,2,6,20,7,15))
+        self.assertFalse(city.can_start(1,2,8,14,7,15))
+        self.assertTrue(city.can_start(0,1,7,15,7,15))
+
+
+class AtomicStatus(unittest.TestCase):
+    @unittest.skipUnless(__import__('os').name=='nt','Windows sharing semantics')
+    def test_real_windows_reader_releases_rename_lock(self):
+        import ctypes
+        from ctypes import wintypes
+        import threading
+        import time
+        kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+        kernel.CreateFileW.argtypes=[wintypes.LPCWSTR,wintypes.DWORD,wintypes.DWORD,
+            ctypes.c_void_p,wintypes.DWORD,wintypes.DWORD,wintypes.HANDLE]
+        kernel.CreateFileW.restype=wintypes.HANDLE
+        kernel.CloseHandle.argtypes=[wintypes.HANDLE]
+        with tempfile.TemporaryDirectory() as name:
+            target=Path(name)/'status.json'; target.write_text('{"state":"old"}')
+            handle=kernel.CreateFileW(str(target),0x80000000,3,None,3,128,None)
+            self.assertNotEqual(handle,ctypes.c_void_p(-1).value)
+            def release():
+                time.sleep(.15); kernel.CloseHandle(handle)
+            closer=threading.Thread(target=release); closer.start()
+            try: city.atomic(target,{'state':'complete'})
+            finally: closer.join()
+            self.assertEqual(json.loads(target.read_text()),{'state':'complete'})
+
+    def test_short_sharing_violation_preserves_old_status_then_retries(self):
+        with tempfile.TemporaryDirectory() as name:
+            target=Path(name)/'status.json'
+            target.write_text('{"state":"old"}')
+            replace=city.os.replace; attempts=[]
+            def transient(source,destination):
+                attempts.append(source)
+                if len(attempts)==1:
+                    self.assertEqual(json.loads(target.read_text()),{'state':'old'})
+                    raise PermissionError('Windows sharing violation')
+                return replace(source,destination)
+            with patch.object(city.os,'replace',side_effect=transient),patch.object(city.time,'sleep'):
+                city.atomic(target,{'state':'complete','models':162})
+            self.assertEqual(len(attempts),2)
+            self.assertEqual(json.loads(target.read_text()),{'state':'complete','models':162})
+
+    def test_persistent_lock_fails_without_overwriting_previous_status(self):
+        with tempfile.TemporaryDirectory() as name:
+            target=Path(name)/'status.json'
+            target.write_text('{"state":"old"}')
+            with patch.object(city.os,'replace',side_effect=PermissionError('Still locked')) as replace,\
+                 patch.object(city.time,'sleep'):
+                with self.assertRaises(PermissionError): city.atomic(target,{'state':'complete'})
+            self.assertGreater(replace.call_count,1)
+            self.assertLessEqual(replace.call_count,8)
+            self.assertEqual(json.loads(target.read_text()),{'state':'old'})
+
+
+class Staging(unittest.TestCase):
+    def test_class_flags_ground_support_and_immutable_source(self):
+        import laspy
+        import numpy as np
+        import rasterio
+        from rasterio.transform import from_origin
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);laspath=root/'source.las';terrain=root/'terrain.tif'
+            las=laspy.create(point_format=8,file_version='1.4')
+            las.x=[.25,.75,1.25,.25,.75,1.25,1.75,.25]
+            las.y=[1.75,1.75,1.75,.75,.75,.75,.75,.25]
+            las.z=[103,101,110,105,105,105,105,102]
+            las.classification=[5,5,5,6,5,5,5,3]
+            las.withheld=[0,0,0,0,1,0,0,0]
+            las.overlap=[0,0,0,0,0,1,0,0]
+            las.synthetic=[0,0,0,0,0,0,1,0]
+            las.write(laspath)
+            digest=hashlib.sha256(laspath.read_bytes()).hexdigest(); stat=laspath.stat()
+            with rasterio.open(terrain,'w',driver='GTiff',width=2,height=2,count=1,dtype='float32',
+                crs='EPSG:6341',transform=from_origin(0,2,1,1),nodata=-9999) as target:
+                target.write(np.array([[100,-9999],[100,100]],dtype='float32'),1)
+            config=dict(run_dir=str(root),terrain=str(terrain),min_height_m=2,config_hash='test')
+            tile=dict(id='test',path=str(laspath),bytes=stat.st_size,mtime_ns=stat.st_mtime_ns,point_count=8,core=[0,0,2,2])
+            city.stage(config,tile)
+            points=np.load(root/'staged/test.npy')
+            np.testing.assert_allclose(points,[[.25,1.75,103],[.25,.25,102]])
+            self.assertEqual(hashlib.sha256(laspath.read_bytes()).hexdigest(),digest)
+            audit=json.loads((root/'staged/test.json').read_text())
+            self.assertEqual(audit['unknown_ground_points'],1)
+            city.stage(config,tile) # completed stage is resumable
+            np.testing.assert_array_equal(points,np.load(root/'staged/test.npy'))
+
+
+if __name__=='__main__':unittest.main()
