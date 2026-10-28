@@ -154,7 +154,10 @@ QUEUES.outlines2 = { ...QUEUES.outlines, question: "Red is the LiDAR outline (cu
     tangle_wait: [...reshaped, ["KEEP_UNITS", "Units: keep the county lines inside the LiDAR shape"]], decide_small: small, small_rest: small,
     check_county_kept: kept, auto_county_kept: kept, auto_county_gone: kept,
     decide_joins: [...QUEUES.outlines.answers, ["SPLIT_BUILDINGS", "Separate buildings: split the LiDAR outline"]],
-    joins_wait: [...QUEUES.outlines.answers, ["SPLIT_BUILDINGS", "Separate buildings: split the LiDAR outline"]] };
+    joins_wait: [...QUEUES.outlines.answers, ["SPLIT_BUILDINGS", "Separate buildings: split the LiDAR outline"]],
+    // October 27, after grading (grade_regrade.py)
+    answer_reshaped: reshaped, check_touching: small, touching_wait: small, rule_small_shed: small, rule_small_vehicle: small, auto_vehicles: small,
+    rule_joins_county: [...QUEUES.outlines.answers, ["SPLIT_BUILDINGS", "Separate buildings: split the LiDAR outline"]] };
 }
 const answersFor = (d) => { const q = QUEUES[d.queue]; return (q.byGroup && q.byGroup[d.group]) || q.answers; };
 const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attached: "Against a county building (other)",
@@ -173,23 +176,29 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       sample_tangle: "Sample: tangles", tangle: "Tangles (several of each)",
                       sample_county_only: "Sample: county footprint, no 2023 roof", county_only: "County footprint, no 2023 roof",
                       sample_lidar_only: "Sample: LiDAR building, no county footprint", lidar_only: "LiDAR building, no county footprint",
-                      decide_joins: "1 Decide: one LiDAR building over several county outlines (sample)",
+                      decide_joins: "1 Decide: one LiDAR building over several county outlines (sample, done)",
                       decide_reshaped: "2 Decide: reshaped, partly under trees (10-30% canopy, sample)",
                       decide_vehicles: "3 Decide: LiDAR-only, vehicle-shaped",
                       decide_small: "3 Decide: LiDAR-only under 20 m² (sample)",
                       decide_tangle: "4 Decide: tangles (sample)",
-                      check_county_kept: "5 Check: county outline kept under trees (sample)",
+                      check_county_kept: "5 Check: county outline kept under trees (sample, done)",
                       joins_wait: "Waits on 1: one LiDAR building over several county outlines",
                       reshaped_wait: "Waits on 2: reshaped, partly under trees",
                       auto_reshaped_lidar: "Rule: reshaped, open ground, LiDAR replaces",
                       auto_reshaped_trees: "Rule: reshaped under trees, keep the county outline",
                       auto_splits: "Rule: county outline over several LiDAR buildings, LiDAR replaces",
                       auto_county_gone: "Rule: county footprint, no roof, open ground: gone",
-                      auto_county_kept: "Rule: county footprint, no roof, under trees: keep",
+                      auto_county_kept: "Rule (checked by 5): county footprint, no roof, under trees: keep",
                       auto_lidar_only: "Rule: LiDAR-only building, added",
                       small_rest: "Rule after 4: LiDAR-only under 20 m²",
                       auto_vehicles: "Rule: LiDAR-only, vehicle-shaped: not a building",
-                      tangle_wait: "Waits on 4: tangles" };
+                      tangle_wait: "Waits on 4: tangles",
+                      answer_reshaped: "6 Answer each: reshaped, partly under trees (the other 42)",
+                      check_touching: "7 Check: small piece touching a building (sample)",
+                      touching_wait: "Waits on 7: small piece touching a building",
+                      rule_joins_county: "Rule from 1: one LiDAR building over several county outlines: keep the county",
+                      rule_small_shed: "Rule from 3: small, free-standing: shed",
+                      rule_small_vehicle: "Rule from 3: small, vehicle-shaped or in the street: vehicle" };
 
 const $ = (id) => document.getElementById(id);
 let index = null, byId = {}, answers = {}, list = [], pos = 0, current = null, map = null, layers = null, homeView = null;

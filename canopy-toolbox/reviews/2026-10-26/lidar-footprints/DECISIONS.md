@@ -5,6 +5,23 @@ The public buildings scene now shows the LiDAR-first buildings, with metres and 
 from the "Sample" group of that class in the review page's **LiDAR outlines vs county** queue (40 random items each),
 instead of item by item.
 
+## Graded halfway through the regrade, and the 137 items left (October 27)
+
+The October 26 tables below are superseded by this one. [grade_regrade.py](grade_regrade.py) turned Brian's 125
+regrade answers (groups 1 and 5 complete, 2 at 18, 3 at 24, 4 at 3) into decisions for all 5,926 outlines2 items in
+`city2/decisions.csv` (`BY`: Brian 125, rule 5,522, waiting 279), and regrouped the queue. Answers were not touched
+(`answers-before-grade.sha256`).
+
+| Review group | Items | What his answers said, and the rule |
+|---|---:|---|
+| 1 Joins (done) | 40 | 23 keep the county, 5 LiDAR, 4 edit, 5 "separate buildings / split" notes. Rule: the 550 waiting keep the county; about 1 in 4 of his sample wanted the LiDAR or a split, which the rule leaves as is |
+| 5 County kept under trees (done) | 40 | 29 keep (16 under trees, 12 small sheds, 1 offset), 5 drop. The rule keeping 449 stands |
+| 2 Reshaped, 10-30% canopy | 22 left | split 5, add roof 5, edit 2, county 2, LiDAR 2, shift 1: a different fix each time, so no rule |
+| 6 Answer each: reshaped (new) | 42 | The ones that waited on 2, now one by one |
+| 3 Small LiDAR-only | 16 left | Cues: touching a building of 40 m² or more, 3 of 5 part of it; vehicle-shaped (5.2 m+ long, 3.3 m or less wide, 3 m or less high) or in the street, 4 of 5 vehicles; free-standing, 8 of 12 sheds or buildings and 4 not a building. Rules: 679 sheds, 190 vehicles |
+| 7 Check: small piece touching a building (new) | 20 | Sample of 306 (136 small plus 145 of the October 26 "vehicle" rule, likely garage strips cut at a lot line, and 25 more). Default: join |
+| 4 Tangles | 37 left | 3 answers, all keep the county: too few; the 142 keep waiting |
+
 ## Rules from Brian's answers, and the 314 items left (October 26)
 
 Brian asked what he must answer so that the rest can be decided without reviewing everything.
