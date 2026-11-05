@@ -1,0 +1,100 @@
+{
+ "schema": "lidar-first-candidate/1",
+ "created": "2026-10-26T12:56:15",
+ "lidar_outline_parts": 23490,
+ "lidar_models": 23373,
+ "lidar_parts_without_a_model": 117,
+ "county_footprints_hidden_by_trees": 480,
+ "of_them_with_a_v2_model": 220,
+ "features": 23593,
+ "feature_class": "H:\\lidar\\2023-salt-lake-valley\\runs\\lidar-footprints-20261026\\roofer-city\\candidate.gdb\\buildings",
+ "units": {
+  "rule": "metres kept; feet added beside them in the same layer",
+  "pairs": [
+   [
+    "RF_RMSE_LOD22",
+    "RF_RMSE_LOD22_FT"
+   ],
+   [
+    "RF_H_GROUND",
+    "RF_H_GROUND_FT"
+   ],
+   [
+    "RF_H_ROOF_MAX",
+    "RF_H_ROOF_MAX_FT"
+   ],
+   [
+    "FOOTPRINT_M2",
+    "FOOTPRINT_SQFT"
+   ],
+   [
+    "ROOF_Z50_M",
+    "ROOF_Z50_FT"
+   ],
+   [
+    "GROUND_Z50_M",
+    "GROUND_Z50_FT"
+   ],
+   [
+    "HEIGHT_P50_M",
+    "HEIGHT_P50_FT"
+   ],
+   [
+    "HEIGHT_P95_M",
+    "HEIGHT_P95_FT"
+   ],
+   [
+    "ROOF_PLAN_M2",
+    "ROOF_PLAN_SQFT"
+   ],
+   [
+    "ROOF_AREA_M2",
+    "ROOF_AREA_SQFT"
+   ],
+   [
+    "RIDGE_HT_M",
+    "RIDGE_HT_FT"
+   ],
+   [
+    "EAVE_HT_M",
+    "EAVE_HT_FT"
+   ],
+   [
+    "BLDG_HT_M",
+    "BLDG_HT_FT"
+   ],
+   [
+    "FLAT_AREA_M2",
+    "FLAT_AREA_SQFT"
+   ],
+   [
+    "SOUTH_AREA_M2",
+    "SOUTH_AREA_SQFT"
+   ],
+   [
+    "EAST_AREA_M2",
+    "EAST_AREA_SQFT"
+   ],
+   [
+    "WEST_AREA_M2",
+    "WEST_AREA_SQFT"
+   ],
+   [
+    "NORTH_AREA_M2",
+    "NORTH_AREA_SQFT"
+   ],
+   [
+    "RF_VOLUME_M3",
+    "RF_VOLUME_CUFT"
+   ]
+  ],
+  "worst_round_trip": 3.637978807091713e-12
+ },
+ "slpk": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\lidar-footprints-20261026\\roofer-city\\buildings_lidar_first.slpk",
+  "mb": 32.9,
+  "validation_messages": [
+   "Information : Resources 1,248,246,0,16728,0,68,0 were successfully loaded"
+  ]
+ }
+}

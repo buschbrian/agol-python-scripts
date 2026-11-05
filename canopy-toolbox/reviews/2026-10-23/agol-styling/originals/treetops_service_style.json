@@ -1,0 +1,118 @@
+{
+ "version": 8,
+ "sprite": "../sprites/sprite",
+ "glyphs": "../fonts/{fontstack}/{range}.pbf",
+ "sources": {
+  "esri": {
+   "type": "vector",
+   "attribution": "Millcreek GIS from the 2023 Salt Lake Valley QL1 lidar",
+   "bounds": [
+    -111.921,
+    40.6589,
+    -111.776,
+    40.714
+   ],
+   "minzoom": 14,
+   "maxzoom": 17,
+   "scheme": "xyz",
+   "url": "../../"
+  }
+ },
+ "layers": [
+  {
+   "id": "Treetops by height/2 to 5 m",
+   "type": "circle",
+   "source": "esri",
+   "source-layer": "Treetops by height",
+   "filter": [
+    "==",
+    "_symbol",
+    2
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "circle-radius": 2.4,
+    "circle-color": "#FFFFCC",
+    "circle-stroke-color": "#3C3C3C",
+    "circle-stroke-width": 0.533333
+   }
+  },
+  {
+   "id": "Treetops by height/5 to 10 m",
+   "type": "circle",
+   "source": "esri",
+   "source-layer": "Treetops by height",
+   "filter": [
+    "==",
+    "_symbol",
+    3
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "circle-radius": 2.4,
+    "circle-color": "#C2E699",
+    "circle-stroke-color": "#3C3C3C",
+    "circle-stroke-width": 0.533333
+   }
+  },
+  {
+   "id": "Treetops by height/10 to 15 m",
+   "type": "circle",
+   "source": "esri",
+   "source-layer": "Treetops by height",
+   "filter": [
+    "==",
+    "_symbol",
+    4
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "circle-radius": 2.4,
+    "circle-color": "#78C679",
+    "circle-stroke-color": "#3C3C3C",
+    "circle-stroke-width": 0.533333
+   }
+  },
+  {
+   "id": "Treetops by height/15 to 20 m",
+   "type": "circle",
+   "source": "esri",
+   "source-layer": "Treetops by height",
+   "filter": [
+    "==",
+    "_symbol",
+    5
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "circle-radius": 2.4,
+    "circle-color": "#31A354",
+    "circle-stroke-color": "#3C3C3C",
+    "circle-stroke-width": 0.533333
+   }
+  },
+  {
+   "id": "Treetops by height/20 m and over",
+   "type": "circle",
+   "source": "esri",
+   "source-layer": "Treetops by height",
+   "filter": [
+    "==",
+    "_symbol",
+    6
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "circle-radius": 2.4,
+    "circle-color": "#006837",
+    "circle-stroke-color": "#3C3C3C",
+    "circle-stroke-width": 0.533333
+   }
+  }
+ ]
+}

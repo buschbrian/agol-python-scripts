@@ -1,0 +1,42 @@
+{
+  "old_pid": 17620,
+  "old_workers": [
+    71484
+  ],
+  "before_checkpoints": {
+    "12TVL2703": {
+      "ok": 3199,
+      "rejected": 3
+    },
+    "12TVL2704": {
+      "ok": 3126,
+      "rejected": 1
+    },
+    "12TVL2705": {
+      "ok": 1165
+    },
+    "12TVL2804": {
+      "ok": 3186
+    }
+  },
+  "config_file_sha256": "d0fbc6d5d7d6dbecb069f01e156b05072324992a117761ef32704e7e6e0ccb8f",
+  "restart_reason": "Two CPU tile workers and process-scoped overnight wake request",
+  "after_checkpoints": {
+    "12TVL2703": {
+      "ok": 3199,
+      "rejected": 3
+    },
+    "12TVL2704": {
+      "ok": 3126,
+      "rejected": 1
+    },
+    "12TVL2705": {
+      "ok": 1165
+    },
+    "12TVL2804": {
+      "ok": 3186
+    }
+  },
+  "old_native_calls_quiescent": true,
+  "checkpoint_loss": false
+}

@@ -1,0 +1,823 @@
+{
+  "created_utc": "2026-10-26T01:58:23.353221+00:00",
+  "repository": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\tree-research\\CFTree",
+  "upstream_commit": "13be34b412a2f83f3ec1c89487665120348bb9d9",
+  "python_deps": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\tree-research\\python-deps",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\terrain_m.tif",
+  "run_dir": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\cftree-city-20261025",
+  "outputs": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\outputs",
+  "tiles": [
+    {
+      "id": "12TVL2203",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2203.las",
+      "bytes": 698489479,
+      "mtime_ns": 1792520198000000000,
+      "point_count": 20543740,
+      "core": [
+        422000,
+        4503000,
+        423000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL2204",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2204.las",
+      "bytes": 691186959,
+      "mtime_ns": 1792520214000000000,
+      "point_count": 20328960,
+      "core": [
+        422000,
+        4504000,
+        423000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2303",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2303.las",
+      "bytes": 740060973,
+      "mtime_ns": 1792520232000000000,
+      "point_count": 21766431,
+      "core": [
+        423000,
+        4503000,
+        424000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL2304",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2304.las",
+      "bytes": 746601791,
+      "mtime_ns": 1792520248000000000,
+      "point_count": 21958808,
+      "core": [
+        423000,
+        4504000,
+        424000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2403",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2403.las",
+      "bytes": 774736383,
+      "mtime_ns": 1792520266000000000,
+      "point_count": 22786296,
+      "core": [
+        424000,
+        4503000,
+        425000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL2404",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2404.las",
+      "bytes": 803301993,
+      "mtime_ns": 1792520286000000000,
+      "point_count": 23626461,
+      "core": [
+        424000,
+        4504000,
+        425000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2502",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2502.las",
+      "bytes": 767698825,
+      "mtime_ns": 1792520302000000000,
+      "point_count": 22579309,
+      "core": [
+        425000,
+        4502000,
+        426000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL2503",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2503.las",
+      "bytes": 722463967,
+      "mtime_ns": 1792520316000000000,
+      "point_count": 21248872,
+      "core": [
+        425000,
+        4503000,
+        426000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL2504",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2504.las",
+      "bytes": 733602367,
+      "mtime_ns": 1792520330000000000,
+      "point_count": 21576472,
+      "core": [
+        425000,
+        4504000,
+        426000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2601",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2601.las",
+      "bytes": 670813847,
+      "mtime_ns": 1792520344000000000,
+      "point_count": 19729749,
+      "core": [
+        426000,
+        4501000,
+        427000,
+        4502000
+      ]
+    },
+    {
+      "id": "12TVL2602",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2602.las",
+      "bytes": 732241551,
+      "mtime_ns": 1792520360000000000,
+      "point_count": 21536448,
+      "core": [
+        426000,
+        4502000,
+        427000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL2603",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2603.las",
+      "bytes": 704690773,
+      "mtime_ns": 1792520374000000000,
+      "point_count": 20726131,
+      "core": [
+        426000,
+        4503000,
+        427000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL2604",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2604.las",
+      "bytes": 702598107,
+      "mtime_ns": 1792520390000000000,
+      "point_count": 20664582,
+      "core": [
+        426000,
+        4504000,
+        427000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2605",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2605.las",
+      "bytes": 720584991,
+      "mtime_ns": 1792520404000000000,
+      "point_count": 21193608,
+      "core": [
+        426000,
+        4505000,
+        427000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL2606",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2606.las",
+      "bytes": 701274011,
+      "mtime_ns": 1792520418000000000,
+      "point_count": 20625638,
+      "core": [
+        426000,
+        4506000,
+        427000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL2607",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2607.las",
+      "bytes": 357440743,
+      "mtime_ns": 1792520424000000000,
+      "point_count": 10512893,
+      "core": [
+        426000,
+        4507000,
+        427000,
+        4508000
+      ]
+    },
+    {
+      "id": "12TVL2701",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2701.las",
+      "bytes": 850108971,
+      "mtime_ns": 1792520442000000000,
+      "point_count": 25003135,
+      "core": [
+        427000,
+        4501000,
+        428000,
+        4502000
+      ]
+    },
+    {
+      "id": "12TVL2702",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2702.las",
+      "bytes": 898358173,
+      "mtime_ns": 1792520458000000000,
+      "point_count": 26422231,
+      "core": [
+        427000,
+        4502000,
+        428000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL2703",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2703.las",
+      "bytes": 931523133,
+      "mtime_ns": 1792520476000000000,
+      "point_count": 27397671,
+      "core": [
+        427000,
+        4503000,
+        428000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL2704",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2704.las",
+      "bytes": 871266259,
+      "mtime_ns": 1792520492000000000,
+      "point_count": 25625410,
+      "core": [
+        427000,
+        4504000,
+        428000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2705",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2705.las",
+      "bytes": 907599883,
+      "mtime_ns": 1792520508000000000,
+      "point_count": 26694046,
+      "core": [
+        427000,
+        4505000,
+        428000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL2706",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2706.las",
+      "bytes": 911271033,
+      "mtime_ns": 1792520524000000000,
+      "point_count": 26802021,
+      "core": [
+        427000,
+        4506000,
+        428000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL2802",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2802.las",
+      "bytes": 846988117,
+      "mtime_ns": 1792520542000000000,
+      "point_count": 24911347,
+      "core": [
+        428000,
+        4502000,
+        429000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL2803",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2803.las",
+      "bytes": 900970767,
+      "mtime_ns": 1792520558000000000,
+      "point_count": 26499072,
+      "core": [
+        428000,
+        4503000,
+        429000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL2804",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2804.las",
+      "bytes": 917406095,
+      "mtime_ns": 1792520574000000000,
+      "point_count": 26982464,
+      "core": [
+        428000,
+        4504000,
+        429000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2805",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2805.las",
+      "bytes": 888760347,
+      "mtime_ns": 1792520590000000000,
+      "point_count": 26139942,
+      "core": [
+        428000,
+        4505000,
+        429000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL2806",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2806.las",
+      "bytes": 903171723,
+      "mtime_ns": 1792523426000000000,
+      "point_count": 26563806,
+      "core": [
+        428000,
+        4506000,
+        429000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL2902",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2902.las",
+      "bytes": 748401887,
+      "mtime_ns": 1792520604000000000,
+      "point_count": 22011752,
+      "core": [
+        429000,
+        4502000,
+        430000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL2904",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2904.las",
+      "bytes": 721794745,
+      "mtime_ns": 1792520618000000000,
+      "point_count": 21229189,
+      "core": [
+        429000,
+        4504000,
+        430000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL2905",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2905.las",
+      "bytes": 768319053,
+      "mtime_ns": 1792520632000000000,
+      "point_count": 22597551,
+      "core": [
+        429000,
+        4505000,
+        430000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL2906",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2906.las",
+      "bytes": 734822729,
+      "mtime_ns": 1792520644000000000,
+      "point_count": 21612365,
+      "core": [
+        429000,
+        4506000,
+        430000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL2907",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL2907.las",
+      "bytes": 355387211,
+      "mtime_ns": 1792520652000000000,
+      "point_count": 10452495,
+      "core": [
+        429000,
+        4507000,
+        430000,
+        4508000
+      ]
+    },
+    {
+      "id": "12TVL3004",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3004.las",
+      "bytes": 793279507,
+      "mtime_ns": 1792520666000000000,
+      "point_count": 23331682,
+      "core": [
+        430000,
+        4504000,
+        431000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL3005",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3005.las",
+      "bytes": 859275241,
+      "mtime_ns": 1792520680000000000,
+      "point_count": 25272733,
+      "core": [
+        430000,
+        4505000,
+        431000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL3006",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3006.las",
+      "bytes": 875214305,
+      "mtime_ns": 1792520694000000000,
+      "point_count": 25741529,
+      "core": [
+        430000,
+        4506000,
+        431000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL3007",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3007.las",
+      "bytes": 410329511,
+      "mtime_ns": 1792520702000000000,
+      "point_count": 12068445,
+      "core": [
+        430000,
+        4507000,
+        431000,
+        4508000
+      ]
+    },
+    {
+      "id": "12TVL3101",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3101.las",
+      "bytes": 791540027,
+      "mtime_ns": 1792520716000000000,
+      "point_count": 23280519,
+      "core": [
+        431000,
+        4501000,
+        432000,
+        4502000
+      ]
+    },
+    {
+      "id": "12TVL3102",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3102.las",
+      "bytes": 933817011,
+      "mtime_ns": 1792520730000000000,
+      "point_count": 27465138,
+      "core": [
+        431000,
+        4502000,
+        432000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL3104",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3104.las",
+      "bytes": 840084043,
+      "mtime_ns": 1792520746000000000,
+      "point_count": 24708286,
+      "core": [
+        431000,
+        4504000,
+        432000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL3105",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3105.las",
+      "bytes": 873843017,
+      "mtime_ns": 1792520760000000000,
+      "point_count": 25701197,
+      "core": [
+        431000,
+        4505000,
+        432000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL3106",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3106.las",
+      "bytes": 888615813,
+      "mtime_ns": 1792520776000000000,
+      "point_count": 26135691,
+      "core": [
+        431000,
+        4506000,
+        432000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL3107",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3107.las",
+      "bytes": 412717637,
+      "mtime_ns": 1792520784000000000,
+      "point_count": 12138684,
+      "core": [
+        431000,
+        4507000,
+        432000,
+        4508000
+      ]
+    },
+    {
+      "id": "12TVL3201",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3201.las",
+      "bytes": 804806589,
+      "mtime_ns": 1792520800000000000,
+      "point_count": 23670712,
+      "core": [
+        432000,
+        4501000,
+        433000,
+        4502000
+      ]
+    },
+    {
+      "id": "12TVL3202",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3202.las",
+      "bytes": 879511701,
+      "mtime_ns": 1792520814000000000,
+      "point_count": 25867923,
+      "core": [
+        432000,
+        4502000,
+        433000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL3203",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3203.las",
+      "bytes": 845345067,
+      "mtime_ns": 1792520828000000000,
+      "point_count": 24863022,
+      "core": [
+        432000,
+        4503000,
+        433000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL3204",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3204.las",
+      "bytes": 806277129,
+      "mtime_ns": 1792520842000000000,
+      "point_count": 23713965,
+      "core": [
+        432000,
+        4504000,
+        433000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL3205",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3205.las",
+      "bytes": 787597971,
+      "mtime_ns": 1792520854000000000,
+      "point_count": 23164578,
+      "core": [
+        432000,
+        4505000,
+        433000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL3206",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3206.las",
+      "bytes": 832152693,
+      "mtime_ns": 1792520868000000000,
+      "point_count": 24475011,
+      "core": [
+        432000,
+        4506000,
+        433000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL3207",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3207.las",
+      "bytes": 356150579,
+      "mtime_ns": 1792520874000000000,
+      "point_count": 10474947,
+      "core": [
+        432000,
+        4507000,
+        433000,
+        4508000
+      ]
+    },
+    {
+      "id": "12TVL3301",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3301.las",
+      "bytes": 985628517,
+      "mtime_ns": 1792520892000000000,
+      "point_count": 28989004,
+      "core": [
+        433000,
+        4501000,
+        434000,
+        4502000
+      ]
+    },
+    {
+      "id": "12TVL3302",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3302.las",
+      "bytes": 1177942961,
+      "mtime_ns": 1792520912000000000,
+      "point_count": 34645313,
+      "core": [
+        433000,
+        4502000,
+        434000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL3303",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3303.las",
+      "bytes": 993092169,
+      "mtime_ns": 1792520928000000000,
+      "point_count": 29208525,
+      "core": [
+        433000,
+        4503000,
+        434000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL3304",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3304.las",
+      "bytes": 971455487,
+      "mtime_ns": 1792520946000000000,
+      "point_count": 28572152,
+      "core": [
+        433000,
+        4504000,
+        434000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL3305",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3305.las",
+      "bytes": 936613783,
+      "mtime_ns": 1792520966000000000,
+      "point_count": 27547396,
+      "core": [
+        433000,
+        4505000,
+        434000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL3306",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3306.las",
+      "bytes": 889867659,
+      "mtime_ns": 1792521218000000000,
+      "point_count": 26172510,
+      "core": [
+        433000,
+        4506000,
+        434000,
+        4507000
+      ]
+    },
+    {
+      "id": "12TVL3307",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3307.las",
+      "bytes": 424084755,
+      "mtime_ns": 1792521464000000000,
+      "point_count": 12473011,
+      "core": [
+        433000,
+        4507000,
+        434000,
+        4508000
+      ]
+    },
+    {
+      "id": "12TVL3402",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3402.las",
+      "bytes": 408562497,
+      "mtime_ns": 1792521650000000000,
+      "point_count": 12016474,
+      "core": [
+        434000,
+        4502000,
+        435000,
+        4503000
+      ]
+    },
+    {
+      "id": "12TVL3403",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3403.las",
+      "bytes": 381274403,
+      "mtime_ns": 1792521896000000000,
+      "point_count": 11213883,
+      "core": [
+        434000,
+        4503000,
+        435000,
+        4504000
+      ]
+    },
+    {
+      "id": "12TVL3404",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3404.las",
+      "bytes": 370788837,
+      "mtime_ns": 1792522142000000000,
+      "point_count": 10905484,
+      "core": [
+        434000,
+        4504000,
+        435000,
+        4505000
+      ]
+    },
+    {
+      "id": "12TVL3405",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3405.las",
+      "bytes": 396238279,
+      "mtime_ns": 1792522388000000000,
+      "point_count": 11653997,
+      "core": [
+        434000,
+        4505000,
+        435000,
+        4506000
+      ]
+    },
+    {
+      "id": "12TVL3406",
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\refined-fractal-20261020\\points\\12TVL3406.las",
+      "bytes": 379131009,
+      "mtime_ns": 1792522994000000000,
+      "point_count": 11150842,
+      "core": [
+        434000,
+        4506000,
+        435000,
+        4507000
+      ]
+    }
+  ],
+  "halo_m": 100.0,
+  "min_height_m": 2.0,
+  "min_points": 50,
+  "segmentation": [
+    2.5,
+    1.5,
+    3
+  ],
+  "wrap": [
+    15,
+    50
+  ],
+  "workers": 1,
+  "minimum_available_gb": 7.0,
+  "minimum_disk_gb": 15.0,
+  "metrics_mode": "geometry",
+  "source_filter": "refined classes 3/4/5; excludes withheld, synthetic and overlap",
+  "status": "draft; seam validation and review pending; no publication",
+  "config_hash": "6fd0054860f04a3b4f175691b69dbca0b3d93225ade17e378ac1d6c233a720df"
+}

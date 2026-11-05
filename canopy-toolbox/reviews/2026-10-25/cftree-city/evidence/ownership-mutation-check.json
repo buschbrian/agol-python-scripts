@@ -1,0 +1,9 @@
+{
+  "mutation": "Make both neighboring cores own their common east/west boundary",
+  "isolated_copy": true,
+  "live_source_unchanged": true,
+  "tests_run": 2,
+  "expected_failures": 1,
+  "failure": "test_common_border_has_one_owner_and_stable_id",
+  "baseline_tests_passed": 3
+}

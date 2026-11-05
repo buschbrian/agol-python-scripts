@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training Labels</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="title"><strong id="page-title">Training labels</strong> <span id="unit-id">…</span> <span id="audit-badge" class="badge" hidden>audit 2 (blind)</span>
+    <span id="version" class="small"></span></div>
+  <div class="filters">
+    <label>Show <select id="filter">
+      <option value="priority">Refinement priority</option>
+      <option value="recheck">Recheck</option>
+      <option value="open">Unlabelled</option>
+      <option value="all">All units</option>
+      <option value="answered">Labelled on this page</option>
+      <option value="mixed">Mixed (to split)</option>
+      <option value="audit">Audit 2 units</option>
+    </select></label>
+    <label id="queue-label">Queue <select id="queue"><option value="">All</option></select></label>
+    <span id="position"></span>
+    <label class="reviewer" title="Initials recorded as REVIEWER on every answer">Initials
+      <input id="reviewer" size="5" maxlength="40" autocomplete="off" placeholder="?"></label>
+  </div>
+  <div class="progress"><div id="progress-bar"></div><span id="progress-text"></span></div>
+</header>
+<div id="split-banner" class="split-banner" hidden></div>
+<main>
+  <section class="views">
+    <div class="view3d" id="view3d" aria-label="3D point view; drag to rotate, scroll to zoom">
+      <div class="overlay">Colour: <button id="colour-mode" title="C">imagery</button>
+        <button id="reset-view" title="R">reset view</button>
+        <span class="hint">drag rotate · right-drag pan · scroll zoom</span></div>
+    </div>
+    <div class="sections">
+      <figure><figcaption>West → east section (±1.5 m)</figcaption><canvas id="section-ew" width="560" height="260"></canvas></figure>
+      <figure><figcaption>South → north section (±1.5 m)</figcaption><canvas id="section-ns" width="560" height="260"></canvas></figure>
+    </div>
+  </section>
+  <aside>
+    <div class="imagery">
+      <div class="tabs" role="tablist">
+        <button id="tab-map" role="tab" aria-selected="true">Map (I)</button>
+        <button id="tab-chip" role="tab" aria-selected="false">NAIP chip</button>
+      </div>
+      <div id="map" class="map" aria-label="Imagery map centred on the patch; red circle is the patch, dashed circle the 3D view"></div>
+      <p id="map-note" class="small" hidden></p>
+      <figure class="chip" id="chip-figure" hidden><img id="chip" alt="NAIP 2024 image chip, 40 m across, patch circled"><svg id="chip-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2.5"/></svg>
+        <figcaption>NAIP 2024 (July), 40 m · lidar Oct–Nov 2023</figcaption></figure>
+    </div>
+    <dl class="facts" id="facts"></dl>
+    <div class="labels" id="labels"></div>
+    <div class="row" id="usable-row">
+      <label class="usable">Imagery usable <select id="usable"><option value="">—</option><option>YES</option><option>NO</option></select></label>
+    </div>
+    <textarea id="notes" rows="2" maxlength="500" placeholder="Notes (N to focus, Esc to leave)"></textarea>
+    <div class="row nav">
+      <button id="prev" title="←">← Previous</button>
+      <button id="clear" title="Backspace">Clear</button>
+      <button id="split" title="S: split the patch at a height, one label above and one below">Split (S)</button>
+      <button id="next" title="→">Next →</button>
+    </div>
+    <label class="advance"><input type="checkbox" id="auto-advance" checked> Go to the next unit after labelling</label>
+    <p id="status" role="status"></p>
+    <p class="small" id="footer-note">Label only the returns inside the cylinder (the patch). Nothing on this page shows a model or baseline class.
+      Answers are saved to <code id="csv-path"></code>; import them with <code>training_labels.bat restore --csv … --apply</code>.</p>
+  </aside>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

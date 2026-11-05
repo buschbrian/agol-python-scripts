@@ -1,0 +1,61 @@
+{
+ "schema": "hosting-features/2",
+ "created": "2026-10-23T09:07:59",
+ "sources": {
+  "buildings": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\buildings.gdb\\building_heights",
+  "zones": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\cover.gdb\\zones",
+  "cover": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\cover-comparison.csv"
+ },
+ "work_6341": {
+  "buildings": "H:\\lidar\\2023-salt-lake-valley\\runs\\hosting-features-20261023\\work.gdb\\buildings",
+  "canopy_cover_zones": "H:\\lidar\\2023-salt-lake-valley\\runs\\hosting-features-20261023\\work.gdb\\canopy_cover_zones"
+ },
+ "outputs": {
+  "buildings": "H:\\lidar\\2023-salt-lake-valley\\runs\\hosting-features-20261023\\features.gdb\\buildings",
+  "canopy_cover_zones": "H:\\lidar\\2023-salt-lake-valley\\runs\\hosting-features-20261023\\features.gdb\\canopy_cover_zones"
+ },
+ "coordinate_system": "WGS 1984 Web Mercator (auxiliary sphere), EPSG 3857",
+ "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+ "dropped_fields": [
+  "GlobalID",
+  "CreationDate",
+  "Creator",
+  "EditDate",
+  "Editor"
+ ],
+ "checks": {
+  "buildings": {
+   "source": 22042,
+   "copied": 22042,
+   "rows_differing": 0,
+   "with_height": 21562
+  },
+  "canopy_cover_zones": {
+   "zones": 13,
+   "csv_rows": 13,
+   "values_differing": 0
+  },
+  "projection": {
+   "buildings": {
+    "features": 22042,
+    "projected": 22042,
+    "attribute_rows_differing": 0,
+    "wkid": 3857,
+    "max_vertex_distance_m_vs_transformed": 7.1e-05,
+    "min_vertex_distance_m_vs_untransformed": 1.5781,
+    "vertex_count_mismatches": 0,
+    "metadata_warning": true
+   },
+   "canopy_cover_zones": {
+    "features": 13,
+    "projected": 13,
+    "attribute_rows_differing": 0,
+    "wkid": 3857,
+    "max_vertex_distance_m_vs_transformed": 7e-05,
+    "min_vertex_distance_m_vs_untransformed": 1.579,
+    "vertex_count_mismatches": 0,
+    "metadata_warning": true
+   }
+  }
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "kind": "postprocessed product copy; NOT a raw model output; never use in dl_compare",
+ "policy": [
+  "baseline noise 7/18 kept",
+  "baseline ground 2 restored",
+  "tree prediction 5 -> 5",
+  "building prediction 6 -> 6 where tree predicted background",
+  "remaining points -> 0 (verified model background; full-tile inference)"
+ ],
+ "baseline": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+  "bytes": 809475416,
+  "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+ },
+ "raw_outputs_before": [
+  {
+   "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-full\\tree\\12TVL2804.las",
+   "bytes": 809475416,
+   "sha256": "f165dba25fb418f3edf3874b8d8ea27f5f66b8e8013810c2cc1959df01a0aa22"
+  },
+  {
+   "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-abs\\building\\12TVL2804.las",
+   "bytes": 809475416,
+   "sha256": "08cd9070ca0ecaa0c85cef8f3885d1d2ea18e99d8e6dc146b17bec2f123dc369"
+  }
+ ],
+ "raw_outputs_after": [
+  {
+   "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-full\\tree\\12TVL2804.las",
+   "bytes": 809475416,
+   "sha256": "f165dba25fb418f3edf3874b8d8ea27f5f66b8e8013810c2cc1959df01a0aa22"
+  },
+  {
+   "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-abs\\building\\12TVL2804.las",
+   "bytes": 809475416,
+   "sha256": "08cd9070ca0ecaa0c85cef8f3885d1d2ea18e99d8e6dc146b17bec2f123dc369"
+  }
+ ],
+ "tree_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\tree-full\\work\\run-tree.json",
+ "building_manifest": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\building-abs\\work\\run-building.json",
+ "counts": {
+  "noise_kept": 70600,
+  "ground_restored": 2658030,
+  "ground_restored_over_tree": 402,
+  "ground_restored_over_building": 1541,
+  "tree_5": 9261461,
+  "building_6": 3311370,
+  "conflict_tree5_building6_resolved_to_tree": 405870,
+  "background_0": 11681003
+ },
+ "points": 26982464,
+ "output": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260929\\product-tree-full\\12TVL2804\\points\\12TVL2804.las",
+  "bytes": 809475416,
+  "sha256": "2bf98123d3a8643949b6a99c7ae8e811a27d02de1be74ce3e605759235656765"
+ }
+}

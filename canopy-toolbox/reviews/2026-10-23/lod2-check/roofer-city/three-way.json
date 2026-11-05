@@ -1,0 +1,128 @@
+{
+ "buildings": 21561,
+ "levels": {
+  "roofer LoD2.2": 20790,
+  "Esri LOD1.2": 178,
+  "Esri LOD2.0": 593
+ },
+ "reasons": {
+  "Esri LOD2.0 | roofer broken": 552,
+  "Esri LOD1.2 | roofer no-geometry; Esri LOD2.0 too-few": 104,
+  "Esri LOD1.2 | roofer too-few; Esri LOD2.0 too-few": 55,
+  "Esri LOD2.0 | roofer worse": 18,
+  "Esri LOD2.0 | roofer no-geometry": 18,
+  "Esri LOD1.2 | roofer broken; Esri LOD2.0 broken": 8,
+  "Esri LOD1.2 | roofer ground-level; Esri LOD2.0 ground-level": 5,
+  "Esri LOD2.0 | roofer ground-level": 5,
+  "Esri LOD1.2 | roofer broken; Esri LOD2.0 ground-level": 3,
+  "Esri LOD1.2 | roofer broken; Esri LOD2.0 worse": 2,
+  "Esri LOD1.2 | roofer no-geometry; Esri LOD2.0 broken": 1
+ },
+ "pooled_within": {
+  "all roofer LoD2.2 (where it has geometry)": {
+   "cells": 17618266,
+   "within_05_pct": 96.87,
+   "within_1_pct": 98.18
+  },
+  "all Esri LOD2.0": {
+   "cells": 17674209,
+   "within_05_pct": 94.61,
+   "within_1_pct": 97.83
+  },
+  "all Esri LOD1.2": {
+   "cells": 17676559,
+   "within_05_pct": 56.87,
+   "within_1_pct": 80.42
+  },
+  "Esri-only hybrid (LOD2.0 else LOD1.2)": {
+   "cells": 17675464,
+   "within_05_pct": 94.38,
+   "within_1_pct": 97.69
+  },
+  "three-way hybrid": {
+   "cells": 17639059,
+   "within_05_pct": 96.82,
+   "within_1_pct": 98.17
+  }
+ },
+ "by_type": {
+  "flat": {
+   "buildings": 2124,
+   "roofer LoD2.2": 2082,
+   "Esri LOD2.0": 39,
+   "Esri LOD1.2": 3
+  },
+  "flat-parapet": {
+   "buildings": 158,
+   "roofer LoD2.2": 155,
+   "Esri LOD2.0": 3
+  },
+  "multi-level": {
+   "buildings": 107,
+   "roofer LoD2.2": 102,
+   "Esri LOD1.2": 2,
+   "Esri LOD2.0": 3
+  },
+  "other": {
+   "buildings": 474,
+   "roofer LoD2.2": 450,
+   "Esri LOD2.0": 21,
+   "Esri LOD1.2": 3
+  },
+  "pitched": {
+   "buildings": 13876,
+   "roofer LoD2.2": 13507,
+   "Esri LOD2.0": 365,
+   "Esri LOD1.2": 4
+  },
+  "steep-pitched": {
+   "buildings": 4663,
+   "roofer LoD2.2": 4494,
+   "Esri LOD2.0": 162,
+   "Esri LOD1.2": 7
+  },
+  "too-few": {
+   "buildings": 159,
+   "Esri LOD1.2": 159
+  }
+ },
+ "verdict_matrix": {
+  "roofer better / Esri better": 12533,
+  "roofer same / Esri same": 5912,
+  "roofer better / Esri same": 1799,
+  "roofer same / Esri better": 468,
+  "roofer broken / Esri better": 302,
+  "roofer broken / Esri same": 253,
+  "roofer no-model / Esri too-few": 115,
+  "roofer better / Esri broken": 52,
+  "roofer too-few / Esri too-few": 44,
+  "roofer same / Esri broken": 18,
+  "roofer same / Esri worse": 16,
+  "roofer worse / Esri same": 15
+ },
+ "features": 21561,
+ "fp_ids_once": true,
+ "slpk": {
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\roofer-city-20261024\\buildings_three_way.slpk",
+  "mb": 19.1,
+  "package": {
+   "fp_id_count": 21561,
+   "fp_id_sum": 237493394,
+   "nodes": 170,
+   "spatial_reference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "vcsWkid": 5773,
+    "latestVcsWkid": 5773
+   },
+   "node_centre_z_range": [
+    1304.4759841774126,
+    1708.3825265072412
+   ]
+  },
+  "fp_id_stats_equal_source": true,
+  "validation_messages": [
+   "Information : Resources 1,170,169,0,4563,0,27,0 were successfully loaded"
+  ]
+ }
+}

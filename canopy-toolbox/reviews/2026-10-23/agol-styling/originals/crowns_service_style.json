@@ -1,0 +1,108 @@
+{
+ "version": 8,
+ "sprite": "../sprites/sprite",
+ "glyphs": "../fonts/{fontstack}/{range}.pbf",
+ "sources": {
+  "esri": {
+   "type": "vector",
+   "attribution": "Millcreek GIS from the 2023 Salt Lake Valley QL1 lidar",
+   "bounds": [
+    -111.921,
+    40.6592,
+    -111.776,
+    40.714
+   ],
+   "minzoom": 14,
+   "maxzoom": 17,
+   "scheme": "xyz",
+   "url": "../../"
+  }
+ },
+ "layers": [
+  {
+   "id": "Crowns by treetop height/2 to 5 m",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Crowns by treetop height",
+   "filter": [
+    "==",
+    "_symbol",
+    2
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "fill-color": "#FFFFCC",
+    "fill-outline-color": "rgba(0,80,40,0.6)"
+   }
+  },
+  {
+   "id": "Crowns by treetop height/5 to 10 m",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Crowns by treetop height",
+   "filter": [
+    "==",
+    "_symbol",
+    3
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "fill-color": "#C2E699",
+    "fill-outline-color": "rgba(0,80,40,0.6)"
+   }
+  },
+  {
+   "id": "Crowns by treetop height/10 to 15 m",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Crowns by treetop height",
+   "filter": [
+    "==",
+    "_symbol",
+    4
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "fill-color": "#78C679",
+    "fill-outline-color": "rgba(0,80,40,0.6)"
+   }
+  },
+  {
+   "id": "Crowns by treetop height/15 to 20 m",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Crowns by treetop height",
+   "filter": [
+    "==",
+    "_symbol",
+    5
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "fill-color": "#31A354",
+    "fill-outline-color": "rgba(0,80,40,0.6)"
+   }
+  },
+  {
+   "id": "Crowns by treetop height/20 m and over",
+   "type": "fill",
+   "source": "esri",
+   "source-layer": "Crowns by treetop height",
+   "filter": [
+    "==",
+    "_symbol",
+    6
+   ],
+   "minzoom": 14,
+   "layout": {},
+   "paint": {
+    "fill-color": "#006837",
+    "fill-outline-color": "rgba(0,80,40,0.6)"
+   }
+  }
+ ]
+}

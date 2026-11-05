@@ -1,0 +1,62 @@
+{
+ "footprints": 22042,
+ "status_counts": {
+  "oct19": {
+   "GEOMETRY_REPAIRED": 5,
+   "LOW_ROOF_SUPPORT": 1848,
+   "NEGATIVE_HEIGHT": 633,
+   "NO_CELL_CENTERS": 3,
+   "NO_ROOF_SUPPORT": 624,
+   "PARTIAL_AOI": 27,
+   "UNVALIDATED": 22042,
+   "with_height": 21415
+  },
+  "consensus": {
+   "GEOMETRY_REPAIRED": 5,
+   "LOW_ROOF_SUPPORT": 2380,
+   "NEGATIVE_HEIGHT": 35,
+   "NO_CELL_CENTERS": 3,
+   "NO_ROOF_SUPPORT": 477,
+   "PARTIAL_AOI": 27,
+   "UNVALIDATED": 22042,
+   "with_height": 21562
+  }
+ },
+ "moved": {},
+ "medians": {
+  "HEIGHT_P50_M": {
+   "compared": 21401,
+   "unchanged": 4953,
+   "median_delta": -0.002,
+   "moved_over_0.5": 86
+  },
+  "HEIGHT_P95_M": {
+   "compared": 21401,
+   "unchanged": 6637,
+   "median_delta": -0.002,
+   "moved_over_0.5": 2314
+  },
+  "HEIGHT_MAX_M": {
+   "compared": 21401,
+   "unchanged": 11553,
+   "median_delta": 0.0,
+   "moved_over_0.5": 7422
+  },
+  "ROOF_COV_PCT": {
+   "compared": 22039,
+   "unchanged": 5181,
+   "median_delta": -0.166,
+   "moved_over_0.5": null
+  }
+ },
+ "support_transitions_among_changes": {
+  "OK -> LOW_ROOF_SUPPORT": 459,
+  "NO_ROOF_SUPPORT -> LOW_ROOF_SUPPORT": 144,
+  "LOW_ROOF_SUPPORT -> OK": 57,
+  "LOW_ROOF_SUPPORT -> LOW_ROOF_SUPPORT": 48,
+  "NO_ROOF_SUPPORT -> OK": 17,
+  "LOW_ROOF_SUPPORT -> NO_ROOF_SUPPORT": 14,
+  "OK -> OK": 12
+ },
+ "review_rows": 751
+}

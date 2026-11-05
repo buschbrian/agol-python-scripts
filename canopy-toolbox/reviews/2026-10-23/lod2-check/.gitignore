@@ -1,0 +1,3 @@
+# Runtime logs remain local; review JSON/CSV records are versioned.
+*.log
+roofer-city/three-way.csv

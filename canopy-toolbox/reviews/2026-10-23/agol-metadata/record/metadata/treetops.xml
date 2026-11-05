@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='utf-8'?>
+<metadata xml:lang="en">
+            
+    
+    <Esri>
+                        
+        
+        <ArcGISFormat>1.0</ArcGISFormat>
+                        
+        
+        <ArcGISProfile>DCPLUS</ArcGISProfile>
+                        
+        
+        <CreaDate>20261023</CreaDate>
+                        
+        
+        <CreaTime>18001800</CreaTime>
+                        
+        
+        <ModDate>20261023</ModDate>
+                        
+        
+        <ModTime>18001800</ModTime>
+                        
+        
+        <DataProperties>
+                                    
+            
+            <itemProps>
+                                                
+                
+                <portalDetails>
+                                                            
+                    
+                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/924b993cb23046cb87641253bcf786de/info/thumbnail/thumbnail.JPEG</thumbnailURL>
+                                                            
+                    
+                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=924b993cb23046cb87641253bcf786de</itemDetailsURL>
+                                                            
+                    
+                    <itemIdentifier>924b993cb23046cb87641253bcf786de</itemIdentifier>
+                                                            
+                    
+                    <itemType>Vector Tile Service</itemType>
+                                                            
+                    
+                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_treetops_2023_lidar_planning_estimate/VectorTileServer</resourceURL>
+                                                        
+                
+                </portalDetails>
+                                            
+            
+            </itemProps>
+                                
+        
+        </DataProperties>
+                    
+    
+    </Esri>
+            
+    
+    <dataIdInfo>
+                        
+        
+        <idCitation>
+                                    
+            
+            <resTitle>Millcreek treetops (2023 lidar), planning estimate</resTitle>
+                                
+            
+            <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                        
+        
+        <searchKeys>
+                                    
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                    
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>trees</keyword><keyword>treetops</keyword><keyword>tree height</keyword><keyword>urban forest</keyword><keyword>tree canopy</keyword><keyword>vector tiles</keyword></searchKeys>
+                        
+        
+        <idPurp>527,140 treetops at least 2 m tall detected in the 2023 lidar for Millcreek, Utah, by height class. Detections, not a tree census. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
+                        
+        
+        <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
+surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
+property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
+&lt;h2&gt;What it shows&lt;/h2&gt;
+&lt;p&gt;The tops of trees across Millcreek, Utah, as found in the 2023 lidar: 527,140 local high points of the canopy at least
+2 m above the ground, each drawn as a dot coloured by its height. They give a citywide picture of where trees are and
+how tall they are. They are &lt;strong&gt;detections, not a count of trees&lt;/strong&gt;: a broad tree can have several tops and a tree under a
+taller one can be missed.&lt;/p&gt;
+&lt;h2&gt;Legend&lt;/h2&gt;
+&lt;p&gt;Shown from 1:18,056 (zoom level 14) inward. Height is the canopy height at the treetop, in metres above the ground. Each
+class includes its upper value (a 5.0 m treetop is in "2 to 5 m").&lt;/p&gt;
+&lt;table style='border-collapse:collapse;font-size:90%'&gt;
+
+&lt;tr&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Class&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Height&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Feet (about)&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Treetops&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Share&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;2 to 5 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;2 to 5 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;7 to 16 ft&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;217,914&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;41.3%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;5 to 10 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;over 5 to 10 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;16 to 33 ft&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;190,326&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;36.1%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;10 to 15 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;over 10 to 15 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;33 to 49 ft&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;83,369&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;15.8%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;15 to 20 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;over 15 to 20 m&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;49 to 66 ft&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;29,563&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;5.6%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;20 m and over&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;over 20 m (tallest 42.9 m)&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;over 66 ft&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;5,968&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;1.1%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Dots run from pale yellow-green (2 to 5 m) to dark green (20 m and over) (ColorBrewer YlGn) and grow larger with height. &lt;strong&gt;Map Viewer's legend does not list vector tile layers&lt;/strong&gt;, so this table is the key to the colours. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. The class names come from the layer's style (one style layer per class). This is a vector tile layer: it &lt;strong&gt;draws
+only&lt;/strong&gt;. The tiles carry no attributes, so there are no pop-ups, no identify and no filtering; a treetop's exact height,
+ID and parcel ownership are kept by City of Millcreek GIS.&lt;/p&gt;
+&lt;h2&gt;How it was made&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Canopy height model.&lt;/strong&gt; Every lidar point was classified: this project's own classification refined with the IGN
+   FRACTAL model, with buildings decided by a 2-of-3 vote that adds Esri's building model. The canopy height model is the
+   vegetation surface minus the bare-earth terrain at 0.5 m, with building roofs excluded.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Treetops.&lt;/strong&gt; Local maxima of the canopy height model (smoothed by one cell), searched in a window that grows with
+   height: 1 m radius for canopy 2 to 6 m, 1.5 m for 6 to 12 m, 2 m for 12 to 20 m and 2.5 m above 20 m. Peaks under 2 m
+   and outside the city limits were dropped.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Accuracy and checks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;On one hand-labelled 1 km tile (a deliberately hard sample, not a citywide accuracy), 95.9% of tree parts were
+  classified as vegetation and 10.7% of non-vegetation parts were wrongly called vegetation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;32,986 treetops (6.3%) are flagged SUSPECT&lt;/strong&gt; by independent geometric checks (for example a roof edge, a flat top, a
+  wire, a pole or a wall nearby). The flags are review hints, not decisions; they have not been reviewed and the SUSPECT
+  treetops are still drawn here.&lt;/li&gt;
+&lt;li&gt;No treetop has been checked against a field inventory, so the detection rate (trees found) and the false-detection rate
+  are not known.&lt;/li&gt;
+&lt;li&gt;Every package tile was decoded and its points counted: 527,127 of the 527,140 treetops are accounted for; the last 13
+  are most likely on edges between tiles at different levels. Tiles fetched from the hosted layer are byte for byte the
+  package's, and points sit a median 6 cm from their source positions (1.6 m if the datum transformation had been left out).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Limits&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Lidar sees the top of the canopy. Small trees under larger ones, and trees under 2 m, are under-counted; broad or
+  multi-stemmed trees can show several tops.&lt;/li&gt;
+&lt;li&gt;Some detections are not trees: structures, poles, wires and roof edges can make peaks (see SUSPECT above).&lt;/li&gt;
+&lt;li&gt;Heights are canopy height above interpolated ground at 0.5 m, not a measured tree height.&lt;/li&gt;
+&lt;li&gt;The lidar was flown in October and November 2023. Trees removed or planted since then are not reflected.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Coordinates and heights.&lt;/strong&gt; Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator
+for ArcGIS Online with the transformation &lt;code&gt;WGS_1984_(ITRF08)_To_NAD_1983_2011&lt;/code&gt;. Every layer in the Millcreek LiDAR 2023
+set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres;
+without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in &lt;strong&gt;metres&lt;/strong&gt;; heights are metres above the
+lidar bare-earth terrain.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lidar source.&lt;/strong&gt; The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
+flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
+non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Millcreek LiDAR 2023 set.&lt;/strong&gt; Eight layers from the same lidar and the same processing: buildings and canopy cover
+zones (feature layer), 3D buildings (scene layer), bare-earth terrain (elevation layer), hillshade (tile layer), slope
+classes, 2 m contours, treetops and tree crowns (vector tile layers). They share one coordinate transformation and one
+terrain, so they can be stacked in one map or scene.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
+of Millcreek GIS.&lt;/p&gt;</idAbs>
+                        
+        
+        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).</idCredit>
+                        
+        
+        <resConst>
+                                    
+            
+            <Consts>
+                                                
+                
+                <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
+engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
+design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
+determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
+conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
+3DEP)" when you use or show them.&lt;/p&gt;</useLimit>
+                                            
+            
+            </Consts>
+                                
+        
+        </resConst>
+                        
+        
+        <dataExt>
+                                    
+            
+            <geoEle>
+                                                
+                
+                <GeoBndBox>
+                                                            
+                    
+                    <westBL Sync="FALSE">-111.9213985743515</westBL>
+                                                            
+                    
+                    <eastBL Sync="FALSE">-111.77629463167256</eastBL>
+                                                            
+                    
+                    <northBL Sync="FALSE">40.714027716441215</northBL>
+                                                            
+                    
+                    <southBL Sync="FALSE">40.6589194925761</southBL>
+                                                            
+                    
+                    <exTypeCode Sync="TRUE">1</exTypeCode>
+                                                        
+                
+                </GeoBndBox>
+                                            
+            
+            </geoEle>
+                                
+            
+            <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
+                    
+        
+        <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="002" /></tpCat><tpCat><TopicCatCd value="007" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
+            
+    
+    <Binary>
+                        
+        
+        <Thumbnail>
+                                    
+            
+            <Data EsriPropertyType="PictureX">/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACFAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKTNMnVngkVThmUgH3rj/h94d1rw9a3sesXKzNLIGj2yl8ADnr0oA7SiiigAooooAQkAZNV5NQs4ozI9zCFHcyAVFrNtPeaTcW1sIDLIu1fPBKfjjmvIW+C+s5IXVbMr1wQ45+mKAPWdL17T9XH+jTjzBnMTjawx7dx05FaRZQMkgdua8ds/hV4p051az1+3gKZ2mN3GM9e3tVq4+HnjW7iaK48UJJG2Mq0khHHPpQB6yDmo5Z4oADK4RScAscDPpWJ4Xs9fsLQ22t3lrd7AoikhUhsAY+bI5+tbNzbRXcLQzLuRhyKAJcijcDwDXAnwt4ztZLqGw8Tp9llfdGZ4y0iA9R09P5dq0PDXg6+0a7W7v/ABDe38oz8jEiM5HcEnvz2oA6+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z</Data>
+                                
+        
+        </Thumbnail>
+                    
+    
+    </Binary>
+            
+    
+    <mdFileID>924b993cb23046cb87641253bcf786de</mdFileID>
+            
+    
+    <distInfo>
+                        
+        
+        <distTranOps>
+                                    
+            
+            <onLineSrc>
+                                                
+                
+                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_treetops_2023_lidar_planning_estimate/VectorTileServer</linkage>
+                                            
+            
+            </onLineSrc>
+                                
+        
+        </distTranOps>
+                        
+        
+        <distFormat>
+                                    
+            
+            <formatName>Vector Tile Service</formatName>
+                                
+        
+        </distFormat>
+                    
+    
+    </distInfo>
+            
+    
+    <refSysInfo>
+                        
+        
+        <RefSystem>
+                                    
+            
+            <refSysID>
+                                                
+                
+                <identCode code="102100" />
+                                                
+                
+                <idCodeSpace>EPSG</idCodeSpace>
+                                            
+            
+            </refSysID>
+                                
+        
+        </RefSystem>
+                    
+    
+    </refSysInfo>
+        
+    
+    <dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>Local maxima of a 0.5 m canopy height model from the 2023 Salt Lake Valley QL1 lidar (combined classification, roofs excluded), with a search radius that grows with height, at least 2 m tall, clipped to the city, and packaged as vector tiles by height class (WGS_1984_(ITRF08)_To_NAD_1983_2011). Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>

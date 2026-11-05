@@ -1,0 +1,29 @@
+{
+  "tile": "12TVL2804",
+  "models": 3186,
+  "rejected": 0,
+  "shards": 13,
+  "faces": 2010726,
+  "quantized_zero_area_faces": 0,
+  "finite_coordinates": true,
+  "valid_vertex_indices": true,
+  "closed_edge_incidence": true,
+  "feet_conversion_tolerance_m": 1e-08,
+  "boundary_review_models": 1218,
+  "checks": "Export structure and conversions; not full schema, solid topology, seam or field validation",
+  "files": {
+    "trees_0000.city.json.gz": "a5748fa53c5765f00cf79c3b620be645cea6b36d1d86aa8ec866290fc5863a0c",
+    "trees_0001.city.json.gz": "db113ac0600f961710c0a9c76750d3c02e21f15c927b07de6f2f80d1399d7334",
+    "trees_0002.city.json.gz": "34bf611133ad62f1bde444863534a9f54508059c03767fcc069a0fd82ddd485c",
+    "trees_0003.city.json.gz": "4a3a2e336ff5fb9d4f376ddcd428b44edb2a29353ec2b5001e7d78f13b871f81",
+    "trees_0004.city.json.gz": "754c4eb53fe46ea4f485a21e0fdb6cf205311f70dde6ecc77633f1b457ee6960",
+    "trees_0005.city.json.gz": "ec9e873516a35fdc3d0904a322c1c83aa16926a9357dee9c308d67978d8959fa",
+    "trees_0006.city.json.gz": "03d31ee439970a6e96cfe39e793498200b1c9fc0aabd6f44badc349f5891157f",
+    "trees_0007.city.json.gz": "c15cad98bf82a986771c2bff139654d2c87f44ec4fb564d3dd71818ee2b4a962",
+    "trees_0008.city.json.gz": "a26621d91e4754b4da562f29bf9cc9b1a9bec7bfd47e6b8d246b35bbf885c093",
+    "trees_0009.city.json.gz": "9f603af803ff444854de5138acb86ae1d307786c72c8efc112eeae462c1326ea",
+    "trees_0010.city.json.gz": "b547122ca286049e9047bb7646c98fdd7513526c09ffe171ba65cf9a99a53711",
+    "trees_0011.city.json.gz": "742b2f2ea385a825dcceb412cf4e026b188553da3ea1e08b4c70cac8abe904bf",
+    "trees_0012.city.json.gz": "65bf3352cf48fb4663fcccb97010e5a861327d31aadc55c269a65fff55bd5df7"
+  }
+}

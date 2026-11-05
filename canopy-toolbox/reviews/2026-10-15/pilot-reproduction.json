@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "evidence_status": "UNVALIDATED_REVIEW_EVIDENCE",
+  "rules_version": "treetop-evidence/2",
+  "tile": "12TVL2804",
+  "las": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+  "treetops": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\run\\assembly_fa734b56\\inventory.gdb\\trees_review",
+  "expected": {
+    "candidates": 17389,
+    "within_1m": 4428,
+    "by_height_vs_roof": {
+      "at_roof_height_le_0.5m": 3293,
+      "0.5_to_2m_above_roof": 376,
+      "over_2m_above_roof": 706
+    }
+  },
+  "got": {
+    "candidates": 17389,
+    "within_1m": 4428,
+    "within_1m_no_ground_5m": 53,
+    "by_height_vs_roof": {
+      "at_roof_height_le_0.5m": 3293,
+      "0.5_to_2m_above_roof": 376,
+      "over_2m_above_roof": 706
+    }
+  },
+  "checks": {
+    "candidates": true,
+    "within_1m": true,
+    "by_height_vs_roof": true
+  },
+  "summary": {
+    "treetops": 17389,
+    "flags": {
+      "NEAR_BUILDING": 4428,
+      "ROOF_HEIGHT": 3293,
+      "OVERHANG": 706,
+      "FLAT_TOP": 138,
+      "WIRE_HINT": 92,
+      "POLE_HINT": 2120,
+      "WALL_HINT": 25,
+      "CANOPY_RETURNS": 8927,
+      "SUSPECT": 3468
+    },
+    "near_building_bands": {
+      "at_roof_height_le_0.5m": 3293,
+      "0.5_to_2m_above_roof": 376,
+      "over_2m_above_roof": 706
+    },
+    "near_building_no_ground": 53,
+    "suspect_with_canopy_returns": 599,
+    "suspect_without_canopy_returns": 2869,
+    "suspect_flag_count": {
+      "0": 13921,
+      "1": 3388,
+      "2": 80
+    }
+  },
+  "rules": {
+    "roof_height_above_roof_max": 0.5,
+    "overhang_above_roof_min": 2.0,
+    "flat_thickness_max": 0.1,
+    "flat_normal_z_min": 0.85,
+    "flat_nonlast_max": 0.15,
+    "min_top_points": 12,
+    "wire_ctx_linearity_min": 0.85,
+    "wire_ctx_axis_z_max": 0.5,
+    "wire_top_hag_min": 4.0,
+    "wire_building_clear_m": 2.0,
+    "wire_top_points_max": 60,
+    "pole_ctx_linearity_min": 0.85,
+    "pole_ctx_axis_z_min": 0.9,
+    "pole_ctx_extent_z_min": 2.5,
+    "wall_normal_z_max": 0.35,
+    "wall_thickness_max": 0.1,
+    "wall_top_hag_min": 1.5,
+    "wall_building_m": 2.5,
+    "canopy_nonlast_min": 0.3,
+    "canopy_thickness_gt": 0.1
+  },
+  "seconds": 18.0,
+  "inputs_unchanged": true,
+  "note": "Pilot definition: class-6 and class-2 points of the tile's own file only, all flags. Shape flags use clean non-ground, non-noise points of the same file."
+}

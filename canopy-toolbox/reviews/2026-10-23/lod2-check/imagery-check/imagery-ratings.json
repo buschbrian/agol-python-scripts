@@ -1,0 +1,47 @@
+{
+ "roofer": {
+  "G": 61,
+  "P": 28,
+  "U": 8
+ },
+ "roofer_unclear_excluded": {
+  "G": 61,
+  "P": 28
+ },
+ "by_type": {
+  "steep-pitched": {
+   "G": 17,
+   "P": 12,
+   "U": 3
+  },
+  "other": {
+   "G": 4,
+   "P": 1
+  },
+  "flat-parapet": {
+   "P": 2,
+   "G": 3
+  },
+  "pitched": {
+   "G": 24,
+   "P": 11,
+   "U": 4
+  },
+  "flat": {
+   "G": 10,
+   "P": 1
+  },
+  "multi-level": {
+   "G": 3,
+   "P": 1,
+   "U": 1
+  }
+ },
+ "fallback": {
+  "U": 6,
+  "G": 3,
+  "B": 2,
+  "P": 1
+ },
+ "fragmentation_notes": 11
+}

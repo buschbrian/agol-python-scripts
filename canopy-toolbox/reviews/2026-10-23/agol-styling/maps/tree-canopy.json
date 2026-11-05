@@ -1,0 +1,889 @@
+{
+ "item": {
+  "title": "Millcreek tree canopy",
+  "snippet": "Tree canopy cover by ownership zone, with lidar tree crowns and treetops by height, over imagery of Millcreek, Utah. Unvalidated planning estimates; not surveyed or field-verified.",
+  "description": "<p><b>Planning estimates.</b> The layers in this map are unvalidated estimates derived from lidar by City of Millcreek GIS. They have not been surveyed, engineered or checked in the field. Use them for planning, screening and display, not for legal, engineering, property-boundary, permitting or code-compliance decisions.</p><p>At city scale: canopy cover (vegetation at least 2 m tall, as a share of the area the lidar observed) for each ownership zone; click a zone for its figure, bounds and the October 19 comparison. Zoom in past 1:20,000 for the tree crowns and, from 1:10,000, the treetops, coloured and sized by treetop height. The lidar hillshade is blended over the imagery (soft light).</p><p>Treetops and crowns are unvalidated automatic detections; about 6% of treetops carry an unreviewed SUSPECT flag.</p><p><b>Treetop height (feet):</b> <span style='color:#D9F0A3'>■</span> 6.6 to 16.4 ft &nbsp; <span style='color:#ADDD8E'>■</span> 16.4 to 32.8 ft &nbsp; <span style='color:#78C679'>■</span> 32.8 to 49.2 ft &nbsp; <span style='color:#31A354'>■</span> 49.2 to 65.6 ft &nbsp; <span style='color:#006837'>■</span> 65.6 ft and over; larger treetop dots are taller trees.</p><p>Crowns and treetops are vector tiles: they draw but have no pop-ups. A legend cannot read a vector tile style, so each is grouped with a small key layer that carries its classes into the legend.</p><p><b>Lidar source.</b> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program), flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open, non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been reviewed for these products. For these products the building and vegetation classes of the points were refined; the ground class was not changed. All products are gridded at 0.5 m.</p><p><b>Coordinates and heights.</b> Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator for ArcGIS Online with the transformation WGS_1984_(ITRF08)_To_NAD_1983_2011. Every layer in the Millcreek LiDAR 2023 set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres; without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in <b>metres</b>; heights are metres above the lidar bare-earth terrain.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City of Millcreek GIS.</p><h3>Explore canopy cover</h3><p>Select an ownership zone for its canopy percentage, then zoom in to see tree crowns and treetop markers. Use the legend to compare heights in feet. The crown and treetop tiles are display layers and have no individual-tree pop-ups.</p><h3>Three measures with different meanings</h3><p>Citywide canopy cover is 25.59% of the area observed by lidar. It measures classified vegetation at least 6.56 ft above the local ground, independently of how many treetops or crowns the algorithms find. Missing coverage is not silently counted as bare ground.</p><p>The 527,140 treetop detections are local peaks in the canopy surface. The 400,063 crown regions are segmented portions of that surface. Neither count is a field census: a large tree can produce multiple peaks, adjacent trees can merge, and small or shaded trees can be missed. The two counts should not be expected to match.</p><h3>Interpret carefully</h3><p>Heights are above local ground, not elevations above sea level. Crown boundaries estimate the overhead canopy extent; they do not identify trunks or ownership of individual trees. Zone summaries group canopy by the analysis ownership categories and are not parcel-boundary determinations. Roof edges, wires and other objects can cause false detections. Automated suspect flags are review evidence, not confirmed errors or field checks.</p><p>These layers do not establish species, trunk diameter, condition, hazard, heritage status or the number of trees that should be removed or planted. They support screening and prioritizing field work.</p><h3>Citywide 3D trees in development</h3><p>The citywide 3D workflow uses <a href='https://github.com/NoahAlting/CFTree' rel='nofollow ugc'>CFTree</a> to reconstruct crown surfaces from airborne lidar. Trunk positions and diameters are inferred from crown dimensions and terrain; they are not field measurements. That 3D work is being tested separately and is not yet included in this map. The existing canopy percentages and detection counts remain the October 22 analysis of the 2023 survey.</p><h3>Data and methods</h3><p><a href='https://www.arcgis.com/home/item.html?id=924b993cb23046cb87641253bcf786de' rel='nofollow ugc'>Treetop methods</a> · <a href='https://www.arcgis.com/home/item.html?id=d9388dc83f894edbb63e0510a8c62fa8' rel='nofollow ugc'>Crown methods</a> · <a href='https://www.arcgis.com/home/item.html?id=d5effaee6c66497eaeb64e4c2e0f496e' rel='nofollow ugc'>Canopy zones and building footprints</a></p><h3>Dates and units</h3><p>The source is the 2023 Salt Lake Valley QL1 lidar, flown in October and November 2023. These maps describe that survey, not present-day conditions. Buildings removed, trees planted or construction completed since then may differ. Basemap imagery can be from a different date.</p><p>Height legends and building heights use feet; building areas use square feet. Canopy-zone summaries use acres and percentages. One international foot is exactly 0.3048 meter. The original coordinate system, elevation reference and metric analysis files remain intact so all layers stay aligned. Rounded display values do not imply survey precision.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. Include the map location and building ID when available.</p>",
+  "tags": [
+   "Millcreek",
+   "Utah",
+   "Salt Lake County",
+   "lidar",
+   "2023 lidar",
+   "3DEP",
+   "planning estimate",
+   "tree canopy",
+   "urban forest",
+   "trees",
+   "treetops",
+   "crowns",
+   "web map"
+  ],
+  "licenseInfo": "<p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed, engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check conditions on the ground before relying on them. Credit \"City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)\" when you use or show them.</p>",
+  "accessInformation": "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS 3DEP)",
+  "type": "Web Map",
+  "typeKeywords": [
+   "ArcGIS Online",
+   "Explorer Web Map",
+   "Map",
+   "Online Map",
+   "Web Map"
+  ],
+  "extent": [
+   [
+    -111.92171,
+    40.65854
+   ],
+   [
+    -111.77604,
+    40.71476
+   ]
+  ]
+ },
+ "data": {
+  "operationalLayers": [
+   {
+    "id": "hillshade",
+    "title": "Hillshade (1.64 ft terrain grid)",
+    "layerType": "ArcGISTiledMapServiceLayer",
+    "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer",
+    "itemId": "cab8824e44384d479e1f302cdf34daf9",
+    "visibility": true,
+    "opacity": 0.5,
+    "showLegend": false,
+    "minScale": 300000,
+    "maxScale": 0,
+    "blendMode": "soft-light"
+   },
+   {
+    "id": "canopy-zones",
+    "title": "Canopy cover by ownership zone",
+    "layerType": "ArcGISFeatureLayer",
+    "url": "https://services9.arcgis.com/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_buildings_and_canopy_cover_zones_2023_lidar_planning_estimate/FeatureServer/1",
+    "itemId": "d5effaee6c66497eaeb64e4c2e0f496e",
+    "visibility": true,
+    "opacity": 0.85,
+    "minScale": 0,
+    "maxScale": 20000,
+    "layerDefinition": {
+     "drawingInfo": {
+      "renderer": {
+       "type": "classBreaks",
+       "classificationMethod": "esriClassifyManual",
+       "minValue": 0,
+       "valueExpression": "var z = $feature.ZONE_ID;\nif (z == 'CITY' || z == 'OWNERSHIP:PUBLIC_GOVERNMENT') { return null; }\nreturn $feature.CANOPY_PCT;",
+       "valueExpressionTitle": "Canopy cover (% of the area the lidar observed)",
+       "classBreakInfos": [
+        {
+         "classMaxValue": 10,
+         "label": "Under 10%",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           247,
+           252,
+           185,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        },
+        {
+         "classMaxValue": 20,
+         "label": "10% to 20%",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           173,
+           221,
+           142,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        },
+        {
+         "classMaxValue": 30,
+         "label": "20% to 30%",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           65,
+           171,
+           93,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        },
+        {
+         "classMaxValue": 100,
+         "label": "30% and over",
+         "symbol": {
+          "type": "esriSFS",
+          "style": "esriSFSSolid",
+          "color": [
+           0,
+           90,
+           50,
+           210
+          ],
+          "outline": {
+           "type": "esriSLS",
+           "style": "esriSLSSolid",
+           "color": [
+            255,
+            255,
+            255,
+            160
+           ],
+           "width": 0.5
+          }
+         }
+        }
+       ]
+      },
+      "transparency": 0,
+      "labelingInfo": null
+     },
+     "minScale": 0,
+     "maxScale": 20000
+    },
+    "popupInfo": {
+     "title": "{expression/title}",
+     "expressionInfos": [
+      {
+       "name": "pct",
+       "title": "Canopy cover",
+       "returnType": "string",
+       "expression": "return Text($feature.CANOPY_PCT, '#0.0') + '%';"
+      },
+      {
+       "name": "bounds",
+       "title": "Bounds",
+       "returnType": "string",
+       "expression": "return Text($feature.CANOPY_LOW_PCT, '#0.0') + '% to ' + Text($feature.CANOPY_HIGH_PCT, '#0.0') + '%';"
+      },
+      {
+       "name": "change",
+       "title": "Against October 19",
+       "returnType": "string",
+       "expression": "var d = $feature.CANOPY_PCT - $feature.CANOPY_PCT_OCT19;\nif (Abs(d) < 0.005) { return 'The same as'; }\nreturn Text(Abs(d), '0.00') + ' points ' + IIf(d < 0, 'below', 'above');"
+      },
+      {
+       "name": "title",
+       "title": "Zone",
+       "returnType": "string",
+       "expression": "var n = $feature.ZONE_NAME;\nreturn IIf(Left($feature.ZONE_ID, 7) == 'PUBLIC:', 'Public owner: ' + n, n);"
+      }
+     ],
+     "popupElements": [
+      {
+       "type": "text",
+       "text": "<p><b>Canopy cover {expression/pct}</b> of the area the lidar observed (bounds {expression/bounds}).</p><p>About {CANOPY_ACRES} acres of tree canopy in {ZONE_ACRES} acres. The whole city: 25.59%.</p><p>{expression/change} the October 19 estimate of {CANOPY_PCT_OCT19}%, which came from the earlier classification; the October 22 figure above is the current one.</p><p>The lidar observed {OBSERVED_PCT}% of the zone; the bounds count the unobserved part as no canopy or as all canopy. Canopy is vegetation at least 2 m tall.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+      }
+     ],
+     "fieldInfos": [
+      {
+       "fieldName": "CANOPY_ACRES",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 1,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "ZONE_ACRES",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 1,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "OBSERVED_PCT",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 1,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "CANOPY_PCT_OCT19",
+       "visible": false,
+       "isEditable": false,
+       "format": {
+        "places": 2,
+        "digitSeparator": true
+       }
+      },
+      {
+       "fieldName": "expression/pct",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/bounds",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/change",
+       "visible": true,
+       "isEditable": false
+      },
+      {
+       "fieldName": "expression/title",
+       "visible": true,
+       "isEditable": false
+      }
+     ]
+    }
+   },
+   {
+    "id": "crowns-group",
+    "title": "Tree crowns by treetop height",
+    "layerType": "GroupLayer",
+    "visibility": true,
+    "opacity": 1,
+    "listMode": "hide-children",
+    "layers": [
+     {
+      "id": "crowns",
+      "title": "Tree crowns by treetop height",
+      "layerType": "VectorTileLayer",
+      "itemId": "d9388dc83f894edbb63e0510a8c62fa8",
+      "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/d9388dc83f894edbb63e0510a8c62fa8/resources/styles/root.json",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 18056,
+      "maxScale": 0,
+      "showLegend": false
+     },
+     {
+      "id": "crowns-key",
+      "title": "Treetop height (feet)",
+      "layerType": "ArcGISFeatureLayer",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 18056,
+      "maxScale": 0,
+      "featureCollection": {
+       "layers": [
+        {
+         "layerDefinition": {
+          "name": "Treetop height (feet)",
+          "type": "Feature Layer",
+          "geometryType": "esriGeometryPolygon",
+          "objectIdField": "OBJECTID",
+          "fields": [
+           {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID"
+           },
+           {
+            "name": "CLASS",
+            "type": "esriFieldTypeString",
+            "alias": "Class",
+            "length": 40
+           }
+          ],
+          "drawingInfo": {
+           "renderer": {
+            "type": "uniqueValue",
+            "field1": "CLASS",
+            "uniqueValueInfos": [
+             {
+              "value": "6.6 to 16.4 ft",
+              "label": "6.6 to 16.4 ft",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                217,
+                240,
+                163,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "16.4 to 32.8 ft",
+              "label": "16.4 to 32.8 ft",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                173,
+                221,
+                142,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "32.8 to 49.2 ft",
+              "label": "32.8 to 49.2 ft",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                120,
+                198,
+                121,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "49.2 to 65.6 ft",
+              "label": "49.2 to 65.6 ft",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                49,
+                163,
+                84,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             },
+             {
+              "value": "65.6 ft and over",
+              "label": "65.6 ft and over",
+              "symbol": {
+               "type": "esriSFS",
+               "style": "esriSFSSolid",
+               "color": [
+                0,
+                104,
+                55,
+                128
+               ],
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 0,
+                 68,
+                 27,
+                 217
+                ],
+                "width": 0.75
+               }
+              }
+             }
+            ]
+           }
+          },
+          "extent": {
+           "xmin": -12459067.21,
+           "ymin": 4962105.56,
+           "xmax": -12442851.81,
+           "ymax": 4970359.57,
+           "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+           }
+          }
+         },
+         "featureSet": {
+          "geometryType": "esriGeometryPolygon",
+          "features": []
+         }
+        }
+       ],
+       "showLegend": true
+      }
+     }
+    ]
+   },
+   {
+    "id": "treetops-group",
+    "title": "Treetops by height",
+    "layerType": "GroupLayer",
+    "visibility": true,
+    "opacity": 1,
+    "listMode": "hide-children",
+    "layers": [
+     {
+      "id": "treetops",
+      "title": "Treetops by height",
+      "layerType": "VectorTileLayer",
+      "itemId": "924b993cb23046cb87641253bcf786de",
+      "styleUrl": "https://www.arcgis.com/sharing/rest/content/items/924b993cb23046cb87641253bcf786de/resources/styles/root.json",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 10000,
+      "maxScale": 0,
+      "showLegend": false
+     },
+     {
+      "id": "treetops-key",
+      "title": "Treetop height (feet)",
+      "layerType": "ArcGISFeatureLayer",
+      "visibility": true,
+      "opacity": 1,
+      "minScale": 10000,
+      "maxScale": 0,
+      "featureCollection": {
+       "layers": [
+        {
+         "layerDefinition": {
+          "name": "Treetop height (feet)",
+          "type": "Feature Layer",
+          "geometryType": "esriGeometryPoint",
+          "objectIdField": "OBJECTID",
+          "fields": [
+           {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID"
+           },
+           {
+            "name": "CLASS",
+            "type": "esriFieldTypeString",
+            "alias": "Class",
+            "length": 40
+           }
+          ],
+          "drawingInfo": {
+           "renderer": {
+            "type": "uniqueValue",
+            "field1": "CLASS",
+            "uniqueValueInfos": [
+             {
+              "value": "6.6 to 16.4 ft",
+              "label": "6.6 to 16.4 ft",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                217,
+                240,
+                163,
+                255
+               ],
+               "size": 3.0,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "16.4 to 32.8 ft",
+              "label": "16.4 to 32.8 ft",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                173,
+                221,
+                142,
+                255
+               ],
+               "size": 4.2,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "32.8 to 49.2 ft",
+              "label": "32.8 to 49.2 ft",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                120,
+                198,
+                121,
+                255
+               ],
+               "size": 5.4,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "49.2 to 65.6 ft",
+              "label": "49.2 to 65.6 ft",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                49,
+                163,
+                84,
+                255
+               ],
+               "size": 6.6,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             },
+             {
+              "value": "65.6 ft and over",
+              "label": "65.6 ft and over",
+              "symbol": {
+               "type": "esriSMS",
+               "style": "esriSMSCircle",
+               "color": [
+                0,
+                104,
+                55,
+                255
+               ],
+               "size": 7.8,
+               "outline": {
+                "type": "esriSLS",
+                "style": "esriSLSSolid",
+                "color": [
+                 20,
+                 45,
+                 25,
+                 204
+                ],
+                "width": 0.45
+               }
+              }
+             }
+            ]
+           }
+          },
+          "extent": {
+           "xmin": -12459067.21,
+           "ymin": 4962105.56,
+           "xmax": -12442851.81,
+           "ymax": 4970359.57,
+           "spatialReference": {
+            "wkid": 102100,
+            "latestWkid": 3857
+           }
+          }
+         },
+         "featureSet": {
+          "geometryType": "esriGeometryPoint",
+          "features": []
+         }
+        }
+       ],
+       "showLegend": true
+      }
+     }
+    ]
+   }
+  ],
+  "baseMap": {
+   "title": "Imagery Hybrid",
+   "baseMapLayers": [
+    {
+     "id": "world-imagery",
+     "title": "World Imagery",
+     "layerType": "ArcGISTiledMapServiceLayer",
+     "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+     "visibility": true,
+     "opacity": 1,
+     "showLegend": false
+    },
+    {
+     "id": "hybrid-reference",
+     "title": "Hybrid Reference Layer",
+     "layerType": "VectorTileLayer",
+     "isReference": true,
+     "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/30d6b8271e1849cd9c3042060001f425/resources/styles/root.json",
+     "visibility": true,
+     "opacity": 1
+    }
+   ]
+  },
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  },
+  "initialState": {
+   "viewpoint": {
+    "targetGeometry": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    }
+   }
+  },
+  "bookmarks": [
+   {
+    "name": "Whole city",
+    "extent": {
+     "xmin": -12459067.21,
+     "ymin": 4962105.56,
+     "xmax": -12442851.81,
+     "ymax": 4970359.57,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12459067.21,
+      "ymin": 4962105.56,
+      "xmax": -12442851.81,
+      "ymax": 4970359.57,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Millcreek Common (city centre)",
+    "extent": {
+     "xmin": -12452534.9,
+     "ymin": 4967644.1,
+     "xmax": -12450160.6,
+     "ymax": 4969068.7,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12452534.9,
+      "ymin": 4967644.1,
+      "xmax": -12450160.6,
+      "ymax": 4969068.7,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Canyon Rim",
+    "extent": {
+     "xmin": -12447386.4,
+     "ymin": 4968055.2,
+     "xmax": -12445012.0,
+     "ymax": 4969479.9,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12447386.4,
+      "ymin": 4968055.2,
+      "xmax": -12445012.0,
+      "ymax": 4969479.9,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Evergreen and East Millcreek",
+    "extent": {
+     "xmin": -12449709.5,
+     "ymin": 4966888.0,
+     "xmax": -12447335.4,
+     "ymax": 4968312.4,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12449709.5,
+      "ymin": 4966888.0,
+      "xmax": -12447335.4,
+      "ymax": 4968312.4,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Olympus Cove foothills",
+    "extent": {
+     "xmin": -12445147.4,
+     "ymin": 4965130.8,
+     "xmax": -12442773.8,
+     "ymax": 4966555.0,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12445147.4,
+      "ymin": 4965130.8,
+      "xmax": -12442773.8,
+      "ymax": 4966555.0,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   },
+   {
+    "name": "Scott Avenue (west Millcreek)",
+    "extent": {
+     "xmin": -12454150.1,
+     "ymin": 4966835.1,
+     "xmax": -12451776.0,
+     "ymax": 4968259.6,
+     "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+     }
+    },
+    "viewpoint": {
+     "targetGeometry": {
+      "xmin": -12454150.1,
+      "ymin": 4966835.1,
+      "xmax": -12451776.0,
+      "ymax": 4968259.6,
+      "spatialReference": {
+       "wkid": 102100,
+       "latestWkid": 3857
+      }
+     }
+    }
+   }
+  ],
+  "authoringApp": "apply_styling.py (ArcGIS API for Python)",
+  "authoringAppVersion": "2.4.3",
+  "version": "2.31"
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "status": "complete",
+ "started": "2026-10-22T10:05:06",
+ "halo_m": 40.0,
+ "cores": 63,
+ "treetops": 527140,
+ "seeds": 772649,
+ "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261022\\canonical-chm-combined.bin",
+ "label": "1 + row in city-treetops.csv for city treetops; above that, peaks outside the city (bounds only)",
+ "stability_double_halo": {
+  "r000c004": 0,
+  "r001c010": 0,
+  "r002c012": 0,
+  "r003c011": 0,
+  "r005c006": 0,
+  "r006c011": 0
+ },
+ "treetops_with_cells": 527140,
+ "finished": "2026-10-22T10:15:24"
+}

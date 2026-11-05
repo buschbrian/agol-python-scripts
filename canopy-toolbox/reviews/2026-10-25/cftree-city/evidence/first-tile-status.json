@@ -1,0 +1,11 @@
+{
+  "tile": "12TVL2804",
+  "state": "complete",
+  "updated_utc": "2026-10-26T02:49:10.794417+00:00",
+  "config_hash": "6fd0054860f04a3b4f175691b69dbca0b3d93225ade17e378ac1d6c233a720df",
+  "models": 3186,
+  "rejected": 0,
+  "cityjson_shards": 13,
+  "seam_review": "pending",
+  "completed_utc": "2026-10-26T02:49:10.794395+00:00"
+}

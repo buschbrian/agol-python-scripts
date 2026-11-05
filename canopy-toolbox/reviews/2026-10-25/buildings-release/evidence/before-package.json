@@ -1,0 +1,25 @@
+{
+  "id": "07919e2df15647ba91ba23a0fd417083",
+  "title": "Millcreek 3D buildings with roof forms (2023 lidar), planning estimate",
+  "type": "Scene Package",
+  "access": "private",
+  "url": null,
+  "owner": "GISMillcreek",
+  "size": 21228379,
+  "modified": 1792941366000,
+  "snippet": "Unvalidated planning estimate: 21,561 buildings from 2023 lidar, with roofer LoD 2.2 roofs and Esri LOD2.0/LOD1.2 fallbacks. Roof forms and heights are modelled, not surveyed or field-verified.",
+  "description": "<p>The LEVEL field says which model each building uses, and the roof attributes (planes, slopes, azimuth, ridge and eave height, south-facing area) apply where LEVEL is roofer LoD2.2. Heights NAVD88; the package is labelled EGM96 but its heights were left in NAVD88 (see the scene-layers README).</p><p>Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.</p><p>Coordinates: NAD83(2011) taken to WGS84 / Web Mercator with WGS_1984_(ITRF08)_To_NAD_1983_2011, the same as every layer in this set. Elevations NAVD88 (Geoid18) metres.</p><p>Records: canopy-toolbox/reviews/2026-10-22 in buschbrian/agol-python-scripts (branch canopy/classification-refinement). See ../2026-10-23/lod2-check/README.md.</p>",
+  "tags": [
+    "Millcreek",
+    "lidar",
+    "2023",
+    "planning estimate",
+    "buildings",
+    "3D",
+    "scene",
+    "roof forms"
+  ],
+  "accessInformation": "Millcreek GIS; lidar: 2023 Salt Lake Valley QL1 (USGS 3DEP).",
+  "licenseInfo": "Unvalidated LiDAR planning estimate from the 2023 Salt Lake Valley QL1 lidar (flown October-November 2023); not surveyed or field-verified data.",
+  "protected": false
+}

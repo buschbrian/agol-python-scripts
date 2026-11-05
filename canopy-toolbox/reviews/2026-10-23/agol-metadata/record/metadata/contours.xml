@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='utf-8'?>
+<metadata xml:lang="en">
+            
+    
+    <Esri>
+                        
+        
+        <ArcGISFormat>1.0</ArcGISFormat>
+                        
+        
+        <ArcGISProfile>DCPLUS</ArcGISProfile>
+                        
+        
+        <CreaDate>20261023</CreaDate>
+                        
+        
+        <CreaTime>17530500</CreaTime>
+                        
+        
+        <ModDate>20261023</ModDate>
+                        
+        
+        <ModTime>17530500</ModTime>
+                        
+        
+        <DataProperties>
+                                    
+            
+            <itemProps>
+                                                
+                
+                <portalDetails>
+                                                            
+                    
+                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/50573eeba93f405a869a1d78a08d68e8/info/thumbnail/thumbnail.JPEG</thumbnailURL>
+                                                            
+                    
+                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=50573eeba93f405a869a1d78a08d68e8</itemDetailsURL>
+                                                            
+                    
+                    <itemIdentifier>50573eeba93f405a869a1d78a08d68e8</itemIdentifier>
+                                                            
+                    
+                    <itemType>Vector Tile Service</itemType>
+                                                            
+                    
+                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_2_m_contours_2023_lidar_planning_estimate/VectorTileServer</resourceURL>
+                                                        
+                
+                </portalDetails>
+                                            
+            
+            </itemProps>
+                                
+        
+        </DataProperties>
+                    
+    
+    </Esri>
+            
+    
+    <dataIdInfo>
+                        
+        
+        <idCitation>
+                                    
+            
+            <resTitle>Millcreek 2 m contours (2023 lidar), planning estimate</resTitle>
+                                
+            
+            <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                        
+        
+        <searchKeys>
+                                    
+            
+            
+            
+            
+            
+            
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>contours</keyword><keyword>elevation</keyword><keyword>topography</keyword><keyword>terrain</keyword><keyword>vector tiles</keyword></searchKeys>
+                        
+        
+        <idPurp>Ground contours every 2 m (index lines every 10 m) for Millcreek, Utah, from the 0.5 m bare-earth terrain of the 2023 lidar. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
+                        
+        
+        <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
+surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
+property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
+&lt;h2&gt;What it shows&lt;/h2&gt;
+&lt;p&gt;Lines of equal ground elevation across Millcreek, Utah, drawn from the 0.5 m bare-earth terrain of the 2023 lidar.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Interval: 2 metres&lt;/strong&gt; (about 6.56 ft). &lt;strong&gt;Index contours every 10 metres&lt;/strong&gt; (about 32.8 ft). The contours are in
+  &lt;strong&gt;metres above NAVD88&lt;/strong&gt;, not feet.&lt;/li&gt;
+&lt;li&gt;15,149 lines (3,260 of them index contours), 2,447 km in all, from 1,290 m to 2,080 m (about 4,232 ft to 6,824 ft).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Legend and scales&lt;/h2&gt;
+&lt;table style='border-collapse:collapse;font-size:90%'&gt;
+
+&lt;tr&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Lines&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Shown from&lt;/th&gt;
+&lt;th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Meaning&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Index contours&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;1:288,895 (zoom level 10) inward&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Every 10 m of elevation (1,290, 1,300, 1,310 m ...)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;2 m contours&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;1:18,056 (zoom level 14) inward&lt;/td&gt;
+&lt;td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'&gt;Every 2 m between the index lines&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Index lines are drawn heavier, the 2 m lines thinner. &lt;strong&gt;Map Viewer's legend does not list vector tile layers&lt;/strong&gt;, so this table is the key to the lines. The layer draws down to about 1:2,257 (zoom level 17); ArcGIS web maps and apps stop drawing it at larger scales. This is a vector tile layer: it &lt;strong&gt;draws only&lt;/strong&gt;. The tiles carry no attributes, so the lines have no elevation labels, no
+pop-ups and no identify. To read an elevation, count from a labelled index line or use the Millcreek bare-earth terrain
+layer. At small scales the tiling simplifies the lines to the pixel size.&lt;/p&gt;
+&lt;h2&gt;How it was made&lt;/h2&gt;
+&lt;p&gt;Contours at a 2 m interval were traced from the 0.5 m bare-earth terrain (interpolated from the lidar's ground returns),
+for the city only; every fifth line (each multiple of 10 m) is marked as an index contour. They were packaged as vector
+tiles for levels 10 to 17.&lt;/p&gt;
+&lt;h2&gt;Accuracy and checks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The hosted lines fall on 2 m multiples of the source terrain with no shift (the best-fitting shift on a 7 cm search grid is
+  zero), and tiles fetched from the hosted layer are byte for byte the package's.&lt;/li&gt;
+&lt;li&gt;Tile vertices sit a median 6 cm from the source lines (half a tile unit), against 0.9 m if the datum transformation
+  had been left out.&lt;/li&gt;
+&lt;li&gt;The terrain has not been checked against field survey. QL1 lidar is specified to 10 cm vertically on open ground;
+  errors are larger under dense vegetation and buildings, where the ground is interpolated.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Limits&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;At 0.5 m the 2 m lines follow every curb, berm and driveway cut. They show the ground as it was in late 2023.&lt;/li&gt;
+&lt;li&gt;Under buildings the ground is interpolated, so lines crossing a building are not observed ground.&lt;/li&gt;
+&lt;li&gt;Not for engineering design, grading plans or flood elevations; those need a survey.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Coordinates and heights.&lt;/strong&gt; Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator
+for ArcGIS Online with the transformation &lt;code&gt;WGS_1984_(ITRF08)_To_NAD_1983_2011&lt;/code&gt;. Every layer in the Millcreek LiDAR 2023
+set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres;
+without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in &lt;strong&gt;metres&lt;/strong&gt;; heights are metres above the
+lidar bare-earth terrain.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lidar source.&lt;/strong&gt; The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
+flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
+non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Millcreek LiDAR 2023 set.&lt;/strong&gt; Eight layers from the same lidar and the same processing: buildings and canopy cover
+zones (feature layer), 3D buildings (scene layer), bare-earth terrain (elevation layer), hillshade (tile layer), slope
+classes, 2 m contours, treetops and tree crowns (vector tile layers). They share one coordinate transformation and one
+terrain, so they can be stacked in one map or scene.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
+of Millcreek GIS.&lt;/p&gt;</idAbs>
+                        
+        
+        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).</idCredit>
+                        
+        
+        <resConst>
+                                    
+            
+            <Consts>
+                                                
+                
+                <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
+engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
+design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
+determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
+conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
+3DEP)" when you use or show them.&lt;/p&gt;</useLimit>
+                                            
+            
+            </Consts>
+                                
+        
+        </resConst>
+                        
+        
+        <dataExt>
+                                    
+            
+            <geoEle>
+                                                
+                
+                <GeoBndBox>
+                                                            
+                    
+                    <westBL Sync="FALSE">-111.92134915686677</westBL>
+                                                            
+                    
+                    <eastBL Sync="FALSE">-111.77628803022557</eastBL>
+                                                            
+                    
+                    <northBL Sync="FALSE">40.71451418060284</northBL>
+                                                            
+                    
+                    <southBL Sync="FALSE">40.65886067468761</southBL>
+                                                            
+                    
+                    <exTypeCode Sync="TRUE">1</exTypeCode>
+                                                        
+                
+                </GeoBndBox>
+                                            
+            
+            </geoEle>
+                                
+            
+            <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
+                    
+        
+        <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="006" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
+            
+    
+    <Binary>
+                        
+        
+        <Thumbnail>
+                                    
+            
+            <Data EsriPropertyType="PictureX">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</Data>
+                                
+        
+        </Thumbnail>
+                    
+    
+    </Binary>
+            
+    
+    <mdFileID>50573eeba93f405a869a1d78a08d68e8</mdFileID>
+            
+    
+    <distInfo>
+                        
+        
+        <distTranOps>
+                                    
+            
+            <onLineSrc>
+                                                
+                
+                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_2_m_contours_2023_lidar_planning_estimate/VectorTileServer</linkage>
+                                            
+            
+            </onLineSrc>
+                                
+        
+        </distTranOps>
+                        
+        
+        <distFormat>
+                                    
+            
+            <formatName>Vector Tile Service</formatName>
+                                
+        
+        </distFormat>
+                    
+    
+    </distInfo>
+            
+    
+    <refSysInfo>
+                        
+        
+        <RefSystem>
+                                    
+            
+            <refSysID>
+                                                
+                
+                <identCode code="102100" />
+                                                
+                
+                <idCodeSpace>EPSG</idCodeSpace>
+                                            
+            
+            </refSysID>
+                                
+        
+        </RefSystem>
+                    
+    
+    </refSysInfo>
+        
+    
+    <dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>2 m contours (10 m index) traced from the 0.5 m bare-earth terrain of the 2023 Salt Lake Valley QL1 lidar, interpolated from ground returns, and packaged as vector tiles (WGS_1984_(ITRF08)_To_NAD_1983_2011). Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>

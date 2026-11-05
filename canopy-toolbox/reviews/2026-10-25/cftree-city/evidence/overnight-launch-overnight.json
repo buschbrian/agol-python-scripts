@@ -1,0 +1,8 @@
+{
+  "pid": 41868,
+  "started_local": "2026-10-25T21:42:28.9907309-06:00",
+  "workers": 2,
+  "keep_awake": true,
+  "script": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\lidar-wrapup\\canopy-toolbox\\reviews\\2026-10-25\\cftree-city\\run_city.py",
+  "run_dir": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\cftree-city-20261025"
+}

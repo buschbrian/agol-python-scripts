@@ -1,0 +1,46 @@
+{
+ "window": [
+  433149.0,
+  4505133.0,
+  434149.0,
+  4506133.0
+ ],
+ "cells": 4000000,
+ "products": {
+  "slope_degrees": {
+   "nodata_equal": true,
+   "max_abs_diff": 0.0,
+   "cells": 3952144
+  },
+  "slope_percent": {
+   "nodata_equal": true,
+   "max_abs_diff": 0.0,
+   "cells": 3952144
+  },
+  "aspect_degrees": {
+   "nodata_equal": true,
+   "max_abs_diff": 0.0,
+   "cells": 3952144
+  },
+  "profile_curvature": {
+   "nodata_equal": true,
+   "max_abs_diff": 0.0,
+   "cells": 3952144
+  },
+  "tangential_curvature": {
+   "nodata_equal": true,
+   "max_abs_diff": 0.0,
+   "cells": 3952144
+  },
+  "hillshade": {
+   "nodata_equal": true,
+   "max_abs_diff": 0.0,
+   "cells": 3992004
+  },
+  "terrain_position_m": {
+   "nodata_equal": true,
+   "max_abs_diff": 0.0,
+   "cells": 4000000
+  }
+ }
+}

@@ -1,0 +1,17 @@
+{
+  "tile": "12TVL3101",
+  "models": 162,
+  "rejected": 0,
+  "shards": 1,
+  "faces": 95846,
+  "quantized_zero_area_faces": 0,
+  "finite_coordinates": true,
+  "valid_vertex_indices": true,
+  "closed_edge_incidence": true,
+  "feet_conversion_tolerance_m": 1e-08,
+  "boundary_review_models": 142,
+  "checks": "Export structure and conversions; not full schema, solid topology, seam or field validation",
+  "files": {
+    "trees_0000.city.json.gz": "01cf503450a770446cd5167ae7de706a364720a3cca4a46205ce113fa1d9a373"
+  }
+}

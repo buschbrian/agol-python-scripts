@@ -1,0 +1,46 @@
+{
+ "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\viewer-20261024\\pro\\Millcreek_buildings_3D.aprx",
+ "scenes": [
+  {
+   "name": "Esri LOD2.0 hybrid",
+   "layers": [
+    "buildings_hybrid"
+   ],
+   "bookmarks": [
+    "b01 Win: Esri LOD2.0 has a defect, roofer does not (FP 7226)",
+    "b02 Win: Esri LOD2.0 has a defect, roofer does not (FP 4533)",
+    "b03 Win: Esri LOD2.0 has a defect, roofer does not (FP 14920)"
+   ],
+   "bookmark_count": 15,
+   "made": 15
+  },
+  {
+   "name": "roofer only",
+   "layers": [
+    "roofer_lod22"
+   ],
+   "bookmarks": [
+    "b01 Win: Esri LOD2.0 has a defect, roofer does not (FP 7226)",
+    "b02 Win: Esri LOD2.0 has a defect, roofer does not (FP 4533)",
+    "b03 Win: Esri LOD2.0 has a defect, roofer does not (FP 14920)"
+   ],
+   "bookmark_count": 15,
+   "made": 15
+  },
+  {
+   "name": "three-way hybrid",
+   "layers": [
+    "buildings_three_way"
+   ],
+   "bookmarks": [
+    "b01 Win: Esri LOD2.0 has a defect, roofer does not (FP 7226)",
+    "b02 Win: Esri LOD2.0 has a defect, roofer does not (FP 4533)",
+    "b03 Win: Esri LOD2.0 has a defect, roofer does not (FP 14920)"
+   ],
+   "bookmark_count": 15,
+   "made": 15
+  }
+ ],
+ "bookmarks": 15,
+ "bookmark_errors": []
+}

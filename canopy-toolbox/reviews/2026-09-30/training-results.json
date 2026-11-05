@@ -1,0 +1,1221 @@
+{
+ "selection": {
+  "seed": 20260930,
+  "draw": "random.Random(20260930).sample(sorted(candidates), 3)",
+  "draw_order": [
+   "12TVL3206",
+   "12TVL3205",
+   "12TVL3006"
+  ],
+  "candidates": [
+   "12TVL2603",
+   "12TVL2703",
+   "12TVL3005",
+   "12TVL3006",
+   "12TVL3105",
+   "12TVL3106",
+   "12TVL3205",
+   "12TVL3206",
+   "12TVL3304",
+   "12TVL3305"
+  ]
+ },
+ "timings": [
+  {
+   "tile": "12TVL3206",
+   "step": "prepare",
+   "status": "ok",
+   "start": "2026-09-29T22:10:34-06:00",
+   "minutes": "1.44",
+   "waited_for_other_cpu_minutes": "0.0",
+   "peak_rss_gb": "2.48",
+   "output_gb": "0.86",
+   "scratch_gb": "0.0",
+   "free_ram_gb_after": "17.3",
+   "priority": "BELOW_NORMAL"
+  },
+  {
+   "tile": "12TVL3206",
+   "step": "run",
+   "status": "ok",
+   "start": "2026-09-29T22:12:00-06:00",
+   "minutes": "3.75",
+   "waited_for_other_cpu_minutes": "0.0",
+   "peak_rss_gb": "0.69",
+   "output_gb": "0.1",
+   "scratch_gb": "0.01",
+   "free_ram_gb_after": "16.7",
+   "priority": "BELOW_NORMAL"
+  },
+  {
+   "tile": "12TVL3205",
+   "step": "prepare",
+   "status": "ok",
+   "start": "2026-09-29T22:15:45-06:00",
+   "minutes": "1.16",
+   "waited_for_other_cpu_minutes": "0.0",
+   "peak_rss_gb": "2.34",
+   "output_gb": "0.83",
+   "scratch_gb": "0.0",
+   "free_ram_gb_after": "16.7",
+   "priority": "BELOW_NORMAL"
+  },
+  {
+   "tile": "12TVL3205",
+   "step": "run",
+   "status": "ok",
+   "start": "2026-09-29T22:16:55-06:00",
+   "minutes": "3.47",
+   "waited_for_other_cpu_minutes": "0.0",
+   "peak_rss_gb": "0.66",
+   "output_gb": "0.09",
+   "scratch_gb": "0.01",
+   "free_ram_gb_after": "16.0",
+   "priority": "BELOW_NORMAL"
+  },
+  {
+   "tile": "12TVL3006",
+   "step": "prepare",
+   "status": "ok",
+   "start": "2026-09-29T22:20:26-06:00",
+   "minutes": "1.94",
+   "waited_for_other_cpu_minutes": "0.0",
+   "peak_rss_gb": "2.75",
+   "output_gb": "0.93",
+   "scratch_gb": "0.0",
+   "free_ram_gb_after": "15.9",
+   "priority": "BELOW_NORMAL"
+  },
+  {
+   "tile": "12TVL3006",
+   "step": "run",
+   "status": "ok",
+   "start": "2026-09-29T22:22:22-06:00",
+   "minutes": "3.57",
+   "waited_for_other_cpu_minutes": "0.0",
+   "peak_rss_gb": "0.67",
+   "output_gb": "0.09",
+   "scratch_gb": "0.01",
+   "free_ram_gb_after": "17.6",
+   "priority": "BELOW_NORMAL"
+  }
+ ],
+ "gpu_queue": {
+  "started": "2026-09-29T22:12:11.1815515-06:00",
+  "tiles": [
+   "12TVL3206",
+   "12TVL3205",
+   "12TVL3006"
+  ],
+  "cutoff": "07:30",
+  "marker": "GPU QUEUE DONE",
+  "phase": "running rows",
+  "rows": [
+   {
+    "row": "12TVL3206-tree",
+    "tile": "12TVL3206",
+    "job": "tree",
+    "started": "2026-09-30T01:41:16.6727325-06:00",
+    "runner_sha256": "d8c9c7e574ee60ee35660ef0c6750b0afb28347417bdd3ae16124a9a27e066fe",
+    "dl_run_sha256": "3c02b9e0c47de4bd82d53ae110da4743693549c50529db1021072dbc419d2634",
+    "dl_compare_sha256": "0b8635140e6551167b8c616f1f1705329004882b29b7f0d9a2b8363ae1d4b87d",
+    "sources": [
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3206.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3105.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3106.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3107.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3205.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3207.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3305.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3306.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3307.las"
+    ],
+    "exit": 0,
+    "minutes": 36.1,
+    "row_status": "complete; integrity verified",
+    "dl_run_wall_seconds": 2146.7,
+    "dl_compare_exit": 0,
+    "finished": "2026-09-30T02:17:20.5290948-06:00"
+   },
+   {
+    "row": "12TVL3206-building",
+    "tile": "12TVL3206",
+    "job": "building",
+    "started": "2026-09-30T02:17:20.5388783-06:00",
+    "runner_sha256": "d8c9c7e574ee60ee35660ef0c6750b0afb28347417bdd3ae16124a9a27e066fe",
+    "dl_run_sha256": "3c02b9e0c47de4bd82d53ae110da4743693549c50529db1021072dbc419d2634",
+    "dl_compare_sha256": "0b8635140e6551167b8c616f1f1705329004882b29b7f0d9a2b8363ae1d4b87d",
+    "sources": [
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3206.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3105.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3106.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3107.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3205.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3207.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3305.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3306.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3206\\prepared\\points\\12TVL3307.las"
+    ],
+    "exit": 0,
+    "minutes": 18.1,
+    "row_status": "complete; integrity verified",
+    "dl_run_wall_seconds": 1072.7,
+    "dl_compare_exit": 0,
+    "finished": "2026-09-30T02:35:27.1662414-06:00"
+   },
+   {
+    "row": "12TVL3205-tree",
+    "tile": "12TVL3205",
+    "job": "tree",
+    "started": "2026-09-30T02:35:27.1689012-06:00",
+    "runner_sha256": "d8c9c7e574ee60ee35660ef0c6750b0afb28347417bdd3ae16124a9a27e066fe",
+    "dl_run_sha256": "3c02b9e0c47de4bd82d53ae110da4743693549c50529db1021072dbc419d2634",
+    "dl_compare_sha256": "0b8635140e6551167b8c616f1f1705329004882b29b7f0d9a2b8363ae1d4b87d",
+    "sources": [
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3205.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3104.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3105.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3106.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3204.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3206.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3304.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3305.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3306.las"
+    ],
+    "exit": 0,
+    "minutes": 33.8,
+    "row_status": "complete; integrity verified",
+    "dl_run_wall_seconds": 2011.8,
+    "dl_compare_exit": 0,
+    "finished": "2026-09-30T03:09:13.3641531-06:00"
+   },
+   {
+    "row": "12TVL3205-building",
+    "tile": "12TVL3205",
+    "job": "building",
+    "started": "2026-09-30T03:09:13.3672949-06:00",
+    "runner_sha256": "d8c9c7e574ee60ee35660ef0c6750b0afb28347417bdd3ae16124a9a27e066fe",
+    "dl_run_sha256": "3c02b9e0c47de4bd82d53ae110da4743693549c50529db1021072dbc419d2634",
+    "dl_compare_sha256": "0b8635140e6551167b8c616f1f1705329004882b29b7f0d9a2b8363ae1d4b87d",
+    "sources": [
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3205.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3104.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3105.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3106.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3204.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3206.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3304.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3305.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3205\\prepared\\points\\12TVL3306.las"
+    ],
+    "exit": 0,
+    "minutes": 19.4,
+    "row_status": "complete; integrity verified",
+    "dl_run_wall_seconds": 1151.4,
+    "dl_compare_exit": 0,
+    "finished": "2026-09-30T03:28:38.5062291-06:00"
+   },
+   {
+    "row": "12TVL3006-tree",
+    "tile": "12TVL3006",
+    "job": "tree",
+    "started": "2026-09-30T03:28:38.5083939-06:00",
+    "runner_sha256": "d8c9c7e574ee60ee35660ef0c6750b0afb28347417bdd3ae16124a9a27e066fe",
+    "dl_run_sha256": "3c02b9e0c47de4bd82d53ae110da4743693549c50529db1021072dbc419d2634",
+    "dl_compare_sha256": "0b8635140e6551167b8c616f1f1705329004882b29b7f0d9a2b8363ae1d4b87d",
+    "sources": [
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL3006.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL2905.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL2906.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL2907.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL3005.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL3007.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL3105.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL3106.las",
+     "H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\12TVL3006\\prepared\\points\\12TVL3107.las"
+    ],
+    "exit": "error: Program 'python.exe' failed to run: The volume for a file has been externally altered so that the opened file is no longer valid. : 'H:\\lidar\\2023-salt-lake-valley\\runs\\training-2026-09-30\\deep-learning\\12TVL3006-tree\\work\\dl_run.log'.At V:\\Developer\\agol-python-scripts\\canopy-toolbox\\reviews\\2026-09-29\\dl-experiments-20260930\\run_row.ps1:65 char:1\r\n+ & $DL @dlargs *> (Join-Path $work 'dl_run.log')\r\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.",
+    "minutes": 243.3,
+    "row_status": "running",
+    "dl_run_wall_seconds": null,
+    "dl_compare_exit": null,
+    "finished": "2026-09-30T07:31:57.3445513-06:00"
+   }
+  ],
+  "remaining": [
+   "12TVL3006-building"
+  ],
+  "pid": 4612,
+  "updated": "2026-09-30T07:31:57.3448186-06:00",
+  "current": null
+ },
+ "tiles": {
+  "12TVL3206": {
+   "cpu": {
+    "steps": [
+     {
+      "tile": "12TVL3206",
+      "step": "prepare",
+      "status": "ok",
+      "start": "2026-09-29T22:10:34-06:00",
+      "minutes": 1.44,
+      "waited_for_other_cpu_minutes": 0.0,
+      "peak_rss_gb": 2.48,
+      "output_gb": 0.86,
+      "scratch_gb": 0.0,
+      "free_ram_gb_after": 17.3,
+      "priority": "BELOW_NORMAL"
+     },
+     {
+      "tile": "12TVL3206",
+      "step": "run",
+      "status": "ok",
+      "start": "2026-09-29T22:12:00-06:00",
+      "minutes": 3.75,
+      "waited_for_other_cpu_minutes": 0.0,
+      "peak_rss_gb": 0.69,
+      "output_gb": 0.1,
+      "scratch_gb": 0.01,
+      "free_ram_gb_after": 16.7,
+      "priority": "BELOW_NORMAL"
+     }
+    ],
+    "prepare_status": "complete",
+    "run_status": "complete",
+    "prepare_parameters_equal_12TVL2804": false,
+    "run_parameters_equal_12TVL2804_except_extent_source": false,
+    "run_signature": "69bf502479d7384892c3902915141449df1a626d24ecd8a4786e4e54acb5934d",
+    "run_signature_12TVL2804": "75f1b4b1104b485544271ae49172373556ce6100748d89060233034fce319e85",
+    "prepare_sources": [
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3105.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3106.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3107.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3205.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3206.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3207.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3305.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3306.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3307.las"
+    ],
+    "prepare_extent": [
+     431950.0,
+     4505950.0,
+     433050.0,
+     4507050.0
+    ],
+    "core_points_after_prepare": 24475011,
+    "core_class_share_after_prepare": {
+     "1": 0.0276,
+     "2": 0.1203,
+     "3": 0.4259,
+     "4": 0.0688,
+     "5": 0.257,
+     "6": 0.0988,
+     "7": 0.0,
+     "17": 0.0004,
+     "18": 0.0012,
+     "20": 0.0
+    },
+    "error": null
+   },
+   "gpu": {
+    "tree": {
+     "row": "12TVL3206-tree",
+     "job": "tree",
+     "status": "complete; integrity verified",
+     "label": "TRAINING domain (September 30 seeded draw) -- core + prepared 50 m halo; labels via the training-review workflow",
+     "files": 9,
+     "md5_source_copy_after_all_equal": true,
+     "watch_unchanged": true,
+     "dl_run_exit": 0,
+     "dl_run_wall_seconds": 2146.7,
+     "tool_elapsed_seconds": 2145.1,
+     "gpu_used_mib_peak": 2585,
+     "run_manifest": {
+      "status": "complete",
+      "class_mode": "EDIT_ALL",
+      "excluded_class_codes": [
+       7,
+       18
+      ],
+      "batch_size": 1,
+      "output_classes": [
+       0,
+       5
+      ],
+      "error": null
+     },
+     "model_sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e",
+     "runtime_isolation": {
+      "PYTHONNOUSERSITE": "1",
+      "site_ENABLE_USER_SITE": false,
+      "user_site": null,
+      "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+      "allow_user_site_override": false,
+      "scope": "calling interpreter; the tool's own worker processes are not inspected"
+     },
+     "dl_compare_exit": 0,
+     "compare_status": "verified_inference",
+     "compare_points": 28761459,
+     "integrity_by_file": {
+      "12TVL3206.las": {
+       "status": "verified_inference",
+       "points": 24475011,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3105.las": {
+       "status": "verified_inference",
+       "points": 35494,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3106.las": {
+       "status": "verified_inference",
+       "points": 666620,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3107.las": {
+       "status": "verified_inference",
+       "points": 36606,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3205.las": {
+       "status": "verified_inference",
+       "points": 1115924,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3207.las": {
+       "status": "verified_inference",
+       "points": 986789,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3305.las": {
+       "status": "verified_inference",
+       "points": 68656,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3306.las": {
+       "status": "verified_inference",
+       "points": 1313586,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3307.las": {
+       "status": "verified_inference",
+       "points": 62773,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      }
+     },
+     "by_our_class": {
+      "1": {
+       "points": 796873,
+       "model_target": 6374,
+       "model_background_or_other": 790499,
+       "share_model_target": 0.008
+      },
+      "2": {
+       "points": 3680114,
+       "model_target": 19332,
+       "model_background_or_other": 3660782,
+       "share_model_target": 0.00525
+      },
+      "3": {
+       "points": 12364101,
+       "model_target": 17353,
+       "model_background_or_other": 12346748,
+       "share_model_target": 0.0014
+      },
+      "4": {
+       "points": 1936949,
+       "model_target": 98757,
+       "model_background_or_other": 1838192,
+       "share_model_target": 0.05099
+      },
+      "5": {
+       "points": 7163757,
+       "model_target": 7006759,
+       "model_background_or_other": 156998,
+       "share_model_target": 0.97808
+      },
+      "6": {
+       "points": 2776890,
+       "model_target": 297909,
+       "model_background_or_other": 2478981,
+       "share_model_target": 0.10728
+      },
+      "7": {
+       "points": 925,
+       "model_target": 0,
+       "model_background_or_other": 925,
+       "share_model_target": 0.0
+      },
+      "17": {
+       "points": 10161,
+       "model_target": 3265,
+       "model_background_or_other": 6896,
+       "share_model_target": 0.32133
+      },
+      "18": {
+       "points": 31361,
+       "model_target": 0,
+       "model_background_or_other": 31361,
+       "share_model_target": 0.0
+      },
+      "20": {
+       "points": 328,
+       "model_target": 90,
+       "model_background_or_other": 238,
+       "share_model_target": 0.27439
+      }
+     },
+     "key_numbers": {
+      "our_5_called_background_by_tree_model": {
+       "background": 156998,
+       "of": 7163757
+      },
+      "our_6_called_tree_by_tree_model": {
+       "tree": 297909,
+       "of": 2776890
+      }
+     },
+     "interpretation": "Class disagreement with pretrained models; not independently labelled accuracy."
+    },
+    "building": {
+     "row": "12TVL3206-building",
+     "job": "building",
+     "status": "complete; integrity verified",
+     "label": "TRAINING domain (September 30 seeded draw) -- core + prepared 50 m halo; labels via the training-review workflow",
+     "files": 9,
+     "md5_source_copy_after_all_equal": true,
+     "watch_unchanged": true,
+     "dl_run_exit": 0,
+     "dl_run_wall_seconds": 1072.7,
+     "tool_elapsed_seconds": 1071.3,
+     "gpu_used_mib_peak": 1981,
+     "run_manifest": {
+      "status": "complete",
+      "class_mode": "EDIT_ALL",
+      "excluded_class_codes": [
+       7,
+       18
+      ],
+      "batch_size": 1,
+      "output_classes": [
+       0,
+       6
+      ],
+      "error": null
+     },
+     "model_sha256": "854bd59ee4626244897641b224ceb77dda017a7008756a888c361b6d553d2ef6",
+     "runtime_isolation": {
+      "PYTHONNOUSERSITE": "1",
+      "site_ENABLE_USER_SITE": false,
+      "user_site": null,
+      "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+      "allow_user_site_override": false,
+      "scope": "calling interpreter; the tool's own worker processes are not inspected"
+     },
+     "dl_compare_exit": 0,
+     "compare_status": "verified_inference",
+     "compare_points": 28761459,
+     "integrity_by_file": {
+      "12TVL3206.las": {
+       "status": "verified_inference",
+       "points": 24475011,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3105.las": {
+       "status": "verified_inference",
+       "points": 35494,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3106.las": {
+       "status": "verified_inference",
+       "points": 666620,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3107.las": {
+       "status": "verified_inference",
+       "points": 36606,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3205.las": {
+       "status": "verified_inference",
+       "points": 1115924,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3207.las": {
+       "status": "verified_inference",
+       "points": 986789,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3305.las": {
+       "status": "verified_inference",
+       "points": 68656,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3306.las": {
+       "status": "verified_inference",
+       "points": 1313586,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3307.las": {
+       "status": "verified_inference",
+       "points": 62773,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      }
+     },
+     "by_our_class": {
+      "1": {
+       "points": 796873,
+       "model_target": 1944,
+       "model_background_or_other": 794929,
+       "share_model_target": 0.00244
+      },
+      "2": {
+       "points": 3680114,
+       "model_target": 15428,
+       "model_background_or_other": 3664686,
+       "share_model_target": 0.00419
+      },
+      "3": {
+       "points": 12364101,
+       "model_target": 42264,
+       "model_background_or_other": 12321837,
+       "share_model_target": 0.00342
+      },
+      "4": {
+       "points": 1936949,
+       "model_target": 6543,
+       "model_background_or_other": 1930406,
+       "share_model_target": 0.00338
+      },
+      "5": {
+       "points": 7163757,
+       "model_target": 74976,
+       "model_background_or_other": 7088781,
+       "share_model_target": 0.01047
+      },
+      "6": {
+       "points": 2776890,
+       "model_target": 2215598,
+       "model_background_or_other": 561292,
+       "share_model_target": 0.79787
+      },
+      "7": {
+       "points": 925,
+       "model_target": 0,
+       "model_background_or_other": 925,
+       "share_model_target": 0.0
+      },
+      "17": {
+       "points": 10161,
+       "model_target": 990,
+       "model_background_or_other": 9171,
+       "share_model_target": 0.09743
+      },
+      "18": {
+       "points": 31361,
+       "model_target": 0,
+       "model_background_or_other": 31361,
+       "share_model_target": 0.0
+      },
+      "20": {
+       "points": 328,
+       "model_target": 0,
+       "model_background_or_other": 328,
+       "share_model_target": 0.0
+      }
+     },
+     "key_numbers": {
+      "our_3_4_5_called_building_by_building_model": {
+       "3": 42264,
+       "4": 6543,
+       "5": 74976,
+       "total": 123783
+      },
+      "our_6_called_background_by_building_model": {
+       "background": 561292,
+       "of": 2776890
+      }
+     },
+     "interpretation": "Class disagreement with pretrained models; not independently labelled accuracy."
+    }
+   }
+  },
+  "12TVL3205": {
+   "cpu": {
+    "steps": [
+     {
+      "tile": "12TVL3205",
+      "step": "prepare",
+      "status": "ok",
+      "start": "2026-09-29T22:15:45-06:00",
+      "minutes": 1.16,
+      "waited_for_other_cpu_minutes": 0.0,
+      "peak_rss_gb": 2.34,
+      "output_gb": 0.83,
+      "scratch_gb": 0.0,
+      "free_ram_gb_after": 16.7,
+      "priority": "BELOW_NORMAL"
+     },
+     {
+      "tile": "12TVL3205",
+      "step": "run",
+      "status": "ok",
+      "start": "2026-09-29T22:16:55-06:00",
+      "minutes": 3.47,
+      "waited_for_other_cpu_minutes": 0.0,
+      "peak_rss_gb": 0.66,
+      "output_gb": 0.09,
+      "scratch_gb": 0.01,
+      "free_ram_gb_after": 16.0,
+      "priority": "BELOW_NORMAL"
+     }
+    ],
+    "prepare_status": "complete",
+    "run_status": "complete",
+    "prepare_parameters_equal_12TVL2804": false,
+    "run_parameters_equal_12TVL2804_except_extent_source": false,
+    "run_signature": "f955c18667eac9147f77414cdebc60009c4a04845539c6d72f82c8d708d863c9",
+    "run_signature_12TVL2804": "75f1b4b1104b485544271ae49172373556ce6100748d89060233034fce319e85",
+    "prepare_sources": [
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3104.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3105.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3106.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3204.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3205.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3206.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3304.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3305.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3306.las"
+    ],
+    "prepare_extent": [
+     431950.0,
+     4504950.0,
+     433050.0,
+     4506050.0
+    ],
+    "core_points_after_prepare": 23164578,
+    "core_class_share_after_prepare": {
+     "1": 0.0201,
+     "2": 0.1107,
+     "3": 0.4217,
+     "4": 0.0399,
+     "5": 0.2492,
+     "6": 0.1561,
+     "7": 0.0001,
+     "17": 0.0005,
+     "18": 0.0017,
+     "20": 0.0
+    },
+    "error": null
+   },
+   "gpu": {
+    "tree": {
+     "row": "12TVL3205-tree",
+     "job": "tree",
+     "status": "complete; integrity verified",
+     "label": "TRAINING domain (September 30 seeded draw) -- core + prepared 50 m halo; labels via the training-review workflow",
+     "files": 9,
+     "md5_source_copy_after_all_equal": true,
+     "watch_unchanged": true,
+     "dl_run_exit": 0,
+     "dl_run_wall_seconds": 2011.8,
+     "tool_elapsed_seconds": 2010.0,
+     "gpu_used_mib_peak": 2434,
+     "run_manifest": {
+      "status": "complete",
+      "class_mode": "EDIT_ALL",
+      "excluded_class_codes": [
+       7,
+       18
+      ],
+      "batch_size": 1,
+      "output_classes": [
+       0,
+       5
+      ],
+      "error": null
+     },
+     "model_sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e",
+     "runtime_isolation": {
+      "PYTHONNOUSERSITE": "1",
+      "site_ENABLE_USER_SITE": false,
+      "user_site": null,
+      "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+      "allow_user_site_override": false,
+      "scope": "calling interpreter; the tool's own worker processes are not inspected"
+     },
+     "dl_compare_exit": 0,
+     "compare_status": "verified_inference",
+     "compare_points": 27618004,
+     "integrity_by_file": {
+      "12TVL3205.las": {
+       "status": "verified_inference",
+       "points": 23164578,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3104.las": {
+       "status": "verified_inference",
+       "points": 23555,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3105.las": {
+       "status": "verified_inference",
+       "points": 658392,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3106.las": {
+       "status": "verified_inference",
+       "points": 39592,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3204.las": {
+       "status": "verified_inference",
+       "points": 1060412,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3206.las": {
+       "status": "verified_inference",
+       "points": 1269225,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3304.las": {
+       "status": "verified_inference",
+       "points": 70369,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3305.las": {
+       "status": "verified_inference",
+       "points": 1268665,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3306.las": {
+       "status": "verified_inference",
+       "points": 63216,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      }
+     },
+     "by_our_class": {
+      "1": {
+       "points": 538034,
+       "model_target": 332,
+       "model_background_or_other": 537702,
+       "share_model_target": 0.00062
+      },
+      "2": {
+       "points": 3136579,
+       "model_target": 1462,
+       "model_background_or_other": 3135117,
+       "share_model_target": 0.00047
+      },
+      "3": {
+       "points": 11709441,
+       "model_target": 1039,
+       "model_background_or_other": 11708402,
+       "share_model_target": 9e-05
+      },
+      "4": {
+       "points": 1099051,
+       "model_target": 37913,
+       "model_background_or_other": 1061138,
+       "share_model_target": 0.0345
+      },
+      "5": {
+       "points": 6972387,
+       "model_target": 6871247,
+       "model_background_or_other": 101140,
+       "share_model_target": 0.98549
+      },
+      "6": {
+       "points": 4105908,
+       "model_target": 350118,
+       "model_background_or_other": 3755790,
+       "share_model_target": 0.08527
+      },
+      "7": {
+       "points": 1574,
+       "model_target": 0,
+       "model_background_or_other": 1574,
+       "share_model_target": 0.0
+      },
+      "17": {
+       "points": 11508,
+       "model_target": 883,
+       "model_background_or_other": 10625,
+       "share_model_target": 0.07673
+      },
+      "18": {
+       "points": 43409,
+       "model_target": 0,
+       "model_background_or_other": 43409,
+       "share_model_target": 0.0
+      },
+      "20": {
+       "points": 113,
+       "model_target": 5,
+       "model_background_or_other": 108,
+       "share_model_target": 0.04425
+      }
+     },
+     "key_numbers": {
+      "our_5_called_background_by_tree_model": {
+       "background": 101140,
+       "of": 6972387
+      },
+      "our_6_called_tree_by_tree_model": {
+       "tree": 350118,
+       "of": 4105908
+      }
+     },
+     "interpretation": "Class disagreement with pretrained models; not independently labelled accuracy."
+    },
+    "building": {
+     "row": "12TVL3205-building",
+     "job": "building",
+     "status": "complete; integrity verified",
+     "label": "TRAINING domain (September 30 seeded draw) -- core + prepared 50 m halo; labels via the training-review workflow",
+     "files": 9,
+     "md5_source_copy_after_all_equal": true,
+     "watch_unchanged": true,
+     "dl_run_exit": 0,
+     "dl_run_wall_seconds": 1151.4,
+     "tool_elapsed_seconds": 1149.6,
+     "gpu_used_mib_peak": 1953,
+     "run_manifest": {
+      "status": "complete",
+      "class_mode": "EDIT_ALL",
+      "excluded_class_codes": [
+       7,
+       18
+      ],
+      "batch_size": 1,
+      "output_classes": [
+       0,
+       6
+      ],
+      "error": null
+     },
+     "model_sha256": "854bd59ee4626244897641b224ceb77dda017a7008756a888c361b6d553d2ef6",
+     "runtime_isolation": {
+      "PYTHONNOUSERSITE": "1",
+      "site_ENABLE_USER_SITE": false,
+      "user_site": null,
+      "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+      "allow_user_site_override": false,
+      "scope": "calling interpreter; the tool's own worker processes are not inspected"
+     },
+     "dl_compare_exit": 0,
+     "compare_status": "verified_inference",
+     "compare_points": 27618004,
+     "integrity_by_file": {
+      "12TVL3205.las": {
+       "status": "verified_inference",
+       "points": 23164578,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3104.las": {
+       "status": "verified_inference",
+       "points": 23555,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3105.las": {
+       "status": "verified_inference",
+       "points": 658392,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3106.las": {
+       "status": "verified_inference",
+       "points": 39592,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3204.las": {
+       "status": "verified_inference",
+       "points": 1060412,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3206.las": {
+       "status": "verified_inference",
+       "points": 1269225,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3304.las": {
+       "status": "verified_inference",
+       "points": 70369,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3305.las": {
+       "status": "verified_inference",
+       "points": 1268665,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      },
+      "12TVL3306.las": {
+       "status": "verified_inference",
+       "points": 63216,
+       "coordinates_identical": true,
+       "nonclassification_bytes_identical": true,
+       "error": null
+      }
+     },
+     "by_our_class": {
+      "1": {
+       "points": 538034,
+       "model_target": 101,
+       "model_background_or_other": 537933,
+       "share_model_target": 0.00019
+      },
+      "2": {
+       "points": 3136579,
+       "model_target": 3098,
+       "model_background_or_other": 3133481,
+       "share_model_target": 0.00099
+      },
+      "3": {
+       "points": 11709441,
+       "model_target": 4945,
+       "model_background_or_other": 11704496,
+       "share_model_target": 0.00042
+      },
+      "4": {
+       "points": 1099051,
+       "model_target": 8202,
+       "model_background_or_other": 1090849,
+       "share_model_target": 0.00746
+      },
+      "5": {
+       "points": 6972387,
+       "model_target": 87342,
+       "model_background_or_other": 6885045,
+       "share_model_target": 0.01253
+      },
+      "6": {
+       "points": 4105908,
+       "model_target": 3213082,
+       "model_background_or_other": 892826,
+       "share_model_target": 0.78255
+      },
+      "7": {
+       "points": 1574,
+       "model_target": 0,
+       "model_background_or_other": 1574,
+       "share_model_target": 0.0
+      },
+      "17": {
+       "points": 11508,
+       "model_target": 340,
+       "model_background_or_other": 11168,
+       "share_model_target": 0.02954
+      },
+      "18": {
+       "points": 43409,
+       "model_target": 0,
+       "model_background_or_other": 43409,
+       "share_model_target": 0.0
+      },
+      "20": {
+       "points": 113,
+       "model_target": 0,
+       "model_background_or_other": 113,
+       "share_model_target": 0.0
+      }
+     },
+     "key_numbers": {
+      "our_3_4_5_called_building_by_building_model": {
+       "3": 4945,
+       "4": 8202,
+       "5": 87342,
+       "total": 100489
+      },
+      "our_6_called_background_by_building_model": {
+       "background": 892826,
+       "of": 4105908
+      }
+     },
+     "interpretation": "Class disagreement with pretrained models; not independently labelled accuracy."
+    }
+   }
+  },
+  "12TVL3006": {
+   "cpu": {
+    "steps": [
+     {
+      "tile": "12TVL3006",
+      "step": "prepare",
+      "status": "ok",
+      "start": "2026-09-29T22:20:26-06:00",
+      "minutes": 1.94,
+      "waited_for_other_cpu_minutes": 0.0,
+      "peak_rss_gb": 2.75,
+      "output_gb": 0.93,
+      "scratch_gb": 0.0,
+      "free_ram_gb_after": 15.9,
+      "priority": "BELOW_NORMAL"
+     },
+     {
+      "tile": "12TVL3006",
+      "step": "run",
+      "status": "ok",
+      "start": "2026-09-29T22:22:22-06:00",
+      "minutes": 3.57,
+      "waited_for_other_cpu_minutes": 0.0,
+      "peak_rss_gb": 0.67,
+      "output_gb": 0.09,
+      "scratch_gb": 0.01,
+      "free_ram_gb_after": 17.6,
+      "priority": "BELOW_NORMAL"
+     }
+    ],
+    "prepare_status": "complete",
+    "run_status": "complete",
+    "prepare_parameters_equal_12TVL2804": false,
+    "run_parameters_equal_12TVL2804_except_extent_source": false,
+    "run_signature": "46044474f36fd0b49eef778414dc098382d850d1639d7ca1d310a0c061cbd6e2",
+    "run_signature_12TVL2804": "75f1b4b1104b485544271ae49172373556ce6100748d89060233034fce319e85",
+    "prepare_sources": [
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL2905.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL2906.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL2907.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3005.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3006.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3007.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3105.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3106.las",
+     "D:\\lidar\\2023-salt-lake-valley\\las\\12TVL3107.las"
+    ],
+    "prepare_extent": [
+     429950.0,
+     4505950.0,
+     431050.0,
+     4507050.0
+    ],
+    "core_points_after_prepare": 25741529,
+    "core_class_share_after_prepare": {
+     "1": 0.0155,
+     "2": 0.0977,
+     "3": 0.3821,
+     "4": 0.0424,
+     "5": 0.2838,
+     "6": 0.1755,
+     "7": 0.0001,
+     "18": 0.0029
+    },
+    "error": null
+   },
+   "gpu": {
+    "tree": {
+     "row": "12TVL3006-tree",
+     "job": "tree",
+     "status": "running",
+     "label": "TRAINING domain (September 30 seeded draw) -- core + prepared 50 m halo; labels via the training-review workflow",
+     "files": 9,
+     "md5_source_copy_after_all_equal": false,
+     "watch_unchanged": false,
+     "dl_run_exit": null,
+     "dl_run_wall_seconds": null,
+     "tool_elapsed_seconds": 14591.5,
+     "gpu_used_mib_peak": 2432,
+     "run_manifest": {
+      "status": "failed",
+      "class_mode": "EDIT_ALL",
+      "excluded_class_codes": [
+       7,
+       18
+      ],
+      "batch_size": 1,
+      "output_classes": [
+       0,
+       5
+      ],
+      "error": "[Errno 22] Invalid argument"
+     },
+     "model_sha256": "3da9136594bca05f650e0bbbecfd802365e7b854916b9218126f3867d285e91e",
+     "runtime_isolation": {
+      "PYTHONNOUSERSITE": "1",
+      "site_ENABLE_USER_SITE": false,
+      "user_site": null,
+      "sys_prefix": "C:\\Users\\Brian\\AppData\\Local\\ESRI\\conda\\envs\\arcgispro-py3-dl",
+      "allow_user_site_override": false,
+      "scope": "calling interpreter; the tool's own worker processes are not inspected"
+     },
+     "dl_compare_exit": null,
+     "compare_status": null,
+     "compare_points": null,
+     "integrity_by_file": {},
+     "by_our_class": null,
+     "key_numbers": null,
+     "interpretation": null
+    },
+    "building": null
+   }
+  }
+ }
+}

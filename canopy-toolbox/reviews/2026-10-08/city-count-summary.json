@@ -1,0 +1,1522 @@
+{
+  "status": "complete",
+  "started": 1791484526.7150054,
+  "interpretation": "Estimated treetops >=2 m, not a field-verified stem census",
+  "parameters": {
+    "cell_m": 0.5,
+    "raster_core_m": 950,
+    "raster_halo_m": 20,
+    "smooth_cells": 1,
+    "bands": "2-6:1.0, 6-12:1.5, 12-20:2.0, 20-:2.5",
+    "ownership_location": "Detected treetop cell centre",
+    "crowns": false
+  },
+  "tiles": {
+    "r000c006": {
+      "core": [
+        427849.0,
+        4501259.5,
+        428799.0,
+        4502209.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r000c006\\core_chm.tif",
+      "seconds": 9.323505640029907,
+      "grid_offset": [
+        10347,
+        11400
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r000c004": {
+      "core": [
+        425949.0,
+        4501259.5,
+        426899.0,
+        4502209.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r000c004\\core_chm.tif",
+      "seconds": 12.1027090549469,
+      "grid_offset": [
+        10347,
+        7600
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r000c005": {
+      "core": [
+        426899.0,
+        4501259.5,
+        427849.0,
+        4502209.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r000c005\\core_chm.tif",
+      "seconds": 11.991186618804932,
+      "grid_offset": [
+        10347,
+        9500
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r000c007": {
+      "core": [
+        428799.0,
+        4501259.5,
+        429749.0,
+        4502209.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r000c007\\core_chm.tif",
+      "seconds": 8.075461387634277,
+      "grid_offset": [
+        10347,
+        13300
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r000c010": {
+      "core": [
+        431649.0,
+        4501259.5,
+        432599.0,
+        4502209.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r000c010\\core_chm.tif",
+      "seconds": 12.830055713653564,
+      "grid_offset": [
+        10347,
+        19000
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r000c011": {
+      "core": [
+        432599.0,
+        4501259.5,
+        433549.0,
+        4502209.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r000c011\\core_chm.tif",
+      "seconds": 11.051779985427856,
+      "grid_offset": [
+        10347,
+        20900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r000c012": {
+      "core": [
+        433549.0,
+        4501259.5,
+        434399.5,
+        4502209.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r000c012\\core_chm.tif",
+      "seconds": 8.329395771026611,
+      "grid_offset": [
+        10347,
+        22800
+      ],
+      "shape": [
+        1900,
+        1701
+      ]
+    },
+    "r001c003": {
+      "core": [
+        424999.0,
+        4502209.5,
+        425949.0,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c003\\core_chm.tif",
+      "seconds": 12.031758785247803,
+      "grid_offset": [
+        8447,
+        5700
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r001c004": {
+      "core": [
+        425949.0,
+        4502209.5,
+        426899.0,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c004\\core_chm.tif",
+      "seconds": 11.64372706413269,
+      "grid_offset": [
+        8447,
+        7600
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r001c005": {
+      "core": [
+        426899.0,
+        4502209.5,
+        427849.0,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c005\\core_chm.tif",
+      "seconds": 12.264232397079468,
+      "grid_offset": [
+        8447,
+        9500
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r001c006": {
+      "core": [
+        427849.0,
+        4502209.5,
+        428799.0,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c006\\core_chm.tif",
+      "seconds": 12.367403984069824,
+      "grid_offset": [
+        8447,
+        11400
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r001c007": {
+      "core": [
+        428799.0,
+        4502209.5,
+        429749.0,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c007\\core_chm.tif",
+      "seconds": 11.229675531387329,
+      "grid_offset": [
+        8447,
+        13300
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r001c010": {
+      "core": [
+        431649.0,
+        4502209.5,
+        432599.0,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c010\\core_chm.tif",
+      "seconds": 12.24513840675354,
+      "grid_offset": [
+        8447,
+        19000
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r001c011": {
+      "core": [
+        432599.0,
+        4502209.5,
+        433549.0,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c011\\core_chm.tif",
+      "seconds": 12.547729253768921,
+      "grid_offset": [
+        8447,
+        20900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r001c012": {
+      "core": [
+        433549.0,
+        4502209.5,
+        434399.5,
+        4503159.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r001c012\\core_chm.tif",
+      "seconds": 10.826711654663086,
+      "grid_offset": [
+        8447,
+        22800
+      ],
+      "shape": [
+        1900,
+        1701
+      ]
+    },
+    "r002c000": {
+      "core": [
+        422149.0,
+        4503159.5,
+        423099.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c000\\core_chm.tif",
+      "seconds": 11.322925567626953,
+      "grid_offset": [
+        6547,
+        0
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c001": {
+      "core": [
+        423099.0,
+        4503159.5,
+        424049.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c001\\core_chm.tif",
+      "seconds": 12.295150756835938,
+      "grid_offset": [
+        6547,
+        1900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c002": {
+      "core": [
+        424049.0,
+        4503159.5,
+        424999.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c002\\core_chm.tif",
+      "seconds": 12.366246700286865,
+      "grid_offset": [
+        6547,
+        3800
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c003": {
+      "core": [
+        424999.0,
+        4503159.5,
+        425949.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c003\\core_chm.tif",
+      "seconds": 11.624186754226685,
+      "grid_offset": [
+        6547,
+        5700
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c004": {
+      "core": [
+        425949.0,
+        4503159.5,
+        426899.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c004\\core_chm.tif",
+      "seconds": 12.116885900497437,
+      "grid_offset": [
+        6547,
+        7600
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c005": {
+      "core": [
+        426899.0,
+        4503159.5,
+        427849.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c005\\core_chm.tif",
+      "seconds": 11.99067211151123,
+      "grid_offset": [
+        6547,
+        9500
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c006": {
+      "core": [
+        427849.0,
+        4503159.5,
+        428799.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c006\\core_chm.tif",
+      "seconds": 12.544816017150879,
+      "grid_offset": [
+        6547,
+        11400
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c007": {
+      "core": [
+        428799.0,
+        4503159.5,
+        429749.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c007\\core_chm.tif",
+      "seconds": 8.644473314285278,
+      "grid_offset": [
+        6547,
+        13300
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c010": {
+      "core": [
+        431649.0,
+        4503159.5,
+        432599.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c010\\core_chm.tif",
+      "seconds": 10.558793306350708,
+      "grid_offset": [
+        6547,
+        19000
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c011": {
+      "core": [
+        432599.0,
+        4503159.5,
+        433549.0,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c011\\core_chm.tif",
+      "seconds": 11.942702293395996,
+      "grid_offset": [
+        6547,
+        20900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r002c012": {
+      "core": [
+        433549.0,
+        4503159.5,
+        434399.5,
+        4504109.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r002c012\\core_chm.tif",
+      "seconds": 11.442715406417847,
+      "grid_offset": [
+        6547,
+        22800
+      ],
+      "shape": [
+        1900,
+        1701
+      ]
+    },
+    "r003c000": {
+      "core": [
+        422149.0,
+        4504109.5,
+        423099.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c000\\core_chm.tif",
+      "seconds": 11.40162992477417,
+      "grid_offset": [
+        4647,
+        0
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c001": {
+      "core": [
+        423099.0,
+        4504109.5,
+        424049.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c001\\core_chm.tif",
+      "seconds": 11.689775943756104,
+      "grid_offset": [
+        4647,
+        1900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c002": {
+      "core": [
+        424049.0,
+        4504109.5,
+        424999.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c002\\core_chm.tif",
+      "seconds": 11.731119632720947,
+      "grid_offset": [
+        4647,
+        3800
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c003": {
+      "core": [
+        424999.0,
+        4504109.5,
+        425949.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c003\\core_chm.tif",
+      "seconds": 11.330214738845825,
+      "grid_offset": [
+        4647,
+        5700
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c004": {
+      "core": [
+        425949.0,
+        4504109.5,
+        426899.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c004\\core_chm.tif",
+      "seconds": 11.644721984863281,
+      "grid_offset": [
+        4647,
+        7600
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c005": {
+      "core": [
+        426899.0,
+        4504109.5,
+        427849.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c005\\core_chm.tif",
+      "seconds": 12.291989088058472,
+      "grid_offset": [
+        4647,
+        9500
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c006": {
+      "core": [
+        427849.0,
+        4504109.5,
+        428799.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c006\\core_chm.tif",
+      "seconds": 12.640680074691772,
+      "grid_offset": [
+        4647,
+        11400
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c007": {
+      "core": [
+        428799.0,
+        4504109.5,
+        429749.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c007\\core_chm.tif",
+      "seconds": 13.368692398071289,
+      "grid_offset": [
+        4647,
+        13300
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c008": {
+      "core": [
+        429749.0,
+        4504109.5,
+        430699.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c008\\core_chm.tif",
+      "seconds": 11.995760440826416,
+      "grid_offset": [
+        4647,
+        15200
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c009": {
+      "core": [
+        430699.0,
+        4504109.5,
+        431649.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c009\\core_chm.tif",
+      "seconds": 12.34517765045166,
+      "grid_offset": [
+        4647,
+        17100
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c010": {
+      "core": [
+        431649.0,
+        4504109.5,
+        432599.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c010\\core_chm.tif",
+      "seconds": 12.688026905059814,
+      "grid_offset": [
+        4647,
+        19000
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c011": {
+      "core": [
+        432599.0,
+        4504109.5,
+        433549.0,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c011\\core_chm.tif",
+      "seconds": 11.898904800415039,
+      "grid_offset": [
+        4647,
+        20900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r003c012": {
+      "core": [
+        433549.0,
+        4504109.5,
+        434399.5,
+        4505059.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r003c012\\core_chm.tif",
+      "seconds": 11.43568205833435,
+      "grid_offset": [
+        4647,
+        22800
+      ],
+      "shape": [
+        1900,
+        1701
+      ]
+    },
+    "r004c004": {
+      "core": [
+        425949.0,
+        4505059.5,
+        426899.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c004\\core_chm.tif",
+      "seconds": 11.719560146331787,
+      "grid_offset": [
+        2747,
+        7600
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c005": {
+      "core": [
+        426899.0,
+        4505059.5,
+        427849.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c005\\core_chm.tif",
+      "seconds": 12.885000467300415,
+      "grid_offset": [
+        2747,
+        9500
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c006": {
+      "core": [
+        427849.0,
+        4505059.5,
+        428799.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c006\\core_chm.tif",
+      "seconds": 12.69824767112732,
+      "grid_offset": [
+        2747,
+        11400
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c007": {
+      "core": [
+        428799.0,
+        4505059.5,
+        429749.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c007\\core_chm.tif",
+      "seconds": 12.164627313613892,
+      "grid_offset": [
+        2747,
+        13300
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c008": {
+      "core": [
+        429749.0,
+        4505059.5,
+        430699.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c008\\core_chm.tif",
+      "seconds": 11.956766128540039,
+      "grid_offset": [
+        2747,
+        15200
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c009": {
+      "core": [
+        430699.0,
+        4505059.5,
+        431649.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c009\\core_chm.tif",
+      "seconds": 12.56824517250061,
+      "grid_offset": [
+        2747,
+        17100
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c010": {
+      "core": [
+        431649.0,
+        4505059.5,
+        432599.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c010\\core_chm.tif",
+      "seconds": 13.195808172225952,
+      "grid_offset": [
+        2747,
+        19000
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c011": {
+      "core": [
+        432599.0,
+        4505059.5,
+        433549.0,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c011\\core_chm.tif",
+      "seconds": 12.171782970428467,
+      "grid_offset": [
+        2747,
+        20900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r004c012": {
+      "core": [
+        433549.0,
+        4505059.5,
+        434399.5,
+        4506009.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r004c012\\core_chm.tif",
+      "seconds": 12.230348587036133,
+      "grid_offset": [
+        2747,
+        22800
+      ],
+      "shape": [
+        1900,
+        1701
+      ]
+    },
+    "r005c004": {
+      "core": [
+        425949.0,
+        4506009.5,
+        426899.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c004\\core_chm.tif",
+      "seconds": 13.029285669326782,
+      "grid_offset": [
+        847,
+        7600
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c005": {
+      "core": [
+        426899.0,
+        4506009.5,
+        427849.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c005\\core_chm.tif",
+      "seconds": 13.331045627593994,
+      "grid_offset": [
+        847,
+        9500
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c006": {
+      "core": [
+        427849.0,
+        4506009.5,
+        428799.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c006\\core_chm.tif",
+      "seconds": 14.005290031433105,
+      "grid_offset": [
+        847,
+        11400
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c007": {
+      "core": [
+        428799.0,
+        4506009.5,
+        429749.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c007\\core_chm.tif",
+      "seconds": 13.637382507324219,
+      "grid_offset": [
+        847,
+        13300
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c008": {
+      "core": [
+        429749.0,
+        4506009.5,
+        430699.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c008\\core_chm.tif",
+      "seconds": 12.916889667510986,
+      "grid_offset": [
+        847,
+        15200
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c009": {
+      "core": [
+        430699.0,
+        4506009.5,
+        431649.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c009\\core_chm.tif",
+      "seconds": 13.834495782852173,
+      "grid_offset": [
+        847,
+        17100
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c010": {
+      "core": [
+        431649.0,
+        4506009.5,
+        432599.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c010\\core_chm.tif",
+      "seconds": 13.46584439277649,
+      "grid_offset": [
+        847,
+        19000
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c011": {
+      "core": [
+        432599.0,
+        4506009.5,
+        433549.0,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c011\\core_chm.tif",
+      "seconds": 12.527173519134521,
+      "grid_offset": [
+        847,
+        20900
+      ],
+      "shape": [
+        1900,
+        1900
+      ]
+    },
+    "r005c012": {
+      "core": [
+        433549.0,
+        4506009.5,
+        434399.5,
+        4506959.5
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r005c012\\core_chm.tif",
+      "seconds": 11.821005582809448,
+      "grid_offset": [
+        847,
+        22800
+      ],
+      "shape": [
+        1900,
+        1701
+      ]
+    },
+    "r006c004": {
+      "core": [
+        425949.0,
+        4506959.5,
+        426899.0,
+        4507383.0
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r006c004\\core_chm.tif",
+      "seconds": 8.69310712814331,
+      "grid_offset": [
+        0,
+        7600
+      ],
+      "shape": [
+        847,
+        1900
+      ]
+    },
+    "r006c007": {
+      "core": [
+        428799.0,
+        4506959.5,
+        429749.0,
+        4507383.0
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r006c007\\core_chm.tif",
+      "seconds": 8.30734920501709,
+      "grid_offset": [
+        0,
+        13300
+      ],
+      "shape": [
+        847,
+        1900
+      ]
+    },
+    "r006c008": {
+      "core": [
+        429749.0,
+        4506959.5,
+        430699.0,
+        4507383.0
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r006c008\\core_chm.tif",
+      "seconds": 8.593358516693115,
+      "grid_offset": [
+        0,
+        15200
+      ],
+      "shape": [
+        847,
+        1900
+      ]
+    },
+    "r006c009": {
+      "core": [
+        430699.0,
+        4506959.5,
+        431649.0,
+        4507383.0
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r006c009\\core_chm.tif",
+      "seconds": 8.71134328842163,
+      "grid_offset": [
+        0,
+        17100
+      ],
+      "shape": [
+        847,
+        1900
+      ]
+    },
+    "r006c010": {
+      "core": [
+        431649.0,
+        4506959.5,
+        432599.0,
+        4507383.0
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r006c010\\core_chm.tif",
+      "seconds": 8.448354959487915,
+      "grid_offset": [
+        0,
+        19000
+      ],
+      "shape": [
+        847,
+        1900
+      ]
+    },
+    "r006c011": {
+      "core": [
+        432599.0,
+        4506959.5,
+        433549.0,
+        4507383.0
+      ],
+      "chm": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\rasters\\r006c011\\core_chm.tif",
+      "seconds": 7.820103883743286,
+      "grid_offset": [
+        0,
+        20900
+      ],
+      "shape": [
+        847,
+        1900
+      ]
+    }
+  },
+  "code_sha256": {
+    "run_city_count.py": "68c68a111e989fd744b6ca42d580d1242d257d9dd569bc48303a34a8063c1dd1",
+    "count_peaks.py": "06c931e7c388ca12cab68b320faa17e97df01adc9e708d8c085b631514f022ff",
+    "parcel_ownership.py": "0aa12b16e2f09eac4c9c315d2a7954655a7ed5af99c06bfe0463bcb4e6707a6d",
+    "rasters.py": "08211dcd8d83b81381cae85b72823e12ee7bd71c8b49a03597dc6f00a83f4645",
+    "bands.py": "67c7acac2c22655d54b3635774034a3f838c90e8896b96bb8807b98832cbb100"
+  },
+  "inputs_sha256": "5cd53bf93298e9642c5be9ac6c98c1182e2bf64d00c1558bc10fe07584c94131",
+  "preparation_sha256": "bd9596c8fa4b240a66022675b603ecf25c72859516bff4ff52c0e270a35c423e",
+  "source_id": "52b013e830b575984dc10a2e",
+  "input_files": [
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2203.las",
+      "bytes": 616313696,
+      "mtime_ns": 1791484528000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2204.las",
+      "bytes": 609870296,
+      "mtime_ns": 1791484532000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2303.las",
+      "bytes": 652994426,
+      "mtime_ns": 1791484526000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2304.las",
+      "bytes": 658765736,
+      "mtime_ns": 1791484542000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2403.las",
+      "bytes": 683590376,
+      "mtime_ns": 1791484546000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2404.las",
+      "bytes": 708795326,
+      "mtime_ns": 1791484548000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2502.las",
+      "bytes": 677380766,
+      "mtime_ns": 1791484560000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2503.las",
+      "bytes": 637467656,
+      "mtime_ns": 1791484562000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2504.las",
+      "bytes": 647295656,
+      "mtime_ns": 1791484564000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2601.las",
+      "bytes": 591894028,
+      "mtime_ns": 1791484576000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2602.las",
+      "bytes": 646094936,
+      "mtime_ns": 1791484578000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2603.las",
+      "bytes": 621785426,
+      "mtime_ns": 1791484580000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2604.las",
+      "bytes": 619938956,
+      "mtime_ns": 1791484592000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2605.las",
+      "bytes": 635809736,
+      "mtime_ns": 1791484594000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2606.las",
+      "bytes": 618770636,
+      "mtime_ns": 1791484596000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2607.las",
+      "bytes": 315388348,
+      "mtime_ns": 1791484604000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2701.las",
+      "bytes": 750095608,
+      "mtime_ns": 1791484612000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2702.las",
+      "bytes": 792668426,
+      "mtime_ns": 1791484614000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2703.las",
+      "bytes": 821931626,
+      "mtime_ns": 1791484622000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2704.las",
+      "bytes": 768763796,
+      "mtime_ns": 1791484630000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2705.las",
+      "bytes": 800822876,
+      "mtime_ns": 1791484632000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2706.las",
+      "bytes": 804062126,
+      "mtime_ns": 1791484642000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2802.las",
+      "bytes": 747341906,
+      "mtime_ns": 1791484648000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2803.las",
+      "bytes": 794973656,
+      "mtime_ns": 1791484652000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2804.las",
+      "bytes": 809475416,
+      "mtime_ns": 1791484660000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2805.las",
+      "bytes": 784199756,
+      "mtime_ns": 1791484668000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2806.las",
+      "bytes": 796915676,
+      "mtime_ns": 1791484670000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2902.las",
+      "bytes": 660354056,
+      "mtime_ns": 1791484678000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2904.las",
+      "bytes": 636877166,
+      "mtime_ns": 1791484684000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2905.las",
+      "bytes": 677928026,
+      "mtime_ns": 1791484686000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2906.las",
+      "bytes": 648372446,
+      "mtime_ns": 1791484694000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL2907.las",
+      "bytes": 313576408,
+      "mtime_ns": 1791484698000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3004.las",
+      "bytes": 699951956,
+      "mtime_ns": 1791484704000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3005.las",
+      "bytes": 758183486,
+      "mtime_ns": 1791484712000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3006.las",
+      "bytes": 772247366,
+      "mtime_ns": 1791484714000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3007.las",
+      "bytes": 362054908,
+      "mtime_ns": 1791484718000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3101.las",
+      "bytes": 698417128,
+      "mtime_ns": 1791484730000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3102.las",
+      "bytes": 823955636,
+      "mtime_ns": 1791484732000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3104.las",
+      "bytes": 741250076,
+      "mtime_ns": 1791484734000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3105.las",
+      "bytes": 771037406,
+      "mtime_ns": 1791484748000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3106.las",
+      "bytes": 784072226,
+      "mtime_ns": 1791484750000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3107.las",
+      "bytes": 364162078,
+      "mtime_ns": 1791484750000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3201.las",
+      "bytes": 710122918,
+      "mtime_ns": 1791484766000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3202.las",
+      "bytes": 776039186,
+      "mtime_ns": 1791484768000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3203.las",
+      "bytes": 745892156,
+      "mtime_ns": 1791484770000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3204.las",
+      "bytes": 711420446,
+      "mtime_ns": 1791484782000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3205.las",
+      "bytes": 694938836,
+      "mtime_ns": 1791484786000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3206.las",
+      "bytes": 734251826,
+      "mtime_ns": 1791484788000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3207.las",
+      "bytes": 314249968,
+      "mtime_ns": 1791484796000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3301.las",
+      "bytes": 869671678,
+      "mtime_ns": 1791484808000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3302.las",
+      "bytes": 1039360886,
+      "mtime_ns": 1791484810000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3303.las",
+      "bytes": 876257246,
+      "mtime_ns": 1791484816000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3304.las",
+      "bytes": 857166056,
+      "mtime_ns": 1791484826000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3305.las",
+      "bytes": 826423376,
+      "mtime_ns": 1791484830000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3306.las",
+      "bytes": 785176796,
+      "mtime_ns": 1791484836000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3307.las",
+      "bytes": 374191888,
+      "mtime_ns": 1791484840000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3402.las",
+      "bytes": 360495778,
+      "mtime_ns": 1791484844000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3403.las",
+      "bytes": 336418048,
+      "mtime_ns": 1791484848000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3404.las",
+      "bytes": 327166078,
+      "mtime_ns": 1791484854000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3405.las",
+      "bytes": 349621468,
+      "mtime_ns": 1791484856000000000
+    },
+    {
+      "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\prepared\\points\\12TVL3406.las",
+      "bytes": 334526818,
+      "mtime_ns": 1791484860000000000
+    }
+  ],
+  "extent": [
+    422149.0,
+    4501259.5,
+    434399.5,
+    4507383.0
+  ],
+  "shape": [
+    12247,
+    24501
+  ],
+  "raster_tiles_planned": 63,
+  "ground_raster": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\raster-ground-recovery\\ground_mosaic.tif",
+  "raster_workers": 3,
+  "detection_progress": {
+    "stage": "maxima",
+    "row": 8000,
+    "col": 5000
+  },
+  "peaks_before_city_clip": 899233,
+  "city_treetops": 607972,
+  "finished": 1791485520.2470322,
+  "ownership_totals": {
+    "NO_PARCEL": 59212,
+    "PRIVATE": 454849,
+    "UNKNOWN_OWNER": 18735,
+    "PUBLIC_GOVERNMENT": 75176
+  },
+  "observation": {
+    "city_grid_cells": 133813488,
+    "observed_cells": 132810424,
+    "missing_cells": 1003064,
+    "observed_pct": 99.25040142440649,
+    "canopy_ge_2m_cells": 34748843
+  },
+  "outputs": {
+    "treetops": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\tree-count.gdb\\city_treetops",
+    "csv": "D:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\city-treetops.csv"
+  },
+  "quality_status": "PRELIMINARY_UNVALIDATED; known classification and detection errors remain",
+  "parcel_tax_years": {
+    "None": 178,
+    "2025": 21565
+  },
+  "public_breakdown": {
+    "SALT_LAKE_COUNTY": 61753,
+    "STATE_OF_UTAH": 722,
+    "SALT_LAKE_CITY": 4886,
+    "PUBLIC_SCHOOL": 4880,
+    "MILLCREEK": 1707,
+    "PUBLIC_DISTRICT": 712,
+    "PUBLIC_HOUSING": 322,
+    "FEDERAL": 194
+  },
+  "multiple_parcel_matches": 0,
+  "seconds": 993.5320267677307
+}

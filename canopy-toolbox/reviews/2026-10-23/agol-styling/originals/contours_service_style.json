@@ -1,0 +1,53 @@
+{
+ "version": 8,
+ "sprite": "../sprites/sprite",
+ "glyphs": "../fonts/{fontstack}/{range}.pbf",
+ "sources": {
+  "esri": {
+   "type": "vector",
+   "attribution": "Millcreek GIS from the 2023 Salt Lake Valley QL1 lidar",
+   "bounds": [
+    -111.921,
+    40.6589,
+    -111.776,
+    40.7145
+   ],
+   "minzoom": 10,
+   "maxzoom": 17,
+   "scheme": "xyz",
+   "url": "../../"
+  }
+ },
+ "layers": [
+  {
+   "id": "Contours (2 m)",
+   "type": "line",
+   "source": "esri",
+   "source-layer": "Contours (2 m)",
+   "minzoom": 14,
+   "layout": {
+    "line-cap": "round",
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "rgba(140,81,10,0.6)",
+    "line-width": 1.33333
+   }
+  },
+  {
+   "id": "Index contours (10 m)",
+   "type": "line",
+   "source": "esri",
+   "source-layer": "Index contours (10 m)",
+   "minzoom": 10,
+   "layout": {
+    "line-cap": "round",
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "#8C510A",
+    "line-width": 1.33333
+   }
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+  "native_sha256": "ce8b640c6e8b197d9f9df8fb912be15efd58d4906860600418ee31a106014ec7",
+  "wrapper_sha256": "286f3cd0194c6611b5029035da452330c801b5db7ff20714083d1f0826f6e22e",
+  "native_binary": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\tree-research\\CFTree\\src\\reconstruction\\AlphaWrap\\build\\awrap_points.native",
+  "wrapper": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\tree-research\\CFTree\\src\\reconstruction\\AlphaWrap\\build\\awrap_points",
+  "algorithm_changed": false,
+  "operation": "Same input and parameters; bulk copy into Linux scratch, run, bulk copy output back"
+}

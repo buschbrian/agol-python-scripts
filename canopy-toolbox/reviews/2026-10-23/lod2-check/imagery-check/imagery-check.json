@@ -1,0 +1,15 @@
+{
+ "sampled": 109,
+ "drawn": 109,
+ "errors": [],
+ "seed": 20261024,
+ "strata": {
+  "pitched": 34,
+  "steep-pitched": 28,
+  "flat": 10,
+  "flat-parapet": 4,
+  "multi-level": 4,
+  "other": 4
+ },
+ "fallback_n": 12
+}

@@ -1,0 +1,8 @@
+{
+  "workers": 2,
+  "keep_awake": true,
+  "pid": 41868,
+  "started_utc": "2026-10-26T03:42:29.293936+00:00",
+  "config_hash": "6fd0054860f04a3b4f175691b69dbca0b3d93225ade17e378ac1d6c233a720df",
+  "driver_sha256": "4dac5c6b8d7450afff32d95796cc6334420e92bcccd8769c06e1d7f026abf0d2"
+}

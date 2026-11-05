@@ -1,0 +1,10 @@
+site,variant,core_m2,development_m2,treetops_core,treetops_development,canopy_m2_core,canopy_m2_development,observed_m2_development,observation_lost_m2,observation_gained_m2,canopy_removed_m2,canopy_added_m2,accuracy_status
+large_roofs,baseline,22500,10626.0,240,100,4661.25,1841.25,10594.0,0.0,0.0,0.0,0.0,NO_LABELS
+large_roofs,local_roofs,22500,10626.0,203,75,4546.75,1788.25,10594.0,0.0,0.0,53.0,0.0,NO_LABELS
+large_roofs,fractal_unanimous,22500,10626.0,186,61,4564.25,1776.0,10541.0,53.0,0.0,88.75,23.5,NO_LABELS
+small_roofs,baseline,22500,10291.75,427,198,5826.5,2466.75,10185.5,0.0,0.0,0.0,0.0,NO_LABELS
+small_roofs,local_roofs,22500,10291.75,343,150,5594.5,2347.75,10185.5,0.0,0.0,119.0,0.0,NO_LABELS
+small_roofs,fractal_unanimous,22500,10291.75,285,124,5499.0,2317.0,10181.0,4.5,0.0,174.25,24.5,NO_LABELS
+canopy_open,baseline,22500,7307.75,442,114,10829.5,3225.75,7228.5,0.0,0.0,0.0,0.0,NO_LABELS
+canopy_open,local_roofs,22500,7307.75,410,106,10716.0,3191.5,7228.5,0.0,0.0,34.25,0.0,NO_LABELS
+canopy_open,fractal_unanimous,22500,7307.75,395,99,10768.0,3215.5,7226.5,2.0,0.0,28.5,18.25,NO_LABELS

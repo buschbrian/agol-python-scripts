@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "comparison_project": "D:\\lidar\\2023-salt-lake-valley\\runs\\classification-pilot-20261019\\classification_comparison.aprx",
+  "blind_review_project": "D:\\lidar\\2023-salt-lake-valley\\runs\\classification-pilot-20261019\\independent-review\\blind_reference_review.aprx",
+  "rebound_review_layers": [
+    "Treetop sample",
+    "Omission sample",
+    "Cell sample",
+    "Crown sample"
+  ],
+  "broken_comparison_layers": [],
+  "broken_reference_layers": [],
+  "comparison_chm_breaks_m": [
+    2,
+    6,
+    12,
+    20,
+    40,
+    80
+  ],
+  "review_instructions": "Use the blind project and CSV for independent answers. Diagnostic comparisons must remain closed while labelling. Inspect elevation-coloured lidar cross sections and verify imagery date/alignment; never infer reference truth from class colours."
+}

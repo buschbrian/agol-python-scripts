@@ -1,0 +1,24 @@
+{
+  "released": "2026-10-25",
+  "model": "three-way hybrid v2",
+  "planning_estimate": true,
+  "download_url": "https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/buildings/20261025/buildings_hybrid_v2.slpk",
+  "bytes": 21228379,
+  "sha256": "62674f95c4e7a292c4ce66e8c2b55aac9d60c360e2ea50e3e7bde5521495949f",
+  "building_count": 21561,
+  "models": {
+    "roofer LoD2.2": 20730,
+    "Esri LOD2.0": 647,
+    "Esri LOD1.2": 184
+  },
+  "public_layer_item_id": "ce3617ac9b884bbcbee7c47a3e166999",
+  "public_scene_item_id": "5b5bdf4a63c9466fad5884039aa7357f",
+  "source_slpk_item_id": "07919e2df15647ba91ba23a0fd417083",
+  "source_slpk_access": "private",
+  "prior_layer_retained": true,
+  "private_app_updated": true,
+  "azure_download_hash_verified": true,
+  "hosted_statistics_verified": true,
+  "public_scene_browser_verified": true,
+  "limits": "Unvalidated planning estimate, not surveyed or field-verified. Vertical values NAVD88 (Geoid18), labelled EGM96 in the package. Roof measurements are null for the 831 Esri fallback buildings."
+}

@@ -1,0 +1,22 @@
+{
+  "changed": 0,
+  "blank": 743,
+  "unchanged": 0,
+  "usable": 0,
+  "unsure": 0,
+  "status": "DRY_RUN",
+  "reference": "D:\\lidar\\2023-salt-lake-valley\\runs\\classification-pilot-20261019\\independent-review\\reference.gdb",
+  "frame_digest": "291bf4d578ab2deda4c050da5ada5b750159f88e5f111d15e97dfafa92010a76",
+  "worksheet": {
+    "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\classification-pilot-20261019\\independent-review\\ready\\labels.csv",
+    "bytes": 65956,
+    "sha256": "3bcbb26aaad658afb038acfa86e7edcc3bd64983a76d7c158b96cb7ec92d1b9d"
+  },
+  "packet": {
+    "path": "D:\\lidar\\2023-salt-lake-valley\\runs\\classification-pilot-20261019\\independent-review\\ready\\packet.json",
+    "bytes": 36592,
+    "sha256": "e0ccdbc15003f4b83793855b4d0ab18bb2a1a6938a8e128143e334410d4c8c9f"
+  },
+  "replace_existing": false,
+  "created": "2026-10-19T13:45:55.791039"
+}

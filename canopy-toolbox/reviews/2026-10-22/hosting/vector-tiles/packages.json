@@ -1,0 +1,41 @@
+{
+ "treetops": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\tree-count.gdb\\city_treetops",
+  "features_in": 527140,
+  "levels": [
+   14,
+   17
+  ],
+  "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\treetops.aprx",
+  "vtpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\millcreek_treetops.vtpk",
+  "vtpk_bytes": 7678182,
+  "started": "2026-10-22T22:23:12",
+  "finished": "2026-10-22T22:23:31"
+ },
+ "crowns": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\crowns.gdb\\crowns",
+  "features_in": 400063,
+  "levels": [
+   14,
+   17
+  ],
+  "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\crowns.aprx",
+  "vtpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\millcreek_crowns.vtpk",
+  "vtpk_bytes": 33867142,
+  "started": "2026-10-22T22:23:32",
+  "finished": "2026-10-22T22:30:37"
+ },
+ "contours": {
+  "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\terrain-city-20261022\\terrain.gdb\\contours",
+  "features_in": 15149,
+  "levels": [
+   10,
+   17
+  ],
+  "project": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\contours.aprx",
+  "vtpk": "H:\\lidar\\2023-salt-lake-valley\\runs\\vector-tiles-20261022\\millcreek_contours.vtpk",
+  "vtpk_bytes": 6672410,
+  "started": "2026-10-22T22:30:39",
+  "finished": "2026-10-22T22:33:26"
+ }
+}

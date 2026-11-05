@@ -1,0 +1,153 @@
+{
+ "schema": "massing/1",
+ "method": "reviews/2026-10-22/massing/run_massing.py (LOD1.2 only)",
+ "pilot": true,
+ "footprints": 20,
+ "fp_ids": [
+  5620,
+  126,
+  1519,
+  1415,
+  6174,
+  4053,
+  1095,
+  2538,
+  3419,
+  271,
+  476,
+  1093,
+  3548,
+  203,
+  908,
+  1022,
+  357,
+  5520,
+  1858,
+  919
+ ],
+ "window": [
+  426905.4846999999,
+  4501886.668199999,
+  433454.88790000044,
+  4506954.6296
+ ],
+ "height_source": {
+  "roof": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_elevation_m.tif",
+  "terrain": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\terrain_context.tif",
+  "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-candidates-lidar-20261023\\massing-pilot\\height_source.tif"
+ },
+ "tool": "arcpy.ddd.ExtractLOD2Buildings(height_source, footprints, out, 'LOD1.2'), defaults otherwise",
+ "seconds": 1,
+ "features_from_tool": 20,
+ "removed_empty": [],
+ "blocks": 20,
+ "footprints_with_a_block": 20,
+ "footprints_with_two_blocks": 0,
+ "fp_ids_with_two_blocks": [],
+ "footprints_without_a_block": [],
+ "base_over_2m_above_terrain_min": [],
+ "top_over_1m_from_roof50": [],
+ "summary": {
+  "blocks": 20,
+  "empty_geometry": 0,
+  "top_minus_roof50": {
+   "n": 20,
+   "p05": -0.059,
+   "p50": -0.01,
+   "p95": 0.0,
+   "min": -0.24,
+   "max": 0.0,
+   "beyond_0.25m": 0,
+   "beyond_1m": 0
+  },
+  "base_minus_terrain_min": {
+   "n": 20,
+   "p05": -0.724,
+   "p50": -0.084,
+   "p95": 0.034,
+   "min": -1.992,
+   "max": 0.066,
+   "beyond_0.25m": 8,
+   "beyond_1m": 1
+  },
+  "by_roof_coverage": {
+   "under 80%": {
+    "top": {
+     "n": 0
+    },
+    "base": {
+     "n": 0
+    }
+   },
+   "80-95%": {
+    "top": {
+     "n": 3,
+     "p05": -0.046,
+     "p50": -0.01,
+     "p95": -0.01,
+     "min": -0.05,
+     "max": -0.01,
+     "beyond_0.25m": 0,
+     "beyond_1m": 0
+    },
+    "base": {
+     "n": 3,
+     "p05": -0.051,
+     "p50": -0.032,
+     "p95": -0.015,
+     "min": -0.053,
+     "max": -0.013,
+     "beyond_0.25m": 0,
+     "beyond_1m": 0
+    }
+   },
+   "95% and over": {
+    "top": {
+     "n": 17,
+     "p05": -0.084,
+     "p50": -0.005,
+     "p95": 0.0,
+     "min": -0.24,
+     "max": 0.0,
+     "beyond_0.25m": 0,
+     "beyond_1m": 0
+    },
+    "base": {
+     "n": 17,
+     "p05": -0.924,
+     "p50": -0.157,
+     "p95": 0.039,
+     "min": -1.992,
+     "max": 0.066,
+     "beyond_0.25m": 8,
+     "beyond_1m": 1
+    }
+   }
+  },
+  "by_status": {
+   "UNVALIDATED": {
+    "top": {
+     "n": 20,
+     "p05": -0.059,
+     "p50": -0.01,
+     "p95": 0.0,
+     "min": -0.24,
+     "max": 0.0,
+     "beyond_0.25m": 0,
+     "beyond_1m": 0
+    },
+    "base": {
+     "n": 20,
+     "p05": -0.724,
+     "p50": -0.084,
+     "p95": 0.034,
+     "min": -1.992,
+     "max": 0.066,
+     "beyond_0.25m": 8,
+     "beyond_1m": 1
+    }
+   }
+  }
+ },
+ "warning": "Unvalidated LiDAR planning estimates. Building heights are roof-minus-terrain statistics, not code-defined heights. Drainage is terrain-only screening; storm drains, culverts, rainfall, and downstream controls are not modeled."
+}

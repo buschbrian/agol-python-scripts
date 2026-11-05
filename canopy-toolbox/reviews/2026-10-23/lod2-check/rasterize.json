@@ -1,0 +1,20 @@
+{
+ "schema": "lod2-check/1",
+ "started": "2026-10-23T16:10:21",
+ "window": null,
+ "roof": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_elevation_m.tif",
+ "massing": "H:\\lidar\\2023-salt-lake-valley\\runs\\massing-20261022\\massing.gdb",
+ "rasters": {
+  "lod12": {
+   "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\lod2-check-20261023\\lod12_z.tif",
+   "seconds": 3
+  },
+  "lod20": {
+   "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\lod2-check-20261023\\lod20_z.tif",
+   "seconds": 5
+  },
+  "fp_id": {
+   "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\lod2-check-20261023\\fp_id.tif"
+  }
+ }
+}

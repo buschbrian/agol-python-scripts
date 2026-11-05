@@ -1,0 +1,1352 @@
+{
+ "schema": "lod2-check/1",
+ "started": "2026-10-23T19:21:50",
+ "finished": "2026-10-23T19:23:39",
+ "roof": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\roof_elevation_m.tif",
+ "massing": "H:\\lidar\\2023-salt-lake-valley\\runs\\massing-filled-20261023\\massing.gdb",
+ "type_rules": "first match, from the lidar roof cells in the footprint:\nmulti-level: footprint >= 400 m2, median slope < 12 deg, relief (p95 - p5) >= 2 m, >= 15% of cells more than 1.5 m from the median\nflat-parapet: median slope < 8 deg, relief < 1.5 m, footprint >= 150 m2, edge ring (within 1 m of the outline) p75 minus\n              interior (2 m or more inside) median >= 0.3 m\nflat: median slope < 8 deg, relief < 1.5 m\nsteep-pitched: median slope >= 25 deg (about 6/12 and steeper)\npitched: median slope >= 8 deg\nother: the rest (low slope with relief)",
+ "verdict_rules": "per building, on compared cells; margins: 10 points of within-1 m share, 0.5 m of |error| p95\ntoo-few: fewer than 20 compared cells\nbroken (LOD2.0): top more than 1 m above the highest lidar roof cell in the footprint (TOP_ABOVE_LIDAR), or 10% or more\n                 of compared cells more than 1 m above the lidar (ABOVE_1M), or 10% or more of compared cells dropped\n                 (LOD2.0 within 1 m of the footprint's median ground where the lidar roof is 2 m or more above it; DROPPED,\n                 added after the pilot), or the LOD2.0 surface missing on 5% or more of compared cells (MISSING)\nbetter: not broken; LOD2.0 ahead by a margin on at least one measure and behind by a margin on neither\nworse: not broken; LOD1.2 ahead by a margin on at least one measure and LOD2.0 ahead on neither\nsame: the rest (including mixed: ahead on one, behind on the other, counted as MIXED in the note)",
+ "summary": {
+  "overall": {
+   "buildings": 21561,
+   "verdicts": {
+    "better": 13311,
+    "same": 7992,
+    "worse": 20,
+    "broken": 79,
+    "too-few": 159
+   },
+   "mixed": 1,
+   "broken_TOP_ABOVE_LIDAR": 33,
+   "broken_ABOVE_1M": 33,
+   "broken_DROPPED": 9,
+   "broken_MISSING": 4,
+   "lod12": {
+    "abs_p50_m": {
+     "p25": 0.28,
+     "p50": 0.41,
+     "p75": 0.57
+    },
+    "abs_p95_m": {
+     "p25": 0.68,
+     "p50": 1.0,
+     "p75": 1.43
+    },
+    "within_05_pct": {
+     "p25": 44.599,
+     "p50": 60.853,
+     "p75": 80.479
+    },
+    "within_1_pct": {
+     "p25": 78.925,
+     "p50": 94.963,
+     "p75": 99.401
+    },
+    "bias_m": {
+     "p25": -0.06,
+     "p50": -0.025,
+     "p75": -0.005
+    },
+    "dropped_pct": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0
+    },
+    "ground_pct": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0
+    },
+    "pooled_within_05_pct": 56.87,
+    "pooled_within_1_pct": 80.42
+   },
+   "lod20": {
+    "abs_p50_m": {
+     "p25": 0.05,
+     "p50": 0.072,
+     "p75": 0.102
+    },
+    "abs_p95_m": {
+     "p25": 0.207,
+     "p50": 0.367,
+     "p75": 0.599
+    },
+    "within_05_pct": {
+     "p25": 93.276,
+     "p50": 96.903,
+     "p75": 98.826
+    },
+    "within_1_pct": {
+     "p25": 97.743,
+     "p50": 98.999,
+     "p75": 99.876
+    },
+    "bias_m": {
+     "p25": -0.032,
+     "p50": -0.017,
+     "p75": -0.003
+    },
+    "dropped_pct": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0
+    },
+    "ground_pct": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0
+    },
+    "pooled_within_05_pct": 94.61,
+    "pooled_within_1_pct": 97.83
+   }
+  },
+  "by_type": {
+   "flat": {
+    "buildings": 2124,
+    "verdicts": {
+     "better": 130,
+     "same": 1990,
+     "worse": 0,
+     "broken": 4,
+     "too-few": 0
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 2,
+    "broken_ABOVE_1M": 0,
+    "broken_DROPPED": 0,
+    "broken_MISSING": 2,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.03,
+      "p50": 0.07,
+      "p75": 0.14
+     },
+     "abs_p95_m": {
+      "p25": 0.12,
+      "p50": 0.26,
+      "p75": 0.47
+     },
+     "within_05_pct": {
+      "p25": 95.782,
+      "p50": 98.623,
+      "p75": 99.915
+     },
+     "within_1_pct": {
+      "p25": 98.687,
+      "p50": 99.702,
+      "p75": 100.0
+     },
+     "bias_m": {
+      "p25": -0.01,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 93.96,
+     "pooled_within_1_pct": 97.94
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.029,
+      "p50": 0.055,
+      "p75": 0.1
+     },
+     "abs_p95_m": {
+      "p25": 0.104,
+      "p50": 0.207,
+      "p75": 0.356
+     },
+     "within_05_pct": {
+      "p25": 97.279,
+      "p50": 98.89,
+      "p75": 100.0
+     },
+     "within_1_pct": {
+      "p25": 98.888,
+      "p50": 99.735,
+      "p75": 100.0
+     },
+     "bias_m": {
+      "p25": -0.03,
+      "p50": -0.005,
+      "p75": 0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 97.08,
+     "pooled_within_1_pct": 98.81
+    }
+   },
+   "flat-parapet": {
+    "buildings": 158,
+    "verdicts": {
+     "better": 40,
+     "same": 116,
+     "worse": 0,
+     "broken": 2,
+     "too-few": 0
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 1,
+    "broken_ABOVE_1M": 0,
+    "broken_DROPPED": 1,
+    "broken_MISSING": 0,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.06,
+      "p50": 0.14,
+      "p75": 0.258
+     },
+     "abs_p95_m": {
+      "p25": 0.63,
+      "p50": 0.835,
+      "p75": 1.068
+     },
+     "within_05_pct": {
+      "p25": 69.805,
+      "p50": 83.772,
+      "p75": 90.897
+     },
+     "within_1_pct": {
+      "p25": 93.283,
+      "p50": 97.557,
+      "p75": 99.37
+     },
+     "bias_m": {
+      "p25": -0.004,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 82.46,
+     "pooled_within_1_pct": 93.59
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.04,
+      "p50": 0.073,
+      "p75": 0.121
+     },
+     "abs_p95_m": {
+      "p25": 0.312,
+      "p50": 0.474,
+      "p75": 0.756
+     },
+     "within_05_pct": {
+      "p25": 90.712,
+      "p50": 95.829,
+      "p75": 97.788
+     },
+     "within_1_pct": {
+      "p25": 96.772,
+      "p50": 98.693,
+      "p75": 99.619
+     },
+     "bias_m": {
+      "p25": -0.02,
+      "p50": -0.002,
+      "p75": 0.008
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 94.19,
+     "pooled_within_1_pct": 97.46
+    }
+   },
+   "multi-level": {
+    "buildings": 107,
+    "verdicts": {
+     "better": 105,
+     "same": 0,
+     "worse": 0,
+     "broken": 2,
+     "too-few": 0
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 2,
+    "broken_ABOVE_1M": 0,
+    "broken_DROPPED": 0,
+    "broken_MISSING": 0,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.21,
+      "p50": 0.54,
+      "p75": 1.19
+     },
+     "abs_p95_m": {
+      "p25": 2.27,
+      "p50": 3.08,
+      "p75": 4.145
+     },
+     "within_05_pct": {
+      "p25": 26.653,
+      "p50": 48.631,
+      "p75": 62.155
+     },
+     "within_1_pct": {
+      "p25": 42.416,
+      "p50": 58.433,
+      "p75": 70.764
+     },
+     "bias_m": {
+      "p25": -0.02,
+      "p50": -0.01,
+      "p75": 0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 42.16,
+     "pooled_within_1_pct": 50.76
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.05,
+      "p50": 0.07,
+      "p75": 0.103
+     },
+     "abs_p95_m": {
+      "p25": 0.39,
+      "p50": 0.675,
+      "p75": 0.985
+     },
+     "within_05_pct": {
+      "p25": 89.425,
+      "p50": 93.566,
+      "p75": 96.359
+     },
+     "within_1_pct": {
+      "p25": 95.054,
+      "p50": 97.485,
+      "p75": 98.41
+     },
+     "bias_m": {
+      "p25": -0.015,
+      "p50": -0.006,
+      "p75": 0.005
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 92.62,
+     "pooled_within_1_pct": 96.68
+    }
+   },
+   "other": {
+    "buildings": 474,
+    "verdicts": {
+     "better": 391,
+     "same": 74,
+     "worse": 0,
+     "broken": 9,
+     "too-few": 0
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 4,
+    "broken_ABOVE_1M": 4,
+    "broken_DROPPED": 1,
+    "broken_MISSING": 0,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.09,
+      "p50": 0.26,
+      "p75": 0.47
+     },
+     "abs_p95_m": {
+      "p25": 1.261,
+      "p50": 1.51,
+      "p75": 2.268
+     },
+     "within_05_pct": {
+      "p25": 51.685,
+      "p50": 63.32,
+      "p75": 78.249
+     },
+     "within_1_pct": {
+      "p25": 68.412,
+      "p50": 81.346,
+      "p75": 88.918
+     },
+     "bias_m": {
+      "p25": -0.02,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 66.93,
+     "pooled_within_1_pct": 81.45
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.043,
+      "p50": 0.076,
+      "p75": 0.113
+     },
+     "abs_p95_m": {
+      "p25": 0.336,
+      "p50": 0.546,
+      "p75": 0.835
+     },
+     "within_05_pct": {
+      "p25": 90.386,
+      "p50": 94.426,
+      "p75": 97.312
+     },
+     "within_1_pct": {
+      "p25": 96.188,
+      "p50": 98.021,
+      "p75": 99.12
+     },
+     "bias_m": {
+      "p25": -0.033,
+      "p50": -0.01,
+      "p75": 0.003
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 92.49,
+     "pooled_within_1_pct": 96.81
+    }
+   },
+   "pitched": {
+    "buildings": 13876,
+    "verdicts": {
+     "better": 8413,
+     "same": 5415,
+     "worse": 16,
+     "broken": 32,
+     "too-few": 0
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 17,
+    "broken_ABOVE_1M": 8,
+    "broken_DROPPED": 6,
+    "broken_MISSING": 1,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.305,
+      "p50": 0.39,
+      "p75": 0.49
+     },
+     "abs_p95_m": {
+      "p25": 0.69,
+      "p50": 0.928,
+      "p75": 1.211
+     },
+     "within_05_pct": {
+      "p25": 51.552,
+      "p50": 63.686,
+      "p75": 78.192
+     },
+     "within_1_pct": {
+      "p25": 87.596,
+      "p50": 96.904,
+      "p75": 99.544
+     },
+     "bias_m": {
+      "p25": -0.05,
+      "p50": -0.03,
+      "p75": -0.01
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 57.17,
+     "pooled_within_1_pct": 86.04
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.048,
+      "p50": 0.065,
+      "p75": 0.091
+     },
+     "abs_p95_m": {
+      "p25": 0.194,
+      "p50": 0.343,
+      "p75": 0.54
+     },
+     "within_05_pct": {
+      "p25": 94.257,
+      "p50": 97.208,
+      "p75": 98.889
+     },
+     "within_1_pct": {
+      "p25": 98.148,
+      "p50": 99.148,
+      "p75": 100.0
+     },
+     "bias_m": {
+      "p25": -0.03,
+      "p50": -0.017,
+      "p75": -0.005
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 95.5,
+     "pooled_within_1_pct": 98.39
+    }
+   },
+   "steep-pitched": {
+    "buildings": 4663,
+    "verdicts": {
+     "better": 4232,
+     "same": 397,
+     "worse": 4,
+     "broken": 30,
+     "too-few": 0
+    },
+    "mixed": 1,
+    "broken_TOP_ABOVE_LIDAR": 7,
+    "broken_ABOVE_1M": 21,
+    "broken_DROPPED": 1,
+    "broken_MISSING": 1,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.52,
+      "p50": 0.68,
+      "p75": 0.91
+     },
+     "abs_p95_m": {
+      "p25": 1.221,
+      "p50": 1.616,
+      "p75": 2.415
+     },
+     "within_05_pct": {
+      "p25": 29.068,
+      "p50": 37.719,
+      "p75": 48.362
+     },
+     "within_1_pct": {
+      "p25": 54.604,
+      "p50": 70.344,
+      "p75": 85.991
+     },
+     "bias_m": {
+      "p25": -0.09,
+      "p50": -0.05,
+      "p75": -0.02
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 33.86,
+     "pooled_within_1_pct": 61.89
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.074,
+      "p50": 0.093,
+      "p75": 0.121
+     },
+     "abs_p95_m": {
+      "p25": 0.321,
+      "p50": 0.55,
+      "p75": 0.901
+     },
+     "within_05_pct": {
+      "p25": 89.53,
+      "p50": 94.181,
+      "p75": 97.429
+     },
+     "within_1_pct": {
+      "p25": 95.688,
+      "p50": 97.879,
+      "p75": 99.213
+     },
+     "bias_m": {
+      "p25": -0.038,
+      "p50": -0.022,
+      "p75": -0.006
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 91.95,
+     "pooled_within_1_pct": 96.4
+    }
+   },
+   "too-few": {
+    "buildings": 159,
+    "verdicts": {
+     "better": 0,
+     "same": 0,
+     "worse": 0,
+     "broken": 0,
+     "too-few": 159
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 0,
+    "broken_ABOVE_1M": 0,
+    "broken_DROPPED": 0,
+    "broken_MISSING": 0,
+    "lod12": {
+     "abs_p50_m": null,
+     "abs_p95_m": null,
+     "within_05_pct": null,
+     "within_1_pct": null,
+     "bias_m": null,
+     "dropped_pct": null,
+     "ground_pct": null
+    },
+    "lod20": {
+     "abs_p50_m": null,
+     "abs_p95_m": null,
+     "within_05_pct": null,
+     "within_1_pct": null,
+     "bias_m": null,
+     "dropped_pct": null,
+     "ground_pct": null
+    }
+   }
+  },
+  "by_use": {
+   "none": {
+    "buildings": 2782,
+    "verdicts": {
+     "better": 1715,
+     "same": 1037,
+     "worse": 1,
+     "broken": 8,
+     "too-few": 21
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 0,
+    "broken_ABOVE_1M": 7,
+    "broken_DROPPED": 0,
+    "broken_MISSING": 1,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.265,
+      "p50": 0.405,
+      "p75": 0.65
+     },
+     "abs_p95_m": {
+      "p25": 0.65,
+      "p50": 1.064,
+      "p75": 1.624
+     },
+     "within_05_pct": {
+      "p25": 39.528,
+      "p50": 60.469,
+      "p75": 83.225
+     },
+     "within_1_pct": {
+      "p25": 71.698,
+      "p50": 93.178,
+      "p75": 99.597
+     },
+     "bias_m": {
+      "p25": -0.06,
+      "p50": -0.025,
+      "p75": -0.005
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 53.5,
+     "pooled_within_1_pct": 76.62
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.047,
+      "p50": 0.07,
+      "p75": 0.102
+     },
+     "abs_p95_m": {
+      "p25": 0.185,
+      "p50": 0.367,
+      "p75": 0.641
+     },
+     "within_05_pct": {
+      "p25": 92.792,
+      "p50": 96.689,
+      "p75": 98.925
+     },
+     "within_1_pct": {
+      "p25": 97.545,
+      "p50": 99.015,
+      "p75": 99.933
+     },
+     "bias_m": {
+      "p25": -0.03,
+      "p50": -0.015,
+      "p75": -0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 93.54,
+     "pooled_within_1_pct": 97.32
+    }
+   },
+   "commercial": {
+    "buildings": 671,
+    "verdicts": {
+     "better": 297,
+     "same": 358,
+     "worse": 0,
+     "broken": 9,
+     "too-few": 7
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 5,
+    "broken_ABOVE_1M": 3,
+    "broken_DROPPED": 1,
+    "broken_MISSING": 0,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.07,
+      "p50": 0.18,
+      "p75": 0.425
+     },
+     "abs_p95_m": {
+      "p25": 0.485,
+      "p50": 1.001,
+      "p75": 1.57
+     },
+     "within_05_pct": {
+      "p25": 56.664,
+      "p50": 78.531,
+      "p75": 95.386
+     },
+     "within_1_pct": {
+      "p25": 83.34,
+      "p50": 95.018,
+      "p75": 99.311
+     },
+     "bias_m": {
+      "p25": -0.02,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 69.9,
+     "pooled_within_1_pct": 82.19
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.039,
+      "p50": 0.064,
+      "p75": 0.109
+     },
+     "abs_p95_m": {
+      "p25": 0.21,
+      "p50": 0.444,
+      "p75": 0.828
+     },
+     "within_05_pct": {
+      "p25": 90.906,
+      "p50": 95.718,
+      "p75": 98.596
+     },
+     "within_1_pct": {
+      "p25": 96.388,
+      "p50": 98.355,
+      "p75": 99.686
+     },
+     "bias_m": {
+      "p25": -0.023,
+      "p50": -0.006,
+      "p75": 0.005
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 93.66,
+     "pooled_within_1_pct": 97.11
+    }
+   },
+   "other": {
+    "buildings": 130,
+    "verdicts": {
+     "better": 80,
+     "same": 46,
+     "worse": 0,
+     "broken": 3,
+     "too-few": 1
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 2,
+    "broken_ABOVE_1M": 1,
+    "broken_DROPPED": 0,
+    "broken_MISSING": 0,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.15,
+      "p50": 0.33,
+      "p75": 0.81
+     },
+     "abs_p95_m": {
+      "p25": 0.49,
+      "p50": 1.321,
+      "p75": 2.75
+     },
+     "within_05_pct": {
+      "p25": 35.072,
+      "p50": 65.113,
+      "p75": 97.09
+     },
+     "within_1_pct": {
+      "p25": 56.208,
+      "p50": 87.723,
+      "p75": 100.0
+     },
+     "bias_m": {
+      "p25": -0.04,
+      "p50": -0.01,
+      "p75": 0.0
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 45.22,
+     "pooled_within_1_pct": 55.73
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.041,
+      "p50": 0.059,
+      "p75": 0.091
+     },
+     "abs_p95_m": {
+      "p25": 0.155,
+      "p50": 0.284,
+      "p75": 0.542
+     },
+     "within_05_pct": {
+      "p25": 94.493,
+      "p50": 98.029,
+      "p75": 100.0
+     },
+     "within_1_pct": {
+      "p25": 98.065,
+      "p50": 99.429,
+      "p75": 100.0
+     },
+     "bias_m": {
+      "p25": -0.022,
+      "p50": -0.006,
+      "p75": 0.006
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 94.14,
+     "pooled_within_1_pct": 97.5
+    }
+   },
+   "residential": {
+    "buildings": 17978,
+    "verdicts": {
+     "better": 11219,
+     "same": 6551,
+     "worse": 19,
+     "broken": 59,
+     "too-few": 130
+    },
+    "mixed": 1,
+    "broken_TOP_ABOVE_LIDAR": 26,
+    "broken_ABOVE_1M": 22,
+    "broken_DROPPED": 8,
+    "broken_MISSING": 3,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.3,
+      "p50": 0.41,
+      "p75": 0.56
+     },
+     "abs_p95_m": {
+      "p25": 0.687,
+      "p50": 0.994,
+      "p75": 1.39
+     },
+     "within_05_pct": {
+      "p25": 45.155,
+      "p50": 60.428,
+      "p75": 78.944
+     },
+     "within_1_pct": {
+      "p25": 80.113,
+      "p50": 95.217,
+      "p75": 99.371
+     },
+     "bias_m": {
+      "p25": -0.06,
+      "p50": -0.03,
+      "p75": -0.01
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 56.19,
+     "pooled_within_1_pct": 82.45
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.051,
+      "p50": 0.072,
+      "p75": 0.101
+     },
+     "abs_p95_m": {
+      "p25": 0.211,
+      "p50": 0.365,
+      "p75": 0.586
+     },
+     "within_05_pct": {
+      "p25": 93.436,
+      "p50": 96.958,
+      "p75": 98.813
+     },
+     "within_1_pct": {
+      "p25": 97.799,
+      "p50": 99.006,
+      "p75": 99.872
+     },
+     "bias_m": {
+      "p25": -0.032,
+      "p50": -0.017,
+      "p75": -0.004
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 95.0,
+     "pooled_within_1_pct": 98.07
+    }
+   }
+  },
+  "by_coverage": {
+   "under 80%": {
+    "buildings": 2380,
+    "verdicts": {
+     "better": 984,
+     "same": 1220,
+     "worse": 8,
+     "broken": 24,
+     "too-few": 144
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 8,
+    "broken_ABOVE_1M": 13,
+    "broken_DROPPED": 3,
+    "broken_MISSING": 0,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.215,
+      "p50": 0.34,
+      "p75": 0.48
+     },
+     "abs_p95_m": {
+      "p25": 0.54,
+      "p50": 0.82,
+      "p75": 1.215
+     },
+     "within_05_pct": {
+      "p25": 52.5,
+      "p50": 70.645,
+      "p75": 92.43
+     },
+     "within_1_pct": {
+      "p25": 87.142,
+      "p50": 98.323,
+      "p75": 100.0
+     },
+     "bias_m": {
+      "p25": -0.11,
+      "p50": -0.025,
+      "p75": 0.03
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 63.79,
+     "pooled_within_1_pct": 85.23
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.06,
+      "p50": 0.089,
+      "p75": 0.134
+     },
+     "abs_p95_m": {
+      "p25": 0.23,
+      "p50": 0.387,
+      "p75": 0.625
+     },
+     "within_05_pct": {
+      "p25": 91.667,
+      "p50": 96.895,
+      "p75": 99.494
+     },
+     "within_1_pct": {
+      "p25": 98.077,
+      "p50": 99.601,
+      "p75": 100.0
+     },
+     "bias_m": {
+      "p25": -0.041,
+      "p50": -0.016,
+      "p75": 0.007
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 93.91,
+     "pooled_within_1_pct": 97.83
+    }
+   },
+   "80-95%": {
+    "buildings": 4958,
+    "verdicts": {
+     "better": 3058,
+     "same": 1868,
+     "worse": 4,
+     "broken": 26,
+     "too-few": 2
+    },
+    "mixed": 0,
+    "broken_TOP_ABOVE_LIDAR": 15,
+    "broken_ABOVE_1M": 6,
+    "broken_DROPPED": 3,
+    "broken_MISSING": 2,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.285,
+      "p50": 0.405,
+      "p75": 0.55
+     },
+     "abs_p95_m": {
+      "p25": 0.686,
+      "p50": 0.99,
+      "p75": 1.39
+     },
+     "within_05_pct": {
+      "p25": 45.937,
+      "p50": 60.914,
+      "p75": 79.81
+     },
+     "within_1_pct": {
+      "p25": 80.296,
+      "p50": 95.257,
+      "p75": 99.23
+     },
+     "bias_m": {
+      "p25": -0.09,
+      "p50": -0.05,
+      "p75": -0.01
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 56.39,
+     "pooled_within_1_pct": 79.4
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.052,
+      "p50": 0.073,
+      "p75": 0.102
+     },
+     "abs_p95_m": {
+      "p25": 0.217,
+      "p50": 0.368,
+      "p75": 0.584
+     },
+     "within_05_pct": {
+      "p25": 93.446,
+      "p50": 96.759,
+      "p75": 98.643
+     },
+     "within_1_pct": {
+      "p25": 97.67,
+      "p50": 98.888,
+      "p75": 99.761
+     },
+     "bias_m": {
+      "p25": -0.032,
+      "p50": -0.017,
+      "p75": -0.004
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 94.54,
+     "pooled_within_1_pct": 97.78
+    }
+   },
+   "95% and over": {
+    "buildings": 14223,
+    "verdicts": {
+     "better": 9269,
+     "same": 4904,
+     "worse": 8,
+     "broken": 29,
+     "too-few": 13
+    },
+    "mixed": 1,
+    "broken_TOP_ABOVE_LIDAR": 10,
+    "broken_ABOVE_1M": 14,
+    "broken_DROPPED": 3,
+    "broken_MISSING": 2,
+    "lod12": {
+     "abs_p50_m": {
+      "p25": 0.3,
+      "p50": 0.415,
+      "p75": 0.59
+     },
+     "abs_p95_m": {
+      "p25": 0.71,
+      "p50": 1.03,
+      "p75": 1.48
+     },
+     "within_05_pct": {
+      "p25": 43.208,
+      "p50": 59.515,
+      "p75": 77.989
+     },
+     "within_1_pct": {
+      "p25": 76.819,
+      "p50": 94.201,
+      "p75": 99.23
+     },
+     "bias_m": {
+      "p25": -0.045,
+      "p50": -0.02,
+      "p75": -0.01
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 56.5,
+     "pooled_within_1_pct": 80.38
+    },
+    "lod20": {
+     "abs_p50_m": {
+      "p25": 0.049,
+      "p50": 0.069,
+      "p75": 0.097
+     },
+     "abs_p95_m": {
+      "p25": 0.199,
+      "p50": 0.363,
+      "p75": 0.598
+     },
+     "within_05_pct": {
+      "p25": 93.394,
+      "p50": 96.958,
+      "p75": 98.806
+     },
+     "within_1_pct": {
+      "p25": 97.734,
+      "p50": 98.968,
+      "p75": 99.813
+     },
+     "bias_m": {
+      "p25": -0.031,
+      "p50": -0.017,
+      "p75": -0.004
+     },
+     "dropped_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "ground_pct": {
+      "p25": 0.0,
+      "p50": 0.0,
+      "p75": 0.0
+     },
+     "pooled_within_05_pct": 94.68,
+     "pooled_within_1_pct": 97.85
+    }
+   }
+  }
+ }
+}

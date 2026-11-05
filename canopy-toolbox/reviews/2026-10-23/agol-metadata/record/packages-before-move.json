@@ -1,0 +1,210 @@
+{
+ "features": {
+  "key": "features",
+  "id": "ee182c9a7eec4994b7e19d2be8dd27b5",
+  "title": "Millcreek buildings and canopy cover zones (2023 lidar), planning estimate",
+  "type": "File Geodatabase",
+  "size": 4293393,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 7812853,
+  "published_id": "d5effaee6c66497eaeb64e4c2e0f496e",
+  "forward": [],
+  "reverse": [
+   [
+    "d5effaee6c66497eaeb64e4c2e0f496e",
+    "Feature Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ },
+ "slope": {
+  "key": "slope",
+  "id": "bec13573a71c4df2b4642fda4a559021",
+  "title": "Millcreek slope classes 0.5 m (2023 lidar), planning estimate",
+  "type": "Vector Tile Package",
+  "size": 22732687,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 22732687,
+  "published_id": "3b5b1a9110f14e93af68752be89e0df2",
+  "forward": [],
+  "reverse": [
+   [
+    "3b5b1a9110f14e93af68752be89e0df2",
+    "Vector Tile Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ },
+ "contours": {
+  "key": "contours",
+  "id": "377dd1de82204e63addb6905a9322bb3",
+  "title": "Millcreek 2 m contours (2023 lidar), planning estimate",
+  "type": "Vector Tile Package",
+  "size": 6672410,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 6672410,
+  "published_id": "50573eeba93f405a869a1d78a08d68e8",
+  "forward": [],
+  "reverse": [
+   [
+    "50573eeba93f405a869a1d78a08d68e8",
+    "Vector Tile Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ },
+ "hillshade": {
+  "key": "hillshade",
+  "id": "2d4f5092edfd4c54a9898a1a7dda5dd1",
+  "title": "Millcreek hillshade 0.5 m (2023 lidar), planning estimate",
+  "type": "Compact Tile Package",
+  "size": 133998959,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 133998959,
+  "published_id": "cab8824e44384d479e1f302cdf34daf9",
+  "forward": [],
+  "reverse": [
+   [
+    "cab8824e44384d479e1f302cdf34daf9",
+    "Map Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ },
+ "treetops": {
+  "key": "treetops",
+  "id": "2dcae544e70c47589f8226dc0ad74351",
+  "title": "Millcreek treetops (2023 lidar), planning estimate",
+  "type": "Vector Tile Package",
+  "size": 7678182,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 7678182,
+  "published_id": "924b993cb23046cb87641253bcf786de",
+  "forward": [],
+  "reverse": [
+   [
+    "924b993cb23046cb87641253bcf786de",
+    "Vector Tile Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ },
+ "crowns": {
+  "key": "crowns",
+  "id": "d3ca707cda6544dd9962390c1e7e00db",
+  "title": "Millcreek tree crowns (2023 lidar), planning estimate",
+  "type": "Vector Tile Package",
+  "size": 33867142,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 33867142,
+  "published_id": "d9388dc83f894edbb63e0510a8c62fa8",
+  "forward": [],
+  "reverse": [
+   [
+    "d9388dc83f894edbb63e0510a8c62fa8",
+    "Vector Tile Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ },
+ "buildings3d": {
+  "key": "buildings3d",
+  "id": "eb613927529347989755b0fcf9e9c8fa",
+  "title": "Millcreek 3D buildings LOD1.2 (2023 lidar), planning estimate",
+  "type": "Scene Package",
+  "size": 9638145,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 9638145,
+  "published_id": "5082b5bd063a4a03847f2082dc3533d1",
+  "forward": [],
+  "reverse": [
+   [
+    "5082b5bd063a4a03847f2082dc3533d1",
+    "Scene Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ },
+ "terrain": {
+  "key": "terrain",
+  "id": "7a520038be1b4e55accdfe6bed3a0a71",
+  "title": "Millcreek bare-earth terrain 0.5 m (2023 lidar), planning estimate",
+  "type": "Compact Tile Package",
+  "size": 228112957,
+  "access": "private",
+  "folder": "Millcreek LiDAR 2023",
+  "protected": false,
+  "file_bytes": 228112957,
+  "published_id": "ce1680a5196e458ebfb60ead5150b946",
+  "forward": [],
+  "reverse": [
+   [
+    "ce1680a5196e458ebfb60ead5150b946",
+    "Image Service"
+   ]
+  ],
+  "dependent_to": {
+   "total": 0,
+   "start": 1,
+   "num": 0,
+   "nextStart": -1,
+   "list": []
+  }
+ }
+}

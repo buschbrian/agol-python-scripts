@@ -1,0 +1,22 @@
+{
+  "row": "building-hag-z",
+  "job": "building",
+  "label": "HAG z-mode baseline (hag-20260929); compare by index with the HAG baseline only",
+  "boundary": null,
+  "started": "2026-09-30T00:45:00.5816487-06:00",
+  "files": [
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\hag-20260929\\12TVL2804\\points\\12TVL2804.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\building-hag-z\\building\\12TVL2804.las",
+      "source_md5_before": "ee8ad65ec93942740b823f3097c8d288",
+      "copy_md5": "ee8ad65ec93942740b823f3097c8d288"
+    }
+  ],
+  "watch": [
+    {
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+      "md5_before": "82787095336690d2909344206f9a80fc"
+    }
+  ],
+  "status": "running"
+}

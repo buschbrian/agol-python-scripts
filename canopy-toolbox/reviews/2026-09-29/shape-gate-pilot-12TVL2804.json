@@ -1,0 +1,402 @@
+{
+  "tile": "12TVL2804",
+  "input": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\prepared.lasd",
+  "gate_extent": [
+    428250.0,
+    4504250.0,
+    428500.0,
+    4504500.0
+  ],
+  "parameters": {
+    "neighbors": 16,
+    "radius_m": 5.0,
+    "dominant": 0.6,
+    "vertical": 0.7,
+    "near_building_m": 1.0,
+    "min_single_share": 0.6,
+    "max_irregular_share": 0.4,
+    "neighbourhood": "the point and its neighbors nearest non-ground points within radius_m",
+    "feature_mode": "square-root eigenvalues (PDAL SQRT mode)",
+    "direction_tolerance": "1 - vertical, as a unit-vector component",
+    "excluded_neighbour_classes": [
+      2,
+      7,
+      18
+    ],
+    "excluded_flags": "withheld, synthetic, overlap (points and neighbours)",
+    "candidate_classes": [
+      3,
+      4,
+      5
+    ],
+    "block_m": 100.0,
+    "halo_m": 10.02,
+    "max_points": 40000000,
+    "max_cells": 6250000
+  },
+  "review": {
+    "loaded_points": 849595,
+    "candidates": 534736,
+    "seconds": {
+      "load": 2.2,
+      "features": 9.7,
+      "write": 3.2,
+      "total": 15.2
+    },
+    "peak_memory_gb": 0.99,
+    "by_class": {
+      "3": {
+        "points": 322272,
+        "single_return": 274545,
+        "near_building": 20196,
+        "groups": {
+          "roof_like": {
+            "points": 301013,
+            "pct": 93.4,
+            "single_return": 264170,
+            "near_building": 16857
+          },
+          "wall_like": {
+            "points": 2,
+            "pct": 0.0,
+            "single_return": 0,
+            "near_building": 0
+          },
+          "linear": {
+            "points": 2,
+            "pct": 0.0,
+            "single_return": 2,
+            "near_building": 1
+          },
+          "scattered": {
+            "points": 113,
+            "pct": 0.04,
+            "single_return": 45,
+            "near_building": 30
+          },
+          "mixed": {
+            "points": 20911,
+            "pct": 6.49,
+            "single_return": 10307,
+            "near_building": 3271
+          },
+          "wire": {
+            "points": 227,
+            "pct": 0.07,
+            "single_return": 21,
+            "near_building": 33
+          },
+          "pole": {
+            "points": 4,
+            "pct": 0.0,
+            "single_return": 0,
+            "near_building": 4
+          },
+          "sparse": {
+            "points": 0,
+            "pct": 0.0,
+            "single_return": 0,
+            "near_building": 0
+          }
+        }
+      },
+      "4": {
+        "points": 26282,
+        "single_return": 11504,
+        "near_building": 4388,
+        "groups": {
+          "roof_like": {
+            "points": 8038,
+            "pct": 30.58,
+            "single_return": 6008,
+            "near_building": 1564
+          },
+          "wall_like": {
+            "points": 140,
+            "pct": 0.53,
+            "single_return": 1,
+            "near_building": 10
+          },
+          "linear": {
+            "points": 108,
+            "pct": 0.41,
+            "single_return": 1,
+            "near_building": 14
+          },
+          "scattered": {
+            "points": 608,
+            "pct": 2.31,
+            "single_return": 175,
+            "near_building": 82
+          },
+          "mixed": {
+            "points": 16307,
+            "pct": 62.05,
+            "single_return": 5313,
+            "near_building": 2686
+          },
+          "wire": {
+            "points": 1036,
+            "pct": 3.94,
+            "single_return": 6,
+            "near_building": 26
+          },
+          "pole": {
+            "points": 45,
+            "pct": 0.17,
+            "single_return": 0,
+            "near_building": 6
+          },
+          "sparse": {
+            "points": 0,
+            "pct": 0.0,
+            "single_return": 0,
+            "near_building": 0
+          }
+        }
+      },
+      "5": {
+        "points": 186182,
+        "single_return": 28297,
+        "near_building": 8375,
+        "groups": {
+          "roof_like": {
+            "points": 17793,
+            "pct": 9.56,
+            "single_return": 5723,
+            "near_building": 1593
+          },
+          "wall_like": {
+            "points": 285,
+            "pct": 0.15,
+            "single_return": 6,
+            "near_building": 61
+          },
+          "linear": {
+            "points": 743,
+            "pct": 0.4,
+            "single_return": 9,
+            "near_building": 30
+          },
+          "scattered": {
+            "points": 15856,
+            "pct": 8.52,
+            "single_return": 1918,
+            "near_building": 352
+          },
+          "mixed": {
+            "points": 150215,
+            "pct": 80.68,
+            "single_return": 20636,
+            "near_building": 6284
+          },
+          "wire": {
+            "points": 1080,
+            "pct": 0.58,
+            "single_return": 4,
+            "near_building": 43
+          },
+          "pole": {
+            "points": 104,
+            "pct": 0.06,
+            "single_return": 1,
+            "near_building": 12
+          },
+          "sparse": {
+            "points": 106,
+            "pct": 0.06,
+            "single_return": 0,
+            "near_building": 0
+          }
+        }
+      }
+    }
+  },
+  "apply": {
+    "rule_stages": {
+      "eligible_class": 212464,
+      "and_group": 2690,
+      "and_own_single": 18,
+      "and_single_share": 4,
+      "changed": 0
+    },
+    "changed": 0,
+    "seconds": {
+      "load": 2.6,
+      "features": 13.4,
+      "write": 2.8,
+      "dataset": 3.5,
+      "total": 22.5
+    },
+    "peak_memory_gb": 1.21
+  },
+  "apply_breakdown": {
+    "4": {
+      "points": 26282,
+      "wall_like": {
+        "points": 140,
+        "return_type": {
+          "single": 1,
+          "first_of_many": 107,
+          "intermediate": 31,
+          "last_of_many": 1
+        },
+        "single_share_median": 0.118,
+        "irregular_share_median": 0.412,
+        "near_building": 10,
+        "rule": {
+          "own_single": 1,
+          "and_single_share": 0,
+          "and_irregular_share": 0
+        },
+        "without_return_conditions": {
+          "irregular_share_only": 62
+        }
+      },
+      "wire": {
+        "points": 1036,
+        "return_type": {
+          "single": 6,
+          "first_of_many": 962,
+          "intermediate": 42,
+          "last_of_many": 26
+        },
+        "single_share_median": 0.0,
+        "irregular_share_median": 0.235,
+        "near_building": 26,
+        "rule": {
+          "own_single": 6,
+          "and_single_share": 1,
+          "and_irregular_share": 0
+        },
+        "without_return_conditions": {
+          "irregular_share_only": 673
+        }
+      },
+      "pole": {
+        "points": 45,
+        "return_type": {
+          "single": 0,
+          "first_of_many": 20,
+          "intermediate": 22,
+          "last_of_many": 3
+        },
+        "single_share_median": 0.118,
+        "irregular_share_median": 0.471,
+        "near_building": 6,
+        "rule": {
+          "own_single": 0,
+          "and_single_share": 0,
+          "and_irregular_share": 0
+        },
+        "without_return_conditions": {
+          "irregular_share_only": 21
+        }
+      },
+      "wall_definitions": {
+        "normal_based_1_minus_normal_z_ge_0.7": 140,
+        "diagnostic_pdal_verticality_ge_0.7": 29
+      }
+    },
+    "5": {
+      "points": 186182,
+      "wall_like": {
+        "points": 285,
+        "return_type": {
+          "single": 6,
+          "first_of_many": 173,
+          "intermediate": 86,
+          "last_of_many": 20
+        },
+        "single_share_median": 0.0,
+        "irregular_share_median": 0.588,
+        "near_building": 61,
+        "rule": {
+          "own_single": 6,
+          "and_single_share": 3,
+          "and_irregular_share": 0
+        },
+        "without_return_conditions": {
+          "irregular_share_only": 80
+        }
+      },
+      "wire": {
+        "points": 1080,
+        "return_type": {
+          "single": 4,
+          "first_of_many": 800,
+          "intermediate": 195,
+          "last_of_many": 81
+        },
+        "single_share_median": 0.0,
+        "irregular_share_median": 0.353,
+        "near_building": 43,
+        "rule": {
+          "own_single": 4,
+          "and_single_share": 0,
+          "and_irregular_share": 0
+        },
+        "without_return_conditions": {
+          "irregular_share_only": 581
+        }
+      },
+      "pole": {
+        "points": 104,
+        "return_type": {
+          "single": 1,
+          "first_of_many": 26,
+          "intermediate": 56,
+          "last_of_many": 21
+        },
+        "single_share_median": 0.0,
+        "irregular_share_median": 0.559,
+        "near_building": 12,
+        "rule": {
+          "own_single": 1,
+          "and_single_share": 0,
+          "and_irregular_share": 0
+        },
+        "without_return_conditions": {
+          "irregular_share_only": 35
+        }
+      },
+      "wall_definitions": {
+        "normal_based_1_minus_normal_z_ge_0.7": 285,
+        "diagnostic_pdal_verticality_ge_0.7": 82
+      }
+    }
+  },
+  "integrity": {
+    "review": {
+      "all_checks_pass": true,
+      "files_checked": 1,
+      "changed_found": 534736,
+      "non_class_bytes_differing": 0
+    },
+    "apply": {
+      "all_checks_pass": true,
+      "files_checked": 8,
+      "changed_found": 0,
+      "non_class_bytes_differing": 0
+    }
+  },
+  "source_12TVL2804_las": {
+    "bytes": 809475416,
+    "md5_before": "82787095336690d2909344206f9a80fc",
+    "md5_after": "82787095336690d2909344206f9a80fc",
+    "mtime_utc": "2026-09-29T18:30:12Z",
+    "prepared_folder_listing_identical": true
+  },
+  "canopy_run_on_apply_output": {
+    "status": "complete",
+    "extent": [
+      428250.0,
+      4504250.0,
+      428500.0,
+      4504500.0
+    ],
+    "tile_size": 125,
+    "wall_seconds": 41.7
+  },
+  "note": "Processing evidence only. Group counts are screening shares, not accuracy; no reference labels were read."
+}

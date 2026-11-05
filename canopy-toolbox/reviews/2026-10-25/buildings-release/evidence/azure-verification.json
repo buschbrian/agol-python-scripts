@@ -1,0 +1,25 @@
+{
+  "url": "https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/buildings/20261025/buildings_hybrid_v2.slpk",
+  "status": 200,
+  "bytes": 21228379,
+  "sha256": "62674f95c4e7a292c4ce66e8c2b55aac9d60c360e2ea50e3e7bde5521495949f",
+  "headers": {
+    "Cache-Control": "public, max-age=31536000, immutable",
+    "Content-Length": "21228379",
+    "Content-Type": "application/octet-stream",
+    "Content-MD5": "IsjE831V5C2KqOlCrtCeyg==",
+    "Last-Modified": "Sun, 25 Oct 2026 15:19:58 GMT",
+    "ETag": "0x8DF32AB6EC4AE8E",
+    "Vary": "Origin",
+    "Server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "4a4cf2f4-201e-005a-0294-640945000000",
+    "x-ms-version": "2009-09-19",
+    "x-ms-meta-sha256": "62674f95c4e7a292c4ce66e8c2b55aac9d60c360e2ea50e3e7bde5521495949f",
+    "x-ms-meta-planning_estimate": "true",
+    "x-ms-meta-model": "three_way_v2",
+    "x-ms-lease-status": "unlocked",
+    "x-ms-blob-type": "BlockBlob",
+    "Date": "Sun, 25 Oct 2026 15:20:30 GMT",
+    "Connection": "close"
+  }
+}

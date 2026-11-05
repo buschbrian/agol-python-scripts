@@ -1,0 +1,23 @@
+{
+  "local_date": "2026-10-26",
+  "tiles_completed": 61,
+  "tiles_failed": 0,
+  "models": 119410,
+  "rejected_candidates": 75,
+  "rejection_reasons": {
+    "ValueError: No terrain support beneath the crown": 38,
+    "ValueError: Crown and inferred trunk required": 37
+  },
+  "cityjson_shards": 506,
+  "compressed_bytes": 742768876,
+  "overnight_finished_local": "2026-10-26T03:33:47.416724-06:00",
+  "completion_marker_recovered_local": "2026-10-26T08:12:06.713244-06:00",
+  "recovered_tile": "12TVL3101",
+  "recovered_tile_models": 162,
+  "recovered_model_ids_unchanged": true,
+  "recovered_export_content_unchanged": true,
+  "frozen_config_unchanged": true,
+  "keep_awake_released": true,
+  "publication": "Local drafts; seam reconciliation, visual and field review pending",
+  "note": "60 completion markers were saved overnight. The remaining tile already had its models/export; its transient Windows status-file lock was recovered this morning."
+}
