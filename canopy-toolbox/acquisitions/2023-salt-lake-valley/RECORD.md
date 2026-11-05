@@ -102,6 +102,28 @@ Cite the source rather than a merged number.
   reports 10.12 cm. The USGS project report is the accepted result.
 - **Horizontal accuracy:** the metadata's "0.36 cm RMSEx / RMSEy horizontal accuracy class" is not
   plausible for this collection. Treat it as a typo and do not quote it.
+- **The USGS published point cloud is not the city copy.** For the 52 tiles both hold, the LAZ
+  headers USGS serves sum to **1,269,011,917** points against **1,269,149,276** in the G: copy:
+  137,359 fewer, 0.011% (headers read 2026-09-28). The city copy was extracted 2024-06-30, before
+  publication, so USGS most likely published a lightly reprocessed version. Results from one will
+  not reproduce the other exactly; name the source with every figure. A per-tile comparison needs
+  `canopy inventory --report` run on both copies.
+
+## USGS published copy
+
+All 61 tiles touching the city, including the nine the G: copy lacks, are public as LAZ 1.4 point
+format 6 at `rockyweb.usgs.gov/.../LPC/Projects/UT_2023SaltLakeCo_C24/UT_2023_SaltLakeCo_1_C24/LAZ/`
+(the National Map API lists no other host). [usgs-laz-millcreek.csv](usgs-laz-millcreek.csv) lists
+each tile's URL with the byte size and header point count served on 2026-09-28: 5.81 GB,
+1,489,029,164 points. Download and check them with `canopy fetch` (see the toolbox README). The
+server holds each connection to about 140 KB/s, so 61 tiles take about 3 hours with the default
+four workers. The toolbox's inventory reader needs uncompressed LAS: convert with ArcGIS Pro's
+Convert LAS tool, compression "No Compression", into a new folder, and keep the LAZ as the
+source of record.
+
+The 0.5 m bare-earth DEM is also on USGS (`.../OPR/Projects/UT_2023SaltLakeCo_C24/`, 61 tiles,
+0.58 GB). The first-return DSM is on UGRC only, through raster.utah.gov; the toolbox does not use a
+delivered highest-hit DSM for canopy.
 
 ## Corrections to earlier statements
 
@@ -131,7 +153,8 @@ Record these before differencing this acquisition against any other:
 ## Open questions and next checks
 
 1. Request `low_confidence_areas.shp` and overlay it on the observation masks.
-2. Fetch the nine city-edge tiles when complete city totals are needed.
+2. Fetch the nine city-edge tiles when complete city totals are needed. They are in
+   [usgs-laz-millcreek.csv](usgs-laz-millcreek.csv) (`in_city_copy` = `no`).
 3. Confirm which city boundary layer is authoritative.
 4. Find a leaf-on reference before any canopy figure from this acquisition is shared.
 

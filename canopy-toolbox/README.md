@@ -34,11 +34,14 @@ Run from this folder using Pro Python. Paths below use the supplied delivery and
 
 ~~~powershell
 $proPython = 'C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe'
+& $proPython -m canopy fetch acquisitions\2023-salt-lake-valley\usgs-laz-millcreek.csv D:\lidar\2023-salt-lake-valley\laz
 & $proPython -m canopy inventory 'G:\GIS\2024 Lidar for tower extract' --report scratch\delivery.json
 & $proPython -m canopy index-delivery 'G:\GIS\2024 Lidar for tower extract' scratch\delivery_index --swaths acquisitions\2023-salt-lake-valley\reference\index\Salt_Lake_Valley_Lidar_Swath_Index.shp
 & $proPython -m canopy prepare 'G:\GIS\2024 Lidar for tower extract' scratch\new_pilot --extent 422350 4503350 422600 4503600
 & $proPython -m canopy run scratch\new_pilot\prepared.lasd scratch\new_run --extent 422350 4503350 422600 4503600 --tile-size 125
 ~~~
+
+Fetch downloads a published tile manifest with no ArcGIS dependency: it resumes partial files, skips complete ones, checks each file's size and header point count against the manifest, and appends every result to `download-log.csv` in the output folder. Rerun it until the log shows every tile `ok`. `--workers` (1 to 8, default 4) downloads tiles in parallel; `--tiles` limits it to named tiles. Convert the LAZ to uncompressed LAS with Pro's Convert LAS tool before `inventory`, and see the acquisition's RECORD.md before comparing results with the G: copy.
 
 Inventory reads uncompressed LAS headers and samples classes, returns, and flags without creating source-side statistics. Use --full for exact point counts by class. File creation dates are not acquisition dates. LAZ input is not supported by the direct binary inventory reader.
 
