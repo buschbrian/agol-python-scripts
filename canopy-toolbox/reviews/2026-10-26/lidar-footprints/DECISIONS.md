@@ -5,6 +5,13 @@ The public buildings scene now shows the LiDAR-first buildings, with metres and 
 from the "Sample" group of that class in the review page's **LiDAR outlines vs county** queue (40 random items each),
 instead of item by item.
 
+## Order of authority (Brian, November 9)
+
+LiDAR-first outline, regularized, cross-checked against roofer LoD2.2. Newer imagery settles what the LiDAR cannot. **County
+data is the last option**: "we're trying to fix the problems that the county's got, not create more problems." See
+[regularize](../../2026-11-09/regularize/README.md). Open: the rule below that keeps the county on 550 joined outlines
+comes from his October sample and conflicts with this order. It is unchanged until he decides.
+
 ## Graded halfway through the regrade, and the 137 items left (October 27)
 
 The October 26 tables below are superseded by this one. [grade_regrade.py](grade_regrade.py) turned Brian's 125
