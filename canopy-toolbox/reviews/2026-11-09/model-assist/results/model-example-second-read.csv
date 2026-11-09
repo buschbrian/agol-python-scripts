@@ -1,0 +1,223 @@
+NUMBER,PACKET,UNIT_ID,FIRST_LABEL,FIRST_CONFIDENCE,SECOND_LABEL,SECOND_CONFIDENCE,SECOND_NOTE,STATUS,SHEET
+1,rare,R-0087,POLE,medium,TREE,medium,"Layered returns 7-13 m, tall crown beside roof",needs_brian,review-examples/sheets/sheet_001.png
+2,rare,R-0250,UNSURE,low,TREE,low,"Scattered returns about 2 m over road, likely branches",needs_brian,review-examples/sheets/sheet_001.png
+3,rare,R-0255,UNSURE,low,UNSURE,low,"Narrow vertical sparse column 1.2-2.5 m, pole or hedge",needs_brian,review-examples/sheets/sheet_001.png
+4,rare,R-0257,VEHICLE,medium,UNSURE,low,"Tight flat cluster at 0.75 m, object type unclear",needs_brian,review-examples/sheets/sheet_001.png
+5,refined,Q3-0086-b,BUILDING_ROOF,medium,TREE,medium,Diagonal stem-like returns at 1.5 m in dark canopy,needs_brian,review-examples/sheets/sheet_002.png
+6,refined,Q4-0088-a,TREE,medium,UNSURE,low,"Tight flat patch at 2.65 m, shed roof or other",needs_brian,review-examples/sheets/sheet_002.png
+7,refined,Q4-0088-b,UNSURE,low,SHRUB_LOW_VEG,low,Vertical scatter 0.8-1.0 m beside slope,needs_brian,review-examples/sheets/sheet_002.png
+8,refined,Q3-0089-a,SHRUB_LOW_VEG,medium,TREE,low,Scattered 1.3-1.75 m in dark vegetation,needs_brian,review-examples/sheets/sheet_002.png
+10,refined,Q1-0090-b,WALL,medium,TREE,medium,Scattered returns 5.3-5.9 m in canopy,needs_brian,review-examples/sheets/sheet_003.png
+11,refined,Q3-0091-a,TREE,medium,SHRUB_LOW_VEG,low,Scattered 1.2-1.7 m in vegetation,needs_brian,review-examples/sheets/sheet_003.png
+12,refined,Q3-0091-b,MIXED,medium,GROUND,low,Returns near 0-0.5 m at ground line,needs_brian,review-examples/sheets/sheet_003.png
+15,refined,Q4-0091-c,TREE,medium,TREE,medium,"Dense vertical column under canopy, trunk-like",two_reads_agree,review-examples/sheets/sheet_004.png
+16,refined,Q2-0093-a,WALL,medium,OTHER_STRUCTURE,low,"Flat thin cluster at 1.2 m, low rail or fence",needs_brian,review-examples/sheets/sheet_004.png
+17,refined,Q2-0094-a,BUILDING_ROOF,medium,OTHER_STRUCTURE,low,Sloped surface near 1.0-1.2 m at building edge,needs_brian,review-examples/sheets/sheet_005.png
+18,refined,Q2-0095-a,TREE,medium,TREE,low,Sparse 2-2.8 m returns in vegetation,two_reads_agree,review-examples/sheets/sheet_005.png
+19,refined,Q2-0095-b,TREE,medium,SHRUB_LOW_VEG,low,Sparse 0.5-1.0 m returns above ground,needs_brian,review-examples/sheets/sheet_005.png
+20,refined,Q2-0096-a,WALL,medium,UNSURE,medium,"Points 2 m below ground, likely noise",needs_brian,review-examples/sheets/sheet_005.png
+22,refined,Q1-0101-a,BUILDING_ROOF,medium,BUILDING_ROOF,low,Flat patch 4.4 m beneath sloped roof edge,two_reads_agree,review-examples/sheets/sheet_006.png
+23,refined,Q1-0101-b,BUILDING_ROOF,medium,BUILDING_ROOF,low,"Flat line at 1.9 m, low roof surface",two_reads_agree,review-examples/sheets/sheet_006.png
+25,refined,Q1-0102-b,WALL,medium,UNSURE,low,Scatter near roof edge 4.8-5.3 m,needs_brian,review-examples/sheets/sheet_007.png
+26,refined,Q1-0102-c,WALL,medium,UNSURE,low,"Diagonal line 3.1-3.6 m, eave or wall edge",needs_brian,review-examples/sheets/sheet_007.png
+27,refined,Q3-0102-a,TREE,medium,TREE,medium,Scattered 1.5-2.1 m in dark canopy,two_reads_agree,review-examples/sheets/sheet_007.png
+28,refined,Q3-0102-b,MIXED,medium,GROUND,low,Returns -0.5 to 0.3 m near ground under canopy,needs_brian,review-examples/sheets/sheet_007.png
+33,refined,Q2-0105-a,BUILDING_ROOF,medium,TREE,medium,Scattered cluster 3.2-3.9 m in tree,needs_brian,review-examples/sheets/sheet_009.png
+34,refined,Q2-0105-b,UNSURE,low,UNSURE,low,Small isolated flat cluster at 1.3 m,needs_brian,review-examples/sheets/sheet_009.png
+35,refined,Q2-0105-c,GROUND,medium,GROUND,medium,Points on ground line near 0.25 m,two_reads_agree,review-examples/sheets/sheet_009.png
+36,refined,Q1-0106-a,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Tight flat line at 10 m extending east,two_reads_agree,review-examples/sheets/sheet_009.png
+38,refined,Q3-0108-a,MIXED,medium,TREE,low,Diagonal stem-like line 0-0.8 m in vegetation,needs_brian,review-examples/sheets/sheet_010.png
+39,refined,Q4-0108-a,SHRUB_LOW_VEG,medium,UNSURE,low,"Small cluster at 1.2 m in yard, vehicle or shrub",needs_brian,review-examples/sheets/sheet_010.png
+40,refined,Q3-0110-a,OTHER_STRUCTURE,medium,UNSURE,low,Sloped surface at 0.7 m beside building edge,needs_brian,review-examples/sheets/sheet_010.png
+41,refined,Q3-0110-b,GROUND,medium,GROUND,medium,Returns on ground line -0.2 to 0 m,two_reads_agree,review-examples/sheets/sheet_011.png
+44,refined,Q1-0112-b,UNSURE,low,BUILDING_ROOF,low,Few points 5.5-5.8 m at roof-height edge,needs_brian,review-examples/sheets/sheet_011.png
+46,refined,Q2-0112-a,BUILDING_ROOF,medium,BUILDING_ROOF,medium,"Flat thin roof line at 2.45 m, white roof",two_reads_agree,review-examples/sheets/sheet_012.png
+47,refined,Q4-0112-a,POLE,medium,UNSURE,low,"Sparse floating points 5.5-7.5 m, no structure",needs_brian,review-examples/sheets/sheet_012.png
+48,refined,Q2-0113-a,BUILDING_ROOF,medium,BUILDING_ROOF,medium,"Flat line at 4.2 m, rooftop surface",two_reads_agree,review-examples/sheets/sheet_012.png
+50,refined,Q2-0114-b,BUILDING_ROOF,medium,BUILDING_ROOF,medium,"Flat line at 3.35 m, roof or low cover",two_reads_agree,review-examples/sheets/sheet_013.png
+53,refined,Q4-0116-b,UNSURE,low,BUILDING_ROOF,low,Tight cluster 2.1 m at roof edge,needs_brian,review-examples/sheets/sheet_014.png
+54,refined,Q2-0119-a,UNSURE,low,OTHER_STRUCTURE,low,"Flat low line 0.85 m, wall or fence edge",needs_brian,review-examples/sheets/sheet_014.png
+55,refined,Q3-0119-a,OTHER_STRUCTURE,medium,UNSURE,low,Smooth sloped line 1.7-2.0 m in vegetation,needs_brian,review-examples/sheets/sheet_014.png
+57,refined,Q3-0120-a,TREE,medium,TREE,low,Scatter 1.8-2.3 m in green canopy,two_reads_agree,review-examples/sheets/sheet_015.png
+58,refined,Q3-0120-b,GROUND,medium,GROUND,medium,Points on ground line near 0.1 m,two_reads_agree,review-examples/sheets/sheet_015.png
+59,refined,Q2-0121-a,UNSURE,low,UNSURE,low,"Thin diagonal line 1.7-2.1 m, branch or post",needs_brian,review-examples/sheets/sheet_015.png
+62,refined,Q4-0121-c,TREE,medium,SHRUB_LOW_VEG,low,Sparse stems 1.0-1.4 m in vegetation,needs_brian,review-examples/sheets/sheet_016.png
+63,refined,Q4-0121-d,MIXED,medium,GROUND,medium,Returns 0-0.3 m on ground line,needs_brian,review-examples/sheets/sheet_016.png
+64,refined,Q3-0122-a,OTHER_STRUCTURE,medium,UNSURE,low,Sloped line 0.9-1.1 m beside wall,needs_brian,review-examples/sheets/sheet_016.png
+69,refined,Q2-0128-a,UNSURE,low,TREE,low,"Floating points 4.7 m above roof, overhanging",needs_brian,review-examples/sheets/sheet_018.png
+71,refined,Q3-0128-a,TREE,medium,SHRUB_LOW_VEG,low,"Scatter cloud 1.3-2.2 m, shrubby vegetation",needs_brian,review-examples/sheets/sheet_018.png
+72,refined,Q3-0128-b,MIXED,medium,GROUND,low,Scattered returns 0.1-0.4 m near ground,needs_brian,review-examples/sheets/sheet_018.png
+73,refined,Q5-0131-a,TREE,medium,TREE,low,Sparse 2.4-3.4 m returns in vegetation,two_reads_agree,review-examples/sheets/sheet_019.png
+74,refined,Q2-0132-a,TREE,medium,TREE,low,Floating points near 8 m in tree area,two_reads_agree,review-examples/sheets/sheet_019.png
+76,refined,Q2-0133-a,GROUND,medium,GROUND,medium,Points on ground line 0.1-0.2 m,two_reads_agree,review-examples/sheets/sheet_019.png
+79,refined,Q2-0135-a,UNSURE,low,TREE,low,Sparse 1.3-2.0 m points in vegetation,needs_brian,review-examples/sheets/sheet_020.png
+80,refined,Q3-0135-a,MIXED,medium,SHRUB_LOW_VEG,low,Vertical column 0-0.95 m above ground,needs_brian,review-examples/sheets/sheet_020.png
+86,refined,Q4-0138-a,MIXED,high,POLE,low,Dense vertical column 0-2.4 m seen in both views,needs_brian,review-examples/sheets/sheet_022.png
+87,refined,Q2-0141-a,GROUND,medium,GROUND,medium,Returns at ground level -0.1 to 0.2 m,two_reads_agree,review-examples/sheets/sheet_022.png
+88,refined,Q3-0141-a,SHRUB_LOW_VEG,medium,SHRUB_LOW_VEG,low,Cluster 1.3-1.7 m in front of building,two_reads_agree,review-examples/sheets/sheet_022.png
+89,refined,Q2-0142-a,WALL,medium,UNSURE,medium,"Points about 1 m below ground, likely noise",needs_brian,review-examples/sheets/sheet_023.png
+90,refined,Q1-0143-a,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Diagonal line on V-shaped roof slope 3.1-3.5 m,two_reads_agree,review-examples/sheets/sheet_023.png
+92,refined,Q2-0145-a,TREE,medium,TREE,low,"Scattered 7-7.5 m above roof, overhanging",two_reads_agree,review-examples/sheets/sheet_023.png
+93,refined,Q4-0145-a,UNSURE,low,TREE,low,Six sparse points 1.8-2.6 m near tree,needs_brian,review-examples/sheets/sheet_024.png
+94,refined,Q3-0147-a,MIXED,medium,TREE,low,Vertical clusters 0.8-1.9 m beside tree,needs_brian,review-examples/sheets/sheet_024.png
+95,refined,Q3-0147-b,GROUND,medium,GROUND,medium,Points on ground line 0-0.2 m,two_reads_agree,review-examples/sheets/sheet_024.png
+96,refined,Q3-0152-a,BUILDING_ROOF,medium,BUILDING_ROOF,medium,"Flat line near 3.9 m, roof surface",two_reads_agree,review-examples/sheets/sheet_024.png
+97,refined,Q3-0152-b,BUILDING_ROOF,medium,UNSURE,low,V-shaped scatter at 2-3 m near roof edge; roof or tree unclear,needs_brian,review-examples/sheets/sheet_025.png
+100,refined,Q4-0153-a,UNSURE,low,UNSURE,low,"8 floating points at 1.65 m, nothing around",needs_brian,review-examples/sheets/sheet_025.png
+101,refined,Q2-0155-a,BUILDING_ROOF,medium,TREE,low,"Scattered points 1.8-2.6 m over garden, foliage-like",needs_brian,review-examples/sheets/sheet_026.png
+103,refined,Q3-0155-a,TREE,medium,TREE,medium,Scattered vertical points 1.7-2.5 m in dense vegetation,two_reads_agree,review-examples/sheets/sheet_026.png
+104,refined,Q3-0155-b,MIXED,medium,SHRUB_LOW_VEG,low,"Dense layer at 0.7 m, low vegetation or bed",needs_brian,review-examples/sheets/sheet_026.png
+108,refined,Q3-0159-a,VEHICLE,medium,UNSURE,low,"9 sparse points at 1.6 m, isolated",needs_brian,review-examples/sheets/sheet_027.png
+110,refined,Q1-0160-a,MIXED,medium,TREE,low,Slanted scattered points 1.3-2.5 m beside tree crown,needs_brian,review-examples/sheets/sheet_028.png
+111,refined,Q4-0162-a,UNSURE,low,TREE,low,Thin vertical clump 1.9-2.3 m beside roof edge,needs_brian,review-examples/sheets/sheet_028.png
+112,refined,Q3-0163-a,OTHER_STRUCTURE,medium,OTHER_STRUCTURE,low,"Flat line at 2.25 m, fence or carport-like",two_reads_agree,review-examples/sheets/sheet_028.png
+113,refined,Q3-0179-a,MIXED,medium,SHRUB_LOW_VEG,medium,Sparse points 0.2-0.7 m above ground in garden,needs_brian,review-examples/sheets/sheet_029.png
+114,original,Q2-0010,UNSURE,low,BUILDING_ROOF,high,"Dense flat plane at 3.6 m, roof",needs_brian,review-examples/sheets/sheet_029.png
+115,original,Q5-0164,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Slanted roof-slope points 2.6-3 m beside gray roof,two_reads_agree,review-examples/sheets/sheet_029.png
+118,original,Q5-0165,MIXED,high,TREE,medium,Scattered points 12.5-14 m next to canopy-like scatter,needs_brian,review-examples/sheets/sheet_030.png
+119,original,Q1-0166,MIXED,high,MIXED,low,Roof slope at 3 m plus scattered tree points at 4.5 m,two_reads_agree,review-examples/sheets/sheet_030.png
+121,original,Q3-0166,MIXED,high,TREE,medium,"Dense vertical column 0-3 m, trunk and branches",needs_brian,review-examples/sheets/sheet_031.png
+122,original,Q5-0166,MIXED,medium,BUILDING_ROOF,medium,"Roof slope points near 3 m, few stray low points",needs_brian,review-examples/sheets/sheet_031.png
+123,original,Q2-0167,MIXED,medium,BUILDING_ROOF,medium,Roof slope line at 4-5.3 m over house,needs_brian,review-examples/sheets/sheet_031.png
+124,original,Q3-0167,VEHICLE,medium,VEHICLE,medium,Small compact patch at 2 m over parking area,two_reads_agree,review-examples/sheets/sheet_031.png
+128,original,Q3-0168,MIXED,high,SHRUB_LOW_VEG,low,Ground points plus scatter to 1.8 m,needs_brian,review-examples/sheets/sheet_032.png
+129,original,Q5-0168,MIXED,medium,BUILDING_ROOF,medium,Stepped flat layers at 9 and 10.4 m on roof,needs_brian,review-examples/sheets/sheet_033.png
+131,original,Q2-0169,MIXED,high,MIXED,medium,Points near ground and roof edge at 3-4 m,two_reads_agree,review-examples/sheets/sheet_033.png
+132,original,Q3-0169,MIXED,medium,SHRUB_LOW_VEG,low,"Scatter 0.3-2 m on slope, vegetation",needs_brian,review-examples/sheets/sheet_033.png
+134,original,Q2-0170,MIXED,high,MIXED,medium,Ground points plus separate layer at 1.2 m,two_reads_agree,review-examples/sheets/sheet_034.png
+137,original,Q2-0171,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Sawtooth roof slopes 4-6 m,two_reads_agree,review-examples/sheets/sheet_035.png
+138,original,Q2-0172,MIXED,high,TREE,low,"Scattered 2.5-4 m beside roof edge, tree crown",needs_brian,review-examples/sheets/sheet_035.png
+139,original,Q3-0172,MIXED,medium,SHRUB_LOW_VEG,medium,"Dense scatter 1.5-2 m, hedge or shrub",needs_brian,review-examples/sheets/sheet_035.png
+140,original,Q5-0172,MIXED,medium,MIXED,low,Roof line at 4.5 m plus scatter below,two_reads_agree,review-examples/sheets/sheet_035.png
+142,original,Q3-0173,UNSURE,low,UNSURE,low,11 sparse points at 2-2.3 m,needs_brian,review-examples/sheets/sheet_036.png
+144,original,Q3-0174,TREE,medium,SHRUB_LOW_VEG,low,Tight cluster at 1.9 m among vegetation scatter,needs_brian,review-examples/sheets/sheet_036.png
+146,original,Q3-0175,BUILDING_ROOF,medium,BUILDING_ROOF,medium,"Flat dense plane at 2.6 m, low roof or canopy",two_reads_agree,review-examples/sheets/sheet_037.png
+148,original,Q3-0176,MIXED,high,MIXED,low,Ground points plus scatter at 1-1.5 m,two_reads_agree,review-examples/sheets/sheet_037.png
+149,original,Q5-0176,BUILDING_ROOF,medium,BUILDING_ROOF,high,Flat roof planes at 9 and 10.7 m,two_reads_agree,review-examples/sheets/sheet_038.png
+150,original,Q3-0177,MIXED,medium,GROUND,low,Mostly ground with few points up to 0.7 m,needs_brian,review-examples/sheets/sheet_038.png
+153,original,Q5-0178,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Roof level 7.3 with equipment scatter to 8.2 m,two_reads_agree,review-examples/sheets/sheet_039.png
+154,original,Q5-0179,UNSURE,low,BUILDING_ROOF,high,Dense flat roof plane at 5 m,needs_brian,review-examples/sheets/sheet_039.png
+157,original,Q3-0181,UNSURE,low,UNSURE,low,Single point only,needs_brian,review-examples/sheets/sheet_040.png
+158,original,Q5-0181,MIXED,medium,BUILDING_ROOF,medium,Roof edge slope 3.7-4.9 m,needs_brian,review-examples/sheets/sheet_040.png
+159,original,Q3-0182,UNSURE,low,SHRUB_LOW_VEG,low,Flat layer at 1.7 m near dark green edge,needs_brian,review-examples/sheets/sheet_040.png
+167,calibration,C2-0047,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Highest is roof plane at 3.8 m,two_reads_agree,review-examples/sheets/sheet_042.png
+173,calibration,C2-0053,UNSURE,low,WIRE,medium,"Highest at 5.9 m thin line across W-E, single in S-N",needs_brian,review-examples/sheets/sheet_044.png
+174,calibration,C2-0054,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Highest at 4.5 m on roof slope,two_reads_agree,review-examples/sheets/sheet_044.png
+177,calibration,C2-0057,UNSURE,low,TREE,low,"Top clump at 6.5 m above roof lines, separate",needs_brian,review-examples/sheets/sheet_045.png
+178,calibration,C2-0058,POLE,medium,TREE,medium,"Top at 6 m with vertical scatter down, trunk/branches",needs_brian,review-examples/sheets/sheet_045.png
+179,calibration,C2-0059,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Highest at 4 m on roof edge slope,two_reads_agree,review-examples/sheets/sheet_045.png
+182,calibration,C2-0062,UNSURE,low,UNSURE,low,Isolated small clump at 6.4 m over open lot,needs_brian,review-examples/sheets/sheet_046.png
+184,calibration,C2-0064,WIRE,medium,TREE,medium,Scattered clump 3-4 m between buildings,needs_brian,review-examples/sheets/sheet_046.png
+186,calibration,C2-0066,POLE,medium,WIRE,medium,"Narrow clump at 9.8 m over road, nothing below",needs_brian,review-examples/sheets/sheet_047.png
+187,calibration,C2-0067,UNSURE,low,TREE,low,Top clump at 7 m above roof and trees,needs_brian,review-examples/sheets/sheet_047.png
+188,calibration,C2-0068,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Highest points on sloped roof edge at 3.5-4 m,two_reads_agree,review-examples/sheets/sheet_047.png
+192,calibration,C2-0072,WIRE,medium,BUILDING_ROOF,medium,"flat plane at 3 m, wide extent",needs_brian,review-examples/sheets/sheet_048.png
+198,calibration,C2-0078,UNSURE,low,OTHER_STRUCTURE,low,"linear flat line at 2.3 m, fence-like; lone point at 4.4",needs_brian,review-examples/sheets/sheet_050.png
+199,calibration,C2-0079,OTHER_STRUCTURE,medium,SHRUB_LOW_VEG,medium,narrow rounded 2.8 m green strip between buildings,needs_brian,review-examples/sheets/sheet_050.png
+200,calibration,C2-0080,SHRUB_LOW_VEG,medium,TREE,medium,scattered vegetation returns to 2.4 m,needs_brian,review-examples/sheets/sheet_050.png
+201,calibration,C2-0081,UNSURE,low,UNSURE,low,"few floating points at 2.6 m, unclear",needs_brian,review-examples/sheets/sheet_051.png
+204,calibration,C2-0084,VEHICLE,medium,BUILDING_ROOF,low,flat 2.5 m plane edge; could be carport,needs_brian,review-examples/sheets/sheet_051.png
+206,calibration,C2-0086,TREE,medium,TREE,medium,rounded 3.3 m crown over shaded area,two_reads_agree,review-examples/sheets/sheet_052.png
+207,calibration,C2-0087,OTHER_STRUCTURE,medium,SHRUB_LOW_VEG,medium,"2 m rounded green strip, hedge-like",needs_brian,review-examples/sheets/sheet_052.png
+208,calibration,C2-0088,BUILDING_ROOF,medium,UNSURE,low,patchy 2.5 m returns beside roof eave,needs_brian,review-examples/sheets/sheet_052.png
+213,calibration,C2-0093,WIRE,medium,WIRE,low,"small isolated patch at 5.4 m, line-like",two_reads_agree,review-examples/sheets/sheet_054.png
+218,calibration,C2-0098,WIRE,medium,WIRE,medium,small floating cluster at 7 m over road,two_reads_agree,review-examples/sheets/sheet_055.png
+220,calibration,C2-0100,TREE,medium,TREE,high,"dense rounded crown to 5 m, green",two_reads_agree,review-examples/sheets/sheet_055.png
+222,calibration,C2-0102,SHRUB_LOW_VEG,medium,SHRUB_LOW_VEG,low,rounded 2.5 m dark green mass by house,two_reads_agree,review-examples/sheets/sheet_056.png
+223,calibration,C2-0103,BUILDING_ROOF,medium,BUILDING_ROOF,medium,sloped roof returns up to 6.2 m,two_reads_agree,review-examples/sheets/sheet_056.png
+224,calibration,C2-0104,WIRE,medium,WIRE,medium,narrow floating line at 5 m over pavement,two_reads_agree,review-examples/sheets/sheet_056.png
+226,calibration,C2-0106,TREE,medium,TREE,medium,rounded crown 3.6 m in lawn,two_reads_agree,review-examples/sheets/sheet_057.png
+227,calibration,C2-0107,UNSURE,low,TREE,medium,"scattered 4-5.5 m returns, green canopy",needs_brian,review-examples/sheets/sheet_057.png
+228,calibration,C2-0108,TREE,medium,UNSURE,low,patchy 3 m returns near roof edge,needs_brian,review-examples/sheets/sheet_057.png
+230,calibration,C2-0110,UNSURE,low,TREE,low,sparse isolated returns to 6.5 m in vegetation,needs_brian,review-examples/sheets/sheet_058.png
+232,calibration,C2-0112,TREE,medium,BUILDING_ROOF,medium,"thick roof plane about 3 m, gray roof",needs_brian,review-examples/sheets/sheet_058.png
+233,calibration,C2-0113,UNSURE,low,WIRE,medium,"narrow line at 7 m, nothing below",needs_brian,review-examples/sheets/sheet_059.png
+236,calibration,C2-0116,BUILDING_ROOF,medium,GROUND,medium,flat near 0 m; ditch below,needs_brian,review-examples/sheets/sheet_059.png
+240,calibration,C2-0120,WIRE,medium,WIRE,low,tiny cluster at 4.5 m floating,two_reads_agree,review-examples/sheets/sheet_060.png
+241,calibration,C2-0121,TREE,medium,TREE,medium,"dense vegetation to 3 m, dark canopy",two_reads_agree,review-examples/sheets/sheet_061.png
+243,calibration,C2-0123,UNSURE,low,TREE,medium,scattered branches 2-4.6 m over lawn,needs_brian,review-examples/sheets/sheet_061.png
+245,calibration,C2-0125,TREE,medium,TREE,medium,rounded 3 m crown beside roofs,two_reads_agree,review-examples/sheets/sheet_062.png
+246,calibration,C2-0126,UNSURE,low,OTHER_STRUCTURE,low,flat 4.3 m canopy over parking,needs_brian,review-examples/sheets/sheet_062.png
+252,calibration,C2-0132,TREE,medium,SHRUB_LOW_VEG,medium,scattered 1-2.7 m by roof corner,needs_brian,review-examples/sheets/sheet_063.png
+257,calibration,C2-0137,WIRE,medium,UNSURE,low,"sparse layers at 3.1 m, unclear",needs_brian,review-examples/sheets/sheet_065.png
+260,calibration,C2-0140,TREE,medium,TREE,high,scattered returns to 11 m,two_reads_agree,review-examples/sheets/sheet_065.png
+264,calibration,C2-0144,WIRE,medium,UNSURE,low,sparse flat layers at 3.4 m between roofs,needs_brian,review-examples/sheets/sheet_066.png
+265,calibration,C2-0145,BUILDING_ROOF,medium,BUILDING_ROOF,medium,flat 2.2 m plane joining sloped roof,two_reads_agree,review-examples/sheets/sheet_067.png
+266,calibration,C2-0146,UNSURE,low,TREE,medium,scatter to 8.6 m above roof ridge,needs_brian,review-examples/sheets/sheet_067.png
+267,calibration,C2-0147,BUILDING_ROOF,medium,BUILDING_ROOF,medium,small gabled shed roof at 2.8 m,two_reads_agree,review-examples/sheets/sheet_067.png
+268,calibration,C2-0148,UNSURE,low,SHRUB_LOW_VEG,medium,scattered 1.5-2.7 m beside roof,needs_brian,review-examples/sheets/sheet_067.png
+270,calibration,C2-0150,POLE,medium,WIRE,medium,small cluster at 11 m over roadside,needs_brian,review-examples/sheets/sheet_068.png
+271,calibration,C2-0151,UNSURE,low,SHRUB_LOW_VEG,low,2.2 m linear green strip; lone 4.4 m point,needs_brian,review-examples/sheets/sheet_068.png
+273,calibration,C2-0153,TREE,medium,SHRUB_LOW_VEG,low,rounded 2.5 m scatter on lawn,needs_brian,review-examples/sheets/sheet_069.png
+274,calibration,C2-0154,SHRUB_LOW_VEG,medium,OTHER_STRUCTURE,low,"flat 2 m small top, shed or pergola",needs_brian,review-examples/sheets/sheet_069.png
+278,calibration,C2-0158,BUILDING_ROOF,medium,TREE,medium,4.8 m scatter overhanging roof,needs_brian,review-examples/sheets/sheet_070.png
+279,calibration,C2-0159,BUILDING_ROOF,medium,BUILDING_ROOF,low,"flat 2.8 m rectangle, small structure",two_reads_agree,review-examples/sheets/sheet_070.png
+281,calibration,C2-0161,BUILDING_ROOF,medium,TREE,medium,"4.4-4.9 m cluster above roof, branches",needs_brian,review-examples/sheets/sheet_071.png
+286,calibration,C2-0166,BUILDING_ROOF,medium,OTHER_STRUCTURE,low,"Rounded flat top 2.7 m, low canopy-like structure beside house",needs_brian,review-examples/sheets/sheet_072.png
+288,calibration,C2-0168,BUILDING_ROOF,medium,BUILDING_ROOF,high,Sloped roof plane 3.7-5.5 m beside building,two_reads_agree,review-examples/sheets/sheet_072.png
+291,calibration,C2-0171,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Sloped line 8-9.5 m continuing roof planes,two_reads_agree,review-examples/sheets/sheet_073.png
+292,calibration,C2-0172,BUILDING_ROOF,medium,UNSURE,low,"Sparse sloped points to 3.9 m, shaded; roof or crown unclear",needs_brian,review-examples/sheets/sheet_073.png
+297,calibration,C2-0177,UNSURE,low,UNSURE,low,"Few isolated points 2-3.2 m over pavement, no structure",needs_brian,review-examples/sheets/sheet_075.png
+299,calibration,C2-0179,TREE,medium,TREE,medium,"Sparse scattered points to 3.4 m, overhanging branches over lawn",two_reads_agree,review-examples/sheets/sheet_075.png
+300,calibration,C2-0180,OTHER_STRUCTURE,medium,SHRUB_LOW_VEG,medium,"Dense mound topping at 2 m, green bush in imagery",needs_brian,review-examples/sheets/sheet_075.png
+302,calibration,C2-0182,UNSURE,low,TREE,medium,"Sparse column to 10.5 m, tree canopy",needs_brian,review-examples/sheets/sheet_076.png
+304,calibration,C2-0184,TREE,medium,TREE,medium,"Scattered crown cloud near 3 m, green",two_reads_agree,review-examples/sheets/sheet_076.png
+305,calibration,C2-0185,TREE,medium,UNSURE,low,"Mixed sloped and flat points to 3.2 m, tree or roof unclear",needs_brian,review-examples/sheets/sheet_077.png
+306,calibration,C2-0186,BUILDING_ROOF,medium,GROUND,medium,"Highest returns at ground level, pavement near wall, lower surface at -5 m",needs_brian,review-examples/sheets/sheet_077.png
+312,calibration,C2-0192,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Flat roof level at 8 m above lower roof,two_reads_agree,review-examples/sheets/sheet_078.png
+313,calibration,C2-0193,TREE,medium,TREE,medium,"Scattered points 2.3-4.1 m, crown over pavement",two_reads_agree,review-examples/sheets/sheet_079.png
+314,calibration,C2-0194,WALL,medium,TREE,low,Sparse vertical column to 3.7 m above low roof/fence line,needs_brian,review-examples/sheets/sheet_079.png
+316,calibration,C2-0196,SHRUB_LOW_VEG,medium,SHRUB_LOW_VEG,medium,"Sparse low points to 2 m on slope, bare/shrub ground",two_reads_agree,review-examples/sheets/sheet_079.png
+320,calibration,C2-0200,WIRE,medium,UNSURE,low,"Single point at 8.2 m, dense stuff only at 1.6 m",needs_brian,review-examples/sheets/sheet_080.png
+321,calibration,C2-0201,UNSURE,low,BUILDING_ROOF,low,"Flat dense surface at 2.4 m, low roof or carport",needs_brian,review-examples/sheets/sheet_081.png
+323,calibration,C2-0203,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Roof eave cluster at 4.3 m joining rising roof,two_reads_agree,review-examples/sheets/sheet_081.png
+324,calibration,C2-0204,UNSURE,low,TREE,medium,"Sparse column to 5.9 m, crown",needs_brian,review-examples/sheets/sheet_081.png
+325,calibration,C2-0205,UNSURE,low,BUILDING_ROOF,medium,Roof levels at 4.2 and 5.2 m spanning profile,needs_brian,review-examples/sheets/sheet_082.png
+327,calibration,C2-0207,TREE,medium,TREE,medium,Scattered crown points 2.8-3.9 m beside roof,two_reads_agree,review-examples/sheets/sheet_082.png
+329,calibration,C2-0209,UNSURE,low,OTHER_STRUCTURE,low,"Flat surface at 4.5 m spanning over road, overhead structure",needs_brian,review-examples/sheets/sheet_083.png
+330,calibration,C2-0210,TREE,medium,BUILDING_ROOF,medium,Highest points 6.5 m at roof edge,needs_brian,review-examples/sheets/sheet_083.png
+332,calibration,C2-0212,WIRE,medium,UNSURE,low,"Two points at 5.8 m over pavement, awning or wire unclear",needs_brian,review-examples/sheets/sheet_083.png
+334,calibration,C2-0214,UNSURE,low,TREE,low,"Few points at 3.9 m above roof level, near dark canopy",needs_brian,review-examples/sheets/sheet_084.png
+335,calibration,C2-0215,POLE,medium,UNSURE,low,Sparse points 6.8-8 m over open ground,needs_brian,review-examples/sheets/sheet_084.png
+337,calibration,C2-0217,SHRUB_LOW_VEG,medium,SHRUB_LOW_VEG,medium,"Sloped dense cluster to 2 m, shrub",two_reads_agree,review-examples/sheets/sheet_085.png
+340,calibration,C2-0220,UNSURE,low,TREE,low,"Sparse column to 3.2 m, vegetation near fence",needs_brian,review-examples/sheets/sheet_085.png
+347,calibration,C2-0227,UNSURE,low,TREE,low,"Few points to 5.5 m above roof slope, branches",needs_brian,review-examples/sheets/sheet_087.png
+352,calibration,C2-0232,TREE,medium,TREE,medium,"Sparse column to 5.9 m, canopy",two_reads_agree,review-examples/sheets/sheet_088.png
+355,calibration,C2-0235,UNSURE,low,WIRE,low,"Isolated points near 12.5 m over road, horizontal line",needs_brian,review-examples/sheets/sheet_089.png
+358,calibration,C2-0238,TREE,medium,TREE,medium,"Dense sloped canopy to 3.3 m, green",two_reads_agree,review-examples/sheets/sheet_090.png
+360,calibration,C2-0240,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Flat lines 2.2-2.8 m on roof with panels,two_reads_agree,review-examples/sheets/sheet_090.png
+364,calibration,C2-0244,WIRE,medium,UNSURE,low,"Small cluster at 6.5 m over parking lot, source unclear",needs_brian,review-examples/sheets/sheet_091.png
+369,calibration,C2-0249,UNSURE,low,TREE,medium,"Sparse column to 3.3 m, vegetation beside roof",needs_brian,review-examples/sheets/sheet_093.png
+372,calibration,C2-0252,BUILDING_ROOF,medium,UNSURE,low,"Small 0.7 m rounded bump on flat ground, plant or curb",needs_brian,review-examples/sheets/sheet_093.png
+376,calibration,C2-0256,UNSURE,low,OTHER_STRUCTURE,low,"Flat surface at 2.1 m over sloping ground, carport-like",needs_brian,review-examples/sheets/sheet_094.png
+384,calibration,C2-0264,BUILDING_ROOF,medium,SHRUB_LOW_VEG,low,"Dense smooth dome at 2.4 m, green",needs_brian,review-examples/sheets/sheet_096.png
+385,calibration,C2-0265,BUILDING_ROOF,medium,TREE,medium,"Flat canopy-like layer at 2.7 m, dark shaded NAIP, tree-ish surroundings",needs_brian,review-examples/sheets/sheet_097.png
+386,calibration,C2-0266,UNSURE,low,SHRUB_LOW_VEG,medium,"Dense flat top at 3.4 m, linear dark green hedge strip in NAIP",needs_brian,review-examples/sheets/sheet_097.png
+391,calibration,C2-0271,UNSURE,low,BUILDING_ROOF,medium,"Sloped roof surface near ridge, gray roof in NAIP",needs_brian,review-examples/sheets/sheet_098.png
+398,calibration,C2-0278,UNSURE,low,TREE,low,"Smooth dome 3.5-4 m over patio, whitish crown or umbrella possible",needs_brian,review-examples/sheets/sheet_100.png
+400,calibration,C2-0280,WIRE,medium,WIRE,low,"Compact flat layer at 6 m over road, no vertical structure",two_reads_agree,review-examples/sheets/sheet_100.png
+401,calibration,C2-0281,BUILDING_ROOF,medium,BUILDING_ROOF,low,Sloped line 2.4-3.2 m continuing into nearby roof slope,two_reads_agree,review-examples/sheets/sheet_101.png
+403,calibration,C2-0283,WIRE,medium,BUILDING_ROOF,medium,"Flat surface at 8.6 m spanning wide, light roof in NAIP",needs_brian,review-examples/sheets/sheet_101.png
+408,calibration,C2-0288,OTHER_STRUCTURE,medium,SHRUB_LOW_VEG,low,"Sparse flat points at 2.1 m over dark vegetation, small patch",needs_brian,review-examples/sheets/sheet_102.png
+412,calibration,C2-0292,WIRE,medium,WIRE,low,Two isolated points at 6.8 m above dirt road,two_reads_agree,review-examples/sheets/sheet_103.png
+414,calibration,C2-0294,UNSURE,low,TREE,medium,"Sparse points to 5.8 m above roof height, green canopy in NAIP",needs_brian,review-examples/sheets/sheet_104.png
+416,calibration,C2-0296,UNSURE,low,TREE,medium,"Scattered returns up to 24 m, tall tree beside street",needs_brian,review-examples/sheets/sheet_104.png
+421,calibration,C2-0301,UNSURE,low,TREE,medium,"Scattered returns to 12 m, crown-like spread beside roof",needs_brian,review-examples/sheets/sheet_106.png
+422,calibration,C2-0302,BUILDING_ROOF,medium,BUILDING_ROOF,low,"Flat layer near 3 m extending west like low roof, brown roof",two_reads_agree,review-examples/sheets/sheet_106.png
+423,calibration,C2-0303,UNSURE,low,BUILDING_ROOF,medium,"Top at 18 m flat layer, tall building with white roof",needs_brian,review-examples/sheets/sheet_106.png
+425,calibration,C2-0305,VEHICLE,medium,VEHICLE,medium,"Compact flat top at 1.9 m, vehicles in NAIP yard",two_reads_agree,review-examples/sheets/sheet_107.png
+427,calibration,C2-0307,TREE,medium,BUILDING_ROOF,medium,Highest points on roof slope edge at 5.6-6.2 m,needs_brian,review-examples/sheets/sheet_107.png
+434,calibration,C2-0314,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Highest points join adjacent roof surface near 3.3 m,two_reads_agree,review-examples/sheets/sheet_109.png
+435,calibration,C2-0315,POLE,medium,POLE,low,"Narrow isolated vertical column to 12 m, no crown visible",two_reads_agree,review-examples/sheets/sheet_109.png
+436,calibration,C2-0316,BUILDING_ROOF,medium,BUILDING_ROOF,medium,Flat top at 6.6 m beside roof slope and ridge,two_reads_agree,review-examples/sheets/sheet_109.png
+440,calibration,C2-0320,TREE,medium,TREE,low,"Scattered cluster 2-3.3 m beside roof edge, dark vegetation",two_reads_agree,review-examples/sheets/sheet_110.png
+444,calibration,C2-0324,UNSURE,low,BUILDING_ROOF,medium,"Flat plane at 3.2 m extending across, tan roof in NAIP",needs_brian,review-examples/sheets/sheet_111.png
+445,calibration,C2-0325,TREE,medium,TREE,medium,"Scattered crown points 3.3-3.7 m on slope, dark green",two_reads_agree,review-examples/sheets/sheet_112.png
+453,calibration,C2-0333,BUILDING_ROOF,medium,BUILDING_ROOF,low,Sloped small cluster 3-3.5 m at gap between roofs,two_reads_agree,review-examples/sheets/sheet_114.png
+454,calibration,C2-0334,UNSURE,low,TREE,low,Few points at 7 m in tree-filled surroundings,needs_brian,review-examples/sheets/sheet_114.png
+455,calibration,C2-0335,TREE,medium,SHRUB_LOW_VEG,low,"Diffuse scatter 1-2.8 m, green strip beside road",needs_brian,review-examples/sheets/sheet_114.png
+459,calibration,C2-0339,TREE,medium,SHRUB_LOW_VEG,low,"Diffuse cluster up to 2.9 m, two outliers at 3.9 m",needs_brian,review-examples/sheets/sheet_115.png
+463,calibration,C2-0343,VEHICLE,medium,OTHER_STRUCTURE,low,"Flat narrow layer at 2.45 m over ground, small structure",needs_brian,review-examples/sheets/sheet_116.png
+464,calibration,C2-0344,UNSURE,low,BUILDING_ROOF,low,"Flat layer at 2.6 m at building edge, shadow in NAIP",needs_brian,review-examples/sheets/sheet_116.png
+467,calibration,C2-0347,UNSURE,low,TREE,medium,"Irregular cluster 2.8-3.6 m, dark vegetation strip in NAIP",needs_brian,review-examples/sheets/sheet_117.png
+468,calibration,C2-0348,WIRE,medium,BUILDING_ROOF,medium,Flat layer at 2.8 m on small structure near building,needs_brian,review-examples/sheets/sheet_117.png
