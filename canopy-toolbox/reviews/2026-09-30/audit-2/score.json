@@ -1,0 +1,45 @@
+{
+ "audited": 40,
+ "agree": 37,
+ "disagree": 3,
+ "agreement": 0.925,
+ "lower_bound_95": 0.8174,
+ "by_class": {
+  "BUILDING_ROOF": {
+   "audited": 23,
+   "agree": 23
+  },
+  "TREE": {
+   "audited": 15,
+   "agree": 14
+  },
+  "WALL": {
+   "audited": 2,
+   "agree": 0
+  }
+ },
+ "disagreements": [
+  {
+   "unit": "Q3-0128",
+   "proposed": "TREE",
+   "human": "MIXED",
+   "agree": false,
+   "not_confirmed": true
+  },
+  {
+   "unit": "Q5-0145",
+   "proposed": "WALL",
+   "human": "BUILDING_ROOF",
+   "agree": false,
+   "not_confirmed": false
+  },
+  {
+   "unit": "Q6-0160",
+   "proposed": "WALL",
+   "human": "BUILDING_ROOF",
+   "agree": false,
+   "not_confirmed": false
+  }
+ ],
+ "reading": "MIXED and UNSURE are counted as not confirmed. The bound is about the AUTO candidates as a whole; per-class numbers are too small to bound on their own."
+}

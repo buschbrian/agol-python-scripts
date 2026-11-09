@@ -25,6 +25,10 @@ matches: reshaped 6 of 18, small 12 of 24, tangle 0 of 3, joins 12 of 40, county
 Sonnet's 39. High-confidence calls: 12 of 23 matched, small 5 of 6 (under the 10-item minimum), reshaped 2 of 5. Opus was not
 run on the 137 open items.
 
+**Retest with GPT-6.1 Sol (high effort, Codex CLI 0.167.0, `run_sol.py`), same test: no task passed** (`results-sol/`). Exact
+matches: reshaped 6 of 18, small 13 of 24, tangle 0 of 3, joins 3 of 40, county kept 14 of 40; 36 of 125 overall. High-confidence
+calls: 16 of 43 matched, small 5 of 6, reshaped 6 of 14. Sol was not run on the open items.
+
 ## Examples
 
 The 222 examples in the October 25 human queue get an independent second read from the same blind sheets. Brian sees those

@@ -1,0 +1,126 @@
+ITEM_ID,GROUP,TASK,MODEL_ANSWER,CONFIDENCE,NOTE,STATUS,BRIAN_ANSWER
+QG002143,check_county_kept,kept,UNSURE,low,Dense canopy and deep shadow prevent confirming a small building.,test,UNDER_TREES
+QG002725,check_county_kept,kept,GONE,medium,"Imagery shows apparently open ground within the footprint, without a distinct roof.",test,UNDER_TREES
+QG002800,check_county_kept,kept,UNDER_TREES,high,"A light roof remains visible, with canopy obscuring part of the county footprint.",test,UNDER_TREES
+QG003340,check_county_kept,kept,UNDER_TREES,medium,"Dense canopy covers the long county rectangle, with scattered roof returns underneath.",test,NOT_A_BUILDING
+QG004338,check_county_kept,kept,UNDER_TREES,medium,Dense canopy covers the county rectangle; imagery does not establish removal.,test,UNDER_TREES
+QG005121,check_county_kept,kept,UNDER_TREES,medium,Dense canopy covers the county square; imagery does not clearly expose the roof.,test,UNDER_TREES
+QG006075,check_county_kept,kept,UNDER_TREES,medium,A pale rectangular roof appears partly visible beneath the canopy.,test,UNDER_TREES
+QG006579,check_county_kept,kept,UNDER_TREES,high,Reddish roof is visible within the county outline beneath substantial canopy.,test,UNDER_TREES
+QG007777,check_county_kept,kept,UNDER_TREES,medium,Small roof appears beneath canopy within the county rectangle.,test,UNDER_TREES
+QG008243,check_county_kept,kept,UNSURE,low,Both panels are obscured by canopy; no clear roof confirms continued presence.,test,UNSURE
+QG008378,check_county_kept,kept,UNSURE,low,Dense canopy and shadow prevent confirming a roof within the footprint.,test,UNSURE
+QG009261,check_county_kept,kept,UNDER_TREES,medium,Exposed roof at the northern end continues beneath dense canopy.,test,SHED
+QG009442,check_county_kept,kept,UNDER_TREES,medium,Canopy obscures most of the small county footprint; some roof surface remains visible.,test,SHED
+QG011278,check_county_kept,kept,UNDER_TREES,medium,A roof patch is visible amid canopy within the county footprint.,test,UNDER_TREES
+QG012002,check_county_kept,kept,UNDER_TREES,medium,Roof patches and a rectangular shaded structure support retention beneath canopy.,test,GONE
+QG012120,check_county_kept,kept,UNSURE,low,Canopy obscures LiDAR support; imagery does not clearly distinguish roof from ground.,test,GONE
+QG012822,check_county_kept,kept,UNDER_TREES,high,Imagery clearly shows a rectangular roof where LiDAR records canopy.,test,SHED
+QG013148,check_county_kept,kept,UNSURE,low,Dense canopy and mottled imagery prevent confirming the county building.,test,UNDER_TREES
+QG013155,check_county_kept,kept,UNSURE,low,Footprint spans exposed ground and canopy; imagery does not reveal definite roof edges.,test,UNSURE
+QG013278,check_county_kept,kept,UNDER_TREES,medium,A narrow roof appears partly visible beneath canopy within the county outline.,test,NOT_A_BUILDING
+QG013771,check_county_kept,kept,UNSURE,low,Canopy and shadow obscure the narrow footprint; roof edges are indistinct.,test,UNDER_TREES
+QG014216,check_county_kept,kept,UNDER_TREES,high,Small square roof is visible in both panels despite canopy interference.,test,SHED
+QG014308,check_county_kept,kept,UNSURE,low,Dense canopy obscures the footprint; no distinct roof is visible.,test,UNSURE
+QG014528,check_county_kept,kept,UNSURE,low,Dense canopy and shadow prevent confirming a roof within the footprint.,test,UNDER_TREES
+QG014534,check_county_kept,kept,UNDER_TREES,medium,Small roof patch appears beneath canopy within the county outline.,test,SHED
+QG015027,check_county_kept,kept,UNDER_TREES,medium,A narrow roof appears visible beneath canopy beside the larger outbuilding.,test,SHED
+QG015210,check_county_kept,kept,UNSURE,low,Dense canopy covers the outline; imagery does not reveal a definite roof.,test,SHED
+QG015300,check_county_kept,kept,UNSURE,low,Canopy and shadow obscure the entire footprint; no distinct roof is visible.,test,SHED
+QG015720,check_county_kept,kept,SHED,medium,Imagery shows a small rectangular brown roof where LiDAR records canopy.,test,SHED
+QG015891,check_county_kept,kept,UNSURE,low,Canopy and deep shadow obscure the footprint; no roof is clearly distinguishable.,test,UNDER_TREES
+QG016593,check_county_kept,kept,UNDER_TREES,medium,A small brown rectangular roof appears beneath canopy within the county outline.,test,UNDER_TREES
+QG016996,check_county_kept,kept,UNSURE,low,Canopy covers the footprint in both panels; no distinct roof is visible.,test,UNDER_TREES
+QG017022,check_county_kept,kept,UNSURE,low,Canopy obscures the location; imagery does not resolve a roof.,test,UNSURE
+QG017989,check_county_kept,kept,UNDER_TREES,high,Exposed roof portions appear beneath canopy inside the county outline.,test,UNSURE
+QG018773,check_county_kept,kept,SHED,medium,A small pale rectangular roof is visible inside the county outline.,test,UNDER_TREES
+QG019199,check_county_kept,kept,UNDER_TREES,high,Imagery shows a light rectangular roof where LiDAR records canopy.,test,SHIFT_COUNTY
+QG019855,check_county_kept,kept,UNSURE,low,No planar LiDAR roof; imagery is too shadowed to confirm removal.,test,GONE
+QG019997,check_county_kept,kept,UNDER_TREES,medium,A small pale rectangular roof appears beneath canopy covering the county footprint.,test,SHED
+QG020207,check_county_kept,kept,UNDER_TREES,medium,Partial rectangular roof remains visible beneath dense canopy.,test,SHED
+QG020218,check_county_kept,kept,UNSURE,low,Canopy and shadow obscure the entire location; no distinct roof is visible.,test,SHED
+QG000158,decide_joins,joins,SPLIT_BUILDINGS,high,Distinct roofs remain separated by narrow gaps despite the connecting LiDAR outline.,test,COUNTY_RIGHT
+QG001017,decide_joins,joins,SPLIT_BUILDINGS,high,House and southern outbuilding have separate roofs with a narrow gap.,test,COUNTY_RIGHT
+QG001300,decide_joins,joins,SPLIT_BUILDINGS,medium,Three distinct roof masses appear joined at narrow gaps or corners.,test,COUNTY_RIGHT
+QG001729,decide_joins,joins,LIDAR_RIGHT,high,Visible connecting roof joins the county pieces into one continuous building.,test,COUNTY_RIGHT
+QG002490,decide_joins,joins,LIDAR_RIGHT,high,The connecting roof between northern and southern sections is visible in both panels.,test,COUNTY_RIGHT
+QG002776,decide_joins,joins,LIDAR_RIGHT,medium,Continuous narrow roof connects the northern structure and main roof.,test,COUNTY_RIGHT
+QG002842,decide_joins,joins,SPLIT_BUILDINGS,medium,A narrow apparent gap separates the northern house and southern garage.,test,COUNTY_RIGHT
+QG003125,decide_joins,joins,LIDAR_RIGHT,medium,A visible connecting roof fills the gap between the county polygons.,test,COUNTY_RIGHT
+QG004144,decide_joins,joins,LIDAR_RIGHT,high,A roofed connection joins the main house and southeastern garage.,test,UNSURE
+QG004489,decide_joins,joins,SPLIT_BUILDINGS,medium,Distinct roofs appear separated by narrow gaps that the red outline bridges.,test,UNSURE
+QG004652,decide_joins,joins,SPLIT_BUILDINGS,medium,"Rear outbuilding and house appear separate, meeting only near their corners.",test,COUNTY_RIGHT
+QG004662,decide_joins,joins,SPLIT_BUILDINGS,medium,"House and northeastern garage appear separate, with only a narrow corner connection.",test,UNDER_TREES
+QG004891,decide_joins,joins,LIDAR_RIGHT,high,A visible roofed connector links the garage and main house.,test,COUNTY_RIGHT
+QG005970,decide_joins,joins,SPLIT_BUILDINGS,high,House and detached garage are joined through a narrow LiDAR connection.,test,COUNTY_RIGHT
+QG006351,decide_joins,joins,SPLIT_BUILDINGS,medium,Northern white roof and southern dark roof appear separated by a narrow gap.,test,UNSURE
+QG006736,decide_joins,joins,SPLIT_BUILDINGS,medium,"Two distinct roofs appear connected by a narrow, partly vegetated LiDAR bridge.",test,NEEDS_EDIT
+QG006779,decide_joins,joins,SPLIT_BUILDINGS,medium,"House and southern garage appear separate, with only a narrow LiDAR connection.",test,COUNTY_RIGHT
+QG007231,decide_joins,joins,LIDAR_RIGHT,high,Broad continuous roof surrounds courtyards; county polygons capture only portions.,test,LIDAR_RIGHT
+QG007243,decide_joins,joins,LIDAR_RIGHT,medium,Roof surfaces appear continuous across the space between both county outlines.,test,NEEDS_EDIT
+QG007523,decide_joins,joins,LIDAR_RIGHT,medium,A narrow roofed connector appears to link the two large roof sections.,test,COUNTY_RIGHT
+QG007670,decide_joins,joins,SPLIT_BUILDINGS,high,House and smaller outbuilding have distinct roofs joined only at a narrow corner.,test,UNSURE
+QG007760,decide_joins,joins,LIDAR_RIGHT,medium,"Rear roof appears connected to the house, with canopy obscuring its northern edge.",test,NEEDS_EDIT
+QG008281,decide_joins,joins,LIDAR_RIGHT,medium,Small northern roof appears connected to the main roof within the red outline.,test,COUNTY_RIGHT
+QG008888,decide_joins,joins,SPLIT_BUILDINGS,medium,"House and tree-covered outbuilding appear separate, joined only near their corners.",test,LIDAR_RIGHT
+QG009031,decide_joins,joins,UNSURE,low,"Outer roof agrees, but overlapping county outlines reveal no clear unit boundaries.",test,LIDAR_RIGHT
+QG009065,decide_joins,joins,SPLIT_BUILDINGS,high,Distinct garage and house roofs have a narrow visible gap.,test,COUNTY_RIGHT
+QG009464,decide_joins,joins,LIDAR_RIGHT,medium,A visible connecting roof spans the two county footprints.,test,COUNTY_RIGHT
+QG009533,decide_joins,joins,LIDAR_RIGHT,high,Continuous commercial roof connects both county sections; red follows its outer perimeter.,test,COUNTY_RIGHT
+QG009810,decide_joins,joins,NEEDS_EDIT,medium,"Main roof aligns, but the narrow southern feature disagrees with the smaller county outline.",test,COUNTY_RIGHT
+QG009907,decide_joins,joins,NEEDS_EDIT,medium,Apparent separate roofs are bridged; northern boundary also extends into canopy.,test,COUNTY_RIGHT
+QG010019,decide_joins,joins,LIDAR_RIGHT,high,Red follows the full roof; southern county rectangle extends onto unroofed pavement.,test,LIDAR_RIGHT
+QG010593,decide_joins,joins,SPLIT_BUILDINGS,medium,Two distinct roofs appear separated by a narrow gap near their corners.,test,COUNTY_RIGHT
+QG010950,decide_joins,joins,LIDAR_RIGHT,high,Continuous roof includes the southern extension omitted by the county outlines.,test,UNSURE
+QG012234,decide_joins,joins,SPLIT_BUILDINGS,high,Imagery shows a gap between the house and southeastern outbuilding.,test,COUNTY_RIGHT
+QG012653,decide_joins,joins,LIDAR_RIGHT,medium,Main roof and northeastern roof appear connected by a narrow roof section.,test,NEEDS_EDIT
+QG013195,decide_joins,joins,SPLIT_BUILDINGS,medium,House and northern garage have distinct roofs joined only at a narrow corner.,test,COUNTY_RIGHT
+QG013775,decide_joins,joins,SPLIT_BUILDINGS,high,"Small northern roof and main house appear separate, joined only at their corners.",test,SHED
+QG013798,decide_joins,joins,LIDAR_RIGHT,high,Red follows the visible house; county outlines cross the roof and extend onto open ground.,test,LIDAR_RIGHT
+QG015353,decide_joins,joins,UNSURE,low,Canopy obscures the small roof and its connection to the house.,test,COUNTY_RIGHT
+QG016238,decide_joins,joins,LIDAR_RIGHT,medium,"Main roof and southeastern extension appear connected, matching the red perimeter.",test,UNSURE
+QG001040,decide_reshaped,reshaped,ADD_TO_COUNTY,high,County captures the western portion; a clear roof extends eastward.,test,ADD_TO_COUNTY
+QG001755,decide_reshaped,reshaped,LIDAR_RIGHT,high,County polygon extends over exposed ground; LiDAR follows the raised roof.,test,SHIFT_COUNTY
+QG002180,decide_reshaped,reshaped,ADD_TO_COUNTY,high,County captures only the southeastern section of a much larger connected roof.,test,SPLIT_BUILDINGS
+QG003122,decide_reshaped,reshaped,ADD_TO_COUNTY,high,A substantial southern roof extension is missing from the county footprint.,test,ADD_TO_COUNTY
+QG003727,decide_reshaped,reshaped,ADD_TO_COUNTY,high,Visible adjoining roofs extend northeast and southwest beyond the county outline.,test,SPLIT_BUILDINGS
+QG003797,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,Long western roof wing extends beyond the county footprint and appears connected.,test,NEEDS_EDIT
+QG003996,decide_reshaped,reshaped,ADD_TO_COUNTY,high,An additional rectangular roof extends east beyond the county footprint.,test,COUNTY_RIGHT
+QG004133,decide_reshaped,reshaped,ADD_TO_COUNTY,high,Northern roof extension is visible in both panels beyond the county outline.,test,SPLIT_BUILDINGS
+QG004410,decide_reshaped,reshaped,ADD_TO_COUNTY,high,Attached western and northeastern roofs extend beyond the county footprint.,test,SPLIT_BUILDINGS
+QG004821,decide_reshaped,reshaped,UNSURE,low,The white object and elongated county outline do not establish a clear building geometry.,test,NOT_A_BUILDING
+QG004957,decide_reshaped,reshaped,ADD_TO_COUNTY,high,County captures the western roof; a substantial connected eastern roof is missing.,test,ADD_TO_COUNTY
+QG006124,decide_reshaped,reshaped,NEEDS_EDIT,medium,Narrow roof is plausible; red tail appears fused to the adjacent house.,test,COUNTY_RIGHT
+QG006547,decide_reshaped,reshaped,ADD_TO_COUNTY,high,County covers the eastern roof; a substantial attached western roof is missing.,test,ADD_TO_COUNTY
+QG007054,decide_reshaped,reshaped,LIDAR_RIGHT,high,Both surfaces support the red footprint; county geometry cuts diagonally across the building.,test,LIDAR_RIGHT
+QG007301,decide_reshaped,reshaped,LIDAR_RIGHT,high,Only the western roof remains; the county outline extends across open ground.,test,LIDAR_RIGHT
+QG007964,decide_reshaped,reshaped,UNDER_TREES,medium,County outline includes roof obscured by canopy along the northwestern side.,test,ADD_TO_COUNTY
+QG008835,decide_reshaped,reshaped,ADD_TO_COUNTY,high,County captures the southern roof; LiDAR and imagery show an additional northern roof section.,test,SPLIT_BUILDINGS
+QG009633,decide_reshaped,reshaped,COUNTY_RIGHT,high,Newer imagery shows the eastern and southern roof sections within the county outline.,test,NEEDS_EDIT
+QG021255,decide_small,small,PART_OF_BUILDING,high,Narrow strip continues the adjacent house roof along its western edge.,test,PART_OF_BUILDING
+QG021526,decide_small,small,PART_OF_BUILDING,medium,Narrow red roof strip directly adjoins the neighboring cyan roof section.,test,SHED
+QG021531,decide_small,small,PART_OF_BUILDING,medium,Small roof appears connected to the house through a narrower roof section.,test,LIDAR_RIGHT
+QG021556,decide_small,small,VEHICLE,medium,Narrow raised rectangle beside the larger outbuilding resembles a parked trailer.,test,VEHICLE
+QG021605,decide_small,small,VEHICLE,medium,Bright elongated object with dark rooftop features resembles a trailer or RV.,test,VEHICLE
+QG021661,decide_small,small,SHED,medium,Small rectangular roof sits just south of the larger outbuilding.,test,SHED
+QG021665,decide_small,small,SHED,medium,Compact rectangular roof appears to be a detached backyard outbuilding.,test,SHED
+QG021666,decide_small,small,PART_OF_BUILDING,high,Red strip follows the western edge of the same continuous roof.,test,PART_OF_BUILDING
+QG021727,decide_small,small,SHED,medium,"Small detached rectangular roof beside the driveway, partly sheltered by canopy.",test,UNSURE
+QG021759,decide_small,small,VEHICLE,high,Long narrow white object beside the house resembles a parked RV or trailer.,test,UNSURE
+QG021825,decide_small,small,SHED,medium,Compact detached roof sits beside the house.,test,SHED
+QG021934,decide_small,small,VEHICLE,medium,Small angled white object resembles a parked trailer beside the tree.,test,NOT_A_BUILDING
+QG022107,decide_small,small,SHED,high,Small rectangular roof stands separately just north of the larger outbuilding.,test,SHED
+QG022133,decide_small,small,SHED,medium,Small isolated rectangular roof has a faint corresponding surface in the imagery.,test,SHED
+QG022186,decide_small,small,PART_OF_BUILDING,high,Red traces a narrow roof edge along the existing large building.,test,PART_OF_BUILDING
+QG022367,decide_small,small,VEHICLE,medium,Elongated white object beside the road resembles a parked truck or trailer.,test,VEHICLE
+QG022401,decide_small,small,SHED,medium,"Compact rectangular roof appears detached beside the house, partly beneath canopy.",test,NOT_A_BUILDING
+QG022531,decide_small,small,UNSURE,low,Small elevated patch borders a pale rounded feature; its identity is unclear.,test,NOT_A_BUILDING
+QG022540,decide_small,small,VEHICLE,high,Narrow white object in the driveway resembles a parked trailer or RV.,test,VEHICLE
+QG022666,decide_small,small,SHED,medium,Small rectangular roof appears beside the larger building.,test,UNSURE
+QG022756,decide_small,small,SHED,medium,Small isolated L-shaped roof appears in both panels.,test,NOT_A_BUILDING
+QG022844,decide_small,small,UNSURE,low,Small bright rectangular object could be a shed or trailer.,test,SHED
+QG022885,decide_small,small,SHED,medium,Small square roof stands separately between the larger buildings.,test,SHED
+QG024123,decide_small,small,SHED,medium,Compact freestanding roof beside another small outbuilding.,test,LIDAR_RIGHT
+QG000698,decide_tangle,tangle,NEEDS_EDIT,medium,Connected roof sections have conflicting partitions and perimeter steps requiring coordinated editing.,test,COUNTY_RIGHT
+QG001476,decide_tangle,tangle,NEEDS_EDIT,medium,Roof extensions and a narrow merge between neighboring structures require individual edits.,test,COUNTY_RIGHT
+QG001568,decide_tangle,tangle,SPLIT_BUILDINGS,high,LiDAR bridges the main house to a separate small roof across a visible gap.,test,COUNTY_RIGHT
