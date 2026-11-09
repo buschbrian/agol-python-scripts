@@ -22,5 +22,8 @@ runs an OGC repair on whatever is still invalid (49 features). The first run los
 `roofer\lod22-flags.csv`: 23,516 OK, 860 with a fit error over 0.5 m, 83 with a part that has no model. The 0.5 m cut is a
 proposal, not calibrated (median 0.19 m, 99th percentile 0.75 m). A flag means look at it. It does not say the outline is wrong.
 
-County data still enters in two places: the tree fill, and the test that rejoins pieces across a lot line. Decisions are
-unchanged until Brian settles the 550 joins in `../../2026-10-26/lidar-footprints/DECISIONS.md`.
+County data still enters in two places: the tree fill, and the test that rejoins pieces across a lot line.
+
+`cleanup_queue.py` writes `decisions-20261109.csv` (550 joined outlines moved from the county to the LiDAR; no merged layer is
+built yet) and adds the review page's **cleanup** queue: the 943 flagged outlines in three groups, 74 with no model, 770 with
+a poor roof fit (worst first) and 99 small pieces or vehicles. Answers were checked unchanged (SHA-256 before and after).

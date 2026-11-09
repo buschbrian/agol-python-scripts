@@ -106,6 +106,19 @@ const QUEUES = {
       ["UNSURE", "Unsure"],
     ],
   },
+  cleanup: {
+    question: "Red is the regularized LiDAR outline. LoD2.2 had trouble with this building. Is the outline right?",
+    others: "other LiDAR outlines",
+    answers: [
+      ["OUTLINE_RIGHT", "The outline is right; the roof model is the problem"],
+      ["ADD_ROOF", "The outline misses part of the roof"],
+      ["TRIM", "The outline takes in something that is not this roof (tree, neighbour, ground)"],
+      ["SPLIT_BUILDINGS", "Several buildings in one outline: split them"],
+      ["NEEDS_EDIT", "Needs editing another way (say what in a note)"],
+      ["NOT_A_BUILDING", "Not a building"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
   outlines2: null,
   tree_rejects: {
     question: "CFTree could not build a model here (the dot is the segment's highest return). Is there a tree?",
@@ -176,6 +189,7 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       sample_tangle: "Sample: tangles", tangle: "Tangles (several of each)",
                       sample_county_only: "Sample: county footprint, no 2023 roof", county_only: "County footprint, no 2023 roof",
                       sample_lidar_only: "Sample: LiDAR building, no county footprint", lidar_only: "LiDAR building, no county footprint",
+                      cleanup_no_model: "1 No LoD2.2 model", cleanup_roof_fit: "2 Poor roof fit (worst first)", cleanup_piece: "3 Small pieces and vehicles",
                       decide_joins: "1 Decide: one LiDAR building over several county outlines (sample, done)",
                       decide_reshaped: "2 Decide: reshaped, partly under trees (10-30% canopy, sample)",
                       decide_vehicles: "3 Decide: LiDAR-only, vehicle-shaped",

@@ -9,8 +9,9 @@ instead of item by item.
 
 LiDAR-first outline, regularized, cross-checked against roofer LoD2.2. Newer imagery settles what the LiDAR cannot. **County
 data is the last option**: "we're trying to fix the problems that the county's got, not create more problems." See
-[regularize](../../2026-11-09/regularize/README.md). Open: the rule below that keeps the county on 550 joined outlines
-comes from his October sample and conflicts with this order. It is unchanged until he decides.
+[regularize](../../2026-11-09/regularize/README.md). The 550 joined outlines that a rule kept on the county (table below) now
+take the LiDAR outer shape, with county lines kept only as unit divisions inside it (Brian, November 9):
+`2026-11-09/regularize/decisions-20261109.csv`, `BY` = `rule-20261109`. His own 125 answers are unchanged.
 
 ## Graded halfway through the regrade, and the 137 items left (October 27)
 
