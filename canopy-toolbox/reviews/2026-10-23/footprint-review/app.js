@@ -285,14 +285,15 @@ function centreOf(rings) {
 
 function drawMap(d) {
   layers.clearLayers();
-  for (const ring of d.county_ll) L.polygon(ring, { color: "#ffffff", weight: 1.5, fill: false }).addTo(layers);
+  const showCounty = !$("hide-county").checked;
+  if (showCounty) for (const ring of d.county_ll) L.polygon(ring, { color: "#ffffff", weight: 1.5, fill: false }).addTo(layers);
   for (const ring of d.cand_ll) L.polygon(ring, { color: "#00d5ff", weight: 1.5, dashArray: "4 4", fill: false }).addTo(layers);
   let focus = d.outline_ll;
   if (d.hint_ll) {
     for (const ring of d.hint_ll) L.polygon(ring, { color: "#ffd400", weight: 2.5, dashArray: "6 4", fill: false }).addTo(layers);
     focus = d.hint_ll;
   }
-  for (const ring of d.focus_ll || []) L.polygon(ring, { color: "#ff3df5", weight: 3, fill: false }).addTo(layers);
+  if (showCounty) for (const ring of d.focus_ll || []) L.polygon(ring, { color: "#ff3df5", weight: 3, fill: false }).addTo(layers);
   for (const ring of d.outline_ll) L.polygon(ring, { color: "#ff2a2a", weight: 2.5, fill: false }).addTo(layers);
   if (d.focus_ll && d.focus_ll.length) focus = d.focus_ll.concat(d.outline_ll);
   map.invalidateSize({ animate: false });
@@ -314,8 +315,8 @@ function drawChip(d) {
   svg.innerHTML = `<style>polygon{fill:none;vector-effect:non-scaling-stroke}.county{stroke:#fff;stroke-width:1.5}
     .cand{stroke:#00d5ff;stroke-width:1.5;stroke-dasharray:4 4}.item{stroke:#ff2a2a;stroke-width:2.5}
     .hint{stroke:#ffd400;stroke-width:2.5;stroke-dasharray:6 4}.focus{stroke:#ff3df5;stroke-width:3}</style>` +
-    svgPoly(d.county_px, "county") + svgPoly(d.cand_px, "cand") + svgPoly(d.hint_px || [], "hint") +
-    svgPoly(d.focus_px || [], "focus") + svgPoly(d.outline_px, "item");
+    ($("hide-county").checked ? "" : svgPoly(d.county_px, "county")) + svgPoly(d.cand_px, "cand") + svgPoly(d.hint_px || [], "hint") +
+    ($("hide-county").checked ? "" : svgPoly(d.focus_px || [], "focus")) + svgPoly(d.outline_px, "item");
   $("chip-metres").textContent = `${Math.round(d.chip.metres)} m across`;
   $("legend-others").textContent = QUEUES[d.queue].others || "other candidates";
   $("legend-focus").textContent = QUEUES[d.queue].focus || "county outline in question";
@@ -434,6 +435,7 @@ function keys(e) {
   else if (e.key === "ArrowLeft") { show(pos - 1); e.preventDefault(); }
   else if (e.key === "Backspace") { save(""); e.preventDefault(); }
   else if (e.key === "n" || e.key === "N") { $("note").focus(); e.preventDefault(); }
+  else if (e.key === "h" || e.key === "H") { $("hide-county").click(); e.preventDefault(); }
   else if ((e.key === "r" || e.key === "R") && homeView) { map.setView(homeView[0], homeView[1]); e.preventDefault(); }
 }
 
@@ -462,6 +464,12 @@ async function start() {
   $("prev").onclick = () => show(pos - 1); $("next").onclick = () => show(pos + 1);
   $("clear").onclick = () => save(""); $("reset").onclick = () => homeView && map.setView(homeView[0], homeView[1]);
   document.addEventListener("keydown", keys);
+  $("hide-county").addEventListener("change", () => {
+    if (!current) return;
+    const center = map.getCenter(), zoom = map.getZoom();
+    drawMap(current); drawChip(current);
+    map.setView(center, zoom, { animate: false });
+  });
   $("note").addEventListener("input", () => { if (current) keepDraft(current.id, $("note").value); });
   reload();
 }
