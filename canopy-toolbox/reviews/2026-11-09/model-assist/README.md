@@ -20,6 +20,11 @@ reshaped 4 of 18, small 14 of 24, tangle 1 of 3, joins 9 of 40, county kept 11 o
 confidence, so the gate could not be met anyway. Its calls in `results/` are context only. The sheets carry 0.6 m NAIP
 where Brian's page has zoomable high-resolution imagery, so this does not say how a model would do with better imagery.
 
+**Retest with Opus 5.5 (high effort), same sheets and rule, the 125 test items only: no task passed** (`results-opus/`). Exact
+matches: reshaped 6 of 18, small 12 of 24, tangle 0 of 3, joins 12 of 40, county kept 17 of 40; 47 of 125 overall against
+Sonnet's 39. High-confidence calls: 12 of 23 matched, small 5 of 6 (under the 10-item minimum), reshaped 2 of 5. Opus was not
+run on the 137 open items.
+
 ## Examples
 
 The 222 examples in the October 25 human queue get an independent second read from the same blind sheets. Brian sees those
