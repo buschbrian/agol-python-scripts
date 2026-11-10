@@ -55,7 +55,19 @@ interval 77-100%). This pattern was noticed after grading, on a mix of confidenc
 - ONE_TREE at high confidence: 7 of 8. Too few to pass.
 - All answered calls: 77 of 106. Of the 14 problems called ONE_TREE, 6 were SHAPE_WRONG.
 
-**What the pass allows.** High-confidence PROBLEM calls on trees under 8 m only, after a spot-check. Open trees under 8 m: 7 in the
-sample, 56 merged and 105 over roofs (168). The 619 open trees of 8 m or more are not covered. A PROBLEM call does not say which
-problem it is, and nothing here was run on open items. `footprint-review-answers.csv` was checked unchanged (SHA-256 before and
-after).
+**What the pass allows, in practice: almost nothing.** Open trees under 8 m are 7 in the sample, 56 merged and 105 over roofs; the
+619 open trees of 8 m or more are not covered. The sample's 7 must stay human, because settling them by model confidence would
+bias the error rates the sample exists to measure. The merged and over-roof queues were picked by the same cues the model saw as
+facts, and Brian has answered none of them, so this test says nothing about them. PROBLEM is not an answer on the review page and
+does not say which fix applies. Nothing was run on open items. `footprint-review-answers.csv` was checked unchanged (SHA-256
+before and after).
+
+## Checks after grading
+
+**The measured cues do as well as the model, for free.** The October 26 proposed thresholds in `../../2026-10-26/STATUS.md`, unchanged
+and set before these answers existed (under 3 m; low and wide; 25% over county footprints or trunk inside one; six or more
+treetops or wider than 15 m), flag 24 of the 107 scored trees, and 22 of those are problems (91.7%). Sonnet's high-confidence
+PROBLEM calls: 31 of 35 (88.6%). 21 of those 35 are also flagged by a cue. Prefer the cues.
+
+**The 13 NOT_STRUCTURE matches are mostly the vehicle rule again.** 7 are in the group already settled by the vehicle-shape rule, where
+14 of 15 scored answers are NOT_STRUCTURE. 6 are from the small-outline groups.
