@@ -1,0 +1,21 @@
+{
+ "features": 24858,
+ "after_repair": 24858,
+ "empty_after_repair": 0,
+ "problems_before": {
+  "OGC": {
+   "Duplicate vertex": 16,
+   "self intersections": 20,
+   "short segments": 15
+  },
+  "ESRI": {
+   "self intersections": 47,
+   "short segments": 4
+  }
+ },
+ "problems_after": {
+  "OGC": {},
+  "ESRI": {}
+ },
+ "spatial_reference": 6341
+}

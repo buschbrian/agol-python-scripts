@@ -1,0 +1,69 @@
+{
+ "layer": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-layer-20261110\\footprints.gpkg|footprints",
+ "pilot": false,
+ "inputs": {
+  "compare": "H:\\lidar\\2023-salt-lake-valley\\runs\\lidar-footprints-20261026\\city2\\compare.csv",
+  "decisions": "H:\\lidar\\2023-salt-lake-valley\\runs\\lidar-footprints-20261109\\decisions-20261110.csv",
+  "outlines": "H:\\lidar\\2023-salt-lake-valley\\runs\\lidar-footprints-20261109\\regularized.gdb",
+  "county": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\buildings.gdb",
+  "parcels": "H:\\lidar\\2023-salt-lake-valley\\runs\\city-count-20261008\\inputs.gdb"
+ },
+ "defaults": {
+  "line": "roof (no wall-line shrink)",
+  "attributes": "county row where one exists; parcel by location"
+ },
+ "overlaps_trimmed": 469,
+ "outlines": 24858,
+ "invalid": 0,
+ "multipart": 164,
+ "overlaps_over_1m2": 0,
+ "overlap_m2": 0,
+ "overlap_pairs_by_source": {},
+ "largest_overlaps": [],
+ "under_2m2": 0,
+ "lidar_outlines_used_twice": 0,
+ "lidar_outlines_unused": 798,
+ "lidar_unused_not_dropped_or_county": 0,
+ "county_outlines_used_twice": 0,
+ "by_source": {
+  "LIDAR": 22725,
+  "COUNTY": 597,
+  "LIDAR_UNITS": 1524,
+  "COUNTY_PLUS_LIDAR": 9,
+  "COUNTY_SHIFTED": 3
+ },
+ "by_type": {
+  "building": 24151,
+  "shed": 707
+ },
+ "review_flags": {
+  "NEEDS_EDIT": 21,
+  "UNSURE": 23,
+  "SPLIT_BY_HAND": 12
+ },
+ "groups_by_decision": {
+  "MATCH (match)": 18865,
+  "LIDAR_RIGHT (rule)": 2868,
+  "SHED (rule)": 679,
+  "LIDAR_RIGHT (rule-20261109)": 550,
+  "KEEP_COUNTY (rule)": 480,
+  "VEHICLE (rule)": 404,
+  "DROP (Brian-20261110)": 286,
+  "GONE (rule)": 255,
+  "SPLIT_BUILDINGS (rule-20261110)": 142,
+  "KEEP_COUNTY (Brian)": 58,
+  "SPLIT_BUILDINGS (Brian)": 43,
+  "LIDAR_RIGHT (Brian)": 38,
+  "SHED (Brian)": 28,
+  "UNSURE (Brian)": 21,
+  "NEEDS_EDIT (Brian)": 20,
+  "VEHICLE (Brian)": 13,
+  "NOT_A_BUILDING (Brian)": 12,
+  "PART_OF_BUILDING (Brian)": 12,
+  "ADD_TO_COUNTY (Brian)": 9,
+  "SHIFT_COUNTY (Brian)": 3,
+  "GONE (Brian)": 3,
+  "KEEP_UNITS (Brian)": 2
+ },
+ "area_m2": 5562975.0
+}
