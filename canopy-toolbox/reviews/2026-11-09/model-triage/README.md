@@ -87,3 +87,22 @@ The question, simple codes, brief, sheet layout, model (Sonnet 5.5) and effort (
   model, if the cues match its rate within 5 points.
 
 Sheets come from `export_tests.py OUT KEY`, where KEY is test A and B's `key.csv`, so no test B tree is read again.
+
+### Test C results (Sonnet 5.5, medium; every reviewer's replies confirmed as Sonnet 5.5 in its transcript)
+
+**C-8plus, trees 8 m and up: both directions pass.** 91 of 109 scorable (30 one tree, 61 a problem); 3 model UNSURE.
+- ONE_TREE at high confidence: 16 of 18 (88.9%, 95% interval 67-97%), above the 67% majority share. **Passes.** The two misses were
+  PART_OF_TREE and MERGED.
+- PROBLEM at high confidence: 21 of 22 (95.5%, 78-99%). **Passes.**
+- 40 of 91 (44%) got a high-confidence call. At any confidence, 68 of 88 answered calls matched.
+
+**Cues on the same items:** 30 flagged, 28 problems (93.3%, 79-98%), almost all from the merged cue (24 of 26). That is within 5 points
+of the model's PROBLEM rate, so by the rule fixed above, **use the cues, not the model, to flag problems**. 18 of the model's 22
+PROBLEM calls are also flagged by a cue. The cues cannot say a tree is fine, so **ONE_TREE is the one call only the model adds**.
+
+**C-under8:** 6 scorable, all 6 matched. Reported only.
+
+**Limits.** A pass here is on a random height-band sample. The open tall trees are in the merged (244) and over-roof (195) queues,
+which were chosen by the same cues the model saw as facts. Their mix of problems is different, so the ONE_TREE rate is not
+established there until Brian answers a blind sample from them. The tree sample's 30 open trees of 20 m and up stay his, because
+they measure the error rates.
