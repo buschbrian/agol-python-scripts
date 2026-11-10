@@ -1,0 +1,311 @@
+test_nonconstant_ratio_uses_joint_unit_covariance (tests.test_analytic_intervals.AnalyticIntervals.test_nonconstant_ratio_uses_joint_unit_covariance) ... ok
+test_ratio_accounts_for_covariance_and_census_has_zero_variance (tests.test_analytic_intervals.AnalyticIntervals.test_ratio_accounts_for_covariance_and_census_has_zero_variance) ... ok
+test_singleton_and_homogeneous_non_census_are_suppressed (tests.test_analytic_intervals.AnalyticIntervals.test_singleton_and_homogeneous_non_census_are_suppressed) ... ok
+test_total_variance_includes_strata_and_finite_population_correction (tests.test_analytic_intervals.AnalyticIntervals.test_total_variance_includes_strata_and_finite_population_correction) ... ok
+test_adjacent_seeds_are_preserved (tests.test_arcpy.ArcGISRegression.test_adjacent_seeds_are_preserved) ... ok
+test_all_unknown_raster_has_no_trees (tests.test_arcpy.ArcGISRegression.test_all_unknown_raster_has_no_trees) ... ok
+test_chm_requires_fresh_las_statistics (tests.test_arcpy.ArcGISRegression.test_chm_requires_fresh_las_statistics) ... ok
+test_cone_crown_contains_all_137_cells_and_input_unchanged (tests.test_arcpy.ArcGISRegression.test_cone_crown_contains_all_137_cells_and_input_unchanged) ... ok
+test_diagonal_plateau_is_one_seed (tests.test_arcpy.ArcGISRegression.test_diagonal_plateau_is_one_seed) ... ok
+test_invalid_building_method_is_rejected_before_output (tests.test_arcpy.ArcGISRegression.test_invalid_building_method_is_rejected_before_output) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_las_gap_and_class_one_do_not_become_canopy (tests.test_arcpy.ArcGISRegression.test_las_gap_and_class_one_do_not_become_canopy) ... ok
+WARNING: No vegetation classes: this run can only report observed non-canopy or unknown cells
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_las_without_vegetation_is_observed_noncanopy (tests.test_arcpy.ArcGISRegression.test_las_without_vegetation_is_observed_noncanopy) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_model_class_zero_background_is_observed_only_when_declared (tests.test_arcpy.ArcGISRegression.test_model_class_zero_background_is_observed_only_when_declared) ... ok
+test_no_trees_has_valid_empty_outputs (tests.test_arcpy.ArcGISRegression.test_no_trees_has_valid_empty_outputs) ... ok
+test_partial_cover_uses_raster_resolution_and_preserves_missing_zones (tests.test_arcpy.ArcGISRegression.test_partial_cover_uses_raster_resolution_and_preserves_missing_zones) ... ok
+test_runner_rejects_incomplete_preparation_even_with_explicit_sources (tests.test_arcpy.ArcGISRegression.test_runner_rejects_incomplete_preparation_even_with_explicit_sources) ... ok
+r000c000: CHM core saved
+r000c001: CHM core saved
+r001c000: CHM core saved
+r001c001: CHM core saved
+test_tiled_rasters_use_exact_global_detection_and_crowns (tests.test_arcpy.ArcGISRegression.test_tiled_rasters_use_exact_global_detection_and_crowns) ... ok
+test_units_reject_geographic_and_feet (tests.test_arcpy.ArcGISRegression.test_units_reject_geographic_and_feet) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_upper_building_surface_occludes_lower_vegetation_but_preserves_overhang (tests.test_arcpy.ArcGISRegression.test_upper_building_surface_occludes_lower_vegetation_but_preserves_overhang) ... ok
+test_watershed_does_not_cross_unknown_or_bare_cells (tests.test_arcpy.ArcGISRegression.test_watershed_does_not_cross_unknown_or_bare_cells) ... ok
+test_workspace_contract_rejects_folder_before_processing (tests.test_arcpy.ArcGISRegression.test_workspace_contract_rejects_folder_before_processing) ... ok
+test_default_spec_round_trips (tests.test_bands.ParseBands.test_default_spec_round_trips) ... ok
+test_malformed_chunk_raises (tests.test_bands.ParseBands.test_malformed_chunk_raises) ... ok
+test_open_ended_final_band (tests.test_bands.ParseBands.test_open_ended_final_band) ... ok
+test_whitespace_and_trailing_comma (tests.test_bands.ParseBands.test_whitespace_and_trailing_comma) ... ok
+test_bad_cell_size_rejected (tests.test_bands.RadiusLookup.test_bad_cell_size_rejected) ... ok
+test_below_threshold_is_not_a_tree (tests.test_bands.RadiusLookup.test_below_threshold_is_not_a_tree) ... ok
+test_boundaries_are_half_open (tests.test_bands.RadiusLookup.test_boundaries_are_half_open) ... ok
+test_cells_at_half_metre (tests.test_bands.RadiusLookup.test_cells_at_half_metre) ... ok
+test_cells_never_round_to_zero (tests.test_bands.RadiusLookup.test_cells_never_round_to_zero) ... ok
+test_tall_tree_uses_open_band (tests.test_bands.RadiusLookup.test_tall_tree_uses_open_band) ... ok
+test_closed_final_band_rejected (tests.test_bands.ValidateBands.test_closed_final_band_rejected) ... ok
+test_descending_band_rejected (tests.test_bands.ValidateBands.test_descending_band_rejected) ... ok
+test_empty_rejected (tests.test_bands.ValidateBands.test_empty_rejected) ... ok
+test_gap_between_bands_rejected (tests.test_bands.ValidateBands.test_gap_between_bands_rejected) ... ok
+test_non_positive_radius_rejected (tests.test_bands.ValidateBands.test_non_positive_radius_rejected) ... ok
+test_nonfinite_parameters_rejected (tests.test_bands.ValidateBands.test_nonfinite_parameters_rejected) ... ok
+test_overlap_rejected (tests.test_bands.ValidateBands.test_overlap_rejected) ... ok
+test_feet_reference_gives_ratio_near_point_three (tests.test_building_rules.Heights.test_feet_reference_gives_ratio_near_point_three) ... ok
+test_height_comparison_reports_bias_ratio_and_outliers (tests.test_building_rules.Heights.test_height_comparison_reports_bias_ratio_and_outliers) ... ok
+test_height_stats (tests.test_building_rules.Heights.test_height_stats) ... ok
+test_label_codes (tests.test_building_rules.Labels.test_label_codes) ... ok
+test_label_codes_are_user_definable_and_documented (tests.test_building_rules.Labels.test_label_codes_are_user_definable_and_documented) ... ok
+test_half_metre_cells (tests.test_building_rules.Rasterize.test_half_metre_cells) ... ok
+test_hole_is_excluded_and_open_ring_is_closed (tests.test_building_rules.Rasterize.test_hole_is_excluded_and_open_ring_is_closed) ... ok
+test_polygon_beyond_grid_is_clipped_and_reported (tests.test_building_rules.Rasterize.test_polygon_beyond_grid_is_clipped_and_reported) ... ok
+test_square_uses_cell_centres (tests.test_building_rules.Rasterize.test_square_uses_cell_centres) ... ok
+test_sub_cell_polygon_between_centres_has_no_cells (tests.test_building_rules.Rasterize.test_sub_cell_polygon_between_centres_has_no_cells) ... ok
+test_closing_bridges_two_cells_but_not_three (tests.test_building_rules.Regions.test_closing_bridges_two_cells_but_not_three) ... ok
+test_dilate_by_distance (tests.test_building_rules.Regions.test_dilate_by_distance) ... ok
+test_gather_returns_points_in_requested_cells (tests.test_building_rules.Regions.test_gather_returns_points_in_requested_cells) ... ok
+test_one_cell_gap_is_bridged_and_small_regions_dropped (tests.test_building_rules.Regions.test_one_cell_gap_is_bridged_and_small_regions_dropped) ... ok
+test_best_shift_recovers_known_offset (tests.test_building_rules.Registration.test_best_shift_recovers_known_offset) ... ok
+test_candidate_flags (tests.test_building_rules.Statuses.test_candidate_flags) ... ok
+test_class_shares (tests.test_building_rules.Statuses.test_class_shares) ... ok
+test_footprint_roof_height_falls_back_to_all_returns (tests.test_building_rules.Statuses.test_footprint_roof_height_falls_back_to_all_returns) ... ok
+test_footprint_statuses (tests.test_building_rules.Statuses.test_footprint_statuses) ... ok
+test_parameters_are_validated (tests.test_building_rules.Statuses.test_parameters_are_validated) ... ok
+test_region_status_ignores_same_method_source (tests.test_building_rules.Statuses.test_region_status_ignores_same_method_source) ... ok
+test_ways_relations_and_skips (tests.test_buildings.OverpassParsing.test_ways_relations_and_skips) ... ok
+test_candidate_flags_keep_tree_ids (tests.test_buildings.ReconcileBuildings.test_candidate_flags_keep_tree_ids) ... ok
+test_existing_output_is_refused (tests.test_buildings.ReconcileBuildings.test_existing_output_is_refused) ... ok
+test_footprint_statuses_and_heights (tests.test_buildings.ReconcileBuildings.test_footprint_statuses_and_heights) ... ok
+test_label_copy_changes_only_class_bytes_and_input_is_unchanged (tests.test_buildings.ReconcileBuildings.test_label_copy_changes_only_class_bytes_and_input_is_unchanged) ... ok
+test_lidar_regions (tests.test_buildings.ReconcileBuildings.test_lidar_regions) ... ok
+test_summary_records_parameters_and_layers (tests.test_buildings.ReconcileBuildings.test_summary_records_parameters_and_layers) ... ok
+test_boundary_coverage_is_the_covered_share_of_its_area (tests.test_delivery.DeliveryIndex.test_boundary_coverage_is_the_covered_share_of_its_area) ... ok
+test_boundary_in_web_mercator_is_projected_with_a_transformation (tests.test_delivery.DeliveryIndex.test_boundary_in_web_mercator_is_projected_with_a_transformation) ... ok
+test_dates_also_reach_the_json_report (tests.test_delivery.DeliveryIndex.test_dates_also_reach_the_json_report) ... ok
+test_delivery_without_a_coordinate_reference_is_refused (tests.test_delivery.DeliveryIndex.test_delivery_without_a_coordinate_reference_is_refused) ... ok
+test_existing_output_and_in_place_output_are_refused (tests.test_delivery.DeliveryIndex.test_existing_output_and_in_place_output_are_refused) ... ok
+test_headers_alone_produce_one_row_per_tile (tests.test_delivery.DeliveryIndex.test_headers_alone_produce_one_row_per_tile) ... ok
+test_missing_date_field_is_refused_before_any_output (tests.test_delivery.DeliveryIndex.test_missing_date_field_is_refused_before_any_output) ... ok
+test_mixed_coordinate_references_are_refused (tests.test_delivery.DeliveryIndex.test_mixed_coordinate_references_are_refused) ... ok
+test_only_intersecting_swaths_date_a_tile (tests.test_delivery.DeliveryIndex.test_only_intersecting_swaths_date_a_tile) ... ok
+test_record_and_facts_are_written_without_filesystem_paths (tests.test_delivery.DeliveryIndex.test_record_and_facts_are_written_without_filesystem_paths) ... ok
+test_swath_index_in_another_reference_is_refused (tests.test_delivery.DeliveryIndex.test_swath_index_in_another_reference_is_refused) ... ok
+test_tile_index_in_another_reference_is_refused_before_any_output (tests.test_delivery.DeliveryIndex.test_tile_index_in_another_reference_is_refused_before_any_output) ... ok
+test_tile_index_reports_the_uncovered_tile_by_boundary_area (tests.test_delivery.DeliveryIndex.test_tile_index_reports_the_uncovered_tile_by_boundary_area) ... ok
+test_tile_index_without_a_boundary_is_refused (tests.test_delivery.DeliveryIndex.test_tile_index_without_a_boundary_is_refused) ... ok
+test_blank_and_missing_dates_are_dropped_not_counted_as_a_date (tests.test_delivery.FlightSummary.test_blank_and_missing_dates_are_dropped_not_counted_as_a_date) ... ok
+test_no_swaths_leaves_every_date_field_null (tests.test_delivery.FlightSummary.test_no_swaths_leaves_every_date_field_null) ... ok
+test_repeated_dates_collapse_but_swath_count_does_not (tests.test_delivery.FlightSummary.test_repeated_dates_collapse_but_swath_count_does_not) ... ok
+test_too_many_distinct_dates_fail_rather_than_truncate (tests.test_delivery.FlightSummary.test_too_many_distinct_dates_fail_rather_than_truncate) ... ok
+test_boundary_with_an_unknown_reference_is_refused_before_any_output (tests.test_delivery.RefusalsWithoutArcpy.test_boundary_with_an_unknown_reference_is_refused_before_any_output) ... skipped 'The real-arcpy fixtures below cover delivery.index'
+test_change_outside_processed_boundary_is_rejected_without_headline (tests.test_dl_comparison.ComparisonCommand.test_change_outside_processed_boundary_is_rejected_without_headline) ... ok
+test_different_point_format_is_rejected_even_with_same_coordinates (tests.test_dl_comparison.ComparisonCommand.test_different_point_format_is_rejected_even_with_same_coordinates) ... ok
+test_intensity_change_with_valid_fingerprints_is_rejected_without_headline (tests.test_dl_comparison.ComparisonCommand.test_intensity_change_with_valid_fingerprints_is_rejected_without_headline) ... ok
+test_invalid_classes_outside_reporting_subset_are_rejected (tests.test_dl_comparison.ComparisonCommand.test_invalid_classes_outside_reporting_subset_are_rejected) ... ok
+test_requested_subset_does_not_redefine_the_processing_boundary (tests.test_dl_comparison.ComparisonCommand.test_requested_subset_does_not_redefine_the_processing_boundary) ... ok
+test_truncated_prediction_header_is_recorded_as_rejected (tests.test_dl_comparison.ComparisonCommand.test_truncated_prediction_header_is_recorded_as_rejected) ... ok
+test_valid_synthetic_class_edits_can_be_reported (tests.test_dl_comparison.ComparisonCommand.test_valid_synthetic_class_edits_can_be_reported) ... ok
+test_binary_classes_are_checked_across_the_complete_processing_area (tests.test_dl_comparison.PointIntegrity.test_binary_classes_are_checked_across_the_complete_processing_area) ... ok
+test_changes_to_any_nonclassification_byte_fail (tests.test_dl_comparison.PointIntegrity.test_changes_to_any_nonclassification_byte_fail) ... ok
+test_check_is_read_only_and_handles_empty_frames (tests.test_dl_comparison.PointIntegrity.test_check_is_read_only_and_handles_empty_frames) ... ok
+test_class_edits_preserve_packed_flags_and_all_other_bytes (tests.test_dl_comparison.PointIntegrity.test_class_edits_preserve_packed_flags_and_all_other_bytes) ... ok
+test_classifications_outside_processed_boundary_cannot_change (tests.test_dl_comparison.PointIntegrity.test_classifications_outside_processed_boundary_cannot_change) ... ok
+test_excluded_noise_classes_cannot_change_inside_processed_area (tests.test_dl_comparison.PointIntegrity.test_excluded_noise_classes_cannot_change_inside_processed_area) ... ok
+test_legacy_classification_flags_cannot_change (tests.test_dl_comparison.PointIntegrity.test_legacy_classification_flags_cannot_change) ... ok
+test_point_count_and_record_layout_must_match (tests.test_dl_comparison.PointIntegrity.test_point_count_and_record_layout_must_match) ... ok
+test_reordering_coincident_points_with_different_returns_is_rejected (tests.test_dl_comparison.PointIntegrity.test_reordering_coincident_points_with_different_returns_is_rejected) ... ok
+test_reporting_extent_does_not_restrict_valid_processing_extent (tests.test_dl_comparison.PointIntegrity.test_reporting_extent_does_not_restrict_valid_processing_extent) ... ok
+test_external_tile_never_enters_millcreek_scope (tests.test_evaluation_design.Domains.test_external_tile_never_enters_millcreek_scope) ... ok
+test_training_excludes_holdout_and_context (tests.test_evaluation_design.Domains.test_training_excludes_holdout_and_context) ... ok
+test_boundary_is_inclusive (tests.test_evaluation_safeguards.CandidateMatching.test_boundary_is_inclusive) ... ok
+test_duplicate_ids_are_rejected_on_either_side (tests.test_evaluation_safeguards.CandidateMatching.test_duplicate_ids_are_rejected_on_either_side) ... ok
+test_empty_frames_preserve_mapping_lengths (tests.test_evaluation_safeguards.CandidateMatching.test_empty_frames_preserve_mapping_lengths) ... ok
+test_identity_does_not_match_a_candidate_outside_radius (tests.test_evaluation_safeguards.CandidateMatching.test_identity_does_not_match_a_candidate_outside_radius) ... ok
+test_maximum_cardinality_precedes_nearest_neighbor (tests.test_evaluation_safeguards.CandidateMatching.test_maximum_cardinality_precedes_nearest_neighbor) ... ok
+test_merged_candidates_retain_only_one_baseline_candidate (tests.test_evaluation_safeguards.CandidateMatching.test_merged_candidates_retain_only_one_baseline_candidate) ... ok
+test_minimum_distance_resolves_multiple_full_matchings (tests.test_evaluation_safeguards.CandidateMatching.test_minimum_distance_resolves_multiple_full_matchings) ... ok
+test_nonfinite_coordinates_are_rejected_on_either_side (tests.test_evaluation_safeguards.CandidateMatching.test_nonfinite_coordinates_are_rejected_on_either_side) ... ok
+test_stable_identity_precedes_distance_when_it_is_in_radius (tests.test_evaluation_safeguards.CandidateMatching.test_stable_identity_precedes_distance_when_it_is_in_radius) ... ok
+test_xy_translation_does_not_change_matching (tests.test_evaluation_safeguards.CandidateMatching.test_xy_translation_does_not_change_matching) ... ok
+test_selective_changes_keep_original_stratum_design_weights (tests.test_evaluation_safeguards.CrownScope.test_selective_changes_keep_original_stratum_design_weights) ... ok
+test_selective_label_transfer_identifies_its_conditional_scope (tests.test_evaluation_safeguards.CrownScope.test_selective_label_transfer_identifies_its_conditional_scope) ... ok
+test_complete_census_has_exact_interval (tests.test_evaluation_safeguards.EvaluationIntervals.test_complete_census_has_exact_interval) ... ok
+test_conflicting_exact_variant_count_is_rejected (tests.test_evaluation_safeguards.EvaluationIntervals.test_conflicting_exact_variant_count_is_rejected) ... ok
+test_five_agreeing_labels_do_not_claim_a_zero_width_interval (tests.test_evaluation_safeguards.EvaluationIntervals.test_five_agreeing_labels_do_not_claim_a_zero_width_interval) ... ok
+test_invalid_populations_and_labels_are_rejected (tests.test_evaluation_safeguards.EvaluationIntervals.test_invalid_populations_and_labels_are_rejected) ... ok
+test_new_candidates_cannot_exceed_exact_variant_count (tests.test_evaluation_safeguards.EvaluationIntervals.test_new_candidates_cannot_exceed_exact_variant_count) ... ok
+[1/2] B: ok
+[2/2] A: ok
+test_downloads_and_checks_points (tests.test_fetch.Fetch.test_downloads_and_checks_points) ... ok
+test_duplicate_files_are_refused (tests.test_fetch.Fetch.test_duplicate_files_are_refused) ... ok
+test_header_points_for_both_header_layouts (tests.test_fetch.Fetch.test_header_points_for_both_header_layouts) ... ok
+[1/2] A: ok
+[2/2] B: ok
+test_parallel_workers (tests.test_fetch.Fetch.test_parallel_workers) ... ok
+[1/1] A: points-mismatch - header says 1,234, manifest 1
+test_point_mismatch_and_log (tests.test_fetch.Fetch.test_point_mismatch_and_log) ... ok
+[1/1] A: ok
+test_restarts_when_the_server_ignores_range (tests.test_fetch.Fetch.test_restarts_when_the_server_ignores_range) ... ok
+[1/1] A: ok
+test_resumes_a_partial_file (tests.test_fetch.Fetch.test_resumes_a_partial_file) ... ok
+[1/2] A: ok
+[2/2] B: ok
+test_skips_complete_and_replaces_oversized_files (tests.test_fetch.Fetch.test_skips_complete_and_replaces_oversized_files) ... ok
+test_unknown_tiles_are_refused (tests.test_fetch.Fetch.test_unknown_tiles_are_refused) ... ok
+test_screen_is_a_review_flag_and_never_changes_classifications (tests.test_greenness.Greenness.test_screen_is_a_review_flag_and_never_changes_classifications) ... ok
+test_unsigned_bands_use_signed_float_math_and_invalid_pixels_stay_unknown (tests.test_greenness.Greenness.test_unsigned_bands_use_signed_float_math_and_invalid_pixels_stay_unknown) ... ok
+test_batch_selection_preserves_existing_review_order (tests.test_label_exchange.LabelExchange.test_batch_selection_preserves_existing_review_order) ... ok
+test_blank_labels_cannot_clear_answers_and_orphan_roof_answers_fail (tests.test_label_exchange.LabelExchange.test_blank_labels_cannot_clear_answers_and_orphan_roof_answers_fail) ... ok
+test_crown_outline_and_roof_answers_are_preserved_separately (tests.test_label_exchange.LabelExchange.test_crown_outline_and_roof_answers_are_preserved_separately) ... ok
+test_digest_covers_crown_geometry_and_sampling_design (tests.test_label_exchange.LabelExchange.test_digest_covers_crown_geometry_and_sampling_design) ... ok
+test_digest_is_order_independent_and_ignores_review_edits (tests.test_label_exchange.LabelExchange.test_digest_is_order_independent_and_ignores_review_edits) ... ok
+test_duplicate_unknown_or_wrong_identity_rows_are_rejected (tests.test_label_exchange.LabelExchange.test_duplicate_unknown_or_wrong_identity_rows_are_rejected) ... ok
+test_existing_conflicting_labels_require_explicit_replacement (tests.test_label_exchange.LabelExchange.test_existing_conflicting_labels_require_explicit_replacement) ... ok
+test_export_hides_model_strata_and_coordinate_evidence (tests.test_label_exchange.LabelExchange.test_export_hides_model_strata_and_coordinate_evidence) ... ok
+test_extra_columns_and_duplicate_reference_keys_fail_clearly (tests.test_label_exchange.LabelExchange.test_extra_columns_and_duplicate_reference_keys_fail_clearly) ... ok
+test_invalid_label_domains_fail_before_any_changes_are_returned (tests.test_label_exchange.LabelExchange.test_invalid_label_domains_fail_before_any_changes_are_returned) ... ok
+test_missing_reviewer_date_bad_date_and_overlong_fields_are_rejected (tests.test_label_exchange.LabelExchange.test_missing_reviewer_date_bad_date_and_overlong_fields_are_rejected) ... ok
+test_reimport_is_idempotent_and_preserves_first_reviewer (tests.test_label_exchange.LabelExchange.test_reimport_is_idempotent_and_preserves_first_reviewer) ... ok
+test_unsure_is_recorded_as_reviewed_but_not_usable (tests.test_label_exchange.LabelExchange.test_unsure_is_recorded_as_reviewed_but_not_usable) ... ok
+test_valid_partial_labels_plan_only_review_fields_without_mutation (tests.test_label_exchange.LabelExchange.test_valid_partial_labels_plan_only_review_fields_without_mutation) ... ok
+test_apply_edits_only_review_fields_and_reimport_is_idempotent (tests.test_label_exchange_arcpy.LabelExchangeArcGIS.test_apply_edits_only_review_fields_and_reimport_is_idempotent) ... ok
+test_changed_reference_geometry_rejects_old_packet (tests.test_label_exchange_arcpy.LabelExchangeArcGIS.test_changed_reference_geometry_rejects_old_packet) ... ok
+test_export_and_preview_leave_labels_geometry_and_design_unchanged (tests.test_label_exchange_arcpy.LabelExchangeArcGIS.test_export_and_preview_leave_labels_geometry_and_design_unchanged) ... ok
+test_mixed_invalid_labels_never_apply_a_valid_prefix (tests.test_label_exchange_arcpy.LabelExchangeArcGIS.test_mixed_invalid_labels_never_apply_a_valid_prefix) ... ok
+test_runtime_failure_after_first_write_rolls_back_all_samples (tests.test_label_exchange_arcpy.LabelExchangeArcGIS.test_runtime_failure_after_first_write_rolls_back_all_samples) ... ok
+test_layouts_and_empty_files (tests.test_las_records.Records.test_layouts_and_empty_files) ... ok
+test_legacy_flags_and_extra_bytes_survive_class_edit (tests.test_las_records.Records.test_legacy_flags_and_extra_bytes_survive_class_edit) ... ok
+test_modern_extra_bytes_and_flags (tests.test_las_records.Records.test_modern_extra_bytes_and_flags) ... ok
+test_rejects_short_header_truncated_records_and_invalid_layout (tests.test_las_records.Records.test_rejects_short_header_truncated_records_and_invalid_layout) ... ok
+test_four_band_raster_preserves_nodata_and_input (tests.test_naip_review.Review.test_four_band_raster_preserves_nodata_and_input) ... ok
+test_only_dated_layers_are_listed_with_inherited_srs (tests.test_nearmap.NearmapHistoricalWMS.test_only_dated_layers_are_listed_with_inherited_srs) ... ok
+test_requires_custom_service_and_keeps_pilot_extent (tests.test_nearmap.NearmapHistoricalWMS.test_requires_custom_service_and_keeps_pilot_extent) ... ok
+WARNING: Unclassified points are excluded; unsupported areas remain unknown
+test_end_to_end_prepared_las_bundle (tests.test_planning.PlanningArcGIS.test_end_to_end_prepared_las_bundle) ... ok
+test_footprint_overlap_missing_tiny_outside_and_partial (tests.test_planning.PlanningArcGIS.test_footprint_overlap_missing_tiny_outside_and_partial) ... ok
+test_terrain_plane_pit_area_units_and_source_preservation (tests.test_planning.PlanningArcGIS.test_terrain_plane_pit_area_units_and_source_preservation) ... ok
+test_boundary_connection_traces_east_and_stops_at_cycle (tests.test_planning.PlanningMetrics.test_boundary_connection_traces_east_and_stops_at_cycle) ... ok
+test_no_roof_and_no_cells_have_null_heights (tests.test_planning.PlanningMetrics.test_no_roof_and_no_cells_have_null_heights) ... ok
+test_nodata_neighbors_seed_downstream_uncertainty (tests.test_planning.PlanningMetrics.test_nodata_neighbors_seed_downstream_uncertainty) ... ok
+test_paired_heights_preserve_nodata_and_negative_values (tests.test_planning.PlanningMetrics.test_paired_heights_preserve_nodata_and_negative_values) ... ok
+test_draw_is_fixed_and_ignores_candidate_locations (tests.test_plot_census.Census.test_draw_is_fixed_and_ignores_candidate_locations) ... ok
+test_empty_plot_and_bad_coordinates (tests.test_plot_census.Census.test_empty_plot_and_bad_coordinates) ... ok
+test_one_tree_two_candidates_counts_duplicate_and_missed_tree (tests.test_plot_census.Census.test_one_tree_two_candidates_counts_duplicate_and_missed_tree) ... ok
+test_completed_census_scores_actual_candidate_features (tests.test_plot_census_driver.Packet.test_completed_census_scores_actual_candidate_features) ... ok
+test_empty_packet_reports_no_labels_without_importing_arcpy (tests.test_plot_census_driver.Packet.test_empty_packet_reports_no_labels_without_importing_arcpy) ... ok
+test_incomplete_review_does_not_become_a_zero_tree_census (tests.test_plot_census_driver.Packet.test_incomplete_review_does_not_become_a_zero_tree_census) ... ok
+test_modified_geometry_and_existing_output_are_refused (tests.test_plot_census_driver.Packet.test_modified_geometry_and_existing_output_are_refused) ... ok
+test_a_bare_share_keeps_no_name_and_mapped_drives_are_unchanged (tests.test_record.Build.test_a_bare_share_keeps_no_name_and_mapped_drives_are_unchanged) ... ok
+test_flight_dates_absent_when_no_swath_index_was_used (tests.test_record.Build.test_flight_dates_absent_when_no_swath_index_was_used) ... ok
+test_flight_groups_order_largest_first_then_by_dates (tests.test_record.Build.test_flight_groups_order_largest_first_then_by_dates) ... ok
+test_network_paths_never_reach_either_output (tests.test_record.Build.test_network_paths_never_reach_either_output) ... ok
+test_record_carries_tile_names_but_no_filesystem_paths (tests.test_record.Build.test_record_carries_tile_names_but_no_filesystem_paths) ... ok
+test_summary_counts_versions_formats_and_density (tests.test_record.Build.test_summary_counts_versions_formats_and_density) ... ok
+test_undated_tiles_are_listed_when_a_swath_index_was_used (tests.test_record.Build.test_undated_tiles_are_listed_when_a_swath_index_was_used) ... ok
+test_day_182_of_a_leap_year_is_june_30 (tests.test_record.CreationDate.test_day_182_of_a_leap_year_is_june_30) ... ok
+test_day_one_is_january_first (tests.test_record.CreationDate.test_day_one_is_january_first) ... ok
+test_unset_or_impossible_values_are_none (tests.test_record.CreationDate.test_unset_or_impossible_values_are_none) ... ok
+test_a_real_sliver_is_not_rounded_to_zero (tests.test_record.Render.test_a_real_sliver_is_not_rounded_to_zero) ... ok
+test_coverage_section_lists_missing_tiles_and_projection (tests.test_record.Render.test_coverage_section_lists_missing_tiles_and_projection) ... ok
+test_minimal_record_renders_without_optional_sections (tests.test_record.Render.test_minimal_record_renders_without_optional_sections) ... ok
+test_missing_vertical_reference_is_said_plainly (tests.test_record.Render.test_missing_vertical_reference_is_said_plainly) ... ok
+test_buildings_import_performs_no_data_processing (tests.test_review_drivers.Imports.test_buildings_import_performs_no_data_processing) ... ok
+test_pilot_import_performs_no_data_processing (tests.test_review_drivers.Imports.test_pilot_import_performs_no_data_processing) ... ok
+test_custom_density_and_hag_inputs_are_recorded_without_real_inference (tests.test_review_drivers.InferenceDriver.test_custom_density_and_hag_inputs_are_recorded_without_real_inference) ... ok
+test_reused_classified_copy_cannot_invalidate_previous_success (tests.test_review_drivers.InferenceDriver.test_reused_classified_copy_cannot_invalidate_previous_success) ... ok
+test_setup_failure_also_records_failed_attempt (tests.test_review_drivers.InferenceDriver.test_setup_failure_also_records_failed_attempt) ... ok
+test_stale_lasd_is_recreated_from_only_the_dedicated_copy (tests.test_review_drivers.InferenceDriver.test_stale_lasd_is_recreated_from_only_the_dedicated_copy) ... ok
+test_tool_failure_records_failed_not_completed_inference (tests.test_review_drivers.InferenceDriver.test_tool_failure_records_failed_not_completed_inference) ... ok
+test_common_thresholds_and_compatibility_names (tests.test_roof_context.Context.test_common_thresholds_and_compatibility_names) ... ok
+test_unknown_height_is_never_a_known_roof_category (tests.test_roof_context.Context.test_unknown_height_is_never_a_known_roof_category) ... ok
+test_band_edges_are_explicit (tests.test_roof_surface.GabledRoof.test_band_edges_are_explicit) ... ok
+test_chunking_matches_single_pass (tests.test_roof_surface.GabledRoof.test_chunking_matches_single_pass) ... ok
+test_cli_rejects_options_of_the_other_method (tests.test_roof_surface.GabledRoof.test_cli_rejects_options_of_the_other_method) ... ok
+test_collinear_support_is_degenerate (tests.test_roof_surface.GabledRoof.test_collinear_support_is_degenerate) ... ok
+test_courtyard_centre_is_not_reached (tests.test_roof_surface.GabledRoof.test_courtyard_centre_is_not_reached) ... ok
+test_eave_and_ridge_points_are_reclassified (tests.test_roof_surface.GabledRoof.test_eave_and_ridge_points_are_reclassified) ... ok
+test_envelope_prefilter_keeps_every_selected_point (tests.test_roof_surface.GabledRoof.test_envelope_prefilter_keeps_every_selected_point) ... ok
+test_hipped_roof_corner (tests.test_roof_surface.GabledRoof.test_hipped_roof_corner) ... ok
+test_overhanging_tree_hedge_and_wall_vegetation_stay (tests.test_roof_surface.GabledRoof.test_overhanging_tree_hedge_and_wall_vegetation_stay) ... ok
+test_parameters_are_checked (tests.test_roof_surface.GabledRoof.test_parameters_are_checked) ... ok
+test_points_beyond_the_radius_have_no_support (tests.test_roof_surface.GabledRoof.test_points_beyond_the_radius_have_no_support) ... ok
+test_return_and_flag_masks (tests.test_roof_surface.GabledRoof.test_return_and_flag_masks) ... ok
+test_step_between_roof_levels_is_not_bridged (tests.test_roof_surface.GabledRoof.test_step_between_roof_levels_is_not_bridged) ... ok
+test_clean_interior_extends_both_gable_faces_to_missing_eaves (tests.test_roof_surface_interior.InteriorAnchoredRoof.test_clean_interior_extends_both_gable_faces_to_missing_eaves) ... ok
+test_edge_contamination_does_not_reclassify_above_or_below_roof_vegetation (tests.test_roof_surface_interior.InteriorAnchoredRoof.test_edge_contamination_does_not_reclassify_above_or_below_roof_vegetation) ... ok
+test_lower_wall_returns_do_not_anchor_downward_eave_extrapolation (tests.test_roof_surface_interior.InteriorAnchoredRoof.test_lower_wall_returns_do_not_anchor_downward_eave_extrapolation) ... ok
+test_trimmed_face_is_not_reanchored_to_its_rejected_support_point (tests.test_roof_surface_interior.InteriorAnchoredRoof.test_trimmed_face_is_not_reanchored_to_its_rejected_support_point) ... ok
+test_upper_parapet_returns_do_not_anchor_upward_eave_extrapolation (tests.test_roof_surface_interior.InteriorAnchoredRoof.test_upper_parapet_returns_do_not_anchor_upward_eave_extrapolation) ... ok
+test_local_surface_changes_only_gabled_roof_edge_bytes (tests.test_roofs.RoofRefinement.test_local_surface_changes_only_gabled_roof_edge_bytes) ... ok
+test_only_eligible_classification_bytes_change_in_legacy_and_modern_las (tests.test_roofs.RoofRefinement.test_only_eligible_classification_bytes_change_in_legacy_and_modern_las) ... ok
+test_plane_fit_rejects_complex_surface_and_preserves_courtyard (tests.test_roofs.RoofRefinement.test_plane_fit_rejects_complex_surface_and_preserves_courtyard) ... ok
+test_rejected_model_makes_no_changes (tests.test_roofs.RoofRefinement.test_rejected_model_makes_no_changes) ... ok
+test_changed_source_output_or_model_is_rejected (tests.test_run_safeguards.Safeguards.test_changed_source_output_or_model_is_rejected) ... ok
+test_existing_run_is_resumed_through_signature_checks (tests.test_run_safeguards.Safeguards.test_existing_run_is_resumed_through_signature_checks) ... ok
+test_hag_surface_is_part_of_inference_provenance (tests.test_run_safeguards.Safeguards.test_hag_surface_is_part_of_inference_provenance) ... ok
+test_invalid_extent_is_rejected (tests.test_run_safeguards.Safeguards.test_invalid_extent_is_rejected) ... ok
+test_no_success_manifest_rejects_untouched_and_failed_copies (tests.test_run_safeguards.Safeguards.test_no_success_manifest_rejects_untouched_and_failed_copies) ... ok
+test_preparation_folder_is_not_proof_of_success (tests.test_run_safeguards.Safeguards.test_preparation_folder_is_not_proof_of_success) ... ok
+test_processed_boundary_is_used_automatically (tests.test_run_safeguards.Safeguards.test_processed_boundary_is_used_automatically) ... ok
+test_wrong_job_semantics_or_initial_copy_is_rejected (tests.test_run_safeguards.Safeguards.test_wrong_job_semantics_or_initial_copy_is_rejected) ... ok
+test_floor_applies_for_small_radii (tests.test_tiling.RecommendedOverlap.test_floor_applies_for_small_radii) ... ok
+test_scales_with_largest_radius (tests.test_tiling.RecommendedOverlap.test_scales_with_largest_radius) ... ok
+test_dedupe_keeps_only_owned_detections (tests.test_tiling.SeamOwnership.test_dedupe_keeps_only_owned_detections) ... ok
+test_every_point_owned_exactly_once (tests.test_tiling.SeamOwnership.test_every_point_owned_exactly_once) ... ok
+test_halo_detections_dropped_by_both_tiles_but_kept_by_owner (tests.test_tiling.SeamOwnership.test_halo_detections_dropped_by_both_tiles_but_kept_by_owner) ... ok
+test_upper_boundary_of_study_area_is_not_owned (tests.test_tiling.SeamOwnership.test_upper_boundary_of_study_area_is_not_owned) ... ok
+test_already_snapped_is_unchanged (tests.test_tiling.SnapExtent.test_already_snapped_is_unchanged) ... ok
+test_grows_outward_to_whole_cells (tests.test_tiling.SnapExtent.test_grows_outward_to_whole_cells) ... ok
+test_negative_coordinates (tests.test_tiling.SnapExtent.test_negative_coordinates) ... ok
+test_area_smaller_than_tile_gives_one_tile (tests.test_tiling.TileGrid.test_area_smaller_than_tile_gives_one_tile) ... ok
+test_buffer_applied (tests.test_tiling.TileGrid.test_buffer_applied) ... ok
+test_cores_do_not_overlap (tests.test_tiling.TileGrid.test_cores_do_not_overlap) ... ok
+test_covers_extent (tests.test_tiling.TileGrid.test_covers_extent) ... ok
+test_edge_tiles_are_clipped_not_padded (tests.test_tiling.TileGrid.test_edge_tiles_are_clipped_not_padded) ... ok
+test_invalid_extent_rejected (tests.test_tiling.TileGrid.test_invalid_extent_rejected) ... ok
+test_overlap_at_least_half_tile_rejected (tests.test_tiling.TileGrid.test_overlap_at_least_half_tile_rejected) ... ok
+test_unsnapped_tile_and_halo_are_rejected (tests.test_tiling.TileGrid.test_unsnapped_tile_and_halo_are_rejected) ... ok
+test_existing_badelf_type_and_domain_conflicts_are_reported (tests.test_utilities.StandaloneUtilities.test_existing_badelf_type_and_domain_conflicts_are_reported) ... ok
+test_failed_append_restores_enabled_rules (tests.test_utilities.StandaloneUtilities.test_failed_append_restores_enabled_rules) ... ok
+test_negative_layer_is_rejected (tests.test_utilities.StandaloneUtilities.test_negative_layer_is_rejected) ... ok
+test_palette_exhaustion_fails_before_any_feature_edit (tests.test_utilities.StandaloneUtilities.test_palette_exhaustion_fails_before_any_feature_edit) ... ok
+test_sketch_dry_run_does_not_export_rules_or_write_dataset (tests.test_utilities.StandaloneUtilities.test_sketch_dry_run_does_not_export_rules_or_write_dataset) ... ok
+test_merged_run_candidates_are_scored_once (tests.test_validation_arcpy.ScoreSyntheticRuns.test_merged_run_candidates_are_scored_once) ... ok
+test_run_units_rejects_a_different_raster_grid (tests.test_validation_arcpy.ScoreSyntheticRuns.test_run_units_rejects_a_different_raster_grid) ... ok
+test_run_units_rejects_a_shifted_raster_grid (tests.test_validation_arcpy.ScoreSyntheticRuns.test_run_units_rejects_a_shifted_raster_grid) ... ok
+test_same_folder_flag_removal_preserves_the_baseline_sampling_frame (tests.test_validation_arcpy.ScoreSyntheticRuns.test_same_folder_flag_removal_preserves_the_baseline_sampling_frame) ... ok
+test_synthetic_labels_score_every_metric (tests.test_validation_arcpy.ScoreSyntheticRuns.test_synthetic_labels_score_every_metric) ... ok
+test_unlabelled_reference_reports_no_labels (tests.test_validation_arcpy.ScoreSyntheticRuns.test_unlabelled_reference_reports_no_labels) ... ok
+test_commission_omission_and_area_bias (tests.test_validation_metrics.Cells.test_commission_omission_and_area_bias) ... ok
+test_variant_that_drops_false_canopy (tests.test_validation_metrics.Cells.test_variant_that_drops_false_canopy) ... ok
+test_shares_roof_and_changed_crowns (tests.test_validation_metrics.Crowns.test_shares_roof_and_changed_crowns) ... ok
+test_bootstrap_is_seeded_and_suppressed_when_labels_agree (tests.test_validation_metrics.Intervals.test_bootstrap_is_seeded_and_suppressed_when_labels_agree) ... ok
+test_wilson_matches_published_values (tests.test_validation_metrics.Intervals.test_wilson_matches_published_values) ... ok
+test_combined_rate_uses_canopy_strata_of_the_cell_sample (tests.test_validation_metrics.Omission.test_combined_rate_uses_canopy_strata_of_the_cell_sample) ... ok
+test_missed_canopy_area (tests.test_validation_metrics.Omission.test_missed_canopy_area) ... ok
+test_recovery_by_a_variant (tests.test_validation_metrics.Omission.test_recovery_by_a_variant) ... ok
+test_cell_strata_partition_the_grid (tests.test_validation_metrics.Sampling.test_cell_strata_partition_the_grid) ... ok
+test_draw_is_reproducible_and_order_independent (tests.test_validation_metrics.Sampling.test_draw_is_reproducible_and_order_independent) ... ok
+test_review_order_prefix_is_balanced (tests.test_validation_metrics.Sampling.test_review_order_prefix_is_balanced) ... ok
+test_treetop_and_crown_strata (tests.test_validation_metrics.Sampling.test_treetop_and_crown_strata) ... ok
+test_stratified_estimate_recovers_known_precision (tests.test_validation_metrics.Simulation.test_stratified_estimate_recovers_known_precision)
+Draw repeated samples from a synthetic population with known truth. ... ok
+test_rows_and_markdown (tests.test_validation_metrics.Table.test_rows_and_markdown) ... ok
+test_baseline_precision_is_stratum_weighted (tests.test_validation_metrics.Treetops.test_baseline_precision_is_stratum_weighted) ... ok
+test_no_labels_and_partial_labels (tests.test_validation_metrics.Treetops.test_no_labels_and_partial_labels) ... ok
+test_unknown_stratum_is_refused (tests.test_validation_metrics.Treetops.test_unknown_stratum_is_refused) ... ok
+test_variant_counts_false_and_true_removals (tests.test_validation_metrics.Treetops.test_variant_counts_false_and_true_removals) ... ok
+
+----------------------------------------------------------------------
+Ran 271 tests in 451.298s
+
+OK (skipped=1)
+sketch      : sketch (1 features, test)
+target SR   : test
+transform   : none needed
+rules       : 1
+rules CSV   : C:\work\attribute_rules.csv
+mapped      : none - all attributes land null
+sketch      : sketch (1 features, test)
+target SR   : test
+transform   : none needed
+rules       : 1
+rules CSV   : C:\work\attribute_rules.csv
+mapped      : none - all attributes land null
+
+DRY_RUN - nothing written. Review this report, then set DRY_RUN = False.

@@ -1,0 +1,15 @@
+{
+  "checked_utc": "2026-10-25T15:29:27.109563+00:00",
+  "url": "https://www.arcgis.com/home/webscene/viewer.html?webscene=5b5bdf4a63c9466fad5884039aa7357f",
+  "signed_in": false,
+  "slide": "Canyon Rim",
+  "building_fp_id": 10476,
+  "popup": {
+    "model": "roofer LoD2.2",
+    "median_roof_height_m": 5.0,
+    "roof_area_m2": 193.6,
+    "warning_visible": true
+  },
+  "console_warnings_or_errors": [],
+  "private_app_browser_checked": false
+}

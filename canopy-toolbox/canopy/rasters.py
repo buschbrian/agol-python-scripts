@@ -62,7 +62,8 @@ def _to_raster(layer, path, interpolation, resolution):
 
 def build_chm(lasd, out_workspace, cell_size=0.5, extent=None, prefix="",
               dtm_interpolation=DTM_INTERPOLATION, dsm_interpolation=DSM_INTERPOLATION,
-              z_unit=None, source_id=None, building_clearance=.35):
+              z_unit=None, source_id=None, building_clearance=.35, classified_background_zero=False,
+              ground_raster=None):
     from arcpy.sa import Con, IsNull, Raster, SetNull
     common.prefix_name(prefix)
     common.positive(cell_size, "Cell size")
@@ -75,12 +76,17 @@ def build_chm(lasd, out_workspace, cell_size=0.5, extent=None, prefix="",
     if not os.path.isdir(out_workspace) or out_workspace.lower().endswith(".gdb"):
         raise ValueError("CHM output must be an existing ordinary folder")
     info = audit(lasd)
+    if not info["has_statistics"] or info["statistics_stale"]:
+        raise ValueError("LAS dataset statistics are missing or stale; refresh them on the working copy after classification")
     if not info["has_ground"]:
         raise ValueError("No ground class 2: classify and verify ground on a working copy first")
     if not info["has_vegetation"]:
         arcpy.AddWarning("No vegetation classes: this run can only report observed non-canopy or unknown cells")
-    if 0 in info["class_codes"] or 1 in info["class_codes"]:
+    if classified_background_zero and 0 not in info["class_codes"]:
+        raise ValueError("Classified background mode requires class 0 in the LAS dataset")
+    if 1 in info["class_codes"] or (0 in info["class_codes"] and not classified_background_zero):
         arcpy.AddWarning("Unclassified points are excluded; unsupported areas remain unknown")
+    noncanopy_classes = NON_CANOPY_CLASSES + (";0" if classified_background_zero else "")
     if extent is None:
         box = arcpy.Describe(lasd).extent
         bounds = Extent(box.XMin, box.YMin, box.XMax, box.YMax)
@@ -101,11 +107,25 @@ def build_chm(lasd, out_workspace, cell_size=0.5, extent=None, prefix="",
             with arcpy.EnvManager(extent=bounds.as_arcpy_string(), cellSize=cell_size,
                                   snapRaster=None, outputCoordinateSystem=sr, mask=None,
                                   parallelProcessingFactor="0"):
-                ground = _las_layer(lasd, token+"_ground", GROUND_CLASSES, None); layers.append(ground)
-                _to_raster(ground, paths["dtm"], dtm_interpolation, cell_size)
+                if ground_raster is None:
+                    ground = _las_layer(lasd, token+"_ground", GROUND_CLASSES, None); layers.append(ground)
+                    _to_raster(ground, paths["dtm"], dtm_interpolation, cell_size)
+                else:
+                    reused, _ = common.grid(ground_raster, cell_size)
+                    if not common.same_xy_reference(reused.spatialReference, sr):
+                        raise ValueError("Reused ground raster has a different horizontal reference")
+                    if (reused.extent.XMin > bounds.xmin or reused.extent.YMin > bounds.ymin or
+                            reused.extent.XMax < bounds.xmax or reused.extent.YMax < bounds.ymax):
+                        raise ValueError("Reused ground raster extent does not cover the buffered tile")
+                    arcpy.management.Clip(ground_raster, bounds.as_arcpy_string(), paths["dtm"],
+                                          nodata_value="-9999", maintain_clipping_extent="NO_MAINTAIN_EXTENT")
+                    clipped = arcpy.Raster(paths["dtm"])
+                    if any(abs(a-b)>1e-6 for a,b in zip(
+                            [clipped.extent.XMin, clipped.extent.YMin, clipped.extent.XMax, clipped.extent.YMax], bounds)):
+                        raise ValueError("Reused ground raster is not aligned with the analysis grid")
             with common.environment(paths["dtm"]):
                 vegetation = _las_layer(lasd, token+"_veg", VEG_CLASSES, VEG_RETURNS); layers.append(vegetation)
-                other = _las_layer(lasd, token+"_other", NON_CANOPY_CLASSES, VEG_RETURNS); layers.append(other)
+                other = _las_layer(lasd, token+"_other", noncanopy_classes, VEG_RETURNS); layers.append(other)
                 _to_raster(vegetation, paths["dsm"], DSM_INTERPOLATION, cell_size)
                 other_path = os.path.join(scratch_gdb, "known_non_canopy")
                 _to_raster(other, other_path, "BINNING MAXIMUM NONE", cell_size)
@@ -133,8 +153,11 @@ def build_chm(lasd, out_workspace, cell_size=0.5, extent=None, prefix="",
         "cell_size_m": cell_size, "height_unit": "metres", "extent": bounds,
         "vegetation_classes": VEG_CLASSES, "dsm_interpolation": DSM_INTERPOLATION,
         "building_clearance_m": building_clearance,
+        "noncanopy_classes": noncanopy_classes,
+        "classified_background_zero": classified_background_zero,
+        "reused_ground_raster": str(ground_raster) if ground_raster else None,
         "building_occlusion_policy": "Class-6 first/single return above vegetation by more than clearance masks that cell; canopy above buildings remains",
-        "coverage_policy": "Direct first/single vegetation or recognized non-canopy return; no vegetation void filling",
+        "coverage_policy": "Direct first/single vegetation or recognized non-canopy return; class 0 is non-canopy only when explicitly declared as model-classified background; no vegetation void filling",
         "outputs": paths,
     })
     common.metadata(paths["chm"], "Metre CHM with direct-return support. NoData means unknown, not zero canopy.")

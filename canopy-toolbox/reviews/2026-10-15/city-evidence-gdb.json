@@ -1,0 +1,7 @@
+{
+  "feature_class": "H:\\lidar\\2023-salt-lake-valley\\runs\\treetop-evidence-20261015\\treetop-evidence.gdb\\treetop_evidence",
+  "features": 607972,
+  "evidence_status": "UNVALIDATED_REVIEW_EVIDENCE",
+  "rules_version": "treetop-evidence/2",
+  "warning": "ESTIMATE WARNING: review evidence for UNVERIFIED lidar treetop detections (city count, 8 October 2026). Flags are fixed rule outputs, not labels, not errors and not a corrected count."
+}

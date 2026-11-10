@@ -1,0 +1,33 @@
+{
+ "source": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query",
+ "item": "https://www.arcgis.com/home/item.html?id=0ec8512ad21e4bb987d7e848d14e7e24",
+ "licence": "CC BY 4.0",
+ "attribution": "USA Structures: FEMA Geospatial Response Office and Oak Ridge National Laboratory, via Esri (CC BY 4.0)",
+ "fetched": "2026-10-23T18:29:17",
+ "bbox_wgs84": [
+  -111.921104,
+  40.6590836,
+  -111.7768114,
+  40.7143706
+ ],
+ "in_bbox": 42892,
+ "touching_city": 20615,
+ "transformation": "WGS_1984_(ITRF08)_To_NAD_1983_2011",
+ "image_dates": {
+  "2010-09-18": 19169,
+  "2019-08-18": 1050,
+  "2020-05-04": 396
+ },
+ "occupancy": {
+  "Residential": 18566,
+  "Commercial": 1263,
+  "Unclassified": 354,
+  "Industrial": 159,
+  "Assembly": 104,
+  "Government": 86,
+  "Education": 83
+ },
+ "outbuilding": {
+  "null": 20615
+ }
+}

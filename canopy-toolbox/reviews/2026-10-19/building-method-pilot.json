@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "source_id": 722062,
+      "cells": 70,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 724943,
+      "cells": 221,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 739801,
+      "cells": 272,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 728300,
+      "cells": 373,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 728501,
+      "cells": 415,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 723309,
+      "cells": 563,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 741501,
+      "cells": 657,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 738909,
+      "cells": 746,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 738558,
+      "cells": 807,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 734276,
+      "cells": 926,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 739490,
+      "cells": 987,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    },
+    {
+      "source_id": 725111,
+      "cells": 4590,
+      "arcgis_exact_match": true,
+      "boundary_fallback": false
+    }
+  ]
+}

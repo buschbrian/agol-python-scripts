@@ -1,0 +1,600 @@
+{
+ "layers": [
+  {
+   "id": 0,
+   "layerDefinition": {
+    "drawingInfo": {
+     "renderer": {
+      "type": "classBreaks",
+      "field": "HEIGHT_P50_M",
+      "classificationMethod": "esriClassifyManual",
+      "minValue": 0,
+      "classBreakInfos": [
+       {
+        "classMaxValue": 4,
+        "label": "Up to 13.1 ft",
+        "symbol": {
+         "type": "MeshSymbol3D",
+         "symbolLayers": [
+          {
+           "type": "Fill",
+           "material": {
+            "color": [
+             247,
+             246,
+             242
+            ],
+            "colorMixMode": "replace"
+           },
+           "edges": {
+            "type": "solid",
+            "color": [
+             70,
+             70,
+             70
+            ],
+            "size": 0.5,
+            "transparency": 35
+           }
+          }
+         ]
+        }
+       },
+       {
+        "classMaxValue": 6,
+        "label": "13.1 to 19.7 ft",
+        "symbol": {
+         "type": "MeshSymbol3D",
+         "symbolLayers": [
+          {
+           "type": "Fill",
+           "material": {
+            "color": [
+             233,
+             231,
+             226
+            ],
+            "colorMixMode": "replace"
+           },
+           "edges": {
+            "type": "solid",
+            "color": [
+             70,
+             70,
+             70
+            ],
+            "size": 0.5,
+            "transparency": 35
+           }
+          }
+         ]
+        }
+       },
+       {
+        "classMaxValue": 9,
+        "label": "19.7 to 29.5 ft",
+        "symbol": {
+         "type": "MeshSymbol3D",
+         "symbolLayers": [
+          {
+           "type": "Fill",
+           "material": {
+            "color": [
+             216,
+             214,
+             209
+            ],
+            "colorMixMode": "replace"
+           },
+           "edges": {
+            "type": "solid",
+            "color": [
+             70,
+             70,
+             70
+            ],
+            "size": 0.5,
+            "transparency": 35
+           }
+          }
+         ]
+        }
+       },
+       {
+        "classMaxValue": 12,
+        "label": "29.5 to 39.4 ft",
+        "symbol": {
+         "type": "MeshSymbol3D",
+         "symbolLayers": [
+          {
+           "type": "Fill",
+           "material": {
+            "color": [
+             196,
+             194,
+             190
+            ],
+            "colorMixMode": "replace"
+           },
+           "edges": {
+            "type": "solid",
+            "color": [
+             70,
+             70,
+             70
+            ],
+            "size": 0.5,
+            "transparency": 35
+           }
+          }
+         ]
+        }
+       },
+       {
+        "classMaxValue": 60,
+        "label": "Over 39.4 ft",
+        "symbol": {
+         "type": "MeshSymbol3D",
+         "symbolLayers": [
+          {
+           "type": "Fill",
+           "material": {
+            "color": [
+             172,
+             170,
+             167
+            ],
+            "colorMixMode": "replace"
+           },
+           "edges": {
+            "type": "solid",
+            "color": [
+             70,
+             70,
+             70
+            ],
+            "size": 0.5,
+            "transparency": 35
+           }
+          }
+         ]
+        }
+       }
+      ],
+      "defaultLabel": "No lidar height (no roof points)",
+      "defaultSymbol": {
+       "type": "MeshSymbol3D",
+       "symbolLayers": [
+        {
+         "type": "Fill",
+         "material": {
+          "color": [
+           232,
+           220,
+           200
+          ],
+          "colorMixMode": "replace"
+         },
+         "edges": {
+          "type": "solid",
+          "color": [
+           70,
+           70,
+           70
+          ],
+          "size": 0.5,
+          "transparency": 35
+         }
+        }
+       ]
+      },
+      "legendOptions": {
+       "title": "Median roof height above ground (feet)"
+      }
+     }
+    }
+   },
+   "popupInfo": {
+    "title": "Building {FP_ID}",
+    "expressionInfos": [
+     {
+      "name": "h50",
+      "title": "Median roof height",
+      "expression": "var m = $feature.HEIGHT_P50_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+      "returnType": "string"
+     },
+     {
+      "name": "h95",
+      "title": "95th percentile roof height",
+      "expression": "var m = $feature.HEIGHT_P95_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+      "returnType": "string"
+     },
+     {
+      "name": "support",
+      "title": "Roof support",
+      "expression": "var c = $feature.ROOF_COV_PCT;\nif (IsEmpty(c)) { return 'none'; }\nreturn Text(c, '#,##0') + '% of the footprint\\'s roughly 1.6 ft grid cells have lidar roof points';",
+      "returnType": "string"
+     },
+     {
+      "name": "flags",
+      "title": "Notes",
+      "expression": "var words = Dictionary(\"LOW_ROOF_SUPPORT\", \"Lidar roof points cover less than 80% of the footprint, so the height is less certain.\", \"NO_ROOF_SUPPORT\", \"No lidar roof points fall inside the footprint, so no height was estimated.\", \"NO_CELL_CENTERS\", \"The footprint is too small to hold a 0.5 m cell centre, so no height was estimated.\", \"NEGATIVE_HEIGHT\", \"Some roof cells sit below the ground surface; the footprint may not match the building.\", \"PARTIAL_AOI\", \"Part of the footprint lies outside the lidar coverage.\", \"GEOMETRY_REPAIRED\", \"The county footprint's shape was repaired before measuring.\");\nvar parts = Split(DefaultValue($feature.HEIGHT_STATUS, ''), ';');\nvar out = [];\nfor (var i in parts) { if (HasKey(words, parts[i])) { Push(out, words[parts[i]]); } }\nreturn IIf(Count(out) == 0, 'None beyond the estimate warning.', Concatenate(out, ' '));",
+      "returnType": "string"
+     },
+     {
+      "name": "area",
+      "title": "Footprint",
+      "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\nreturn Text(a / (0.3048 * 0.3048), '#,##0') + ' sq ft';",
+      "returnType": "string"
+     },
+     {
+      "name": "roof_area_m2_feet",
+      "title": "Modelled roof surface (sq ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.ROOF_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+     },
+     {
+      "name": "ridge_ht_m_feet",
+      "title": "Modelled ridge height above ground (ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.RIDGE_HT_M;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048);"
+     },
+     {
+      "name": "eave_ht_m_feet",
+      "title": "Modelled eave height above ground (ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.EAVE_HT_M;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048);"
+     },
+     {
+      "name": "flat_area_m2_feet",
+      "title": "Roof surface under 5 degrees (sq ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.FLAT_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+     },
+     {
+      "name": "south_area_m2_feet",
+      "title": "South-facing roof surface (sq ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.SOUTH_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+     },
+     {
+      "name": "east_area_m2_feet",
+      "title": "East-facing roof surface (sq ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.EAST_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+     },
+     {
+      "name": "west_area_m2_feet",
+      "title": "West-facing roof surface (sq ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.WEST_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+     },
+     {
+      "name": "north_area_m2_feet",
+      "title": "North-facing roof surface (sq ft)",
+      "returnType": "number",
+      "expression": "var v = $feature.NORTH_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+     }
+    ],
+    "popupElements": [
+     {
+      "type": "text",
+      "text": "<p><b>Roof model:</b> {LEVEL}</p>"
+     },
+     {
+      "type": "text",
+      "text": "<p><b>Roof height above the ground</b><br />Median: {expression/h50}<br />95th percentile: {expression/h95}</p><p><b>Roof support:</b> {expression/support}.</p><p><b>Notes:</b> {expression/flags}</p><p>Footprint {expression/area}. Parcel {PARCEL_ID}. County building ID {SOURCE_ID}.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+     },
+     {
+      "type": "text",
+      "text": "<p>Roof measurements below describe retained roofer models. They are empty for Esri fallback buildings. Facing areas cover slopes from 5 to 70 degrees; they do not estimate solar production.</p>"
+     },
+     {
+      "type": "fields",
+      "fieldInfos": [
+       {
+        "fieldName": "FALLBACK_REASON",
+        "label": "Reason for simpler roof",
+        "visible": true,
+        "isEditable": false
+       },
+       {
+        "fieldName": "expression/roof_area_m2_feet",
+        "label": "Modelled roof surface (sq ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_PLANES",
+        "label": "Roof planes of at least 10.8 sq ft",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_SLOPE_MEAN",
+        "label": "Area-weighted roof slope (degrees)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_SLOPE_MAIN",
+        "label": "Largest plane slope (degrees)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "ROOF_AZIMUTH_MAIN",
+        "label": "Largest plane downslope bearing (degrees)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "expression/ridge_ht_m_feet",
+        "label": "Modelled ridge height above ground (ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "expression/eave_ht_m_feet",
+        "label": "Modelled eave height above ground (ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 1,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "expression/flat_area_m2_feet",
+        "label": "Roof surface under 5 degrees (sq ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "expression/south_area_m2_feet",
+        "label": "South-facing roof surface (sq ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "expression/east_area_m2_feet",
+        "label": "East-facing roof surface (sq ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "expression/west_area_m2_feet",
+        "label": "West-facing roof surface (sq ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       },
+       {
+        "fieldName": "expression/north_area_m2_feet",
+        "label": "North-facing roof surface (sq ft)",
+        "visible": true,
+        "isEditable": false,
+        "format": {
+         "places": 0,
+         "digitSeparator": true
+        }
+       }
+      ]
+     }
+    ],
+    "fieldInfos": [
+     {
+      "fieldName": "PARCEL_ID",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "SOURCE_ID",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/h50",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/h95",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/support",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/flags",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/area",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "FP_ID",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "LEVEL",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "FALLBACK_REASON",
+      "label": "Reason for simpler roof",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/roof_area_m2_feet",
+      "label": "Modelled roof surface (sq ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_PLANES",
+      "label": "Roof planes of at least 10.8 sq ft",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_SLOPE_MEAN",
+      "label": "Area-weighted roof slope (degrees)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_SLOPE_MAIN",
+      "label": "Largest plane slope (degrees)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ROOF_AZIMUTH_MAIN",
+      "label": "Largest plane downslope bearing (degrees)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/ridge_ht_m_feet",
+      "label": "Modelled ridge height above ground (ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/eave_ht_m_feet",
+      "label": "Modelled eave height above ground (ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/flat_area_m2_feet",
+      "label": "Roof surface under 5 degrees (sq ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/south_area_m2_feet",
+      "label": "South-facing roof surface (sq ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/east_area_m2_feet",
+      "label": "East-facing roof surface (sq ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/west_area_m2_feet",
+      "label": "West-facing roof surface (sq ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/north_area_m2_feet",
+      "label": "North-facing roof surface (sq ft)",
+      "visible": true,
+      "isEditable": false,
+      "format": {
+       "places": 0,
+       "digitSeparator": true
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

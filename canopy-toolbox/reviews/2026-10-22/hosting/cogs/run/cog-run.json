@@ -1,0 +1,1111 @@
+{
+ "schema": "cog-run/1",
+ "status": "PRELIMINARY_UNVALIDATED planning estimates",
+ "warning": "Unvalidated LiDAR planning estimates, not surveyed or field-verified data. City of Millcreek, October 2026.",
+ "gdal": "3.12.2e",
+ "output": "H:\\lidar\\2023-salt-lake-valley\\runs\\cog-20261022",
+ "built": [
+  "2026-10-22T21:56:03",
+  "2026-10-22T22:02:03"
+ ],
+ "verified": [
+  "2026-10-22T22:19:40",
+  "2026-10-22T22:23:49"
+ ],
+ "all_ok": true,
+ "total_cog_bytes": 4015014569,
+ "total_source_bytes": 8811885808,
+ "products": {
+  "chm_m": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 140426518,
+   "cog_bytes": 240608547,
+   "full_resolution_bytes": 141226809,
+   "overview_bytes": 99354134,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 4.99,
+   "cog_vs_source": 1.713,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "d0ddd236c487241484db785a63aa878a7d81fc24c3d9f8d42ae045328abbb412",
+   "valid_cells": 133058292,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "terrain_m": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 1208257016,
+   "cog_bytes": 260863855,
+   "full_resolution_bytes": 188826319,
+   "overview_bytes": 72009730,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 4.6,
+   "cog_vs_source": 0.216,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "051d7d3dc8e9118a55f61078e98822a3efa4a71b432c6ed9a6e3404e12735335",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "roof_elevation_m": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 41737914,
+   "cog_bytes": 78875481,
+   "full_resolution_bytes": 50097542,
+   "overview_bytes": 28750185,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 15.22,
+   "cog_vs_source": 1.89,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "6129db962ff7c9b7af7526078ef5dcc76aa3e0a3d0359dd74eb1b3d28da6e013",
+   "valid_cells": 22249847,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "roof_height_m": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 63765191,
+   "cog_bytes": 98365013,
+   "full_resolution_bytes": 58533307,
+   "overview_bytes": 39803954,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 12.2,
+   "cog_vs_source": 1.543,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "c81dea31e14976d03216945ce47698abd337f6139f0ff2a049f93a15e95a1901",
+   "valid_cells": 22249847,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "observed": {
+   "dtype": "Byte",
+   "nodata": 3.0,
+   "overview_resampling": "NEAREST",
+   "predictor": "NO",
+   "source_bytes": 1731067,
+   "cog_bytes": 2368716,
+   "full_resolution_bytes": 1657904,
+   "overview_bytes": 683378,
+   "uncompressed_bytes": 300063747,
+   "ratio_vs_uncompressed": 126.68,
+   "cog_vs_source": 1.368,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "634a3cf382d7d286cbff25f67615cf7a3e1c3aa039510e32d0dd96d3a494ed86",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "vegetation_support": {
+   "dtype": "Byte",
+   "nodata": 3.0,
+   "overview_resampling": "NEAREST",
+   "predictor": "NO",
+   "source_bytes": 8496071,
+   "cog_bytes": 12925620,
+   "full_resolution_bytes": 8635712,
+   "overview_bytes": 4262468,
+   "uncompressed_bytes": 300063747,
+   "ratio_vs_uncompressed": 23.21,
+   "cog_vs_source": 1.521,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "69a4029724d9f4d28870d02d08ba01ebc979812c765f11cad4a8194f27e5ef0e",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "building_occlusion": {
+   "dtype": "Byte",
+   "nodata": 3.0,
+   "overview_resampling": "NEAREST",
+   "predictor": "NO",
+   "source_bytes": 1107999,
+   "cog_bytes": 1552692,
+   "full_resolution_bytes": 1058801,
+   "overview_bytes": 466447,
+   "uncompressed_bytes": 300063747,
+   "ratio_vs_uncompressed": 193.25,
+   "cog_vs_source": 1.401,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "9921f0128ac79ecdf60dd1288f790cde7bcd87c59a9826b36862645ceb4fd81b",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "building_sources": {
+   "dtype": "Byte",
+   "nodata": 255.0,
+   "overview_resampling": "NEAREST",
+   "predictor": "NO",
+   "source_bytes": 5093988,
+   "cog_bytes": 8087077,
+   "full_resolution_bytes": 5209672,
+   "overview_bytes": 2849807,
+   "uncompressed_bytes": 300063747,
+   "ratio_vs_uncompressed": 37.1,
+   "cog_vs_source": 1.588,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "2630c76c59bad876e47c41eefb15bb86d74caab08b99d5acf87cd48ca1e96bb6",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "slope_degrees": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 1208555616,
+   "cog_bytes": 549658276,
+   "full_resolution_bytes": 406708108,
+   "overview_bytes": 142921634,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 2.18,
+   "cog_vs_source": 0.455,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "50357492234b5731d20b3e116866e84f577a1f2092d66996c290fb3c4ba43a00",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "slope_percent": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 1208555614,
+   "cog_bytes": 550143658,
+   "full_resolution_bytes": 407196186,
+   "overview_bytes": 142918938,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 2.18,
+   "cog_vs_source": 0.455,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "1570f27a6d2de19e72641d6b9343413984c16ffb4f0282c0868903c2c63e4552",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "aspect_degrees": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "NEAREST",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 1208555586,
+   "cog_bytes": 505835199,
+   "full_resolution_bytes": 370957161,
+   "overview_bytes": 134849518,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 2.37,
+   "cog_vs_source": 0.419,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "982cdd7147e3fe47fa98c14e0748bcb4475a3bdbf8a88b81a8883032b8021825",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "profile_curvature": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 1208555620,
+   "cog_bytes": 615298511,
+   "full_resolution_bytes": 455850945,
+   "overview_bytes": 159419038,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 1.95,
+   "cog_vs_source": 0.509,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "3a839ad6edf1324072ab645cf8cd9d1c5be4b0e6754e54671acef81522429ef3",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "tangential_curvature": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 1208555620,
+   "cog_bytes": 616853946,
+   "full_resolution_bytes": 456961161,
+   "overview_bytes": 159864253,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 1.95,
+   "cog_vs_source": 0.51,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "8c5ec69e252de2d3ee464c0d318dcff56132196a2ef95254825c0f07e3ab8ba7",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "terrain_position_m": {
+   "dtype": "Float32",
+   "nodata": -3.4028234663852886e+38,
+   "overview_resampling": "AVERAGE",
+   "predictor": "FLOATING_POINT",
+   "source_bytes": 1208555616,
+   "cog_bytes": 385288267,
+   "full_resolution_bytes": 231262617,
+   "overview_bytes": 153997102,
+   "uncompressed_bytes": 1200254988,
+   "ratio_vs_uncompressed": 3.12,
+   "cog_vs_source": 0.319,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "dd1643b5d86f40868e8e38de28504e59d3c11a563dd4be6c37c64e82265f1147",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "hillshade": {
+   "dtype": "Byte",
+   "nodata": 255.0,
+   "overview_resampling": "AVERAGE",
+   "predictor": "STANDARD",
+   "source_bytes": 85130644,
+   "cog_bytes": 87539819,
+   "full_resolution_bytes": 61963511,
+   "overview_bytes": 25527938,
+   "uncompressed_bytes": 300063747,
+   "ratio_vs_uncompressed": 3.43,
+   "cog_vs_source": 1.028,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "c82681f1b82b75e0b63f2ed27a4060fd54bf5d8c48e3f0f0b37615a23f80f225",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  },
+  "terrain_neighborhood_complete": {
+   "dtype": "Byte",
+   "nodata": 255.0,
+   "overview_resampling": "NEAREST",
+   "predictor": "NO",
+   "source_bytes": 4805728,
+   "cog_bytes": 749892,
+   "full_resolution_bytes": 484973,
+   "overview_bytes": 235913,
+   "uncompressed_bytes": 300063747,
+   "ratio_vs_uncompressed": 400.14,
+   "cog_vs_source": 0.156,
+   "overviews": 6,
+   "tiff": "classic",
+   "cog_sha256": "195717a1b46f7538815702be4ca35fa4805f5829dc89e165cc14d373135aa4db",
+   "valid_cells": 133813488,
+   "checks": {
+    "cog_layout_errors": 0,
+    "cog_layout_warnings": 0,
+    "every_cell_equal": true,
+    "same_as_source": true,
+    "epsg_6341_key": true,
+    "every_ifd_deflate_with_predictor": true,
+    "overview_level_1": true,
+    "ok": true
+   }
+  }
+ },
+ "compression_trial": {
+  "max_z_error": 0.01,
+  "rasters": {
+   "slope_percent": {
+    "deflate-pred3": {
+     "bytes": 550143658,
+     "full_resolution_bytes": 407196186,
+     "overview_bytes": 142918938,
+     "ratio_vs_uncompressed_float32": 2.18,
+     "write_s": null,
+     "full_read_s": 4.28,
+     "ms_per_tile": 3.47,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       3
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       3
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       3
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       3
+      ]
+     ]
+    },
+    "deflate-nopred": {
+     "bytes": 637741614,
+     "full_resolution_bytes": 477663359,
+     "overview_bytes": 160049721,
+     "ratio_vs_uncompressed_float32": 1.88,
+     "write_s": 12.8,
+     "full_read_s": 3.91,
+     "ms_per_tile": 2.52,
+     "cells_equal_master": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       1
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       1
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       1
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       1
+      ]
+     ]
+    },
+    "zstd-pred3": {
+     "bytes": 542729877,
+     "full_resolution_bytes": 401724556,
+     "overview_bytes": 140976787,
+     "ratio_vs_uncompressed_float32": 2.21,
+     "write_s": 14.6,
+     "full_read_s": 1.85,
+     "ms_per_tile": 1.36,
+     "cells_equal_master": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "ZSTD",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "ZSTD",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "ZSTD",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "ZSTD",
+       3
+      ],
+      [
+       1531,
+       765,
+       "ZSTD",
+       3
+      ],
+      [
+       765,
+       382,
+       "ZSTD",
+       3
+      ],
+      [
+       382,
+       191,
+       "ZSTD",
+       3
+      ]
+     ]
+    },
+    "lerc-0.01": {
+     "bytes": 219208243,
+     "full_resolution_bytes": 158633455,
+     "overview_bytes": 60546134,
+     "ratio_vs_uncompressed_float32": 5.48,
+     "write_s": 8.9,
+     "full_read_s": 1.86,
+     "ms_per_tile": 1.22,
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "LERC",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "LERC",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "LERC",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "LERC",
+       1
+      ],
+      [
+       1531,
+       765,
+       "LERC",
+       1
+      ],
+      [
+       765,
+       382,
+       "LERC",
+       1
+      ],
+      [
+       382,
+       191,
+       "LERC",
+       1
+      ]
+     ]
+    }
+   },
+   "terrain_m": {
+    "deflate-pred3": {
+     "bytes": 260863855,
+     "full_resolution_bytes": 188826319,
+     "overview_bytes": 72009730,
+     "ratio_vs_uncompressed_float32": 4.6,
+     "write_s": null,
+     "full_read_s": 2.94,
+     "ms_per_tile": 1.98,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       3
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       3
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       3
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       3
+      ]
+     ]
+    },
+    "deflate-nopred": {
+     "bytes": 473782799,
+     "full_resolution_bytes": 347462852,
+     "overview_bytes": 126292141,
+     "ratio_vs_uncompressed_float32": 2.53,
+     "write_s": 12.5,
+     "full_read_s": 3.31,
+     "ms_per_tile": 2.32,
+     "cells_equal_master": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       1
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       1
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       1
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       1
+      ]
+     ]
+    },
+    "zstd-pred3": {
+     "bytes": 249768995,
+     "full_resolution_bytes": 180671094,
+     "overview_bytes": 69070095,
+     "ratio_vs_uncompressed_float32": 4.81,
+     "write_s": 12.5,
+     "full_read_s": 1.88,
+     "ms_per_tile": 1.28,
+     "cells_equal_master": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "ZSTD",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "ZSTD",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "ZSTD",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "ZSTD",
+       3
+      ],
+      [
+       1531,
+       765,
+       "ZSTD",
+       3
+      ],
+      [
+       765,
+       382,
+       "ZSTD",
+       3
+      ],
+      [
+       382,
+       191,
+       "ZSTD",
+       3
+      ]
+     ]
+    },
+    "lerc-0.01": {
+     "bytes": 134006725,
+     "full_resolution_bytes": 93453626,
+     "overview_bytes": 40525173,
+     "ratio_vs_uncompressed_float32": 8.96,
+     "write_s": 10.4,
+     "full_read_s": 1.79,
+     "ms_per_tile": 1.16,
+     "max_abs_error": 0.010009765625,
+     "nodata_cells_unchanged": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "LERC",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "LERC",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "LERC",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "LERC",
+       1
+      ],
+      [
+       1531,
+       765,
+       "LERC",
+       1
+      ],
+      [
+       765,
+       382,
+       "LERC",
+       1
+      ],
+      [
+       382,
+       191,
+       "LERC",
+       1
+      ]
+     ]
+    }
+   },
+   "chm_m": {
+    "deflate-pred3": {
+     "bytes": 240608547,
+     "full_resolution_bytes": 141226809,
+     "overview_bytes": 99354134,
+     "ratio_vs_uncompressed_float32": 4.99,
+     "write_s": null,
+     "full_read_s": 2.68,
+     "ms_per_tile": 1.8,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       3
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       3
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       3
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       3
+      ]
+     ]
+    },
+    "deflate-nopred": {
+     "bytes": 229897699,
+     "full_resolution_bytes": 142260231,
+     "overview_bytes": 87609864,
+     "ratio_vs_uncompressed_float32": 5.22,
+     "write_s": 9.0,
+     "full_read_s": 2.32,
+     "ms_per_tile": 1.51,
+     "cells_equal_master": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "DEFLATE",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "DEFLATE",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "DEFLATE",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "DEFLATE",
+       1
+      ],
+      [
+       1531,
+       765,
+       "DEFLATE",
+       1
+      ],
+      [
+       765,
+       382,
+       "DEFLATE",
+       1
+      ],
+      [
+       382,
+       191,
+       "DEFLATE",
+       1
+      ]
+     ]
+    },
+    "zstd-pred3": {
+     "bytes": 231195940,
+     "full_resolution_bytes": 134803292,
+     "overview_bytes": 96365044,
+     "ratio_vs_uncompressed_float32": 5.19,
+     "write_s": 11.0,
+     "full_read_s": 1.73,
+     "ms_per_tile": 1.22,
+     "cells_equal_master": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "ZSTD",
+       3
+      ],
+      [
+       12250,
+       6123,
+       "ZSTD",
+       3
+      ],
+      [
+       6125,
+       3061,
+       "ZSTD",
+       3
+      ],
+      [
+       3062,
+       1530,
+       "ZSTD",
+       3
+      ],
+      [
+       1531,
+       765,
+       "ZSTD",
+       3
+      ],
+      [
+       765,
+       382,
+       "ZSTD",
+       3
+      ],
+      [
+       382,
+       191,
+       "ZSTD",
+       3
+      ]
+     ]
+    },
+    "lerc-0.01": {
+     "bytes": 185619158,
+     "full_resolution_bytes": 141904521,
+     "overview_bytes": 43686913,
+     "ratio_vs_uncompressed_float32": 6.47,
+     "write_s": 7.6,
+     "full_read_s": 1.69,
+     "ms_per_tile": 1.1,
+     "max_abs_error": 0.010000228881835938,
+     "nodata_cells_unchanged": true,
+     "ifd_codecs": [
+      [
+       24501,
+       12247,
+       "LERC",
+       1
+      ],
+      [
+       12250,
+       6123,
+       "LERC",
+       1
+      ],
+      [
+       6125,
+       3061,
+       "LERC",
+       1
+      ],
+      [
+       3062,
+       1530,
+       "LERC",
+       1
+      ],
+      [
+       1531,
+       765,
+       "LERC",
+       1
+      ],
+      [
+       765,
+       382,
+       "LERC",
+       1
+      ],
+      [
+       382,
+       191,
+       "LERC",
+       1
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,34 @@
+{
+  "purpose": "Read-only record-integrity self-check of existing untouched copies; not model inference",
+  "model_inference_verified": false,
+  "source": {
+    "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+    "bytes": 809475416,
+    "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+  },
+  "copies": {
+    "building": {
+      "status": "UNCHANGED_COPY_SELF_CHECK_PASSED",
+      "points": 26982464,
+      "seconds": 2.619,
+      "fingerprint": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\12TVL2804\\building\\12TVL2804.las",
+        "bytes": 809475416,
+        "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+      },
+      "unchanged": true
+    },
+    "tree": {
+      "status": "UNCHANGED_COPY_SELF_CHECK_PASSED",
+      "points": 26982464,
+      "seconds": 2.098,
+      "fingerprint": {
+        "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\12TVL2804\\tree\\12TVL2804.las",
+        "bytes": 809475416,
+        "sha256": "1489624bf757b0d060c825dc94fdc0657a333babf9a3eada4045473279007e7a"
+      },
+      "unchanged": true
+    }
+  },
+  "source_unchanged": true
+}

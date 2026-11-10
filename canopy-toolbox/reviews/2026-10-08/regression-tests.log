@@ -1,0 +1,30 @@
+Drew 5 of 80 candidates (seed 20260930); class mix {'BUILDING_ROOF': 5}
+Wrote C:\Users\bbusch\AppData\Local\Temp\tmp7z6w9xrk\audit. Label those units WITHOUT opening t.csv.
+[1/2] B: ok
+[2/2] A: ok
+[1/2] A: ok
+[2/2] B: ok
+[1/1] A: points-mismatch - header says 1,234, manifest 1
+[1/1] A: ok
+[1/1] A: ok
+[1/2] A: ok
+[2/2] B: ok
+....sssssssssssssssss.............................................sssssss....ssssssssssssssssss................................................................................sssssss.....s..............................sssss...................s....s..sss.......s.................................................ssss........s.......s.......................................................sssssssssssssss.....................ssssss..................
+----------------------------------------------------------------------
+Ran 446 tests in 12.054s
+
+OK (skipped=88)
+sketch      : sketch (1 features, test)
+target SR   : test
+transform   : none needed
+rules       : 1
+rules CSV   : C:\work\attribute_rules.csv
+mapped      : none - all attributes land null
+sketch      : sketch (1 features, test)
+target SR   : test
+transform   : none needed
+rules       : 1
+rules CSV   : C:\work\attribute_rules.csv
+mapped      : none - all attributes land null
+
+DRY_RUN - nothing written. Review this report, then set DRY_RUN = False.

@@ -1,0 +1,132 @@
+{
+ "root": "D:\\lidar\\2023-salt-lake-valley\\runs\\roof-consensus-20261021",
+ "rasters": {
+  "native_vs_oct19": {
+   "both": 23238732,
+   "only_native": 0,
+   "only_oct19": 0,
+   "differ_over_1mm": 0,
+   "max_abs_difference_m": 0.0,
+   "native_reproduces_oct19": true
+  },
+  "city_cells_by_sources": {
+   "none": 109200633,
+   "native only": 1365974,
+   "fractal only": 654398,
+   "native+fractal": 694766,
+   "esri only": 301398,
+   "native+esri": 1153128,
+   "fractal+esri": 418327,
+   "all three": 20024864
+  }
+ },
+ "labels": {
+  "tile": "12TVL2804",
+  "snapshots": [
+   "packet-20260929-20261020",
+   "packet-20261020-refined-20261021",
+   "packet-20261020-rare-20261021-1055"
+  ],
+  "parts": 1217,
+  "parts_without_points": 0,
+  "by_source": {
+   "native": {
+    "roof_parts": 444,
+    "roof_called_roof": 396,
+    "other_parts": 773,
+    "other_called_roof": 108,
+    "other_called_roof_by_label": {
+     "VEHICLE": 12,
+     "OTHER_STRUCTURE": 20,
+     "TREE": 29,
+     "SHRUB_LOW_VEG": 11,
+     "GROUND": 35,
+     "WIRE": 1
+    },
+    "roof_recall": 0.8919,
+    "false_roof_rate": 0.1397
+   },
+   "fractal": {
+    "roof_parts": 444,
+    "roof_called_roof": 390,
+    "other_parts": 773,
+    "other_called_roof": 33,
+    "other_called_roof_by_label": {
+     "OTHER_STRUCTURE": 19,
+     "VEHICLE": 6,
+     "GROUND": 3,
+     "SHRUB_LOW_VEG": 1,
+     "TREE": 3,
+     "WIRE": 1
+    },
+    "roof_recall": 0.8784,
+    "false_roof_rate": 0.0427
+   },
+   "esri": {
+    "roof_parts": 444,
+    "roof_called_roof": 363,
+    "other_parts": 773,
+    "other_called_roof": 23,
+    "other_called_roof_by_label": {
+     "OTHER_STRUCTURE": 12,
+     "SHRUB_LOW_VEG": 1,
+     "GROUND": 2,
+     "TREE": 7,
+     "WIRE": 1
+    },
+    "roof_recall": 0.8176,
+    "false_roof_rate": 0.0298
+   },
+   "consensus": {
+    "roof_parts": 444,
+    "roof_called_roof": 412,
+    "other_parts": 773,
+    "other_called_roof": 22,
+    "other_called_roof_by_label": {
+     "OTHER_STRUCTURE": 13,
+     "VEHICLE": 3,
+     "GROUND": 2,
+     "TREE": 2,
+     "WIRE": 1,
+     "SHRUB_LOW_VEG": 1
+    },
+    "roof_recall": 0.9279,
+    "false_roof_rate": 0.0285
+   }
+  }
+ },
+ "footprints": {
+  "footprint_layer": "D:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261019\\footprints\\footprints.gdb\\county_footprints",
+  "footprint_cells_in_city": 19080803,
+  "by_source": {
+   "native": {
+    "roof_cells": 23238732,
+    "inside_footprint": 17952792,
+    "outside_footprint": 5285940,
+    "share_outside": 0.2275,
+    "footprint_cells_covered": 0.9409
+   },
+   "fractal": {
+    "roof_cells": 21792355,
+    "inside_footprint": 16849324,
+    "outside_footprint": 4943031,
+    "share_outside": 0.2268,
+    "footprint_cells_covered": 0.8831
+   },
+   "esri": {
+    "roof_cells": 21897717,
+    "inside_footprint": 17395658,
+    "outside_footprint": 4502059,
+    "share_outside": 0.2056,
+    "footprint_cells_covered": 0.9117
+   },
+   "consensus": {
+    "roof_cells": 22249847,
+    "inside_footprint": 17682038,
+    "outside_footprint": 4567809,
+    "share_outside": 0.2053,
+    "footprint_cells_covered": 0.9267
+   }
+  }
+ }
+}

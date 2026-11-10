@@ -1,0 +1,23 @@
+{
+  "12TVL2804": {
+    "county_footprints": 726,
+    "positive_height": 78,
+    "null_height": 648,
+    "zero_height": 0,
+    "source_value_mismatches": []
+  },
+  "12TVL3302": {
+    "county_footprints": 276,
+    "positive_height": 0,
+    "null_height": 276,
+    "zero_height": 0,
+    "source_value_mismatches": []
+  },
+  "12TVL2203": {
+    "county_footprints": 106,
+    "positive_height": 0,
+    "null_height": 106,
+    "zero_height": 0,
+    "source_value_mismatches": []
+  }
+}

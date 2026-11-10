@@ -1,0 +1,37 @@
+{
+ "errors": [],
+ "configs": [
+  {
+   "cog": "terrain_m",
+   "scale": 564,
+   "place": "interior",
+   "interp": "nearest",
+   "zoom": 19,
+   "resolution_m": 0.14929107082380833,
+   "check_spacing_m": 0.6593695871033053,
+   "settled_ms": 634,
+   "band_step": 0.2594807942708333,
+   "interior": 150,
+   "coloured_sampled": 208,
+   "wrong_any_sampled": 0,
+   "wrong_interior": [
+    0,
+    0,
+    0
+   ],
+   "shots_ms": [
+    0,
+    3000,
+    15000
+   ],
+   "wrong_where": [],
+   "warm": "place"
+  }
+ ],
+ "sdk": {
+  "version": "5.1",
+  "fullVersion": "5.1.27",
+  "buildDate": "20261007"
+ },
+ "ready": true
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public Scene Check</title>
+  <!-- Signed-out check of the public buildings scene: loads the web scene item anonymously, opens the Chambers Ave
+       building's pop-up and records its text. Same SDK line as viewer.js. -->
+  <script type="module" src="https://js.arcgis.com/5.1/"></script>
+  <style>html, body, #view { height: 100%; margin: 0; } body { background: #fff; }</style>
+</head>
+<body>
+  <div id="view"></div>
+  <script type="module">
+    const [WebScene, SceneView, Point] = await $arcgis.import([
+      "@arcgis/core/WebScene.js", "@arcgis/core/views/SceneView.js", "@arcgis/core/geometry/Point.js"]);
+    const state = (window.state = { errors: [] });
+    window.addEventListener("unhandledrejection", (e) => state.errors.push(String(e.reason?.message || e.reason)));
+    const scene = new WebScene({ portalItem: { id: "5b5bdf4a63c9466fad5884039aa7357f" } });
+    const view = new SceneView({ container: "view", map: scene, popupEnabled: true });
+    await view.when();
+    const layer = scene.allLayers.find((l) => l.type === "scene");
+    state.layer = { title: layer.title, url: layer.url, itemId: layer.portalItem?.id };
+    await view.whenLayerView(layer);
+    state.legend = layer.renderer?.classBreakInfos?.map((c) => c.label);
+    state.go = async (lon, lat) => {
+      await view.goTo({ target: new Point({ longitude: lon, latitude: lat }), zoom: 19, tilt: 0 }, { animate: false });
+      for (let i = 0; i < 60 && view.updating; i++) await new Promise((r) => setTimeout(r, 500));
+      const hit = await view.hitTest(view.toScreen(new Point({ longitude: lon, latitude: lat, z: 1400 })));
+      const g = hit.results.find((r) => r.layer === layer)?.graphic;
+      if (!g) return { hit: false };
+      view.openPopup({ features: [g], location: g.geometry?.extent?.center });
+      for (let i = 0; i < 40 && !document.querySelector(".esri-features__content-element, arcgis-features"); i++) await new Promise((r) => setTimeout(r, 250));
+      await new Promise((r) => setTimeout(r, 2500));
+      const popup = view.popup;
+      return { hit: true, title: popup.title, text: (document.querySelector(".esri-popup, arcgis-popup")?.innerText || "").slice(0, 2000) };
+    };
+    state.ready = true;
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "row": "12TVL3302-prospective-holdout-inference-only-building",
+  "job": "building",
+  "label": "prospective holdout -- inference only, never training",
+  "boundary": null,
+  "started": "2026-09-29T23:01:01.1616196-06:00",
+  "files": [
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3302.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3302.las",
+      "source_md5_before": "36ac0563d3dd7e39d3f1b2abcac7d4f3",
+      "copy_md5": "36ac0563d3dd7e39d3f1b2abcac7d4f3",
+      "source_md5_after": "36ac0563d3dd7e39d3f1b2abcac7d4f3"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3201.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3201.las",
+      "source_md5_before": "8687aaf02262701144c776d5d68f495f",
+      "copy_md5": "8687aaf02262701144c776d5d68f495f",
+      "source_md5_after": "8687aaf02262701144c776d5d68f495f"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3202.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3202.las",
+      "source_md5_before": "6d1616cfcfba1fe1e021472b255d7c89",
+      "copy_md5": "6d1616cfcfba1fe1e021472b255d7c89",
+      "source_md5_after": "6d1616cfcfba1fe1e021472b255d7c89"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3203.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3203.las",
+      "source_md5_before": "c4fb596bfaf53dc095c4388e558387b3",
+      "copy_md5": "c4fb596bfaf53dc095c4388e558387b3",
+      "source_md5_after": "c4fb596bfaf53dc095c4388e558387b3"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3301.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3301.las",
+      "source_md5_before": "3286246728ae439207a420d1a4f7ed81",
+      "copy_md5": "3286246728ae439207a420d1a4f7ed81",
+      "source_md5_after": "3286246728ae439207a420d1a4f7ed81"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3303.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3303.las",
+      "source_md5_before": "864227f0f656bf15edd53f93e48c4be7",
+      "copy_md5": "864227f0f656bf15edd53f93e48c4be7",
+      "source_md5_after": "864227f0f656bf15edd53f93e48c4be7"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3402.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3402.las",
+      "source_md5_before": "3eed671cae4e6f82c6eae1d84ba48f53",
+      "copy_md5": "3eed671cae4e6f82c6eae1d84ba48f53",
+      "source_md5_after": "3eed671cae4e6f82c6eae1d84ba48f53"
+    },
+    {
+      "source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL3302\\prepared\\points\\12TVL3403.las",
+      "copy": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\deep-learning\\experiments-20260930\\12TVL3302-prospective-holdout-inference-only-building\\building\\12TVL3403.las",
+      "source_md5_before": "9754ea0a10841877f4caf44d2f1319d9",
+      "copy_md5": "9754ea0a10841877f4caf44d2f1319d9",
+      "source_md5_after": "9754ea0a10841877f4caf44d2f1319d9"
+    }
+  ],
+  "watch": [
+    {
+      "path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\12TVL2804\\prepared\\points\\12TVL2804.las",
+      "md5_before": "82787095336690d2909344206f9a80fc",
+      "md5_after": "82787095336690d2909344206f9a80fc"
+    }
+  ],
+  "status": "complete; integrity verified",
+  "dl_run_exit": 0,
+  "dl_run_wall_seconds": 1589.3,
+  "dl_compare_exit": 0,
+  "finished": "2026-09-29T23:27:50.3801893-06:00"
+}

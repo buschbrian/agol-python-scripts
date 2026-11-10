@@ -1,0 +1,25 @@
+{
+ "schema": "fill-trial/1",
+ "started": "2026-10-23T18:29:08",
+ "tile": null,
+ "halo_m": 50.0,
+ "footprints": 21562,
+ "footprint_cells": 18939348,
+ "filled_cells": 1257310,
+ "height_source": "H:\\lidar\\2023-salt-lake-valley\\runs\\massing-filled-20261023\\height_source_filled.tif",
+ "outputs": {
+  "lod12": {
+   "blocks": 21306,
+   "seconds": 125
+  },
+  "lod20": {
+   "blocks": 21561,
+   "seconds": 2902
+  }
+ },
+ "patched_lod12": {
+  "note": "citywide LOD1.2 pass returned 21,306 blocks; the 255 missing footprints were rebuilt by running the tool on them alone with the same height source and appended",
+  "appended": 255,
+  "blocks_after": 21561
+ }
+}

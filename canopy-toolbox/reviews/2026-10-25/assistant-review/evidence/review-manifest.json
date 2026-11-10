@@ -1,0 +1,103 @@
+{
+  "review_local_date": "2026-10-25",
+  "exported_utc": "2026-10-26T02:52:35.258917+00:00",
+  "reviewer": "CODEX_ASSISTANT",
+  "evidence": "blind point patches, orthogonal profiles, NAIP 2024 context",
+  "prediction_flags_read": false,
+  "human_answers_modified": false,
+  "training_imported": false,
+  "calibration_scored": false,
+  "reference_data_modified": false,
+  "total": 470,
+  "packet_counts": {
+    "rare": 4,
+    "refined": 109,
+    "original": 47,
+    "calibration": 310
+  },
+  "confidence_counts": {
+    "medium": 158,
+    "low": 55,
+    "high": 257
+  },
+  "label_counts": {
+    "POLE": 7,
+    "UNSURE": 55,
+    "VEHICLE": 6,
+    "BUILDING_ROOF": 157,
+    "TREE": 131,
+    "SHRUB_LOW_VEG": 8,
+    "WALL": 7,
+    "MIXED": 27,
+    "GROUND": 16,
+    "OTHER_STRUCTURE": 8,
+    "WIRE": 48
+  },
+  "human_review_queue": 222,
+  "protected": {
+    "rare": {
+      "answer_path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20261020-rare\\label-page\\answers\\label-page-answers.csv",
+      "answer_sha256": "254c536497caf95440eb80f4ef171d26f1c8a52a0528d1242328cdea591429f2",
+      "units_sha256": "acc9137a2687dfb32bbafeb233beb4a17b3f32da0c73c918ed42d42ffc93be1b",
+      "answered": 253,
+      "verified_unchanged": true
+    },
+    "refined": {
+      "answer_path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20261020-refined\\label-page\\answers\\label-page-answers.csv",
+      "answer_sha256": "2ae3e8c007346a66c97f1065a9931d6c95d2f85fa138af6e0fe49b3fe8be8f80",
+      "units_sha256": "b0d68a89787da5bd6958901b17bd53300e1a9e9b5f8fc0b8f1bf4b02f75b0882",
+      "answered": 116,
+      "verified_unchanged": true
+    },
+    "original": {
+      "answer_path": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20260929\\label-page\\answers\\label-page-answers.csv",
+      "answer_sha256": "68afe837890e1a29f1099382e9ab7230da377a295ccc72b60d2b43fc7d9ea417",
+      "units_sha256": "1a2438b2c5c1c0de87b979b579966bc0109a5b79143c44378a172920fbbb8092",
+      "answered": 1018,
+      "verified_unchanged": true
+    },
+    "calibration": {
+      "answer_path": "H:\\lidar\\2023-salt-lake-valley\\runs\\treetop-evidence-20261022\\calibration-treetop-calibration-2\\label-page\\answers\\calibration-answers.csv",
+      "answer_sha256": "c9b4a128009c81dd55b5cd0f58593c224159c51f909605b56aef9133947240a0",
+      "units_sha256": "724026e856bf2ef59c9bd29ad723b8dd03063b8bac062f9f289ea5ee2ee94562",
+      "answered": 40,
+      "verified_unchanged": true
+    }
+  },
+  "assessment_files": {
+    "assessments.json": "08fa49fe80f4bc42994fde56481a6b6005213840cf8aa2e618b3eadf35848a13",
+    "002.json": "291760aa1d3864cd570a2e47e3f1904d730e1d67ea94d36dba26216a57524ee2",
+    "003.json": "f1f4b430611f723a3c4395866b074f85d3816d2ec86bf9c7ab24a1f312c54a8e",
+    "004.json": "4fbda84ca5ac379a4749db8d4a4c39487f7fd31bde2236bad9d1dcf73581ce3f",
+    "005.json": "761aee6525731568882b747cb252d62eb7cc54c034cf2f8893ab4461bf995fbb",
+    "006.json": "0f96f7e2fae330e52d97752c3f6582d5318d8087c35c79cb94c4e0356ae9379d",
+    "007.json": "4834e96b3db13f417205c4a4cc805b64e66936b1902fb0b92174eaf5ad2fc92f",
+    "008.json": "19d79b707a2040fae66ffc9643506841515a185f9d65aa94be4c762882def7e2",
+    "009.json": "3088bcabf08d20da96912ad4d49f3c7bc4366b53b0266e6a12f80e79a3b5ecea",
+    "010.json": "07c64ad7dbc413633a7ef4c191f9ef67cefdb16a2490f5af1cf492afa230ad10",
+    "011.json": "f62550b351f77714d7098982cd7af66300b07b4940ebe4e05e78b640671d9f3f",
+    "012.json": "b0e949f99522c3e9a1ff583c72e5cecb6fadc0fec206f4ff48ee9583405e8fe7",
+    "013.json": "3c2593df134e8bdd16d4390530b25a954bd26dc1db719480d8b09a347737836b",
+    "014.json": "c4778ea3cebc1ccee5a92b47694ca4feb069a08c352547416fbaacf5db12393a",
+    "015.json": "c8f607791d8c9d93d1026311976238d30d28fe73fd0c21c4c92ebb97418c3a5b",
+    "016.json": "f170eb3e5873a7f7fa62c080073083b7dd3085cf4975d63fad139aad7ed5daa1",
+    "017.json": "d389997c254312a88e266422f0ed18a95c97dd5b3794eb41b85841cbdd468a76",
+    "018.json": "357e2485716bb8155e01be5153db0fe602eeff207b06b9b47c2a191137dbda2e",
+    "019.json": "198851861b5bbec9c7c8d315034223761f11f856d70e07d60da8477088c3e42c",
+    "020.json": "420c7a7353adc2dfd7855467764c47b2bead61958acf7b7816f93e92b07976da",
+    "021.json": "dfb19c9cf8a44d5125ef0eb6686f9c45f5fc9e1ffa55853244afa87e742259e3",
+    "022.json": "d2ac528ff9f1b61b2648a32bc12b49395081ae6d8cc1ce8ed1e38d68176772c0",
+    "023.json": "f4c6b908f484b2afc7352fa5b68a41f366c231007b2afeb3f6a132f753a94034"
+  },
+  "inventory_sha256": "6ab950a230f440b807be2d36a368be7bdee83b40a5000e2319023e444642d6d6",
+  "output_sha256": {
+    "lidar-assistant-assessments.csv": "885c5210109c5cdf1fc582b8367075a2c844e304882e48515b5ecab04d849112",
+    "lidar-human-review-queue.csv": "a2955320152fe926a60688a41505652592fcb3fd6280b6fd082142a4034d49ec"
+  },
+  "limitations": [
+    "Assistant judgments are provisional, not human or field reference labels.",
+    "Confidence is a qualitative judgment, not a calibrated probability.",
+    "NAIP 2024 is later than the lidar and cannot establish same-date object identity.",
+    "Small objects and mixed training patches need human review; no official accuracy score is computed."
+  ]
+}

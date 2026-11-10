@@ -1,0 +1,48 @@
+{
+ "status": "complete",
+ "native_equals_october8_canonical": true,
+ "native_canonical_mismatched_cells": 0,
+ "october8_cores": 63,
+ "parameters": {
+  "cell_m": 0.5,
+  "raster_core_m": 950,
+  "raster_halo_m": 20,
+  "smooth_cells": 1,
+  "bands": "2-6:1.0, 6-12:1.5, 12-20:2.0, 20-:2.5",
+  "ownership_location": "Detected treetop cell centre",
+  "crowns": false
+ },
+ "peaks_before_city_clip": 772649,
+ "city_treetops": 527140,
+ "ownership_totals": {
+  "NO_PARCEL": 48697,
+  "PRIVATE": 387414,
+  "UNKNOWN_OWNER": 18201,
+  "PUBLIC_GOVERNMENT": 72828
+ },
+ "public_breakdown": {
+  "SALT_LAKE_COUNTY": 61295,
+  "STATE_OF_UTAH": 514,
+  "SALT_LAKE_CITY": 4805,
+  "PUBLIC_SCHOOL": 3688,
+  "MILLCREEK": 1593,
+  "PUBLIC_DISTRICT": 591,
+  "PUBLIC_HOUSING": 189,
+  "FEDERAL": 153
+ },
+ "comparison": {
+  "october8_treetops": 607972,
+  "rebuilt_treetops": 527140,
+  "same_cell": 490333,
+  "removed": 117639,
+  "added": 36807,
+  "october8_ownership": {
+   "NO_PARCEL": 59212,
+   "PRIVATE": 454849,
+   "UNKNOWN_OWNER": 18735,
+   "PUBLIC_GOVERNMENT": 75176
+  }
+ },
+ "quality_status": "PRELIMINARY_UNVALIDATED; provisional model-assisted classification",
+ "seconds": 129.64616560935974
+}

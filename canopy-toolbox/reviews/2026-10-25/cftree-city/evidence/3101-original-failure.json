@@ -1,0 +1,6 @@
+{
+  "tile": "12TVL3101",
+  "state": "failed",
+  "reason": "PermissionError: [WinError None] Access is denied: 'C:\\\\Users\\\\Brian\\\\Documents\\\\Codex\\\\2026-10-24\\\\go-x20\\\\work\\\\cftree-city-20261025\\\\tiles\\\\12TVL3101\\\\status.json.tmp' -> 'C:\\\\Users\\\\Brian\\\\Documents\\\\Codex\\\\2026-10-24\\\\go-x20\\\\work\\\\cftree-city-20261025\\\\tiles\\\\12TVL3101\\\\status.json'",
+  "updated_utc": "2026-10-26T06:10:46.630492+00:00"
+}

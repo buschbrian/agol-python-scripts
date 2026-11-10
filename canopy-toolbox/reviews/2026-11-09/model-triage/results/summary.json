@@ -1,0 +1,89 @@
+{
+ "A": {
+  "items": 31,
+  "scored": 28,
+  "truth": {
+   "REAL_STRUCTURE": 8,
+   "NOT_STRUCTURE": 20
+  },
+  "model_unsure": 6,
+  "answered_match": 17,
+  "answered": 22,
+  "directions": {
+   "NOT_STRUCTURE": {
+    "high_calls": 2,
+    "match": 2,
+    "rate": 1.0,
+    "share_of_majority_answer_in_scored": 0.714,
+    "passes": false,
+    "majority_among_calls": 1.0
+   },
+   "REAL_STRUCTURE": {
+    "high_calls": 0,
+    "match": 0,
+    "rate": 0,
+    "share_of_majority_answer_in_scored": 0.714,
+    "passes": false,
+    "majority_among_calls": 0
+   }
+  }
+ },
+ "A-secondary": {
+  "items": 24,
+  "scored": 21,
+  "truth": {
+   "NOT_STRUCTURE": 8,
+   "REAL_STRUCTURE": 13
+  },
+  "model_unsure": 7,
+  "answered_match": 11,
+  "answered": 14,
+  "directions": {
+   "NOT_STRUCTURE": {
+    "high_calls": 0,
+    "match": 0,
+    "rate": 0,
+    "share_of_majority_answer_in_scored": 0.619,
+    "passes": false,
+    "majority_among_calls": 0
+   },
+   "REAL_STRUCTURE": {
+    "high_calls": 0,
+    "match": 0,
+    "rate": 0,
+    "share_of_majority_answer_in_scored": 0.619,
+    "passes": false,
+    "majority_among_calls": 0
+   }
+  }
+ },
+ "B": {
+  "items": 113,
+  "scored": 107,
+  "truth": {
+   "PROBLEM": 70,
+   "ONE_TREE": 37
+  },
+  "model_unsure": 1,
+  "answered_match": 77,
+  "answered": 106,
+  "directions": {
+   "ONE_TREE": {
+    "high_calls": 8,
+    "match": 7,
+    "rate": 0.875,
+    "share_of_majority_answer_in_scored": 0.654,
+    "passes": false,
+    "majority_among_calls": 0.875
+   },
+   "PROBLEM": {
+    "high_calls": 35,
+    "match": 31,
+    "rate": 0.886,
+    "share_of_majority_answer_in_scored": 0.654,
+    "passes": true,
+    "majority_among_calls": 0.886
+   }
+  }
+ }
+}

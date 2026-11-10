@@ -1,0 +1,93 @@
+{
+ "roofs": {
+  "by_level": {
+   "roofer LoD2.2": 20730,
+   "Esri LOD1.2": 184,
+   "Esri LOD1.2 | already in county no-roof queue": 92,
+   "Esri LOD1.2 | already in offset/rebuilt queue": 30,
+   "No hybrid model": 481,
+   "No hybrid model | already in county no-roof queue": 480,
+   "No hybrid model | already in offset/rebuilt queue": 39,
+   "Esri LOD2.0": 647,
+   "Esri LOD2.0 | already in county no-roof queue": 14,
+   "Esri LOD2.0 | already in offset/rebuilt queue": 137
+  },
+  "not_lod22": 1312,
+  "new_items": 726,
+  "new_by_level": {
+   "Esri LOD2.0": 633,
+   "Esri LOD1.2": 92,
+   "No hybrid model": 1
+  },
+  "fallback_reasons": {
+   "Esri LOD2.0 | roofer broken": 599,
+   "No hybrid model | -": 481,
+   "Esri LOD1.2 | roofer no-geometry; Esri LOD2.0 too-few": 127,
+   "Esri LOD1.2 | roofer too-few; Esri LOD2.0 too-few": 32,
+   "Esri LOD2.0 | roofer worse": 23,
+   "Esri LOD2.0 | roofer no-geometry": 22,
+   "Esri LOD1.2 | roofer broken; Esri LOD2.0 broken": 12,
+   "Esri LOD1.2 | roofer ground-level; Esri LOD2.0 ground-level": 5,
+   "Esri LOD1.2 | roofer broken; Esri LOD2.0 ground-level": 3,
+   "Esri LOD2.0 | roofer ground-level": 3,
+   "Esri LOD1.2 | roofer no-geometry; Esri LOD2.0 broken": 3,
+   "Esri LOD1.2 | roofer broken; Esri LOD2.0 worse": 2
+  },
+  "existing_answers": {
+   "REBUILT": 1,
+   "BOTH_REAL": 1
+  }
+ },
+ "trees": {
+  "models": 119410,
+  "seam_models": 404,
+  "seam_pairs": 237,
+  "trunk_in_footprint": 1610,
+  "outline_over_footprints_25pct": 4792,
+  "treetops_inside": {
+   "0": 2747,
+   "1": 31530,
+   "2": 23084,
+   "3-5": 35685,
+   "6-10": 17672,
+   "over 10": 8692
+  },
+  "treetops": {
+   "total": 527140,
+   "inside_a_cftree_outline": 481200,
+   "outside_every_outline": 45940,
+   "height_outside": {
+    "2-3 m": 18839,
+    "3-5 m": 11492,
+    "5-8 m": 8975,
+    "8-12 m": 5077,
+    "12-20 m": 1192,
+    "20-100 m": 365
+   },
+   "height_inside": {
+    "2-3 m": 67928,
+    "3-5 m": 119642,
+    "5-8 m": 128684,
+    "8-12 m": 93619,
+    "12-20 m": 65723,
+    "20-100 m": 5604
+   }
+  },
+  "cftree_height": {
+   "2-3 m": 3494,
+   "3-5 m": 16542,
+   "5-8 m": 28618,
+   "8-12 m": 34183,
+   "12-20 m": 32728,
+   "20-100 m": 3840
+  }
+ },
+ "sources": {
+  "county": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\buildings.gdb",
+  "hybrid": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\outputs\\buildings_hybrid_v2_feet.csv",
+  "cftree": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\cftree-city-20261025",
+  "cftree_config_hash": "6fd0054860f04a3b4f175691b69dbca0b3d93225ade17e378ac1d6c233a720df",
+  "treetops": "H:\\lidar\\2023-salt-lake-valley\\runs\\millcreek-products-20261022\\city-treetops.csv",
+  "review_data": "H:\\lidar\\2023-salt-lake-valley\\runs\\footprint-review-20261023\\data"
+ }
+}

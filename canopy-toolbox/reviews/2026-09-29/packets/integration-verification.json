@@ -1,0 +1,30 @@
+{
+  "suite": {
+    "tests": 271,
+    "passed": 270,
+    "expected_skips": 1,
+    "seconds": 451.298,
+    "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\09\\29\\01a0eed4-e40e-7762-9845-97159217cf5b\\integration-suite-20260929.txt"
+  },
+  "additional_dated_wms_export": {
+    "tests": 3,
+    "passed": 3,
+    "seconds": 6.832
+  },
+  "real_pilots": [
+    "integration-buildings-20260929",
+    "integration-buildings-shared-20260929",
+    "integration-roof-interior-final-20260929",
+    "integration-port-run-20260929",
+    "integration-building-method-20260929",
+    "census-review-final-20260929",
+    "naip-review-20260929"
+  ],
+  "environment_changed": false,
+  "inference_run": false,
+  "reference_labels_added": 0,
+  "reference_units": 1468,
+  "independent_plots": 12,
+  "review_packet": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\09\\29\\01a0eed4-e40e-7762-9845-97159217cf5b\\independent-plot-census-v2",
+  "roof_integrity": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\09\\29\\01a0eed4-e40e-7762-9845-97159217cf5b\\roof-interior-pilot-integrity.json"
+}

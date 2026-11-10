@@ -1,0 +1,233 @@
+diff --git a/myria3d/callbacks/metric_callbacks.py b/myria3d/callbacks/metric_callbacks.py
+index d0f467c..431551f 100644
+--- a/myria3d/callbacks/metric_callbacks.py
++++ b/myria3d/callbacks/metric_callbacks.py
+@@ -29,22 +29,25 @@ class ModelMetrics(Callback):
+             "val": self._metrics_factory(by_class=True),
+             "test": self._metrics_factory(by_class=True),
+         }
+-        self.cm = ConfusionMatrix(task="multiclass", num_classes=self.num_classes)
++        self.cm = ConfusionMatrix(task="multiclass", num_classes=self.num_classes, ignore_index=self.num_classes)
+ 
+     def _metrics_factory(self, by_class=False):
+         average = None if by_class else "micro"
+         average_iou = None if by_class else "macro"  # special case, only mean IoU is of interest
+ 
+         return {
+-            "acc": Accuracy(task="multiclass", num_classes=self.num_classes, average=average),
++            "acc": Accuracy(task="multiclass", num_classes=self.num_classes, average=average,
++                            ignore_index=self.num_classes),
+             "precision": Precision(
+-                task="multiclass", num_classes=self.num_classes, average=average
++                task="multiclass", num_classes=self.num_classes, average=average, ignore_index=self.num_classes
+             ),
+-            "recall": Recall(task="multiclass", num_classes=self.num_classes, average=average),
+-            "f1": F1Score(task="multiclass", num_classes=self.num_classes, average=average),
++            "recall": Recall(task="multiclass", num_classes=self.num_classes, average=average,
++                             ignore_index=self.num_classes),
++            "f1": F1Score(task="multiclass", num_classes=self.num_classes, average=average,
++                          ignore_index=self.num_classes),
+             # DEBUG: checking that this iou matches the one from model.py before removing it
+             "iou": JaccardIndex(
+-                task="multiclass", num_classes=self.num_classes, average=average_iou
++                task="multiclass", num_classes=self.num_classes, average=average_iou, ignore_index=self.num_classes
+             ),
+         }
+ 
+@@ -98,7 +101,7 @@ class ModelMetrics(Callback):
+     def on_train_epoch_end(self, trainer, pl_module):
+         self._end_of_epoch("train", pl_module)
+ 
+-    def on_val_epoch_end(self, trainer, pl_module):
++    def on_validation_epoch_end(self, trainer, pl_module):
+         self._end_of_epoch("val", pl_module)
+ 
+     def on_test_epoch_end(self, trainer, pl_module):
+diff --git a/myria3d/models/interpolation.py b/myria3d/models/interpolation.py
+index f7bcd4c..100fbe7 100644
+--- a/myria3d/models/interpolation.py
++++ b/myria3d/models/interpolation.py
+@@ -9,6 +9,7 @@ from torch.distributions import Categorical
+ from torch_scatter import scatter_sum
+ 
+ from pdaltools import las_info
++from myria3d.models.las_writer import write_prediction_las
+ 
+ from myria3d.pctl.dataset.utils import get_pdal_info_metadata, get_pdal_reader
+ 
+@@ -179,8 +180,12 @@ class Interpolator:
+         log.info(f"Updated LAS ({basename}) will be saved to: \n {output_dir}\n")
+         log.info("Saving...")
+         writer_params["extra_dims"] = "all"
+-        pipeline = pdal.Writer.las(filename=out_f, **writer_params).pipeline(las)
+-        pipeline.execute()
++        channels = list(self.probas_to_save)
++        if self.predicted_classification_channel:
++            channels.append(self.predicted_classification_channel)
++        if self.entropy_channel:
++            channels.append(self.entropy_channel)
++        write_prediction_las(raw_path, las, out_f, channels)
+         log.info("Saved.")
+ 
+         return out_f
+diff --git a/myria3d/pctl/datamodule/hdf5.py b/myria3d/pctl/datamodule/hdf5.py
+index b1dd36e..54cae1e 100644
+--- a/myria3d/pctl/datamodule/hdf5.py
++++ b/myria3d/pctl/datamodule/hdf5.py
+@@ -167,8 +167,8 @@ class HDF5LidarDataModule(LightningDataModule):
+         return GeometricNoneProofDataloader(
+             dataset=self.dataset.testdata,
+             batch_size=self.batch_size,
+-            num_workers=1,  # b/c iterable dataset
+-            prefetch_factor=self.prefetch_factor,
++            num_workers=0,  # Windows: workers would pickle the transforms' lambdas (see predict_dataloader)
++            prefetch_factor=None,
+         )
+ 
+     def _set_predict_data(self, las_file_to_predict):
+@@ -188,8 +188,10 @@ class HDF5LidarDataModule(LightningDataModule):
+         return GeometricNoneProofDataloader(
+             dataset=self.predict_dataset,
+             batch_size=self.batch_size,
+-            num_workers=1,  # always 1 because this is an iterable dataset
+-            prefetch_factor=self.prefetch_factor,
++            # Windows starts workers by pickling the transforms, and TargetTransform holds a local lambda that cannot
++            # be pickled. An iterable dataset runs fine in the main process, so no worker is used (prefetch must be None).
++            num_workers=0,
++            prefetch_factor=None,
+         )
+ 
+     def _visualize_graph(self, data, color=None):
+diff --git a/myria3d/pctl/dataset/hdf5.py b/myria3d/pctl/dataset/hdf5.py
+index b41438b..f888ca5 100644
+--- a/myria3d/pctl/dataset/hdf5.py
++++ b/myria3d/pctl/dataset/hdf5.py
+@@ -180,7 +180,7 @@ class HDF5Dataset(Dataset):
+                     continue
+                 for basename in hdf5_file[split].keys():
+                     for sample_number in hdf5_file[split][basename].keys():
+-                        self._samples_hdf5_paths.append(osp.join(split, basename, sample_number))
++                        self._samples_hdf5_paths.append("/".join((split, basename, sample_number)))
+ 
+         with h5py.File(self.hdf5_file_path, "a") as hdf5_file:
+             # special type to avoid silent string truncation in hdf5 datasets.
+@@ -257,8 +257,8 @@ def create_hdf5(
+                     if pre_filter is not None and pre_filter(data):
+                         # e.g. pre_filter spots situations where num_nodes is too small.
+                         continue
+-                    hdf5_path = os.path.join(split, basename, str(sample_number).zfill(5))
+-                    hd5f_path_x = os.path.join(hdf5_path, "x")
++                    hdf5_path = "/".join((split, basename, str(sample_number).zfill(5)))
++                    hd5f_path_x = "/".join((hdf5_path, "x"))
+                     hdf5_file.create_dataset(
+                         hd5f_path_x,
+                         data.x.shape,
+@@ -269,19 +269,19 @@ def create_hdf5(
+                         data.x_features_names
+                     )
+                     hdf5_file.create_dataset(
+-                        os.path.join(hdf5_path, "pos"),
++                        "/".join((hdf5_path, "pos")),
+                         data.pos.shape,
+                         dtype="f",
+                         data=data.pos,
+                     )
+                     hdf5_file.create_dataset(
+-                        os.path.join(hdf5_path, "y"),
++                        "/".join((hdf5_path, "y")),
+                         data.y.shape,
+                         dtype="i",
+                         data=data.y,
+                     )
+                     hdf5_file.create_dataset(
+-                        os.path.join(hdf5_path, "idx_in_original_cloud"),
++                        "/".join((hdf5_path, "idx_in_original_cloud")),
+                         sample_idx.shape,
+                         dtype="i",
+                         data=sample_idx,
+diff --git a/myria3d/pctl/dataset/utils.py b/myria3d/pctl/dataset/utils.py
+index 73ede8e..40042d5 100644
+--- a/myria3d/pctl/dataset/utils.py
++++ b/myria3d/pctl/dataset/utils.py
+@@ -68,7 +68,7 @@ def get_metadata(las_path: str) -> dict:
+     Returns:
+         dict : the metadata.
+     """
+-    pipeline = pdal.Reader.las(filename=las_path).pipeline()
++    pipeline = pdal.Reader.las(filename=las_path, threads=1).pipeline()
+     pipeline.execute()
+     return pipeline.metadata
+ 
+@@ -88,6 +88,7 @@ def get_pdal_reader(las_path: str, epsg: str) -> pdal.Reader.las:
+         # epsg can be added as a number like "2154" or as a string like "EPSG:2154"
+         return pdal.Reader.las(
+             filename=las_path,
++            threads=1,  # Prediction indices require identical order on both LAS reads.
+             nosrs=True,
+             override_srs=f"EPSG:{epsg}" if str(epsg).isdigit() else epsg,
+         )
+@@ -95,7 +96,7 @@ def get_pdal_reader(las_path: str, epsg: str) -> pdal.Reader.las:
+     try :
+         if get_metadata(las_path)['metadata']['readers.las']['srs']['compoundwkt']:
+             # read the lidar file with pdal default
+-            return pdal.Reader.las(filename=las_path)
++            return pdal.Reader.las(filename=las_path, threads=1)
+     except Exception:
+         pass  # we will go to the "raise exception" anyway
+ 
+@@ -162,6 +163,20 @@ def pre_filter_below_n_points(data, min_num_nodes=1):
+     return data.pos.shape[0] < min_num_nodes
+ 
+ 
++def pre_filter_no_labels(data, min_num_nodes=1, unlabelled=(250, 7, 65)):
++    """Drop a sample with too few points or without any labelled point (sparse-label fine-tuning, October 20, 2026).
++
++    Unlabelled: 250 (raw) or 7 (mapped), and 65, the artefact code that DropPointsByClass removes.
++    """
++    if data.pos.shape[0] < min_num_nodes:
++        return True
++    y = getattr(data, "y", None)
++    if y is None:
++        return False
++    import torch as _torch
++    return bool(_torch.isin(_torch.as_tensor(y), _torch.as_tensor(list(unlabelled))).all())
++
++
+ def get_las_paths_by_split_dict(
+     data_dir: str, split_csv_path: str
+ ) -> LAS_PATHS_BY_SPLIT_DICT_TYPE:
+diff --git a/myria3d/pctl/transforms/transforms.py b/myria3d/pctl/transforms/transforms.py
+index da314ca..1d3e03f 100755
+--- a/myria3d/pctl/transforms/transforms.py
++++ b/myria3d/pctl/transforms/transforms.py
+@@ -12,6 +12,7 @@ from myria3d.utils import utils
+ log = utils.get_logger(__name__)
+ 
+ COMMON_CODE_FOR_ALL_ARTEFACTS = 65
++SPARSE_UNLABELLED_CODE = 250
+ 
+ 
+ class ToTensor(BaseTransform):
+@@ -229,6 +230,9 @@ class TargetTransform(BaseTransform):
+         # Here we update the dict so that code 65 remains unchanged.
+         # Indeed, 65 is reserved for noise/artefacts points, that will be deleted by transform "DropPointsByClass".
+         d.update({65: 65})
++        # Sparse-label fine-tuning (canopy toolbox, October 20, 2026): unlabelled points carry code 250 and stay in the cloud
++        # as context; they map to the first index past the classes, which the criterion and metrics ignore.
++        d.update({SPARSE_UNLABELLED_CODE: len(classification_dict)})
+         self.mapper = np.vectorize(lambda class_code: d.get(class_code))
+ 
+ 
+diff --git a/myria3d/train.py b/myria3d/train.py
+index 1bac4da..a091903 100755
+--- a/myria3d/train.py
++++ b/myria3d/train.py
+@@ -164,7 +164,7 @@ def train(config: DictConfig) -> Trainer:
+         kwargs_to_override.pop(
+             NEURAL_NET_ARCHITECTURE_CONFIG_GROUP, None
+         )  # removes that key if it's there
+-        model = Model.load_from_checkpoint(config.model.ckpt_path, **kwargs_to_override)
++        model = Model.load_from_checkpoint(config.model.ckpt_path, criterion=model.criterion, **kwargs_to_override)
+         trainer.fit(model=model, datamodule=datamodule, ckpt_path=None)
+         log.info(f"Best checkpoint:\n{trainer.checkpoint_callback.best_model_path}")
+         log.info("End of training and validating!")

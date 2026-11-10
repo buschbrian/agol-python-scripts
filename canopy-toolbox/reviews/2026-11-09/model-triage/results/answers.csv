@@ -1,0 +1,169 @@
+SHEET,ITEM_ID,TEST,TASK,MODEL_ANSWER,CONFIDENCE,NOTE,BRIAN_ANSWER,BRIAN_SIMPLE
+S001,TR17c8f178,B,tree,ONE_TREE,medium,"compact single crown beside roof, coherent side views",SHAPE_WRONG,PROBLEM
+S002,OG021625,A,small,REAL_STRUCTURE,medium,"small flat-roof square in yard, shed-like in imagery",SHED,REAL_STRUCTURE
+S003,TRd11d0583,B,tree,PROBLEM,medium,"narrow tree strip between buildings, elongated lopsided crown",SHRUBS,PROBLEM
+S004,TR49c5ee6d,B,tree,PROBLEM,high,"wide slab inside dense canopy, five treetops, merged crowns",ONE_TREE,ONE_TREE
+S005,TRd18a8f82,B,tree,ONE_TREE,low,"single narrow crown at roof edge, fairly coherent",MERGED,PROBLEM
+S006,TRf1c1fd9d,B,tree,PROBLEM,medium,"sparse points, crown floats, roof pixels beside outline",UNSURE,
+S007,TR5bcebb71,B,tree,PROBLEM,medium,"thin lopsided low crown by house, little green in imagery",TREE_WITH_ROOF,PROBLEM
+S008,OG021270,A,small,NOT_STRUCTURE,low,"odd L-shape on open gravel, likely vehicle or equipment",NOT_A_BUILDING,NOT_STRUCTURE
+S009,TR40af8ca6,B,tree,PROBLEM,low,"small sparse low crown in hedge strip, likely shrub",NOT_A_TREE,PROBLEM
+S010,OG020941,A,small,REAL_STRUCTURE,medium,"flat roof rectangle in yard, light roof in imagery",SHED,REAL_STRUCTURE
+S011,TRc4cf00e6,B,tree,ONE_TREE,medium,compact well-shaped crown with dense points,SHAPE_WRONG,PROBLEM
+S012,QG022531,A-secondary,small,NOT_STRUCTURE,medium,"under dense canopy, imagery shows only trees",NOT_A_BUILDING,NOT_STRUCTURE
+S013,TRbd20850e,B,tree,PROBLEM,medium,"elongated brushy strip between roofs, scattered points",SHAPE_WRONG,PROBLEM
+S014,TR51d19ec4,B,tree,PROBLEM,high,huge 16 m outline over several trees and hedge,NOT_A_TREE,PROBLEM
+S015,TR4e437d56,B,tree,PROBLEM,low,"thin cap on tall trunk, at tile edge, incomplete",UNSURE,
+S016,OG021156,A,small,REAL_STRUCTURE,medium,"flat rectangle between houses, dark roof in imagery",UNSURE,
+S017,TR254ed3b0,B,tree,PROBLEM,high,wide merged canopy of several trees,MERGED,PROBLEM
+S018,TRb42689da,B,tree,PROBLEM,medium,"sparse points on slope in forest, partial tree",BRUSH,PROBLEM
+S019,TR3ed132f5,B,tree,ONE_TREE,high,"clean single crown, dense points, isolated",SHAPE_WRONG,PROBLEM
+S020,TR86e2b89c,B,tree,PROBLEM,medium,shrub-like clump on slope in brushland,ONE_TREE,ONE_TREE
+S021,TR0384f24b,B,tree,PROBLEM,high,"scattered brush spread along slope, sparse points",MERGED,PROBLEM
+S022,TR17d474cf,B,tree,ONE_TREE,medium,"single tilted crown beside roofs, reasonable shape",ONE_TREE,ONE_TREE
+S023,TR1435c9b3,B,tree,PROBLEM,medium,"wide blob in dense canopy, six treetops merged",BRUSH,PROBLEM
+S024,QG021255,A-secondary,small,UNSURE,low,"thin strip on house edge, eave or addition unclear",PART_OF_BUILDING,REAL_STRUCTURE
+S025,TR033e4bcf,B,tree,ONE_TREE,high,"clear isolated single tree, full rounded crown",ONE_TREE,ONE_TREE
+S026,TRceb3fcc9,B,tree,UNSURE,low,"small flat cap on trunk in field, tree or shrub unclear",ONE_TREE,ONE_TREE
+S027,OG020960,A,small,UNSURE,low,"narrow white strip in alley, building or trailer unclear",NOT_A_BUILDING,NOT_STRUCTURE
+S028,TR99901b98,B,tree,PROBLEM,high,"tiny pole-like object, not a tree",SHRUBS,PROBLEM
+S029,TRf4a7e5aa,B,tree,PROBLEM,medium,"sparse partial slanted crown, few points",ONE_TREE,ONE_TREE
+S030,TRa199c11a,B,tree,PROBLEM,medium,"Tiny floating crown beside large roof, small and truncated",NOT_A_TREE,PROBLEM
+S031,QG022107,A-secondary,small,REAL_STRUCTURE,medium,"Small square roof in yard between buildings, shed-like",SHED,REAL_STRUCTURE
+S032,TRc64eb638,B,tree,PROBLEM,high,"Thin sliver crown at roof edge, flat and floating",SHRUBS,PROBLEM
+S033,OG020905,A,small,NOT_STRUCTURE,medium,"Long narrow white object beside road, trailer or RV like",NOT_A_BUILDING,NOT_STRUCTURE
+S034,TR840d833a,B,tree,PROBLEM,high,Long hedge-like row of several shrubs and trees joined,BRUSH,PROBLEM
+S035,TRe8c596fc,B,tree,PROBLEM,high,"Flat model over roof edge, points are roof",NOT_A_TREE,PROBLEM
+S036,TR8ee9549f,B,tree,PROBLEM,high,"Crown sits within footprint, floating partial, sparse points",NOT_A_TREE,PROBLEM
+S037,TR1bee87bb,B,tree,ONE_TREE,medium,Single rounded crown with trunk within woodland stand,BRUSH,PROBLEM
+S038,OG020882,A,small,NOT_STRUCTURE,medium,"Narrow white long object by road, likely trailer or RV",NOT_A_BUILDING,NOT_STRUCTURE
+S039,TRa8131f61,B,tree,ONE_TREE,medium,"Compact well-shaped crown with trunk, isolated enough",MERGED,PROBLEM
+S040,OG020902,A,small,REAL_STRUCTURE,medium,"Attached low outbuilding next to larger building, roof visible",NOT_A_BUILDING,NOT_STRUCTURE
+S041,TR7238fec8,B,tree,PROBLEM,high,"Thin flat slab at 2 m between buildings, not full tree",NOT_A_TREE,PROBLEM
+S042,TR5e85107f,B,tree,PROBLEM,high,"Flat sliver crown next to roof, partial",ONE_TREE,ONE_TREE
+S043,TR73456847,B,tree,ONE_TREE,medium,"Dense single crown with trunk, slightly lopsided",SHAPE_WRONG,PROBLEM
+S044,TR566196dd,B,tree,PROBLEM,high,"Thin flat slab near roofs, not a full tree",ONE_TREE,ONE_TREE
+S045,TRa63b1423,B,tree,ONE_TREE,high,Round isolated crown with centered trunk,ONE_TREE,ONE_TREE
+S046,OG021158,A,small,REAL_STRUCTURE,medium,"Small roof between houses, matches shed pattern nearby",SHED,REAL_STRUCTURE
+S047,OG020822,A,small,NOT_STRUCTURE,high,Vehicle-shaped blob on road lanes in imagery,NOT_A_BUILDING,NOT_STRUCTURE
+S048,TR7239d5fb,B,tree,ONE_TREE,medium,"Small isolated crown on slope, reasonably shaped",ONE_TREE,ONE_TREE
+S049,TR80ca547c,B,tree,PROBLEM,medium,"Flat wedge crown at roof edge, mostly sparse and partial",ONE_TREE,ONE_TREE
+S050,TRa880e62a,B,tree,PROBLEM,medium,"Thin flat crown beside roof, not complete tree",NOT_A_TREE,PROBLEM
+S051,TR86b572c9,B,tree,ONE_TREE,low,Plausible crown with trunk but crowded among neighbors,ONE_TREE,ONE_TREE
+S052,OG020907,A,small,REAL_STRUCTURE,medium,"Small rectangular roof between yards, shed-like",NOT_A_BUILDING,NOT_STRUCTURE
+S053,TRcf3c691a,B,tree,PROBLEM,high,"Huge tilted mass on slope, several shrubs joined",MERGED,PROBLEM
+S054,OG020815,A,small,NOT_STRUCTURE,low,"Narrow strip in open field, nothing building-like in imagery",NOT_A_BUILDING,NOT_STRUCTURE
+S055,OG021868,A,small,UNSURE,low,"Small narrow roof by house, could be shed or vehicle",NOT_A_BUILDING,NOT_STRUCTURE
+S056,TRfee999ad,B,tree,PROBLEM,high,"Wide low brush, multiple treetops, wrong shape",BRUSH,PROBLEM
+S057,TRb7e66d2b,B,tree,ONE_TREE,medium,"Complete crown with trunk, good shape",SHAPE_WRONG,PROBLEM
+S058,QG021934,A-secondary,small,UNSURE,low,"Irregular small shape by tree, vehicle or trailer possible",NOT_A_BUILDING,NOT_STRUCTURE
+S059,TRc402d022,B,tree,PROBLEM,medium,"Wedge-shaped model inside dense forest canopy, partial crown",ONE_TREE,ONE_TREE
+S060,TRd3fbc928,B,tree,ONE_TREE,low,"Small isolated crown by road, sparse points, plausible small tree",ONE_TREE,ONE_TREE
+S061,TRc720b103,B,tree,PROBLEM,medium,"Very low flat 2.4 m mound, shrub-like, beside building",UNSURE,
+S062,TR9380b15f,B,tree,PROBLEM,low,"Lumpy mass with other vegetation interleaved, several treetops, neighbours overlap",ONE_TREE,ONE_TREE
+S063,QG022885,A-secondary,small,UNSURE,low,"Small flat orange patch between houses; imagery tan, could be shed or vehicle",SHED,REAL_STRUCTURE
+S064,TReba9b6c2,B,tree,PROBLEM,high,"Flat wedge crown against building edge, five treetops",TREE_WITH_ROOF,PROBLEM
+S065,TR16157860,B,tree,PROBLEM,medium,"End of narrow hedge row, flat low crown",ONE_TREE,ONE_TREE
+S066,TRdaf67e54,B,tree,PROBLEM,medium,Small brushy blob on slope in shrub field,ONE_TREE,ONE_TREE
+S067,TR175b8f37,B,tree,PROBLEM,medium,"Large lopsided mass in dense cluster, points only at bottom, five treetops",SHRUBS,PROBLEM
+S068,TRa6ef3e4e,B,tree,PROBLEM,high,"Flat low wide crown, shrub or hedge shape beside houses",TREE_WITH_ROOF,PROBLEM
+S069,TR78fdab69,B,tree,ONE_TREE,medium,"Isolated rounded crown in open field, full shape",ONE_TREE,ONE_TREE
+S070,QG021605,A-secondary,small,REAL_STRUCTURE,medium,"Crisp rectangular roof between houses, imagery shows roof-like top",VEHICLE,NOT_STRUCTURE
+S071,TRa65b9c87,B,tree,ONE_TREE,medium,"Rounded complete crown, single trunk, well shaped",ONE_TREE,ONE_TREE
+S072,OG021288,A,small,NOT_STRUCTURE,low,"Narrow pale strip at driveway by street, looks like vehicle or trailer",NOT_A_BUILDING,NOT_STRUCTURE
+S073,TRad7d7ffc,B,tree,PROBLEM,medium,"Very wide crown stretching along street, several treetops joined",MERGED,PROBLEM
+S074,TR67d96fc5,B,tree,PROBLEM,medium,"Lumpy dense strip along road, five treetops, overlaps neighbours",SHAPE_WRONG,PROBLEM
+S075,TRe240e9bb,B,tree,ONE_TREE,medium,"Compact rounded tree near house, one treetop",NOT_A_TREE,PROBLEM
+S076,TR039e3d0f,B,tree,ONE_TREE,low,"Single umbrella crown among dense trees, one treetop, sparse points",PART_OF_TREE,PROBLEM
+S077,QG021526,A-secondary,small,UNSURE,low,"Narrow strip next to cyan outline and trees, unclear",SHED,REAL_STRUCTURE
+S078,QG022186,A-secondary,small,UNSURE,low,Thin L-shaped sliver along edge of house roof,PART_OF_BUILDING,REAL_STRUCTURE
+S079,TR575e26f9,B,tree,ONE_TREE,medium,Compact rounded crown with trunk near pool,ONE_TREE,ONE_TREE
+S080,QG021759,A-secondary,small,REAL_STRUCTURE,medium,"Rectangular roof strip attached to house side, likely addition or carport",UNSURE,
+S081,OG021153,A,small,REAL_STRUCTURE,medium,"Rectangular roof in forest clearing, light roof in imagery, likely shed",NOT_A_BUILDING,NOT_STRUCTURE
+S082,TR03231258,B,tree,PROBLEM,high,"Huge crown over roof edge, twelve treetops, several trees joined",MERGED,PROBLEM
+S083,TR2fa417d4,B,tree,PROBLEM,medium,"Tiny sparse crown in scrub field, shrub-like",ONE_TREE,ONE_TREE
+S084,QG021665,A-secondary,small,REAL_STRUCTURE,medium,"Isolated small rectangle in yard, pale roof, likely shed",SHED,REAL_STRUCTURE
+S085,TR6034904b,B,tree,ONE_TREE,high,"Clean isolated rounded crown, dense points, one trunk",ONE_TREE,ONE_TREE
+S086,TR1968a135,B,tree,PROBLEM,medium,"Skewed crown on steep slope at forest edge, sparse points",BRUSH,PROBLEM
+S087,TRcea4e1a9,B,tree,PROBLEM,medium,"Elongated row of separate small clumps, hedge or shrubs",SHRUBS,PROBLEM
+S088,QG021661,A-secondary,small,REAL_STRUCTURE,medium,"Roofed block attached to larger roof, 4.5 m, gray roof in imagery",SHED,REAL_STRUCTURE
+S089,TR9b491275,B,tree,PROBLEM,low,"Small crown amid unmodeled vegetation points, looks like part of shrub mass",UNSURE,
+S090,TRe5138531,B,tree,ONE_TREE,high,"Isolated compact crown, dense points, clean shape",ONE_TREE,ONE_TREE
+S091,OG021560,A,small,REAL_STRUCTURE,low,"Small roof square by house, pale patch in imagery",NOT_A_BUILDING,NOT_STRUCTURE
+S092,QG022401,A-secondary,small,REAL_STRUCTURE,medium,"Roof-colored block beside buildings, dark roof in imagery",NOT_A_BUILDING,NOT_STRUCTURE
+S093,TRa319306e,B,tree,PROBLEM,medium,"Sloped brush, sparse points, wide flat part-crown",BRUSH,PROBLEM
+S094,TR368976af,B,tree,PROBLEM,high,"Wide shrub patch spanning many treetops, not one tree",BRUSH,PROBLEM
+S095,QG021531,A-secondary,small,REAL_STRUCTURE,medium,"Small flat roof between houses, bright roof in imagery",LIDAR_RIGHT,REAL_STRUCTURE
+S096,OG020999,A,small,REAL_STRUCTURE,low,"Small rectangle near driveway; shed or carport likely, vehicle possible",NOT_A_BUILDING,NOT_STRUCTURE
+S097,TR808c9980,B,tree,PROBLEM,low,"Narrow crown pressed against house wall, partial tree",TREE_WITH_ROOF,PROBLEM
+S098,OG021299,A,small,REAL_STRUCTURE,medium,"Small roof behind house, light roof visible in imagery",SHED,REAL_STRUCTURE
+S099,TR3843bca3,B,tree,PROBLEM,medium,"Sparse points inside dense canopy, fragment of larger tree mass",BRUSH,PROBLEM
+S100,TR5840ddfd,B,tree,PROBLEM,high,"Steep slope, points only at top, crown floats over ground",SHAPE_WRONG,PROBLEM
+S101,TR9b296f2c,B,tree,ONE_TREE,medium,"Compact crown, trunk centered, clear of roofs",SHAPE_WRONG,PROBLEM
+S102,TR3019e1f2,B,tree,PROBLEM,high,"Elongated hedge strip beside building, multiple layers",TREE_WITH_ROOF,PROBLEM
+S103,TR24cb1bd3,B,tree,PROBLEM,medium,"Lopsided elongated crown, points on one side, shrub-like",PART_OF_TREE,PROBLEM
+S104,TR0e60315c,B,tree,PROBLEM,high,"Two clumps joined, one trunk spanning both",MERGED,PROBLEM
+S105,TRf2ae207b,B,tree,ONE_TREE,medium,"Full compact crown, centered trunk, isolated",PART_OF_TREE,PROBLEM
+S106,TR8efa896e,B,tree,PROBLEM,high,"Flat low layer over paved lot, not a tree",NOT_A_TREE,PROBLEM
+S107,TRb06ca53c,B,tree,PROBLEM,high,"Thin strip hedge beside building, not a single tree",SHRUBS,PROBLEM
+S108,TR9c154585,B,tree,PROBLEM,medium,Crown overlaps shed roof and merges with neighbouring tree,ONE_TREE,ONE_TREE
+S109,QG021727,A-secondary,small,REAL_STRUCTURE,medium,"Small roof among trees behind house, light roof in imagery",UNSURE,
+S110,TRbd38ca40,B,tree,PROBLEM,high,"Huge diagonal slope brush patch, many treetops",MERGED,PROBLEM
+S111,OG021778,A,small,REAL_STRUCTURE,medium,Small roof beside house with bright roof in imagery,SHED,REAL_STRUCTURE
+S112,QG021666,A-secondary,small,UNSURE,low,"Narrow sliver against building edge, could be eave or addition",PART_OF_BUILDING,REAL_STRUCTURE
+S113,TR8d7a4820,B,tree,PROBLEM,high,"Slope, two separate clumps in one model",MERGED,PROBLEM
+S114,TR1d1979ec,B,tree,ONE_TREE,medium,"Narrow columnar tree, complete shape, trunk centered",SHRUBS,PROBLEM
+S115,QG022540,A-secondary,small,UNSURE,low,"Narrow strip between houses, shed or vehicle unclear",VEHICLE,NOT_STRUCTURE
+S116,TRca4535a0,B,tree,ONE_TREE,medium,"Dome crown, dense points, small edge touch of house",TREE_WITH_ROOF,PROBLEM
+S117,QG021556,A-secondary,small,NOT_STRUCTURE,low,"thin sliver under trees, dark tree cover in imagery",VEHICLE,NOT_STRUCTURE
+S118,OG021079,A,small,NOT_STRUCTURE,high,white vehicle at road edge in imagery,NOT_A_BUILDING,NOT_STRUCTURE
+S119,OG020880,A,small,UNSURE,low,"long thin strip along wall, hedge mixed in, unclear",NOT_A_BUILDING,NOT_STRUCTURE
+S120,TR50560156,B,tree,ONE_TREE,high,"compact complete crown on trunk, isolated",ONE_TREE,ONE_TREE
+S121,TR94190c90,B,tree,PROBLEM,medium,lopsided crown tilted and floating on slope,ONE_TREE,ONE_TREE
+S122,TR65645828,B,tree,PROBLEM,high,"flat thin slab, not a tree crown, over roof or carport area",SHRUBS,PROBLEM
+S123,TR20ed8691,B,tree,PROBLEM,high,"wedge of sparse points in shrub mass, six treetops",MERGED,PROBLEM
+S124,TR925273dc,B,tree,PROBLEM,medium,"asymmetric crown joined with neighbors, four treetops",SHAPE_WRONG,PROBLEM
+S125,TR4198ac83,B,tree,PROBLEM,medium,"sparse points, thin lopsided shape, part of a tree",SHRUBS,PROBLEM
+S126,TRaa7368d7,B,tree,PROBLEM,high,tiny sparse model in brush on slope,BRUSH,PROBLEM
+S127,TR8a0bb383,B,tree,PROBLEM,high,"flat low sliver beside house, not a full tree",SHRUBS,PROBLEM
+S128,QG022367,A-secondary,small,NOT_STRUCTURE,medium,"vehicle-sized object at roadside, no footprint",VEHICLE,NOT_STRUCTURE
+S129,OG021514,A,small,UNSURE,low,"white rectangle by driveway, vehicle or small roof unclear",SHED,REAL_STRUCTURE
+S130,TR5a9d648e,B,tree,ONE_TREE,medium,"compact rounded crown, isolated near house",ONE_TREE,ONE_TREE
+S131,TR56c59583,B,tree,PROBLEM,medium,edge sliver of a larger merged canopy cluster,PART_OF_TREE,PROBLEM
+S132,TR176f6350,B,tree,PROBLEM,high,"flat thin slab, no real crown, near building",NOT_A_TREE,PROBLEM
+S133,TR5c38b9ea,B,tree,PROBLEM,high,"flat sliver floating on steep slope, not a tree",MERGED,PROBLEM
+S134,TR51208e99,B,tree,PROBLEM,high,"flat thin cap beside building, not tree shaped",SHRUBS,PROBLEM
+S135,OG021582,A,small,UNSURE,low,"small block beside road and trees, hedge or shed unclear",UNDER_TREES,
+S136,TRd1e6e896,B,tree,ONE_TREE,high,"full dense rounded crown, isolated, good shape",ONE_TREE,ONE_TREE
+S137,TR9ae35bed,B,tree,PROBLEM,high,"tiny narrow model, part of brush",SHAPE_WRONG,PROBLEM
+S138,TRcf70081e,B,tree,PROBLEM,low,"wide sparse crown, five treetops inside, near roof",ONE_TREE,ONE_TREE
+S139,TRf66d98ac,B,tree,ONE_TREE,medium,"large dense rounded crown on trunk, slight roof overlap",ONE_TREE,ONE_TREE
+S140,OG021166,A,small,UNSURE,low,"narrow strip between houses, carport or eave unclear",NOT_A_BUILDING,NOT_STRUCTURE
+S141,TRf4436f77,B,tree,PROBLEM,medium,"lopsided flat crown in dense canopy, partial",SHAPE_WRONG,PROBLEM
+S142,TR86710ae9,B,tree,PROBLEM,high,"wide shrub mass, five treetops merged",ONE_TREE,ONE_TREE
+S143,TR41f05507,B,tree,PROBLEM,medium,small lopsided partial crown against building,UNSURE,
+S144,OG021121,A,small,UNSURE,low,"narrow roof-height strip between houses, lean-to or eave",NOT_A_BUILDING,NOT_STRUCTURE
+S145,OG021873,A,small,REAL_STRUCTURE,medium,"small light rectangle roof in yard, shed-like",SHED,REAL_STRUCTURE
+S146,QG022666,A-secondary,small,REAL_STRUCTURE,medium,"Rotated roof-like patch between buildings, flat orange top",UNSURE,
+S147,QG022844,A-secondary,small,REAL_STRUCTURE,medium,"Small rectangular roof in yard, bright roof in imagery",SHED,REAL_STRUCTURE
+S148,TRb126bd70,B,tree,PROBLEM,medium,"Wedge sliver beside roof, low flat crown, part of tree",PART_OF_TREE,PROBLEM
+S149,TR992c6b2b,B,tree,ONE_TREE,medium,"Complete dome crown, clean side views",ONE_TREE,ONE_TREE
+S150,OG020957,A,small,NOT_STRUCTURE,medium,"Narrow strip on driveway, nothing visible in imagery, likely vehicle",NOT_A_BUILDING,NOT_STRUCTURE
+S151,TR565c97e8,B,tree,PROBLEM,medium,"Lopsided wedge, sparse points, mostly part of crown",TREE_WITH_ROOF,PROBLEM
+S152,TR8d819757,B,tree,PROBLEM,high,"Thin flat crown on roof edge, tiny model",NOT_A_TREE,PROBLEM
+S153,QG021825,A-secondary,small,REAL_STRUCTURE,medium,Square roof beside house with roof texture in imagery,SHED,REAL_STRUCTURE
+S154,TR5be2c329,B,tree,ONE_TREE,medium,"Single rounded crown on lawn, good side views",ONE_TREE,ONE_TREE
+S155,OG021138,A,small,NOT_STRUCTURE,medium,"Narrow strip beside trees, white elongated object, likely vehicle",NOT_A_BUILDING,NOT_STRUCTURE
+S156,OG021021,A,small,REAL_STRUCTURE,medium,Rectangular flat roof at lot edge with tan roof,SHED,REAL_STRUCTURE
+S157,QG022133,A-secondary,small,REAL_STRUCTURE,medium,"Square roof among houses, white roof in imagery",SHED,REAL_STRUCTURE
+S158,TRa3a4c09b,B,tree,PROBLEM,medium,"Wide flat lens crown, slanted shape, low points",SHRUBS,PROBLEM
+S159,TR1d88dbe1,B,tree,ONE_TREE,medium,"Compact single crown, plausible tree on bare ground",ONE_TREE,ONE_TREE
+S160,OG021181,A,small,NOT_STRUCTURE,medium,"Rectangle in alley, nothing in imagery, likely vehicle",NOT_A_BUILDING,NOT_STRUCTURE
+S161,TR537ae9f0,B,tree,ONE_TREE,high,"Isolated small tree, tidy crown, matches imagery",ONE_TREE,ONE_TREE
+S162,TRb0d09b45,B,tree,PROBLEM,medium,"Hillside brush, skewed odd crown, sparse points",PART_OF_TREE,PROBLEM
+S163,TRf41a55d2,B,tree,ONE_TREE,medium,"Isolated tree on slope, full crown points",ONE_TREE,ONE_TREE
+S164,OG021485,A,small,NOT_STRUCTURE,low,"Small tilted patch on pavement, no roof in imagery",UNSURE,
+S165,QG024123,A-secondary,small,REAL_STRUCTURE,medium,Square white roof near matching shed,LIDAR_RIGHT,REAL_STRUCTURE
+S166,TRc2d19ce9,B,tree,ONE_TREE,medium,"Large round single canopy blob, dense dome points",ONE_TREE,ONE_TREE
+S167,QG022756,A-secondary,small,REAL_STRUCTURE,low,Notched small white roof near buildings,NOT_A_BUILDING,NOT_STRUCTURE
+S168,TR1032d149,B,tree,ONE_TREE,low,Crown in dense cluster but plausible single tree,UNSURE,

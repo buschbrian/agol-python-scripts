@@ -1,0 +1,547 @@
+{
+  "status": "complete; comparisons ready, independent labels required",
+  "started": 1792438494.9152853,
+  "warning": "Unvalidated development comparison; candidate counts and model agreement are not accuracy measurements.",
+  "tile": "12TVL2804",
+  "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
+  "runtime": {
+    "arcgis_pro": "3.7.3",
+    "build": "1901",
+    "python": "3.13.13",
+    "scipy": "1.16.3",
+    "license": "ArcInfo"
+  },
+  "code_sha256": "d0c09ac5a2ce2cf33b267cff3323a0668e5f9e7fd844a47e71cec56593c7d900",
+  "reference_before": {
+    "treetop_sample": {
+      "counts": {
+        "": 628
+      },
+      "geometry_labels_sha256": "836cd6f070c485eb4015c540e5e27a0bd8b115462a1231fcfb681b3d0ad0535b"
+    },
+    "omission_sample": {
+      "counts": {
+        "": 300
+      },
+      "geometry_labels_sha256": "24ed41d720858f0f404e4348b77822c4189a725d6e5f2b2df8d4a1f179d4d0c1"
+    },
+    "cell_sample": {
+      "counts": {
+        "": 360
+      },
+      "geometry_labels_sha256": "0527e42683dddeccfafe8291967ac20bd83bfca1a3a0dbda07611a5cc53626fc"
+    },
+    "crown_sample": {
+      "counts": {
+        "": 180
+      },
+      "geometry_labels_sha256": "366d11660e94b32f8b71ba9dde02abc60245a3ba85f4059ab6f1a0c396383a31"
+    }
+  },
+  "source_sha256": "0181e90cd7122761f53ce0742187b643ba47fc475a645d2657238f93c5a8e657",
+  "consensus_sha256": "0a8fae72a65726224c12b7c03cc8e5fd122e03c2183512c9ead50071bb9d5213",
+  "packet_sha256": "11b02c509f86c76d2783298d2dae4cfd1ff9e5af52b8e4076eb6c0f53567eff0",
+  "parameters": {
+    "cell_m": 0.5,
+    "core_m": 150,
+    "halo_m": 20,
+    "bands": "2-6:1.0, 6-12:1.5, 12-20:2.0, 20-:2.5",
+    "smooth_cells": 1,
+    "local_roofs": "existing defaults; no threshold tuning",
+    "model_policy": "existing refine_city.rules; three unanimous votes; all excluded flags protected",
+    "ground": "same October 8 cached terrain for every variant",
+    "development_metric_domain": "core outside fixed reference/census 25 m buffers",
+    "selection": "largest roofs, greatest footprint count, highest baseline canopy among remaining cores"
+  },
+  "evaluation_status": "NO_LABELS",
+  "sites": [
+    {
+      "core": [
+        428225,
+        4504575,
+        428375,
+        4504725
+      ],
+      "footprints": 9,
+      "roof_area_m2": 8054.706274509947,
+      "largest_roof_m2": 5653.683254367888,
+      "baseline_canopy_m2": 4661.25,
+      "development_cells": 42504,
+      "name": "large_roofs",
+      "buffered": [
+        428205,
+        4504555,
+        428395,
+        4504745
+      ]
+    },
+    {
+      "core": [
+        428050,
+        4504750,
+        428200,
+        4504900
+      ],
+      "footprints": 39,
+      "roof_area_m2": 6071.379567576061,
+      "largest_roof_m2": 465.67812805491127,
+      "baseline_canopy_m2": 5826.5,
+      "development_cells": 41167,
+      "name": "small_roofs",
+      "buffered": [
+        428030,
+        4504730,
+        428220,
+        4504920
+      ]
+    },
+    {
+      "core": [
+        428575,
+        4504575,
+        428725,
+        4504725
+      ],
+      "footprints": 10,
+      "roof_area_m2": 3064.1772971619857,
+      "largest_roof_m2": 539.5760501642912,
+      "baseline_canopy_m2": 10829.5,
+      "development_cells": 29231,
+      "name": "canopy_open",
+      "buffered": [
+        428555,
+        4504555,
+        428745,
+        4504745
+      ]
+    }
+  ],
+  "selection_candidates": [
+    {
+      "core": [
+        428050,
+        4504050,
+        428200,
+        4504200
+      ],
+      "footprints": 28,
+      "roof_area_m2": 4414.959985516939,
+      "largest_roof_m2": 308.67448841646427,
+      "baseline_canopy_m2": 5074.75,
+      "development_cells": 35392
+    },
+    {
+      "core": [
+        428225,
+        4504050,
+        428375,
+        4504200
+      ],
+      "footprints": 35,
+      "roof_area_m2": 4617.51964273765,
+      "largest_roof_m2": 256.2003033540165,
+      "baseline_canopy_m2": 5659.25,
+      "development_cells": 30777
+    },
+    {
+      "core": [
+        428400,
+        4504050,
+        428550,
+        4504200
+      ],
+      "footprints": 35,
+      "roof_area_m2": 4477.269464646902,
+      "largest_roof_m2": 276.1621987178677,
+      "baseline_canopy_m2": 7108.75,
+      "development_cells": 42194
+    },
+    {
+      "core": [
+        428050,
+        4504225,
+        428200,
+        4504375
+      ],
+      "footprints": 31,
+      "roof_area_m2": 4024.266008942219,
+      "largest_roof_m2": 295.99227575729384,
+      "baseline_canopy_m2": 5367.25,
+      "development_cells": 32326
+    },
+    {
+      "core": [
+        428225,
+        4504225,
+        428375,
+        4504375
+      ],
+      "footprints": 38,
+      "roof_area_m2": 3529.1531518841584,
+      "largest_roof_m2": 213.34437126258828,
+      "baseline_canopy_m2": 5061.0,
+      "development_cells": 34876
+    },
+    {
+      "core": [
+        428400,
+        4504225,
+        428550,
+        4504375
+      ],
+      "footprints": 25,
+      "roof_area_m2": 2962.776724024291,
+      "largest_roof_m2": 493.5508097892054,
+      "baseline_canopy_m2": 3586.5,
+      "development_cells": 22848
+    },
+    {
+      "core": [
+        428050,
+        4504400,
+        428200,
+        4504550
+      ],
+      "footprints": 28,
+      "roof_area_m2": 5682.222301642677,
+      "largest_roof_m2": 503.42678073916784,
+      "baseline_canopy_m2": 4181.0,
+      "development_cells": 22560
+    },
+    {
+      "core": [
+        428225,
+        4504400,
+        428375,
+        4504550
+      ],
+      "footprints": 22,
+      "roof_area_m2": 5128.68043282825,
+      "largest_roof_m2": 1240.209092790649,
+      "baseline_canopy_m2": 5969.5,
+      "development_cells": 51395
+    },
+    {
+      "core": [
+        428400,
+        4504400,
+        428550,
+        4504550
+      ],
+      "footprints": 15,
+      "roof_area_m2": 8257.96384280078,
+      "largest_roof_m2": 3240.5467236424474,
+      "baseline_canopy_m2": 2125.75,
+      "development_cells": 51862
+    },
+    {
+      "core": [
+        428575,
+        4504400,
+        428725,
+        4504550
+      ],
+      "footprints": 16,
+      "roof_area_m2": 3249.724440095106,
+      "largest_roof_m2": 413.7390943133236,
+      "baseline_canopy_m2": 8072.75,
+      "development_cells": 31629
+    },
+    {
+      "core": [
+        428750,
+        4504400,
+        428900,
+        4504550
+      ],
+      "footprints": 17,
+      "roof_area_m2": 2982.020800731665,
+      "largest_roof_m2": 436.7866531107963,
+      "baseline_canopy_m2": 7849.25,
+      "development_cells": 23124
+    },
+    {
+      "core": [
+        428050,
+        4504575,
+        428200,
+        4504725
+      ],
+      "footprints": 18,
+      "roof_area_m2": 5287.742469869174,
+      "largest_roof_m2": 1493.7357162692579,
+      "baseline_canopy_m2": 6234.25,
+      "development_cells": 41968
+    },
+    {
+      "core": [
+        428225,
+        4504575,
+        428375,
+        4504725
+      ],
+      "footprints": 9,
+      "roof_area_m2": 8054.706274509947,
+      "largest_roof_m2": 5653.683254367888,
+      "baseline_canopy_m2": 4661.25,
+      "development_cells": 42504
+    },
+    {
+      "core": [
+        428400,
+        4504575,
+        428550,
+        4504725
+      ],
+      "footprints": 7,
+      "roof_area_m2": 3336.462356685249,
+      "largest_roof_m2": 1913.0719290050192,
+      "baseline_canopy_m2": 5518.5,
+      "development_cells": 49408
+    },
+    {
+      "core": [
+        428575,
+        4504575,
+        428725,
+        4504725
+      ],
+      "footprints": 10,
+      "roof_area_m2": 3064.1772971619857,
+      "largest_roof_m2": 539.5760501642912,
+      "baseline_canopy_m2": 10829.5,
+      "development_cells": 29231
+    },
+    {
+      "core": [
+        428750,
+        4504575,
+        428900,
+        4504725
+      ],
+      "footprints": 16,
+      "roof_area_m2": 3915.6600210735096,
+      "largest_roof_m2": 565.2240097313074,
+      "baseline_canopy_m2": 9712.25,
+      "development_cells": 40934
+    },
+    {
+      "core": [
+        428050,
+        4504750,
+        428200,
+        4504900
+      ],
+      "footprints": 39,
+      "roof_area_m2": 6071.379567576061,
+      "largest_roof_m2": 465.67812805491127,
+      "baseline_canopy_m2": 5826.5,
+      "development_cells": 41167
+    },
+    {
+      "core": [
+        428225,
+        4504750,
+        428375,
+        4504900
+      ],
+      "footprints": 17,
+      "roof_area_m2": 6767.46540564136,
+      "largest_roof_m2": 1097.3350789448302,
+      "baseline_canopy_m2": 7088.5,
+      "development_cells": 35413
+    },
+    {
+      "core": [
+        428400,
+        4504750,
+        428550,
+        4504900
+      ],
+      "footprints": 14,
+      "roof_area_m2": 2900.9882225797564,
+      "largest_roof_m2": 350.0598891437263,
+      "baseline_canopy_m2": 6788.25,
+      "development_cells": 32765
+    },
+    {
+      "core": [
+        428575,
+        4504750,
+        428725,
+        4504900
+      ],
+      "footprints": 5,
+      "roof_area_m2": 4308.583821915252,
+      "largest_roof_m2": 4086.06821201981,
+      "baseline_canopy_m2": 4882.5,
+      "development_cells": 40394
+    },
+    {
+      "core": [
+        428750,
+        4504750,
+        428900,
+        4504900
+      ],
+      "footprints": 15,
+      "roof_area_m2": 3853.3882557525885,
+      "largest_roof_m2": 411.42085593996524,
+      "baseline_canopy_m2": 7972.75,
+      "development_cells": 37818
+    }
+  ],
+  "finished": 1792438939.4668856,
+  "comparison": [
+    {
+      "site": "large_roofs",
+      "variant": "baseline",
+      "core_m2": 22500,
+      "development_m2": 10626.0,
+      "treetops_core": 240,
+      "treetops_development": 100,
+      "canopy_m2_core": 4661.25,
+      "canopy_m2_development": 1841.25,
+      "observed_m2_development": 10594.0,
+      "observation_lost_m2": 0.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 0.0,
+      "canopy_added_m2": 0.0,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "large_roofs",
+      "variant": "local_roofs",
+      "core_m2": 22500,
+      "development_m2": 10626.0,
+      "treetops_core": 203,
+      "treetops_development": 75,
+      "canopy_m2_core": 4546.75,
+      "canopy_m2_development": 1788.25,
+      "observed_m2_development": 10594.0,
+      "observation_lost_m2": 0.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 53.0,
+      "canopy_added_m2": 0.0,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "large_roofs",
+      "variant": "fractal_unanimous",
+      "core_m2": 22500,
+      "development_m2": 10626.0,
+      "treetops_core": 186,
+      "treetops_development": 61,
+      "canopy_m2_core": 4564.25,
+      "canopy_m2_development": 1776.0,
+      "observed_m2_development": 10541.0,
+      "observation_lost_m2": 53.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 88.75,
+      "canopy_added_m2": 23.5,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "small_roofs",
+      "variant": "baseline",
+      "core_m2": 22500,
+      "development_m2": 10291.75,
+      "treetops_core": 427,
+      "treetops_development": 198,
+      "canopy_m2_core": 5826.5,
+      "canopy_m2_development": 2466.75,
+      "observed_m2_development": 10185.5,
+      "observation_lost_m2": 0.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 0.0,
+      "canopy_added_m2": 0.0,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "small_roofs",
+      "variant": "local_roofs",
+      "core_m2": 22500,
+      "development_m2": 10291.75,
+      "treetops_core": 343,
+      "treetops_development": 150,
+      "canopy_m2_core": 5594.5,
+      "canopy_m2_development": 2347.75,
+      "observed_m2_development": 10185.5,
+      "observation_lost_m2": 0.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 119.0,
+      "canopy_added_m2": 0.0,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "small_roofs",
+      "variant": "fractal_unanimous",
+      "core_m2": 22500,
+      "development_m2": 10291.75,
+      "treetops_core": 285,
+      "treetops_development": 124,
+      "canopy_m2_core": 5499.0,
+      "canopy_m2_development": 2317.0,
+      "observed_m2_development": 10181.0,
+      "observation_lost_m2": 4.5,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 174.25,
+      "canopy_added_m2": 24.5,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "canopy_open",
+      "variant": "baseline",
+      "core_m2": 22500,
+      "development_m2": 7307.75,
+      "treetops_core": 442,
+      "treetops_development": 114,
+      "canopy_m2_core": 10829.5,
+      "canopy_m2_development": 3225.75,
+      "observed_m2_development": 7228.5,
+      "observation_lost_m2": 0.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 0.0,
+      "canopy_added_m2": 0.0,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "canopy_open",
+      "variant": "local_roofs",
+      "core_m2": 22500,
+      "development_m2": 7307.75,
+      "treetops_core": 410,
+      "treetops_development": 106,
+      "canopy_m2_core": 10716.0,
+      "canopy_m2_development": 3191.5,
+      "observed_m2_development": 7228.5,
+      "observation_lost_m2": 0.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 34.25,
+      "canopy_added_m2": 0.0,
+      "accuracy_status": "NO_LABELS"
+    },
+    {
+      "site": "canopy_open",
+      "variant": "fractal_unanimous",
+      "core_m2": 22500,
+      "development_m2": 7307.75,
+      "treetops_core": 395,
+      "treetops_development": 99,
+      "canopy_m2_core": 10768.0,
+      "canopy_m2_development": 3215.5,
+      "observed_m2_development": 7226.5,
+      "observation_lost_m2": 2.0,
+      "observation_gained_m2": 0.0,
+      "canopy_removed_m2": 28.5,
+      "canopy_added_m2": 18.25,
+      "accuracy_status": "NO_LABELS"
+    }
+  ],
+  "building_rows": 174,
+  "reference_unchanged": true,
+  "source_unchanged": true,
+  "consensus_unchanged": true,
+  "independent_review": "D:\\lidar\\2023-salt-lake-valley\\runs\\classification-pilot-20261019\\independent-review",
+  "independent_review_note": "Exact copy of existing fixed sample, not a new draw. Labels remain blank; no reference answers synthesized."
+}

@@ -1,0 +1,2198 @@
+{
+ "schema": "treetop-calibration/1",
+ "created": "2026-10-15T16:28:35",
+ "seed": 20261015,
+ "method": "per stratum in STRATA order: numpy default_rng(seed).permutation over the TREE_ID-sorted eligible pool, taking units at least MIN_SPACING_M from every unit already taken; then one shared permutation gives the review order",
+ "priority": [
+  "WIRE_HINT",
+  "WALL_HINT",
+  "FLAT_TOP",
+  "ROOF_HEIGHT"
+ ],
+ "strata": [
+  "WIRE",
+  "WALL",
+  "FLAT_TOP",
+  "ROOF_HEIGHT",
+  "POLE_ONLY",
+  "UNFLAGGED"
+ ],
+ "sizes": {
+  "WIRE": 50,
+  "WALL": 50,
+  "FLAT_TOP": 50,
+  "ROOF_HEIGHT": 100,
+  "POLE_ONLY": 50,
+  "UNFLAGGED": 50
+ },
+ "min_spacing_m": 2.5,
+ "evidence_csv": "H:\\lidar\\2023-salt-lake-valley\\runs\\treetop-evidence-20261015\\treetop-evidence.csv",
+ "evidence_csv_sha256": "7ee083d84fe0d1bc330065653c6f20c2f5fcbe74236877f0ac39980ff65da2aa",
+ "evidence_rules_version": "treetop-evidence/2",
+ "frame_source": "H:\\lidar\\2023-salt-lake-valley\\runs\\pilot-2026-09-29\\training-review\\packet-20260929\\packet.json",
+ "frame_digest": "506badd50bc10f349d721caf5386b17bf959dc4f0d819bf8c6857dc6e50f0ea0",
+ "frame_buffer_m": 25.0,
+ "top_radius_m": 1.0,
+ "seen_training_units": 98,
+ "seen_radius_m": 3.0,
+ "populations": {
+  "citywide": {
+   "WIRE": 2413,
+   "WALL": 579,
+   "FLAT_TOP": 4875,
+   "ROOF_HEIGHT": 83940,
+   "POLE_ONLY": 31107,
+   "UNFLAGGED": 485058
+  },
+  "eligible": {
+   "WIRE": 2363,
+   "WALL": 557,
+   "FLAT_TOP": 4716,
+   "ROOF_HEIGHT": 79998,
+   "POLE_ONLY": 29510,
+   "UNFLAGGED": 433630
+  }
+ },
+ "pool_digests": {
+  "WIRE": "3b24ddd1edf1d9bd433d0cc198a57449db4648b6c857ed88a7303ce2560297df",
+  "WALL": "7083ad8678f6eb4bd5689afd22e209a9a76a130ef61ca1e91f2588fccd0d7050",
+  "FLAT_TOP": "569c2b7fefb97eeb28e1cf1e38794d053e3a951ef68c9b8e81c903425f264aca",
+  "ROOF_HEIGHT": "61512f1639e4629878e87fb3f8bc71c7847d4b08827897cb0b86c0c1b4fa749d",
+  "POLE_ONLY": "63a9f9835ee423d41ed79deb3ad5491db6322b26efad6b3502ca69e1a80e7a0f",
+  "UNFLAGGED": "ef38354b260262bd102e07cf6564d4e614367b5bc35458a4f5adc00673d88642"
+ },
+ "excluded": {
+  "excluded tile 12TVL2203": {
+   "UNFLAGGED": 783,
+   "POLE_ONLY": 59,
+   "ROOF_HEIGHT": 161,
+   "FLAT_TOP": 4,
+   "WIRE": 1
+  },
+  "evaluation buffer": {
+   "ROOF_HEIGHT": 1763,
+   "POLE_ONLY": 1135,
+   "UNFLAGGED": 6997,
+   "FLAT_TOP": 77,
+   "WIRE": 47,
+   "WALL": 15
+  },
+  "near a seen training unit": {
+   "POLE_ONLY": 3,
+   "UNFLAGGED": 21,
+   "WIRE": 2,
+   "ROOF_HEIGHT": 15,
+   "FLAT_TOP": 1
+  },
+  "excluded tile 12TVL3302": {
+   "UNFLAGGED": 43627,
+   "ROOF_HEIGHT": 2003,
+   "FLAT_TOP": 77,
+   "POLE_ONLY": 400,
+   "WALL": 7
+  }
+ },
+ "units": [
+  {
+   "UNIT_ID": "C1-0001",
+   "ORDER": 1,
+   "TREE_ID": "1fb1ab7e-bd61-5e5f-b1a4-f6c687312537",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0002",
+   "ORDER": 2,
+   "TREE_ID": "2c69b481-d12f-5c60-928e-9a8d20471bd9",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0003",
+   "ORDER": 3,
+   "TREE_ID": "532acd3d-51ff-5d49-9185-c4616bf30b23",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0004",
+   "ORDER": 4,
+   "TREE_ID": "ec0141a0-d1eb-5c1a-b33c-c41ad0565547",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0005",
+   "ORDER": 5,
+   "TREE_ID": "61b85ea8-a320-5b84-b3d8-6189150e6132",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0006",
+   "ORDER": 6,
+   "TREE_ID": "47fde820-3372-5850-9d6c-7482b3676df7",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0007",
+   "ORDER": 7,
+   "TREE_ID": "3e8d2a7b-415f-5cc5-b8a9-b91c03047cec",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0008",
+   "ORDER": 8,
+   "TREE_ID": "ff88937e-1273-5765-a711-e0101c82024c",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0009",
+   "ORDER": 9,
+   "TREE_ID": "6a606d90-a545-512a-9c0f-0b746cb693b4",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0010",
+   "ORDER": 10,
+   "TREE_ID": "d85bd019-c46a-5d69-abd2-1a26e3178111",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0011",
+   "ORDER": 11,
+   "TREE_ID": "f1351861-eeba-597e-9fa5-3e8a2905c96c",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0012",
+   "ORDER": 12,
+   "TREE_ID": "2e18ea2c-df67-531f-9a33-1978bec4087e",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0013",
+   "ORDER": 13,
+   "TREE_ID": "946e23d1-da01-5288-81a5-68e05db9cccc",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0014",
+   "ORDER": 14,
+   "TREE_ID": "8137c43e-a4e3-56d7-8ea1-4bc056107979",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0015",
+   "ORDER": 15,
+   "TREE_ID": "2df03ae8-254a-521c-9433-2899ce80dbd2",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0016",
+   "ORDER": 16,
+   "TREE_ID": "510765e5-92e3-5a9e-8fcd-1dddd040827b",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0017",
+   "ORDER": 17,
+   "TREE_ID": "076357c6-f533-5670-8a67-f9815f6a6dab",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0018",
+   "ORDER": 18,
+   "TREE_ID": "b019e6aa-655e-58c8-9144-dcc7fc977aae",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0019",
+   "ORDER": 19,
+   "TREE_ID": "5277b58a-b222-5f70-904c-4a9970014082",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0020",
+   "ORDER": 20,
+   "TREE_ID": "d3bf8e39-da8f-5135-b5ef-a19c95e8288e",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0021",
+   "ORDER": 21,
+   "TREE_ID": "e72db80c-9bf8-55c5-8e65-ec5ab7ed3dc6",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0022",
+   "ORDER": 22,
+   "TREE_ID": "80844ec6-0b07-5b8a-87ba-c3cfd4f94d7a",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0023",
+   "ORDER": 23,
+   "TREE_ID": "8988800f-fb6b-5b8e-bc62-86e2e395d5dd",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0024",
+   "ORDER": 24,
+   "TREE_ID": "c77258b5-1178-52b8-961a-da98566f1ad3",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0025",
+   "ORDER": 25,
+   "TREE_ID": "23a7635a-eb13-5709-8947-34ef61183895",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0026",
+   "ORDER": 26,
+   "TREE_ID": "8c530d4e-9181-5232-b11a-b3091680e88d",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0027",
+   "ORDER": 27,
+   "TREE_ID": "d07580c4-81d2-53ce-b5e6-61621a64da24",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0028",
+   "ORDER": 28,
+   "TREE_ID": "64fad659-b499-5d83-9a30-bc40183edacc",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0029",
+   "ORDER": 29,
+   "TREE_ID": "103d440d-82bb-5bf6-b0ff-45ad5eba4a34",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0030",
+   "ORDER": 30,
+   "TREE_ID": "9afd9ec3-7152-5edf-93c9-e0ea99f0128d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0031",
+   "ORDER": 31,
+   "TREE_ID": "1fd57338-3561-5313-8b86-5e32bb4681e1",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0032",
+   "ORDER": 32,
+   "TREE_ID": "e2a88035-77ba-5bbf-abbb-54c14d72d44d",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0033",
+   "ORDER": 33,
+   "TREE_ID": "37b66f4d-a41b-5af7-ad35-0cd229862fbb",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0034",
+   "ORDER": 34,
+   "TREE_ID": "d412f4e6-d14d-5bc7-9b79-e5c8a87422d9",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0035",
+   "ORDER": 35,
+   "TREE_ID": "07efa935-d2ac-5707-b9a6-638ad70f6acb",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0036",
+   "ORDER": 36,
+   "TREE_ID": "f7a37cf2-de66-5fdc-8432-19d3ccd16eb1",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0037",
+   "ORDER": 37,
+   "TREE_ID": "21f0d476-97af-53c6-b4b1-3ac951a568dc",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0038",
+   "ORDER": 38,
+   "TREE_ID": "e91c1644-8ca7-5fd0-9aae-4140a0195025",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0039",
+   "ORDER": 39,
+   "TREE_ID": "1eca8560-49f1-5585-9ada-657b49a6080a",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0040",
+   "ORDER": 40,
+   "TREE_ID": "f5889274-e39b-537c-bcbb-97363fbf125a",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0041",
+   "ORDER": 41,
+   "TREE_ID": "6e2da01d-98fd-5a41-8e2c-7953ffcffb7e",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0042",
+   "ORDER": 42,
+   "TREE_ID": "feedfe5c-cfd2-5de4-a175-6eb855fde6c0",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0043",
+   "ORDER": 43,
+   "TREE_ID": "252f77ef-9253-5441-aa97-88fc755ecf14",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0044",
+   "ORDER": 44,
+   "TREE_ID": "93ebd1fe-c4f1-5048-8c98-afaa977f33de",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0045",
+   "ORDER": 45,
+   "TREE_ID": "6d4908e7-4a8c-5a9c-a796-1e07f3d10267",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0046",
+   "ORDER": 46,
+   "TREE_ID": "7ce52ddb-72ac-5dfb-b4f4-fd9d5531c325",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0047",
+   "ORDER": 47,
+   "TREE_ID": "764a1e74-3dbd-5fca-8f73-c08238b69d1a",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0048",
+   "ORDER": 48,
+   "TREE_ID": "0b2cf6d5-11db-54b5-a4ae-e5b90b3282e1",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0049",
+   "ORDER": 49,
+   "TREE_ID": "ae0db2a0-0e9b-5244-b7fd-5c3d3a517c42",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0050",
+   "ORDER": 50,
+   "TREE_ID": "c09b02eb-a5c4-5636-a5c3-3c88f4936bad",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0051",
+   "ORDER": 51,
+   "TREE_ID": "e4fa701a-4a9b-52d8-8457-1c4137579f15",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0052",
+   "ORDER": 52,
+   "TREE_ID": "c691db67-49b3-54db-9334-fa4472ffa2b4",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0053",
+   "ORDER": 53,
+   "TREE_ID": "14d98ea7-b0a3-5b21-aa26-9776f01cc365",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0054",
+   "ORDER": 54,
+   "TREE_ID": "52ad3fbe-4c97-53d9-b275-da49c9a49d2d",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0055",
+   "ORDER": 55,
+   "TREE_ID": "27376455-7e57-5351-ae54-df1331f80d78",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0056",
+   "ORDER": 56,
+   "TREE_ID": "83ad4da5-a3c9-58aa-bb5d-a21f7b25acf9",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0057",
+   "ORDER": 57,
+   "TREE_ID": "489dedd7-1669-5a56-9dc9-eaf80db48924",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0058",
+   "ORDER": 58,
+   "TREE_ID": "ce86e650-17d5-57b2-ae33-47182b2be1ee",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0059",
+   "ORDER": 59,
+   "TREE_ID": "c152ca59-8242-5d5e-8107-8834c949b200",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0060",
+   "ORDER": 60,
+   "TREE_ID": "ce43dc9e-fb00-51f4-a002-05af778508b1",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0061",
+   "ORDER": 61,
+   "TREE_ID": "7f938dfe-2c94-5f76-9dee-967a30ad31d5",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0062",
+   "ORDER": 62,
+   "TREE_ID": "eca22826-23f3-5efe-8f2e-459eed7f657e",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0063",
+   "ORDER": 63,
+   "TREE_ID": "2463dcc7-89d9-51a9-8b95-4aa2ced9dabf",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0064",
+   "ORDER": 64,
+   "TREE_ID": "5241a7f1-9dfa-54fa-aab4-8e6aa8332dbe",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0065",
+   "ORDER": 65,
+   "TREE_ID": "35fc4a42-70d9-522d-be30-320e4db644aa",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0066",
+   "ORDER": 66,
+   "TREE_ID": "077b583d-2767-546a-be92-0db5a94afe02",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0067",
+   "ORDER": 67,
+   "TREE_ID": "ec2c50df-4785-5911-8cce-4370a1b26db6",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0068",
+   "ORDER": 68,
+   "TREE_ID": "cb7537b4-83a3-5ce3-967d-6de17ff0aed9",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0069",
+   "ORDER": 69,
+   "TREE_ID": "92b0acc0-10f5-5196-ae30-6e0c0d2e232d",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0070",
+   "ORDER": 70,
+   "TREE_ID": "f74a3d11-821d-5f85-9b49-3b13d74d5250",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0071",
+   "ORDER": 71,
+   "TREE_ID": "f88c6637-f6fe-5ef2-9291-66c7dba9ebab",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0072",
+   "ORDER": 72,
+   "TREE_ID": "3cf29561-4e7e-599f-ab1c-21c09894ac1b",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0073",
+   "ORDER": 73,
+   "TREE_ID": "243e17ac-9d57-51b5-b6b5-350fab3d9a27",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0074",
+   "ORDER": 74,
+   "TREE_ID": "118d4109-bd32-5a1a-9343-91e7d007aeae",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0075",
+   "ORDER": 75,
+   "TREE_ID": "93c276fd-23c5-5e1b-a624-faa8f7bef1dd",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0076",
+   "ORDER": 76,
+   "TREE_ID": "0a3e9391-13c7-5e19-9fce-2a5639f7713a",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0077",
+   "ORDER": 77,
+   "TREE_ID": "3b5aaffc-0298-5df4-8f75-d133f0eb1b36",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0078",
+   "ORDER": 78,
+   "TREE_ID": "7a45ac20-ff61-52cb-852b-892c01fffd69",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0079",
+   "ORDER": 79,
+   "TREE_ID": "c679e494-b7b6-5291-a676-a50c6848e3a8",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0080",
+   "ORDER": 80,
+   "TREE_ID": "9a63edee-0b51-5bd5-be03-d18e1db1613c",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0081",
+   "ORDER": 81,
+   "TREE_ID": "c3317b44-bdeb-5b08-a899-08555d89f9e0",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0082",
+   "ORDER": 82,
+   "TREE_ID": "fcda5d27-3bb9-55eb-8426-65f3724195f6",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0083",
+   "ORDER": 83,
+   "TREE_ID": "7730a24e-5b5d-581b-8304-1f776f26cb51",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0084",
+   "ORDER": 84,
+   "TREE_ID": "acf8852c-aa7e-5e33-8cfc-02415efb2fa9",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0085",
+   "ORDER": 85,
+   "TREE_ID": "8bec0908-87ed-5aa8-bb09-0ecc8bbc126d",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0086",
+   "ORDER": 86,
+   "TREE_ID": "56d97956-6e71-5156-8ecb-8c80e9595db3",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0087",
+   "ORDER": 87,
+   "TREE_ID": "56cad896-0b83-5f86-aff1-8c199e164e56",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0088",
+   "ORDER": 88,
+   "TREE_ID": "176fcec0-5929-5744-b165-511e9b579cdd",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0089",
+   "ORDER": 89,
+   "TREE_ID": "48382079-e698-5e79-aa9a-7a85d0c660c4",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0090",
+   "ORDER": 90,
+   "TREE_ID": "7e3a8c0e-7970-5e19-b9cd-78244af9db20",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0091",
+   "ORDER": 91,
+   "TREE_ID": "e6f72369-6594-57df-a8ca-3f72179c9a61",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0092",
+   "ORDER": 92,
+   "TREE_ID": "6709c14e-4b8d-528e-bfde-1e6d5c3871db",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0093",
+   "ORDER": 93,
+   "TREE_ID": "5518eb58-bd16-56a0-87a1-8e477326f839",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0094",
+   "ORDER": 94,
+   "TREE_ID": "9bb67f7e-6eee-5ad3-b2aa-fe834bb4f2d2",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0095",
+   "ORDER": 95,
+   "TREE_ID": "ba6d877b-edd8-553b-9b7e-41172bfe17db",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0096",
+   "ORDER": 96,
+   "TREE_ID": "a7e5a4a0-a34b-5140-ba9a-8dcd8f57fc46",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0097",
+   "ORDER": 97,
+   "TREE_ID": "7f9741bf-f7a4-5517-9dfe-b1093c72fa36",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0098",
+   "ORDER": 98,
+   "TREE_ID": "a55b621e-32cf-53c4-96ba-bc51af08655a",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0099",
+   "ORDER": 99,
+   "TREE_ID": "e1a4392f-1b8c-5056-a9ff-6912e64d7935",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0100",
+   "ORDER": 100,
+   "TREE_ID": "bbf80e3c-cbd0-5380-bbcd-e1deee57ab34",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0101",
+   "ORDER": 101,
+   "TREE_ID": "1b778700-23a6-5d85-989b-182abedc3e89",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0102",
+   "ORDER": 102,
+   "TREE_ID": "61765413-0377-5d59-b6d3-400478f9dcef",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0103",
+   "ORDER": 103,
+   "TREE_ID": "1a9c0cdc-a130-50fd-98e0-a9933fb6b8d5",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0104",
+   "ORDER": 104,
+   "TREE_ID": "34e2a147-a596-5c27-94b9-97bf6c2b74b2",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0105",
+   "ORDER": 105,
+   "TREE_ID": "4d017264-cb86-5535-b349-dc8842c984d6",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0106",
+   "ORDER": 106,
+   "TREE_ID": "b58b012e-d3a8-56f5-a35d-f32e2923538e",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0107",
+   "ORDER": 107,
+   "TREE_ID": "4734f365-c6b5-5795-9c3d-5e7611c8fd42",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0108",
+   "ORDER": 108,
+   "TREE_ID": "1cabe1af-0327-5d4d-8f7e-e4a7f5df6201",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0109",
+   "ORDER": 109,
+   "TREE_ID": "81e1350f-577d-5289-bf83-d56fd91cf4aa",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0110",
+   "ORDER": 110,
+   "TREE_ID": "c018c0c8-b1d3-5f75-90c0-fa25ab0d4737",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0111",
+   "ORDER": 111,
+   "TREE_ID": "24f68571-0c89-53af-9b12-d384798d4060",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0112",
+   "ORDER": 112,
+   "TREE_ID": "3fb410c4-3b20-5a99-95ca-530bb0817d62",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0113",
+   "ORDER": 113,
+   "TREE_ID": "0a4692b0-96ea-5c69-93c5-fad2941c0063",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0114",
+   "ORDER": 114,
+   "TREE_ID": "c9dcc7ad-ecb5-5856-92f0-a63a62e59e25",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0115",
+   "ORDER": 115,
+   "TREE_ID": "bd9d3c18-d17a-5a90-a6b1-79dc6472124f",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0116",
+   "ORDER": 116,
+   "TREE_ID": "5bcbdc76-15c4-582b-8882-f61c8bdf7b0a",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0117",
+   "ORDER": 117,
+   "TREE_ID": "3569297f-e90a-5aec-a7b1-f296331e6bd1",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0118",
+   "ORDER": 118,
+   "TREE_ID": "7e551847-38c2-53a6-bc94-7f6109d1dfcb",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0119",
+   "ORDER": 119,
+   "TREE_ID": "231c34df-9379-5101-bf63-95889424c130",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0120",
+   "ORDER": 120,
+   "TREE_ID": "053dbf6e-4a9f-580b-8574-87dbd2afbca0",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0121",
+   "ORDER": 121,
+   "TREE_ID": "c3a1d673-b634-5fd2-bd99-8fcf4d76a3f7",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0122",
+   "ORDER": 122,
+   "TREE_ID": "078a8066-a995-52f2-a019-b69ee5765a57",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0123",
+   "ORDER": 123,
+   "TREE_ID": "19c2b0c3-90c6-52dd-954f-6736816315ec",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0124",
+   "ORDER": 124,
+   "TREE_ID": "f6efb1e4-a5d4-5e6d-8749-e4e028060e4c",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0125",
+   "ORDER": 125,
+   "TREE_ID": "ac114d89-ab9c-5027-8718-1e3ea1ffdb6b",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0126",
+   "ORDER": 126,
+   "TREE_ID": "c192b44c-3414-59e7-a3de-2e9b61ca680f",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0127",
+   "ORDER": 127,
+   "TREE_ID": "14289913-4e21-53b5-8efe-d4fd61412fca",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0128",
+   "ORDER": 128,
+   "TREE_ID": "5f1b5692-3140-5881-9cf0-2cf861f86c82",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0129",
+   "ORDER": 129,
+   "TREE_ID": "192628dc-293f-5dd8-8991-f9f2b767bbda",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0130",
+   "ORDER": 130,
+   "TREE_ID": "3153e517-5013-52a9-857e-e5ffaddac29d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0131",
+   "ORDER": 131,
+   "TREE_ID": "c3e71dd8-def3-51ff-8fe9-fb802dfc1e32",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0132",
+   "ORDER": 132,
+   "TREE_ID": "de084b70-a3f9-5a18-afc3-e48e249a0cf6",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0133",
+   "ORDER": 133,
+   "TREE_ID": "8982cc06-3d5b-58de-a8ac-830f60d02cec",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0134",
+   "ORDER": 134,
+   "TREE_ID": "8b25a1b7-8b20-5673-a913-b6631ed8b9ec",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0135",
+   "ORDER": 135,
+   "TREE_ID": "7b089c30-dccc-50be-b756-2aca9d563fb9",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0136",
+   "ORDER": 136,
+   "TREE_ID": "b2204823-b65b-5c57-958a-09863d5f244a",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0137",
+   "ORDER": 137,
+   "TREE_ID": "9f02d7e4-e147-51fe-8c00-660c935cd0d8",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0138",
+   "ORDER": 138,
+   "TREE_ID": "331ace8a-c188-5c2d-8cc7-1d70397dd504",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0139",
+   "ORDER": 139,
+   "TREE_ID": "e2cbb105-7393-52de-92d1-c71223493788",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0140",
+   "ORDER": 140,
+   "TREE_ID": "282b714c-8b4a-5ee6-a3a0-e2ba2306940d",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0141",
+   "ORDER": 141,
+   "TREE_ID": "0b024969-b435-59ee-bbe1-9e646e5ad4b0",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0142",
+   "ORDER": 142,
+   "TREE_ID": "adc09743-ee68-58a8-8025-759279a8f36a",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0143",
+   "ORDER": 143,
+   "TREE_ID": "25cb1c5a-e4b5-54ba-b956-00bee1468d4d",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0144",
+   "ORDER": 144,
+   "TREE_ID": "13a12d7b-b2fe-5a13-b0ff-7e1a7609e1b5",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0145",
+   "ORDER": 145,
+   "TREE_ID": "e4a40ac2-e873-51c6-8e89-5883d70c6d64",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0146",
+   "ORDER": 146,
+   "TREE_ID": "bbf64f96-912f-54b6-b2e8-3d71c0a24655",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0147",
+   "ORDER": 147,
+   "TREE_ID": "36c1be7e-7cc3-5e43-8dc4-0805395c09fc",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0148",
+   "ORDER": 148,
+   "TREE_ID": "90991061-570b-5393-bb95-b1847a0e581c",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0149",
+   "ORDER": 149,
+   "TREE_ID": "66bce6a6-2c96-5ec3-a4bf-96b968d86fad",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0150",
+   "ORDER": 150,
+   "TREE_ID": "d9d33745-f8df-5e14-8378-26db1b010cd1",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0151",
+   "ORDER": 151,
+   "TREE_ID": "f4e801a2-a8fa-572a-bbb0-e6ad6882aeb3",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0152",
+   "ORDER": 152,
+   "TREE_ID": "407b9ad0-0227-556e-8418-79e9c908a416",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0153",
+   "ORDER": 153,
+   "TREE_ID": "41f276da-8124-52f2-a4ac-84d281bb5149",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0154",
+   "ORDER": 154,
+   "TREE_ID": "2ef11e23-96cf-5c3f-af69-d43b071e722a",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0155",
+   "ORDER": 155,
+   "TREE_ID": "ea2852fa-ef2f-5c21-b660-0f7b583d48ab",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0156",
+   "ORDER": 156,
+   "TREE_ID": "23941e13-e16e-54f0-9294-96185aab6e3a",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0157",
+   "ORDER": 157,
+   "TREE_ID": "1f221bc5-cdaa-5533-a687-58ac46e7ef0a",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0158",
+   "ORDER": 158,
+   "TREE_ID": "d63df0b0-ef04-5535-b974-f931431c8425",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0159",
+   "ORDER": 159,
+   "TREE_ID": "9a1b80fe-4aff-5e5a-aaa1-4c518ed7d97e",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0160",
+   "ORDER": 160,
+   "TREE_ID": "37060056-4e4b-5c9e-bc47-6d06adb10e31",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0161",
+   "ORDER": 161,
+   "TREE_ID": "9582d870-6d34-59b2-91a6-b90095447adf",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0162",
+   "ORDER": 162,
+   "TREE_ID": "16f8f457-c19d-569d-a6ca-7ecaa431d78b",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0163",
+   "ORDER": 163,
+   "TREE_ID": "270f8dc1-e6c9-5854-9a19-1d9e151995ca",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0164",
+   "ORDER": 164,
+   "TREE_ID": "9a95e919-2e14-5444-87dd-3ffcfa156641",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0165",
+   "ORDER": 165,
+   "TREE_ID": "fe305e71-8409-5fc3-99d3-604b6fe1807f",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0166",
+   "ORDER": 166,
+   "TREE_ID": "0500980f-9692-562d-bb2b-fd2510b88067",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0167",
+   "ORDER": 167,
+   "TREE_ID": "989d5fb5-9d78-5d7c-bb10-8616d7fdc95d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0168",
+   "ORDER": 168,
+   "TREE_ID": "3998a03a-80d9-554b-a913-a4c5cb90d81c",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0169",
+   "ORDER": 169,
+   "TREE_ID": "505cdcbf-69b3-5384-bc30-e3360df34315",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0170",
+   "ORDER": 170,
+   "TREE_ID": "44246b9e-2f77-5d73-8546-bf8003e74163",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0171",
+   "ORDER": 171,
+   "TREE_ID": "28e86479-b422-5aa9-8a8c-faf2fe0ba356",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0172",
+   "ORDER": 172,
+   "TREE_ID": "a0fe8189-2379-5eb3-a6ec-82e0fcbfccbf",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0173",
+   "ORDER": 173,
+   "TREE_ID": "d048ccc6-dde4-59fd-a04b-71cbb25003de",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0174",
+   "ORDER": 174,
+   "TREE_ID": "e2ebf4f3-e7d7-54a9-8006-7776e136a806",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0175",
+   "ORDER": 175,
+   "TREE_ID": "129ebe96-f811-532f-a94e-1330c0088e74",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0176",
+   "ORDER": 176,
+   "TREE_ID": "9284410c-faf9-5564-8386-09888b9f55a9",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0177",
+   "ORDER": 177,
+   "TREE_ID": "fd8cbc67-d999-5a4b-bd75-0e0bb08bd3ed",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0178",
+   "ORDER": 178,
+   "TREE_ID": "057906d0-8ee1-56e1-888d-4ccf50320614",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0179",
+   "ORDER": 179,
+   "TREE_ID": "acff4117-197a-56f8-88b5-9e7ccf866553",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0180",
+   "ORDER": 180,
+   "TREE_ID": "0baa475f-e250-58b0-a654-2e7e523b3381",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0181",
+   "ORDER": 181,
+   "TREE_ID": "6aa3087e-9701-51e1-ab74-44c1b7bb838a",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0182",
+   "ORDER": 182,
+   "TREE_ID": "7155d02c-67c7-5bd5-8186-0e4c15626efc",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0183",
+   "ORDER": 183,
+   "TREE_ID": "bf15b168-c2a1-50b5-b248-0a507ff13753",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0184",
+   "ORDER": 184,
+   "TREE_ID": "acc75ee4-8f21-57a5-beaf-ae5234ed1f82",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0185",
+   "ORDER": 185,
+   "TREE_ID": "e19eac79-c553-597f-b190-425e2470a607",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0186",
+   "ORDER": 186,
+   "TREE_ID": "90a103f7-dac1-539d-83ca-7020f2ee1657",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0187",
+   "ORDER": 187,
+   "TREE_ID": "abf5e66e-7209-5ea0-b3e1-50089de0ff28",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0188",
+   "ORDER": 188,
+   "TREE_ID": "a743a986-8c8a-5d8e-bc8d-3f6569ee9b56",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0189",
+   "ORDER": 189,
+   "TREE_ID": "34de8e9d-1f83-5e58-b083-0188439f3daa",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0190",
+   "ORDER": 190,
+   "TREE_ID": "053922d8-12bd-5048-b600-7eca29273ff5",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0191",
+   "ORDER": 191,
+   "TREE_ID": "a54d411d-22e3-52be-b817-74a5fb7da2a5",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0192",
+   "ORDER": 192,
+   "TREE_ID": "9a22f83f-a887-5785-ae3a-75e7728c2d96",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0193",
+   "ORDER": 193,
+   "TREE_ID": "ea812efc-0477-512d-97c5-120a79c530f0",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0194",
+   "ORDER": 194,
+   "TREE_ID": "a71aa122-87c1-5033-adbf-1bfa189b5d55",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0195",
+   "ORDER": 195,
+   "TREE_ID": "212a6bed-f3d2-57e4-93f0-e6f04d4469b6",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0196",
+   "ORDER": 196,
+   "TREE_ID": "ec28f8cb-5ec5-55ac-9d3e-57d25a61b5c2",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0197",
+   "ORDER": 197,
+   "TREE_ID": "77fa698f-e937-513b-a6ad-758ecb0a591d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0198",
+   "ORDER": 198,
+   "TREE_ID": "12cdfd83-b528-5153-8b7c-fce2b3ccd183",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0199",
+   "ORDER": 199,
+   "TREE_ID": "42ee250b-251f-5aa5-b258-07d2b77d6845",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0200",
+   "ORDER": 200,
+   "TREE_ID": "bb7ba56f-501b-59ac-9b33-91678580061f",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0201",
+   "ORDER": 201,
+   "TREE_ID": "e9f8c150-afd8-5bf3-8c50-cb225540e84b",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0202",
+   "ORDER": 202,
+   "TREE_ID": "ac539b50-382c-5fe0-b9f2-4e0ff8bc8a1e",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0203",
+   "ORDER": 203,
+   "TREE_ID": "af586143-034c-5132-8769-ad3cd5dc389b",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0204",
+   "ORDER": 204,
+   "TREE_ID": "a853b617-eef2-5732-a8ca-039c624a4b4b",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0205",
+   "ORDER": 205,
+   "TREE_ID": "c27ad3a2-add5-5031-92e6-4ab25432ca7b",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0206",
+   "ORDER": 206,
+   "TREE_ID": "f9b69c9a-3bf1-5b8e-8f17-7346ebd6a1f9",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0207",
+   "ORDER": 207,
+   "TREE_ID": "15fca683-069b-5784-8c85-eec26bbc9429",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0208",
+   "ORDER": 208,
+   "TREE_ID": "14bd20a0-e699-5e32-91cc-214cb81dddbe",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0209",
+   "ORDER": 209,
+   "TREE_ID": "ea54f415-1aac-50f0-a7b6-0335f41dfe23",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0210",
+   "ORDER": 210,
+   "TREE_ID": "14dda164-5c8c-5ecc-98b5-f9e94d7397f5",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0211",
+   "ORDER": 211,
+   "TREE_ID": "bfbdc505-7b43-5e14-afef-5600980b09da",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0212",
+   "ORDER": 212,
+   "TREE_ID": "6013bc86-9a84-5c59-a74e-2dff1fdf8b0f",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0213",
+   "ORDER": 213,
+   "TREE_ID": "0ae97849-27f7-562f-93b9-3212d47deec2",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0214",
+   "ORDER": 214,
+   "TREE_ID": "53fc5869-a43f-524f-8b54-b67c7845599c",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0215",
+   "ORDER": 215,
+   "TREE_ID": "7b0c7040-386d-5db3-b6aa-0596c09251b8",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0216",
+   "ORDER": 216,
+   "TREE_ID": "813797da-5b52-5e6b-bbe2-5368e58166d3",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0217",
+   "ORDER": 217,
+   "TREE_ID": "abad4423-074a-5e8a-8dde-c6231a1bdc4f",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0218",
+   "ORDER": 218,
+   "TREE_ID": "b37ef99b-9bfd-55bd-9a0a-ca076efefd2c",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0219",
+   "ORDER": 219,
+   "TREE_ID": "a07acd77-1519-50a7-8aaa-2b8b05219c27",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0220",
+   "ORDER": 220,
+   "TREE_ID": "a49c9d54-2b1d-5614-a1ca-1e539d4365fb",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0221",
+   "ORDER": 221,
+   "TREE_ID": "f2acbb88-f05f-5b28-a751-cfb4d4da105c",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0222",
+   "ORDER": 222,
+   "TREE_ID": "84258152-04f6-553b-a70c-fd365f7a4d69",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0223",
+   "ORDER": 223,
+   "TREE_ID": "604c626b-656d-5e63-bd2b-3a11514ce1a3",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0224",
+   "ORDER": 224,
+   "TREE_ID": "70dfb617-919d-5149-b0c8-dbde68b4a78d",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0225",
+   "ORDER": 225,
+   "TREE_ID": "df4130d6-de51-51b1-b7fc-f493e59f2ba5",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0226",
+   "ORDER": 226,
+   "TREE_ID": "d3938223-5f7d-5228-b123-63373a54bde0",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0227",
+   "ORDER": 227,
+   "TREE_ID": "e196f6c8-4318-5d06-a473-f7112a64104c",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0228",
+   "ORDER": 228,
+   "TREE_ID": "d7b6da00-0a5c-5168-adb9-d4a9fa5a3121",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0229",
+   "ORDER": 229,
+   "TREE_ID": "dd29748a-a019-55df-84d9-f3dc7c016d35",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0230",
+   "ORDER": 230,
+   "TREE_ID": "534c8223-4fe2-523b-8fc2-a2be8881fefa",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0231",
+   "ORDER": 231,
+   "TREE_ID": "ccdb85c2-1e01-572b-89e3-28524e68fb76",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0232",
+   "ORDER": 232,
+   "TREE_ID": "d6ccee49-3f8e-501e-be4e-e97b51b21f2b",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0233",
+   "ORDER": 233,
+   "TREE_ID": "1fd68f82-e7f5-54ac-a23d-0e7d003922fd",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0234",
+   "ORDER": 234,
+   "TREE_ID": "fad3fd63-b272-5e51-8e5e-90eaa1787472",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0235",
+   "ORDER": 235,
+   "TREE_ID": "e755c316-14d4-5348-9ffc-61d658d1a10e",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0236",
+   "ORDER": 236,
+   "TREE_ID": "42c1e0e2-5794-5fae-8ef0-4347305514ef",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0237",
+   "ORDER": 237,
+   "TREE_ID": "2c5cfeba-971a-5ca2-8f6c-44b7a3b6c116",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0238",
+   "ORDER": 238,
+   "TREE_ID": "723499c3-2741-55e7-a4ca-19baf003939c",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0239",
+   "ORDER": 239,
+   "TREE_ID": "72533b78-5158-5911-99d9-d44d4b4892b9",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0240",
+   "ORDER": 240,
+   "TREE_ID": "587dee7a-ac33-5e37-abc1-69a78f46d907",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0241",
+   "ORDER": 241,
+   "TREE_ID": "eee396b6-82fd-563e-bf8c-a5fb77f89603",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0242",
+   "ORDER": 242,
+   "TREE_ID": "cd1803cc-e372-5c12-b1ec-9339d8e6c16b",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0243",
+   "ORDER": 243,
+   "TREE_ID": "c6627a6e-3ad9-5793-8f6b-bae11467ec0c",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0244",
+   "ORDER": 244,
+   "TREE_ID": "9e79dead-af56-5cdf-893e-a04244522e05",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0245",
+   "ORDER": 245,
+   "TREE_ID": "b6cf8598-9e80-5391-9787-ca255dd682df",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0246",
+   "ORDER": 246,
+   "TREE_ID": "20ba431c-bb9e-5f49-8d4d-211e37834153",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0247",
+   "ORDER": 247,
+   "TREE_ID": "c68dce8a-a3cc-52e7-9141-353f17599715",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0248",
+   "ORDER": 248,
+   "TREE_ID": "381ea11f-0edd-5544-ab8f-17dc4eebb94a",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0249",
+   "ORDER": 249,
+   "TREE_ID": "1eae0685-cd97-5ddc-8b3f-b35d7ddd41c8",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0250",
+   "ORDER": 250,
+   "TREE_ID": "b294b642-4155-5dd2-a4f7-a4ecbf82513d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0251",
+   "ORDER": 251,
+   "TREE_ID": "9310a1a0-b50f-507a-87dc-97bfc0fb9b9a",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0252",
+   "ORDER": 252,
+   "TREE_ID": "1b17fbab-c902-534e-a0cb-84b0c0b053a8",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0253",
+   "ORDER": 253,
+   "TREE_ID": "e7754a5f-6871-5c2d-a68b-eb8774c206d4",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0254",
+   "ORDER": 254,
+   "TREE_ID": "20daebb8-aaf5-5f3c-b720-96810e82d0b2",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0255",
+   "ORDER": 255,
+   "TREE_ID": "2e3019a7-65a1-5764-a07d-7bdc3b07d23c",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0256",
+   "ORDER": 256,
+   "TREE_ID": "0ebe6819-ff00-5d0e-a379-60333977641c",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0257",
+   "ORDER": 257,
+   "TREE_ID": "8bff45ce-bd93-5d90-8640-a53e2ce4c00e",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0258",
+   "ORDER": 258,
+   "TREE_ID": "3d369625-d525-5285-b318-d474666071eb",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0259",
+   "ORDER": 259,
+   "TREE_ID": "652655f4-38ec-579c-a05d-5c5018122414",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0260",
+   "ORDER": 260,
+   "TREE_ID": "c0cfb89d-5d23-5088-839c-bbf0e01e30c4",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0261",
+   "ORDER": 261,
+   "TREE_ID": "0d14822b-5138-5590-a7c9-58c4d6d3b2fa",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0262",
+   "ORDER": 262,
+   "TREE_ID": "e0f777ac-68e4-5763-9e79-46989898128c",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0263",
+   "ORDER": 263,
+   "TREE_ID": "a7f83285-784b-5e98-ae5e-127862961de5",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0264",
+   "ORDER": 264,
+   "TREE_ID": "2cd90058-f3d2-560f-8abf-2b0a3a823ad3",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0265",
+   "ORDER": 265,
+   "TREE_ID": "330705d9-df41-5d73-92a1-1098ac2ca036",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0266",
+   "ORDER": 266,
+   "TREE_ID": "92480406-d4ea-516d-bd06-dc8d7b1f422a",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0267",
+   "ORDER": 267,
+   "TREE_ID": "cdc44dcb-51f1-5cce-82c0-6276419f74ad",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0268",
+   "ORDER": 268,
+   "TREE_ID": "c2086528-92d7-56b4-9d90-b61161f4a9ef",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0269",
+   "ORDER": 269,
+   "TREE_ID": "8f1666f3-c366-5b1b-bebf-6c079725d87d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0270",
+   "ORDER": 270,
+   "TREE_ID": "c6e7394d-7f56-5fff-9e0a-0a0d0fb45094",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0271",
+   "ORDER": 271,
+   "TREE_ID": "5d3443e3-ebb6-5b72-8596-e364fb6f050b",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0272",
+   "ORDER": 272,
+   "TREE_ID": "a55fc7db-dcd6-567a-b655-655dba360b6e",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0273",
+   "ORDER": 273,
+   "TREE_ID": "b560bd52-53b0-5df9-8d42-ee00000a8519",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0274",
+   "ORDER": 274,
+   "TREE_ID": "739b541a-f924-5b6b-b15b-941b23120f41",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0275",
+   "ORDER": 275,
+   "TREE_ID": "d2999fc7-857d-5e5f-a945-e8726d1f85d1",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0276",
+   "ORDER": 276,
+   "TREE_ID": "be685b0e-7631-5b0c-9673-4a554538cc11",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0277",
+   "ORDER": 277,
+   "TREE_ID": "88b9204d-9587-50b4-bd95-b3df62114249",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0278",
+   "ORDER": 278,
+   "TREE_ID": "ddbe230e-a8f1-531b-8ded-6ee99bab26cd",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0279",
+   "ORDER": 279,
+   "TREE_ID": "aea8d693-fea7-527e-bf74-6a0b191246f3",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0280",
+   "ORDER": 280,
+   "TREE_ID": "5d68a43b-b548-5ade-bd57-c1f61d528f6d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0281",
+   "ORDER": 281,
+   "TREE_ID": "b8e2eded-155c-5c2c-8535-ad30e3397291",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0282",
+   "ORDER": 282,
+   "TREE_ID": "9fea0a39-2691-5f09-91e6-c8253d611247",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0283",
+   "ORDER": 283,
+   "TREE_ID": "fc482ae4-14c2-538b-afb8-d6ef3c4e8a66",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0284",
+   "ORDER": 284,
+   "TREE_ID": "8f8cac76-5657-5fa3-90fa-8187740bfe73",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0285",
+   "ORDER": 285,
+   "TREE_ID": "cb8bec5a-69a8-5420-9fd4-04877df00084",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0286",
+   "ORDER": 286,
+   "TREE_ID": "91a5c896-1c8b-53cc-8142-157e2014ef6d",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0287",
+   "ORDER": 287,
+   "TREE_ID": "c8b23dec-5ec0-5d0c-bfb9-221aabf01e23",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0288",
+   "ORDER": 288,
+   "TREE_ID": "5efb6843-674c-5457-a854-c999facb3da9",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0289",
+   "ORDER": 289,
+   "TREE_ID": "fbec15c7-5da8-5391-9983-6d449ebab20b",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0290",
+   "ORDER": 290,
+   "TREE_ID": "d69d3c71-4679-5724-bc23-ebb3fbbc247e",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0291",
+   "ORDER": 291,
+   "TREE_ID": "9bb58f5c-8ea7-5a22-b0fe-8688b3275208",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0292",
+   "ORDER": 292,
+   "TREE_ID": "69f1ffbc-cc3e-5215-8eba-11bce75bfe16",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0293",
+   "ORDER": 293,
+   "TREE_ID": "ceae697f-62de-51c3-9c02-8c74f9802821",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0294",
+   "ORDER": 294,
+   "TREE_ID": "12af70d8-392b-5ca3-976d-44ab5a31352e",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0295",
+   "ORDER": 295,
+   "TREE_ID": "a3d3898a-9805-5721-8732-e83ee7babbaa",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0296",
+   "ORDER": 296,
+   "TREE_ID": "0d559208-4235-547e-8b65-fd222a03a060",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0297",
+   "ORDER": 297,
+   "TREE_ID": "21940173-fdb7-5869-8a81-cbbc832cc6f5",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0298",
+   "ORDER": 298,
+   "TREE_ID": "88fa91be-5b31-524c-a41c-0622b0a6b3a7",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0299",
+   "ORDER": 299,
+   "TREE_ID": "c79e64e4-ab48-54cc-8ade-fca297a6d6bf",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0300",
+   "ORDER": 300,
+   "TREE_ID": "19b8d2bb-c1f2-5264-b258-e574cf6231bb",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0301",
+   "ORDER": 301,
+   "TREE_ID": "acb95486-5143-51d1-b5e2-cf27732a6a0b",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0302",
+   "ORDER": 302,
+   "TREE_ID": "f9c7fc55-7880-578d-825e-4ff3213492b7",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0303",
+   "ORDER": 303,
+   "TREE_ID": "7ee28f36-6511-5242-b302-bcc5c6405286",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0304",
+   "ORDER": 304,
+   "TREE_ID": "ed35f714-7323-5b40-bd17-70e17cd81d13",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0305",
+   "ORDER": 305,
+   "TREE_ID": "2e15e084-dd53-5484-9563-fecd865853a1",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0306",
+   "ORDER": 306,
+   "TREE_ID": "53cba015-f07c-595f-aaff-9a3b2be55c22",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0307",
+   "ORDER": 307,
+   "TREE_ID": "bb505aa7-15d3-5851-8e09-27c3e1208346",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0308",
+   "ORDER": 308,
+   "TREE_ID": "6877feee-4761-5fc7-8cf5-847b0958410e",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0309",
+   "ORDER": 309,
+   "TREE_ID": "c2b1c7a2-1f1e-5e85-a4af-75bde934dff3",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0310",
+   "ORDER": 310,
+   "TREE_ID": "53561329-4c6e-55a7-97f3-a41aa2613223",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0311",
+   "ORDER": 311,
+   "TREE_ID": "adf8136f-aa5e-5486-920c-d7933a1b189a",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0312",
+   "ORDER": 312,
+   "TREE_ID": "fcd00d18-057a-5c70-a55d-741083b7325b",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0313",
+   "ORDER": 313,
+   "TREE_ID": "a15025ae-9d9b-5451-b01f-3f6bb8546845",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0314",
+   "ORDER": 314,
+   "TREE_ID": "800bbb9b-a66d-5652-9e7c-95ddc98b7ece",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0315",
+   "ORDER": 315,
+   "TREE_ID": "aba3c39a-cf30-51e7-b17f-427539285dd8",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0316",
+   "ORDER": 316,
+   "TREE_ID": "f4417288-9990-5fb2-9f3d-203f4178cee4",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0317",
+   "ORDER": 317,
+   "TREE_ID": "13a21a0e-46ce-5962-b584-ee87f88c62ea",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0318",
+   "ORDER": 318,
+   "TREE_ID": "8480f7f9-735c-5f4c-bb5d-5beadeccdcc0",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0319",
+   "ORDER": 319,
+   "TREE_ID": "08e13ed0-d77b-5a88-b035-001424f2f8a2",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0320",
+   "ORDER": 320,
+   "TREE_ID": "20a17dec-c3e5-506a-967b-5bc48653325c",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0321",
+   "ORDER": 321,
+   "TREE_ID": "1cffcf1d-0179-57a9-85da-af3aaea609d9",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0322",
+   "ORDER": 322,
+   "TREE_ID": "96726369-f0ba-5ed4-a7ea-1141f4dc6e65",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0323",
+   "ORDER": 323,
+   "TREE_ID": "61c16b0f-f163-57ea-9b2f-21d45b5e8f96",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0324",
+   "ORDER": 324,
+   "TREE_ID": "a66e9d39-2458-54ba-bd09-f76d3718faa2",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0325",
+   "ORDER": 325,
+   "TREE_ID": "e2cf3e33-ef31-5e97-a102-d489ef48c9a8",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0326",
+   "ORDER": 326,
+   "TREE_ID": "a006f8a1-eab3-51b2-8df1-573365b369b8",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0327",
+   "ORDER": 327,
+   "TREE_ID": "c303724a-8680-552e-9c7c-973dd2ae4cca",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0328",
+   "ORDER": 328,
+   "TREE_ID": "7d3aa2bc-a80d-5daa-bff3-e237f279dc49",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0329",
+   "ORDER": 329,
+   "TREE_ID": "c11daea9-0376-5ee3-bb4c-8d32db68e56f",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0330",
+   "ORDER": 330,
+   "TREE_ID": "33807fe8-ee4b-5720-b8bb-db9fe9a76239",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0331",
+   "ORDER": 331,
+   "TREE_ID": "0a28ba1d-c5be-5a78-b31e-9ac2ebc6b788",
+   "STRATUM": "WIRE"
+  },
+  {
+   "UNIT_ID": "C1-0332",
+   "ORDER": 332,
+   "TREE_ID": "d017e8f6-530d-5ab8-a76c-fd256cdf477f",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0333",
+   "ORDER": 333,
+   "TREE_ID": "c42157f5-7e19-5afa-9ea6-aef4bbb85db1",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0334",
+   "ORDER": 334,
+   "TREE_ID": "8591bbc7-41d2-5a9b-a746-fd8d4119303a",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0335",
+   "ORDER": 335,
+   "TREE_ID": "42762f96-aff3-5ca8-9987-dcdbc0630efc",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0336",
+   "ORDER": 336,
+   "TREE_ID": "33b9cc32-4627-53be-a289-a2cc8f0003e8",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0337",
+   "ORDER": 337,
+   "TREE_ID": "b0216c16-f7b8-5b75-a773-50dae36b3060",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0338",
+   "ORDER": 338,
+   "TREE_ID": "66a6f7f0-ef3d-5ff2-b8a3-16bfeef91b0d",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0339",
+   "ORDER": 339,
+   "TREE_ID": "3532f031-492f-5e73-a38d-279b30fc2af9",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0340",
+   "ORDER": 340,
+   "TREE_ID": "7e244ca4-8d83-5771-9e5c-bb3699bfc077",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0341",
+   "ORDER": 341,
+   "TREE_ID": "fb784d4d-b238-5db1-bc8c-33522c1461b5",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0342",
+   "ORDER": 342,
+   "TREE_ID": "6443076a-4cbd-50b6-99af-bd0f90daa8df",
+   "STRATUM": "UNFLAGGED"
+  },
+  {
+   "UNIT_ID": "C1-0343",
+   "ORDER": 343,
+   "TREE_ID": "fb4bc71a-bf6b-570c-928d-20cf96c0b581",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0344",
+   "ORDER": 344,
+   "TREE_ID": "0c03a4c5-cb20-593f-b50a-44d0925673ce",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0345",
+   "ORDER": 345,
+   "TREE_ID": "b3187f3e-7eab-57e6-b706-436b2a74a22e",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0346",
+   "ORDER": 346,
+   "TREE_ID": "9cf87b8b-b079-5108-9281-45819dbac75f",
+   "STRATUM": "FLAT_TOP"
+  },
+  {
+   "UNIT_ID": "C1-0347",
+   "ORDER": 347,
+   "TREE_ID": "88a059be-0d03-5b40-9f84-a908985f3339",
+   "STRATUM": "ROOF_HEIGHT"
+  },
+  {
+   "UNIT_ID": "C1-0348",
+   "ORDER": 348,
+   "TREE_ID": "c4258a6f-5210-51f1-9483-8aea8aca9799",
+   "STRATUM": "POLE_ONLY"
+  },
+  {
+   "UNIT_ID": "C1-0349",
+   "ORDER": 349,
+   "TREE_ID": "36a1fc34-84a1-5ade-b3c4-bbfe557d4f83",
+   "STRATUM": "WALL"
+  },
+  {
+   "UNIT_ID": "C1-0350",
+   "ORDER": 350,
+   "TREE_ID": "b3ec97f9-7146-55ba-bd49-119c43882ac7",
+   "STRATUM": "ROOF_HEIGHT"
+  }
+ ],
+ "note": "Calibration labels for canopy/treetop_evidence rules. Never evaluation answers, never training labels, never in reference.gdb. Label blind: do not open sample.json or the treetop_evidence layer until every unit is labelled. Once these labels have been looked at, a rule changed in response cannot be tested on them."
+}

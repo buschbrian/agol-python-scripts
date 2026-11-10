@@ -1,0 +1,266 @@
+{
+  "protocol": "fractal-training-comparison/1",
+  "mode": "training_diagnostic",
+  "label_mapping": {
+    "TREE": "VEGETATION",
+    "SHRUB_LOW_VEG": "VEGETATION",
+    "BUILDING_ROOF": "BUILDING",
+    "GROUND": "GROUND",
+    "WATER": "WATER"
+  },
+  "model_mapping": {
+    "1": "OTHER",
+    "2": "GROUND",
+    "5": "VEGETATION",
+    "6": "BUILDING",
+    "9": "WATER",
+    "17": "STRUCTURE",
+    "64": "STRUCTURE"
+  },
+  "minimum_patch_points": 12,
+  "variants": {
+    "naip2021": {
+      "inspection": {
+        "points": 26982464,
+        "eligible_points": 26911864,
+        "flagged_points_excluded": 70600,
+        "mean_repeat_agreement": 0.9914478659629822,
+        "ties": 19334,
+        "repeats": 3,
+        "consensus_sha256": "bacc2863da8439810af8ab09f1ece716859ccdbfb6d9bd83e3b728dead94d194",
+        "manifest_sha256": "b30dd57fc2ac7a8d5112b7844135fe75878ea5a7801c4f0447146cd1efb21741",
+        "source_sha256": "be8501a6b286d96807dd0bb9ce2f0ff862429f560c994814c0e6e09ef2427243",
+        "counts": {
+          "0": 19334,
+          "1": 219704,
+          "2": 12900716,
+          "5": 9679614,
+          "6": 3967351,
+          "9": 7876,
+          "17": 43783,
+          "64": 73486
+        }
+      },
+      "comparison": {
+        "units": 58,
+        "by_label": {
+          "BUILDING_ROOF": {
+            "units": 23,
+            "comparable_covered_units": 23,
+            "agree": 22,
+            "abstain": 0,
+            "agreement": 0.9565217391304348,
+            "mean_repeat_agreement": 0.9806183991224869
+          },
+          "GROUND": {
+            "units": 11,
+            "comparable_covered_units": 11,
+            "agree": 10,
+            "abstain": 0,
+            "agreement": 0.9090909090909091,
+            "mean_repeat_agreement": 0.9707792130383578
+          },
+          "MIXED": {
+            "units": 2,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "OTHER_STRUCTURE": {
+            "units": 6,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "POLE": {
+            "units": 1,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "SHRUB_LOW_VEG": {
+            "units": 2,
+            "comparable_covered_units": 2,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": 0.0,
+            "mean_repeat_agreement": 1.0
+          },
+          "TREE": {
+            "units": 7,
+            "comparable_covered_units": 7,
+            "agree": 7,
+            "abstain": 0,
+            "agreement": 1.0,
+            "mean_repeat_agreement": 1.0
+          },
+          "UNSURE": {
+            "units": 2,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "VEHICLE": {
+            "units": 3,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "WALL": {
+            "units": 1,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          }
+        },
+        "status_counts": {
+          "COMPARED": 43,
+          "LABEL_NOT_COMPARABLE": 15
+        },
+        "interpretation": "Training-patch diagnostic agreement; not independent evaluation or a citywide accuracy estimate."
+      }
+    },
+    "naip2024": {
+      "inspection": {
+        "points": 26982464,
+        "eligible_points": 26911864,
+        "flagged_points_excluded": 70600,
+        "mean_repeat_agreement": 0.9919487833976746,
+        "ties": 16955,
+        "repeats": 3,
+        "consensus_sha256": "0a8fae72a65726224c12b7c03cc8e5fd122e03c2183512c9ead50071bb9d5213",
+        "manifest_sha256": "ae38faf678dac03e4fa2a5695d080b0d88994a556dbf711657b0cc163f75760c",
+        "source_sha256": "770dd80744633a129a84333c4b35a22a6a7ce3cb3aae1544d8c68a436dc173f5",
+        "counts": {
+          "0": 16955,
+          "1": 190174,
+          "2": 12920463,
+          "5": 9713011,
+          "6": 3959580,
+          "9": 3616,
+          "17": 39783,
+          "64": 68282
+        }
+      },
+      "comparison": {
+        "units": 58,
+        "by_label": {
+          "BUILDING_ROOF": {
+            "units": 23,
+            "comparable_covered_units": 23,
+            "agree": 22,
+            "abstain": 0,
+            "agreement": 0.9565217391304348,
+            "mean_repeat_agreement": 0.982922375202179
+          },
+          "GROUND": {
+            "units": 11,
+            "comparable_covered_units": 11,
+            "agree": 10,
+            "abstain": 0,
+            "agreement": 0.9090909090909091,
+            "mean_repeat_agreement": 0.9942958950996399
+          },
+          "MIXED": {
+            "units": 2,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "OTHER_STRUCTURE": {
+            "units": 6,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "POLE": {
+            "units": 1,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "SHRUB_LOW_VEG": {
+            "units": 2,
+            "comparable_covered_units": 2,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": 0.0,
+            "mean_repeat_agreement": 1.0
+          },
+          "TREE": {
+            "units": 7,
+            "comparable_covered_units": 7,
+            "agree": 7,
+            "abstain": 0,
+            "agreement": 1.0,
+            "mean_repeat_agreement": 1.0
+          },
+          "UNSURE": {
+            "units": 2,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "VEHICLE": {
+            "units": 3,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          },
+          "WALL": {
+            "units": 1,
+            "comparable_covered_units": 0,
+            "agree": 0,
+            "abstain": 0,
+            "agreement": null,
+            "mean_repeat_agreement": null
+          }
+        },
+        "status_counts": {
+          "COMPARED": 43,
+          "LABEL_NOT_COMPARABLE": 15
+        },
+        "interpretation": "Training-patch diagnostic agreement; not independent evaluation or a citywide accuracy estimate."
+      }
+    }
+  },
+  "paired": [
+    {
+      "variants": [
+        "naip2021",
+        "naip2024"
+      ],
+      "common_comparable_units": 43,
+      "model_family_changed": 0,
+      "agreement_delta": 0.0
+    }
+  ],
+  "interpretation": "Model opinions and training-patch diagnostics; no labels modified and no independent accuracy claim.",
+  "inputs_sha256": {
+    "packet": "11b02c509f86c76d2783298d2dae4cfd1ff9e5af52b8e4076eb6c0f53567eff0",
+    "labels": "72f90367bd2cb27cac3c0872bcb241532f5aa2b3d5731ef5597bd137a6840223",
+    "triage": "20ab687c27a1acce1f4745658f9e59280d3ee8283ea390cc381b9afd853c7f3c"
+  }
+}

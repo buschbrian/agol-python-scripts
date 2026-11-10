@@ -1,0 +1,7 @@
+# Plain-Python test dependencies (ArcPy fixtures need ArcGIS Pro Python).
+# Install into the repo-root .venv, never with pip --user.
+numpy
+scipy
+psutil
+pillow
+requests

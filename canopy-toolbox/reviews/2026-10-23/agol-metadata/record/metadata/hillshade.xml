@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='utf-8'?>
+<metadata xml:lang="en">
+        
+    <Esri>
+                
+        <ArcGISFormat>1.0</ArcGISFormat>
+                
+        <ArcGISProfile>DCPLUS</ArcGISProfile>
+                
+        <CreaDate>20261023</CreaDate>
+                
+        <CreaTime>17565300</CreaTime>
+                
+        <ModDate>20261023</ModDate>
+                
+        <ModTime>17565300</ModTime>
+                
+        <DataProperties>
+                        
+            <itemProps>
+                                
+                <portalDetails>
+                                        
+                    <thumbnailURL>https://www.arcgis.com/sharing/rest/content/items/cab8824e44384d479e1f302cdf34daf9/info/thumbnail/thumbnail.JPEG</thumbnailURL>
+                                        
+                    <itemDetailsURL>https://www.arcgis.com/home/item.html?id=cab8824e44384d479e1f302cdf34daf9</itemDetailsURL>
+                                        
+                    <itemIdentifier>cab8824e44384d479e1f302cdf34daf9</itemIdentifier>
+                                        
+                    <itemType>Map Service</itemType>
+                                        
+                    <resourceURL>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer</resourceURL>
+                                    
+                </portalDetails>
+                            
+            </itemProps>
+                    
+        </DataProperties>
+            
+    </Esri>
+        
+    <dataIdInfo>
+                
+        <idCitation>
+                        
+            <resTitle>Millcreek hillshade 0.5 m (2023 lidar), planning estimate</resTitle>
+                    
+            <date><pubDate>2026-10-23T00:00:00</pubDate></date><citRespParty><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="006" /></role></citRespParty></idCitation>
+                
+        <searchKeys>
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                        
+            
+                    
+        <keyword>Millcreek</keyword><keyword>Utah</keyword><keyword>Salt Lake County</keyword><keyword>lidar</keyword><keyword>2023 lidar</keyword><keyword>3DEP</keyword><keyword>planning estimate</keyword><keyword>hillshade</keyword><keyword>shaded relief</keyword><keyword>terrain</keyword><keyword>basemap</keyword><keyword>tile layer</keyword></searchKeys>
+                
+        <idPurp>Shaded relief of the bare ground in Millcreek, Utah, at 0.5 m from the 2023 lidar, for use as a background under other layers. Display only. Unvalidated planning estimate; not surveyed or field-verified.</idPurp>
+                
+        <idAbs>&lt;p&gt;&lt;strong&gt;Planning estimate.&lt;/strong&gt; This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been
+surveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,
+property-boundary, permitting or code-compliance decisions.&lt;/p&gt;
+&lt;h2&gt;What it shows&lt;/h2&gt;
+&lt;p&gt;The shape of the bare ground across Millcreek, Utah, lit as if by a sun in the north-west, with buildings and trees
+removed. It is a detailed background for other layers: streets, channels, terraces, embankments and the east-bench
+foothills stand out at 0.5 m. It is transparent outside the city limits, so it sits over any basemap.&lt;/p&gt;
+&lt;h2&gt;Legend&lt;/h2&gt;
+&lt;p&gt;Grey levels from dark (ground facing away from the light) to light (ground facing it). The grey values are &lt;strong&gt;for display
+only&lt;/strong&gt;: they are not elevations or slopes and should not be measured or classified. For elevation use the Millcreek
+bare-earth terrain layer; for slope use the Millcreek slope classes layer.&lt;/p&gt;
+&lt;p&gt;Useful from about 1:2,311,162 (zoom level 8) inward; the finest level is 18 (about 0.45 m per pixel on the ground). It
+works well under other layers with a multiply blend or partial transparency.&lt;/p&gt;
+&lt;h2&gt;How it was made&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;The 0.5 m bare-earth terrain, interpolated from the lidar's ground returns.&lt;/li&gt;
+&lt;li&gt;Hillshade with the sun at 315 degrees (north-west) and 45 degrees above the horizon, without cast shadows, computed on
+   the whole lidar mosaic and clipped to the city.&lt;/li&gt;
+&lt;li&gt;Packaged as 256-pixel PNG tiles with transparency, zoom levels 0 to 18, on the ArcGIS Online tiling scheme. The
+   brightest values (253 and 254, on 0.18% of cells) were lowered to 252 because the tiling tool treats 253 as
+   transparent.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Accuracy and checks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;At level 18, 2,752 tiles hold the city and all are present; no transparent pixel appears inside the city.&lt;/li&gt;
+&lt;li&gt;Sampled tile pixels match the source hillshade to a median of 1 grey level (95th percentile 3), when read in the right
+  position; read 1.2 m off (no datum transformation) they would differ by a median of 3 and up to 107 levels.&lt;/li&gt;
+&lt;li&gt;Tiles fetched from the hosted layer are byte for byte the package's.&lt;/li&gt;
+&lt;li&gt;The terrain under it has not been checked against field survey (QL1 lidar is specified to 10 cm vertically on open
+  ground).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Limits&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Under buildings the ground is interpolated, so building sites look smoother than they are.&lt;/li&gt;
+&lt;li&gt;At zoom levels 10 to 12 a thin sliver at the city edge is not drawn; at levels 0 to 4 the city is under two pixels
+  across.&lt;/li&gt;
+&lt;li&gt;It shows the ground as it was in October and November 2023.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Coordinates and heights.&lt;/strong&gt; Built in NAD83(2011) / UTM zone 12N (EPSG 6341), metres, and taken to WGS84 / Web Mercator
+for ArcGIS Online with the transformation &lt;code&gt;WGS_1984_(ITRF08)_To_NAD_1983_2011&lt;/code&gt;. Every layer in the Millcreek LiDAR 2023
+set uses this same transformation, so the layers line up with each other and with Esri's basemaps to a few centimetres;
+without it they would sit about 1.2 m apart. Elevations are NAVD88 (Geoid18) in &lt;strong&gt;metres&lt;/strong&gt;; heights are metres above the
+lidar bare-earth terrain.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lidar source.&lt;/strong&gt; The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),
+flown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,
+non-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been
+reviewed for these products. For these products the building and vegetation classes of the points were refined; the
+ground class was not changed. All products are gridded at 0.5 m.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Millcreek LiDAR 2023 set.&lt;/strong&gt; Eight layers from the same lidar and the same processing: buildings and canopy cover
+zones (feature layer), 3D buildings (scene layer), bare-earth terrain (elevation layer), hillshade (tile layer), slope
+classes, 2 m contours, treetops and tree crowns (vector tile layers). They share one coordinate transformation and one
+terrain, so they can be stacked in one map or scene.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Questions or corrections:&lt;/strong&gt; City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City
+of Millcreek GIS.&lt;/p&gt;</idAbs>
+                
+        <idCredit>City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24).</idCredit>
+                
+        <resConst>
+                        
+            <Consts>
+                                
+                <useLimit>&lt;p&gt;These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,
+engineered or field-verified, and must not be used to determine property boundaries or ownership, building or site
+design, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory
+determination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check
+conditions on the ground before relying on them. Credit "City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS
+3DEP)" when you use or show them.&lt;/p&gt;</useLimit>
+                            
+            </Consts>
+                    
+        </resConst>
+                
+        <dataExt>
+                        
+            <geoEle>
+                                
+                <GeoBndBox>
+                                        
+                    <westBL Sync="FALSE">-111.92170502836196</westBL>
+                                        
+                    <eastBL Sync="FALSE">-111.77603962122573</eastBL>
+                                        
+                    <northBL Sync="FALSE">40.71476094006181</northBL>
+                                        
+                    <southBL Sync="FALSE">40.65853630413139</southBL>
+                                        
+                    <exTypeCode Sync="TRUE">1</exTypeCode>
+                                    
+                </GeoBndBox>
+                            
+            </geoEle>
+                    
+            <tempEle><TempExtent><exTemp><TM_Period><tmBegin>2023-10-07T00:00:00</tmBegin><tmEnd>2023-11-04T00:00:00</tmEnd></TM_Period></exTemp></TempExtent></tempEle></dataExt>
+            
+        <idPoC><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></idPoC><tpCat><TopicCatCd value="006" /></tpCat><tpCat><TopicCatCd value="010" /></tpCat><dataScale><scaleDist><value uom="m">0.5</value></scaleDist></dataScale></dataIdInfo>
+        
+    <Binary>
+                
+        <Thumbnail>
+                        
+            <Data EsriPropertyType="PictureX">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</Data>
+                    
+        </Thumbnail>
+            
+    </Binary>
+        
+    <mdFileID>cab8824e44384d479e1f302cdf34daf9</mdFileID>
+        
+    <distInfo>
+                
+        <distTranOps>
+                        
+            <onLineSrc>
+                                
+                <linkage>https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_hillshade_0_5_m_2023_lidar_planning_estimate/MapServer</linkage>
+                            
+            </onLineSrc>
+                    
+        </distTranOps>
+                
+        <distFormat>
+                        
+            <formatName>Map Service</formatName>
+                    
+        </distFormat>
+            
+    </distInfo>
+        
+    <refSysInfo>
+                
+        <RefSystem>
+                        
+            <refSysID>
+                                
+                <identCode code="4326" />
+                                
+                <idCodeSpace>EPSG</idCodeSpace>
+                            
+            </refSysID>
+                    
+        </RefSystem>
+            
+    </refSysInfo>
+    
+    <dqInfo><dqScope><scpLvl><ScopeCd value="005" /></scpLvl></dqScope><dataLineage><statement>Hillshade (azimuth 315, altitude 45, no shadows) of the 0.5 m bare-earth terrain of the 2023 Salt Lake Valley QL1 lidar, clipped to the city and cached as PNG32 tiles, levels 0 to 18, on the ArcGIS Online scheme (WGS_1984_(ITRF08)_To_NAD_1983_2011). Lidar flown 2023-10-07 to 2023-11-04 (USGS project UT_2023SaltLakeCo_C24). Unvalidated planning estimate; not surveyed or field-verified.</statement></dataLineage></dqInfo><mdContact><rpOrgName>City of Millcreek GIS</rpOrgName><role><RoleCd value="007" /></role></mdContact></metadata>

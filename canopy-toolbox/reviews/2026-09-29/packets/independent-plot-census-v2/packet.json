@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "crs": 6341,
+  "seed": 20260929,
+  "plots": [
+    {
+      "plot_id": "12TVL2203_020_009",
+      "tile": "12TVL2203",
+      "extent": [
+        422270.0,
+        4503600.0,
+        422300.0,
+        4503630.0
+      ],
+      "review_order": 1,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        422000,
+        4503000,
+        422990.0,
+        4503990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL2203_014_032",
+      "tile": "12TVL2203",
+      "extent": [
+        422960.0,
+        4503420.0,
+        422990.0,
+        4503450.0
+      ],
+      "review_order": 2,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        422000,
+        4503000,
+        422990.0,
+        4503990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL2203_031_022",
+      "tile": "12TVL2203",
+      "extent": [
+        422660.0,
+        4503930.0,
+        422690.0,
+        4503960.0
+      ],
+      "review_order": 3,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        422000,
+        4503000,
+        422990.0,
+        4503990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL2203_029_021",
+      "tile": "12TVL2203",
+      "extent": [
+        422630.0,
+        4503870.0,
+        422660.0,
+        4503900.0
+      ],
+      "review_order": 4,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        422000,
+        4503000,
+        422990.0,
+        4503990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL2804_013_028",
+      "tile": "12TVL2804",
+      "extent": [
+        428840.0,
+        4504390.0,
+        428870.0,
+        4504420.0
+      ],
+      "review_order": 1,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        428000,
+        4504000,
+        428990.0,
+        4504990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL2804_018_018",
+      "tile": "12TVL2804",
+      "extent": [
+        428540.0,
+        4504540.0,
+        428570.0,
+        4504570.0
+      ],
+      "review_order": 2,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        428000,
+        4504000,
+        428990.0,
+        4504990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL2804_030_029",
+      "tile": "12TVL2804",
+      "extent": [
+        428870.0,
+        4504900.0,
+        428900.0,
+        4504930.0
+      ],
+      "review_order": 3,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        428000,
+        4504000,
+        428990.0,
+        4504990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL2804_030_018",
+      "tile": "12TVL2804",
+      "extent": [
+        428540.0,
+        4504900.0,
+        428570.0,
+        4504930.0
+      ],
+      "review_order": 4,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        428000,
+        4504000,
+        428990.0,
+        4504990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL3302_027_000",
+      "tile": "12TVL3302",
+      "extent": [
+        433000.0,
+        4502810.0,
+        433030.0,
+        4502840.0
+      ],
+      "review_order": 1,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        433000,
+        4502000,
+        433990.0,
+        4502990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL3302_000_019",
+      "tile": "12TVL3302",
+      "extent": [
+        433570.0,
+        4502000.0,
+        433600.0,
+        4502030.0
+      ],
+      "review_order": 2,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        433000,
+        4502000,
+        433990.0,
+        4502990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL3302_008_027",
+      "tile": "12TVL3302",
+      "extent": [
+        433810.0,
+        4502240.0,
+        433840.0,
+        4502270.0
+      ],
+      "review_order": 3,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        433000,
+        4502000,
+        433990.0,
+        4502990.0
+      ]
+    },
+    {
+      "plot_id": "12TVL3302_006_006",
+      "tile": "12TVL3302",
+      "extent": [
+        433180.0,
+        4502180.0,
+        433210.0,
+        4502210.0
+      ],
+      "review_order": 4,
+      "population_plots": 1089,
+      "sampled_plots": 4,
+      "frame_extent": [
+        433000,
+        4502000,
+        433990.0,
+        4502990.0
+      ]
+    }
+  ],
+  "truth_source": "INDEPENDENT_HUMAN_CENSUS",
+  "plot_geometry": {
+    "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\09\\29\\01a0eed4-e40e-7762-9845-97159217cf5b\\independent-plot-census-v2\\plots.esri.json",
+    "bytes": 7690,
+    "sha256": "818745afaac7920d5a3190b176ce06db09a8e0ca9020e8f47e1527cdf9f5a7a4"
+  },
+  "tree_definition": "Every independently resolved woody tree >=2 m; XY is crown centre, not predicted apex.",
+  "boundary": "Centre inside west/south inclusive, east/north exclusive plot; inspect 3 m context.",
+  "holdout_tile": "12TVL3302",
+  "holdout_extent": [
+    432950,
+    4501950,
+    434050,
+    4503050
+  ],
+  "holdout_note": "Prospective fine-tuning holdout frozen 2026-09-29. This tile has already been used for exploratory processing; it is not a retrospectively untouched test set."
+}

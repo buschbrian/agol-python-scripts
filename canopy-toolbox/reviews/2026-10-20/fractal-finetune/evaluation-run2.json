@@ -1,0 +1,239 @@
+{
+ "labels": "D:\\lidar\\2023-salt-lake-valley\\fractal\\finetune-20261021-full\\data\\val\\12TVL2804.las",
+ "classes": "FRACTAL codes: 1 other, 2 ground, 5 vegetation, 6 building, 64 structure",
+ "predictions": {
+  "released": {
+   "path": "D:\\lidar\\2023-salt-lake-valley\\fractal\\city-20261019\\fractal\\12TVL2804\\consensus.las",
+   "dimension": "MajorityClassification",
+   "points": {
+    "labelled": 20227,
+    "agree": 18691,
+    "share": 0.9241,
+    "by_class": {
+     "1": "196 of 459",
+     "2": "2799 of 2845",
+     "5": "9960 of 10490",
+     "6": "5730 of 6028",
+     "64": "6 of 405"
+    },
+    "confusion_label_to_predicted": {
+     "1": {
+      "0": 8,
+      "1": 196,
+      "2": 56,
+      "5": 117,
+      "6": 11,
+      "64": 71
+     },
+     "2": {
+      "0": 0,
+      "1": 1,
+      "2": 2799,
+      "5": 45,
+      "6": 0,
+      "64": 0
+     },
+     "5": {
+      "0": 0,
+      "1": 6,
+      "2": 392,
+      "5": 9960,
+      "6": 132,
+      "64": 0
+     },
+     "6": {
+      "0": 5,
+      "1": 73,
+      "2": 22,
+      "5": 193,
+      "6": 5730,
+      "64": 5
+     },
+     "64": {
+      "0": 8,
+      "1": 218,
+      "2": 56,
+      "5": 54,
+      "6": 63,
+      "64": 6
+     }
+    }
+   },
+   "parts": {
+    "count": 258,
+    "agree": 208,
+    "share": 0.8062,
+    "by_class": {
+     "1": "13 of 26",
+     "2": "38 of 38",
+     "5": "61 of 65",
+     "6": "95 of 104",
+     "64": "1 of 25"
+    }
+   }
+  },
+  "run1": {
+   "path": "D:/lidar/2023-salt-lake-valley/fractal/finetune-20261020/run-1/predict-12TVL2804/consensus.las",
+   "dimension": "MajorityClassification",
+   "points": {
+    "labelled": 20227,
+    "agree": 18879,
+    "share": 0.9334,
+    "by_class": {
+     "1": "181 of 459",
+     "2": "2790 of 2845",
+     "5": "10065 of 10490",
+     "6": "5843 of 6028",
+     "64": "0 of 405"
+    },
+    "confusion_label_to_predicted": {
+     "1": {
+      "0": 8,
+      "1": 181,
+      "2": 54,
+      "5": 151,
+      "6": 12,
+      "64": 53
+     },
+     "2": {
+      "0": 0,
+      "1": 0,
+      "2": 2790,
+      "5": 54,
+      "6": 1,
+      "64": 0
+     },
+     "5": {
+      "0": 1,
+      "1": 8,
+      "2": 331,
+      "5": 10065,
+      "6": 85,
+      "64": 0
+     },
+     "6": {
+      "0": 3,
+      "1": 16,
+      "2": 49,
+      "5": 112,
+      "6": 5843,
+      "64": 5
+     },
+     "64": {
+      "0": 8,
+      "1": 189,
+      "2": 60,
+      "5": 103,
+      "6": 45,
+      "64": 0
+     }
+    }
+   },
+   "parts": {
+    "count": 258,
+    "agree": 212,
+    "share": 0.8217,
+    "by_class": {
+     "1": "14 of 26",
+     "2": "38 of 38",
+     "5": "60 of 65",
+     "6": "100 of 104",
+     "64": "0 of 25"
+    }
+   }
+  },
+  "finetuned": {
+   "path": "D:\\lidar\\2023-salt-lake-valley\\fractal\\finetune-20261021-full\\run-2\\predict-12TVL2804\\consensus.las",
+   "dimension": "MajorityClassification",
+   "points": {
+    "labelled": 20227,
+    "agree": 18770,
+    "share": 0.928,
+    "by_class": {
+     "1": "181 of 459",
+     "2": "2787 of 2845",
+     "5": "10004 of 10490",
+     "6": "5798 of 6028",
+     "64": "0 of 405"
+    },
+    "confusion_label_to_predicted": {
+     "1": {
+      "0": 4,
+      "1": 181,
+      "2": 54,
+      "5": 152,
+      "6": 14,
+      "64": 54
+     },
+     "2": {
+      "0": 0,
+      "1": 0,
+      "2": 2787,
+      "5": 56,
+      "6": 2,
+      "64": 0
+     },
+     "5": {
+      "0": 1,
+      "1": 12,
+      "2": 341,
+      "5": 10004,
+      "6": 132,
+      "64": 0
+     },
+     "6": {
+      "0": 16,
+      "1": 17,
+      "2": 47,
+      "5": 145,
+      "6": 5798,
+      "64": 5
+     },
+     "64": {
+      "0": 9,
+      "1": 198,
+      "2": 51,
+      "5": 112,
+      "6": 35,
+      "64": 0
+     }
+    }
+   },
+   "parts": {
+    "count": 258,
+    "agree": 208,
+    "share": 0.8062,
+    "by_class": {
+     "1": "12 of 26",
+     "2": "38 of 38",
+     "5": "59 of 65",
+     "6": "99 of 104",
+     "64": "0 of 25"
+    }
+   }
+  }
+ },
+ "paired_parts": {
+  "released vs run1": {
+   "both": 204,
+   "only released": 4,
+   "only run1": 8,
+   "neither": 42,
+   "sign_test_p": 0.3877
+  },
+  "released vs finetuned": {
+   "both": 201,
+   "only released": 7,
+   "only finetuned": 7,
+   "neither": 43,
+   "sign_test_p": 1.0
+  },
+  "run1 vs finetuned": {
+   "both": 207,
+   "only run1": 5,
+   "only finetuned": 1,
+   "neither": 45,
+   "sign_test_p": 0.2188
+  }
+ }
+}

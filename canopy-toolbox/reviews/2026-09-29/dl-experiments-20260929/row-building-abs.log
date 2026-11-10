@@ -1,0 +1,11 @@
+2026-09-29T20:05:36.0079674-06:00 row building-abs start
+2026-09-29T20:05:38.2902779-06:00 full baseline MD5 before: 82787095336690D2909344206F9A80FC
+2026-09-29T20:05:40.5952615-06:00 row baseline H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las MD5 before: 82787095336690D2909344206F9A80FC
+2026-09-29T20:05:43.1080054-06:00 fresh copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\building-abs\building\12TVL2804.las MD5: 82787095336690D2909344206F9A80FC
+2026-09-29T20:05:43.1589991-06:00 GPU before: 2566 MiB, 24 %
+2026-09-29T20:05:43.1688464-06:00 dl_run: C:\Users\Brian\AppData\Local\ESRI\conda\envs\arcgispro-py3-dl\python.exe -B V:\Developer\agol-python-scripts\.claude\worktrees\agent-a3b10aa15ccee097a\canopy-toolbox\reviews\2026-09-29\dl_run.py building --source H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\12TVL2804\prepared\points\12TVL2804.las --copy H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\building-abs\building\12TVL2804.las --output-root H:\lidar\2023-salt-lake-valley\runs\pilot-2026-09-29\deep-learning\experiments-20260929\building-abs --boundary 428000 4504000 429000 4505000 --batch 1
+2026-09-29T20:25:58.6588340-06:00 dl_run exit 0 after 1215.5 s
+2026-09-29T20:26:01.5992263-06:00 full baseline MD5 after: 82787095336690D2909344206F9A80FC
+2026-09-29T20:26:04.8066865-06:00 row baseline MD5 after: 82787095336690D2909344206F9A80FC
+2026-09-29T20:26:11.1244811-06:00 dl_compare exit 0
+2026-09-29T20:26:11.1253682-06:00 row building-abs done

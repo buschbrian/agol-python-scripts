@@ -1,0 +1,462 @@
+{
+ "layers": [
+  {
+   "id": 0,
+   "layerDefinition": {
+    "drawingInfo": {
+     "renderer": {
+      "type": "classBreaks",
+      "field": "HEIGHT_P50_M",
+      "classificationMethod": "esriClassifyManual",
+      "legendOptions": {
+       "title": "Median roof height above ground (feet)"
+      },
+      "minValue": 0,
+      "classBreakInfos": [
+       {
+        "classMaxValue": 4,
+        "label": "Up to 13.1 ft",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          242,
+          240,
+          247,
+          255
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           60,
+           60,
+           90,
+           70
+          ],
+          "width": 0.3
+         }
+        }
+       },
+       {
+        "classMaxValue": 6,
+        "label": "13.1 to 19.7 ft",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          203,
+          201,
+          226,
+          255
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           60,
+           60,
+           90,
+           70
+          ],
+          "width": 0.3
+         }
+        }
+       },
+       {
+        "classMaxValue": 9,
+        "label": "19.7 to 29.5 ft",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          158,
+          154,
+          200,
+          255
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           60,
+           60,
+           90,
+           70
+          ],
+          "width": 0.3
+         }
+        }
+       },
+       {
+        "classMaxValue": 12,
+        "label": "29.5 to 39.4 ft",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          117,
+          107,
+          177,
+          255
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           60,
+           60,
+           90,
+           70
+          ],
+          "width": 0.3
+         }
+        }
+       },
+       {
+        "classMaxValue": 60,
+        "label": "Over 39.4 ft",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          84,
+          39,
+          143,
+          255
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           60,
+           60,
+           90,
+           70
+          ],
+          "width": 0.3
+         }
+        }
+       }
+      ],
+      "defaultLabel": "No lidar height (no roof points)",
+      "defaultSymbol": {
+       "type": "esriSFS",
+       "style": "esriSFSSolid",
+       "color": [
+        215,
+        215,
+        215,
+        200
+       ],
+       "outline": {
+        "type": "esriSLS",
+        "style": "esriSLSSolid",
+        "color": [
+         120,
+         120,
+         120,
+         200
+        ],
+        "width": 0.6
+       }
+      }
+     },
+     "transparency": 0,
+     "labelingInfo": null
+    },
+    "minScale": 150000,
+    "maxScale": 0
+   },
+   "popupInfo": {
+    "title": "Building {SOURCE_ID}",
+    "expressionInfos": [
+     {
+      "name": "h50",
+      "title": "Median roof height",
+      "expression": "var m = $feature.HEIGHT_P50_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+      "returnType": "string"
+     },
+     {
+      "name": "h95",
+      "title": "95th percentile roof height",
+      "expression": "var m = $feature.HEIGHT_P95_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+      "returnType": "string"
+     },
+     {
+      "name": "support",
+      "title": "Roof support",
+      "expression": "var c = $feature.ROOF_COV_PCT;\nif (IsEmpty(c)) { return 'none'; }\nreturn Text(c, '#,##0') + '% of the footprint\\'s roughly 1.6 ft grid cells have lidar roof points';",
+      "returnType": "string"
+     },
+     {
+      "name": "flags",
+      "title": "Notes",
+      "expression": "var words = Dictionary(\"LOW_ROOF_SUPPORT\", \"Lidar roof points cover less than 80% of the footprint, so the height is less certain.\", \"NO_ROOF_SUPPORT\", \"No lidar roof points fall inside the footprint, so no height was estimated.\", \"NO_CELL_CENTERS\", \"The footprint is too small to hold a 0.5 m cell centre, so no height was estimated.\", \"NEGATIVE_HEIGHT\", \"Some roof cells sit below the ground surface; the footprint may not match the building.\", \"PARTIAL_AOI\", \"Part of the footprint lies outside the lidar coverage.\", \"GEOMETRY_REPAIRED\", \"The county footprint's shape was repaired before measuring.\");\nvar parts = Split(DefaultValue($feature.HEIGHT_STATUS, ''), ';');\nvar out = [];\nfor (var i in parts) { if (HasKey(words, parts[i])) { Push(out, words[parts[i]]); } }\nreturn IIf(Count(out) == 0, 'None beyond the estimate warning.', Concatenate(out, ' '));",
+      "returnType": "string"
+     },
+     {
+      "name": "area",
+      "title": "Footprint",
+      "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\nreturn Text(a / (0.3048 * 0.3048), '#,##0') + ' sq ft';",
+      "returnType": "string"
+     }
+    ],
+    "popupElements": [
+     {
+      "type": "text",
+      "text": "<p><b>Roof height above the ground</b><br />Median: {expression/h50}<br />95th percentile: {expression/h95}</p><p><b>Roof support:</b> {expression/support}.</p><p><b>Notes:</b> {expression/flags}</p><p>Footprint {expression/area}. Parcel {PARCEL_ID}. County building ID {SOURCE_ID}.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+     }
+    ],
+    "fieldInfos": [
+     {
+      "fieldName": "PARCEL_ID",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "SOURCE_ID",
+      "visible": false,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/h50",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/h95",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/support",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/flags",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/area",
+      "visible": true,
+      "isEditable": false
+     }
+    ]
+   }
+  },
+  {
+   "id": 1,
+   "layerDefinition": {
+    "drawingInfo": {
+     "renderer": {
+      "type": "classBreaks",
+      "classificationMethod": "esriClassifyManual",
+      "minValue": 0,
+      "valueExpression": "var z = $feature.ZONE_ID;\nif (z == 'CITY' || z == 'OWNERSHIP:PUBLIC_GOVERNMENT') { return null; }\nreturn $feature.CANOPY_PCT;",
+      "valueExpressionTitle": "Canopy cover (% of the area the lidar observed)",
+      "classBreakInfos": [
+       {
+        "classMaxValue": 10,
+        "label": "Under 10%",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          247,
+          252,
+          185,
+          210
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           255,
+           255,
+           255,
+           160
+          ],
+          "width": 0.5
+         }
+        }
+       },
+       {
+        "classMaxValue": 20,
+        "label": "10% to 20%",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          173,
+          221,
+          142,
+          210
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           255,
+           255,
+           255,
+           160
+          ],
+          "width": 0.5
+         }
+        }
+       },
+       {
+        "classMaxValue": 30,
+        "label": "20% to 30%",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          65,
+          171,
+          93,
+          210
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           255,
+           255,
+           255,
+           160
+          ],
+          "width": 0.5
+         }
+        }
+       },
+       {
+        "classMaxValue": 100,
+        "label": "30% and over",
+        "symbol": {
+         "type": "esriSFS",
+         "style": "esriSFSSolid",
+         "color": [
+          0,
+          90,
+          50,
+          210
+         ],
+         "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+           255,
+           255,
+           255,
+           160
+          ],
+          "width": 0.5
+         }
+        }
+       }
+      ]
+     },
+     "transparency": 0,
+     "labelingInfo": null
+    }
+   },
+   "popupInfo": {
+    "title": "{expression/title}",
+    "expressionInfos": [
+     {
+      "name": "pct",
+      "title": "Canopy cover",
+      "returnType": "string",
+      "expression": "return Text($feature.CANOPY_PCT, '#0.0') + '%';"
+     },
+     {
+      "name": "bounds",
+      "title": "Bounds",
+      "returnType": "string",
+      "expression": "return Text($feature.CANOPY_LOW_PCT, '#0.0') + '% to ' + Text($feature.CANOPY_HIGH_PCT, '#0.0') + '%';"
+     },
+     {
+      "name": "change",
+      "title": "Against October 19",
+      "returnType": "string",
+      "expression": "var d = $feature.CANOPY_PCT - $feature.CANOPY_PCT_OCT19;\nif (Abs(d) < 0.005) { return 'The same as'; }\nreturn Text(Abs(d), '0.00') + ' points ' + IIf(d < 0, 'below', 'above');"
+     },
+     {
+      "name": "title",
+      "title": "Zone",
+      "returnType": "string",
+      "expression": "var n = $feature.ZONE_NAME;\nreturn IIf(Left($feature.ZONE_ID, 7) == 'PUBLIC:', 'Public owner: ' + n, n);"
+     }
+    ],
+    "popupElements": [
+     {
+      "type": "text",
+      "text": "<p><b>Canopy cover {expression/pct}</b> of the area the lidar observed (bounds {expression/bounds}).</p><p>About {CANOPY_ACRES} acres of tree canopy in {ZONE_ACRES} acres. The whole city: 25.59%.</p><p>{expression/change} the October 19 estimate of {CANOPY_PCT_OCT19}%, which came from the earlier classification; the October 22 figure above is the current one.</p><p>The lidar observed {OBSERVED_PCT}% of the zone; the bounds count the unobserved part as no canopy or as all canopy. Canopy is vegetation at least 2 m tall.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+     }
+    ],
+    "fieldInfos": [
+     {
+      "fieldName": "CANOPY_ACRES",
+      "visible": false,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "ZONE_ACRES",
+      "visible": false,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "OBSERVED_PCT",
+      "visible": false,
+      "isEditable": false,
+      "format": {
+       "places": 1,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "CANOPY_PCT_OCT19",
+      "visible": false,
+      "isEditable": false,
+      "format": {
+       "places": 2,
+       "digitSeparator": true
+      }
+     },
+     {
+      "fieldName": "expression/pct",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/bounds",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/change",
+      "visible": true,
+      "isEditable": false
+     },
+     {
+      "fieldName": "expression/title",
+      "visible": true,
+      "isEditable": false
+     }
+    ]
+   }
+  }
+ ]
+}

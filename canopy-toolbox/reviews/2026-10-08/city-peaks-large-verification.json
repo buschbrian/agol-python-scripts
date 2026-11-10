@@ -1,0 +1,11 @@
+{
+  "cells": 5242880,
+  "shape": [
+    5120,
+    1024
+  ],
+  "peaks": 2,
+  "exact_original_method_match": true,
+  "crown_limit_unchanged": true,
+  "scope": "Count-only method exceeds old detection cap without partitioning plateaus"
+}

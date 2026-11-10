@@ -1,0 +1,60 @@
+{
+ "baseline": {
+  "attached": 3671,
+  "pairs": 456,
+  "hours": 6.4
+ },
+ "idea1_alignment": {
+  "attached": 3671,
+  "pairs": 456,
+  "hours": 6.4,
+  "note": "already measured: 6,213 -> 6,209 candidates and 458 -> 456 pairs"
+ },
+ "idea2_parcels": {
+  "items": 4127,
+  "parcels": 3289,
+  "parcels_with_one_item": 2632,
+  "parcels_with_two": 547,
+  "parcels_with_3_or_more": 110,
+  "items_without_parcel": 6,
+  "hours": 9.1
+ },
+ "idea3_sample": {
+  "sample": 300,
+  "settled_by_rule_if_all_strata_pass": 3228,
+  "always_eyes": 443,
+  "eyes_80m2_or_more": 245,
+  "eyes_risky_county_building": 223,
+  "strata_sizes": {
+   "S1 corner of a county roof": 383,
+   "S2 lower roof, under 20 m2": 646,
+   "S3 lower roof, 20-40 m2": 459,
+   "S4 other, under 20 m2": 601,
+   "S5 other, 20-40 m2": 731,
+   "S6 lower or other, 40-80 m2": 408
+  },
+  "hours_best_case": 2.4
+ },
+ "idea4_swaps": {
+  "county_buildings_touched": 3434,
+  "pieces_per_building_mean": 1.12,
+  "touched_risky": 308,
+  "attached_on_safe_buildings": 3448,
+  "attached_on_risky_buildings": 223,
+  "classes_of_touched": {
+   "ALIGNED": 2795,
+   "UNCERTAIN": 536,
+   "REAL_OFFSET": 70,
+   "REBUILT_OR_GONE": 32,
+   "SYSTEMATIC": 1
+  },
+  "hours_if_each_swap_reviewed": 5.7
+ },
+ "pace_seconds": {
+  "attached": 5,
+  "pairs": 10,
+  "parcel": 10,
+  "swap": 6,
+  "sample": 6
+ }
+}

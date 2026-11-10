@@ -1,0 +1,11 @@
+{
+ "county_with_canopy": 5460,
+ "pieces_added": 8064,
+ "m2_added": 167432.6,
+ "buildings_filled": 5223,
+ "rules": {
+  "county_canopy_pct_at_least": 10.0,
+  "piece_canopy_share_at_least": 0.5,
+  "piece_m2_at_least": 2.0
+ }
+}

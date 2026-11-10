@@ -66,6 +66,77 @@ class RoofRefinement(unittest.TestCase):
                     self.assertEqual(changes["point_index"].tolist(),[0])
                     self.assertEqual(changes["previous_class_byte"].tolist(),[5])
 
+    def test_local_surface_changes_only_gabled_roof_edge_bytes(self):
+        import numpy as np
+        from canopy import roof_surface, roofs
+        gable=lambda x:110-.5*abs(x-10)  # ridge along y at x=10, eaves at x=5 and 15 (z 107.5)
+        for modern in (False,True):
+            with self.subTest(modern=modern),tempfile.TemporaryDirectory() as folder:
+                path=Path(folder)/"points.las"
+                single,last=(0x11,0x22) if modern else (0x09,0x12)
+                synthetic,withheld,keypoint=(1,4,2) if modern else (32,128,64)
+                # (x, y, z, class, flags, return byte); indices 0-11 are candidates.
+                points=[(15.2,10,gable(15.2),5,0,single),     # 0 eave beyond the last roof point: change
+                        (10,8,110.05,4,0,single),             # 1 ridge the building classifier missed: change
+                        (13,10,gable(13)+3,5,0,single),       # 2 overhanging canopy 3 m above: stay
+                        (15.6,10,106.0,4,0,single),           # 3 hedge below the eave: stay
+                        (15.2,11,gable(15.2),5,withheld,single),  # 4 withheld: stay
+                        (15.2,12,gable(15.2),2,0,single),     # 5 ground class: stay
+                        (15.2,13,gable(15.2),1,0,single),     # 6 unclassified: stay
+                        (15.2,9,gable(15.2),5,0,last),        # 7 last of two returns at the eave: change
+                        (15.2,8,gable(15.2),5,keypoint,single),   # 8 key-point flag kept: change
+                        (15.2,7,gable(15.2),5,synthetic,single),  # 9 synthetic: stay
+                        (1,1,110,5,0,single),                 # 10 no roof within the radius: stay
+                        (10,10,gable(10)-2,3,0,last),         # 11 under the roof: stay
+                        (15.2,6,gable(15.2),3,0,single)]      # 12 class 3 is not eligible by default: stay
+                for x in np.arange(5.5,14.51,.25):
+                    for y in np.arange(5,15.01,.25):
+                        if abs(x-10)>=.3:
+                            points.append((x,y,gable(x),6,0,single))
+                size=375 if modern else 227;length=30 if modern else 20
+                header=bytearray(size);header[:4]=b"LASF";header[24:26]=bytes([1,4 if modern else 2])
+                struct.pack_into("<HII",header,94,size,size,0)
+                struct.pack_into("<BHI",header,104,6 if modern else 0,length,len(points))
+                if modern:struct.pack_into("<Q",header,247,len(points))
+                struct.pack_into("<3d",header,131,.01,.01,.01)
+                struct.pack_into("<3d",header,155,500000,4500000,0)
+                struct.pack_into("<6d",header,179,500020,500000,4500020,4500000,114,100)
+                with path.open("wb") as handle:
+                    handle.write(header)
+                    for x,y,z,code,flags,returns in points:
+                        record=bytearray(length)
+                        struct.pack_into("<iii",record,0,round((x)*100),round(y*100),round(z*100))
+                        record[14]=returns
+                        record[15]=flags if modern else flags|code
+                        if modern:record[16]=code
+                        handle.write(record)
+                before=path.read_bytes()
+                support=roofs._load_support([path])
+                self.assertEqual(len(support),len(points)-13)
+                tree=roof_surface.build_tree(support)
+                gradient,_,status=roof_surface.faces(tree,support[:,2])
+                low,high=roof_surface.envelope(support,500000,4500020,.5,(40,40),1.0)
+                parameters={"radius_m":1.0,"neighbors":16,"below_roof_m":.35,"above_roof_m":.5,
+                            "max_face_slope":1.5,"min_votes":3,"eligible_classes":[4,5]}
+                counts=roofs._classify_local_copy(path,tree,support[:,2],gradient,status,low,high,
+                                                  500000,4500020,.5,parameters,Path(folder)/"changes.npz")
+                after=path.read_bytes()
+                changed=[0,1,7,8]
+                offset=16 if modern else 15
+                self.assertEqual([i for i,(a,b) in enumerate(zip(before,after)) if a!=b],
+                                 [size+i*length+offset for i in changed])
+                self.assertEqual(counts["changed"],4)
+                self.assertEqual(counts["changed_by_class"],{"3":0,"4":1,"5":3})
+                self.assertEqual(counts["changed_by_return"],
+                                 {"single":3,"first_of_many":0,"intermediate":0,"last_of_many":1})
+                self.assertEqual(after[size+8*length+15],(keypoint if modern else keypoint|6))
+                with np.load(Path(folder)/"changes.npz") as audit:
+                    self.assertEqual(audit["point_index"].tolist(),changed)
+                    self.assertEqual(audit["previous_class_byte"].tolist(),
+                                     [5,4,5,5] if modern else [5,4,5,keypoint|5])
+                    self.assertTrue((np.abs(audit["residual_m"])<=.5).all())
+                    self.assertTrue((audit["votes"]>=3).all())
+
     def test_rejected_model_makes_no_changes(self):
         import numpy as np
         from canopy import roofs

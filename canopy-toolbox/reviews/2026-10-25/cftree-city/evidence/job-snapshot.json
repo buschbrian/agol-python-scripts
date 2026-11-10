@@ -1,0 +1,215 @@
+{
+  "updated_utc": "2026-10-26T03:02:49.884567+00:00",
+  "phase": "processing",
+  "tiles": 61,
+  "staged": 61,
+  "completed": 1,
+  "failed": 0,
+  "models": 4894,
+  "rejected": 0,
+  "tile_status": {
+    "12TVL2203": {
+      "state": "queued"
+    },
+    "12TVL2204": {
+      "state": "queued"
+    },
+    "12TVL2303": {
+      "state": "queued"
+    },
+    "12TVL2304": {
+      "state": "queued"
+    },
+    "12TVL2403": {
+      "state": "queued"
+    },
+    "12TVL2404": {
+      "state": "queued"
+    },
+    "12TVL2502": {
+      "state": "queued"
+    },
+    "12TVL2503": {
+      "state": "queued"
+    },
+    "12TVL2504": {
+      "state": "queued"
+    },
+    "12TVL2601": {
+      "state": "queued"
+    },
+    "12TVL2602": {
+      "state": "queued"
+    },
+    "12TVL2603": {
+      "state": "queued"
+    },
+    "12TVL2604": {
+      "state": "queued"
+    },
+    "12TVL2605": {
+      "state": "queued"
+    },
+    "12TVL2606": {
+      "state": "queued"
+    },
+    "12TVL2607": {
+      "state": "queued"
+    },
+    "12TVL2701": {
+      "state": "queued"
+    },
+    "12TVL2702": {
+      "state": "queued"
+    },
+    "12TVL2703": {
+      "tile": "12TVL2703",
+      "state": "reconstructing",
+      "updated_utc": "2026-10-26T03:02:44.098187+00:00",
+      "config_hash": "6fd0054860f04a3b4f175691b69dbca0b3d93225ade17e378ac1d6c233a720df",
+      "models": 1708,
+      "rejected": 0,
+      "core_candidates_seen": 1708,
+      "total_segments": 6660,
+      "elapsed_seconds": 458
+    },
+    "12TVL2704": {
+      "state": "queued"
+    },
+    "12TVL2705": {
+      "state": "queued"
+    },
+    "12TVL2706": {
+      "state": "queued"
+    },
+    "12TVL2802": {
+      "state": "queued"
+    },
+    "12TVL2803": {
+      "state": "queued"
+    },
+    "12TVL2804": {
+      "tile": "12TVL2804",
+      "state": "complete",
+      "updated_utc": "2026-10-26T02:49:10.794417+00:00",
+      "config_hash": "6fd0054860f04a3b4f175691b69dbca0b3d93225ade17e378ac1d6c233a720df",
+      "models": 3186,
+      "rejected": 0,
+      "cityjson_shards": 13,
+      "seam_review": "pending",
+      "completed_utc": "2026-10-26T02:49:10.794395+00:00"
+    },
+    "12TVL2805": {
+      "state": "queued"
+    },
+    "12TVL2806": {
+      "state": "queued"
+    },
+    "12TVL2902": {
+      "state": "queued"
+    },
+    "12TVL2904": {
+      "state": "queued"
+    },
+    "12TVL2905": {
+      "state": "queued"
+    },
+    "12TVL2906": {
+      "state": "queued"
+    },
+    "12TVL2907": {
+      "state": "queued"
+    },
+    "12TVL3004": {
+      "state": "queued"
+    },
+    "12TVL3005": {
+      "state": "queued"
+    },
+    "12TVL3006": {
+      "state": "queued"
+    },
+    "12TVL3007": {
+      "state": "queued"
+    },
+    "12TVL3101": {
+      "state": "queued"
+    },
+    "12TVL3102": {
+      "state": "queued"
+    },
+    "12TVL3104": {
+      "state": "queued"
+    },
+    "12TVL3105": {
+      "state": "queued"
+    },
+    "12TVL3106": {
+      "state": "queued"
+    },
+    "12TVL3107": {
+      "state": "queued"
+    },
+    "12TVL3201": {
+      "state": "queued"
+    },
+    "12TVL3202": {
+      "state": "queued"
+    },
+    "12TVL3203": {
+      "state": "queued"
+    },
+    "12TVL3204": {
+      "state": "queued"
+    },
+    "12TVL3205": {
+      "state": "queued"
+    },
+    "12TVL3206": {
+      "state": "queued"
+    },
+    "12TVL3207": {
+      "state": "queued"
+    },
+    "12TVL3301": {
+      "state": "queued"
+    },
+    "12TVL3302": {
+      "state": "queued"
+    },
+    "12TVL3303": {
+      "state": "queued"
+    },
+    "12TVL3304": {
+      "state": "queued"
+    },
+    "12TVL3305": {
+      "state": "queued"
+    },
+    "12TVL3306": {
+      "state": "queued"
+    },
+    "12TVL3307": {
+      "state": "queued"
+    },
+    "12TVL3402": {
+      "state": "queued"
+    },
+    "12TVL3403": {
+      "state": "queued"
+    },
+    "12TVL3404": {
+      "state": "queued"
+    },
+    "12TVL3405": {
+      "state": "queued"
+    },
+    "12TVL3406": {
+      "state": "queued"
+    }
+  },
+  "run_dir": "C:\\Users\\Brian\\Documents\\Codex\\2026-10-24\\go-x20\\work\\cftree-city-20261025",
+  "metrics_mode": "geometry",
+  "halo_m": 100.0,
+  "publication": "local draft; seam reconciliation and review pending"
+}

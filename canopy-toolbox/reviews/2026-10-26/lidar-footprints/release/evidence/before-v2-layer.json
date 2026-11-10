@@ -1,0 +1,628 @@
+{
+  "id": "ce3617ac9b884bbcbee7c47a3e166999",
+  "modified": 1792959385000,
+  "access": "public",
+  "protected": true,
+  "url": "https://tiles.arcgis.com/tiles/XRrSFvEwSsReIxuA/arcgis/rest/services/Millcreek_3D_buildings_with_roof_forms_2023_lidar_planning_estimate/SceneServer",
+  "title": "Millcreek 3D buildings with roof forms (2023 lidar), planning estimate",
+  "snippet": "21,561 Millcreek, Utah, buildings in 3D. Roof forms (gables, hips, dormers, flat roofs) from the 2023 lidar where supported, with simpler Esri roofs or blocks elsewhere. Unvalidated planning estimate; not surveyed or field-verified.",
+  "description": "<p><strong>Planning estimate.</strong> This layer is an unvalidated estimate derived from lidar by City of Millcreek GIS. It has not been\nsurveyed, engineered or checked in the field. Use it for planning, screening and display, not for legal, engineering,\nproperty-boundary, permitting or code-compliance decisions.</p>\n<h2>What it shows</h2>\n<p>Every Salt Lake County building footprint in Millcreek, Utah, that has a lidar roof, as a 3D building: 21,561 of them. <strong>For most\n(20,730) the roof has a modelled shape</strong>: gables, hips, dormers, stepped and flat roofs, taken from the 2023 lidar. For the rest the\nroof is simpler (Esri's LOD2.0 roof forms for 647, flat LOD1.2 blocks at the median roof height for 184), because the lidar could\nnot support a roof form or the roof form failed a check. The <strong>LEVEL</strong> field says which model a building has.</p>\n<h2>Fields</h2>\n<p>Each building carries its footprint's County attributes and lidar roof-height statistics (see the data dictionary), so a pop-up\ncan show its height. Buildings whose LEVEL is <strong>roofer LoD2.2</strong> also carry roof attributes; for the others they are empty.</p>\n<table style='border-collapse:collapse;font-size:90%'>\n\n<tr>\n<th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Field</th>\n<th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Stored type</th>\n<th style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Meaning</th>\n</tr>\n\n<tbody>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>OBJECTID</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>OID</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Package row identifier; use FP_ID to identify the source footprint.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Name</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Model object name.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>FP_ID</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Footprint identifier used by the massing and roof comparison runs.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>PARTS</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Number of converted model parts.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_ROOF_TYPE</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roof type inferred by roofer.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_ROOF_PLANES</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roof plane count reported by roofer.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_RIDGELINES</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Ridgeline count reported by roofer.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_RMSE_LOD22</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roofer model fit RMSE (metres); not independent accuracy.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_H_GROUND</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roofer ground elevation (metres).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_H_ROOF_MAX</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Maximum roof elevation reported by roofer (metres).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_PT_DENSITY</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Point density reported by roofer (points per square metre).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_EXTRUSION</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roofer extrusion status.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>SOURCE_ID</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>County source footprint identifier, as text.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>PARCEL_ID</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>County parcel identifier carried with the footprint.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>CITY</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>County city attribute.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>FOOTPRINT_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>County footprint area (square metres).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_COV_PCT</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Share of footprint cells with classified lidar roof support (percent).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_Z50_M</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Median classified lidar roof elevation (metres).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>GROUND_Z50_M</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Median ground elevation under the footprint (metres).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>HEIGHT_P50_M</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Median lidar roof height above ground (metres); not code-defined height.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>HEIGHT_P95_M</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>95th percentile lidar roof height above ground (metres).</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>HEIGHT_STATUS</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Processing and support flags, including UNVALIDATED.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>LEVEL</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Model used: roofer LoD2.2, Esri LOD2.0 or Esri LOD1.2.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>CHECK_VERDICT</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Check result recorded when the hybrid was assembled.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOFER_VERDICT</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roofer comparison verdict against the source lidar.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ESRI_VERDICT</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Esri LOD2.0 comparison verdict against the source lidar.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>FALLBACK_REASON</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>String</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Reason the model falls back from roofer to Esri.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_PLANES</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roof planes of 1 m2 or more in plan, from the lidar roof (roofer). Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_PLAN_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Area of those planes seen from above. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_AREA_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>True (sloped) area of those planes. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_SLOPE_MEAN</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Slope from horizontal, weighted by plane area. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_SLOPE_MAIN</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Slope of the largest plane. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>ROOF_AZIMUTH_MAIN</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Compass bearing of the largest plane's downslope direction (0 north, clockwise); empty if flat. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RIDGE_HT_M</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Highest roof point minus the building's ground elevation. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>EAVE_HT_M</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Lowest roof point minus the building's ground elevation. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>BLDG_HT_M</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Same as the ridge height: highest roof point above the building's ground. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>FLAT_AREA_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Surface area of planes under 5 degrees. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>SOUTH_AREA_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Surface area of planes of 5 to 70 degrees facing 135 to 225 degrees. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>EAST_AREA_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Same, facing 45 to 135 degrees. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>WEST_AREA_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Same, facing 225 to 315 degrees. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>NORTH_AREA_M2</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Same, facing 315 to 45 degrees. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>RF_VOLUME_M3</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Double</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Volume of roofer's LoD 2.2 solid. Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>TINY_FACES</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roof faces under 0.5 m2 in plan (quality screening). Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>SLIVER_FACES</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roof faces narrower than about 0.4 m (quality screening). Null for Esri fallback buildings.</td>\n</tr>\n<tr>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>STEEP_FACES</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Integer</td>\n<td style='border:1px solid #c8c8c8;padding:3px 6px;vertical-align:top;text-align:left'>Roof faces steeper than 75 degrees (quality screening). Null for Esri fallback buildings.</td>\n</tr>\n</tbody>\n</table>\n<h2>Using it in a scene</h2>\n<p>Put the <strong>Millcreek bare-earth terrain</strong> elevation layer in the scene's Ground, above World Elevation. The buildings were built on that\nterrain. Ground estimates and vertical datum labels can still produce offsets; inspect placement before relying on it.</p>\n<h2>How it was made</h2>\n<ol>\n<li><strong>Roof points.</strong> A lidar point is roof when at least two of three classification methods call it building.</li>\n<li><strong>Roof forms.</strong> For each footprint, roofer finds the roof planes in those points, splits the footprint into roof parts and extrudes them\n   to a closed 3D model, with each footprint's ground from nearby ground points.</li>\n<li><strong>Check and choice.</strong> Each roofer model is compared with the lidar roof on the same 0.5 m cells. A building takes roofer's model when it\n   passes (not above the lidar roof by more than 1 m, not short of it over more than 5% of its cells, not at ground level over 10% of its\n   footprint, and not clearly worse than a flat block); otherwise it takes Esri's LOD2.0 roof if that passes, otherwise a flat block.</li>\n<li>Packaged as a scene layer package in WGS84 and published on October 25, 2026.</li>\n</ol>\n<h2>Accuracy and checks</h2>\n<ul>\n<li>On the cells where the lidar saw roof, the buildings are within 0.5 m of the lidar roof on 96.7% of cells and within 1 m on 98.1%\n  (flat blocks alone: 56.9% and 80.4%). The lidar is also what the roofs were built from, so this measures fidelity to the lidar, not an\n  independent accuracy.</li>\n<li>An assistant reviewed 109 imagery crops, including 97 buildings using roofer. These are preliminary visual observations, not City-reviewed accuracy results. The separate blank rating file remains for the City reviewer.</li>\n<li>The package and hosted layer have 21,561 buildings. Their FP_ID count and sum match the source; source IDs are unique. ArcGIS Pro package validation passed without warnings. Hosted model counts and roof-area totals match the validated package.</li>\n<li>Roof attributes apply to 20,730 retained roofer buildings: 4,855,408.3 m² of roof surface, including 1,230,559.8 m² under 5 degrees. The 831 Esri fallback buildings have null roof attributes and are excluded from these totals.</li>\n</ul>\n<h2>Limits</h2>\n<ul>\n<li><strong>Planning estimates, not surveyed buildings.</strong> Heights are roof-minus-ground from lidar, not code-defined building heights.</li>\n<li><strong>Complex roofs can come out fragmented</strong>: many small facets where one or two planes are real. Chimneys and dormers are modelled when the\n  lidar sees them and may be missing or merged where it does not.</li>\n<li><strong>Footprints are the County's.</strong> Footprints that hold several buildings, or buildings built or removed since, are as the County drew them;\n  stale footprints can cause the fallback to model a roof over ground or a demolished structure. These need review; they are not corrected building records.</li>\n<li><strong>Under trees, glass roofs and dark roofs the lidar sees less</strong>, and those buildings are the ones that fall back to simpler models.</li>\n<li>Roof attributes (slope, azimuth, areas) are geometry from the lidar roof. They are <strong>not a solar production estimate</strong>: no shading, panel\n  layout or weather.</li>\n</ul>\n<h2>Coordinates</h2>\n<p>Horizontal: WGS84, taken from NAD83(2011) with the transformation <code>WGS_1984_(ITRF08)_To_NAD_1983_2011</code>, as every other layer in the set.\nVertical: heights are NAVD88 (Geoid18) metres; the package's vertical label is EGM96 (see the scene-layers README).</p>\n<h2>Download</h2>\n<p>The <a href='https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/buildings/20261025/buildings_hybrid_v2.slpk' rel='nofollow ugc'>scene layer package (SLPK, 20.2 MiB)</a> contains the same three-way hybrid used by this hosted layer. Release: October 25, 2026; 21,228,379 bytes.</p>\n<p>SHA-256: <code>62674f95c4e7a292c4ce66e8c2b55aac9d60c360e2ea50e3e7bde5521495949f</code>.</p>\n<p><strong>Lidar source.</strong> The 2023 Salt Lake Valley QL1 lidar (USGS project UT_2023SaltLakeCo_C24, USGS 3D Elevation Program),\nflown on October 7, November 2 and November 4, 2023. Quality level 1 means at least 8 pulses per square metre and a vertical accuracy (RMSEz) of 10 cm or better on open,\nnon-vegetated ground under the USGS specification; the vendor's own accuracy report for this project has not been\nreviewed for these products. For these products the building and vegetation classes of the points were refined; the\nground class was not changed. All products are gridded at 0.5 m.</p>\n<p><strong>Questions or corrections:</strong> City of Millcreek GIS. The processing records (scripts, checks and run logs) are kept by City\nof Millcreek GIS.</p><h3>Feet-first display and download</h3><h3>Explore the buildings</h3><p>Use Search to find an address, choose a slide for a neighborhood, then zoom in and select a building. Drag to rotate the scene; Home returns to the starting view. The legend explains the gray height classes. Daylight changes the illustrative lighting.</p><h3>What the models show</h3><p>The three-way hybrid contains 21,561 buildings: 20,730 detailed roofer LoD2.2 models, 647 Esri LOD2.0 roofs and 184 Esri LOD1.2 blocks. Each building uses the selected model for that footprint. Simpler roofs retain city coverage where a detailed roof did not pass the model checks. The pop-up reports the model source and any fallback reason.</p><h3>Read a building pop-up</h3><p>Median and upper roof heights describe the lidar points above the local ground. Modelled ridge and eave heights describe the reconstructed roof; they are different measurements. Footprint area is horizontal ground coverage. Roof surface area includes the sloping roof faces, so it can exceed the footprint area. The support percentage reports how much of the footprint contains roof points, not a probability that the model is correct.</p><p>Detailed roof measurements are present only for the 20,730 retained roofer models. A blank value on an Esri fallback means unavailable; zero means the model has none of that measured area. Flat roof area uses slopes below 5 degrees; compass-facing areas use slopes from 5 to 70 degrees. Bearings are degrees clockwise from north. Facing areas are screening measurements, not estimates of usable solar area or electricity production. Roof angles remain in degrees.</p><h3>Downloads and limitations</h3><p><a href='https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/buildings/20261025/buildings_hybrid_v2_feet.csv' rel='nofollow ugc'>Building measurements in feet and square feet (CSV)</a> · <a href='https://stmillcreeklidar.blob.core.windows.net/cogs/millcreek-lidar/buildings/20261025/buildings_hybrid_v2.slpk' rel='nofollow ugc'>3D building package (SLPK)</a> · <a href='https://www.arcgis.com/home/item.html?id=ce3617ac9b884bbcbee7c47a3e166999' rel='nofollow ugc'>Full model methods and field definitions</a></p><p>Join the CSV to the models using FP_ID. The SLPK keeps its original metric coordinates and source fields; the CSV provides converted measurements. A detailed-looking roof is still an inferred planning model. Dormers, overhangs, small structures and occluded roof sections can be simplified or incorrect. Lighting and shadows illustrate geometry and are not a validated solar or shadow study.</p><h3>Dates and units</h3><p>The source is the 2023 Salt Lake Valley QL1 lidar, flown in October and November 2023. These maps describe that survey, not present-day conditions. Buildings removed, trees planted or construction completed since then may differ. Basemap imagery can be from a different date.</p><p>Height legends and building heights use feet; building areas use square feet. Canopy-zone summaries use acres and percentages. One international foot is exactly 0.3048 meter. The original coordinate system, elevation reference and metric analysis files remain intact so all layers stay aligned. Rounded display values do not imply survey precision.</p><p><b>Questions or corrections:</b> City of Millcreek GIS. Include the map location and building ID when available.</p>",
+  "tags": [
+    "Millcreek",
+    "Utah",
+    "Salt Lake County",
+    "lidar",
+    "2023 lidar",
+    "3DEP",
+    "planning estimate",
+    "buildings",
+    "3D buildings",
+    "LOD2.2",
+    "roof forms",
+    "building height",
+    "roof area",
+    "scene layer"
+  ],
+  "accessInformation": "City of Millcreek GIS. Lidar: 2023 Salt Lake Valley QL1 lidar (USGS 3DEP, project UT_2023SaltLakeCo_C24). Building footprints: Salt Lake County Assessor and Surveyor (downloaded October 19, 2026). Roof reconstruction: roofer, 3DBAG and TU Delft (https://github.com/3DBAG/roofer).",
+  "licenseInfo": "<p>These data are unvalidated planning estimates produced by City of Millcreek GIS from 2023 lidar. They are not surveyed,\nengineered or field-verified, and must not be used to determine property boundaries or ownership, building or site\ndesign, engineering, flood or drainage design, code compliance (including building height), or any legal or regulatory\ndetermination. They are provided as is, without warranty of accuracy, completeness or fitness for any purpose; check\nconditions on the ground before relying on them. Credit \"City of Millcreek GIS; 2023 Salt Lake Valley QL1 lidar (USGS\n3DEP)\" when you use or show them.</p>\n<p><strong>Salt Lake County data.</strong> The building footprints and their County attributes come from Salt Lake County (Assessor and\nSurveyor). The County's own terms apply to them: the County states that its footprints are not field verified, are for\ngeneral reference only, and are not intended to determine property ownership, final building and site design or\njurisdictional boundaries, or to replace a certified topographical or boundary survey or any other legal document.</p>",
+  "data": {
+    "layers": [
+      {
+        "id": 0,
+        "layerDefinition": {
+          "drawingInfo": {
+            "renderer": {
+              "type": "classBreaks",
+              "field": "HEIGHT_P50_M",
+              "classificationMethod": "esriClassifyManual",
+              "minValue": 0,
+              "classBreakInfos": [
+                {
+                  "classMaxValue": 4,
+                  "label": "Up to 13.1 ft",
+                  "symbol": {
+                    "type": "MeshSymbol3D",
+                    "symbolLayers": [
+                      {
+                        "type": "Fill",
+                        "material": {
+                          "color": [
+                            247,
+                            246,
+                            242
+                          ],
+                          "colorMixMode": "replace"
+                        },
+                        "edges": {
+                          "type": "solid",
+                          "color": [
+                            70,
+                            70,
+                            70
+                          ],
+                          "size": 0.5,
+                          "transparency": 35
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "classMaxValue": 6,
+                  "label": "13.1 to 19.7 ft",
+                  "symbol": {
+                    "type": "MeshSymbol3D",
+                    "symbolLayers": [
+                      {
+                        "type": "Fill",
+                        "material": {
+                          "color": [
+                            233,
+                            231,
+                            226
+                          ],
+                          "colorMixMode": "replace"
+                        },
+                        "edges": {
+                          "type": "solid",
+                          "color": [
+                            70,
+                            70,
+                            70
+                          ],
+                          "size": 0.5,
+                          "transparency": 35
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "classMaxValue": 9,
+                  "label": "19.7 to 29.5 ft",
+                  "symbol": {
+                    "type": "MeshSymbol3D",
+                    "symbolLayers": [
+                      {
+                        "type": "Fill",
+                        "material": {
+                          "color": [
+                            216,
+                            214,
+                            209
+                          ],
+                          "colorMixMode": "replace"
+                        },
+                        "edges": {
+                          "type": "solid",
+                          "color": [
+                            70,
+                            70,
+                            70
+                          ],
+                          "size": 0.5,
+                          "transparency": 35
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "classMaxValue": 12,
+                  "label": "29.5 to 39.4 ft",
+                  "symbol": {
+                    "type": "MeshSymbol3D",
+                    "symbolLayers": [
+                      {
+                        "type": "Fill",
+                        "material": {
+                          "color": [
+                            196,
+                            194,
+                            190
+                          ],
+                          "colorMixMode": "replace"
+                        },
+                        "edges": {
+                          "type": "solid",
+                          "color": [
+                            70,
+                            70,
+                            70
+                          ],
+                          "size": 0.5,
+                          "transparency": 35
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "classMaxValue": 60,
+                  "label": "Over 39.4 ft",
+                  "symbol": {
+                    "type": "MeshSymbol3D",
+                    "symbolLayers": [
+                      {
+                        "type": "Fill",
+                        "material": {
+                          "color": [
+                            172,
+                            170,
+                            167
+                          ],
+                          "colorMixMode": "replace"
+                        },
+                        "edges": {
+                          "type": "solid",
+                          "color": [
+                            70,
+                            70,
+                            70
+                          ],
+                          "size": 0.5,
+                          "transparency": 35
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "defaultLabel": "No lidar height (no roof points)",
+              "defaultSymbol": {
+                "type": "MeshSymbol3D",
+                "symbolLayers": [
+                  {
+                    "type": "Fill",
+                    "material": {
+                      "color": [
+                        232,
+                        220,
+                        200
+                      ],
+                      "colorMixMode": "replace"
+                    },
+                    "edges": {
+                      "type": "solid",
+                      "color": [
+                        70,
+                        70,
+                        70
+                      ],
+                      "size": 0.5,
+                      "transparency": 35
+                    }
+                  }
+                ]
+              },
+              "legendOptions": {
+                "title": "Median roof height above ground (feet)"
+              }
+            }
+          }
+        },
+        "popupInfo": {
+          "title": "Building {FP_ID}",
+          "expressionInfos": [
+            {
+              "name": "h50",
+              "title": "Median roof height",
+              "expression": "var m = $feature.HEIGHT_P50_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+              "returnType": "string"
+            },
+            {
+              "name": "h95",
+              "title": "95th percentile roof height",
+              "expression": "var m = $feature.HEIGHT_P95_M;\nif (IsEmpty(m)) { return 'no estimate'; }\nreturn Text(m / 0.3048, '#,##0.0') + ' ft';",
+              "returnType": "string"
+            },
+            {
+              "name": "support",
+              "title": "Roof support",
+              "expression": "var c = $feature.ROOF_COV_PCT;\nif (IsEmpty(c)) { return 'none'; }\nreturn Text(c, '#,##0') + '% of the footprint\\'s roughly 1.6 ft grid cells have lidar roof points';",
+              "returnType": "string"
+            },
+            {
+              "name": "flags",
+              "title": "Notes",
+              "expression": "var words = Dictionary(\"LOW_ROOF_SUPPORT\", \"Lidar roof points cover less than 80% of the footprint, so the height is less certain.\", \"NO_ROOF_SUPPORT\", \"No lidar roof points fall inside the footprint, so no height was estimated.\", \"NO_CELL_CENTERS\", \"The footprint is too small to hold a 0.5 m cell centre, so no height was estimated.\", \"NEGATIVE_HEIGHT\", \"Some roof cells sit below the ground surface; the footprint may not match the building.\", \"PARTIAL_AOI\", \"Part of the footprint lies outside the lidar coverage.\", \"GEOMETRY_REPAIRED\", \"The county footprint's shape was repaired before measuring.\");\nvar parts = Split(DefaultValue($feature.HEIGHT_STATUS, ''), ';');\nvar out = [];\nfor (var i in parts) { if (HasKey(words, parts[i])) { Push(out, words[parts[i]]); } }\nreturn IIf(Count(out) == 0, 'None beyond the estimate warning.', Concatenate(out, ' '));",
+              "returnType": "string"
+            },
+            {
+              "name": "area",
+              "title": "Footprint",
+              "expression": "var a = $feature.FOOTPRINT_M2;\nif (IsEmpty(a)) { return 'unknown'; }\nreturn Text(a / (0.3048 * 0.3048), '#,##0') + ' sq ft';",
+              "returnType": "string"
+            },
+            {
+              "name": "roof_area_m2_feet",
+              "title": "Modelled roof surface (sq ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.ROOF_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+            },
+            {
+              "name": "ridge_ht_m_feet",
+              "title": "Modelled ridge height above ground (ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.RIDGE_HT_M;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048);"
+            },
+            {
+              "name": "eave_ht_m_feet",
+              "title": "Modelled eave height above ground (ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.EAVE_HT_M;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048);"
+            },
+            {
+              "name": "flat_area_m2_feet",
+              "title": "Roof surface under 5 degrees (sq ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.FLAT_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+            },
+            {
+              "name": "south_area_m2_feet",
+              "title": "South-facing roof surface (sq ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.SOUTH_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+            },
+            {
+              "name": "east_area_m2_feet",
+              "title": "East-facing roof surface (sq ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.EAST_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+            },
+            {
+              "name": "west_area_m2_feet",
+              "title": "West-facing roof surface (sq ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.WEST_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+            },
+            {
+              "name": "north_area_m2_feet",
+              "title": "North-facing roof surface (sq ft)",
+              "returnType": "number",
+              "expression": "var v = $feature.NORTH_AREA_M2;\nif (IsEmpty(v)) { return null; }\nreturn v / (0.3048 * 0.3048);"
+            }
+          ],
+          "popupElements": [
+            {
+              "type": "text",
+              "text": "<p><b>Roof model:</b> {LEVEL}</p>"
+            },
+            {
+              "type": "text",
+              "text": "<p><b>Roof height above the ground</b><br />Median: {expression/h50}<br />95th percentile: {expression/h95}</p><p><b>Roof support:</b> {expression/support}.</p><p><b>Notes:</b> {expression/flags}</p><p>Footprint {expression/area}. Parcel {PARCEL_ID}. County building ID {SOURCE_ID}.</p><p style='font-size:11px;color:#6b6b6b'>Unvalidated lidar planning estimate (2023 Salt Lake Valley QL1 lidar); not surveyed or field-verified.</p>"
+            },
+            {
+              "type": "text",
+              "text": "<p>Roof measurements below describe retained roofer models. They are empty for Esri fallback buildings. Facing areas cover slopes from 5 to 70 degrees; they do not estimate solar production.</p>"
+            },
+            {
+              "type": "fields",
+              "fieldInfos": [
+                {
+                  "fieldName": "FALLBACK_REASON",
+                  "label": "Reason for simpler roof",
+                  "visible": true,
+                  "isEditable": false
+                },
+                {
+                  "fieldName": "expression/roof_area_m2_feet",
+                  "label": "Modelled roof surface (sq ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 0,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "ROOF_PLANES",
+                  "label": "Roof planes of at least 10.8 sq ft",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 0,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "ROOF_SLOPE_MEAN",
+                  "label": "Area-weighted roof slope (degrees)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 1,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "ROOF_SLOPE_MAIN",
+                  "label": "Largest plane slope (degrees)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 1,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "ROOF_AZIMUTH_MAIN",
+                  "label": "Largest plane downslope bearing (degrees)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 1,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "expression/ridge_ht_m_feet",
+                  "label": "Modelled ridge height above ground (ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 1,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "expression/eave_ht_m_feet",
+                  "label": "Modelled eave height above ground (ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 1,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "expression/flat_area_m2_feet",
+                  "label": "Roof surface under 5 degrees (sq ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 0,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "expression/south_area_m2_feet",
+                  "label": "South-facing roof surface (sq ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 0,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "expression/east_area_m2_feet",
+                  "label": "East-facing roof surface (sq ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 0,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "expression/west_area_m2_feet",
+                  "label": "West-facing roof surface (sq ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 0,
+                    "digitSeparator": true
+                  }
+                },
+                {
+                  "fieldName": "expression/north_area_m2_feet",
+                  "label": "North-facing roof surface (sq ft)",
+                  "visible": true,
+                  "isEditable": false,
+                  "format": {
+                    "places": 0,
+                    "digitSeparator": true
+                  }
+                }
+              ]
+            }
+          ],
+          "fieldInfos": [
+            {
+              "fieldName": "PARCEL_ID",
+              "visible": false,
+              "isEditable": false
+            },
+            {
+              "fieldName": "SOURCE_ID",
+              "visible": false,
+              "isEditable": false
+            },
+            {
+              "fieldName": "expression/h50",
+              "visible": true,
+              "isEditable": false
+            },
+            {
+              "fieldName": "expression/h95",
+              "visible": true,
+              "isEditable": false
+            },
+            {
+              "fieldName": "expression/support",
+              "visible": true,
+              "isEditable": false
+            },
+            {
+              "fieldName": "expression/flags",
+              "visible": true,
+              "isEditable": false
+            },
+            {
+              "fieldName": "expression/area",
+              "visible": true,
+              "isEditable": false
+            },
+            {
+              "fieldName": "FP_ID",
+              "visible": false,
+              "isEditable": false
+            },
+            {
+              "fieldName": "LEVEL",
+              "visible": false,
+              "isEditable": false
+            },
+            {
+              "fieldName": "FALLBACK_REASON",
+              "label": "Reason for simpler roof",
+              "visible": true,
+              "isEditable": false
+            },
+            {
+              "fieldName": "expression/roof_area_m2_feet",
+              "label": "Modelled roof surface (sq ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 0,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "ROOF_PLANES",
+              "label": "Roof planes of at least 10.8 sq ft",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 0,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "ROOF_SLOPE_MEAN",
+              "label": "Area-weighted roof slope (degrees)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 1,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "ROOF_SLOPE_MAIN",
+              "label": "Largest plane slope (degrees)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 1,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "ROOF_AZIMUTH_MAIN",
+              "label": "Largest plane downslope bearing (degrees)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 1,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "expression/ridge_ht_m_feet",
+              "label": "Modelled ridge height above ground (ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 1,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "expression/eave_ht_m_feet",
+              "label": "Modelled eave height above ground (ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 1,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "expression/flat_area_m2_feet",
+              "label": "Roof surface under 5 degrees (sq ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 0,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "expression/south_area_m2_feet",
+              "label": "South-facing roof surface (sq ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 0,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "expression/east_area_m2_feet",
+              "label": "East-facing roof surface (sq ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 0,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "expression/west_area_m2_feet",
+              "label": "West-facing roof surface (sq ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 0,
+                "digitSeparator": true
+              }
+            },
+            {
+              "fieldName": "expression/north_area_m2_feet",
+              "label": "North-facing roof surface (sq ft)",
+              "visible": true,
+              "isEditable": false,
+              "format": {
+                "places": 0,
+                "digitSeparator": true
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
