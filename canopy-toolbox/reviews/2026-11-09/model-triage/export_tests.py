@@ -10,7 +10,9 @@ import csv
 import io
 import json
 import random
+import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -74,12 +76,25 @@ def add_profile(path, item):
     out.save(path, optimize=True)
 
 
+def tall(entry):
+    bundle = json.loads((base.DATA / "bundles" / entry["bundle"]).read_text(encoding="utf-8"))
+    return float(re.match(r"[\d.]+", bundle[entry["id"]]["facts"]["Height"]).group()) >= 8
+
+
 def main():
     out = Path(sys.argv[1])
+    holdout = Path(sys.argv[2]) if len(sys.argv) > 2 else None   # an earlier key.csv: its trees are left out, the rest are test C
     with open(base.REVIEW / "answers" / "footprint-review-answers.csv", encoding="utf-8-sig", newline="") as f:
-        answered = {(r["QUEUE"], r["ITEM_ID"]) for r in csv.DictReader(f)}
+        answered = {(r["QUEUE"], r["ITEM_ID"]) for r in csv.DictReader(f) if r["ANSWER"].strip()}
     index = json.loads((base.DATA / "index.json").read_text(encoding="utf-8"))["items"]
     chosen = []
+    if holdout:
+        with open(holdout, encoding="utf-8-sig", newline="") as f:
+            seen = {r["ITEM_ID"] for r in csv.DictReader(f)}
+        for entry in index:
+            if entry["queue"] == "trees" and entry["group"] == "sample" and (entry["queue"], entry["id"]) in answered and entry["id"] not in seen:
+                chosen.append((entry, "tree", "C-8plus" if tall(entry) else "C-under8"))
+        index = []
     for entry in index:
         key = (entry["queue"], entry["id"])
         if key not in answered:
@@ -119,7 +134,7 @@ def main():
         part = rows[n * size:(n + 1) * size]
         (out / "batches" / f"batch_{n + 1:02d}.json").write_text(
             json.dumps({"options": OPTIONS, "items": part}, ensure_ascii=False, indent=1), encoding="utf-8")
-    print("tests", {t: sum(r["TEST"] == t for r in key_rows) for t in ("A", "A-secondary", "B")})
+    print("tests", dict(Counter(r["TEST"] for r in key_rows)))
 
 
 if __name__ == "__main__":

@@ -49,7 +49,7 @@ def main():
                      "NOTE": row.get("note", ""), "BRIAN_ANSWER": brian, "BRIAN_SIMPLE": TRUTH[k["TASK"]].get(brian, "")})
 
     summary = {}
-    for test in ("A", "A-secondary", "B"):
+    for test in sorted({r["TEST"] for r in rows}):
         part = [r for r in rows if r["TEST"] == test]
         scored = [r for r in part if r["BRIAN_SIMPLE"]]
         answered = [r for r in scored if r["MODEL_ANSWER"] != "UNSURE"]
@@ -63,7 +63,7 @@ def main():
             rate = hits / len(calls) if calls else 0
             overall = max(Counter(r["BRIAN_SIMPLE"] for r in scored).values()) / len(scored)
             entry["directions"][code] = {"high_calls": len(calls), "match": hits, "rate": round(rate, 3), "share_of_majority_answer_in_scored": round(overall, 3),
-                                         "passes": test != "A-secondary" and len(calls) >= MIN_ITEMS and rate >= MIN_MATCH and rate > overall}
+                                         "passes": test in ("A", "B", "C-8plus") and len(calls) >= MIN_ITEMS and rate >= MIN_MATCH and rate > overall}
             entry["directions"][code]["majority_among_calls"] = round(majority, 3)
         summary[test] = entry
 

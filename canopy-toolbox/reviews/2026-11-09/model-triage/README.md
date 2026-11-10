@@ -74,3 +74,16 @@ PROBLEM calls: 31 of 35 (88.6%). 21 of those 35 are also flagged by a cue. Prefe
 
 **Later answers not used here.** These tests graded the 113 tree answers in the repo backup at the time. The page's live file already
 held 117 more from November 9, including trees of 8 m and up. They were not read by the model or used in this result.
+
+## Test C, held out: the 116 newer tree answers (rules fixed November 10, before any read)
+
+The tree-sample answers Brian gave on November 9 that test B did not use: 116 with an answer (109 at 8 m and up, 7 under 8 m).
+The question, simple codes, brief, sheet layout, model (Sonnet 5.5) and effort (medium) are the same as test B.
+
+- **C-8plus is judged** by the pass rule above, per direction. It is the only test of trees 8 m and up.
+- **C-under8 (7 items) is reported only.** It is too small to judge.
+- **The cues from the checks above are reported on the same items**, unchanged: under 3 m, low and wide, 25% over county footprints
+  or trunk inside one, six or more treetops or wider than 15 m. A PROBLEM direction that passes is preferred as a cue rule, not a
+  model, if the cues match its rate within 5 points.
+
+Sheets come from `export_tests.py OUT KEY`, where KEY is test A and B's `key.csv`, so no test B tree is read again.
