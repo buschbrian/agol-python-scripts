@@ -89,252 +89,464 @@
   "note": "how far OSM here is a copy of the county layer"
  },
  "votes": {
-  "OpenStreetMap (Overture)": {
+  "County footprints (control: LiDAR-only sets should be near 0)": {
    "dropped: DROP (Brian-20261110)": {
     "n": 286,
-    "shown_as_building_pct": 52.8,
+    "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 4,
-    "shown_42m2_plus_pct": 0.0
+    "shown_42m2_plus_pct": 0.0,
+    "same_size_42m2_plus_pct": 0.0
    },
    "dropped: NOT_A_BUILDING (Brian)": {
     "n": 10,
-    "shown_as_building_pct": 30.0,
+    "shown_as_building_pct": 20.0,
+    "same_size_pct": 20.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 1,
-    "shown_42m2_plus_pct": 100.0
+    "shown_42m2_plus_pct": 100.0,
+    "same_size_42m2_plus_pct": 100.0
    },
    "dropped: VEHICLE (Brian)": {
     "n": 13,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
+   },
+   "dropped: VEHICLE (rule)": {
+    "n": 404,
+    "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
+    "n_42m2_plus": 0,
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
+   },
+   "dropped: county gone (Brian)": {
+    "n": 3,
+    "shown_as_building_pct": 100.0,
+    "same_size_pct": 100.0,
+    "under_a_bigger_polygon_pct": 0.0,
+    "n_42m2_plus": 0,
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
+   },
+   "dropped: county gone (rule)": {
+    "n": 255,
+    "shown_as_building_pct": 96.9,
+    "same_size_pct": 96.9,
+    "under_a_bigger_polygon_pct": 0.0,
+    "n_42m2_plus": 160,
+    "shown_42m2_plus_pct": 95.6,
+    "same_size_42m2_plus_pct": 95.6
+   },
+   "kept: shed rule (free-standing, under 20 m2)": {
+    "n": 679,
+    "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
+    "n_42m2_plus": 0,
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
+   },
+   "kept: county under trees (rule)": {
+    "n": 478,
+    "shown_as_building_pct": 100.0,
+    "same_size_pct": 100.0,
+    "under_a_bigger_polygon_pct": 0.0,
+    "n_42m2_plus": 84,
+    "shown_42m2_plus_pct": 100.0,
+    "same_size_42m2_plus_pct": 100.0
+   },
+   "kept: LiDAR-only building added (rule)": {
+    "n": 2191,
+    "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
+    "n_42m2_plus": 1168,
+    "shown_42m2_plus_pct": 0.0,
+    "same_size_42m2_plus_pct": 0.0
+   },
+   "kept: flagged for hand work": {
+    "n": 56,
+    "shown_as_building_pct": 82.1,
+    "same_size_pct": 78.6,
+    "under_a_bigger_polygon_pct": 3.6,
+    "n_42m2_plus": 39,
+    "shown_42m2_plus_pct": 100.0,
+    "same_size_42m2_plus_pct": 97.4
+   }
+  },
+  "OpenStreetMap (Overture)": {
+   "dropped: DROP (Brian-20261110)": {
+    "n": 286,
+    "shown_as_building_pct": 52.8,
+    "same_size_pct": 2.8,
+    "under_a_bigger_polygon_pct": 50.0,
+    "n_42m2_plus": 4,
+    "shown_42m2_plus_pct": 0.0,
+    "same_size_42m2_plus_pct": 0.0
+   },
+   "dropped: NOT_A_BUILDING (Brian)": {
+    "n": 10,
+    "shown_as_building_pct": 30.0,
+    "same_size_pct": 20.0,
+    "under_a_bigger_polygon_pct": 10.0,
+    "n_42m2_plus": 1,
+    "shown_42m2_plus_pct": 100.0,
+    "same_size_42m2_plus_pct": 100.0
+   },
+   "dropped: VEHICLE (Brian)": {
+    "n": 13,
+    "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
+    "n_42m2_plus": 0,
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: VEHICLE (rule)": {
     "n": 404,
     "shown_as_building_pct": 8.4,
+    "same_size_pct": 5.4,
+    "under_a_bigger_polygon_pct": 3.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (Brian)": {
     "n": 3,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (rule)": {
     "n": 255,
     "shown_as_building_pct": 25.5,
+    "same_size_pct": 21.6,
+    "under_a_bigger_polygon_pct": 3.9,
     "n_42m2_plus": 160,
-    "shown_42m2_plus_pct": 36.2
+    "shown_42m2_plus_pct": 36.2,
+    "same_size_42m2_plus_pct": 30.6
    },
    "kept: shed rule (free-standing, under 20 m2)": {
     "n": 679,
     "shown_as_building_pct": 4.3,
+    "same_size_pct": 0.9,
+    "under_a_bigger_polygon_pct": 3.4,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "kept: county under trees (rule)": {
     "n": 478,
     "shown_as_building_pct": 7.7,
+    "same_size_pct": 7.1,
+    "under_a_bigger_polygon_pct": 0.6,
     "n_42m2_plus": 84,
-    "shown_42m2_plus_pct": 28.6
+    "shown_42m2_plus_pct": 28.6,
+    "same_size_42m2_plus_pct": 27.4
    },
    "kept: LiDAR-only building added (rule)": {
     "n": 2191,
     "shown_as_building_pct": 30.3,
+    "same_size_pct": 26.8,
+    "under_a_bigger_polygon_pct": 3.4,
     "n_42m2_plus": 1168,
-    "shown_42m2_plus_pct": 44.1
+    "shown_42m2_plus_pct": 44.1,
+    "same_size_42m2_plus_pct": 41.9
    },
    "kept: flagged for hand work": {
     "n": 56,
     "shown_as_building_pct": 67.9,
+    "same_size_pct": 60.7,
+    "under_a_bigger_polygon_pct": 7.1,
     "n_42m2_plus": 39,
-    "shown_42m2_plus_pct": 87.2
+    "shown_42m2_plus_pct": 87.2,
+    "same_size_42m2_plus_pct": 84.6
    }
   },
   "Microsoft ML Buildings (Overture, gap fill)": {
    "dropped: DROP (Brian-20261110)": {
     "n": 286,
     "shown_as_building_pct": 4.9,
+    "same_size_pct": 0.7,
+    "under_a_bigger_polygon_pct": 4.2,
     "n_42m2_plus": 4,
-    "shown_42m2_plus_pct": 25.0
+    "shown_42m2_plus_pct": 25.0,
+    "same_size_42m2_plus_pct": 25.0
    },
    "dropped: NOT_A_BUILDING (Brian)": {
     "n": 10,
     "shown_as_building_pct": 10.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 10.0,
     "n_42m2_plus": 1,
-    "shown_42m2_plus_pct": 0.0
+    "shown_42m2_plus_pct": 0.0,
+    "same_size_42m2_plus_pct": 0.0
    },
    "dropped: VEHICLE (Brian)": {
     "n": 13,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: VEHICLE (rule)": {
     "n": 404,
     "shown_as_building_pct": 3.2,
+    "same_size_pct": 1.0,
+    "under_a_bigger_polygon_pct": 2.2,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (Brian)": {
     "n": 3,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (rule)": {
     "n": 255,
     "shown_as_building_pct": 0.8,
+    "same_size_pct": 0.8,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 160,
-    "shown_42m2_plus_pct": 1.2
+    "shown_42m2_plus_pct": 1.2,
+    "same_size_42m2_plus_pct": 1.2
    },
    "kept: shed rule (free-standing, under 20 m2)": {
     "n": 679,
     "shown_as_building_pct": 1.6,
+    "same_size_pct": 0.7,
+    "under_a_bigger_polygon_pct": 0.9,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "kept: county under trees (rule)": {
     "n": 478,
     "shown_as_building_pct": 0.8,
+    "same_size_pct": 0.8,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 84,
-    "shown_42m2_plus_pct": 4.8
+    "shown_42m2_plus_pct": 4.8,
+    "same_size_42m2_plus_pct": 4.8
    },
    "kept: LiDAR-only building added (rule)": {
     "n": 2191,
     "shown_as_building_pct": 21.2,
+    "same_size_pct": 19.9,
+    "under_a_bigger_polygon_pct": 1.2,
     "n_42m2_plus": 1168,
-    "shown_42m2_plus_pct": 34.3
+    "shown_42m2_plus_pct": 34.3,
+    "same_size_42m2_plus_pct": 33.2
    },
    "kept: flagged for hand work": {
     "n": 56,
     "shown_as_building_pct": 8.9,
+    "same_size_pct": 7.1,
+    "under_a_bigger_polygon_pct": 1.8,
     "n_42m2_plus": 39,
-    "shown_42m2_plus_pct": 10.3
+    "shown_42m2_plus_pct": 10.3,
+    "same_size_42m2_plus_pct": 10.3
    }
   },
   "USA Structures (FEMA/ORNL)": {
    "dropped: DROP (Brian-20261110)": {
     "n": 286,
     "shown_as_building_pct": 27.3,
+    "same_size_pct": 1.0,
+    "under_a_bigger_polygon_pct": 26.2,
     "n_42m2_plus": 4,
-    "shown_42m2_plus_pct": 25.0
+    "shown_42m2_plus_pct": 25.0,
+    "same_size_42m2_plus_pct": 0.0
    },
    "dropped: NOT_A_BUILDING (Brian)": {
     "n": 10,
     "shown_as_building_pct": 10.0,
+    "same_size_pct": 10.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 1,
-    "shown_42m2_plus_pct": 100.0
+    "shown_42m2_plus_pct": 100.0,
+    "same_size_42m2_plus_pct": 100.0
    },
    "dropped: VEHICLE (Brian)": {
     "n": 13,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: VEHICLE (rule)": {
     "n": 404,
     "shown_as_building_pct": 6.4,
+    "same_size_pct": 2.5,
+    "under_a_bigger_polygon_pct": 4.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (Brian)": {
     "n": 3,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (rule)": {
     "n": 255,
     "shown_as_building_pct": 51.4,
+    "same_size_pct": 49.0,
+    "under_a_bigger_polygon_pct": 2.4,
     "n_42m2_plus": 160,
-    "shown_42m2_plus_pct": 77.5
+    "shown_42m2_plus_pct": 77.5,
+    "same_size_42m2_plus_pct": 76.9
    },
    "kept: shed rule (free-standing, under 20 m2)": {
     "n": 679,
     "shown_as_building_pct": 5.2,
+    "same_size_pct": 0.1,
+    "under_a_bigger_polygon_pct": 5.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "kept: county under trees (rule)": {
     "n": 478,
     "shown_as_building_pct": 7.5,
+    "same_size_pct": 5.9,
+    "under_a_bigger_polygon_pct": 1.7,
     "n_42m2_plus": 84,
-    "shown_42m2_plus_pct": 21.4
+    "shown_42m2_plus_pct": 21.4,
+    "same_size_42m2_plus_pct": 21.4
    },
    "kept: LiDAR-only building added (rule)": {
     "n": 2191,
     "shown_as_building_pct": 35.6,
+    "same_size_pct": 31.0,
+    "under_a_bigger_polygon_pct": 4.6,
     "n_42m2_plus": 1168,
-    "shown_42m2_plus_pct": 58.3
+    "shown_42m2_plus_pct": 58.3,
+    "same_size_42m2_plus_pct": 53.8
    },
    "kept: flagged for hand work": {
     "n": 56,
     "shown_as_building_pct": 62.5,
+    "same_size_pct": 57.1,
+    "under_a_bigger_polygon_pct": 5.4,
     "n_42m2_plus": 39,
-    "shown_42m2_plus_pct": 82.1
+    "shown_42m2_plus_pct": 82.1,
+    "same_size_42m2_plus_pct": 79.5
    }
   },
   "Any of the three": {
    "dropped: DROP (Brian-20261110)": {
     "n": 286,
     "shown_as_building_pct": 64.0,
+    "same_size_pct": 3.8,
+    "under_a_bigger_polygon_pct": 60.1,
     "n_42m2_plus": 4,
-    "shown_42m2_plus_pct": 25.0
+    "shown_42m2_plus_pct": 25.0,
+    "same_size_42m2_plus_pct": 25.0
    },
    "dropped: NOT_A_BUILDING (Brian)": {
     "n": 10,
     "shown_as_building_pct": 40.0,
+    "same_size_pct": 20.0,
+    "under_a_bigger_polygon_pct": 20.0,
     "n_42m2_plus": 1,
-    "shown_42m2_plus_pct": 100.0
+    "shown_42m2_plus_pct": 100.0,
+    "same_size_42m2_plus_pct": 100.0
    },
    "dropped: VEHICLE (Brian)": {
     "n": 13,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: VEHICLE (rule)": {
     "n": 404,
     "shown_as_building_pct": 15.1,
+    "same_size_pct": 7.9,
+    "under_a_bigger_polygon_pct": 7.2,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (Brian)": {
     "n": 3,
     "shown_as_building_pct": 0.0,
+    "same_size_pct": 0.0,
+    "under_a_bigger_polygon_pct": 0.0,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "dropped: county gone (rule)": {
     "n": 255,
     "shown_as_building_pct": 56.1,
+    "same_size_pct": 52.9,
+    "under_a_bigger_polygon_pct": 3.1,
     "n_42m2_plus": 160,
-    "shown_42m2_plus_pct": 81.2
+    "shown_42m2_plus_pct": 81.2,
+    "same_size_42m2_plus_pct": 80.0
    },
    "kept: shed rule (free-standing, under 20 m2)": {
     "n": 679,
     "shown_as_building_pct": 9.4,
+    "same_size_pct": 1.8,
+    "under_a_bigger_polygon_pct": 7.7,
     "n_42m2_plus": 0,
-    "shown_42m2_plus_pct": null
+    "shown_42m2_plus_pct": null,
+    "same_size_42m2_plus_pct": null
    },
    "kept: county under trees (rule)": {
     "n": 478,
     "shown_as_building_pct": 13.2,
+    "same_size_pct": 11.1,
+    "under_a_bigger_polygon_pct": 2.1,
     "n_42m2_plus": 84,
-    "shown_42m2_plus_pct": 39.3
+    "shown_42m2_plus_pct": 39.3,
+    "same_size_42m2_plus_pct": 38.1
    },
    "kept: LiDAR-only building added (rule)": {
     "n": 2191,
     "shown_as_building_pct": 57.6,
+    "same_size_pct": 51.5,
+    "under_a_bigger_polygon_pct": 6.2,
     "n_42m2_plus": 1168,
-    "shown_42m2_plus_pct": 86.2
+    "shown_42m2_plus_pct": 86.2,
+    "same_size_42m2_plus_pct": 81.6
    },
    "kept: flagged for hand work": {
     "n": 56,
     "shown_as_building_pct": 75.0,
+    "same_size_pct": 64.3,
+    "under_a_bigger_polygon_pct": 10.7,
     "n_42m2_plus": 39,
-    "shown_42m2_plus_pct": 92.3
+    "shown_42m2_plus_pct": 92.3,
+    "same_size_42m2_plus_pct": 89.7
    }
   }
  }

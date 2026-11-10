@@ -31,6 +31,7 @@ OVERTURE = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\overture_
 USA = RUNS/"usa-structures-20261023"/"usa_structures.gpkg"
 MATCH = 0.30
 USA_FLOOR_M2 = 42
+SAME_SIZE = 3.0     # a match counts as the same building when the other polygon is at most 3 times as large
 
 
 def in_city(gdf, city):
@@ -79,10 +80,14 @@ def vote(sets, other, name):
             continue
         m = matches(g, other)
         hit = {i for i, _, _ in m}
+        # the 30%-of-the-smaller rule also matches a small piece lying under a much larger building: split those out
+        same = {i for i, j, _ in m if other.geometry.iloc[j].area <= SAME_SIZE * g.geometry.iloc[i].area}
         big = g.geometry.area >= USA_FLOOR_M2
-        out[label] = {"n": len(g), "shown_as_building_pct": round(100 * len(hit) / len(g), 1),
-                      "n_42m2_plus": int(big.sum()),
-                      "shown_42m2_plus_pct": round(100 * sum(1 for i in hit if big.iloc[i]) / big.sum(), 1) if big.sum() else None}
+        pct = lambda s, mask=None: round(100 * len(s if mask is None else [i for i in s if mask.iloc[i]]) /
+                                         (len(g) if mask is None else mask.sum()), 1) if (mask is None or mask.sum()) else None
+        out[label] = {"n": len(g), "shown_as_building_pct": pct(hit), "same_size_pct": pct(same),
+                      "under_a_bigger_polygon_pct": pct(hit - same), "n_42m2_plus": int(big.sum()),
+                      "shown_42m2_plus_pct": pct(hit, big), "same_size_42m2_plus_pct": pct(same, big)}
     return {name: out}
 
 
@@ -136,6 +141,7 @@ def main(out):
     sets = rule_sets(ours, lidar, county.set_index("SOURCE_ID"))
     summary["votes"] = {}
     voters = ("OpenStreetMap (Overture)", "Microsoft ML Buildings (Overture, gap fill)", "USA Structures (FEMA/ORNL)")
+    summary["votes"].update(vote(sets, county_c, "County footprints (control: LiDAR-only sets should be near 0)"))
     for n in voters:
         summary["votes"].update(vote(sets, others[n], n))
     anyone = gpd.GeoDataFrame(pd.concat([others[n][["geometry"]] for n in voters], ignore_index=True), crs=ours.crs)

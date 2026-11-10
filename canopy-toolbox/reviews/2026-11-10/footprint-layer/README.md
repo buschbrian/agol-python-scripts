@@ -57,22 +57,28 @@ All already in EPSG 6341 through the ITRF08 transformation. Polygons match when 
 - The County footprints missing from ours (267) are the gone and dropped ones. Ours missing from the County (2,949) are
   the LiDAR-only additions, sheds and split pieces.
 
-**What the other sources say about the rules** (share each shows as a building; "any" is any of OSM, Microsoft and USA
-Structures; USA Structures is mostly 2010 imagery and has nothing under 42 m²):
+**What the other sources say about the rules.** The share each set has in another source; "any" is any of OSM, Microsoft
+and USA Structures (for the small sets that is mostly OSM, which is largely the County layer). The 30%-of-the-smaller rule
+also counts a small piece lying under a much larger polygon, so "same size" counts only matches where the other polygon
+is at most 3 times as large. The County itself is a control: it shows 0% of every LiDAR-only set, as it must by
+construction (city2 linked any county outline overlapping 10% of the smaller). USA Structures is mostly 2010 imagery and
+has nothing under 42 m².
 
-| Set | Count | Any source | Any, 42 m²+ | Reading |
-|---|---:|---:|---:|---|
-| LiDAR-only buildings added (rule) | 2,191 | 58% | 86% of 1,168 | Strong support: buildings the County layer lacks |
-| County gone (rule) | 255 | 56% | 81% of 160 | The sources predate the 2023 LiDAR (USA Structures 2010, OSM from the County), so they show buildings since demolished; not a contradiction, but the large ones are the ones worth a look |
-| Kept county under trees (rule) | 478 | 13% | 39% of 84 | Mostly small sheds no source maps; little evidence either way |
-| Shed rule (free-standing, under 20 m²) | 679 | 9% | — | Below every source's size; no evidence either way |
-| Vehicles (rule) | 404 | 15% | — | Supports the rule |
-| Pieces touching a building, dropped (Brian) | 286 | **64%** | — | Inside a mapped house outline: most look like parts of buildings |
-| Flagged for hand work | 56 | 75% | 92% of 39 | Real buildings that need their shape fixed |
+| Set | Count | Any source | Same size | Same size, 42 m²+ | Reading |
+|---|---:|---:|---:|---:|---|
+| LiDAR-only buildings added (rule) | 2,191 | 58% | 52% | 82% of 1,168 | Supports the rule: buildings the County layer lacks |
+| County gone (rule) | 255 | 56% | 53% | 80% of 160 | The sources predate the 2023 LiDAR (USA Structures 2010, OSM from the County), so they show buildings since demolished; not a contradiction, but the large ones are worth a look |
+| Kept county under trees (rule) | 478 | 13% | 11% | 38% of 84 | Mostly small sheds no source maps; little evidence either way |
+| Shed rule (free-standing, under 20 m²) | 679 | 9% | 2% | — | Below every source's size; no evidence either way |
+| Vehicles (rule) | 404 | 15% | 8% | — | Supports the rule |
+| Pieces touching a building, dropped (Brian) | 286 | 64% | 4% | — | **60% lie under a larger house outline** (below) |
+| Flagged for hand work | 56 | 75% | 64% | 90% of 39 | Real buildings that need their shape fixed |
 
-The touching pieces are the one place the sources disagree with a call: 64% sit inside another dataset's house outline
-(OSM 53%, USA Structures 27%), which agrees with Brian's 8 of 20 "part of it" more than with "drop". Joining the 183
-that a source covers and dropping the other 103 is an option for him.
+**The dropped touching pieces are mostly the edge of the same house.** 143 of the 286 lie under a larger OSM outline
+that the County outline does not reach (172 under any source's). [drop-pieces.png](drop-pieces.png) shows 9 at random
+(`drop_pieces.py`): nearly all are 1-2 m strips along one side of a house, where a lot line runs along the wall and cut
+the eave off the roof outline. Dropping them shaves that side of the house; joining them restores the full roof line.
+Joining the 143 under an OSM house outline, and dropping the rest, is an option for Brian.
 
 ## Footprint models we could run
 
@@ -84,3 +90,8 @@ that a source covers and dropping the other 103 is an option for him.
 | Google Open Buildings | — | Does not cover the US |
 
 Imagery models would be a check on change since the 2023 LiDAR, not a replacement for the LiDAR outlines.
+
+## Next
+
+The 3D rebuild (roofer LoD2.2) on this layer. 164 outlines are multipart: the October 26 prep exploded parts and keyed
+them LB x 10 + part to avoid roofer's duplicate-ID crash, and the next prep needs the same on `BLDG_ID`.
