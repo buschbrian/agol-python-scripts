@@ -37,3 +37,25 @@ only trees under 8 m. Test A is small and vehicle-heavy.
 UGRC Discover), with opaque sheet numbers. Tree sheets add the page's two side views. Models get the sheet and a short list of
 facts. They do not get the item id, group, address, parcel, rule proposal or any answer of Brian's. `grade_tests.py` applies the
 rule above and writes `results/`.
+
+## Results (Sonnet 5.5, medium effort, one read per sheet)
+
+The brief gained one sentence explaining the side views' black crown shape and brown trunk after the sheets were checked and
+before any model read them. The rules above did not change. `results/` holds every call and `summary.json`.
+
+**Test A, small outlines: failed.** 28 of 31 were scorable (8 real structures, 20 not). Sonnet made only 2 high-confidence calls,
+both right, and none for REAL_STRUCTURE, so neither direction reached 10. At any confidence, 17 of 22 answered calls matched, and
+6 were UNSURE. Its REAL_STRUCTURE calls were right on 7 of 12.
+
+An observation, not a pass: all 13 NOT_STRUCTURE calls across Test A and the secondary tally matched Brian (10 and 3, 95%
+interval 77-100%). This pattern was noticed after grading, on a mix of confidence levels, so it needs fresh items.
+
+**Test B, tree models: PROBLEM passed, ONE_TREE did not.** 107 of 113 were scorable (37 one tree, 70 a problem).
+- PROBLEM at high confidence: 31 of 35 matched (88.6%, 95% interval 74-95%), above the 65.4% majority share. **Passes**.
+- ONE_TREE at high confidence: 7 of 8. Too few to pass.
+- All answered calls: 77 of 106. Of the 14 problems called ONE_TREE, 6 were SHAPE_WRONG.
+
+**What the pass allows.** High-confidence PROBLEM calls on trees under 8 m only, after a spot-check. Open trees under 8 m: 7 in the
+sample, 56 merged and 105 over roofs (168). The 619 open trees of 8 m or more are not covered. A PROBLEM call does not say which
+problem it is, and nothing here was run on open items. `footprint-review-answers.csv` was checked unchanged (SHA-256 before and
+after).

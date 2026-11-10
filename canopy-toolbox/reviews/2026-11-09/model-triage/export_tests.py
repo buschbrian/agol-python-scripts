@@ -45,7 +45,8 @@ Every sheet has a LiDAR panel and an imagery panel covering the same extent.
 Task small: what is this small red outline? Task tree: the red outline is an automatic tree model. Its sheet also has two side
 views underneath, looking north and looking west, at equal scale. Red points are this model above 2 m, orange are its points
 under 2 m, magenta and pale pink are other tree models, grey is other vegetation nearby, the brown line is the ground, and the
-dashed green line is 2 m above the ground.
+dashed green line is 2 m above the ground. The black shape is the model's fitted crown and the brown bars are its inferred
+trunk. On tree sheets the small red circle is the trunk position and CYAN outlines are other tree models.
 
 Pick one code from the task's options. Use UNSURE when the sheet does not settle it. Confidence: high only when the sheet
 clearly settles it, medium for a likely reading, low otherwise.
