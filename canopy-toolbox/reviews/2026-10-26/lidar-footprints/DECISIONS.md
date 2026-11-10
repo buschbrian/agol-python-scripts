@@ -17,8 +17,8 @@ take the LiDAR outer shape, with county lines kept only as unit divisions inside
 
 Brian answered all 262 outlines2 Decide, Answer and Check items. [building-grade](../../2026-11-10/building-grade/README.md)
 writes `decisions-20261110.csv`. Tangles become a rule: the 142 waiting are split into separate buildings (28 of 40). The
-join default for small pieces touching a building failed its check (8 of 20), so those 286 wait on Brian: join, drop or
-review. The shed rule (679) stands but was right on only 12 of 23 free-standing answers.
+join default for small pieces touching a building failed its check (8 of 20), and Brian
+dropped those 286 (`DROP`, `BY` = `Brian-20261110`). The shed rule (679) stands but was right on only 12 of 23 free-standing answers.
 
 ## Graded halfway through the regrade, and the 137 items left (October 27)
 

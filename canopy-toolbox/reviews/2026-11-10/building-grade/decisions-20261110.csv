@@ -2323,7 +2323,7 @@ G021186,LIDAR_ONLY,,LB000131,rule_small_shed,shed,SHED,rule,,
 G021187,LIDAR_ONLY,,LB000136,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021188,LIDAR_ONLY,,LB000142,rule_small_shed,shed,SHED,rule,,
 G021189,LIDAR_ONLY,,LB000147,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021190,LIDAR_ONLY,,LB000153,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021190,LIDAR_ONLY,,LB000153,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021191,LIDAR_ONLY,,LB000154,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021192,LIDAR_ONLY,,LB000160,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021193,LIDAR_ONLY,,LB000164,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2353,13 +2353,13 @@ G021216,LIDAR_ONLY,,LB000340,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021217,LIDAR_ONLY,,LB000343,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021218,LIDAR_ONLY,,LB000368,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021219,LIDAR_ONLY,,LB000384,rule_small_shed,shed,SHED,rule,,
-G021220,LIDAR_ONLY,,LB000400,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021220,LIDAR_ONLY,,LB000400,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021221,LIDAR_ONLY,,LB000405,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021222,LIDAR_ONLY,,LB000417,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021223,LIDAR_ONLY,,LB000423,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021224,LIDAR_ONLY,,LB000424,rule_small_shed,shed,SHED,rule,,
 G021225,LIDAR_ONLY,,LB000425,rule_small_vehicle,vehicle,VEHICLE,rule,,
-G021226,LIDAR_ONLY,,LB000431,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021226,LIDAR_ONLY,,LB000431,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021227,LIDAR_ONLY,,LB000434,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021228,LIDAR_ONLY,,LB000443,rule_small_shed,shed,SHED,rule,,
 G021229,LIDAR_ONLY,,LB000444,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2370,17 +2370,17 @@ G021233,LIDAR_ONLY,,LB000477,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021234,LIDAR_ONLY,,LB000479,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021235,LIDAR_ONLY,,LB000480,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021236,LIDAR_ONLY,,LB000484,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021237,LIDAR_ONLY,,LB000485,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021237,LIDAR_ONLY,,LB000485,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021238,LIDAR_ONLY,,LB000491,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021239,LIDAR_ONLY,,LB000497,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021239,LIDAR_ONLY,,LB000497,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021240,LIDAR_ONLY,,LB000503,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021241,LIDAR_ONLY,,LB000513,rule_small_shed,shed,SHED,rule,,
 G021242,LIDAR_ONLY,,LB000526,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021243,LIDAR_ONLY,,LB000528,rule_small_shed,shed,SHED,rule,,
-G021244,LIDAR_ONLY,,LB000530,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021244,LIDAR_ONLY,,LB000530,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021245,LIDAR_ONLY,,LB000534,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021246,LIDAR_ONLY,,LB000539,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021247,LIDAR_ONLY,,LB000541,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021247,LIDAR_ONLY,,LB000541,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021248,LIDAR_ONLY,,LB000545,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021249,LIDAR_ONLY,,LB000555,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021250,LIDAR_ONLY,,LB000557,rule_small_shed,shed,SHED,rule,,
@@ -2404,7 +2404,7 @@ G021267,LIDAR_ONLY,,LB000681,rule_small_shed,shed,SHED,rule,,
 G021268,LIDAR_ONLY,,LB000684,rule_small_shed,shed,SHED,rule,,
 G021269,LIDAR_ONLY,,LB000685,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021270,LIDAR_ONLY,,LB000709,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021271,LIDAR_ONLY,,LB000727,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021271,LIDAR_ONLY,,LB000727,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021272,LIDAR_ONLY,,LB000730,rule_small_shed,shed,SHED,rule,,
 G021273,LIDAR_ONLY,,LB000766,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021274,LIDAR_ONLY,,LB000778,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2438,7 +2438,7 @@ G021301,LIDAR_ONLY,,LB000935,auto_vehicles,vehicle,VEHICLE,rule,,
 G021302,LIDAR_ONLY,,LB000937,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021303,LIDAR_ONLY,,LB000943,rule_small_shed,shed,SHED,rule,,
 G021304,LIDAR_ONLY,,LB000950,rule_small_shed,shed,SHED,rule,,
-G021305,LIDAR_ONLY,,LB000959,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021305,LIDAR_ONLY,,LB000959,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021306,LIDAR_ONLY,,LB000960,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021307,LIDAR_ONLY,,LB000963,rule_small_shed,shed,SHED,rule,,
 G021308,LIDAR_ONLY,,LB000964,rule_small_shed,shed,SHED,rule,,
@@ -2452,7 +2452,7 @@ G021315,LIDAR_ONLY,,LB001033,auto_vehicles,shed,VEHICLE,rule,,
 G021316,LIDAR_ONLY,,LB001047,rule_small_shed,shed,SHED,rule,,
 G021317,LIDAR_ONLY,,LB001048,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021318,LIDAR_ONLY,,LB001055,auto_vehicles,shed,VEHICLE,rule,,
-G021319,LIDAR_ONLY,,LB001086,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021319,LIDAR_ONLY,,LB001086,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021320,LIDAR_ONLY,,LB001093,auto_vehicles,vehicle,VEHICLE,rule,,
 G021321,LIDAR_ONLY,,LB001102,rule_small_shed,shed,SHED,rule,,
 G021322,LIDAR_ONLY,,LB001113,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2460,19 +2460,19 @@ G021323,LIDAR_ONLY,,LB001119,rule_small_shed,shed,SHED,rule,,
 G021324,LIDAR_ONLY,,LB001133,rule_small_shed,shed,SHED,rule,,
 G021325,LIDAR_ONLY,,LB001137,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021326,LIDAR_ONLY,,LB001145,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021327,LIDAR_ONLY,,LB001147,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021327,LIDAR_ONLY,,LB001147,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021328,LIDAR_ONLY,,LB001149,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021329,LIDAR_ONLY,,LB001164,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021330,LIDAR_ONLY,,LB001192,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021331,LIDAR_ONLY,,LB001216,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021332,LIDAR_ONLY,,LB001220,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021333,LIDAR_ONLY,,LB001221,rule_small_shed,shed,SHED,rule,,
-G021334,LIDAR_ONLY,,LB001240,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021334,LIDAR_ONLY,,LB001240,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021335,LIDAR_ONLY,,LB001245,rule_small_shed,shed,SHED,rule,,
 G021336,LIDAR_ONLY,,LB001250,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021337,LIDAR_ONLY,,LB001273,rule_small_shed,shed,SHED,rule,,
 G021338,LIDAR_ONLY,,LB001282,rule_small_shed,shed,SHED,rule,,
-G021339,LIDAR_ONLY,,LB001283,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021339,LIDAR_ONLY,,LB001283,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021340,LIDAR_ONLY,,LB001284,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021341,LIDAR_ONLY,,LB001285,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021342,LIDAR_ONLY,,LB001289,rule_small_shed,shed,SHED,rule,,
@@ -2486,28 +2486,28 @@ G021349,LIDAR_ONLY,,LB001311,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021350,LIDAR_ONLY,,LB001315,rule_small_shed,shed,SHED,rule,,
 G021351,LIDAR_ONLY,,LB001353,check_touching,touching,NEEDS_EDIT,Brian,NEEDS_EDIT,
 G021352,LIDAR_ONLY,,LB001372,rule_small_shed,shed,SHED,rule,,
-G021353,LIDAR_ONLY,,LB001374,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021353,LIDAR_ONLY,,LB001374,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021354,LIDAR_ONLY,,LB001377,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021355,LIDAR_ONLY,,LB001387,rule_small_shed,shed,SHED,rule,,
 G021356,LIDAR_ONLY,,LB001392,rule_small_shed,shed,SHED,rule,,
 G021357,LIDAR_ONLY,,LB001414,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021358,LIDAR_ONLY,,LB001416,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021359,LIDAR_ONLY,,LB001419,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021359,LIDAR_ONLY,,LB001419,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021360,LIDAR_ONLY,,LB001434,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021361,LIDAR_ONLY,,LB001444,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021362,LIDAR_ONLY,,LB001449,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021363,LIDAR_ONLY,,LB001462,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021361,LIDAR_ONLY,,LB001444,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021362,LIDAR_ONLY,,LB001449,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021363,LIDAR_ONLY,,LB001462,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021364,LIDAR_ONLY,,LB001466,check_touching,touching,UNSURE,Brian,UNSURE,
 G021365,LIDAR_ONLY,,LB001467,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021366,LIDAR_ONLY,,LB001470,auto_vehicles,vehicle,VEHICLE,rule,,
-G021367,LIDAR_ONLY,,LB001475,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021368,LIDAR_ONLY,,LB001482,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021367,LIDAR_ONLY,,LB001475,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021368,LIDAR_ONLY,,LB001482,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021369,LIDAR_ONLY,,LB001488,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021370,LIDAR_ONLY,,LB001491,rule_small_shed,shed,SHED,rule,,
 G021371,LIDAR_ONLY,,LB001500,auto_vehicles,shed,VEHICLE,rule,,
 G021372,LIDAR_ONLY,,LB001501,auto_vehicles,vehicle,VEHICLE,rule,,
 G021373,LIDAR_ONLY,,LB001520,rule_small_shed,shed,SHED,rule,,
-G021374,LIDAR_ONLY,,LB001541,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021374,LIDAR_ONLY,,LB001541,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021375,LIDAR_ONLY,,LB001543,auto_vehicles,shed,VEHICLE,rule,,
 G021376,LIDAR_ONLY,,LB001544,auto_vehicles,vehicle,VEHICLE,rule,,
 G021377,LIDAR_ONLY,,LB001545,rule_small_shed,shed,SHED,rule,,
@@ -2518,7 +2518,7 @@ G021381,LIDAR_ONLY,,LB001579,rule_small_shed,shed,SHED,rule,,
 G021382,LIDAR_ONLY,,LB001580,rule_small_shed,shed,SHED,rule,,
 G021383,LIDAR_ONLY,,LB001582,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021384,LIDAR_ONLY,,LB001584,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021385,LIDAR_ONLY,,LB001587,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021385,LIDAR_ONLY,,LB001587,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021386,LIDAR_ONLY,,LB001597,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021387,LIDAR_ONLY,,LB001602,rule_small_shed,shed,SHED,rule,,
 G021388,LIDAR_ONLY,,LB001613,rule_small_shed,shed,SHED,rule,,
@@ -2535,7 +2535,7 @@ G021398,LIDAR_ONLY,,LB001678,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021399,LIDAR_ONLY,,LB001689,auto_vehicles,vehicle,VEHICLE,rule,,
 G021400,LIDAR_ONLY,,LB001713,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021401,LIDAR_ONLY,,LB001731,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021402,LIDAR_ONLY,,LB001752,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021402,LIDAR_ONLY,,LB001752,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021403,LIDAR_ONLY,,LB001768,rule_small_shed,shed,SHED,rule,,
 G021404,LIDAR_ONLY,,LB001772,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021405,LIDAR_ONLY,,LB001788,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2545,11 +2545,11 @@ G021408,LIDAR_ONLY,,LB001809,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021409,LIDAR_ONLY,,LB001812,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021410,LIDAR_ONLY,,LB001825,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021411,LIDAR_ONLY,,LB001827,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021412,LIDAR_ONLY,,LB001830,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021412,LIDAR_ONLY,,LB001830,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021413,LIDAR_ONLY,,LB001836,rule_small_shed,shed,SHED,rule,,
 G021414,LIDAR_ONLY,,LB001843,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021415,LIDAR_ONLY,,LB001850,rule_small_shed,shed,SHED,rule,,
-G021416,LIDAR_ONLY,,LB001852,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021416,LIDAR_ONLY,,LB001852,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021417,LIDAR_ONLY,,LB001853,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021418,LIDAR_ONLY,,LB001856,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021419,LIDAR_ONLY,,LB001862,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2565,7 +2565,7 @@ G021428,LIDAR_ONLY,,LB001916,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021429,LIDAR_ONLY,,LB001931,rule_small_shed,shed,SHED,rule,,
 G021430,LIDAR_ONLY,,LB001949,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021431,LIDAR_ONLY,,LB001956,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021432,LIDAR_ONLY,,LB001958,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021432,LIDAR_ONLY,,LB001958,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021433,LIDAR_ONLY,,LB001966,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021434,LIDAR_ONLY,,LB001967,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021435,LIDAR_ONLY,,LB001976,rule_small_shed,shed,SHED,rule,,
@@ -2578,7 +2578,7 @@ G021441,LIDAR_ONLY,,LB002019,auto_vehicles,vehicle,VEHICLE,rule,,
 G021442,LIDAR_ONLY,,LB002020,auto_vehicles,vehicle,VEHICLE,rule,,
 G021443,LIDAR_ONLY,,LB002057,rule_small_shed,shed,SHED,rule,,
 G021444,LIDAR_ONLY,,LB002063,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021445,LIDAR_ONLY,,LB002069,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021445,LIDAR_ONLY,,LB002069,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021446,LIDAR_ONLY,,LB002072,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021447,LIDAR_ONLY,,LB002081,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021448,LIDAR_ONLY,,LB002082,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2586,30 +2586,30 @@ G021449,LIDAR_ONLY,,LB002088,rule_small_shed,shed,SHED,rule,,
 G021450,LIDAR_ONLY,,LB002103,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021451,LIDAR_ONLY,,LB002105,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021452,LIDAR_ONLY,,LB002109,rule_small_shed,shed,SHED,rule,,
-G021453,LIDAR_ONLY,,LB002112,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021453,LIDAR_ONLY,,LB002112,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021454,LIDAR_ONLY,,LB002116,rule_small_shed,shed,SHED,rule,,
 G021455,LIDAR_ONLY,,LB002117,auto_vehicles,shed,VEHICLE,rule,,
-G021456,LIDAR_ONLY,,LB002122,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021457,LIDAR_ONLY,,LB002135,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021458,LIDAR_ONLY,,LB002137,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021456,LIDAR_ONLY,,LB002122,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021457,LIDAR_ONLY,,LB002135,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021458,LIDAR_ONLY,,LB002137,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021459,LIDAR_ONLY,,LB002141,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021460,LIDAR_ONLY,,LB002143,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021461,LIDAR_ONLY,,LB002145,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021461,LIDAR_ONLY,,LB002145,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021462,LIDAR_ONLY,,LB002151,rule_small_shed,shed,SHED,rule,,
 G021463,LIDAR_ONLY,,LB002153,rule_small_shed,shed,SHED,rule,,
 G021464,LIDAR_ONLY,,LB002156,rule_small_shed,shed,SHED,rule,,
 G021465,LIDAR_ONLY,,LB002176,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021466,LIDAR_ONLY,,LB002177,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021467,LIDAR_ONLY,,LB002180,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021468,LIDAR_ONLY,,LB002188,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021467,LIDAR_ONLY,,LB002180,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021468,LIDAR_ONLY,,LB002188,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021469,LIDAR_ONLY,,LB002190,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021470,LIDAR_ONLY,,LB002194,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021471,LIDAR_ONLY,,LB002202,rule_small_shed,shed,SHED,rule,,
 G021472,LIDAR_ONLY,,LB002204,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021473,LIDAR_ONLY,,LB002207,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021474,LIDAR_ONLY,,LB002215,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021475,LIDAR_ONLY,,LB002225,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021476,LIDAR_ONLY,,LB002242,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021475,LIDAR_ONLY,,LB002225,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021476,LIDAR_ONLY,,LB002242,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021477,LIDAR_ONLY,,LB002243,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021478,LIDAR_ONLY,,LB002259,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021479,LIDAR_ONLY,,LB002260,check_touching,touching,PART_OF_BUILDING,Brian,PART_OF_BUILDING,
@@ -2630,24 +2630,24 @@ G021493,LIDAR_ONLY,,LB002358,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021494,LIDAR_ONLY,,LB002363,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021495,LIDAR_ONLY,,LB002364,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021496,LIDAR_ONLY,,LB002366,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021497,LIDAR_ONLY,,LB002368,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021497,LIDAR_ONLY,,LB002368,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021498,LIDAR_ONLY,,LB002372,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021499,LIDAR_ONLY,,LB002373,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021500,LIDAR_ONLY,,LB002375,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021501,LIDAR_ONLY,,LB002385,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021502,LIDAR_ONLY,,LB002395,rule_small_vehicle,vehicle,VEHICLE,rule,,
-G021503,LIDAR_ONLY,,LB002404,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021503,LIDAR_ONLY,,LB002404,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021504,LIDAR_ONLY,,LB002409,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021505,LIDAR_ONLY,,LB002410,auto_vehicles,shed,VEHICLE,rule,,
 G021506,LIDAR_ONLY,,LB002411,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021507,LIDAR_ONLY,,LB002421,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021508,LIDAR_ONLY,,LB002424,rule_small_shed,shed,SHED,rule,,
-G021509,LIDAR_ONLY,,LB002426,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021509,LIDAR_ONLY,,LB002426,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021510,LIDAR_ONLY,,LB002428,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021511,LIDAR_ONLY,,LB002435,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021512,LIDAR_ONLY,,LB002437,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021513,LIDAR_ONLY,,LB002438,rule_small_shed,shed,SHED,rule,,
-G021514,LIDAR_ONLY,,LB002450,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021514,LIDAR_ONLY,,LB002450,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021515,LIDAR_ONLY,,LB002451,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021516,LIDAR_ONLY,,LB002453,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021517,LIDAR_ONLY,,LB002455,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2658,24 +2658,24 @@ G021521,LIDAR_ONLY,,LB002473,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021522,LIDAR_ONLY,,LB002475,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021523,LIDAR_ONLY,,LB002479,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021524,LIDAR_ONLY,,LB002483,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021525,LIDAR_ONLY,,LB002484,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021525,LIDAR_ONLY,,LB002484,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021526,LIDAR_ONLY,,LB002490,decide_small,vehicle,SHED,Brian,SHED,
 G021527,LIDAR_ONLY,,LB002491,auto_vehicles,vehicle,VEHICLE,rule,,
 G021528,LIDAR_ONLY,,LB002500,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021529,LIDAR_ONLY,,LB002534,rule_small_shed,shed,SHED,rule,,
-G021530,LIDAR_ONLY,,LB002537,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021530,LIDAR_ONLY,,LB002537,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021531,LIDAR_ONLY,,LB002541,decide_small,touching,LIDAR_RIGHT,Brian,LIDAR_RIGHT,
-G021532,LIDAR_ONLY,,LB002542,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021533,LIDAR_ONLY,,LB002545,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021532,LIDAR_ONLY,,LB002542,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021533,LIDAR_ONLY,,LB002545,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021534,LIDAR_ONLY,,LB002560,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021535,LIDAR_ONLY,,LB002561,rule_small_shed,shed,SHED,rule,,
 G021536,LIDAR_ONLY,,LB002564,rule_small_shed,shed,SHED,rule,,
 G021537,LIDAR_ONLY,,LB002590,auto_vehicles,vehicle,VEHICLE,rule,,
 G021538,LIDAR_ONLY,,LB002597,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021539,LIDAR_ONLY,,LB002618,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021540,LIDAR_ONLY,,LB002649,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021540,LIDAR_ONLY,,LB002649,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021541,LIDAR_ONLY,,LB002658,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021542,LIDAR_ONLY,,LB002662,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021542,LIDAR_ONLY,,LB002662,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021543,LIDAR_ONLY,,LB002671,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021544,LIDAR_ONLY,,LB002687,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021545,LIDAR_ONLY,,LB002708,check_touching,touching,UNSURE,Brian,UNSURE,
@@ -2713,7 +2713,7 @@ G021576,LIDAR_ONLY,,LB002952,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021577,LIDAR_ONLY,,LB002955,rule_small_shed,shed,SHED,rule,,
 G021578,LIDAR_ONLY,,LB002967,rule_small_shed,shed,SHED,rule,,
 G021579,LIDAR_ONLY,,LB002974,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021580,LIDAR_ONLY,,LB002979,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021580,LIDAR_ONLY,,LB002979,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021581,LIDAR_ONLY,,LB003003,rule_small_shed,shed,SHED,rule,,
 G021582,LIDAR_ONLY,,LB003009,auto_vehicles,shed,VEHICLE,rule,,
 G021583,LIDAR_ONLY,,LB003048,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2723,18 +2723,18 @@ G021586,LIDAR_ONLY,,LB003054,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021587,LIDAR_ONLY,,LB003061,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021588,LIDAR_ONLY,,LB003062,auto_vehicles,vehicle,VEHICLE,rule,,
 G021589,LIDAR_ONLY,,LB003069,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021590,LIDAR_ONLY,,LB003070,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021590,LIDAR_ONLY,,LB003070,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021591,LIDAR_ONLY,,LB003086,rule_small_shed,shed,SHED,rule,,
 G021592,LIDAR_ONLY,,LB003099,rule_small_shed,shed,SHED,rule,,
 G021593,LIDAR_ONLY,,LB003104,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021594,LIDAR_ONLY,,LB003118,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021594,LIDAR_ONLY,,LB003118,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021595,LIDAR_ONLY,,LB003119,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021596,LIDAR_ONLY,,LB003123,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021597,LIDAR_ONLY,,LB003128,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021598,LIDAR_ONLY,,LB003133,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021599,LIDAR_ONLY,,LB003137,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021600,LIDAR_ONLY,,LB003139,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021601,LIDAR_ONLY,,LB003140,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021600,LIDAR_ONLY,,LB003139,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021601,LIDAR_ONLY,,LB003140,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021602,LIDAR_ONLY,,LB003143,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021603,LIDAR_ONLY,,LB003147,rule_small_shed,shed,SHED,rule,,
 G021604,LIDAR_ONLY,,LB003159,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2743,27 +2743,27 @@ G021606,LIDAR_ONLY,,LB003170,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021607,LIDAR_ONLY,,LB003175,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021608,LIDAR_ONLY,,LB003196,rule_small_shed,shed,SHED,rule,,
 G021609,LIDAR_ONLY,,LB003199,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021610,LIDAR_ONLY,,LB003200,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021610,LIDAR_ONLY,,LB003200,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021611,LIDAR_ONLY,,LB003208,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021612,LIDAR_ONLY,,LB003211,rule_small_shed,shed,SHED,rule,,
-G021613,LIDAR_ONLY,,LB003213,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021613,LIDAR_ONLY,,LB003213,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021614,LIDAR_ONLY,,LB003214,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021615,LIDAR_ONLY,,LB003218,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021615,LIDAR_ONLY,,LB003218,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021616,LIDAR_ONLY,,LB003219,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021617,LIDAR_ONLY,,LB003221,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021618,LIDAR_ONLY,,LB003228,rule_small_shed,shed,SHED,rule,,
 G021619,LIDAR_ONLY,,LB003231,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021620,LIDAR_ONLY,,LB003232,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021620,LIDAR_ONLY,,LB003232,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021621,LIDAR_ONLY,,LB003243,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021622,LIDAR_ONLY,,LB003245,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021623,LIDAR_ONLY,,LB003246,auto_vehicles,vehicle,VEHICLE,rule,,
 G021624,LIDAR_ONLY,,LB003252,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021625,LIDAR_ONLY,,LB003253,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021626,LIDAR_ONLY,,LB003286,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021625,LIDAR_ONLY,,LB003253,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021626,LIDAR_ONLY,,LB003286,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021627,LIDAR_ONLY,,LB003292,rule_small_shed,shed,SHED,rule,,
 G021628,LIDAR_ONLY,,LB003293,auto_vehicles,shed,VEHICLE,rule,,
 G021629,LIDAR_ONLY,,LB003298,auto_vehicles,vehicle,VEHICLE,rule,,
-G021630,LIDAR_ONLY,,LB003313,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021630,LIDAR_ONLY,,LB003313,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021631,LIDAR_ONLY,,LB003320,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021632,LIDAR_ONLY,,LB003338,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021633,LIDAR_ONLY,,LB003344,auto_vehicles,shed,VEHICLE,rule,,
@@ -2774,14 +2774,14 @@ G021637,LIDAR_ONLY,,LB003442,rule_small_shed,shed,SHED,rule,,
 G021638,LIDAR_ONLY,,LB003475,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021639,LIDAR_ONLY,,LB003481,rule_small_shed,shed,SHED,rule,,
 G021640,LIDAR_ONLY,,LB003499,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021641,LIDAR_ONLY,,LB003505,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021641,LIDAR_ONLY,,LB003505,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021642,LIDAR_ONLY,,LB003527,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021643,LIDAR_ONLY,,LB003531,rule_small_shed,shed,SHED,rule,,
 G021644,LIDAR_ONLY,,LB003532,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021645,LIDAR_ONLY,,LB003537,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021646,LIDAR_ONLY,,LB003548,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021647,LIDAR_ONLY,,LB003549,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021648,LIDAR_ONLY,,LB003559,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021648,LIDAR_ONLY,,LB003559,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021649,LIDAR_ONLY,,LB003574,check_touching,touching,NOT_A_BUILDING,Brian,NOT_A_BUILDING,
 G021650,LIDAR_ONLY,,LB003586,rule_small_shed,shed,SHED,rule,,
 G021651,LIDAR_ONLY,,LB003587,rule_small_shed,shed,SHED,rule,,
@@ -2790,12 +2790,12 @@ G021653,LIDAR_ONLY,,LB003603,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021654,LIDAR_ONLY,,LB003605,auto_vehicles,vehicle,VEHICLE,rule,,
 G021655,LIDAR_ONLY,,LB003608,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021656,LIDAR_ONLY,,LB003636,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021657,LIDAR_ONLY,,LB003654,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021657,LIDAR_ONLY,,LB003654,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021658,LIDAR_ONLY,,LB003666,auto_vehicles,shed,VEHICLE,rule,,
 G021659,LIDAR_ONLY,,LB003679,rule_small_shed,shed,SHED,rule,,
-G021660,LIDAR_ONLY,,LB003710,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021660,LIDAR_ONLY,,LB003710,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021661,LIDAR_ONLY,,LB003720,decide_small,shed,SHED,Brian,SHED,
-G021662,LIDAR_ONLY,,LB003726,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021662,LIDAR_ONLY,,LB003726,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021663,LIDAR_ONLY,,LB003730,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021664,LIDAR_ONLY,,LB003731,rule_small_shed,shed,SHED,rule,,
 G021665,LIDAR_ONLY,,LB003743,decide_small,shed,SHED,Brian,SHED,
@@ -2814,11 +2814,11 @@ G021677,LIDAR_ONLY,,LB003881,auto_vehicles,vehicle,VEHICLE,rule,,
 G021678,LIDAR_ONLY,,LB003884,auto_vehicles,vehicle,VEHICLE,rule,,
 G021679,LIDAR_ONLY,,LB003888,rule_small_shed,shed,SHED,rule,,
 G021680,LIDAR_ONLY,,LB003901,auto_vehicles,vehicle,VEHICLE,rule,,
-G021681,LIDAR_ONLY,,LB003917,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021681,LIDAR_ONLY,,LB003917,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021682,LIDAR_ONLY,,LB003926,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021683,LIDAR_ONLY,,LB003940,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021684,LIDAR_ONLY,,LB003975,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021685,LIDAR_ONLY,,LB003982,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021683,LIDAR_ONLY,,LB003940,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021684,LIDAR_ONLY,,LB003975,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021685,LIDAR_ONLY,,LB003982,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021686,LIDAR_ONLY,,LB003983,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021687,LIDAR_ONLY,,LB003992,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021688,LIDAR_ONLY,,LB003999,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2826,7 +2826,7 @@ G021689,LIDAR_ONLY,,LB004020,rule_small_shed,shed,SHED,rule,,
 G021690,LIDAR_ONLY,,LB004029,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021691,LIDAR_ONLY,,LB004042,rule_small_shed,shed,SHED,rule,,
 G021692,LIDAR_ONLY,,LB004074,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021693,LIDAR_ONLY,,LB004076,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021693,LIDAR_ONLY,,LB004076,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021694,LIDAR_ONLY,,LB004080,auto_vehicles,vehicle,VEHICLE,rule,,
 G021695,LIDAR_ONLY,,LB004084,rule_small_shed,shed,SHED,rule,,
 G021696,LIDAR_ONLY,,LB004088,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2846,8 +2846,8 @@ G021709,LIDAR_ONLY,,LB004179,rule_small_shed,shed,SHED,rule,,
 G021710,LIDAR_ONLY,,LB004181,rule_small_shed,shed,SHED,rule,,
 G021711,LIDAR_ONLY,,LB004187,auto_vehicles,vehicle,VEHICLE,rule,,
 G021712,LIDAR_ONLY,,LB004210,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021713,LIDAR_ONLY,,LB004218,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021714,LIDAR_ONLY,,LB004233,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021713,LIDAR_ONLY,,LB004218,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021714,LIDAR_ONLY,,LB004233,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021715,LIDAR_ONLY,,LB004234,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021716,LIDAR_ONLY,,LB004235,rule_small_shed,shed,SHED,rule,,
 G021717,LIDAR_ONLY,,LB004241,auto_vehicles,vehicle,VEHICLE,rule,,
@@ -2856,7 +2856,7 @@ G021719,LIDAR_ONLY,,LB004266,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021720,LIDAR_ONLY,,LB004285,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021721,LIDAR_ONLY,,LB004307,rule_small_shed,shed,SHED,rule,,
 G021722,LIDAR_ONLY,,LB004341,auto_vehicles,vehicle,VEHICLE,rule,,
-G021723,LIDAR_ONLY,,LB004342,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021723,LIDAR_ONLY,,LB004342,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021724,LIDAR_ONLY,,LB004351,check_touching,touching,NOT_A_BUILDING,Brian,NOT_A_BUILDING,
 G021725,LIDAR_ONLY,,LB004358,rule_small_shed,shed,SHED,rule,,
 G021726,LIDAR_ONLY,,LB004364,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -2866,30 +2866,30 @@ G021729,LIDAR_ONLY,,LB004386,rule_small_shed,shed,SHED,rule,,
 G021730,LIDAR_ONLY,,LB004398,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021731,LIDAR_ONLY,,LB004401,rule_small_shed,shed,SHED,rule,,
 G021732,LIDAR_ONLY,,LB004410,rule_small_shed,shed,SHED,rule,,
-G021733,LIDAR_ONLY,,LB004418,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021733,LIDAR_ONLY,,LB004418,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021734,LIDAR_ONLY,,LB004447,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021735,LIDAR_ONLY,,LB004448,rule_small_shed,shed,SHED,rule,,
 G021736,LIDAR_ONLY,,LB004449,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021737,LIDAR_ONLY,,LB004457,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021738,LIDAR_ONLY,,LB004465,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021739,LIDAR_ONLY,,LB004468,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021739,LIDAR_ONLY,,LB004468,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021740,LIDAR_ONLY,,LB004479,rule_small_shed,shed,SHED,rule,,
 G021741,LIDAR_ONLY,,LB004505,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021742,LIDAR_ONLY,,LB004521,auto_vehicles,shed,VEHICLE,rule,,
 G021743,LIDAR_ONLY,,LB004522,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021744,LIDAR_ONLY,,LB004529,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021745,LIDAR_ONLY,,LB004548,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021746,LIDAR_ONLY,,LB004579,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021744,LIDAR_ONLY,,LB004529,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021745,LIDAR_ONLY,,LB004548,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021746,LIDAR_ONLY,,LB004579,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021747,LIDAR_ONLY,,LB004581,rule_small_shed,shed,SHED,rule,,
-G021748,LIDAR_ONLY,,LB004592,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021748,LIDAR_ONLY,,LB004592,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021749,LIDAR_ONLY,,LB004596,rule_small_shed,shed,SHED,rule,,
-G021750,LIDAR_ONLY,,LB004601,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021750,LIDAR_ONLY,,LB004601,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021751,LIDAR_ONLY,,LB004613,auto_vehicles,vehicle,VEHICLE,rule,,
-G021752,LIDAR_ONLY,,LB004618,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021752,LIDAR_ONLY,,LB004618,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021753,LIDAR_ONLY,,LB004619,auto_vehicles,vehicle,VEHICLE,rule,,
 G021754,LIDAR_ONLY,,LB004623,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021755,LIDAR_ONLY,,LB004626,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021756,LIDAR_ONLY,,LB004631,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021755,LIDAR_ONLY,,LB004626,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021756,LIDAR_ONLY,,LB004631,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021757,LIDAR_ONLY,,LB004658,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021758,LIDAR_ONLY,,LB004669,auto_vehicles,shed,VEHICLE,rule,,
 G021759,LIDAR_ONLY,,LB004681,decide_small,touching,UNSURE,Brian,UNSURE,
@@ -2897,7 +2897,7 @@ G021760,LIDAR_ONLY,,LB004698,auto_vehicles,shed,VEHICLE,rule,,
 G021761,LIDAR_ONLY,,LB004701,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021762,LIDAR_ONLY,,LB004716,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021763,LIDAR_ONLY,,LB004720,rule_small_shed,shed,SHED,rule,,
-G021764,LIDAR_ONLY,,LB004724,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021764,LIDAR_ONLY,,LB004724,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021765,LIDAR_ONLY,,LB004729,rule_small_shed,shed,SHED,rule,,
 G021766,LIDAR_ONLY,,LB004740,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021767,LIDAR_ONLY,,LB004749,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2909,14 +2909,14 @@ G021772,LIDAR_ONLY,,LB004777,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021773,LIDAR_ONLY,,LB004784,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021774,LIDAR_ONLY,,LB004788,rule_small_shed,shed,SHED,rule,,
 G021775,LIDAR_ONLY,,LB004804,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021776,LIDAR_ONLY,,LB004845,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021777,LIDAR_ONLY,,LB004853,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021778,LIDAR_ONLY,,LB004880,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021776,LIDAR_ONLY,,LB004845,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021777,LIDAR_ONLY,,LB004853,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021778,LIDAR_ONLY,,LB004880,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021779,LIDAR_ONLY,,LB004883,auto_vehicles,vehicle,VEHICLE,rule,,
-G021780,LIDAR_ONLY,,LB004902,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021781,LIDAR_ONLY,,LB004906,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021780,LIDAR_ONLY,,LB004902,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021781,LIDAR_ONLY,,LB004906,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021782,LIDAR_ONLY,,LB004909,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021783,LIDAR_ONLY,,LB004915,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021783,LIDAR_ONLY,,LB004915,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021784,LIDAR_ONLY,,LB004918,auto_vehicles,vehicle,VEHICLE,rule,,
 G021785,LIDAR_ONLY,,LB004921,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021786,LIDAR_ONLY,,LB004923,check_touching,touching,VEHICLE,Brian,VEHICLE,
@@ -2927,7 +2927,7 @@ G021790,LIDAR_ONLY,,LB005007,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021791,LIDAR_ONLY,,LB005032,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021792,LIDAR_ONLY,,LB005044,check_touching,touching,PART_OF_BUILDING,Brian,PART_OF_BUILDING,
 G021793,LIDAR_ONLY,,LB005049,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021794,LIDAR_ONLY,,LB005055,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021794,LIDAR_ONLY,,LB005055,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021795,LIDAR_ONLY,,LB005056,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021796,LIDAR_ONLY,,LB005064,rule_small_shed,shed,SHED,rule,,
 G021797,LIDAR_ONLY,,LB005080,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2939,15 +2939,15 @@ G021802,LIDAR_ONLY,,LB005139,auto_vehicles,shed,VEHICLE,rule,,
 G021803,LIDAR_ONLY,,LB005142,auto_vehicles,shed,VEHICLE,rule,,
 G021804,LIDAR_ONLY,,LB005152,rule_small_shed,shed,SHED,rule,,
 G021805,LIDAR_ONLY,,LB005157,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021806,LIDAR_ONLY,,LB005164,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021807,LIDAR_ONLY,,LB005165,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021808,LIDAR_ONLY,,LB005182,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021809,LIDAR_ONLY,,LB005186,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021810,LIDAR_ONLY,,LB005189,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021811,LIDAR_ONLY,,LB005197,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021806,LIDAR_ONLY,,LB005164,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021807,LIDAR_ONLY,,LB005165,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021808,LIDAR_ONLY,,LB005182,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021809,LIDAR_ONLY,,LB005186,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021810,LIDAR_ONLY,,LB005189,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021811,LIDAR_ONLY,,LB005197,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021812,LIDAR_ONLY,,LB005208,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021813,LIDAR_ONLY,,LB005210,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021814,LIDAR_ONLY,,LB005230,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021814,LIDAR_ONLY,,LB005230,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021815,LIDAR_ONLY,,LB005260,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021816,LIDAR_ONLY,,LB005294,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021817,LIDAR_ONLY,,LB005299,rule_small_shed,shed,SHED,rule,,
@@ -2955,9 +2955,9 @@ G021818,LIDAR_ONLY,,LB005303,check_touching,touching,PART_OF_BUILDING,Brian,PART
 G021819,LIDAR_ONLY,,LB005307,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021820,LIDAR_ONLY,,LB005311,rule_small_shed,shed,SHED,rule,,
 G021821,LIDAR_ONLY,,LB005313,auto_vehicles,shed,VEHICLE,rule,,
-G021822,LIDAR_ONLY,,LB005332,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021822,LIDAR_ONLY,,LB005332,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021823,LIDAR_ONLY,,LB005335,rule_small_shed,shed,SHED,rule,,
-G021824,LIDAR_ONLY,,LB005336,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021824,LIDAR_ONLY,,LB005336,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021825,LIDAR_ONLY,,LB005338,decide_small,shed,SHED,Brian,SHED,
 G021826,LIDAR_ONLY,,LB005348,auto_vehicles,vehicle,VEHICLE,rule,,
 G021827,LIDAR_ONLY,,LB005368,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -2967,8 +2967,8 @@ G021830,LIDAR_ONLY,,LB005395,auto_vehicles,shed,VEHICLE,rule,,
 G021831,LIDAR_ONLY,,LB005396,auto_vehicles,vehicle,VEHICLE,rule,,
 G021832,LIDAR_ONLY,,LB005408,rule_small_shed,shed,SHED,rule,,
 G021833,LIDAR_ONLY,,LB005419,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021834,LIDAR_ONLY,,LB005432,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021835,LIDAR_ONLY,,LB005455,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021834,LIDAR_ONLY,,LB005432,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021835,LIDAR_ONLY,,LB005455,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021836,LIDAR_ONLY,,LB005463,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021837,LIDAR_ONLY,,LB005464,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021838,LIDAR_ONLY,,LB005472,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -2976,23 +2976,23 @@ G021839,LIDAR_ONLY,,LB005477,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021840,LIDAR_ONLY,,LB005481,rule_small_shed,shed,SHED,rule,,
 G021841,LIDAR_ONLY,,LB005482,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021842,LIDAR_ONLY,,LB005488,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021843,LIDAR_ONLY,,LB005498,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021843,LIDAR_ONLY,,LB005498,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021844,LIDAR_ONLY,,LB005505,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021845,LIDAR_ONLY,,LB005508,rule_small_shed,shed,SHED,rule,,
 G021846,LIDAR_ONLY,,LB005532,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021847,LIDAR_ONLY,,LB005559,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021848,LIDAR_ONLY,,LB005593,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021849,LIDAR_ONLY,,LB005598,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021849,LIDAR_ONLY,,LB005598,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021850,LIDAR_ONLY,,LB005630,auto_vehicles,vehicle,VEHICLE,rule,,
 G021851,LIDAR_ONLY,,LB005646,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021852,LIDAR_ONLY,,LB005652,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021853,LIDAR_ONLY,,LB005653,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021854,LIDAR_ONLY,,LB005659,rule_small_shed,shed,SHED,rule,,
 G021855,LIDAR_ONLY,,LB005671,rule_small_shed,shed,SHED,rule,,
-G021856,LIDAR_ONLY,,LB005705,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021857,LIDAR_ONLY,,LB005712,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021856,LIDAR_ONLY,,LB005705,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021857,LIDAR_ONLY,,LB005712,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021858,LIDAR_ONLY,,LB005720,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021859,LIDAR_ONLY,,LB005724,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021859,LIDAR_ONLY,,LB005724,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021860,LIDAR_ONLY,,LB005725,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021861,LIDAR_ONLY,,LB005734,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021862,LIDAR_ONLY,,LB005737,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3002,7 +3002,7 @@ G021865,LIDAR_ONLY,,LB005760,check_touching,touching,PART_OF_BUILDING,Brian,PART
 G021866,LIDAR_ONLY,,LB005765,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021867,LIDAR_ONLY,,LB005773,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021868,LIDAR_ONLY,,LB005789,rule_small_shed,shed,SHED,rule,,
-G021869,LIDAR_ONLY,,LB005801,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021869,LIDAR_ONLY,,LB005801,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021870,LIDAR_ONLY,,LB005816,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021871,LIDAR_ONLY,,LB005819,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021872,LIDAR_ONLY,,LB005821,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3020,25 +3020,25 @@ G021883,LIDAR_ONLY,,LB005883,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021884,LIDAR_ONLY,,LB005891,rule_small_shed,shed,SHED,rule,,
 G021885,LIDAR_ONLY,,LB005901,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021886,LIDAR_ONLY,,LB005906,rule_small_vehicle,vehicle,VEHICLE,rule,,
-G021887,LIDAR_ONLY,,LB005922,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021887,LIDAR_ONLY,,LB005922,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021888,LIDAR_ONLY,,LB005953,rule_small_shed,shed,SHED,rule,,
 G021889,LIDAR_ONLY,,LB005958,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021890,LIDAR_ONLY,,LB005963,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021891,LIDAR_ONLY,,LB005981,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021892,LIDAR_ONLY,,LB005982,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021893,LIDAR_ONLY,,LB006015,check_touching,touching,PART_OF_BUILDING,Brian,PART_OF_BUILDING,
-G021894,LIDAR_ONLY,,LB006030,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021894,LIDAR_ONLY,,LB006030,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021895,LIDAR_ONLY,,LB006032,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021896,LIDAR_ONLY,,LB006057,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021897,LIDAR_ONLY,,LB006058,rule_small_shed,shed,SHED,rule,,
 G021898,LIDAR_ONLY,,LB006065,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021899,LIDAR_ONLY,,LB006085,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021899,LIDAR_ONLY,,LB006085,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021900,LIDAR_ONLY,,LB006098,rule_small_shed,shed,SHED,rule,,
-G021901,LIDAR_ONLY,,LB006103,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021901,LIDAR_ONLY,,LB006103,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021902,LIDAR_ONLY,,LB006109,rule_small_shed,shed,SHED,rule,,
 G021903,LIDAR_ONLY,,LB006111,auto_vehicles,vehicle,VEHICLE,rule,,
-G021904,LIDAR_ONLY,,LB006112,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G021905,LIDAR_ONLY,,LB006128,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021904,LIDAR_ONLY,,LB006112,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G021905,LIDAR_ONLY,,LB006128,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021906,LIDAR_ONLY,,LB006141,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021907,LIDAR_ONLY,,LB006142,auto_vehicles,vehicle,VEHICLE,rule,,
 G021908,LIDAR_ONLY,,LB006155,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3050,18 +3050,18 @@ G021913,LIDAR_ONLY,,LB006202,auto_vehicles,shed,VEHICLE,rule,,
 G021914,LIDAR_ONLY,,LB006207,rule_small_shed,shed,SHED,rule,,
 G021915,LIDAR_ONLY,,LB006209,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021916,LIDAR_ONLY,,LB006228,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021917,LIDAR_ONLY,,LB006229,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021917,LIDAR_ONLY,,LB006229,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021918,LIDAR_ONLY,,LB006231,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021919,LIDAR_ONLY,,LB006237,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021919,LIDAR_ONLY,,LB006237,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021920,LIDAR_ONLY,,LB006243,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021921,LIDAR_ONLY,,LB006246,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021921,LIDAR_ONLY,,LB006246,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021922,LIDAR_ONLY,,LB006254,rule_small_shed,shed,SHED,rule,,
-G021923,LIDAR_ONLY,,LB006256,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021923,LIDAR_ONLY,,LB006256,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021924,LIDAR_ONLY,,LB006263,rule_small_shed,shed,SHED,rule,,
 G021925,LIDAR_ONLY,,LB006265,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021926,LIDAR_ONLY,,LB006269,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021927,LIDAR_ONLY,,LB006270,auto_vehicles,vehicle,VEHICLE,rule,,
-G021928,LIDAR_ONLY,,LB006293,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021928,LIDAR_ONLY,,LB006293,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021929,LIDAR_ONLY,,LB006300,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021930,LIDAR_ONLY,,LB006305,check_touching,touching,NOT_A_BUILDING,Brian,NOT_A_BUILDING,
 G021931,LIDAR_ONLY,,LB006310,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3084,7 +3084,7 @@ G021947,LIDAR_ONLY,,LB006462,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021948,LIDAR_ONLY,,LB006478,rule_small_shed,shed,SHED,rule,,
 G021949,LIDAR_ONLY,,LB006479,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021950,LIDAR_ONLY,,LB006480,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021951,LIDAR_ONLY,,LB006484,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021951,LIDAR_ONLY,,LB006484,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021952,LIDAR_ONLY,,LB006489,auto_vehicles,shed,VEHICLE,rule,,
 G021953,LIDAR_ONLY,,LB006499,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021954,LIDAR_ONLY,,LB006500,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3092,7 +3092,7 @@ G021955,LIDAR_ONLY,,LB006503,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021956,LIDAR_ONLY,,LB006507,auto_vehicles,vehicle,VEHICLE,rule,,
 G021957,LIDAR_ONLY,,LB006516,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021958,LIDAR_ONLY,,LB006521,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021959,LIDAR_ONLY,,LB006527,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021959,LIDAR_ONLY,,LB006527,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021960,LIDAR_ONLY,,LB006528,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021961,LIDAR_ONLY,,LB006533,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021962,LIDAR_ONLY,,LB006544,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -3105,11 +3105,11 @@ G021968,LIDAR_ONLY,,LB006565,rule_small_shed,shed,SHED,rule,,
 G021969,LIDAR_ONLY,,LB006586,rule_small_shed,shed,SHED,rule,,
 G021970,LIDAR_ONLY,,LB006596,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021971,LIDAR_ONLY,,LB006600,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021972,LIDAR_ONLY,,LB006621,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021972,LIDAR_ONLY,,LB006621,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021973,LIDAR_ONLY,,LB006628,auto_vehicles,vehicle,VEHICLE,rule,,
 G021974,LIDAR_ONLY,,LB006631,rule_small_shed,shed,SHED,rule,,
 G021975,LIDAR_ONLY,,LB006642,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021976,LIDAR_ONLY,,LB006644,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021976,LIDAR_ONLY,,LB006644,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021977,LIDAR_ONLY,,LB006660,rule_small_shed,shed,SHED,rule,,
 G021978,LIDAR_ONLY,,LB006671,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021979,LIDAR_ONLY,,LB006678,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -3122,19 +3122,19 @@ G021985,LIDAR_ONLY,,LB006710,auto_vehicles,vehicle,VEHICLE,rule,,
 G021986,LIDAR_ONLY,,LB006725,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021987,LIDAR_ONLY,,LB006733,auto_vehicles,vehicle,VEHICLE,rule,,
 G021988,LIDAR_ONLY,,LB006737,auto_vehicles,vehicle,VEHICLE,rule,,
-G021989,LIDAR_ONLY,,LB006740,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021989,LIDAR_ONLY,,LB006740,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021990,LIDAR_ONLY,,LB006741,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021991,LIDAR_ONLY,,LB006743,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021992,LIDAR_ONLY,,LB006745,rule_small_shed,shed,SHED,rule,,
 G021993,LIDAR_ONLY,,LB006766,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021994,LIDAR_ONLY,,LB006770,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G021995,LIDAR_ONLY,,LB006771,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G021995,LIDAR_ONLY,,LB006771,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G021996,LIDAR_ONLY,,LB006775,auto_vehicles,vehicle,VEHICLE,rule,,
 G021997,LIDAR_ONLY,,LB006776,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G021998,LIDAR_ONLY,,LB006778,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G021999,LIDAR_ONLY,,LB006784,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022000,LIDAR_ONLY,,LB006800,rule_small_shed,shed,SHED,rule,,
-G022001,LIDAR_ONLY,,LB006802,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022001,LIDAR_ONLY,,LB006802,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022002,LIDAR_ONLY,,LB006804,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022003,LIDAR_ONLY,,LB006806,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022004,LIDAR_ONLY,,LB006807,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3144,9 +3144,9 @@ G022007,LIDAR_ONLY,,LB006823,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022008,LIDAR_ONLY,,LB006835,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022009,LIDAR_ONLY,,LB006837,auto_vehicles,vehicle,VEHICLE,rule,,
 G022010,LIDAR_ONLY,,LB006844,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022011,LIDAR_ONLY,,LB006850,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022011,LIDAR_ONLY,,LB006850,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022012,LIDAR_ONLY,,LB006862,rule_small_shed,shed,SHED,rule,,
-G022013,LIDAR_ONLY,,LB006864,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022013,LIDAR_ONLY,,LB006864,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022014,LIDAR_ONLY,,LB006865,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022015,LIDAR_ONLY,,LB006868,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022016,LIDAR_ONLY,,LB006879,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3165,32 +3165,32 @@ G022028,LIDAR_ONLY,,LB006937,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022029,LIDAR_ONLY,,LB006938,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022030,LIDAR_ONLY,,LB006955,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022031,LIDAR_ONLY,,LB006956,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022032,LIDAR_ONLY,,LB006957,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022032,LIDAR_ONLY,,LB006957,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022033,LIDAR_ONLY,,LB006962,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022034,LIDAR_ONLY,,LB006963,rule_small_shed,shed,SHED,rule,,
 G022035,LIDAR_ONLY,,LB006967,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022036,LIDAR_ONLY,,LB006968,auto_vehicles,vehicle,VEHICLE,rule,,
 G022037,LIDAR_ONLY,,LB006975,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022038,LIDAR_ONLY,,LB006976,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022039,LIDAR_ONLY,,LB007002,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022039,LIDAR_ONLY,,LB007002,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022040,LIDAR_ONLY,,LB007007,rule_small_shed,shed,SHED,rule,,
 G022041,LIDAR_ONLY,,LB007011,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022042,LIDAR_ONLY,,LB007012,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022043,LIDAR_ONLY,,LB007022,rule_small_shed,shed,SHED,rule,,
 G022044,LIDAR_ONLY,,LB007036,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022045,LIDAR_ONLY,,LB007056,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022045,LIDAR_ONLY,,LB007056,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022046,LIDAR_ONLY,,LB007069,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022047,LIDAR_ONLY,,LB007070,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022048,LIDAR_ONLY,,LB007076,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022047,LIDAR_ONLY,,LB007070,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022048,LIDAR_ONLY,,LB007076,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022049,LIDAR_ONLY,,LB007080,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022050,LIDAR_ONLY,,LB007098,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022051,LIDAR_ONLY,,LB007110,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022052,LIDAR_ONLY,,LB007126,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022053,LIDAR_ONLY,,LB007127,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022053,LIDAR_ONLY,,LB007127,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022054,LIDAR_ONLY,,LB007139,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022055,LIDAR_ONLY,,LB007142,auto_vehicles,vehicle,VEHICLE,rule,,
-G022056,LIDAR_ONLY,,LB007155,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022057,LIDAR_ONLY,,LB007162,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022056,LIDAR_ONLY,,LB007155,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022057,LIDAR_ONLY,,LB007162,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022058,LIDAR_ONLY,,LB007168,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022059,LIDAR_ONLY,,LB007177,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022060,LIDAR_ONLY,,LB007181,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -3228,7 +3228,7 @@ G022091,LIDAR_ONLY,,LB007327,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022092,LIDAR_ONLY,,LB007343,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022093,LIDAR_ONLY,,LB007350,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022094,LIDAR_ONLY,,LB007362,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022095,LIDAR_ONLY,,LB007370,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022095,LIDAR_ONLY,,LB007370,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022096,LIDAR_ONLY,,LB007382,auto_vehicles,shed,VEHICLE,rule,,
 G022097,LIDAR_ONLY,,LB007390,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022098,LIDAR_ONLY,,LB007394,auto_vehicles,shed,VEHICLE,rule,,
@@ -3264,7 +3264,7 @@ G022127,LIDAR_ONLY,,LB007621,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022128,LIDAR_ONLY,,LB007622,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022129,LIDAR_ONLY,,LB007624,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022130,LIDAR_ONLY,,LB007626,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022131,LIDAR_ONLY,,LB007629,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022131,LIDAR_ONLY,,LB007629,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022132,LIDAR_ONLY,,LB007630,rule_small_shed,shed,SHED,rule,,
 G022133,LIDAR_ONLY,,LB007640,decide_small,shed,SHED,Brian,SHED,
 G022134,LIDAR_ONLY,,LB007646,rule_small_shed,shed,SHED,rule,,
@@ -3277,8 +3277,8 @@ G022140,LIDAR_ONLY,,LB007670,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022141,LIDAR_ONLY,,LB007674,rule_small_shed,shed,SHED,rule,,
 G022142,LIDAR_ONLY,,LB007683,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022143,LIDAR_ONLY,,LB007684,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022144,LIDAR_ONLY,,LB007685,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022145,LIDAR_ONLY,,LB007686,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022144,LIDAR_ONLY,,LB007685,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022145,LIDAR_ONLY,,LB007686,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022146,LIDAR_ONLY,,LB007688,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022147,LIDAR_ONLY,,LB007691,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022148,LIDAR_ONLY,,LB007697,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3286,7 +3286,7 @@ G022149,LIDAR_ONLY,,LB007700,rule_small_shed,shed,SHED,rule,,
 G022150,LIDAR_ONLY,,LB007702,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022151,LIDAR_ONLY,,LB007710,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022152,LIDAR_ONLY,,LB007714,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022153,LIDAR_ONLY,,LB007722,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022153,LIDAR_ONLY,,LB007722,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022154,LIDAR_ONLY,,LB007727,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022155,LIDAR_ONLY,,LB007729,rule_small_shed,shed,SHED,rule,,
 G022156,LIDAR_ONLY,,LB007734,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3304,25 +3304,25 @@ G022167,LIDAR_ONLY,,LB007805,rule_small_shed,shed,SHED,rule,,
 G022168,LIDAR_ONLY,,LB007817,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022169,LIDAR_ONLY,,LB007824,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022170,LIDAR_ONLY,,LB007825,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022171,LIDAR_ONLY,,LB007826,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022171,LIDAR_ONLY,,LB007826,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022172,LIDAR_ONLY,,LB007829,rule_small_shed,shed,SHED,rule,,
 G022173,LIDAR_ONLY,,LB007834,rule_small_shed,shed,SHED,rule,,
 G022174,LIDAR_ONLY,,LB007835,auto_vehicles,shed,VEHICLE,rule,,
 G022175,LIDAR_ONLY,,LB007850,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022176,LIDAR_ONLY,,LB007856,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022176,LIDAR_ONLY,,LB007856,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022177,LIDAR_ONLY,,LB007866,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022178,LIDAR_ONLY,,LB007873,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022179,LIDAR_ONLY,,LB007880,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022180,LIDAR_ONLY,,LB007884,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022181,LIDAR_ONLY,,LB007912,auto_vehicles,vehicle,VEHICLE,rule,,
-G022182,LIDAR_ONLY,,LB007913,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022182,LIDAR_ONLY,,LB007913,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022183,LIDAR_ONLY,,LB007918,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022184,LIDAR_ONLY,,LB007943,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022185,LIDAR_ONLY,,LB007945,auto_vehicles,vehicle,VEHICLE,rule,,
 G022186,LIDAR_ONLY,,LB007946,decide_small,touching,PART_OF_BUILDING,Brian,PART_OF_BUILDING,
 G022187,LIDAR_ONLY,,LB007949,auto_vehicles,vehicle,VEHICLE,rule,,
 G022188,LIDAR_ONLY,,LB007950,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022189,LIDAR_ONLY,,LB007962,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022189,LIDAR_ONLY,,LB007962,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022190,LIDAR_ONLY,,LB007965,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022191,LIDAR_ONLY,,LB007978,rule_small_shed,shed,SHED,rule,,
 G022192,LIDAR_ONLY,,LB007979,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3337,27 +3337,27 @@ G022200,LIDAR_ONLY,,LB008039,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022201,LIDAR_ONLY,,LB008041,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022202,LIDAR_ONLY,,LB008042,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022203,LIDAR_ONLY,,LB008048,rule_small_shed,shed,SHED,rule,,
-G022204,LIDAR_ONLY,,LB008052,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022204,LIDAR_ONLY,,LB008052,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022205,LIDAR_ONLY,,LB008055,rule_small_shed,shed,SHED,rule,,
 G022206,LIDAR_ONLY,,LB008056,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022207,LIDAR_ONLY,,LB008059,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022207,LIDAR_ONLY,,LB008059,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022208,LIDAR_ONLY,,LB008063,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022209,LIDAR_ONLY,,LB008075,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022210,LIDAR_ONLY,,LB008078,rule_small_shed,shed,SHED,rule,,
 G022211,LIDAR_ONLY,,LB008080,rule_small_shed,shed,SHED,rule,,
-G022212,LIDAR_ONLY,,LB008081,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022212,LIDAR_ONLY,,LB008081,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022213,LIDAR_ONLY,,LB008085,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022214,LIDAR_ONLY,,LB008086,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022215,LIDAR_ONLY,,LB008090,auto_vehicles,vehicle,VEHICLE,rule,,
-G022216,LIDAR_ONLY,,LB008091,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022216,LIDAR_ONLY,,LB008091,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022217,LIDAR_ONLY,,LB008096,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022218,LIDAR_ONLY,,LB008151,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022219,LIDAR_ONLY,,LB008159,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022220,LIDAR_ONLY,,LB008160,rule_small_vehicle,vehicle,VEHICLE,rule,,
-G022221,LIDAR_ONLY,,LB008164,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022221,LIDAR_ONLY,,LB008164,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022222,LIDAR_ONLY,,LB008168,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022223,LIDAR_ONLY,,LB008176,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022224,LIDAR_ONLY,,LB008185,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022224,LIDAR_ONLY,,LB008185,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022225,LIDAR_ONLY,,LB008201,rule_small_shed,shed,SHED,rule,,
 G022226,LIDAR_ONLY,,LB008222,rule_small_shed,shed,SHED,rule,,
 G022227,LIDAR_ONLY,,LB008227,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3366,7 +3366,7 @@ G022229,LIDAR_ONLY,,LB008246,rule_small_shed,shed,SHED,rule,,
 G022230,LIDAR_ONLY,,LB008253,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022231,LIDAR_ONLY,,LB008262,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022232,LIDAR_ONLY,,LB008264,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022233,LIDAR_ONLY,,LB008271,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022233,LIDAR_ONLY,,LB008271,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022234,LIDAR_ONLY,,LB008274,rule_small_shed,shed,SHED,rule,,
 G022235,LIDAR_ONLY,,LB008278,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022236,LIDAR_ONLY,,LB008282,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3388,17 +3388,17 @@ G022251,LIDAR_ONLY,,LB008386,rule_small_shed,shed,SHED,rule,,
 G022252,LIDAR_ONLY,,LB008401,rule_small_shed,shed,SHED,rule,,
 G022253,LIDAR_ONLY,,LB008406,auto_vehicles,vehicle,VEHICLE,rule,,
 G022254,LIDAR_ONLY,,LB008412,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022255,LIDAR_ONLY,,LB008435,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022255,LIDAR_ONLY,,LB008435,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022256,LIDAR_ONLY,,LB008437,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022257,LIDAR_ONLY,,LB008444,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022258,LIDAR_ONLY,,LB008447,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022259,LIDAR_ONLY,,LB008448,rule_small_shed,shed,SHED,rule,,
 G022260,LIDAR_ONLY,,LB008455,auto_vehicles,shed,VEHICLE,rule,,
 G022261,LIDAR_ONLY,,LB008456,auto_vehicles,shed,VEHICLE,rule,,
-G022262,LIDAR_ONLY,,LB008489,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022263,LIDAR_ONLY,,LB008491,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022264,LIDAR_ONLY,,LB008498,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022265,LIDAR_ONLY,,LB008516,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022262,LIDAR_ONLY,,LB008489,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022263,LIDAR_ONLY,,LB008491,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022264,LIDAR_ONLY,,LB008498,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022265,LIDAR_ONLY,,LB008516,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022266,LIDAR_ONLY,,LB008522,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022267,LIDAR_ONLY,,LB008527,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022268,LIDAR_ONLY,,LB008532,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3422,9 +3422,9 @@ G022285,LIDAR_ONLY,,LB008720,rule_small_shed,shed,SHED,rule,,
 G022286,LIDAR_ONLY,,LB008721,rule_small_shed,shed,SHED,rule,,
 G022287,LIDAR_ONLY,,LB008728,rule_small_shed,shed,SHED,rule,,
 G022288,LIDAR_ONLY,,LB008737,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022289,LIDAR_ONLY,,LB008741,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022290,LIDAR_ONLY,,LB008752,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022291,LIDAR_ONLY,,LB008753,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022289,LIDAR_ONLY,,LB008741,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022290,LIDAR_ONLY,,LB008752,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022291,LIDAR_ONLY,,LB008753,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022292,LIDAR_ONLY,,LB008763,rule_small_shed,shed,SHED,rule,,
 G022293,LIDAR_ONLY,,LB008788,rule_small_shed,shed,SHED,rule,,
 G022294,LIDAR_ONLY,,LB008798,rule_small_shed,shed,SHED,rule,,
@@ -3433,22 +3433,22 @@ G022296,LIDAR_ONLY,,LB008817,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022297,LIDAR_ONLY,,LB008821,rule_small_shed,shed,SHED,rule,,
 G022298,LIDAR_ONLY,,LB008823,rule_small_shed,shed,SHED,rule,,
 G022299,LIDAR_ONLY,,LB008830,auto_vehicles,vehicle,VEHICLE,rule,,
-G022300,LIDAR_ONLY,,LB008831,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022300,LIDAR_ONLY,,LB008831,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022301,LIDAR_ONLY,,LB008838,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022302,LIDAR_ONLY,,LB008840,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022303,LIDAR_ONLY,,LB008841,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022304,LIDAR_ONLY,,LB008843,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022305,LIDAR_ONLY,,LB008846,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022306,LIDAR_ONLY,,LB008849,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022305,LIDAR_ONLY,,LB008846,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022306,LIDAR_ONLY,,LB008849,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022307,LIDAR_ONLY,,LB008863,rule_small_shed,shed,SHED,rule,,
 G022308,LIDAR_ONLY,,LB008880,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022309,LIDAR_ONLY,,LB008887,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022310,LIDAR_ONLY,,LB008901,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022311,LIDAR_ONLY,,LB008909,rule_small_shed,shed,SHED,rule,,
-G022312,LIDAR_ONLY,,LB008915,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022312,LIDAR_ONLY,,LB008915,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022313,LIDAR_ONLY,,LB008943,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022314,LIDAR_ONLY,,LB008965,rule_small_shed,shed,SHED,rule,,
-G022315,LIDAR_ONLY,,LB008966,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022315,LIDAR_ONLY,,LB008966,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022316,LIDAR_ONLY,,LB008971,rule_small_shed,shed,SHED,rule,,
 G022317,LIDAR_ONLY,,LB008975,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022318,LIDAR_ONLY,,LB008978,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3476,7 +3476,7 @@ G022339,LIDAR_ONLY,,LB009176,rule_small_shed,shed,SHED,rule,,
 G022340,LIDAR_ONLY,,LB009177,rule_small_shed,shed,SHED,rule,,
 G022341,LIDAR_ONLY,,LB009195,rule_small_shed,shed,SHED,rule,,
 G022342,LIDAR_ONLY,,LB009198,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022343,LIDAR_ONLY,,LB009234,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022343,LIDAR_ONLY,,LB009234,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022344,LIDAR_ONLY,,LB009235,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022345,LIDAR_ONLY,,LB009237,rule_small_shed,shed,SHED,rule,,
 G022346,LIDAR_ONLY,,LB009244,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3490,15 +3490,15 @@ G022353,LIDAR_ONLY,,LB009345,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022354,LIDAR_ONLY,,LB009347,rule_small_shed,shed,SHED,rule,,
 G022355,LIDAR_ONLY,,LB009380,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022356,LIDAR_ONLY,,LB009381,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022357,LIDAR_ONLY,,LB009384,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022358,LIDAR_ONLY,,LB009451,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022359,LIDAR_ONLY,,LB009475,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022357,LIDAR_ONLY,,LB009384,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022358,LIDAR_ONLY,,LB009451,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022359,LIDAR_ONLY,,LB009475,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022360,LIDAR_ONLY,,LB009482,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022361,LIDAR_ONLY,,LB009483,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022362,LIDAR_ONLY,,LB009485,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022362,LIDAR_ONLY,,LB009485,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022363,LIDAR_ONLY,,LB009492,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022364,LIDAR_ONLY,,LB009493,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022365,LIDAR_ONLY,,LB009499,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022365,LIDAR_ONLY,,LB009499,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022366,LIDAR_ONLY,,LB009513,rule_small_shed,shed,SHED,rule,,
 G022367,LIDAR_ONLY,,LB009527,decide_small,vehicle,VEHICLE,Brian,VEHICLE,
 G022368,LIDAR_ONLY,,LB009551,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3523,17 +3523,17 @@ G022386,LIDAR_ONLY,,LB009744,rule_small_shed,shed,SHED,rule,,
 G022387,LIDAR_ONLY,,LB009769,rule_small_shed,shed,SHED,rule,,
 G022388,LIDAR_ONLY,,LB009776,rule_small_shed,shed,SHED,rule,,
 G022389,LIDAR_ONLY,,LB009778,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022390,LIDAR_ONLY,,LB009817,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022390,LIDAR_ONLY,,LB009817,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022391,LIDAR_ONLY,,LB009821,auto_vehicles,vehicle,VEHICLE,rule,,
 G022392,LIDAR_ONLY,,LB009823,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022393,LIDAR_ONLY,,LB009853,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022394,LIDAR_ONLY,,LB009857,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022395,LIDAR_ONLY,,LB009871,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022394,LIDAR_ONLY,,LB009857,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022395,LIDAR_ONLY,,LB009871,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022396,LIDAR_ONLY,,LB009875,rule_small_shed,shed,SHED,rule,,
 G022397,LIDAR_ONLY,,LB009907,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022398,LIDAR_ONLY,,LB009947,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022398,LIDAR_ONLY,,LB009947,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022399,LIDAR_ONLY,,LB009969,rule_small_shed,shed,SHED,rule,,
-G022400,LIDAR_ONLY,,LB009971,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022400,LIDAR_ONLY,,LB009971,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022401,LIDAR_ONLY,,LB009975,decide_small,shed,NOT_A_BUILDING,Brian,NOT_A_BUILDING,
 G022402,LIDAR_ONLY,,LB009977,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022403,LIDAR_ONLY,,LB009981,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -3544,9 +3544,9 @@ G022407,LIDAR_ONLY,,LB009998,rule_small_shed,shed,SHED,rule,,
 G022408,LIDAR_ONLY,,LB010011,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022409,LIDAR_ONLY,,LB010013,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022410,LIDAR_ONLY,,LB010044,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022411,LIDAR_ONLY,,LB010083,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022411,LIDAR_ONLY,,LB010083,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022412,LIDAR_ONLY,,LB010094,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022413,LIDAR_ONLY,,LB010097,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022413,LIDAR_ONLY,,LB010097,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022414,LIDAR_ONLY,,LB010104,rule_small_shed,shed,SHED,rule,,
 G022415,LIDAR_ONLY,,LB010105,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022416,LIDAR_ONLY,,LB010113,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3559,8 +3559,8 @@ G022422,LIDAR_ONLY,,LB010200,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022423,LIDAR_ONLY,,LB010205,rule_small_shed,shed,SHED,rule,,
 G022424,LIDAR_ONLY,,LB010222,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022425,LIDAR_ONLY,,LB010223,rule_small_shed,shed,SHED,rule,,
-G022426,LIDAR_ONLY,,LB010224,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022427,LIDAR_ONLY,,LB010226,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022426,LIDAR_ONLY,,LB010224,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022427,LIDAR_ONLY,,LB010226,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022428,LIDAR_ONLY,,LB010255,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022429,LIDAR_ONLY,,LB010270,rule_small_shed,shed,SHED,rule,,
 G022430,LIDAR_ONLY,,LB010274,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3580,11 +3580,11 @@ G022443,LIDAR_ONLY,,LB010425,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022444,LIDAR_ONLY,,LB010426,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022445,LIDAR_ONLY,,LB010430,auto_vehicles,vehicle,VEHICLE,rule,,
 G022446,LIDAR_ONLY,,LB010432,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022447,LIDAR_ONLY,,LB010438,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022447,LIDAR_ONLY,,LB010438,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022448,LIDAR_ONLY,,LB010448,auto_vehicles,vehicle,VEHICLE,rule,,
 G022449,LIDAR_ONLY,,LB010459,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022450,LIDAR_ONLY,,LB010464,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022451,LIDAR_ONLY,,LB010473,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022451,LIDAR_ONLY,,LB010473,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022452,LIDAR_ONLY,,LB010474,rule_small_shed,shed,SHED,rule,,
 G022453,LIDAR_ONLY,,LB010486,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022454,LIDAR_ONLY,,LB010493,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3703,10 +3703,10 @@ G022566,LIDAR_ONLY,,LB011501,rule_small_shed,shed,SHED,rule,,
 G022567,LIDAR_ONLY,,LB011510,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022568,LIDAR_ONLY,,LB011517,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022569,LIDAR_ONLY,,LB011529,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022570,LIDAR_ONLY,,LB011530,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022570,LIDAR_ONLY,,LB011530,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022571,LIDAR_ONLY,,LB011531,rule_small_shed,shed,SHED,rule,,
-G022572,LIDAR_ONLY,,LB011542,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022573,LIDAR_ONLY,,LB011549,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022572,LIDAR_ONLY,,LB011542,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022573,LIDAR_ONLY,,LB011549,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022574,LIDAR_ONLY,,LB011551,rule_small_shed,shed,SHED,rule,,
 G022575,LIDAR_ONLY,,LB011552,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022576,LIDAR_ONLY,,LB011557,auto_vehicles,shed,VEHICLE,rule,,
@@ -3714,7 +3714,7 @@ G022577,LIDAR_ONLY,,LB011564,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022578,LIDAR_ONLY,,LB011568,rule_small_shed,shed,SHED,rule,,
 G022579,LIDAR_ONLY,,LB011576,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022580,LIDAR_ONLY,,LB011580,rule_small_shed,shed,SHED,rule,,
-G022581,LIDAR_ONLY,,LB011589,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022581,LIDAR_ONLY,,LB011589,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022582,LIDAR_ONLY,,LB011594,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022583,LIDAR_ONLY,,LB011598,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022584,LIDAR_ONLY,,LB011606,rule_small_shed,shed,SHED,rule,,
@@ -3725,7 +3725,7 @@ G022588,LIDAR_ONLY,,LB011632,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022589,LIDAR_ONLY,,LB011640,rule_small_shed,shed,SHED,rule,,
 G022590,LIDAR_ONLY,,LB011649,rule_small_shed,shed,SHED,rule,,
 G022591,LIDAR_ONLY,,LB011661,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022592,LIDAR_ONLY,,LB011665,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022592,LIDAR_ONLY,,LB011665,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022593,LIDAR_ONLY,,LB011668,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022594,LIDAR_ONLY,,LB011673,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022595,LIDAR_ONLY,,LB011674,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3754,7 +3754,7 @@ G022617,LIDAR_ONLY,,LB011879,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022618,LIDAR_ONLY,,LB011881,rule_small_shed,shed,SHED,rule,,
 G022619,LIDAR_ONLY,,LB011886,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022620,LIDAR_ONLY,,LB011890,rule_small_vehicle,vehicle,VEHICLE,rule,,
-G022621,LIDAR_ONLY,,LB011894,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022621,LIDAR_ONLY,,LB011894,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022622,LIDAR_ONLY,,LB011898,rule_small_shed,shed,SHED,rule,,
 G022623,LIDAR_ONLY,,LB011899,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022624,LIDAR_ONLY,,LB011902,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3769,14 +3769,14 @@ G022632,LIDAR_ONLY,,LB011929,rule_small_shed,shed,SHED,rule,,
 G022633,LIDAR_ONLY,,LB011936,auto_vehicles,shed,VEHICLE,rule,,
 G022634,LIDAR_ONLY,,LB011948,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022635,LIDAR_ONLY,,LB011957,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022636,LIDAR_ONLY,,LB011965,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022636,LIDAR_ONLY,,LB011965,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022637,LIDAR_ONLY,,LB011968,rule_small_shed,shed,SHED,rule,,
 G022638,LIDAR_ONLY,,LB011977,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022639,LIDAR_ONLY,,LB011979,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022640,LIDAR_ONLY,,LB011983,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022641,LIDAR_ONLY,,LB011993,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022642,LIDAR_ONLY,,LB011994,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022643,LIDAR_ONLY,,LB012010,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022643,LIDAR_ONLY,,LB012010,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022644,LIDAR_ONLY,,LB012011,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022645,LIDAR_ONLY,,LB012023,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022646,LIDAR_ONLY,,LB012024,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3796,7 +3796,7 @@ G022659,LIDAR_ONLY,,LB012077,rule_small_shed,shed,SHED,rule,,
 G022660,LIDAR_ONLY,,LB012078,rule_small_shed,shed,SHED,rule,,
 G022661,LIDAR_ONLY,,LB012080,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022662,LIDAR_ONLY,,LB012092,auto_vehicles,vehicle,VEHICLE,rule,,
-G022663,LIDAR_ONLY,,LB012096,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022663,LIDAR_ONLY,,LB012096,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022664,LIDAR_ONLY,,LB012126,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022665,LIDAR_ONLY,,LB012158,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022666,LIDAR_ONLY,,LB012171,decide_small,shed,UNSURE,Brian,UNSURE,
@@ -3805,10 +3805,10 @@ G022668,LIDAR_ONLY,,LB012174,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022669,LIDAR_ONLY,,LB012188,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022670,LIDAR_ONLY,,LB012189,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022671,LIDAR_ONLY,,LB012197,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022672,LIDAR_ONLY,,LB012198,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022672,LIDAR_ONLY,,LB012198,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022673,LIDAR_ONLY,,LB012208,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022674,LIDAR_ONLY,,LB012212,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022675,LIDAR_ONLY,,LB012217,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022675,LIDAR_ONLY,,LB012217,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022676,LIDAR_ONLY,,LB012221,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022677,LIDAR_ONLY,,LB012222,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022678,LIDAR_ONLY,,LB012223,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3837,10 +3837,10 @@ G022700,LIDAR_ONLY,,LB012406,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022701,LIDAR_ONLY,,LB012429,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022702,LIDAR_ONLY,,LB012430,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022703,LIDAR_ONLY,,LB012434,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022704,LIDAR_ONLY,,LB012441,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022704,LIDAR_ONLY,,LB012441,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022705,LIDAR_ONLY,,LB012443,rule_small_shed,shed,SHED,rule,,
-G022706,LIDAR_ONLY,,LB012446,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G022707,LIDAR_ONLY,,LB012454,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022706,LIDAR_ONLY,,LB012446,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G022707,LIDAR_ONLY,,LB012454,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022708,LIDAR_ONLY,,LB012462,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022709,LIDAR_ONLY,,LB012467,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022710,LIDAR_ONLY,,LB012483,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3894,7 +3894,7 @@ G022757,LIDAR_ONLY,,LB012805,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022758,LIDAR_ONLY,,LB012812,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022759,LIDAR_ONLY,,LB012814,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022760,LIDAR_ONLY,,LB012818,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022761,LIDAR_ONLY,,LB012833,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022761,LIDAR_ONLY,,LB012833,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022762,LIDAR_ONLY,,LB012838,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022763,LIDAR_ONLY,,LB012862,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022764,LIDAR_ONLY,,LB012866,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3914,7 +3914,7 @@ G022777,LIDAR_ONLY,,LB012940,rule_small_shed,shed,SHED,rule,,
 G022778,LIDAR_ONLY,,LB012941,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022779,LIDAR_ONLY,,LB012958,rule_small_shed,shed,SHED,rule,,
 G022780,LIDAR_ONLY,,LB012966,auto_vehicles,shed,VEHICLE,rule,,
-G022781,LIDAR_ONLY,,LB012967,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022781,LIDAR_ONLY,,LB012967,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022782,LIDAR_ONLY,,LB012983,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022783,LIDAR_ONLY,,LB012989,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022784,LIDAR_ONLY,,LB013000,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3928,7 +3928,7 @@ G022791,LIDAR_ONLY,,LB013033,rule_small_shed,shed,SHED,rule,,
 G022792,LIDAR_ONLY,,LB013036,rule_small_shed,shed,SHED,rule,,
 G022793,LIDAR_ONLY,,LB013041,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022794,LIDAR_ONLY,,LB013054,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022795,LIDAR_ONLY,,LB013062,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022795,LIDAR_ONLY,,LB013062,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022796,LIDAR_ONLY,,LB013065,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022797,LIDAR_ONLY,,LB013066,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022798,LIDAR_ONLY,,LB013096,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3952,7 +3952,7 @@ G022815,LIDAR_ONLY,,LB013281,auto_vehicles,vehicle,VEHICLE,rule,,
 G022816,LIDAR_ONLY,,LB013282,auto_vehicles,vehicle,VEHICLE,rule,,
 G022817,LIDAR_ONLY,,LB013291,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022818,LIDAR_ONLY,,LB013307,rule_small_shed,shed,SHED,rule,,
-G022819,LIDAR_ONLY,,LB013322,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022819,LIDAR_ONLY,,LB013322,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022820,LIDAR_ONLY,,LB013329,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022821,LIDAR_ONLY,,LB013330,auto_vehicles,vehicle,VEHICLE,rule,,
 G022822,LIDAR_ONLY,,LB013333,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3961,7 +3961,7 @@ G022824,LIDAR_ONLY,,LB013341,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022825,LIDAR_ONLY,,LB013342,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022826,LIDAR_ONLY,,LB013347,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022827,LIDAR_ONLY,,LB013367,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022828,LIDAR_ONLY,,LB013379,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022828,LIDAR_ONLY,,LB013379,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022829,LIDAR_ONLY,,LB013388,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022830,LIDAR_ONLY,,LB013392,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G022831,LIDAR_ONLY,,LB013394,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -3989,7 +3989,7 @@ G022852,LIDAR_ONLY,,LB013586,rule_small_shed,shed,SHED,rule,,
 G022853,LIDAR_ONLY,,LB013590,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022854,LIDAR_ONLY,,LB013603,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022855,LIDAR_ONLY,,LB013604,rule_small_vehicle,vehicle,VEHICLE,rule,,
-G022856,LIDAR_ONLY,,LB013605,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022856,LIDAR_ONLY,,LB013605,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022857,LIDAR_ONLY,,LB013620,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022858,LIDAR_ONLY,,LB013629,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022859,LIDAR_ONLY,,LB013650,auto_vehicles,vehicle,VEHICLE,rule,,
@@ -4040,22 +4040,22 @@ G022903,LIDAR_ONLY,,LB013971,rule_small_shed,shed,SHED,rule,,
 G022904,LIDAR_ONLY,,LB013972,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022905,LIDAR_ONLY,,LB013978,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022906,LIDAR_ONLY,,LB013983,decide_small,vehicle,SHED,Brian,SHED,
-G022907,LIDAR_ONLY,,LB013984,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022907,LIDAR_ONLY,,LB013984,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022908,LIDAR_ONLY,,LB013990,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022909,LIDAR_ONLY,,LB014006,rule_small_shed,shed,SHED,rule,,
 G022910,LIDAR_ONLY,,LB014007,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022911,LIDAR_ONLY,,LB014008,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022912,LIDAR_ONLY,,LB014012,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022913,LIDAR_ONLY,,LB014015,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022913,LIDAR_ONLY,,LB014015,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022914,LIDAR_ONLY,,LB014031,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022915,LIDAR_ONLY,,LB014042,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022916,LIDAR_ONLY,,LB014043,rule_small_shed,shed,SHED,rule,,
-G022917,LIDAR_ONLY,,LB014051,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022917,LIDAR_ONLY,,LB014051,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022918,LIDAR_ONLY,,LB014057,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022919,LIDAR_ONLY,,LB014068,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022920,LIDAR_ONLY,,LB014081,rule_small_shed,shed,SHED,rule,,
 G022921,LIDAR_ONLY,,LB014084,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G022922,LIDAR_ONLY,,LB014085,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022922,LIDAR_ONLY,,LB014085,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022923,LIDAR_ONLY,,LB014096,rule_small_shed,shed,SHED,rule,,
 G022924,LIDAR_ONLY,,LB014097,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022925,LIDAR_ONLY,,LB014098,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4103,7 +4103,7 @@ G022966,LIDAR_ONLY,,LB014353,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022967,LIDAR_ONLY,,LB014361,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022968,LIDAR_ONLY,,LB014363,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022969,LIDAR_ONLY,,LB014373,rule_small_shed,shed,SHED,rule,,
-G022970,LIDAR_ONLY,,LB014375,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G022970,LIDAR_ONLY,,LB014375,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G022971,LIDAR_ONLY,,LB014381,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022972,LIDAR_ONLY,,LB014394,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G022973,LIDAR_ONLY,,LB014399,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4161,7 +4161,7 @@ G023024,LIDAR_ONLY,,LB014834,decide_small,shed,VEHICLE,Brian,VEHICLE,
 G023025,LIDAR_ONLY,,LB014849,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023026,LIDAR_ONLY,,LB014850,rule_small_shed,shed,SHED,rule,,
 G023027,LIDAR_ONLY,,LB014852,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023028,LIDAR_ONLY,,LB014873,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023028,LIDAR_ONLY,,LB014873,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023029,LIDAR_ONLY,,LB014882,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023030,LIDAR_ONLY,,LB014886,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023031,LIDAR_ONLY,,LB014896,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4186,7 +4186,7 @@ G023049,LIDAR_ONLY,,LB015081,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023050,LIDAR_ONLY,,LB015082,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023051,LIDAR_ONLY,,LB015089,auto_vehicles,vehicle,VEHICLE,rule,,
 G023052,LIDAR_ONLY,,LB015091,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023053,LIDAR_ONLY,,LB015094,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023053,LIDAR_ONLY,,LB015094,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023054,LIDAR_ONLY,,LB015101,rule_small_shed,shed,SHED,rule,,
 G023055,LIDAR_ONLY,,LB015117,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023056,LIDAR_ONLY,,LB015121,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4207,14 +4207,14 @@ G023070,LIDAR_ONLY,,LB015237,auto_vehicles,vehicle,VEHICLE,rule,,
 G023071,LIDAR_ONLY,,LB015238,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023072,LIDAR_ONLY,,LB015251,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023073,LIDAR_ONLY,,LB015252,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023074,LIDAR_ONLY,,LB015254,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023074,LIDAR_ONLY,,LB015254,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023075,LIDAR_ONLY,,LB015258,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023076,LIDAR_ONLY,,LB015260,auto_vehicles,shed,VEHICLE,rule,,
 G023077,LIDAR_ONLY,,LB015262,rule_small_shed,shed,SHED,rule,,
 G023078,LIDAR_ONLY,,LB015266,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023079,LIDAR_ONLY,,LB015269,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023080,LIDAR_ONLY,,LB015270,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023081,LIDAR_ONLY,,LB015275,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023081,LIDAR_ONLY,,LB015275,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023082,LIDAR_ONLY,,LB015278,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023083,LIDAR_ONLY,,LB015280,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023084,LIDAR_ONLY,,LB015306,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4252,14 +4252,14 @@ G023115,LIDAR_ONLY,,LB015443,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023116,LIDAR_ONLY,,LB015449,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023117,LIDAR_ONLY,,LB015453,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023118,LIDAR_ONLY,,LB015458,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023119,LIDAR_ONLY,,LB015472,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023119,LIDAR_ONLY,,LB015472,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023120,LIDAR_ONLY,,LB015481,decide_small,vehicle,VEHICLE,Brian,VEHICLE,
 G023121,LIDAR_ONLY,,LB015485,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023122,LIDAR_ONLY,,LB015507,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023123,LIDAR_ONLY,,LB015509,rule_small_shed,shed,SHED,rule,,
 G023124,LIDAR_ONLY,,LB015517,rule_small_shed,shed,SHED,rule,,
 G023125,LIDAR_ONLY,,LB015518,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023126,LIDAR_ONLY,,LB015527,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023126,LIDAR_ONLY,,LB015527,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023127,LIDAR_ONLY,,LB015528,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023128,LIDAR_ONLY,,LB015531,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023129,LIDAR_ONLY,,LB015556,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -4269,12 +4269,12 @@ G023132,LIDAR_ONLY,,LB015584,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023133,LIDAR_ONLY,,LB015605,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023134,LIDAR_ONLY,,LB015607,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023135,LIDAR_ONLY,,LB015612,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023136,LIDAR_ONLY,,LB015617,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023136,LIDAR_ONLY,,LB015617,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023137,LIDAR_ONLY,,LB015622,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023138,LIDAR_ONLY,,LB015625,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023139,LIDAR_ONLY,,LB015629,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023140,LIDAR_ONLY,,LB015630,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023141,LIDAR_ONLY,,LB015649,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023141,LIDAR_ONLY,,LB015649,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023142,LIDAR_ONLY,,LB015660,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023143,LIDAR_ONLY,,LB015671,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023144,LIDAR_ONLY,,LB015672,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -4282,7 +4282,7 @@ G023145,LIDAR_ONLY,,LB015675,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023146,LIDAR_ONLY,,LB015683,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023147,LIDAR_ONLY,,LB015717,decide_small,shed,SHED,Brian,SHED,
 G023148,LIDAR_ONLY,,LB015728,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023149,LIDAR_ONLY,,LB015752,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023149,LIDAR_ONLY,,LB015752,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023150,LIDAR_ONLY,,LB015753,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023151,LIDAR_ONLY,,LB015761,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023152,LIDAR_ONLY,,LB015801,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4314,17 +4314,17 @@ G023177,LIDAR_ONLY,,LB015928,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023178,LIDAR_ONLY,,LB015929,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023179,LIDAR_ONLY,,LB015937,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023180,LIDAR_ONLY,,LB015938,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023181,LIDAR_ONLY,,LB015943,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023181,LIDAR_ONLY,,LB015943,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023182,LIDAR_ONLY,,LB015950,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023183,LIDAR_ONLY,,LB015963,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023184,LIDAR_ONLY,,LB015965,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023185,LIDAR_ONLY,,LB015971,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023186,LIDAR_ONLY,,LB015993,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023187,LIDAR_ONLY,,LB015995,rule_small_shed,shed,SHED,rule,,
-G023188,LIDAR_ONLY,,LB016007,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023188,LIDAR_ONLY,,LB016007,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023189,LIDAR_ONLY,,LB016012,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023190,LIDAR_ONLY,,LB016016,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023191,LIDAR_ONLY,,LB016017,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023191,LIDAR_ONLY,,LB016017,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023192,LIDAR_ONLY,,LB016021,rule_small_shed,shed,SHED,rule,,
 G023193,LIDAR_ONLY,,LB016024,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023194,LIDAR_ONLY,,LB016034,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4332,7 +4332,7 @@ G023195,LIDAR_ONLY,,LB016040,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023196,LIDAR_ONLY,,LB016046,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023197,LIDAR_ONLY,,LB016047,auto_vehicles,vehicle,VEHICLE,rule,,
 G023198,LIDAR_ONLY,,LB016048,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023199,LIDAR_ONLY,,LB016049,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023199,LIDAR_ONLY,,LB016049,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023200,LIDAR_ONLY,,LB016066,auto_vehicles,vehicle,VEHICLE,rule,,
 G023201,LIDAR_ONLY,,LB016068,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023202,LIDAR_ONLY,,LB016075,rule_small_shed,shed,SHED,rule,,
@@ -4370,13 +4370,13 @@ G023233,LIDAR_ONLY,,LB016178,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023234,LIDAR_ONLY,,LB016181,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023235,LIDAR_ONLY,,LB016182,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023236,LIDAR_ONLY,,LB016185,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023237,LIDAR_ONLY,,LB016186,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023237,LIDAR_ONLY,,LB016186,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023238,LIDAR_ONLY,,LB016190,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023239,LIDAR_ONLY,,LB016194,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023240,LIDAR_ONLY,,LB016196,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023241,LIDAR_ONLY,,LB016201,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023242,LIDAR_ONLY,,LB016205,rule_small_shed,shed,SHED,rule,,
-G023243,LIDAR_ONLY,,LB016206,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023243,LIDAR_ONLY,,LB016206,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023244,LIDAR_ONLY,,LB016209,rule_small_shed,shed,SHED,rule,,
 G023245,LIDAR_ONLY,,LB016211,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023246,LIDAR_ONLY,,LB016219,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4395,7 +4395,7 @@ G023258,LIDAR_ONLY,,LB016267,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023259,LIDAR_ONLY,,LB016273,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023260,LIDAR_ONLY,,LB016275,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023261,LIDAR_ONLY,,LB016281,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023262,LIDAR_ONLY,,LB016282,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023262,LIDAR_ONLY,,LB016282,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023263,LIDAR_ONLY,,LB016288,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023264,LIDAR_ONLY,,LB016294,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023265,LIDAR_ONLY,,LB016296,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4460,7 +4460,7 @@ G023323,LIDAR_ONLY,,LB016529,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023324,LIDAR_ONLY,,LB016530,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023325,LIDAR_ONLY,,LB016534,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023326,LIDAR_ONLY,,LB016538,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023327,LIDAR_ONLY,,LB016539,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023327,LIDAR_ONLY,,LB016539,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023328,LIDAR_ONLY,,LB016545,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023329,LIDAR_ONLY,,LB016546,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023330,LIDAR_ONLY,,LB016548,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4485,7 +4485,7 @@ G023348,LIDAR_ONLY,,LB016592,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023349,LIDAR_ONLY,,LB016596,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023350,LIDAR_ONLY,,LB016607,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023351,LIDAR_ONLY,,LB016608,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023352,LIDAR_ONLY,,LB016609,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023352,LIDAR_ONLY,,LB016609,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023353,LIDAR_ONLY,,LB016612,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023354,LIDAR_ONLY,,LB016614,rule_small_shed,shed,SHED,rule,,
 G023355,LIDAR_ONLY,,LB016618,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4512,7 +4512,7 @@ G023375,LIDAR_ONLY,,LB016671,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023376,LIDAR_ONLY,,LB016673,rule_small_shed,shed,SHED,rule,,
 G023377,LIDAR_ONLY,,LB016674,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023378,LIDAR_ONLY,,LB016676,decide_small,shed,NEEDS_EDIT,Brian,NEEDS_EDIT,
-G023379,LIDAR_ONLY,,LB016677,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023379,LIDAR_ONLY,,LB016677,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023380,LIDAR_ONLY,,LB016678,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023381,LIDAR_ONLY,,LB016679,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023382,LIDAR_ONLY,,LB016680,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4550,8 +4550,8 @@ G023413,LIDAR_ONLY,,LB016799,rule_small_shed,shed,SHED,rule,,
 G023414,LIDAR_ONLY,,LB016800,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023415,LIDAR_ONLY,,LB016801,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023416,LIDAR_ONLY,,LB016806,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023417,LIDAR_ONLY,,LB016807,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G023418,LIDAR_ONLY,,LB016813,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023417,LIDAR_ONLY,,LB016807,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G023418,LIDAR_ONLY,,LB016813,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023419,LIDAR_ONLY,,LB016819,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023420,LIDAR_ONLY,,LB016821,rule_small_shed,shed,SHED,rule,,
 G023421,LIDAR_ONLY,,LB016822,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4627,7 +4627,7 @@ G023490,LIDAR_ONLY,,LB017042,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023491,LIDAR_ONLY,,LB017044,rule_small_shed,shed,SHED,rule,,
 G023492,LIDAR_ONLY,,LB017045,auto_vehicles,vehicle,VEHICLE,rule,,
 G023493,LIDAR_ONLY,,LB017047,rule_small_shed,shed,SHED,rule,,
-G023494,LIDAR_ONLY,,LB017049,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023494,LIDAR_ONLY,,LB017049,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023495,LIDAR_ONLY,,LB017052,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023496,LIDAR_ONLY,,LB017056,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023497,LIDAR_ONLY,,LB017065,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4635,7 +4635,7 @@ G023498,LIDAR_ONLY,,LB017066,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023499,LIDAR_ONLY,,LB017067,rule_small_shed,shed,SHED,rule,,
 G023500,LIDAR_ONLY,,LB017072,rule_small_shed,shed,SHED,rule,,
 G023501,LIDAR_ONLY,,LB017073,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023502,LIDAR_ONLY,,LB017074,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023502,LIDAR_ONLY,,LB017074,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023503,LIDAR_ONLY,,LB017076,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023504,LIDAR_ONLY,,LB017080,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023505,LIDAR_ONLY,,LB017081,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4670,10 +4670,10 @@ G023533,LIDAR_ONLY,,LB017208,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023534,LIDAR_ONLY,,LB017217,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023535,LIDAR_ONLY,,LB017226,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023536,LIDAR_ONLY,,LB017248,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023537,LIDAR_ONLY,,LB017255,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023537,LIDAR_ONLY,,LB017255,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023538,LIDAR_ONLY,,LB017261,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023539,LIDAR_ONLY,,LB017263,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023540,LIDAR_ONLY,,LB017266,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023540,LIDAR_ONLY,,LB017266,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023541,LIDAR_ONLY,,LB017271,rule_small_shed,shed,SHED,rule,,
 G023542,LIDAR_ONLY,,LB017277,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023543,LIDAR_ONLY,,LB017315,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4697,7 +4697,7 @@ G023560,LIDAR_ONLY,,LB017373,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023561,LIDAR_ONLY,,LB017375,rule_small_shed,shed,SHED,rule,,
 G023562,LIDAR_ONLY,,LB017376,rule_small_shed,shed,SHED,rule,,
 G023563,LIDAR_ONLY,,LB017377,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023564,LIDAR_ONLY,,LB017379,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023564,LIDAR_ONLY,,LB017379,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023565,LIDAR_ONLY,,LB017382,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023566,LIDAR_ONLY,,LB017383,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023567,LIDAR_ONLY,,LB017384,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4720,7 +4720,7 @@ G023583,LIDAR_ONLY,,LB017448,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023584,LIDAR_ONLY,,LB017450,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023585,LIDAR_ONLY,,LB017453,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023586,LIDAR_ONLY,,LB017454,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023587,LIDAR_ONLY,,LB017461,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023587,LIDAR_ONLY,,LB017461,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023588,LIDAR_ONLY,,LB017462,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023589,LIDAR_ONLY,,LB017464,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023590,LIDAR_ONLY,,LB017467,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4762,7 +4762,7 @@ G023625,LIDAR_ONLY,,LB017597,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023626,LIDAR_ONLY,,LB017601,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023627,LIDAR_ONLY,,LB017604,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023628,LIDAR_ONLY,,LB017612,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023629,LIDAR_ONLY,,LB017615,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023629,LIDAR_ONLY,,LB017615,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023630,LIDAR_ONLY,,LB017616,rule_small_shed,shed,SHED,rule,,
 G023631,LIDAR_ONLY,,LB017619,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023632,LIDAR_ONLY,,LB017623,rule_small_shed,shed,SHED,rule,,
@@ -4881,7 +4881,7 @@ G023744,LIDAR_ONLY,,LB018062,rule_small_shed,shed,SHED,rule,,
 G023745,LIDAR_ONLY,,LB018071,rule_small_shed,shed,SHED,rule,,
 G023746,LIDAR_ONLY,,LB018077,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023747,LIDAR_ONLY,,LB018082,rule_small_shed,shed,SHED,rule,,
-G023748,LIDAR_ONLY,,LB018084,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023748,LIDAR_ONLY,,LB018084,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023749,LIDAR_ONLY,,LB018085,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023750,LIDAR_ONLY,,LB018086,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023751,LIDAR_ONLY,,LB018087,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4906,7 +4906,7 @@ G023769,LIDAR_ONLY,,LB018169,rule_small_shed,shed,SHED,rule,,
 G023770,LIDAR_ONLY,,LB018176,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023771,LIDAR_ONLY,,LB018183,rule_small_shed,shed,SHED,rule,,
 G023772,LIDAR_ONLY,,LB018193,rule_small_shed,shed,SHED,rule,,
-G023773,LIDAR_ONLY,,LB018198,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023773,LIDAR_ONLY,,LB018198,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023774,LIDAR_ONLY,,LB018203,rule_small_shed,shed,SHED,rule,,
 G023775,LIDAR_ONLY,,LB018205,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023776,LIDAR_ONLY,,LB018226,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -4926,7 +4926,7 @@ G023789,LIDAR_ONLY,,LB018255,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023790,LIDAR_ONLY,,LB018256,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023791,LIDAR_ONLY,,LB018269,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023792,LIDAR_ONLY,,LB018272,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023793,LIDAR_ONLY,,LB018277,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023793,LIDAR_ONLY,,LB018277,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023794,LIDAR_ONLY,,LB018278,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023795,LIDAR_ONLY,,LB018280,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023796,LIDAR_ONLY,,LB018295,rule_small_shed,shed,SHED,rule,,
@@ -4941,12 +4941,12 @@ G023804,LIDAR_ONLY,,LB018328,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023805,LIDAR_ONLY,,LB018330,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023806,LIDAR_ONLY,,LB018335,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023807,LIDAR_ONLY,,LB018336,auto_vehicles,vehicle,VEHICLE,rule,,
-G023808,LIDAR_ONLY,,LB018337,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023808,LIDAR_ONLY,,LB018337,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023809,LIDAR_ONLY,,LB018344,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023810,LIDAR_ONLY,,LB018346,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023811,LIDAR_ONLY,,LB018354,decide_small,shed,VEHICLE,Brian,VEHICLE,
 G023812,LIDAR_ONLY,,LB018358,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023813,LIDAR_ONLY,,LB018361,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023813,LIDAR_ONLY,,LB018361,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023814,LIDAR_ONLY,,LB018368,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023815,LIDAR_ONLY,,LB018373,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023816,LIDAR_ONLY,,LB018378,rule_small_shed,shed,SHED,rule,,
@@ -4958,7 +4958,7 @@ G023821,LIDAR_ONLY,,LB018398,rule_small_shed,shed,SHED,rule,,
 G023822,LIDAR_ONLY,,LB018410,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023823,LIDAR_ONLY,,LB018428,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023824,LIDAR_ONLY,,LB018434,auto_vehicles,shed,VEHICLE,rule,,
-G023825,LIDAR_ONLY,,LB018437,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023825,LIDAR_ONLY,,LB018437,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023826,LIDAR_ONLY,,LB018445,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023827,LIDAR_ONLY,,LB018449,rule_small_shed,shed,SHED,rule,,
 G023828,LIDAR_ONLY,,LB018461,decide_small,vehicle,VEHICLE,Brian,VEHICLE,
@@ -4970,9 +4970,9 @@ G023833,LIDAR_ONLY,,LB018474,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023834,LIDAR_ONLY,,LB018478,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023835,LIDAR_ONLY,,LB018481,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023836,LIDAR_ONLY,,LB018489,auto_vehicles,vehicle,VEHICLE,rule,,
-G023837,LIDAR_ONLY,,LB018492,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G023838,LIDAR_ONLY,,LB018498,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G023839,LIDAR_ONLY,,LB018499,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023837,LIDAR_ONLY,,LB018492,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G023838,LIDAR_ONLY,,LB018498,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G023839,LIDAR_ONLY,,LB018499,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023840,LIDAR_ONLY,,LB018504,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023841,LIDAR_ONLY,,LB018505,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023842,LIDAR_ONLY,,LB018510,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5003,12 +5003,12 @@ G023866,LIDAR_ONLY,,LB018593,rule_small_shed,shed,SHED,rule,,
 G023867,LIDAR_ONLY,,LB018596,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023868,LIDAR_ONLY,,LB018600,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023869,LIDAR_ONLY,,LB018603,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023870,LIDAR_ONLY,,LB018604,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023870,LIDAR_ONLY,,LB018604,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023871,LIDAR_ONLY,,LB018607,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023872,LIDAR_ONLY,,LB018611,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023872,LIDAR_ONLY,,LB018611,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023873,LIDAR_ONLY,,LB018617,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023874,LIDAR_ONLY,,LB018618,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023875,LIDAR_ONLY,,LB018620,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023875,LIDAR_ONLY,,LB018620,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023876,LIDAR_ONLY,,LB018622,rule_small_shed,shed,SHED,rule,,
 G023877,LIDAR_ONLY,,LB018626,rule_small_shed,shed,SHED,rule,,
 G023878,LIDAR_ONLY,,LB018629,rule_small_shed,shed,SHED,rule,,
@@ -5020,14 +5020,14 @@ G023883,LIDAR_ONLY,,LB018648,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023884,LIDAR_ONLY,,LB018651,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023885,LIDAR_ONLY,,LB018658,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G023886,LIDAR_ONLY,,LB018661,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023887,LIDAR_ONLY,,LB018664,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023887,LIDAR_ONLY,,LB018664,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023888,LIDAR_ONLY,,LB018666,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023889,LIDAR_ONLY,,LB018674,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023890,LIDAR_ONLY,,LB018676,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023891,LIDAR_ONLY,,LB018679,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023892,LIDAR_ONLY,,LB018709,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023893,LIDAR_ONLY,,LB018723,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G023894,LIDAR_ONLY,,LB018727,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G023894,LIDAR_ONLY,,LB018727,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G023895,LIDAR_ONLY,,LB018729,rule_small_shed,shed,SHED,rule,,
 G023896,LIDAR_ONLY,,LB018730,rule_small_shed,shed,SHED,rule,,
 G023897,LIDAR_ONLY,,LB018733,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5133,7 +5133,7 @@ G023996,LIDAR_ONLY,,LB019133,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023997,LIDAR_ONLY,,LB019137,rule_small_shed,shed,SHED,rule,,
 G023998,LIDAR_ONLY,,LB019154,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G023999,LIDAR_ONLY,,LB019159,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024000,LIDAR_ONLY,,LB019169,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024000,LIDAR_ONLY,,LB019169,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024001,LIDAR_ONLY,,LB019170,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024002,LIDAR_ONLY,,LB019172,decide_small,vehicle,VEHICLE,Brian,VEHICLE,
 G024003,LIDAR_ONLY,,LB019174,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5276,13 +5276,13 @@ G024139,LIDAR_ONLY,,LB019895,rule_small_shed,shed,SHED,rule,,
 G024140,LIDAR_ONLY,,LB019898,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024141,LIDAR_ONLY,,LB019916,rule_small_shed,shed,SHED,rule,,
 G024142,LIDAR_ONLY,,LB019926,rule_small_shed,shed,SHED,rule,,
-G024143,LIDAR_ONLY,,LB019932,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024143,LIDAR_ONLY,,LB019932,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024144,LIDAR_ONLY,,LB019933,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024145,LIDAR_ONLY,,LB019934,rule_small_shed,shed,SHED,rule,,
 G024146,LIDAR_ONLY,,LB019935,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024147,LIDAR_ONLY,,LB019936,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024148,LIDAR_ONLY,,LB019938,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024149,LIDAR_ONLY,,LB019940,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024149,LIDAR_ONLY,,LB019940,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024150,LIDAR_ONLY,,LB019944,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024151,LIDAR_ONLY,,LB019946,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024152,LIDAR_ONLY,,LB019947,rule_small_shed,shed,SHED,rule,,
@@ -5290,8 +5290,8 @@ G024153,LIDAR_ONLY,,LB019961,auto_vehicles,shed,VEHICLE,rule,,
 G024154,LIDAR_ONLY,,LB019962,rule_small_shed,shed,SHED,rule,,
 G024155,LIDAR_ONLY,,LB019969,auto_vehicles,vehicle,VEHICLE,rule,,
 G024156,LIDAR_ONLY,,LB019970,rule_small_shed,shed,SHED,rule,,
-G024157,LIDAR_ONLY,,LB019974,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024158,LIDAR_ONLY,,LB019975,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024157,LIDAR_ONLY,,LB019974,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024158,LIDAR_ONLY,,LB019975,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024159,LIDAR_ONLY,,LB019976,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024160,LIDAR_ONLY,,LB019994,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024161,LIDAR_ONLY,,LB020001,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -5325,15 +5325,15 @@ G024188,LIDAR_ONLY,,LB020160,rule_small_shed,shed,SHED,rule,,
 G024189,LIDAR_ONLY,,LB020174,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024190,LIDAR_ONLY,,LB020175,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024191,LIDAR_ONLY,,LB020180,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024192,LIDAR_ONLY,,LB020183,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024192,LIDAR_ONLY,,LB020183,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024193,LIDAR_ONLY,,LB020192,rule_small_shed,shed,SHED,rule,,
 G024194,LIDAR_ONLY,,LB020194,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024195,LIDAR_ONLY,,LB020208,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024196,LIDAR_ONLY,,LB020209,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024196,LIDAR_ONLY,,LB020209,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024197,LIDAR_ONLY,,LB020211,rule_small_shed,shed,SHED,rule,,
 G024198,LIDAR_ONLY,,LB020214,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024199,LIDAR_ONLY,,LB020220,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024200,LIDAR_ONLY,,LB020227,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024199,LIDAR_ONLY,,LB020220,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024200,LIDAR_ONLY,,LB020227,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024201,LIDAR_ONLY,,LB020231,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024202,LIDAR_ONLY,,LB020236,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024203,LIDAR_ONLY,,LB020238,rule_small_shed,shed,SHED,rule,,
@@ -5342,7 +5342,7 @@ G024205,LIDAR_ONLY,,LB020247,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024206,LIDAR_ONLY,,LB020252,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024207,LIDAR_ONLY,,LB020254,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024208,LIDAR_ONLY,,LB020255,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024209,LIDAR_ONLY,,LB020257,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024209,LIDAR_ONLY,,LB020257,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024210,LIDAR_ONLY,,LB020260,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024211,LIDAR_ONLY,,LB020266,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024212,LIDAR_ONLY,,LB020268,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5362,7 +5362,7 @@ G024225,LIDAR_ONLY,,LB020362,rule_small_shed,shed,SHED,rule,,
 G024226,LIDAR_ONLY,,LB020390,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024227,LIDAR_ONLY,,LB020395,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024228,LIDAR_ONLY,,LB020396,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024229,LIDAR_ONLY,,LB020418,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024229,LIDAR_ONLY,,LB020418,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024230,LIDAR_ONLY,,LB020456,rule_small_shed,shed,SHED,rule,,
 G024231,LIDAR_ONLY,,LB020458,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024232,LIDAR_ONLY,,LB020479,rule_small_shed,shed,SHED,rule,,
@@ -5399,7 +5399,7 @@ G024262,LIDAR_ONLY,,LB020704,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024263,LIDAR_ONLY,,LB020712,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024264,LIDAR_ONLY,,LB020716,rule_small_shed,shed,SHED,rule,,
 G024265,LIDAR_ONLY,,LB020717,auto_vehicles,vehicle,VEHICLE,rule,,
-G024266,LIDAR_ONLY,,LB020720,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024266,LIDAR_ONLY,,LB020720,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024267,LIDAR_ONLY,,LB020721,rule_small_shed,shed,SHED,rule,,
 G024268,LIDAR_ONLY,,LB020723,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024269,LIDAR_ONLY,,LB020725,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -5409,10 +5409,10 @@ G024272,LIDAR_ONLY,,LB020749,auto_vehicles,vehicle,VEHICLE,rule,,
 G024273,LIDAR_ONLY,,LB020753,decide_small,vehicle,NEEDS_EDIT,Brian,NEEDS_EDIT,a shed but lots of trees manual draw
 G024274,LIDAR_ONLY,,LB020759,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024275,LIDAR_ONLY,,LB020776,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024276,LIDAR_ONLY,,LB020777,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024276,LIDAR_ONLY,,LB020777,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024277,LIDAR_ONLY,,LB020779,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024278,LIDAR_ONLY,,LB020790,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024279,LIDAR_ONLY,,LB020791,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024279,LIDAR_ONLY,,LB020791,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024280,LIDAR_ONLY,,LB020795,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024281,LIDAR_ONLY,,LB020796,rule_small_shed,shed,SHED,rule,,
 G024282,LIDAR_ONLY,,LB020802,rule_small_vehicle,vehicle,VEHICLE,rule,,
@@ -5432,7 +5432,7 @@ G024295,LIDAR_ONLY,,LB020891,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024296,LIDAR_ONLY,,LB020905,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024297,LIDAR_ONLY,,LB020921,rule_small_shed,shed,SHED,rule,,
 G024298,LIDAR_ONLY,,LB020923,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024299,LIDAR_ONLY,,LB020927,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024299,LIDAR_ONLY,,LB020927,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024300,LIDAR_ONLY,,LB020928,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024301,LIDAR_ONLY,,LB020931,rule_small_shed,shed,SHED,rule,,
 G024302,LIDAR_ONLY,,LB020951,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5476,7 +5476,7 @@ G024339,LIDAR_ONLY,,LB021231,rule_small_shed,shed,SHED,rule,,
 G024340,LIDAR_ONLY,,LB021232,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024341,LIDAR_ONLY,,LB021233,rule_small_shed,shed,SHED,rule,,
 G024342,LIDAR_ONLY,,LB021235,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024343,LIDAR_ONLY,,LB021256,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024343,LIDAR_ONLY,,LB021256,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024344,LIDAR_ONLY,,LB021267,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024345,LIDAR_ONLY,,LB021274,rule_small_shed,shed,SHED,rule,,
 G024346,LIDAR_ONLY,,LB021293,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5523,7 +5523,7 @@ G024386,LIDAR_ONLY,,LB021521,rule_small_shed,shed,SHED,rule,,
 G024387,LIDAR_ONLY,,LB021523,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024388,LIDAR_ONLY,,LB021525,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024389,LIDAR_ONLY,,LB021527,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024390,LIDAR_ONLY,,LB021529,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024390,LIDAR_ONLY,,LB021529,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024391,LIDAR_ONLY,,LB021531,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024392,LIDAR_ONLY,,LB021533,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024393,LIDAR_ONLY,,LB021543,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5552,9 +5552,9 @@ G024415,LIDAR_ONLY,,LB021723,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024416,LIDAR_ONLY,,LB021728,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024417,LIDAR_ONLY,,LB021748,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024418,LIDAR_ONLY,,LB021750,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024419,LIDAR_ONLY,,LB021765,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024419,LIDAR_ONLY,,LB021765,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024420,LIDAR_ONLY,,LB021769,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024421,LIDAR_ONLY,,LB021771,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024421,LIDAR_ONLY,,LB021771,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024422,LIDAR_ONLY,,LB021773,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024423,LIDAR_ONLY,,LB021781,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024424,LIDAR_ONLY,,LB021782,rule_small_shed,shed,SHED,rule,,
@@ -5597,9 +5597,9 @@ G024460,LIDAR_ONLY,,LB022030,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024461,LIDAR_ONLY,,LB022058,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024462,LIDAR_ONLY,,LB022060,rule_small_shed,shed,SHED,rule,,
 G024463,LIDAR_ONLY,,LB022062,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024464,LIDAR_ONLY,,LB022065,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024465,LIDAR_ONLY,,LB022067,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024466,LIDAR_ONLY,,LB022069,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024464,LIDAR_ONLY,,LB022065,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024465,LIDAR_ONLY,,LB022067,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024466,LIDAR_ONLY,,LB022069,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024467,LIDAR_ONLY,,LB022072,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024468,LIDAR_ONLY,,LB022076,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024469,LIDAR_ONLY,,LB022079,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5624,12 +5624,12 @@ G024487,LIDAR_ONLY,,LB022244,auto_vehicles,vehicle,VEHICLE,rule,,
 G024488,LIDAR_ONLY,,LB022247,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024489,LIDAR_ONLY,,LB022249,auto_vehicles,vehicle,VEHICLE,rule,,
 G024490,LIDAR_ONLY,,LB022251,auto_vehicles,vehicle,VEHICLE,rule,,
-G024491,LIDAR_ONLY,,LB022253,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024492,LIDAR_ONLY,,LB022255,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024491,LIDAR_ONLY,,LB022253,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024492,LIDAR_ONLY,,LB022255,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024493,LIDAR_ONLY,,LB022259,rule_small_shed,shed,SHED,rule,,
 G024494,LIDAR_ONLY,,LB022267,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024495,LIDAR_ONLY,,LB022287,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024496,LIDAR_ONLY,,LB022316,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024496,LIDAR_ONLY,,LB022316,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024497,LIDAR_ONLY,,LB022321,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024498,LIDAR_ONLY,,LB022324,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024499,LIDAR_ONLY,,LB022337,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5677,7 +5677,7 @@ G024540,LIDAR_ONLY,,LB022690,rule_small_shed,shed,SHED,rule,,
 G024541,LIDAR_ONLY,,LB022692,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024542,LIDAR_ONLY,,LB022697,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024543,LIDAR_ONLY,,LB022718,rule_small_shed,shed,SHED,rule,,
-G024544,LIDAR_ONLY,,LB022726,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024544,LIDAR_ONLY,,LB022726,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024545,LIDAR_ONLY,,LB022727,rule_small_vehicle,vehicle,VEHICLE,rule,,
 G024546,LIDAR_ONLY,,LB022730,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024547,LIDAR_ONLY,,LB022733,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5686,8 +5686,8 @@ G024549,LIDAR_ONLY,,LB022751,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024550,LIDAR_ONLY,,LB022754,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024551,LIDAR_ONLY,,LB022755,rule_small_shed,shed,SHED,rule,,
 G024552,LIDAR_ONLY,,LB022757,rule_small_shed,shed,SHED,rule,,
-G024553,LIDAR_ONLY,,LB022761,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024554,LIDAR_ONLY,,LB022764,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024553,LIDAR_ONLY,,LB022761,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024554,LIDAR_ONLY,,LB022764,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024555,LIDAR_ONLY,,LB022769,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024556,LIDAR_ONLY,,LB022774,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024557,LIDAR_ONLY,,LB022777,rule_small_shed,shed,SHED,rule,,
@@ -5720,13 +5720,13 @@ G024583,LIDAR_ONLY,,LB023064,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024584,LIDAR_ONLY,,LB023072,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024585,LIDAR_ONLY,,LB023077,rule_small_shed,shed,SHED,rule,,
 G024586,LIDAR_ONLY,,LB023109,rule_small_shed,shed,SHED,rule,,
-G024587,LIDAR_ONLY,,LB023113,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024587,LIDAR_ONLY,,LB023113,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024588,LIDAR_ONLY,,LB023114,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024589,LIDAR_ONLY,,LB023115,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024590,LIDAR_ONLY,,LB023116,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024590,LIDAR_ONLY,,LB023116,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024591,LIDAR_ONLY,,LB023118,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024592,LIDAR_ONLY,,LB023119,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024593,LIDAR_ONLY,,LB023123,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024593,LIDAR_ONLY,,LB023123,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024594,LIDAR_ONLY,,LB023131,rule_small_shed,shed,SHED,rule,,
 G024595,LIDAR_ONLY,,LB023135,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024596,LIDAR_ONLY,,LB023157,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5827,7 +5827,7 @@ G024690,LIDAR_ONLY,,LB023778,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024691,LIDAR_ONLY,,LB023780,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024692,LIDAR_ONLY,,LB023783,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024693,LIDAR_ONLY,,LB023785,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024694,LIDAR_ONLY,,LB023798,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024694,LIDAR_ONLY,,LB023798,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024695,LIDAR_ONLY,,LB023800,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024696,LIDAR_ONLY,,LB023806,rule_small_shed,shed,SHED,rule,,
 G024697,LIDAR_ONLY,,LB023813,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5845,10 +5845,10 @@ G024708,LIDAR_ONLY,,LB023880,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024709,LIDAR_ONLY,,LB023889,decide_small,shed,SHED,Brian,SHED,
 G024710,LIDAR_ONLY,,LB023891,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024711,LIDAR_ONLY,,LB023893,rule_small_shed,shed,SHED,rule,,
-G024712,LIDAR_ONLY,,LB023894,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024712,LIDAR_ONLY,,LB023894,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024713,LIDAR_ONLY,,LB023901,rule_small_shed,shed,SHED,rule,,
 G024714,LIDAR_ONLY,,LB023907,rule_small_shed,shed,SHED,rule,,
-G024715,LIDAR_ONLY,,LB023914,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024715,LIDAR_ONLY,,LB023914,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024716,LIDAR_ONLY,,LB023916,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024717,LIDAR_ONLY,,LB023925,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024718,LIDAR_ONLY,,LB023928,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5910,8 +5910,8 @@ G024773,LIDAR_ONLY,,LB024329,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024774,LIDAR_ONLY,,LB024334,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024775,LIDAR_ONLY,,LB024349,rule_small_shed,shed,SHED,rule,,
 G024776,LIDAR_ONLY,,LB024352,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024777,LIDAR_ONLY,,LB024354,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024778,LIDAR_ONLY,,LB024380,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024777,LIDAR_ONLY,,LB024354,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024778,LIDAR_ONLY,,LB024380,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
 G024779,LIDAR_ONLY,,LB024388,rule_small_shed,shed,SHED,rule,,
 G024780,LIDAR_ONLY,,LB024397,rule_small_shed,shed,SHED,rule,,
 G024781,LIDAR_ONLY,,LB024403,auto_lidar_only,,LIDAR_RIGHT,rule,,
@@ -5922,6 +5922,6 @@ G024785,LIDAR_ONLY,,LB024445,rule_small_shed,shed,SHED,rule,,
 G024786,LIDAR_ONLY,,LB024448,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024787,LIDAR_ONLY,,LB024450,auto_lidar_only,,LIDAR_RIGHT,rule,,
 G024788,LIDAR_ONLY,,LB024452,auto_lidar_only,,LIDAR_RIGHT,rule,,
-G024789,LIDAR_ONLY,,LB024455,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024790,LIDAR_ONLY,,LB024456,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
-G024791,LIDAR_ONLY,,LB024458,touching_wait,touching,,waiting,,October 27 default (join) failed its check: 8 of 20 part of a building
+G024789,LIDAR_ONLY,,LB024455,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024790,LIDAR_ONLY,,LB024456,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
+G024791,LIDAR_ONLY,,LB024458,touching_wait,touching,DROP,Brian-20261110,,"Brian, November 10: drop small pieces touching a building (join failed its check, 8 of 20)"
