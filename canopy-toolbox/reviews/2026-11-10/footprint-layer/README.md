@@ -25,16 +25,18 @@ never read.
 | COUNTY_PLUS_LIDAR | 9 | Brian's "add the extra roof" |
 | COUNTY_SHIFTED | 3 | Brian's "shift onto the LiDAR" (best overlap within 5 m, or the October 23 alignment fit) |
 
-707 are typed `shed`. Dropped: 417 vehicles, 286 pieces touching a building (Brian's call), 255+3 county footprints
-gone, 12 not a building. Brian's 12 "part of the building" pieces are joined to the nearest outline within 1.5 m.
+707 are typed `shed`. Dropped: 417 vehicles, 143 pieces touching a building (Brian's call), 255+3 county footprints
+gone, 12 not a building. Joined to the nearest outline within 1.5 m: Brian's 12 "part of the building" pieces, and the
+other 143 of his 286 dropped pieces, which lie under a larger OSM house outline (eave strips; Brian, November 10,
+`DECIDED_BY` = `Brian-20261110-osm`; section below).
 
 **Flags for hand work (`REVIEW_FLAG`), 56:** NEEDS_EDIT 21, UNSURE 23, and SPLIT_BY_HAND 12: his splits where one
 county outline gives no line to cut by.
 
 **Checks:** no LiDAR or county outline used twice; every unused LiDAR outline is in a dropped, county-kept or shifted
-group; 469 overlaps between neighbours (regularizing pushes them together) trimmed from the smaller outline, none left;
-nothing under 2 m². ArcGIS found 51 self-intersections, duplicate vertices and short segments that shapely accepts,
-most where unit cuts meet; Repair Geometry (OGC) cleared them. 164 outlines are multipart. [examples.png](examples.png)
+group; 472 overlaps between neighbours (regularizing pushes them together) trimmed from the smaller outline, none left;
+nothing under 2 m². ArcGIS found 66 self-intersections, duplicate vertices and short segments that shapely accepts,
+most where unit cuts and joins meet; Repair Geometry (OGC) cleared them. 164 outlines are multipart. [examples.png](examples.png)
 shows one of each kind of fix.
 
 ## Against the other footprint datasets ([compare_datasets.py](compare_datasets.py), [compare.json](compare.json))
@@ -71,14 +73,14 @@ has nothing under 42 m².
 | Kept county under trees (rule) | 478 | 13% | 11% | 38% of 84 | Mostly small sheds no source maps; little evidence either way |
 | Shed rule (free-standing, under 20 m²) | 679 | 9% | 2% | — | Below every source's size; no evidence either way |
 | Vehicles (rule) | 404 | 15% | 8% | — | Supports the rule |
-| Pieces touching a building, dropped (Brian) | 286 | 64% | 4% | — | **60% lie under a larger house outline** (below) |
+| Pieces touching a building, Brian's drop call (all 286, before the join) | 286 | 64% | 4% | — | **60% lie under a larger house outline** (below) |
 | Flagged for hand work | 56 | 75% | 64% | 90% of 39 | Real buildings that need their shape fixed |
 
 **The dropped touching pieces are mostly the edge of the same house.** 143 of the 286 lie under a larger OSM outline
 that the County outline does not reach (172 under any source's). [drop-pieces.png](drop-pieces.png) shows 9 at random
 (`drop_pieces.py`): nearly all are 1-2 m strips along one side of a house, where a lot line runs along the wall and cut
 the eave off the roof outline. Dropping them shaves that side of the house; joining them restores the full roof line.
-Joining the 143 under an OSM house outline, and dropping the rest, is an option for Brian.
+Brian chose to join the 143 under an OSM house outline and drop the rest; all 143 were within 1.5 m of their house.
 
 ## Footprint models we could run
 

@@ -12,17 +12,18 @@
   "line": "roof (no wall-line shrink)",
   "attributes": "county row where one exists; parcel by location"
  },
- "overlaps_trimmed": 469,
+ "eave_strips_joined_from_drop": 143,
+ "overlaps_trimmed": 472,
  "outlines": 24858,
  "invalid": 0,
- "multipart": 164,
+ "multipart": 165,
  "overlaps_over_1m2": 0,
  "overlap_m2": 0,
  "overlap_pairs_by_source": {},
  "largest_overlaps": [],
  "under_2m2": 0,
  "lidar_outlines_used_twice": 0,
- "lidar_outlines_unused": 798,
+ "lidar_outlines_unused": 655,
  "lidar_unused_not_dropped_or_county": 0,
  "county_outlines_used_twice": 0,
  "by_source": {
@@ -48,8 +49,9 @@
   "LIDAR_RIGHT (rule-20261109)": 550,
   "KEEP_COUNTY (rule)": 480,
   "VEHICLE (rule)": 404,
-  "DROP (Brian-20261110)": 286,
   "GONE (rule)": 255,
+  "PART_OF_BUILDING (Brian-20261110-osm)": 143,
+  "DROP (Brian-20261110)": 143,
   "SPLIT_BUILDINGS (rule-20261110)": 142,
   "KEEP_COUNTY (Brian)": 58,
   "SPLIT_BUILDINGS (Brian)": 43,
@@ -65,5 +67,5 @@
   "GONE (Brian)": 3,
   "KEEP_UNITS (Brian)": 2
  },
- "area_m2": 5562975.0
+ "area_m2": 5565020.0
 }

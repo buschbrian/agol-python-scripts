@@ -5,12 +5,13 @@
  "problems_before": {
   "OGC": {
    "Duplicate vertex": 16,
+   "non simple": 1,
    "self intersections": 20,
-   "short segments": 15
+   "short segments": 29
   },
   "ESRI": {
    "self intersections": 47,
-   "short segments": 4
+   "short segments": 19
   }
  },
  "problems_after": {

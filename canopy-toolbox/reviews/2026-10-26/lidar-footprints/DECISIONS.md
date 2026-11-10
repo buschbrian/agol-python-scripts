@@ -23,9 +23,8 @@ dropped those 286 (`DROP`, `BY` = `Brian-20261110`). The shed rule (679) stands 
 ## Footprint layer built (November 10)
 
 All decisions are applied in [footprint-layer](../../2026-11-10/footprint-layer/README.md): 24,858 outlines, roof line kept,
-county attributes carried, 56 flagged for hand work. Not uploaded. Open: in the other sources, 60% of the 286 dropped
-pieces lie under a larger house outline (143 under OSM), mostly eave strips cut off at a lot line, so joining those is
-an option; the 3D rebuild on this layer is next.
+county attributes carried, 56 flagged for hand work. Not uploaded. Of the 286 dropped pieces, the 143 that lie under a larger OSM house outline (eave strips cut off at a lot
+line) are joined to their house (Brian, November 10); the rest stay dropped. The 3D rebuild on this layer is next.
 
 ## Graded halfway through the regrade, and the 137 items left (October 27)
 

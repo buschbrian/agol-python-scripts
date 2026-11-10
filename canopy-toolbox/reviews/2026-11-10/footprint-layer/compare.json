@@ -66,11 +66,11 @@
    "ours_found_in_theirs_pct": 81.7,
    "ours_42m2_plus_found_pct": 92.2,
    "theirs_42m2_plus_found_pct": 97.6,
-   "one_to_one_pairs": 19272,
+   "one_to_one_pairs": 19271,
    "one_to_one_median_iou": 0.719,
-   "one_to_one_median_area_ours_over_theirs": 1.184,
-   "theirs_not_in_ours": 508,
-   "ours_not_in_theirs": 4536
+   "one_to_one_median_area_ours_over_theirs": 1.185,
+   "theirs_not_in_ours": 509,
+   "ours_not_in_theirs": 4537
   }
  ],
  "osm_vs_county": {

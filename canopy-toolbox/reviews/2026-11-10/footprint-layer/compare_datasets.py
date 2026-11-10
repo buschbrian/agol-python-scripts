@@ -24,10 +24,9 @@ import pandas as pd
 import shapely
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_footprints import COMPARE, COUNTY, DECISIONS, INPUTS, OUTLINES, RUNS  # noqa: E402
+from build_footprints import COMPARE, COUNTY, DECISIONS, INPUTS, OUTLINES, OVERTURE, RUNS  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
-OVERTURE = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\overture_vs_lidar.gpkg")
 USA = RUNS/"usa-structures-20261023"/"usa_structures.gpkg"
 MATCH = 0.30
 USA_FLOOR_M2 = 42

@@ -16,7 +16,9 @@ Every compare group (city2/compare.csv, MATCH included) produces its outlines on
   (best overlap, 0.25 m steps within 5 m), or by its October 23 alignment fit where the LiDAR saw nothing.
 - PART_OF_BUILDING: joined, after everything else, to the output outline it shares the longest edge with.
 - NEEDS_EDIT, UNSURE: the LiDAR outline where there is one, otherwise the county's, flagged for hand work.
-- GONE, VEHICLE, DROP, NOT_A_BUILDING: nothing.
+- GONE, VEHICLE, DROP, NOT_A_BUILDING: nothing, except the dropped pieces touching a building that lie under a larger
+  OpenStreetMap house outline: eave strips cut off at a lot line, joined as PART_OF_BUILDING (Brian, November 10;
+  DECIDED_BY Brian-20261110-osm; see drop-pieces.png).
 
 Parcels are joined by location for parcel_id, prop_location, year_built and lot_use only (the table also holds owner
 names, which never leave it). Run with the millcreek-py3 Python (-I).
@@ -46,10 +48,12 @@ OUTLINES = RUNS/"lidar-footprints-20261109"/"regularized.gdb"
 COUNTY = RUNS/"millcreek-products-20261022"/"buildings.gdb"
 ALIGN = RUNS/"county-alignment-20261023"/"county-alignment.gpkg"
 INPUTS = RUNS/"city-count-20261008"/"inputs.gdb"
+OVERTURE = Path(r"Z:\GIS\overture\2026-10-21.0\millcreek\lidar-compare\overture_vs_lidar.gpkg")   # 6341 via ITRF08
 CRS = 6341
 FT2 = 0.3048 ** 2
 MIN_PIECE_M2 = 2.0      # a unit piece smaller than this joins its neighbour (county lines a little off the roof edge)
 JOIN_GAP_M = 1.5        # a PART_OF_BUILDING piece joins an outline this close (regularizing moves edges up to 0.75 m)
+EAVE_OVERLAP, EAVE_LARGER = 0.30, 3.0   # a dropped piece at least 30% under an OSM outline 3+ times its size is an eave strip
 DROP = {"GONE", "VEHICLE", "DROP", "NOT_A_BUILDING"}
 FLAG = {"NEEDS_EDIT": "NEEDS_EDIT", "UNSURE": "UNSURE"}
 PARCEL_FIELDS = ["parcel_id", "prop_location", "year_built", "lot_use"]
@@ -113,7 +117,29 @@ def load(pilot):
     county = gpd.read_file(COUNTY, layer="building_heights").set_index("SOURCE_ID")
     align = gpd.read_file(ALIGN, layer="footprints_as_county", ignore_geometry=True).set_index("SOURCE_ID")
     assert lidar.crs.to_epsg() == CRS and county.crs.to_epsg() == CRS
-    return groups, dec, lidar, county, align
+    eaves = eave_strips(groups, dec, lidar)
+    for gid in eaves:
+        dec[gid] = dict(dec[gid], DECISION="PART_OF_BUILDING", BY="Brian-20261110-osm")
+    return groups, dec, lidar, county, align, len(eaves)
+
+
+def eave_strips(groups, dec, lidar):
+    """Groups Brian dropped as pieces touching a building that lie under a larger OpenStreetMap house outline."""
+    osm = gpd.read_file(OVERTURE, layer="overture_buildings")
+    assert osm.crs.to_epsg() == CRS
+    osm = osm[osm.source_datasets.str.contains("OpenStreetMap")]
+    tree = shapely.STRtree(list(osm.geometry))
+    out = set()
+    for g in groups:
+        r = dec.get(g["GROUP"])
+        if not r or r["DECISION"] != "DROP":
+            continue
+        for lb in [x for x in g["LIDAR_IDS"].split(";") if x]:
+            x = lidar.geometry[lb]
+            if any(x.intersection(y).area >= EAVE_OVERLAP * x.area and y.area > EAVE_LARGER * x.area
+                   for y in osm.geometry.iloc[tree.query(x, "intersects")]):
+                out.add(g["GROUP"])
+    return out
 
 
 def check_inputs(groups, dec, lidar, county, pilot):
@@ -293,7 +319,7 @@ def main():
     p.add_argument("--pilot", action="store_true")
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
-    groups, dec, lidar, county, align = load(a.pilot)
+    groups, dec, lidar, county, align, eaves = load(a.pilot)
     check_inputs(groups, dec, lidar, county, a.pilot)
     out, used_lb, used_c, trimmed = build(groups, dec, lidar, county, align)
     gdf = gpd.GeoDataFrame([o for o in out if o["geometry"] is not None], crs=CRS)
@@ -310,7 +336,7 @@ def main():
                "inputs": {"compare": str(COMPARE), "decisions": str(DECISIONS), "outlines": str(OUTLINES),
                           "county": str(COUNTY), "parcels": str(INPUTS)},
                "defaults": {"line": "roof (no wall-line shrink)", "attributes": "county row where one exists; parcel by location"},
-               "overlaps_trimmed": trimmed, **checks(gdf, used_lb, used_c, lidar, county, groups, dec, a.pilot)}
+               "eave_strips_joined_from_drop": eaves, "overlaps_trimmed": trimmed, **checks(gdf, used_lb, used_c, lidar, county, groups, dec, a.pilot)}
     (a.out/f"{name}.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
     print(json.dumps(summary, indent=1))
 
