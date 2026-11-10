@@ -122,3 +122,17 @@ Brian, November 10: run the model on the open trees 8 m and up in the merged and
 **If it passes,** the other confident ONE_TREE calls are a proposal only: "one tree, by the model, spot-checked". Nothing is settled
 until Brian agrees, and none of it is ever written into his answers file. Problems are left to the cues (test C). If it fails, every
 tree stays his.
+
+### The open tall trees: the spot-check was not set up
+
+Sonnet 5.5 read all 439 (every reviewer confirmed as Sonnet 5.5). Calls are in `runs\model-triage-open-20261110\results` on H:, not in git.
+
+| Queue | Trees | ONE_TREE, high | PROBLEM, high | Medium or low | UNSURE |
+|---|---:|---:|---:|---:|---:|
+| merged | 244 | 23 | 91 | 124 | 6 |
+| over_roof | 195 | 3 | 97 | 86 | 9 |
+
+Only 26 confident ONE_TREE calls exist, fewer than the 30 checks the rule asked for. A spot-check would take all 26 and leave
+nothing to settle, so it would cost Brian 41 answers and save none. It was not added to the page, and the page's data is unchanged.
+The 188 confident PROBLEM calls add little, because these queues were already chosen by the problem cues that test C found right
+93% of the time.
