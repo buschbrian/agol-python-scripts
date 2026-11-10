@@ -82,12 +82,20 @@ def tall(entry):
 
 
 def main():
+    global BATCHES
     out = Path(sys.argv[1])
-    holdout = Path(sys.argv[2]) if len(sys.argv) > 2 else None   # an earlier key.csv: its trees are left out, the rest are test C
+    open_tall = len(sys.argv) > 2 and sys.argv[2] == "--open-tall"   # the open 8 m+ trees in merged and over_roof, no answers
+    holdout = Path(sys.argv[2]) if len(sys.argv) > 2 and not open_tall else None   # an earlier key.csv: its trees are left out
     with open(base.REVIEW / "answers" / "footprint-review-answers.csv", encoding="utf-8-sig", newline="") as f:
         answered = {(r["QUEUE"], r["ITEM_ID"]) for r in csv.DictReader(f) if r["ANSWER"].strip()}
     index = json.loads((base.DATA / "index.json").read_text(encoding="utf-8"))["items"]
     chosen = []
+    if open_tall:
+        with open(base.DATA / "answers" / "footprint-review-answers.csv", encoding="utf-8", newline="") as f:
+            live = {r["ITEM_ID"] for r in csv.DictReader(f)}
+        chosen = [(e, "tree", e["group"]) for e in index
+                  if e["queue"] == "trees" and e["group"] in ("merged", "over_roof") and e["id"] not in live and tall(e)]
+        index, BATCHES = [], 15
     if holdout:
         with open(holdout, encoding="utf-8-sig", newline="") as f:
             seen = {r["ITEM_ID"] for r in csv.DictReader(f)}

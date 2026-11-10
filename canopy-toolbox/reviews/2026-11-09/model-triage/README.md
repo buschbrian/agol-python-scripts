@@ -106,3 +106,19 @@ PROBLEM calls are also flagged by a cue. The cues cannot say a tree is fine, so 
 which were chosen by the same cues the model saw as facts. Their mix of problems is different, so the ONE_TREE rate is not
 established there until Brian answers a blind sample from them. The tree sample's 30 open trees of 20 m and up stay his, because
 they measure the error rates.
+
+## The open tall trees and a blind spot-check (rules fixed November 10, before any read)
+
+Brian, November 10: run the model on the open trees 8 m and up in the merged and over-roof queues, then check it blind.
+
+1. Sonnet 5.5 (medium) reads every open tree of 8 m and up in `merged` and `over_roof` (439 when counted), with test C's question,
+   brief and sheets (`export_tests.py OUT --open-tall`).
+2. `spot_check.py add` moves 30 random confident ONE_TREE calls (seed 20261110) and 15 random other trees into one new group,
+   "Spot-check: answer these first", in random order. The page shows no model call, and nothing on it tells checks from filler.
+3. Brian answers that group with the usual tree answers. `spot_check.py score` then applies the rule.
+
+**Pass rule:** at least 20 of the 30 checks answered other than UNSURE, and at least 85% of those answered ONE_TREE.
+
+**If it passes,** the other confident ONE_TREE calls are a proposal only: "one tree, by the model, spot-checked". Nothing is settled
+until Brian agrees, and none of it is ever written into his answers file. Problems are left to the cues (test C). If it fails, every
+tree stays his.
