@@ -11,6 +11,8 @@ classification work, and how to resume it, is reviews/2026-10-20/HANDOFF.md.
 - LiDAR-first building outlines (Brian, October 26: the LiDAR is the truth for whole buildings, redraw the county
   footprints from it) and the county-vs-LiDAR classes, citywide: reviews/2026-10-26/lidar-footprints. It supersedes the
   attached-candidate reduction in reviews/2026-10-23/review-reduction.
+- November 10 grading of the finished outlines2 regrade (tangle rule, failed touching-piece default, decisions-20261110.csv):
+  reviews/2026-11-10/building-grade.
 - Where the whole LiDAR project stands, what Brian's first review answers say, and what is next: reviews/2026-10-26/STATUS.md.
   Measured cues for his reported tree and footprint problems (shrubs, brush, roofs and sheds, merges, slopes,
   redeveloped sites): reviews/2026-10-26/model-review/cues.py.

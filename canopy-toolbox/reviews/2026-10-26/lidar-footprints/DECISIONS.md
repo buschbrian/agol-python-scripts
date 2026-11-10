@@ -13,6 +13,13 @@ data is the last option**: "we're trying to fix the problems that the county's g
 take the LiDAR outer shape, with county lines kept only as unit divisions inside it (Brian, November 9):
 `2026-11-09/regularize/decisions-20261109.csv`, `BY` = `rule-20261109`. His own 125 answers are unchanged.
 
+## Regrade finished (November 10)
+
+Brian answered all 262 outlines2 Decide, Answer and Check items. [building-grade](../../2026-11-10/building-grade/README.md)
+writes `decisions-20261110.csv`. Tangles become a rule: the 142 waiting are split into separate buildings (28 of 40). The
+join default for small pieces touching a building failed its check (8 of 20), so those 286 wait on Brian: join, drop or
+review. The shed rule (679) stands but was right on only 12 of 23 free-standing answers.
+
 ## Graded halfway through the regrade, and the 137 items left (October 27)
 
 The October 26 tables below are superseded by this one. [grade_regrade.py](grade_regrade.py) turned Brian's 125
