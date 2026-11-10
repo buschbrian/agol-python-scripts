@@ -71,3 +71,6 @@ PROBLEM calls: 31 of 35 (88.6%). 21 of those 35 are also flagged by a cue. Prefe
 
 **The 13 NOT_STRUCTURE matches are mostly the vehicle rule again.** 7 are in the group already settled by the vehicle-shape rule, where
 14 of 15 scored answers are NOT_STRUCTURE. 6 are from the small-outline groups.
+
+**Later answers not used here.** These tests graded the 113 tree answers in the repo backup at the time. The page's live file already
+held 117 more from November 9, including trees of 8 m and up. They were not read by the model or used in this result.

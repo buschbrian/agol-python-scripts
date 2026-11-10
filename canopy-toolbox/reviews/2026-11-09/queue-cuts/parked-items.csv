@@ -1,0 +1,73 @@
+ITEM_ID,QUEUE,GROUP,REASON
+TX0738dbee,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX939b8628,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXe34d380b,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX6063cbbb,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXd8eccc7f,tree_rejects,no_terrain,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX1a1eb904,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX20ba5e24,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX5c8ceb7b,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX61648e96,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXa9665ed0,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXb9ec6feb,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX434f2de7,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX3fd95f7f,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX827d171a,tree_rejects,no_terrain,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXd98d299e,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXda380dcf,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXde5585da,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX28d548d6,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX51cd7b60,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX7d2570a1,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX8156b19a,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX970521cd,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXa1d4b811,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXa3279495,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXab029453,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXd966859c,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXec5286dd,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TX54d76ca4,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXb87d7155,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXe59dfe54,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXb99eba35,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TXe7ef9471,tree_rejects,no_trunk,"exclusion stands: 36 of 43 answered were not a tree, none a missed tree"
+TR95bc7f5f,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TRb8480152,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TR4bd799d7,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TR1c7ca29e,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TR775a0c5c,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TRb2e002a1,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TRc08ef9d8,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TR72a7fb58,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TR8aaa2973,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TRd2393110,trees,sample,tree sample: 30 per band is enough for 12-20 m
+TR96017498,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR10a49a35,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRdb9875b4,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRd54e0f94,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR9805fb03,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR9e61ca36,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRb3f63514,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRd2f330ed,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR43b0136e,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR991ad5b1,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRe3a33448,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR3b8549e3,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR0d8f6647,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR12b28057,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR5a986828,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRd13b68ee,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR96cd2ce7,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRa0109979,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRdc4dc93d,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRbc0a7bce,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR9c3a8788,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRbdec2875,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR7a42d16c,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR2a102a20,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRe16793b6,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR147dff18,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRe2444ec7,trees,sample,tree sample: 30 per band is enough for 20+ m
+TRfa1c1cc2,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR15c4f0b8,trees,sample,tree sample: 30 per band is enough for 20+ m
+TR740cc28c,trees,sample,tree sample: 30 per band is enough for 20+ m

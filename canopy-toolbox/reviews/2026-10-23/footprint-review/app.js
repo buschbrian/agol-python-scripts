@@ -282,10 +282,19 @@ function refreshGroups() {
   sel.value = groups.includes(keep) ? keep : "";
 }
 
+const STOP_AFTER = 20;   // November 9: the poor-fit group runs worst first, so a run of right outlines means the rest can wait
+function fineRun() {
+  let run = 0;
+  for (const it of index.items) if (it.group === "cleanup_roof_fit" && done(it.id)) run = answers[it.id].ANSWER === "OUTLINE_RIGHT" ? run + 1 : 0;
+  return run;
+}
+
 function progress() {
   const q = $("queue").value, all = index.items.filter((it) => it.queue === q), n = all.filter((it) => done(it.id)).length;
   $("progress-bar").style.width = all.length ? `${(100 * n) / all.length}%` : "0";
-  $("progress-text").textContent = `${n} of ${all.length} answered in this queue`;
+  const run = q === "cleanup" ? fineRun() : 0;
+  $("progress-text").textContent = `${n} of ${all.length} answered in this queue` +
+    (run >= STOP_AFTER ? `. Group 2: ${run} in a row fine, you can stop it and go to group 3` : run ? `. Group 2: ${run} in a row fine (stop at ${STOP_AFTER})` : "");
   $("position").textContent = list.length ? `${pos + 1} / ${list.length}` : "0 / 0";
 }
 
