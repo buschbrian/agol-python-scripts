@@ -1,0 +1,117 @@
+{
+ "footprints": {
+  "tasks": {
+   "small": {
+    "all": 24,
+    "all_hit": 12,
+    "high": 6,
+    "high_hit": 5
+   },
+   "kept": {
+    "all": 40,
+    "all_hit": 17,
+    "high": 6,
+    "high_hit": 2
+   },
+   "reshaped": {
+    "all": 18,
+    "all_hit": 6,
+    "high": 5,
+    "high_hit": 2
+   },
+   "joins": {
+    "all": 40,
+    "all_hit": 12,
+    "high": 6,
+    "high_hit": 3
+   },
+   "tangle": {
+    "all": 3,
+    "all_hit": 0
+   }
+  },
+  "passed": {
+   "reshaped": false,
+   "small": false,
+   "tangle": false
+  },
+  "open": {
+   "test": 125
+  },
+  "needs_brian_by_group": {},
+  "top_misses": [
+   [
+    "joins",
+    "COUNTY_RIGHT",
+    "LIDAR_RIGHT",
+    9
+   ],
+   [
+    "joins",
+    "COUNTY_RIGHT",
+    "SPLIT_BUILDINGS",
+    6
+   ],
+   [
+    "kept",
+    "SHED",
+    "UNDER_TREES",
+    6
+   ],
+   [
+    "kept",
+    "UNDER_TREES",
+    "SHED",
+    5
+   ],
+   [
+    "kept",
+    "UNSURE",
+    "UNDER_TREES",
+    4
+   ],
+   [
+    "reshaped",
+    "SPLIT_BUILDINGS",
+    "ADD_TO_COUNTY",
+    4
+   ],
+   [
+    "tangle",
+    "COUNTY_RIGHT",
+    "LIDAR_RIGHT",
+    3
+   ],
+   [
+    "small",
+    "NOT_A_BUILDING",
+    "SHED",
+    3
+   ],
+   [
+    "kept",
+    "NOT_A_BUILDING",
+    "UNDER_TREES",
+    2
+   ],
+   [
+    "joins",
+    "NEEDS_EDIT",
+    "LIDAR_RIGHT",
+    2
+   ],
+   [
+    "joins",
+    "UNSURE",
+    "SPLIT_BUILDINGS",
+    2
+   ],
+   [
+    "small",
+    "UNSURE",
+    "SHED",
+    2
+   ]
+  ]
+ }
+}

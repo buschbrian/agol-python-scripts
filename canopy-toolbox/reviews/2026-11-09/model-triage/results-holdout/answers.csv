@@ -1,0 +1,117 @@
+SHEET,ITEM_ID,TEST,TASK,MODEL_ANSWER,CONFIDENCE,NOTE,BRIAN_ANSWER,BRIAN_SIMPLE
+S001,TRb1d88080,C-8plus,tree,ONE_TREE,high,"Isolated, compact crown, clean side views",ONE_TREE,ONE_TREE
+S002,TRa8535574,C-8plus,tree,PROBLEM,high,"Large merged canopy, overlaps neighbor models, several trees joined",MERGED,PROBLEM
+S003,TRb5ce4cf2,C-8plus,tree,PROBLEM,high,"Elongated brush mass on slope, many treetops",SHRUBS,PROBLEM
+S004,TR5a5f435b,C-8plus,tree,ONE_TREE,high,"Round crown, well-shaped in both side views",ONE_TREE,ONE_TREE
+S005,TRe6be3d5f,C-8plus,tree,PROBLEM,medium,"Wide two-lobed outline, lopsided crown, likely multiple trees",MERGED,PROBLEM
+S006,TReabd5086,C-8plus,tree,PROBLEM,medium,"Separate low cluster of points, touches roof, lopsided",MERGED,PROBLEM
+S007,TRcf2a3cec,C-8plus,tree,ONE_TREE,medium,Coherent crown but outline clips adjacent roof edge,ONE_TREE,ONE_TREE
+S008,TRdb92811c,C-8plus,tree,PROBLEM,medium,"Sparse points, overlaps neighbor models, near roof fragment",UNSURE,
+S009,TR5bdd813a,C-8plus,tree,ONE_TREE,high,"Round full crown, clean points",ONE_TREE,ONE_TREE
+S010,TRae6fe525,C-8plus,tree,ONE_TREE,high,"Compact complete crown, clean outline",PART_OF_TREE,PROBLEM
+S011,TRa4ce972f,C-8plus,tree,PROBLEM,medium,Split by overlapping cyan model; part of one canopy,MERGED,PROBLEM
+S012,TRe056b206,C-8plus,tree,PROBLEM,high,"Sparse points, roof edge overlap, tiny fragment",TREE_WITH_ROOF,PROBLEM
+S013,TR10cdf1b7,C-under8,tree,ONE_TREE,medium,"Small isolated tree on slope, compact crown",ONE_TREE,ONE_TREE
+S014,TRdc1d9cbd,C-8plus,tree,PROBLEM,high,"Small piece of larger canopy, tall stem, tiny crown",UNSURE,
+S015,TRb8740a94,C-8plus,tree,PROBLEM,medium,Fragment inside dense canopy cluster beside roof,TREE_WITH_ROOF,PROBLEM
+S016,TRfded8e6c,C-8plus,tree,PROBLEM,medium,"Wide flat mass, roof overlap, likely several trees",ONE_TREE,ONE_TREE
+S017,TRd2a83a28,C-8plus,tree,ONE_TREE,medium,"Small crown between roofs, reasonably shaped",MERGED,PROBLEM
+S018,TR91e97871,C-8plus,tree,PROBLEM,high,"Long strip of several trees, includes roof edge",MERGED,PROBLEM
+S019,TRc8ee5a6e,C-8plus,tree,PROBLEM,high,"Row of joined trees, very wide, overlaps roof",MERGED,PROBLEM
+S020,TR312813ab,C-8plus,tree,PROBLEM,medium,"Overlaps neighbor models and roof edge, sparse points",ONE_TREE,ONE_TREE
+S021,TR8c2fd196,C-8plus,tree,PROBLEM,high,"Sliver on slope edge, fragmentary crown, not a tree shape",UNSURE,
+S022,TRbe45c018,C-8plus,tree,PROBLEM,medium,"Slice of a larger canopy, split by cyan outlines",UNSURE,
+S023,TRa81276b1,C-8plus,tree,PROBLEM,high,"Sparse points on road edge, wide crown, not a tree",NOT_A_TREE,PROBLEM
+S024,TRa34d67d8,C-8plus,tree,PROBLEM,medium,"Wide merged canopy among several neighbouring crowns, 4 treetops",ONE_TREE,ONE_TREE
+S025,TR47e01a24,C-8plus,tree,ONE_TREE,high,"Compact yard tree, full crown, clean side views",ONE_TREE,ONE_TREE
+S026,TRfda23b44,C-8plus,tree,ONE_TREE,medium,Broad but single dome crown with trunk,ONE_TREE,ONE_TREE
+S027,TRe1a6372f,C-8plus,tree,PROBLEM,high,"Low elongated shrub row, many treetops",NOT_A_TREE,PROBLEM
+S028,TR7c87d68c,C-8plus,tree,ONE_TREE,high,"Round isolated crown, full tree profile",ONE_TREE,ONE_TREE
+S029,TR777589cd,C-under8,tree,PROBLEM,high,"Small low sparse patch in forest, shrub or fragment",PART_OF_TREE,PROBLEM
+S030,TR28d742f8,C-8plus,tree,PROBLEM,high,Outline overlaps house roof and beside a tall crown,TREE_WITH_ROOF,PROBLEM
+S031,TR37918b1f,C-8plus,tree,ONE_TREE,medium,Single crown profile though touching neighbours and roof edge,MERGED,PROBLEM
+S032,TR121e4bab,C-8plus,tree,PROBLEM,high,"Few points at top only, floating hull, not a tree",NOT_A_TREE,PROBLEM
+S033,TR20567cb0,C-8plus,tree,PROBLEM,high,"Huge merged canopy, 28 m wide, 21 treetops",REDO,
+S034,TRdd05f7fc,C-8plus,tree,UNSURE,low,"Dense forest, one-tree profile but five treetops",MERGED,PROBLEM
+S035,TRe6e126cf,C-8plus,tree,PROBLEM,high,"Several trees joined, irregular outline, 6 treetops",MERGED,PROBLEM
+S036,TRd9814b2a,C-8plus,tree,PROBLEM,high,"Elongated slice of canopy on slope, lopsided profile",MERGED,PROBLEM
+S037,TR113bc4ec,C-8plus,tree,PROBLEM,high,"18 m wide, 13 treetops, joined trees",MERGED,PROBLEM
+S038,TRbf73f688,C-8plus,tree,PROBLEM,medium,"Sliver of larger tree group, outline cut off from crown",ONE_TREE,ONE_TREE
+S039,TRcccbb3db,C-8plus,tree,PROBLEM,medium,Tall narrow sparse slice inside bigger canopy cluster,UNSURE,
+S040,TRae6221d8,C-8plus,tree,ONE_TREE,high,"Isolated round crown, complete well-shaped tree",ONE_TREE,ONE_TREE
+S041,TR45a20519,C-8plus,tree,ONE_TREE,medium,"Dense full crown, single mass, slightly boxy",MERGED,PROBLEM
+S042,TR6883209b,C-8plus,tree,PROBLEM,medium,"Sparse points mixed with neighbors, truncated sliver crown",PART_OF_TREE,PROBLEM
+S043,TR4dab5cce,C-8plus,tree,ONE_TREE,high,"Compact round crown, dense points, clear trunk",ONE_TREE,ONE_TREE
+S044,TRf0b06c72,C-8plus,tree,ONE_TREE,high,"Compact complete crown, dense points",REDO,
+S045,TRaf6d1a9e,C-8plus,tree,PROBLEM,medium,"Sparse low points, partial crown beside neighbors",NOT_A_TREE,PROBLEM
+S046,TR205a8ecd,C-under8,tree,PROBLEM,medium,Wide low shrub-like mass on slope,BRUSH,PROBLEM
+S047,TR9d49fff2,C-8plus,tree,ONE_TREE,low,Conical crown but sparse points,TREE_WITH_ROOF,PROBLEM
+S048,TR66dede13,C-under8,tree,PROBLEM,high,"Hedge-like row of shrubs, low and elongated",BRUSH,PROBLEM
+S049,TR18a47c1a,C-8plus,tree,PROBLEM,medium,"Large dense canopy, several trees joined",TREE_WITH_ROOF,PROBLEM
+S050,TR85ace4e3,C-8plus,tree,PROBLEM,low,"Tall wide cluster, sparse upper points, likely joined trees",MERGED,PROBLEM
+S051,TR9ba5c6c7,C-8plus,tree,ONE_TREE,high,"Isolated well-shaped tree, dense points",ONE_TREE,ONE_TREE
+S052,TRdc5deafc,C-8plus,tree,ONE_TREE,medium,"Domed crown on slope, fairly complete",ONE_TREE,ONE_TREE
+S053,TRd77f6ba2,C-8plus,tree,PROBLEM,high,"Dense forest, many treetops, arbitrary outline",MERGED,PROBLEM
+S054,TR69ea3125,C-8plus,tree,ONE_TREE,medium,"Good tree side shape, narrow outline overlapped by another",MERGED,PROBLEM
+S055,TR4692e1fc,C-8plus,tree,PROBLEM,medium,"Elongated outline in cluster, joined or partial trees",MERGED,PROBLEM
+S056,TR2145d0ca,C-8plus,tree,ONE_TREE,high,"Isolated tall tree, complete crown",MERGED,PROBLEM
+S057,TR7ab74ca8,C-8plus,tree,PROBLEM,medium,"Wide dense mass in cluster, several treetops",MERGED,PROBLEM
+S058,TRe03ea3c5,C-under8,tree,ONE_TREE,high,"Isolated tree in parking island, complete crown",ONE_TREE,ONE_TREE
+S059,TRf3ec4643,C-under8,tree,PROBLEM,medium,Sparse low brush on slope,REDO,
+S060,TRce1d0628,C-8plus,tree,PROBLEM,high,"Outline on roof, trunk floating high above ground",UNSURE,
+S061,TRa5d41292,C-8plus,tree,PROBLEM,high,"Huge multi-tree canopy joined, 79 ft crown, irregular outline",MERGED,PROBLEM
+S062,TRe3bda934,C-8plus,tree,PROBLEM,high,"Several crowns merged in dense cluster, tilted wide shape",MERGED,PROBLEM
+S063,TR27fa4f0c,C-8plus,tree,PROBLEM,medium,"Narrow slice of larger crown, cyan outlines overlap, sparse points",UNSURE,
+S064,TR687e8597,C-8plus,tree,PROBLEM,high,"Small sliver inside dense canopy, trunk at edge, sparse points",UNSURE,
+S065,TR934683b7,C-8plus,tree,PROBLEM,medium,"Fragment of crown beside hedge/shadow, skewed one-sided shape",MERGED,PROBLEM
+S066,TRbc18432f,C-8plus,tree,PROBLEM,high,"Thin strip beside adjacent tree model, part of a tree",MERGED,PROBLEM
+S067,TRfe535321,C-8plus,tree,PROBLEM,medium,"Part of larger crown, cyan model overlaps, one-sided outline",UNSURE,
+S068,TRf1e7194c,C-8plus,tree,PROBLEM,medium,"Wedge in dense canopy on slope, overlaps neighbors",MERGED,PROBLEM
+S069,TRac4d8da2,C-8plus,tree,ONE_TREE,medium,"Conifer-like complete shape in dense forest, plausible single tree",REDO,
+S070,TR87fb318a,C-8plus,tree,ONE_TREE,medium,"Rounded full crown beside house, compact outline",ONE_TREE,ONE_TREE
+S071,TR41545b55,C-8plus,tree,ONE_TREE,high,"Small isolated well-shaped tree, clean crown",ONE_TREE,ONE_TREE
+S072,TR5f308400,C-8plus,tree,PROBLEM,high,"Low flat brushy mass in dense vegetation, wide and short",UNSURE,
+S073,TR676858e9,C-8plus,tree,PROBLEM,medium,"Cone inside overlapping dense canopy, cyan outlines overlap",MERGED,PROBLEM
+S074,TRbf8d4cb8,C-8plus,tree,PROBLEM,medium,"Two lobes merged at data edge, off-centre trunk",MERGED,PROBLEM
+S075,TRbe05ebcd,C-under8,tree,PROBLEM,high,Tiny triangular fragment of neighboring tree crown,PART_OF_TREE,PROBLEM
+S076,TRccadce1e,C-8plus,tree,ONE_TREE,high,"Isolated compact round crown, clean side views",ONE_TREE,ONE_TREE
+S077,TR95c1f8fd,C-8plus,tree,PROBLEM,high,Tilted lopsided sliver at edge of larger tree,ONE_TREE,ONE_TREE
+S078,TRac91aecb,C-8plus,tree,PROBLEM,high,"Dense overlapping canopy, 8 treetops, merged crowns",MERGED,PROBLEM
+S079,TRdb2ac361,C-8plus,tree,PROBLEM,high,"Narrow sliver beside roof, tilted fragment",UNSURE,
+S080,TR2608ad0f,C-8plus,tree,PROBLEM,medium,"Half-overlaps cyan tree model, likely part of a tree",MERGED,PROBLEM
+S081,TRb474f615,C-8plus,tree,PROBLEM,medium,"Lopsided wedge squeezed among neighbors, looks like part of a tree",TREE_WITH_ROOF,PROBLEM
+S082,TR54b21680,C-8plus,tree,ONE_TREE,high,"Isolated, round complete crown, clean side views",ONE_TREE,ONE_TREE
+S083,TRd54e98d8,C-8plus,tree,PROBLEM,high,Huge elongated mass of many trees joined,MERGED,PROBLEM
+S084,TRd05e92d9,C-8plus,tree,PROBLEM,medium,"Wide slanted blob in dense forest, several treetops",MERGED,PROBLEM
+S085,TRe4e71c2c,C-8plus,tree,ONE_TREE,medium,"Rounded single crown on open ground, full side shape",TREE_WITH_ROOF,PROBLEM
+S086,TRdfd75f4e,C-8plus,tree,ONE_TREE,medium,"Compact single crown with trunk, well shaped",ONE_TREE,ONE_TREE
+S087,TR16fb409b,C-8plus,tree,PROBLEM,medium,"Lopsided crown inside dense forest canopy, likely merged",MERGED,PROBLEM
+S088,TR8962ab72,C-8plus,tree,PROBLEM,medium,"Elongated outline, lopsided west view, multiple treetops",MERGED,PROBLEM
+S089,TRdd49af54,C-8plus,tree,ONE_TREE,high,"Isolated round tree, dense symmetric crown",ONE_TREE,ONE_TREE
+S090,TR8695c6e7,C-8plus,tree,ONE_TREE,medium,"Conical single crown, though touching neighbors in canopy",TREE_WITH_ROOF,PROBLEM
+S091,TR299762ce,C-8plus,tree,PROBLEM,high,"Tiny sliver with sparse points, fragment of a tree",UNSURE,
+S092,TR31314ab5,C-8plus,tree,ONE_TREE,high,"Isolated round crown on open ground, full shape",ONE_TREE,ONE_TREE
+S093,TRf5205ec1,C-8plus,tree,UNSURE,low,"Sparse spiky top, crown shape ambiguous beside neighbors",TREE_WITH_ROOF,PROBLEM
+S094,TRadd1215c,C-8plus,tree,PROBLEM,medium,Segment cut from a continuous tree row,MERGED,PROBLEM
+S095,TR9a72e7d8,C-8plus,tree,ONE_TREE,medium,"Isolated round crown by street, clean side views",ONE_TREE,ONE_TREE
+S096,TR8f8c2fa2,C-8plus,tree,PROBLEM,medium,Large lopsided crown in dense forest on slope,BRUSH,PROBLEM
+S097,TRb346db91,C-8plus,tree,PROBLEM,medium,"Narrow strip along house edge, part of larger tree",MERGED,PROBLEM
+S098,TRb009ae89,C-8plus,tree,UNSURE,low,Tall narrow crown inside merged canopy cluster,ONE_TREE,ONE_TREE
+S099,TRa89c750c,C-8plus,tree,PROBLEM,high,"Irregular elongated shape with tail, over road and brush",NOT_A_TREE,PROBLEM
+S100,TR4b307710,C-8plus,tree,PROBLEM,high,Trunk and crown overlap building roof edge,UNSURE,
+S101,TR26618f7f,C-8plus,tree,PROBLEM,low,"Slice of larger canopy cluster, touches roof corner, off-centre trunk",ONE_TREE,ONE_TREE
+S102,TR8084ceb9,C-8plus,tree,PROBLEM,medium,"Sparse low shrubby crown on fence line, trunk off to side",PART_OF_TREE,PROBLEM
+S103,TR94b4c4fc,C-8plus,tree,ONE_TREE,medium,"Large dense single crown, coherent shape; nudges roof edge",TREE_WITH_ROOF,PROBLEM
+S104,TRbb6c71b4,C-8plus,tree,ONE_TREE,high,"Compact isolated crown, clean side views",ONE_TREE,ONE_TREE
+S105,TR93f05369,C-8plus,tree,PROBLEM,high,"Narrow sliver, points only at top, beside roof",PART_OF_TREE,PROBLEM
+S106,TRbfe395a6,C-8plus,tree,PROBLEM,high,"Elongated brush patch on steep slope, not a tree",BRUSH,PROBLEM
+S107,TR5a3cfb5a,C-8plus,tree,ONE_TREE,medium,Large full crown with good shape and trunk,MERGED,PROBLEM
+S108,TR9f15f020,C-8plus,tree,ONE_TREE,medium,"Complete crown, trunk centred, neighbours adjacent",PART_OF_TREE,PROBLEM
+S109,TRa8b31432,C-8plus,tree,ONE_TREE,medium,"Dense crown, slightly tilted but single tree; beside roof",TREE_WITH_ROOF,PROBLEM
+S110,TR673a6e77,C-8plus,tree,ONE_TREE,high,"Isolated, dense, well-shaped single crown",ONE_TREE,ONE_TREE
+S111,TR55bac50a,C-8plus,tree,PROBLEM,medium,"Lopsided sparse part of a tree, trunk at edge",MERGED,PROBLEM
+S112,TR96d0e77e,C-8plus,tree,ONE_TREE,low,"Good crown in side view, but cut from joined cluster",ONE_TREE,ONE_TREE
+S113,TR93cf4d07,C-8plus,tree,ONE_TREE,low,"Tilted sparse crown at data edge, trunk off-centre",UNSURE,
+S114,TR93dc4264,C-8plus,tree,ONE_TREE,medium,"Single tall crown, dense, alongside neighbour tree",MERGED,PROBLEM
+S115,TRc0b48474,C-8plus,tree,ONE_TREE,high,"Complete conical tree, even point cover",ONE_TREE,ONE_TREE
+S116,TR5dd66f27,C-8plus,tree,PROBLEM,medium,"Low hedge-like mass with thin spike, wrong shape",UNSURE,

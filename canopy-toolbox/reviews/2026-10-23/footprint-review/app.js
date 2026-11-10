@@ -106,6 +106,19 @@ const QUEUES = {
       ["UNSURE", "Unsure"],
     ],
   },
+  cleanup: {
+    question: "Red is the regularized LiDAR outline. LoD2.2 had trouble with this building. Is the outline right?",
+    others: "other LiDAR outlines",
+    answers: [
+      ["OUTLINE_RIGHT", "The outline is right; the roof model is the problem"],
+      ["ADD_ROOF", "The outline misses part of the roof"],
+      ["TRIM", "The outline takes in something that is not this roof (tree, neighbour, ground)"],
+      ["SPLIT_BUILDINGS", "Several buildings in one outline: split them"],
+      ["NEEDS_EDIT", "Needs editing another way (say what in a note)"],
+      ["NOT_A_BUILDING", "Not a building"],
+      ["UNSURE", "Unsure"],
+    ],
+  },
   outlines2: null,
   tree_rejects: {
     question: "CFTree could not build a model here (the dot is the segment's highest return). Is there a tree?",
@@ -176,6 +189,7 @@ const GROUP_NAMES = { large_tall: "Large and tall", detached: "Detached", attach
                       sample_tangle: "Sample: tangles", tangle: "Tangles (several of each)",
                       sample_county_only: "Sample: county footprint, no 2023 roof", county_only: "County footprint, no 2023 roof",
                       sample_lidar_only: "Sample: LiDAR building, no county footprint", lidar_only: "LiDAR building, no county footprint",
+                      cleanup_no_model: "1 No LoD2.2 model", cleanup_roof_fit: "2 Poor roof fit (worst first)", cleanup_piece: "3 Small pieces and vehicles",
                       decide_joins: "1 Decide: one LiDAR building over several county outlines (sample, done)",
                       decide_reshaped: "2 Decide: reshaped, partly under trees (10-30% canopy, sample)",
                       decide_vehicles: "3 Decide: LiDAR-only, vehicle-shaped",
@@ -268,10 +282,19 @@ function refreshGroups() {
   sel.value = groups.includes(keep) ? keep : "";
 }
 
+const STOP_AFTER = 20;   // November 9: the poor-fit group runs worst first, so a run of right outlines means the rest can wait
+function fineRun() {
+  let run = 0;
+  for (const it of index.items) if (it.group === "cleanup_roof_fit" && done(it.id)) run = answers[it.id].ANSWER === "OUTLINE_RIGHT" ? run + 1 : 0;
+  return run;
+}
+
 function progress() {
   const q = $("queue").value, all = index.items.filter((it) => it.queue === q), n = all.filter((it) => done(it.id)).length;
   $("progress-bar").style.width = all.length ? `${(100 * n) / all.length}%` : "0";
-  $("progress-text").textContent = `${n} of ${all.length} answered in this queue`;
+  const run = q === "cleanup" ? fineRun() : 0;
+  $("progress-text").textContent = `${n} of ${all.length} answered in this queue` +
+    (run >= STOP_AFTER ? `. Group 2: ${run} in a row fine, you can stop it and go to group 3` : run ? `. Group 2: ${run} in a row fine (stop at ${STOP_AFTER})` : "");
   $("position").textContent = list.length ? `${pos + 1} / ${list.length}` : "0 / 0";
 }
 
@@ -285,14 +308,15 @@ function centreOf(rings) {
 
 function drawMap(d) {
   layers.clearLayers();
-  for (const ring of d.county_ll) L.polygon(ring, { color: "#ffffff", weight: 1.5, fill: false }).addTo(layers);
+  const showCounty = !$("hide-county").checked;
+  if (showCounty) for (const ring of d.county_ll) L.polygon(ring, { color: "#ffffff", weight: 1.5, fill: false }).addTo(layers);
   for (const ring of d.cand_ll) L.polygon(ring, { color: "#00d5ff", weight: 1.5, dashArray: "4 4", fill: false }).addTo(layers);
   let focus = d.outline_ll;
   if (d.hint_ll) {
     for (const ring of d.hint_ll) L.polygon(ring, { color: "#ffd400", weight: 2.5, dashArray: "6 4", fill: false }).addTo(layers);
     focus = d.hint_ll;
   }
-  for (const ring of d.focus_ll || []) L.polygon(ring, { color: "#ff3df5", weight: 3, fill: false }).addTo(layers);
+  if (showCounty) for (const ring of d.focus_ll || []) L.polygon(ring, { color: "#ff3df5", weight: 3, fill: false }).addTo(layers);
   for (const ring of d.outline_ll) L.polygon(ring, { color: "#ff2a2a", weight: 2.5, fill: false }).addTo(layers);
   if (d.focus_ll && d.focus_ll.length) focus = d.focus_ll.concat(d.outline_ll);
   map.invalidateSize({ animate: false });
@@ -314,8 +338,8 @@ function drawChip(d) {
   svg.innerHTML = `<style>polygon{fill:none;vector-effect:non-scaling-stroke}.county{stroke:#fff;stroke-width:1.5}
     .cand{stroke:#00d5ff;stroke-width:1.5;stroke-dasharray:4 4}.item{stroke:#ff2a2a;stroke-width:2.5}
     .hint{stroke:#ffd400;stroke-width:2.5;stroke-dasharray:6 4}.focus{stroke:#ff3df5;stroke-width:3}</style>` +
-    svgPoly(d.county_px, "county") + svgPoly(d.cand_px, "cand") + svgPoly(d.hint_px || [], "hint") +
-    svgPoly(d.focus_px || [], "focus") + svgPoly(d.outline_px, "item");
+    ($("hide-county").checked ? "" : svgPoly(d.county_px, "county")) + svgPoly(d.cand_px, "cand") + svgPoly(d.hint_px || [], "hint") +
+    ($("hide-county").checked ? "" : svgPoly(d.focus_px || [], "focus")) + svgPoly(d.outline_px, "item");
   $("chip-metres").textContent = `${Math.round(d.chip.metres)} m across`;
   $("legend-others").textContent = QUEUES[d.queue].others || "other candidates";
   $("legend-focus").textContent = QUEUES[d.queue].focus || "county outline in question";
@@ -434,6 +458,7 @@ function keys(e) {
   else if (e.key === "ArrowLeft") { show(pos - 1); e.preventDefault(); }
   else if (e.key === "Backspace") { save(""); e.preventDefault(); }
   else if (e.key === "n" || e.key === "N") { $("note").focus(); e.preventDefault(); }
+  else if (e.key === "h" || e.key === "H") { $("hide-county").click(); e.preventDefault(); }
   else if ((e.key === "r" || e.key === "R") && homeView) { map.setView(homeView[0], homeView[1]); e.preventDefault(); }
 }
 
@@ -462,6 +487,12 @@ async function start() {
   $("prev").onclick = () => show(pos - 1); $("next").onclick = () => show(pos + 1);
   $("clear").onclick = () => save(""); $("reset").onclick = () => homeView && map.setView(homeView[0], homeView[1]);
   document.addEventListener("keydown", keys);
+  $("hide-county").addEventListener("change", () => {
+    if (!current) return;
+    const center = map.getCenter(), zoom = map.getZoom();
+    drawMap(current); drawChip(current);
+    map.setView(center, zoom, { animate: false });
+  });
   $("note").addEventListener("input", () => { if (current) keepDraft(current.id, $("note").value); });
   reload();
 }

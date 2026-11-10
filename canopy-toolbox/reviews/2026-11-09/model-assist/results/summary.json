@@ -1,0 +1,132 @@
+{
+ "footprints": {
+  "tasks": {
+   "reshaped": {
+    "all": 18,
+    "all_hit": 4,
+    "high": 2,
+    "high_hit": 1
+   },
+   "kept": {
+    "all": 40,
+    "all_hit": 11
+   },
+   "joins": {
+    "all": 40,
+    "all_hit": 9
+   },
+   "small": {
+    "all": 24,
+    "all_hit": 14,
+    "high": 1,
+    "high_hit": 1
+   },
+   "tangle": {
+    "all": 3,
+    "all_hit": 1
+   }
+  },
+  "passed": {
+   "reshaped": false,
+   "small": false,
+   "tangle": false
+  },
+  "open": {
+   "test": 125,
+   "needs_brian": 137
+  },
+  "needs_brian_by_group": {
+   "decide_reshaped": 22,
+   "decide_tangle": 37,
+   "check_touching": 20,
+   "answer_reshaped": 42,
+   "decide_small": 16
+  },
+  "top_misses": [
+   [
+    "joins",
+    "COUNTY_RIGHT",
+    "SPLIT_BUILDINGS",
+    10
+   ],
+   [
+    "joins",
+    "COUNTY_RIGHT",
+    "LIDAR_RIGHT",
+    7
+   ],
+   [
+    "kept",
+    "SHED",
+    "UNDER_TREES",
+    6
+   ],
+   [
+    "kept",
+    "UNSURE",
+    "UNDER_TREES",
+    5
+   ],
+   [
+    "kept",
+    "SHED",
+    "UNSURE",
+    3
+   ],
+   [
+    "kept",
+    "UNDER_TREES",
+    "UNSURE",
+    3
+   ],
+   [
+    "joins",
+    "UNSURE",
+    "SPLIT_BUILDINGS",
+    3
+   ],
+   [
+    "kept",
+    "UNDER_TREES",
+    "SHED",
+    3
+   ],
+   [
+    "reshaped",
+    "SPLIT_BUILDINGS",
+    "ADD_TO_COUNTY",
+    3
+   ],
+   [
+    "kept",
+    "NOT_A_BUILDING",
+    "UNDER_TREES",
+    2
+   ],
+   [
+    "small",
+    "SHED",
+    "PART_OF_BUILDING",
+    2
+   ],
+   [
+    "small",
+    "NOT_A_BUILDING",
+    "SHED",
+    2
+   ]
+  ]
+ },
+ "examples": {
+  "counts": {
+   "needs_brian": 144,
+   "two_reads_agree": 78
+  },
+  "needs_brian_by_packet": {
+   "rare": 4,
+   "refined": 45,
+   "original": 17,
+   "calibration": 78
+  }
+ }
+}

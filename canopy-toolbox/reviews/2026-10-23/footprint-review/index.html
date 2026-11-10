@@ -20,6 +20,7 @@
       <option value="trees">Tree models (CFTree)</option>
       <option value="tree_seams">Tree models at tile seams</option>
       <option value="tree_rejects">Trees CFTree could not model</option>
+      <option value="cleanup">Cleanup: regularized outlines flagged by LoD2.2</option>
       <option value="outlines2">LiDAR outlines vs county, after the lot-line and tree fixes: answer the Decide groups</option>
       <option value="outlines">LiDAR outlines vs county (first version: replaced)</option>
     </select></label>
@@ -68,8 +69,9 @@
       <button id="next" title="→">Next →</button>
     </div>
     <label class="advance"><input type="checkbox" id="auto-advance" checked> Go to the next item after answering</label>
+    <label class="advance"><input type="checkbox" id="hide-county"> Hide the county outlines (H)</label>
     <p id="status" role="status"></p>
-    <p class="small">Keys: number keys answer · ← → move · Backspace clear · N note · R reset the map. Answers are saved to
+    <p class="small">Keys: number keys answer · ← → move · Backspace clear · N note · H hide county outlines · R reset the map. Answers are saved to
       <code id="csv-path"></code>. Unvalidated planning estimates: heights are roof minus terrain from the 2023 LiDAR.
       USA Structures: FEMA Geospatial Response Office and Oak Ridge National Laboratory, via Esri (CC BY 4.0).</p>
   </aside>

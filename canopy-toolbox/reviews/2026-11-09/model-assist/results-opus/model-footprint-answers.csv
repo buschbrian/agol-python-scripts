@@ -1,0 +1,126 @@
+ITEM_ID,GROUP,TASK,MODEL_ANSWER,CONFIDENCE,NOTE,STATUS,BRIAN_ANSWER
+QG002143,check_county_kept,kept,UNDER_TREES,low,Tiny outline wholly under dense canopy; nothing discernible in imagery.,test,UNDER_TREES
+QG002725,check_county_kept,kept,GONE,low,Ground and small tree in LiDAR; only brown soil in imagery.,test,UNDER_TREES
+QG002800,check_county_kept,kept,UNDER_TREES,medium,Partial roof under canopy; pale roof visible in imagery.,test,UNDER_TREES
+QG003340,check_county_kept,kept,UNDER_TREES,medium,Roof flecks scattered through dense canopy across the whole outline.,test,NOT_A_BUILDING
+QG004338,check_county_kept,kept,UNDER_TREES,medium,Fully under dense canopy in both panels; beside a visible building.,test,UNDER_TREES
+QG005121,check_county_kept,kept,SHED,high,Distinct grey square roof in imagery; LiDAR read it as canopy.,test,UNDER_TREES
+QG006075,check_county_kept,kept,SHED,low,Light patch in imagery fills outline partly; canopy in LiDAR.,test,UNDER_TREES
+QG006579,check_county_kept,kept,UNDER_TREES,high,Red roof visible in imagery inside outline; canopy covers part in LiDAR.,test,UNDER_TREES
+QG007777,check_county_kept,kept,SHED,medium,Small grey roof visible in imagery under canopy reading.,test,UNDER_TREES
+QG008243,check_county_kept,kept,UNDER_TREES,low,"Full canopy, no roof hits; faint grey texture in imagery under trees.",test,UNSURE
+QG008378,check_county_kept,kept,UNDER_TREES,low,Entirely under tree; nothing visible in imagery.,test,UNSURE
+QG009261,check_county_kept,kept,UNDER_TREES,medium,Roof visible at top of outline; rest under canopy.,test,SHED
+QG009442,check_county_kept,kept,UNDER_TREES,medium,Roof flecks under canopy; pale roof visible in imagery inside outline.,test,SHED
+QG011278,check_county_kept,kept,UNDER_TREES,high,Roof patch shows through dense canopy inside county outline.,test,UNDER_TREES
+QG012002,check_county_kept,kept,UNDER_TREES,medium,Roof patch shows at top of outline; rest under canopy.,test,GONE
+QG012120,check_county_kept,kept,GONE,medium,Imagery shows bare yard inside tiny outline; only tree edge in LiDAR.,test,GONE
+QG012822,check_county_kept,kept,UNDER_TREES,high,Grey roof visible in imagery; LiDAR fully canopy.,test,SHED
+QG013148,check_county_kept,kept,UNDER_TREES,medium,Roof hits along outline edges beneath dense canopy; imagery shows only trees.,test,UNDER_TREES
+QG013155,check_county_kept,kept,GONE,high,Open part of outline is bare ground in LiDAR; no roof in imagery.,test,UNSURE
+QG013278,check_county_kept,kept,UNDER_TREES,low,Under canopy; faint pale strip inside outline in imagery.,test,NOT_A_BUILDING
+QG013771,check_county_kept,kept,UNDER_TREES,medium,Full canopy over narrow outline; faint grey in imagery under trees.,test,UNDER_TREES
+QG014216,check_county_kept,kept,SHED,medium,Grey square roof in open yard; mixed roof and canopy hits.,test,SHED
+QG014308,check_county_kept,kept,UNDER_TREES,medium,Scattered roof hits through full canopy; imagery shows only tree crown.,test,UNSURE
+QG014528,check_county_kept,kept,UNDER_TREES,medium,Roof hits on left under canopy; dim rectangle in imagery.,test,UNDER_TREES
+QG014534,check_county_kept,kept,SHED,medium,Tiny pinkish roof visible in imagery; partial roof hits in LiDAR.,test,SHED
+QG015027,check_county_kept,kept,SHED,medium,Sharp rectangle classed as canopy; brown shed roof visible in imagery.,test,SHED
+QG015210,check_county_kept,kept,UNDER_TREES,low,"Canopy covers outline; roof specks along edges, no roof in imagery.",test,SHED
+QG015300,check_county_kept,kept,SHED,medium,Grey rectangular roof visible in imagery inside outline; canopy in LiDAR.,test,SHED
+QG015720,check_county_kept,kept,SHED,low,Boxy canopy patch fits outline; imagery shows no clear roof.,test,SHED
+QG015891,check_county_kept,kept,UNDER_TREES,medium,Fully canopied; grey-blue roof hint in lower outline.,test,UNDER_TREES
+QG016593,check_county_kept,kept,SHED,medium,Small brown roof visible in imagery; LiDAR read it as canopy.,test,UNDER_TREES
+QG016996,check_county_kept,kept,UNDER_TREES,low,Fully under large tree; no roof visible either panel.,test,UNDER_TREES
+QG017022,check_county_kept,kept,SHED,medium,Small rectangular roof-toned patch in imagery at tree edge.,test,UNSURE
+QG017989,check_county_kept,kept,UNDER_TREES,high,White roof corner visible inside outline; remainder under canopy.,test,UNSURE
+QG018773,check_county_kept,kept,SHED,medium,Tiny light roof visible in imagery inside outline; canopy in LiDAR.,test,UNDER_TREES
+QG019199,check_county_kept,kept,SHED,medium,Pale small roof visible in imagery under canopy; neighbor shed similar.,test,SHIFT_COUNTY
+QG019855,check_county_kept,kept,SHED,medium,"Dark rectangle fits outline in imagery; no LiDAR height, likely low or new.",test,GONE
+QG019997,check_county_kept,kept,SHED,medium,Flat block classed as canopy; pale small roof visible in imagery.,test,SHED
+QG020207,check_county_kept,kept,UNDER_TREES,medium,"Roof hits along south edge, canopy over rest; matches outline.",test,SHED
+QG020218,check_county_kept,kept,UNDER_TREES,low,"At tree edge; no roof visible, only a roof-colored speck.",test,SHED
+QG000158,decide_joins,joins,COUNTY_RIGHT,medium,Four separate unit roofs fit county; red only bridges them with slivers.,test,COUNTY_RIGHT
+QG001017,decide_joins,joins,SPLIT_BUILDINGS,medium,House and garage touch only at a corner; separate roofs.,test,COUNTY_RIGHT
+QG001300,decide_joins,joins,KEEP_UNITS,low,"Three abutting roof sections; county lines fit, outer shape matches LiDAR.",test,COUNTY_RIGHT
+QG001729,decide_joins,joins,LIDAR_RIGHT,high,Maroon middle roof connects all county parts; red U-shape fits.,test,COUNTY_RIGHT
+QG002490,decide_joins,joins,LIDAR_RIGHT,high,White roof between the county outlines matches red; continuous structure.,test,COUNTY_RIGHT
+QG002776,decide_joins,joins,LIDAR_RIGHT,medium,White covered strip links house to rear block; continuous roof in LiDAR.,test,COUNTY_RIGHT
+QG002842,decide_joins,joins,SPLIT_BUILDINGS,medium,Two separate buildings joined by thin neck; red keeps southwest extension.,test,COUNTY_RIGHT
+QG003125,decide_joins,joins,LIDAR_RIGHT,medium,White roofed link between the two county buildings matches red outline.,test,COUNTY_RIGHT
+QG004144,decide_joins,joins,LIDAR_RIGHT,medium,Grey roof connector links house and garage; red includes west bump.,test,UNSURE
+QG004489,decide_joins,joins,SPLIT_BUILDINGS,low,Three distinct roofs joined by necks; south white-roof building has no county outline.,test,UNSURE
+QG004652,decide_joins,joins,COUNTY_RIGHT,medium,House and garage fit county closely; touch only at a corner.,test,COUNTY_RIGHT
+QG004662,decide_joins,joins,UNDER_TREES,medium,Northeast block half under canopy; county outlines fit house and block.,test,UNDER_TREES
+QG004891,decide_joins,joins,LIDAR_RIGHT,low,Raised link over driveway may be carport joining garage and house.,test,COUNTY_RIGHT
+QG005970,decide_joins,joins,LIDAR_RIGHT,medium,County misses white-roofed section that connects house and garage.,test,COUNTY_RIGHT
+QG006351,decide_joins,joins,UNDER_TREES,medium,Heavy canopy over both; LiDAR boxes nearly repeat county outlines.,test,UNSURE
+QG006736,decide_joins,joins,LIDAR_RIGHT,low,"Roof extends northeast past county, linking house to garage.",test,NEEDS_EDIT
+QG006779,decide_joins,joins,COUNTY_RIGHT,medium,House and rear garage fit county; narrow neck joins them in red.,test,COUNTY_RIGHT
+QG007231,decide_joins,joins,LIDAR_RIGHT,high,Large new complex fits red; county pieces are unrelated older outlines.,test,LIDAR_RIGHT
+QG007243,decide_joins,joins,LIDAR_RIGHT,high,Grey roof between county pieces; one L-shaped building as LiDAR shows.,test,NEEDS_EDIT
+QG007523,decide_joins,joins,COUNTY_RIGHT,medium,Two separate large buildings fit county; red joined by small link.,test,COUNTY_RIGHT
+QG007670,decide_joins,joins,SPLIT_BUILDINGS,medium,House and south block touch only at corner; separate roofs.,test,UNSURE
+QG007760,decide_joins,joins,UNDER_TREES,medium,North county part under canopy with roof strip showing; south part fits.,test,NEEDS_EDIT
+QG008281,decide_joins,joins,COUNTY_RIGHT,medium,House and small outbuilding fit county; red bridges them at corner.,test,COUNTY_RIGHT
+QG008888,decide_joins,joins,UNDER_TREES,medium,"Second block mostly under canopy, partial roof at west; county outlines fit.",test,LIDAR_RIGHT
+QG009031,decide_joins,joins,LIDAR_RIGHT,medium,"One house; county outlines appear duplicated on it, red fits roof.",test,LIDAR_RIGHT
+QG009065,decide_joins,joins,SPLIT_BUILDINGS,medium,"Two buildings with clear gap, joined only by small neck.",test,COUNTY_RIGHT
+QG009464,decide_joins,joins,LIDAR_RIGHT,medium,Upper county rotated off roof; LiDAR captures connected lower section.,test,COUNTY_RIGHT
+QG009533,decide_joins,joins,LIDAR_RIGHT,medium,Continuous L-shaped commercial roof; county splits it at an abutting line.,test,COUNTY_RIGHT
+QG009810,decide_joins,joins,COUNTY_RIGHT,medium,County outlines fit main block and small south piece; LiDAR merges and clips.,test,COUNTY_RIGHT
+QG009907,decide_joins,joins,COUNTY_RIGHT,medium,County fits house and garage; LiDAR has spurious link and tree extension.,test,COUNTY_RIGHT
+QG010019,decide_joins,joins,LIDAR_RIGHT,high,"Single rectangular roof fits red; county outlines misplaced, one over pavement.",test,LIDAR_RIGHT
+QG010593,decide_joins,joins,SPLIT_BUILDINGS,medium,House and detached garage with visible gap; LiDAR joins them at corner.,test,COUNTY_RIGHT
+QG010950,decide_joins,joins,LIDAR_RIGHT,medium,Continuous roof spans both county outlines plus solid rear section.,test,UNSURE
+QG012234,decide_joins,joins,SPLIT_BUILDINGS,medium,Garage linked to house only by thin neck; detached in imagery.,test,COUNTY_RIGHT
+QG012653,decide_joins,joins,SPLIT_BUILDINGS,medium,Shadow gap between house and north garage; LiDAR connects along east.,test,NEEDS_EDIT
+QG013195,decide_joins,joins,LIDAR_RIGHT,medium,Garage abuts house wing along a full wall; one attached mass.,test,COUNTY_RIGHT
+QG013775,decide_joins,joins,LIDAR_RIGHT,medium,Rear unit attached by link; red also adds white patio roof.,test,SHED
+QG013798,decide_joins,joins,LIDAR_RIGHT,high,"New large house fits red; county outlines stale, north one over bare ground.",test,LIDAR_RIGHT
+QG015353,decide_joins,joins,SPLIT_BUILDINGS,low,House and small tree-covered outbuilding joined by a corner tab.,test,COUNTY_RIGHT
+QG016238,decide_joins,joins,COUNTY_RIGHT,medium,House and small rear building fit county; touch only at corner.,test,UNSURE
+QG001040,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,County fits west part; LiDAR adds white-roofed section to east.,test,ADD_TO_COUNTY
+QG001755,decide_reshaped,reshaped,LIDAR_RIGHT,medium,West side of county outline is ground and shrubs; red follows roof.,test,SHIFT_COUNTY
+QG002180,decide_reshaped,reshaped,LIDAR_RIGHT,high,County covers only a corner; roof fills the whole red outline.,test,SPLIT_BUILDINGS
+QG003122,decide_reshaped,reshaped,LIDAR_RIGHT,high,Roof extends south as LiDAR shows; county west bump is off roof.,test,ADD_TO_COUNTY
+QG003727,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,County fits central block; LiDAR adds white-roofed north section and southwest piece.,test,SPLIT_BUILDINGS
+QG003797,decide_reshaped,reshaped,SPLIT_BUILDINGS,high,LiDAR merges long west building with east building; county covers east only.,test,NEEDS_EDIT
+QG003996,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,County fits main block; LiDAR adds attached white-roofed strip to east.,test,COUNTY_RIGHT
+QG004133,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,County fits south block; LiDAR adds real pale-roofed north section.,test,SPLIT_BUILDINGS
+QG004410,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,County fits center roof; LiDAR adds white-roofed west and northeast sections.,test,SPLIT_BUILDINGS
+QG004821,decide_reshaped,reshaped,NEEDS_EDIT,low,"White box in lot; county strip wrong, LiDAR ragged and partial.",test,NOT_A_BUILDING
+QG004957,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,"County fits west roof; contiguous east wing missing, present in both panels.",test,ADD_TO_COUNTY
+QG006124,decide_reshaped,reshaped,COUNTY_RIGHT,low,County fits brown strip between houses; LiDAR extras look unrelated.,test,COUNTY_RIGHT
+QG006547,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,County fits grey roof; LiDAR adds white-roofed section to west.,test,ADD_TO_COUNTY
+QG007054,decide_reshaped,reshaped,LIDAR_RIGHT,high,County shape is skewed and misses east wing; red fits both panels.,test,LIDAR_RIGHT
+QG007301,decide_reshaped,reshaped,LIDAR_RIGHT,high,East part of county is bare ground; only west roof remains.,test,LIDAR_RIGHT
+QG007964,decide_reshaped,reshaped,UNDER_TREES,medium,LiDAR cut by canopy on north wings; imagery roof fills county shape.,test,ADD_TO_COUNTY
+QG008835,decide_reshaped,reshaped,ADD_TO_COUNTY,medium,County fits south block; LiDAR adds real teal-roofed section to north.,test,SPLIT_BUILDINGS
+QG009633,decide_reshaped,reshaped,UNSURE,low,"East wing white in imagery, matches county, but LiDAR shows bare ground.",test,NEEDS_EDIT
+QG021255,decide_small,small,PART_OF_BUILDING,high,Narrow strip on house corner; attached white roof.,test,PART_OF_BUILDING
+QG021526,decide_small,small,VEHICLE,medium,"Narrow 2 by 6 m white strip in yard; trailer-like, beside similar object.",test,SHED
+QG021531,decide_small,small,PART_OF_BUILDING,medium,Flat roof contiguous with adjacent building through short neck.,test,LIDAR_RIGHT
+QG021556,decide_small,small,PART_OF_BUILDING,low,"Strip of a roof spanning red and adjacent county outline, tree-obscured.",test,VEHICLE
+QG021605,decide_small,small,VEHICLE,low,"White-ended dark object on driveway beside house; RV-like, about 2.8 m tall.",test,VEHICLE
+QG021661,decide_small,small,PART_OF_BUILDING,low,Small roof abutting south wall of building; could be a shed.,test,SHED
+QG021665,decide_small,small,SHED,high,Small pale roof standing alone in back yard.,test,SHED
+QG021666,decide_small,small,PART_OF_BUILDING,medium,Narrow strip against west wall of building; lean-to in LiDAR.,test,PART_OF_BUILDING
+QG021727,decide_small,small,SHED,medium,"Small rectangular pale roof at tree edge, visible in both panels.",test,UNSURE
+QG021759,decide_small,small,PART_OF_BUILDING,medium,Flat white roof continuous with house side in LiDAR; likely carport or addition.,test,UNSURE
+QG021825,decide_small,small,SHED,medium,"Small flat roof in house notch, small gap from wall.",test,SHED
+QG021934,decide_small,small,VEHICLE,medium,"About 6 by 2.5 m, angled white object in yard; trailer-like.",test,NOT_A_BUILDING
+QG022107,decide_small,small,SHED,medium,Small detached square roof in yard with small gap to neighbor.,test,SHED
+QG022133,decide_small,small,SHED,medium,Small light roof detached in yard beside long buildings.,test,SHED
+QG022186,decide_small,small,PART_OF_BUILDING,high,"Sliver along east wall of large house, inside its roof.",test,PART_OF_BUILDING
+QG022367,decide_small,small,VEHICLE,high,Box on street edge; only pavement and a car in imagery.,test,VEHICLE
+QG022401,decide_small,small,SHED,low,Smooth rotated roof patch at tree edge; grey object in imagery.,test,NOT_A_BUILDING
+QG022531,decide_small,small,SHED,low,"Smooth flat roof strip at canopy edge, partly shaded in imagery.",test,NOT_A_BUILDING
+QG022540,decide_small,small,VEHICLE,medium,"Narrow white elongated object in side drive, angled off buildings; trailer-like.",test,VEHICLE
+QG022666,decide_small,small,SHED,medium,"Small rotated dark roof on pad, detached from long buildings.",test,UNSURE
+QG022756,decide_small,small,SHED,low,Small white L-shape in dirt yard; could be stored equipment.,test,NOT_A_BUILDING
+QG022844,decide_small,small,SHED,medium,Small white-and-grey roof at end of pad; could be a trailer.,test,SHED
+QG022885,decide_small,small,SHED,high,"Small square tan roof isolated in yard, consistent in both panels.",test,SHED
+QG024123,decide_small,small,SHED,high,"Small white square roof, detached, matches both panels.",test,LIDAR_RIGHT
+QG000698,decide_tangle,tangle,LIDAR_RIGHT,low,Differences small; red follows roof edge and west strip better.,test,COUNTY_RIGHT
+QG001476,decide_tangle,tangle,LIDAR_RIGHT,medium,"Red captures extra roof north, south and northeast that county outlines miss.",test,COUNTY_RIGHT
+QG001568,decide_tangle,tangle,LIDAR_RIGHT,medium,"House matches; rear structure is one roof, county cuts it in two.",test,COUNTY_RIGHT

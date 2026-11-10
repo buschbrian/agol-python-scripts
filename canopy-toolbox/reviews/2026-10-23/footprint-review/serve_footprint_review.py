@@ -29,6 +29,8 @@ import urllib.parse
 HERE = Path(__file__).resolve().parent
 STATIC = {"/": "index.html", "/index.html": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
 ANSWERS = {
+    # November 9: regularized LiDAR-first outlines that the LoD2.2 cross-check flagged
+    "cleanup": ("OUTLINE_RIGHT", "ADD_ROOF", "TRIM", "SPLIT_BUILDINGS", "NEEDS_EDIT", "NOT_A_BUILDING", "UNSURE"),
     "candidates": ("ACCEPT", "PART_OF_EXISTING", "VEHICLE", "REJECT", "UNSURE", "LIDAR_RIGHT"),
     "county": ("DEMOLISHED", "STILL_THERE", "MISPLACED", "UNSURE", "LIDAR_RIGHT"),
     "newbuild": ("NEW_BUILDING", "NO_BUILDING", "UNSURE", "LIDAR_RIGHT"),
