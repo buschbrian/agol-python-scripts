@@ -20,6 +20,12 @@ writes `decisions-20261110.csv`. Tangles become a rule: the 142 waiting are spli
 join default for small pieces touching a building failed its check (8 of 20), and Brian
 dropped those 286 (`DROP`, `BY` = `Brian-20261110`). The shed rule (679) stands but was right on only 12 of 23 free-standing answers.
 
+## Footprint layer built (November 10)
+
+All decisions are applied in [footprint-layer](../../2026-11-10/footprint-layer/README.md): 24,858 outlines, roof line kept,
+county attributes carried, 56 flagged for hand work. Not uploaded. Open: the other sources show 64% of the 286 dropped
+pieces inside a mapped house outline, so joining those 183 is an option; the 3D rebuild on this layer is next.
+
 ## Graded halfway through the regrade, and the 137 items left (October 27)
 
 The October 26 tables below are superseded by this one. [grade_regrade.py](grade_regrade.py) turned Brian's 125
