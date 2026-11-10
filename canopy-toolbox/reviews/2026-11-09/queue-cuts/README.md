@@ -25,3 +25,15 @@ size, so any citywide rate must weight by band, as it already had to.
 
 **Poor-fit outlines.** Group 2 of the cleanup queue runs worst first. The progress line counts consecutive OUTLINE_RIGHT answers and says
 to stop at 20. Items past the stop keep their regularized outlines and stay open on the page. 20 is a judgment, not a calibrated value.
+
+## November 10: the merged and over-roof tree queues parked
+
+Brian approved parking both queues after the model pass on their open tall trees (see `../model-triage/README.md`).
+`park_tree_queues.py` took all 600 off the page (300 merged, 300 over roof). None had an answer or a note. They are appended
+to `parked-items.csv`.
+
+**Why.** These queues were drawn by the merged and roof cues to check them. The random tree sample already did that. At 8 m and up,
+merged was right 24 of 26 times and roof 4 of 4. Under 8 m, merged was right 13 of 13 and roof 3 of 3. The sample also shows that
+merged crowns are the largest problem among tall trees (37 of 91), which is what a second CFTree run needs to know.
+
+**What is lost.** Per-tree answers on these 600. Undo: stop the server and copy `index.before-park-20261110.json` over `index.json`.
